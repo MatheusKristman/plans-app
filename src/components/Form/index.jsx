@@ -2,19 +2,26 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { TextField, Button, Typography } from '@mui/material';
 import React, { useState } from 'react';
+import login from '../../utils/Login';
 
 function Form() {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   function handleClickShowPassword() {
     setShowPassword((show) => !show);
   }
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    login(email, password);
+  }
+
   return (
-    <form className="login-form" action="">
+    <form className="login-form" onSubmit={handleSubmit} action="POST">
       <div>
         <TextField
-          id="outlined"
           required
           label="Email"
           variant="outlined"
@@ -22,6 +29,8 @@ function Form() {
             width: '400px',
             height: '60px',
           }}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <div style={{
@@ -29,7 +38,6 @@ function Form() {
       }}
       >
         <TextField
-          id="outlined"
           required
           label="Senha"
           variant="outlined"
@@ -38,6 +46,8 @@ function Form() {
             width: '400px',
             height: '60px',
           }}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <img
           src={showPassword ? './assets/icons/visible.png' : './assets/icons/visibility.png'}
@@ -64,6 +74,8 @@ function Form() {
             background: '#D40066',
           },
         }}
+        type="submit"
+        disabled={email === '' || password.length < 5}
       >
         Entrar
       </Button>

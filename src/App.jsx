@@ -16,7 +16,7 @@ function App() {
           justifyContent: 'center',
           alignItems: 'center',
           width: '45%',
-          background: 'linear-gradient(180deg, #D5A595 0%, #F5E0D9 100%);'
+          background: 'linear-gradient(180deg, #D5A595 0%, #F5E0D9 100%);',
         }}
       >
         <img
@@ -35,8 +35,22 @@ function App() {
           flexFlow: 'column',
         }}
       >
-        <Typography variant="h2" sx={{fontWeight: 'bold'}}>Bem Vindo</Typography>
-        <Typography variant="span" sx={{color: '#9F9F9F'}}>Por favor insira suas credenciais</Typography>
+        <Typography
+          variant="h2"
+          sx={{
+            fontWeight: 'bold',
+          }}
+        >
+          Bem Vindo
+        </Typography>
+        <Typography
+          variant="span"
+          sx={{
+            color: '#9F9F9F',
+          }}
+        >
+          Por favor insira suas credenciais
+        </Typography>
         <Form />
       </Stack>
     </Box>
