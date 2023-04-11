@@ -1,13 +1,19 @@
-export default function login(email, password) {
+export default async function login(email, password) {
+
+  const formData = new FormData();
+
+  formData.append('email', email);
+  formData.append('password', password);
+
   const options = {
     method: 'POST',
-    body: {
-      email,
-      password,
-    },
+    body: formData,
   };
 
-  fetch('https://planos-backend.onrender.com/admin/login', options)
-    .then((response) => response.json())
-    .then((data) => console.log(data));
+  const response = await fetch('https://planos-backend.onrender.com/admin/login', options)
+
+  const { token } = await response.json();
+
+  console.log(token)
+
 }

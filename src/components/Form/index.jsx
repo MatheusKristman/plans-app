@@ -19,7 +19,7 @@ function Form() {
   }
 
   return (
-    <form className="login-form" onSubmit={handleSubmit} action="POST">
+    <form className="login-form" onSubmit={handleSubmit}>
       <div>
         <TextField
           required
