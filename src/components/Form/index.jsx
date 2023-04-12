@@ -22,9 +22,31 @@ function Form() {
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>
+      <Typography
+          variant="span"
+          sx={{
+            color: '#9F9F9F',
+          }}
+        ></Typography>
+        <Typography
+          variant="h2"
+          sx={{
+            fontWeight: 'bold',
+          }}
+        >
+          Bem Vindo
+        </Typography>
+        <Typography
+          variant="span"
+          sx={{
+            color: '#9F9F9F',
+          }}
+        >
+          Por favor insira suas credenciais
+        </Typography>
       <div>
         {
-          logged && (<Navigate to="/dashboard" replace={true} />)
+          logged && (<Navigate to="/home" replace={true} />)
         }
         <TextField
           required

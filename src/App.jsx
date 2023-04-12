@@ -34,22 +34,16 @@ function App() {
           flexFlow: 'column',
         }}
       >
-        <Typography
-          variant="h2"
-          sx={{
-            fontWeight: 'bold',
-          }}
-        >
-          Bem Vindo
-        </Typography>
-        <Typography
-          variant="span"
-          sx={{
-            color: '#9F9F9F',
-          }}
-        >
-          Por favor insira suas credenciais
-        </Typography>
+        <Box sx={{height: '5%'}}>
+          <Typography
+            variant="h5"
+            sx={{
+              fontWeight: '400',
+            }}
+          >
+            Logo
+          </Typography>
+        </Box>
         <Form />
       </Stack>
     </Box>
