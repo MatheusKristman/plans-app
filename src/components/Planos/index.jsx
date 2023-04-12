@@ -25,7 +25,7 @@ function Planos({planos}) {
           Planos ativos: {planos.length}
         </Typography>
         <Button variant="contained"
-          sx={{background: '#D40066', '&:hover': {
+          sx={{background: '#D40066', height: '45px', '&:hover': {
             background: '#D40066',
           },}}>
           Novo Plano
@@ -93,7 +93,7 @@ function Planos({planos}) {
               }}
             >
               <Typography sx={{fontWeight: '600'}}>
-                R$ {plano.cost}
+                R$ {plano.cost.toFixed(2)}
               </Typography>
               <Typography sx={{color: 'lightGray'}}>
                 Total
