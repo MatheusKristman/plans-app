@@ -1,4 +1,6 @@
-export default async function login(email, password) {
+import Auth from "./Auth/Auth";
+
+export default async function login(email, password, setLogged) {
 
   const formData = new FormData();
 
@@ -12,8 +14,8 @@ export default async function login(email, password) {
 
   const response = await fetch('https://planos-backend.onrender.com/admin/login', options)
 
-  const { token } = await response.json();
+  const data = await response.json();
 
-  console.log(token)
+  Auth(data, setLogged)
 
 }

@@ -3,11 +3,13 @@
 import { TextField, Button, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import login from '../../utils/Login';
+import { Navigate } from 'react-router-dom';
 
 function Form() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [logged, setLogged] = useState(false);
 
   function handleClickShowPassword() {
     setShowPassword((show) => !show);
@@ -15,12 +17,15 @@ function Form() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    login(email, password);
+    login(email, password, setLogged);
   }
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>
       <div>
+        {
+          logged && (<Navigate to="/dashboard" replace={true} />)
+        }
         <TextField
           required
           label="Email"
