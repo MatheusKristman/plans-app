@@ -45,9 +45,6 @@ function Form() {
           Por favor insira suas credenciais
         </Typography>
       <div>
-        {
-          logged && (<Navigate to="/home" replace={true} />)
-        }
         <TextField
           required
           label="Email"

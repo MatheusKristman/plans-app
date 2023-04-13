@@ -171,7 +171,7 @@ function NewPlan({plansMenu, setPlansMenu, title}) {
               aria-labelledby='row-area-label'
               name='row-radio-buttons-group'
             >
-              <FormControlLabel value='7 dias' control={<Radio />} label={"7 dias"} />
+              <FormControlLabel value='7 dias' control={<Radio />} label="7 dias" />
               <FormControlLabel value="mes" control={<Radio />} label="mes" />
             </RadioGroup>
           </Stack>
