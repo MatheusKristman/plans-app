@@ -18,3 +18,30 @@ export const menuItems = [
     alt: 'pessoas',
   },
 ]
+
+export const operadoras = [
+  {
+    id: '001',
+    name: 'claro',
+    image: '',
+    alt: 'claro'
+  },
+  {
+    id: '002',
+    name: 'tim',
+    image: '',
+    alt: 'tim'
+  },
+  {
+    id: '003',
+    name: 'vivo',
+    image: '',
+    alt: 'vivo'
+  },
+  {
+    id: '004',
+    name: 'oi',
+    image: '',
+    alt: 'oi'
+  },
+]
