@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Admin from './pages/Admin'
 import { AuthProvider } from './contexts/Auth/AuthProvider'
 import { RequireAuth } from './contexts/Auth/RequireAuth'
+import Dashboard from './pages/Dashboard'
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/admin',
-    element: <RequireAuth><Admin /></RequireAuth>,
+    element: <Admin />
+  },
+  {
+    path: '/dashboard',
+    element: <RequireAuth><Dashboard /></RequireAuth>,
   },
 ])
 

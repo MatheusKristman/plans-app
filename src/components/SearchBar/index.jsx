@@ -4,19 +4,11 @@ function SearchBar() {
   return (
     <>
       <FormControl variant="outlined" sx={{width: '50%'}}>
-        <OutlinedInput
-          id="input-with-icon-adornment"
-          placeholder="Pesquisar"
-          sx={{
-            borderRadius: '20px'
-          }}
+        <OutlinedInput id="input-with-icon-adornment" placeholder="Pesquisar" sx={{borderRadius: '20px'}}
           startAdornment={
             <InputAdornment position="start"
-              sx={{
-                cursor: 'pointer',
-                marginRight: '15px',
-                }}
-              >
+              sx={{ cursor: 'pointer', marginRight: '15px', }}
+            >
               <img src="./assets/icons/lupa.png" alt="lupa" />
             </InputAdornment>
           }

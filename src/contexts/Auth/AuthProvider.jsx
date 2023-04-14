@@ -18,7 +18,7 @@ export const AuthProvider = ({children}) => {
     }
 
     validateToken()
-  }, [api])
+  }, [])
 
   const signIn = async (email, password) => {
     const data = await api.signIn(email, password)

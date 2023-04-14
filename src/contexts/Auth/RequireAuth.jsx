@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { AuthContext } from "./AuthContext";
-import App from "../../App";
+import Admin from "../../pages/Admin";
 
 export const RequireAuth = ({children}) => {
   const auth = useContext(AuthContext);
 
   if(!auth.user) {
-    return <App />;
+    return <Admin />;
   }
   return children;
 }

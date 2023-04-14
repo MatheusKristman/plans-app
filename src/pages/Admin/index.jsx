@@ -1,57 +1,29 @@
-import { useEffect, useState } from 'react'
-import Sidebar from '../../components/Navbar/index.'
 import { Box, Stack, Typography } from '@mui/material'
-import SearchBar from '../../components/SearchBar'
-import Planos from '../../components/Planos'
+import Form from '../../components/Form'
 
 function Admin() {
-  const [selectedOption, setSelectedOption] = useState('Dashboard')
-  const [planos, setPlanos] = useState([])
-
   return (
-    <Box
-      sx={{
-        width: '100%',
-        height: '100vh',
-        display: 'flex',
-        gap: '5%'
-      }}
-    >
-      <Sidebar selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
+    <Box className="container">
       <Stack
-        sx={{
-          width: '73%',
-          height: '100%',
+        sx={{ justifyContent: 'center', alignItems: 'center', width: {lg:'45%', md: '100%'},
+          background: 'linear-gradient(180deg, #D5A595 0%, #F5E0D9 100%);',
         }}
       >
-        <Box sx={{
-          width: '100%',
-          height: '10%',
-          padding: '1%',
-        }}>
-          <Stack
-            direction="row"
-            sx={{
-              width: '100%',
-              height: '100%',
-              justifyContent: 'center',
-              alignItems: 'center',
-              gap: '10%'
-            }}
-          >
-            <Typography
-              variant='h5'
-              sx={{
-                fontWeight: '600',
-                alignSelf: 'flex-end'
-              }}
-            >
-              {selectedOption}
-            </Typography>
-            <SearchBar />
-          </Stack>
+        <Box sx={{ width: '400px', height: {lg:'500px', md: '300px'},}}>
+          <img src="./assets/images/Login-main-image.png" className="main-image" alt="imagem de um computador" />
         </Box>
-        <Planos planos={planos} />
+      </Stack>
+      <Stack
+        sx={{ width: {lg:'55%', md: '100%'}, height: '100%', display: 'flex',
+          alignItems: 'center', justifyContent: 'center', flexFlow: 'column',
+        }}
+      >
+        <Box sx={{height: '5%'}}>
+          <Typography variant="h5">
+            Logo
+          </Typography>
+        </Box>
+        <Form />
       </Stack>
     </Box>
   )
