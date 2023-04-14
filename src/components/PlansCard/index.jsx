@@ -5,7 +5,7 @@ function PlansCard({planos}) {
     <>
       {planos.map((plano) => (
         <Box
-          key={plano.id}
+          key={plano.title}
           sx={{
             width: '100%',
             height: '100px',

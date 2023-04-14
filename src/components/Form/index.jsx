@@ -9,6 +9,7 @@ function Form() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('')
 
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
@@ -19,14 +20,21 @@ function Form() {
 
   async function handleSignIn(e) {
     e.preventDefault();
-    if(email && password) {
-      const isLogged = await auth.signIn(email, password);
-      console.log(isLogged)
-      if(isLogged) {
-        navigate('/admin')
-      } else {
-        console.log('deu ruim')
+    try {
+      if(email && password) {
+        const isLogged = await auth.signIn(email, password);
+        if(isLogged) {
+          navigate('/dashboard')
+          return
+        }
       }
+    } catch(error) {
+      setErrorMessage(error.response.data.message)
+      setEmail(''),
+      setPassword(''),
+      setInterval(() => {
+        setErrorMessage('');
+      }, 4000)
     }
   }
 
@@ -64,6 +72,8 @@ function Form() {
             height: '60px',
           }}
           value={email}
+          helperText={errorMessage}
+          error={errorMessage.length > 6}
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
@@ -81,6 +91,8 @@ function Form() {
             height: '60px',
           }}
           value={password}
+          helperText={errorMessage}
+          error={errorMessage.length > 6}
           onChange={(e) => setPassword(e.target.value)}
         />
         <img

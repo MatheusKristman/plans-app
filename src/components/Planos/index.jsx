@@ -1,10 +1,26 @@
 import { Box, Stack, Typography, Button } from "@mui/material"
 import PlansCard from "../PlansCard"
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import NewPlan from "../NewPlan";
+import { AuthContext } from "../../contexts/Auth/AuthContext";
+import { useApi } from "../../hooks/useApi";
 
-function Planos({planos}) {
+function Planos() {
   const [plansMenu, setPlansMenu] = useState(false);
+  const [planos, setPlanos] = useState([])
+  const auth = useContext(AuthContext)
+  const api = useApi();
+
+  useEffect(() => {
+    const handlePosts = async () => {
+      if(auth.user) {
+        const data = await api.getPlans();
+        setPlanos(data.plans)
+      }
+    }
+
+    handlePosts();
+  }, [])
 
   function handleIfMenuIsActive(){
     setPlansMenu(!plansMenu)

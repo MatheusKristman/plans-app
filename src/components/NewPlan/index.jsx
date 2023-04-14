@@ -1,11 +1,20 @@
-import { Box, Button, Stack,
-  Typography, TextField, Radio, RadioGroup, FormControlLabel, FormLabel } from '@mui/material'
+import { Box, Button, Stack, Typography, TextField} from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { operadoras } from '../../utils/Menus/menuItems.';
+import { useState } from 'react';
+import { franchisesNames } from '../../utils/Franchises/franchises';
 
 function NewPlan({plansMenu, setPlansMenu, title}) {
   const { register, handleSubmit, formState:{errors} } = useForm();
   const onSubmit = data => console.log(data)
+  const [radioValue, setRadioValue] = useState('7')
+  const [franchise, setFranchise] = useState([])
+
+  const handleChange = (event) => {
+    const {target: {value}} = event;
+    setFranchise(typeof value === 'string' ? value.split(',') : value)
+  }
+
 
   return (
     <Box
@@ -18,6 +27,7 @@ function NewPlan({plansMenu, setPlansMenu, title}) {
         top: '5%',
         left: '40%',
         right: '60%',
+        padding: '1%',
       }}
     >
       <Box
@@ -156,24 +166,84 @@ function NewPlan({plansMenu, setPlansMenu, title}) {
             }}
           />
           <Stack
-            direction="row"
-            gap="5px"
+            gap="8px"
             sx={{
               width: '100%',
-              height: '10%',
-              justifyContent: 'start',
-              alignItems: 'center'
+              height: '15%',
             }}
           >
-            <FormLabel id='row-area-label' sx={{marginRight: '20px'}}>Duração: </FormLabel>
-            <RadioGroup
-              row
-              aria-labelledby='row-area-label'
-              name='row-radio-buttons-group'
+            <Typography
+              variant='h7'
+              fontWeight='bold'
             >
-              <FormControlLabel value='7 dias' control={<Radio />} label="7 dias" />
-              <FormControlLabel value="mes" control={<Radio />} label="mes" />
-            </RadioGroup>
+              Duração:
+            </Typography>
+            <Stack
+              direction='row'
+              sx={{
+                width: '100%',
+                height: '80%',
+                alignItems: 'center',
+                justifyContent: 'space-evenly',
+              }}
+            >
+              <label style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-evenly',
+                width: '30%'
+              }}>
+                <input type="radio" value={`${radioValue} dias`} name='dias' {...register('dias')}/>
+                <input
+                  type="text"
+                  value={radioValue}
+                  onChange={(e) => setRadioValue(e.target.value)}
+                  style={{
+                    width: '30px',
+                    height: '30px',
+                    textAlign: 'center',
+                  }}
+                />
+                dias
+              </label>
+              <label
+                style={{
+                  width: '30%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-evenly'
+                }}
+              >
+                <input type="radio" {...register('mes')} value={radioValue} name="mes" />
+                <input
+                  type="text"
+                  onChange={(e) => setRadioValue(e.target.value)}
+                  value={radioValue}
+                  style={{
+                    width: '30px',
+                    height: '30px',
+                    textAlign: 'center',
+                  }}
+                />
+                mes
+              </label>
+            </Stack>
+          </Stack>
+          <Stack
+            sx={{
+              width: '100%',
+              height: '30%',
+              background: '#aaa',
+              gap: '5px',
+            }}
+          >
+            <Typography
+              variant='h7'
+              fontWeight='bold'
+            >
+              Franquia de Internet
+            </Typography>
+
           </Stack>
           <button type='submit'>Salvar</button>
         </Stack>

@@ -15,4 +15,8 @@ export const useApi = () => ({
     const response = await api.post('admin/login', {email, password});
     return response.data
   },
+  getPlans: async () => {
+    const response = await api.get('plan/all');
+    return response.data
+  }
 })
