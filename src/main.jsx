@@ -4,7 +4,9 @@ import App from './App'
 import './index.css'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from './pages/Home'
+import Admin from './pages/Admin'
+import { AuthProvider } from './contexts/Auth/AuthProvider'
+import { RequireAuth } from './contexts/Auth/RequireAuth'
 
 const router = createBrowserRouter([
   {
@@ -12,15 +14,17 @@ const router = createBrowserRouter([
     element: <App />
   },
   {
-    path: '/home',
-    element: <Home />,
+    path: '/admin',
+    element: <RequireAuth><Admin /></RequireAuth>,
   },
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router}>
-      <App />
-    </RouterProvider>
+    <AuthProvider>
+      <RouterProvider router={router}>
+        <App />
+      </RouterProvider>
+    </AuthProvider>
   </React.StrictMode>,
 )
