@@ -7,49 +7,30 @@ function PlansCard({planos}) {
         <Box
           key={plano.title}
           sx={{
-            width: '100%',
-            height: '100px',
-            borderBottom: '1px solid gray',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
+            width: '100%', height: '100px', borderBottom: '1px solid gray',
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           }}
         >
           <Box
-            sx={{
-              display: 'flex',
-              width: '50%',
-              height: '100%',
-              alignItems: 'center',
-              justifyContent: 'start',
-              gap: '5%'
+            sx={{ display: 'flex', width: '50%', height: '100%',
+              alignItems: 'center', justifyContent: 'start', gap: '5%'
             }}
           >
-            <img
-              src={`https://planos-backend.onrender.com/assets/${plano.providerLogo}`}
-              alt={plano.provider}
-            />
-            <Typography
-              variant="h6"
-            >
+            <img src={`https://planos-backend.onrender.com/assets/${plano.providerLogo}`} alt={plano.provider}/>
+            <Typography variant="h6">
               {plano.title}
             </Typography>
           </Box>
           <Box
             sx={{
-              width: '48%',
-              height: '100%',
-              alignItems: 'center',
-              justifyContent: 'center',
-              display: 'flex'
+              width: '48%', height: '100%',
+              alignItems: 'center', justifyContent: 'center', display: 'flex'
             }}
           >
             <Stack
               sx={{
-                width: '25%',
-                height: '100%',
-                alignItems: 'start',
-                justifyContent: 'center'
+                width: '25%', height: '100%',
+                alignItems: 'start', justifyContent: 'center'
               }}
             >
               <Typography sx={{fontWeight: '600'}}>
@@ -59,12 +40,8 @@ function PlansCard({planos}) {
                 Contatos
               </Typography>
             </Stack>
-            <Stack
-              sx={{
-                width: '25%',
-                height: '100%',
-                alignItems: 'start',
-                justifyContent: 'center'
+            <Stack sx={{ width: '25%', height: '100%',
+              alignItems: 'start', justifyContent: 'center'
               }}
             >
               <Typography sx={{fontWeight: '600'}}>
@@ -74,12 +51,8 @@ function PlansCard({planos}) {
                 Total
               </Typography>
             </Stack>
-            <Stack
-              sx={{
-                width: '25%',
-                height: '100%',
-                alignItems: 'start',
-                justifyContent: 'center'
+            <Stack sx={{ width: '25%', height: '100%',
+              alignItems: 'start', justifyContent: 'center'
               }}
             >
               <Typography sx={{fontWeight: '600'}}>

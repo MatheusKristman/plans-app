@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { TextField, Button, Typography } from '@mui/material';
+import { TextField, Button, Typography, Box } from '@mui/material';
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../contexts/Auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -13,10 +13,6 @@ function Form() {
 
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
-
-  function handleClickShowPassword() {
-    setShowPassword((show) => !show);
-  }
 
   async function handleSignIn(e) {
     e.preventDefault();
@@ -40,98 +36,48 @@ function Form() {
 
   return (
     <form className="login-form" onSubmit={handleSignIn}>
-      <Typography
-          variant="span"
-          sx={{
-            color: '#9F9F9F',
-          }}
-        ></Typography>
-        <Typography
-          variant="h2"
-          sx={{
-            fontWeight: 'bold',
-          }}
-        >
+        <Typography variant="h2" sx={{fontWeight: 'bold',}}>
           Bem Vindo
         </Typography>
-        <Typography
-          variant="span"
-          sx={{
-            color: '#9F9F9F',
-          }}
-        >
+        <Typography variant="span" sx={{color: '#9F9F9F',}}>
           Por favor insira suas credenciais
         </Typography>
-      <div>
-        <TextField
-          required
-          label="Email"
-          variant="outlined"
-          sx={{
-            width: '400px',
-            height: '60px',
-          }}
-          value={email}
+      <Box>
+        <TextField required label="Email" variant="outlined" value={email}
+          sx={{ width: '400px', height: '60px', }}
           helperText={errorMessage}
           error={errorMessage.length > 6}
           onChange={(e) => setEmail(e.target.value)}
         />
-      </div>
-      <div style={{
+      </Box>
+      <Box style={{
         position: 'relative',
       }}
       >
-        <TextField
-          required
-          label="Senha"
-          variant="outlined"
-          type={showPassword ? 'text' : 'password'}
-          sx={{
-            width: '400px',
-            height: '60px',
-          }}
+        <TextField required label="Senha" variant="outlined" type={showPassword ? 'text' : 'password'}
+          sx={{ width: '400px',height: '60px', }}
           value={password}
           helperText={errorMessage}
           error={errorMessage.length > 6}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <img
-          src={showPassword ? './assets/icons/visible.png' : './assets/icons/visibility.png'}
+        <img src={showPassword ? './assets/icons/visible.png' : './assets/icons/visibility.png'}
           alt="icone de olho"
-          onClick={handleClickShowPassword}
-          style={{
-            cursor: 'pointer',
-            position: 'absolute',
-            top: '15px',
-            right: '20px',
-          }}
+          onClick={() => setShowPassword(!showPassword)}
+          style={{ cursor: 'pointer', position: 'absolute', top: '15px', right: '20px', }}
         />
-      </div>
-      <Button
-        variant="contained"
+      </Box>
+      <Button variant="contained" type="submit"
         sx={{
-          background: '#D40066',
-          width: '400px',
-          height: '60px',
-          borderRadius: '4px',
-          fontSize: '18px',
-          fontWeight: '500',
-          '&:hover': {
-            background: '#D40066',
-          },
+          background: '#D40066', width: '400px', height: '60px',
+          borderRadius: '4px', fontSize: '18px', fontWeight: '500',
+          '&:hover': { background: '#D40066', },
         }}
-        type="submit"
         disabled={email === '' || password.length < 5}
       >
         Entrar
       </Button>
-      <Typography
-        variant="span"
-        sx={{
-          color: '#9F9F9F',
-          cursor: 'pointer',
-        }}
-      >
+      <Typography variant="span" sx={{ color: '#9F9F9F', cursor: 'pointer', }}>
         Esqueci minha senha
       </Typography>
     </form>

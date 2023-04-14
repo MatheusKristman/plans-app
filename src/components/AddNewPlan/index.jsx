@@ -1,9 +1,9 @@
 import { Box, Stack, Typography } from "@mui/material"
 
-function AddNewPlan() {
+function AddNewPlan({plansMenu, setPlansMenu, title}) {
   return (
     <Box>
-      <Typography>Hello World</Typography>
+      <Typography>{title}</Typography>
     </Box>
   )
 }
