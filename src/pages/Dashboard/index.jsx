@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import Sidebar from '../../components/Navbar/index.'
+import Sidebar from '../../components/Sidebar/index.'
 import { Box, Stack, Typography } from '@mui/material'
-import SearchBar from '../../components/SearchBar'
-import Planos from '../../components/Planos'
+import { SearchBar } from '../../components'
+
+import { Planos } from '../../components'
 
 function Dashboard() {
   const [selectedOption, setSelectedOption] = useState('Dashboard')

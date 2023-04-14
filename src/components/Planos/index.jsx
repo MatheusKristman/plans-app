@@ -1,9 +1,9 @@
 import { Box, Stack, Typography, Button } from "@mui/material"
-import PlansCard from "../PlansCard"
 import { useContext, useEffect, useState } from "react"
-import NewPlan from "../NewPlan";
 import { AuthContext } from "../../contexts/Auth/AuthContext";
 import { useApi } from "../../hooks/useApi";
+
+import {AddNewPlan, PlansCard} from '../index'
 
 function Planos() {
   const [plansMenu, setPlansMenu] = useState(false);
@@ -57,7 +57,7 @@ function Planos() {
               background: '#D40066',
             },}}
             onClick={handleIfMenuIsActive}
-            disabled={plansMenu}
+            // disabled={plansMenu}
           >
             Novo Plano
           </Button>
@@ -65,7 +65,7 @@ function Planos() {
         <PlansCard planos={planos} />
       </Box>
       {
-        plansMenu && (<NewPlan plansMenu={plansMenu} setPlansMenu={setPlansMenu} title="Novo Plano" />)
+        plansMenu && (<AddNewPlan plansMenu={plansMenu} setPlansMenu={setPlansMenu} title="Novo Plano" />)
       }
     </>
   )
