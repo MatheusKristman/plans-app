@@ -45,7 +45,7 @@ function Planos() {
           <Button variant="contained"
             sx={{background: '#D40066', height: '45px', '&:hover': {background: '#D40066',}}}
             onClick={handleIfMenuIsActive}
-            // disabled={plansMenu}
+            disabled={plansMenu}
           >
             Novo Plano
           </Button>
