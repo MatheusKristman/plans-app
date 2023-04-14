@@ -1,5 +1,5 @@
 import { Box, Stack, Typography } from "@mui/material"
-import { NewPlanInputs, Operadoras, UnlimitedApps } from '../index'
+import { NewPlanFinalInputs, NewPlanInputs, Operadoras, UnlimitedApps } from '../index'
 import { useState } from "react"
 
 function AddNewPlan({plansMenu, setPlansMenu, title}) {
@@ -7,13 +7,14 @@ function AddNewPlan({plansMenu, setPlansMenu, title}) {
   const [inputValue, setInputValue] = useState('');
   const [inputTitle, setInputTitle] = useState('');
   const [inputDuration, setInputDuration] = useState('7');
+  const [unlimitedApp, setUnlimitedApp] = useState('whatsapp')
 
-  console.log(inputDuration)
 
   return (
-    <Box sx={{ width: '410px', height: '580px', overflowY: 'auto', position: 'absolute',
-      top: '10%', left: '40%', borderRadius: '12px', boxShadow: '5px 5px 10px rgba(0,0,0,0.4)' }}>
-      <Stack sx={{ width: '100%', height: '1200px'}}>
+    <form onSubmit={(e) => {e.preventDefault(); console.log('Hello')}} style={{ width: '410px', height: '580px', overflowY: 'auto', position: 'absolute',
+      top: '10%', left: '40%', borderRadius: '12px', boxShadow: '5px 5px 10px rgba(0,0,0,0.4)' }}
+      >
+      <Stack sx={{ width: '100%', height: '1400px'}}>
         {/* Caixa da Imagem */}
 
         <Box sx={{position: 'relative', width: '100%', height: '13%'}}>
@@ -49,7 +50,7 @@ function AddNewPlan({plansMenu, setPlansMenu, title}) {
           {/* Fim da caixa das operadoras */}
 
           {/* Caixa dos inputs */}
-            <Box sx={{width: '100%', height: '35%', display: 'flex', flexDirection: 'column', gap: '2%'}}>
+            <Box sx={{width: '100%', height: '30%', display: 'flex', flexDirection: 'column', gap: '2%'}}>
               <NewPlanInputs inputDuration={inputDuration} inputValue={inputValue} setInputDuration={setInputDuration}
                 setInputValue={setInputValue} inputTitle={inputTitle} setInputTitle={setInputTitle}
               />
@@ -57,14 +58,31 @@ function AddNewPlan({plansMenu, setPlansMenu, title}) {
           {/* Fim da caixa dos inputs */}
 
           {/* Caixa dos apps ilimitados */}
-            <Box>
-              <UnlimitedApps />
+            <Box sx={{width: '100%', height: '15%', display: 'flex', flexDirection: 'column', gap: '5%'}}>
+              <Typography variant="h7" fontWeight="bold">Apps ilimitados</Typography>
+              <UnlimitedApps unlimitedApp={unlimitedApp} setUnlimitedApp={setUnlimitedApp} />
             </Box>
           {/* Fim da caixa dos apps ilimitados */}
+
+          {/* Caixa dos inputs finais */}
+            <Box sx={{width: '100%', height: '40%', display: 'flex', flexDirection: 'column', gap: '2%'}}>
+              <Typography variant="h7" fontWeight="bold" mt="10px">Ligações ilimitadas</Typography>
+              <NewPlanFinalInputs />
+            </Box>
+          {/* Fim da caixa dos inputs finais */}
+
+          {/* Caixa do botão de submit */}
+            <Box sx={{width: '100%', height: '5%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+              <button type="submit"
+                style={{width: '100%', height: '50px', fontSize: '18px',
+                  fontWeight: 'bold', background: '#D40066', color: '#fff',
+                  borderRadius: '10px', border: 'none', cursor: 'pointer'}}>Salvar</button>
+            </Box>
+          {/* Fim da caixa do botão de submit */}
         </Box>
         {/* Fim do corpo da página */}
       </Stack>
-    </Box>
+    </form>
   )
 }
 

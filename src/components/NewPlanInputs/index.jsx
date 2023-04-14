@@ -21,7 +21,7 @@ function NewPlanInput({setInputTitle, inputTitle, setInputValue, inputValue, set
           onChange={(e) => setInputValue(e.target.value)}
         />
       </label>
-      <Box sx={{width: '100%', height: '13%', display: 'flex', alignItems: 'center', justifyContent: 'space-evenly'}} >
+      <Box sx={{width: '100%', height: '10%', display: 'flex', alignItems: 'center', justifyContent: 'space-evenly'}} >
         <label style={{width: '30%', display: 'flex', alignItems: 'center', justifyContent: 'space-evenly'}}>
           <input type="radio" name="plan-duration" id="dia" value={`${inputDuration}dias`}/>
           <input type="text" value={inputDuration}

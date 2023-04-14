@@ -6,3 +6,4 @@ export {default as AddNewPlan} from './AddNewPlan';
 export {default as Operadoras} from './Operadoras';
 export {default as NewPlanInputs} from './NewPlanInputs';
 export {default as UnlimitedApps} from './UnlimitedApps'
+export {default as NewPlanFinalInputs} from './NewPlanFinalInputs'
