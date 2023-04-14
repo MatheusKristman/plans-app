@@ -1,27 +1,37 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { TextField, Button, Typography } from '@mui/material';
-import React, { useState } from 'react';
-import login from '../../utils/Login';
-import { Navigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../../contexts/Auth/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 function Form() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [logged, setLogged] = useState(false);
+
+  const auth = useContext(AuthContext);
+  const navigate = useNavigate();
 
   function handleClickShowPassword() {
     setShowPassword((show) => !show);
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    login(email, password, setLogged);
+  async function handleSignIn(e) {
+    e.preventDefault();
+    if(email && password) {
+      const isLogged = await auth.signIn(email, password);
+      console.log(isLogged)
+      if(isLogged) {
+        navigate('/admin')
+      } else {
+        console.log('deu ruim')
+      }
+    }
   }
 
   return (
-    <form className="login-form" onSubmit={handleSubmit}>
+    <form className="login-form" onSubmit={handleSignIn}>
       <Typography
           variant="span"
           sx={{
@@ -45,9 +55,6 @@ function Form() {
           Por favor insira suas credenciais
         </Typography>
       <div>
-        {
-          logged && (<Navigate to="/home" replace={true} />)
-        }
         <TextField
           required
           label="Email"

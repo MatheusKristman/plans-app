@@ -1,8 +1,18 @@
 import { Typography, Box, Stack } from '@mui/material'
-import React from 'react'
+import React, { useContext } from 'react'
 import { menuItems } from '../../utils/Menus/menuItems.'
+import { AuthContext } from '../../contexts/Auth/AuthContext'
+import { useNavigate } from 'react-router-dom';
 
 function Sidebar({selectedOption, setSelectedOption}) {
+  const auth = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  function handleSignOut() {
+    auth.signOut();
+    navigate('/')
+  }
+
   return (
       <Box sx={{
         width: '17%',
@@ -89,7 +99,10 @@ function Sidebar({selectedOption, setSelectedOption}) {
                 alignItems: 'center',
               }}
             >
-              <Box sx={{display: 'flex', gap: '10px', cursor: 'pointer'}}>
+              <Box
+                sx={{display: 'flex', gap: '10px', cursor: 'pointer'}}
+                onClick={handleSignOut}
+              >
                 <img src="./assets/icons/sign-out.png" alt="" />
                 <Typography
                   sx={{

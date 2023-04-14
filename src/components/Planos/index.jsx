@@ -1,123 +1,57 @@
 import { Box, Stack, Typography, Button } from "@mui/material"
+import PlansCard from "../PlansCard"
+import { useState } from "react"
+import NewPlan from "../NewPlan";
 
 function Planos({planos}) {
-  console.log(planos)
+  const [plansMenu, setPlansMenu] = useState(false);
+
+  function handleIfMenuIsActive(){
+    setPlansMenu(!plansMenu)
+  }
+
   return (
-    <Box
-      sx={{
-        width: '100%',
-        height: 'auto',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '5%',
-        paddingX: '7%'
-      }}
-    >
-      <Stack direction="row"
+    <>
+      <Box
         sx={{
           width: '100%',
-          height: '100px',
-          alignItems: 'center',
-          justifyContent: 'space-between',
+          height: 'auto',
+          display: 'flex',
+          overflowY: 'auto',
+          flexDirection: 'column',
+          gap: '5%',
+          paddingX: '7%',
+          filter: plansMenu ? 'blur(8px)' : '',
         }}
       >
-        <Typography>
-          Planos ativos: {planos.length}
-        </Typography>
-        <Button variant="contained"
-          sx={{background: '#D40066', height: '45px', '&:hover': {
-            background: '#D40066',
-          },}}>
-          Novo Plano
-        </Button>
-      </Stack>
-      {planos.map((plano) => (
-        <Box
-          key={plano.id}
+        <Stack direction="row"
           sx={{
             width: '100%',
             height: '100px',
-            borderBottom: '1px solid gray',
-            display: 'flex',
+            marginTop: '3%',
             alignItems: 'center',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
           }}
         >
-          <Box
-            sx={{
-              display: 'flex',
-              width: '50%',
-              height: '100%',
-              alignItems: 'center',
-              justifyContent: 'start',
-              gap: '5%'
-            }}
+          <Typography>
+            Planos ativos: {planos.length}
+          </Typography>
+          <Button variant="contained"
+            sx={{background: '#D40066', height: '45px', '&:hover': {
+              background: '#D40066',
+            },}}
+            onClick={handleIfMenuIsActive}
+            disabled={plansMenu}
           >
-            <img src={`https://planos-backend.onrender.com/assets/${plano.providerLogo}`} alt={plano.provider} />
-            <Typography
-              variant="h6"
-            >
-              {plano.title}
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              width: '48%',
-              height: '100%',
-              alignItems: 'center',
-              justifyContent: 'center',
-              display: 'flex'
-            }}
-          >
-            <Stack
-              sx={{
-                width: '25%',
-                height: '100%',
-                alignItems: 'start',
-                justifyContent: 'center'
-              }}
-            >
-              <Typography sx={{fontWeight: '600'}}>
-                {plano.contacts}
-              </Typography>
-              <Typography sx={{color: 'lightGray'}}>
-                Contatos
-              </Typography>
-            </Stack>
-            <Stack
-              sx={{
-                width: '25%',
-                height: '100%',
-                alignItems: 'start',
-                justifyContent: 'center'
-              }}
-            >
-              <Typography sx={{fontWeight: '600'}}>
-                R$ {plano.cost.toFixed(2)}
-              </Typography>
-              <Typography sx={{color: 'lightGray'}}>
-                Total
-              </Typography>
-            </Stack>
-            <Stack
-              sx={{
-                width: '25%',
-                height: '100%',
-                alignItems: 'start',
-                justifyContent: 'center'
-              }}
-            >
-              <Typography sx={{fontWeight: '600'}}>
-                {plano.createdAt.slice(0, 10).split('-').reverse().join('/')}
-              </Typography>
-              <Typography sx={{color: 'lightGray'}}>
-                Criado em
-              </Typography>
-            </Stack>
-          </Box>
-        </Box>
-      ))}
-    </Box>
+            Novo Plano
+          </Button>
+        </Stack>
+        <PlansCard planos={planos} />
+      </Box>
+      {
+        plansMenu && (<NewPlan plansMenu={plansMenu} setPlansMenu={setPlansMenu} title="Novo Plano" />)
+      }
+    </>
   )
 }
 

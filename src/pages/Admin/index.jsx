@@ -2,16 +2,11 @@ import { useEffect, useState } from 'react'
 import Sidebar from '../../components/Navbar/index.'
 import { Box, Stack, Typography } from '@mui/material'
 import SearchBar from '../../components/SearchBar'
-import { fetchFromApi } from '../../utils/fetchFromApi'
 import Planos from '../../components/Planos'
 
-function Home() {
+function Admin() {
   const [selectedOption, setSelectedOption] = useState('Dashboard')
   const [planos, setPlanos] = useState([])
-
-  useEffect(() => {
-    fetchFromApi().then(data => setPlanos(data.plans))
-  }, [selectedOption])
 
   return (
     <Box
@@ -62,4 +57,4 @@ function Home() {
   )
 }
 
-export default Home
+export default Admin
