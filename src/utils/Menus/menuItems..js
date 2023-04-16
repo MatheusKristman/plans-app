@@ -45,3 +45,26 @@ export const operadoras = [
     alt: 'oi'
   },
 ]
+
+export const checkboxGroup = [
+  {
+    id: '001',
+    name: 'Claro',
+    value: 'Claro',
+  },
+  {
+    id: '002',
+    name: 'Tim',
+    value: 'Tim',
+  },
+  {
+    id: '003',
+    name: 'Vivo',
+    value: 'Vivo',
+  },
+  {
+    id: '004',
+    name: 'Oi',
+    value: 'Oi',
+  }
+]

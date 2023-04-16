@@ -23,7 +23,7 @@ function UnlimitedApps({unlimitedApp, setUnlimitedApp}) {
         <Box key={app.id}
           sx={{width: '50px', height: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center',
           background: '#cccccc', borderRadius: '10px', cursor: 'pointer',
-          border: app.name === unlimitedApp ? '2px solid #D40066' : ''}}
+          border: unlimitedApp.includes(app.name) ? '2px solid #D40066' : '' }}
           onClick={() => verifyUnlimitedApp(app)}
         >
           <img src={app.icon} alt={app.name} />

@@ -8,8 +8,6 @@ function AddNewPlan({plansMenu, setPlansMenu, title}) {
   const [inputTitle, setInputTitle] = useState('');
   const [inputDuration, setInputDuration] = useState('7');
   const [unlimitedApp, setUnlimitedApp] = useState([])
-  console.log(unlimitedApp)
-
 
   return (
     <form onSubmit={(e) => {e.preventDefault(); console.log('Hello')}} style={{ width: '410px', height: '580px', overflowY: 'auto', position: 'absolute',

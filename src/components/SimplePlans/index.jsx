@@ -1,26 +1,10 @@
 import { Box, Stack, Typography, Button } from "@mui/material"
-import { useContext, useEffect, useState } from "react"
-import { AuthContext } from "../../contexts/Auth/AuthContext";
-import { useApi } from "../../hooks/useApi";
+import { useState } from "react"
 
-import {AddNewPlan, PlansCard} from '../index'
+import {AddNewPlan, SimplePlansCard} from '../index'
 
-function Planos() {
+function SimplePlans({plans}) {
   const [plansMenu, setPlansMenu] = useState(false);
-  const [planos, setPlanos] = useState([])
-  const auth = useContext(AuthContext)
-  const api = useApi();
-
-  useEffect(() => {
-    const handlePosts = async () => {
-      if(auth.user) {
-        const data = await api.getPlans();
-        setPlanos(data.plans)
-      }
-    }
-
-    handlePosts();
-  }, [])
 
   function handleIfMenuIsActive(){
     setPlansMenu(!plansMenu)
@@ -40,7 +24,7 @@ function Planos() {
           }}
         >
           <Typography>
-            Planos ativos: {planos.length}
+            Planos ativos: {plans.length}
           </Typography>
           <Button variant="contained"
             sx={{background: '#D40066', height: '45px', '&:hover': {background: '#D40066',}}}
@@ -50,7 +34,7 @@ function Planos() {
             Novo Plano
           </Button>
         </Stack>
-        <PlansCard planos={planos} />
+        <SimplePlansCard planos={plans} />
       </Box>
       {
         plansMenu && (<AddNewPlan plansMenu={plansMenu} setPlansMenu={setPlansMenu} title="Novo Plano" />)
@@ -59,4 +43,4 @@ function Planos() {
   )
 }
 
-export default Planos
+export default SimplePlans

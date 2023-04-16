@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from "@mui/material"
 
-function PlansCard({planos}) {
+function SimplePlansCard({planos}) {
   return (
     <>
       {planos.map((plano) => (
@@ -69,4 +69,4 @@ function PlansCard({planos}) {
   )
 }
 
-export default PlansCard
+export default SimplePlansCard
