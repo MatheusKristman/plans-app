@@ -1,5 +1,5 @@
 import { Box, Stack, Typography } from "@mui/material"
-import { NewPlanFinalInputs, NewPlanInputs, Operadoras, UnlimitedApps } from '../index'
+import { NewPlanFinalInputs, NewPlanInputs, Operadoras, UnlimitedApps, Cityes } from '../index'
 import { useState } from "react"
 
 function AddNewPlan({plansMenu, setPlansMenu, title}) {
@@ -7,14 +7,15 @@ function AddNewPlan({plansMenu, setPlansMenu, title}) {
   const [inputValue, setInputValue] = useState('');
   const [inputTitle, setInputTitle] = useState('');
   const [inputDuration, setInputDuration] = useState('7');
-  const [unlimitedApp, setUnlimitedApp] = useState('whatsapp')
+  const [unlimitedApp, setUnlimitedApp] = useState([])
+  console.log(unlimitedApp)
 
 
   return (
     <form onSubmit={(e) => {e.preventDefault(); console.log('Hello')}} style={{ width: '410px', height: '580px', overflowY: 'auto', position: 'absolute',
       top: '10%', left: '40%', borderRadius: '12px', boxShadow: '5px 5px 10px rgba(0,0,0,0.4)' }}
       >
-      <Stack sx={{ width: '100%', height: '1400px'}}>
+      <Stack sx={{ width: '100%', height: '1500px'}}>
         {/* Caixa da Imagem */}
 
         <Box sx={{position: 'relative', width: '100%', height: '13%'}}>
@@ -48,6 +49,10 @@ function AddNewPlan({plansMenu, setPlansMenu, title}) {
             </Box>
 
           {/* Fim da caixa das operadoras */}
+
+          {/* Caixa das cidades */}
+            <Cityes />
+          {/* Fim da caixa das cidades */}
 
           {/* Caixa dos inputs */}
             <Box sx={{width: '100%', height: '30%', display: 'flex', flexDirection: 'column', gap: '2%'}}>

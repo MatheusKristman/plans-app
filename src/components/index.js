@@ -7,3 +7,4 @@ export {default as Operadoras} from './Operadoras';
 export {default as NewPlanInputs} from './NewPlanInputs';
 export {default as UnlimitedApps} from './UnlimitedApps'
 export {default as NewPlanFinalInputs} from './NewPlanFinalInputs'
+export {default as Cityes} from './Cityes'
