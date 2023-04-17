@@ -10,10 +10,7 @@ function UnlimitedApps({unlimitedApp, setUnlimitedApp}) {
       return
     }
     setUnlimitedApp([...unlimitedApp, app.name])
-  }
-
-  function setBorder() {
-
+    app.style = '2px solid #D40066'
   }
 
   return (
@@ -21,10 +18,10 @@ function UnlimitedApps({unlimitedApp, setUnlimitedApp}) {
       alignItems: 'center', justifyContent: 'space-around'}}>
       {unlimitedApps.map((app) => (
         <Box key={app.id}
+          onClick={() => verifyUnlimitedApp(app)}
           sx={{width: '50px', height: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center',
           background: '#cccccc', borderRadius: '10px', cursor: 'pointer',
-          border: unlimitedApp.includes(app.name) ? '2px solid #D40066' : '' }}
-          onClick={() => verifyUnlimitedApp(app)}
+          border: app.style }}
         >
           <img src={app.icon} alt={app.name} />
         </Box>

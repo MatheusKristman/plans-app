@@ -3,7 +3,6 @@ import { CompletePlansCard } from "../../components"
 import { checkboxGroup } from "../../utils/Menus/menuItems."
 
 function Planos({plans}) {
-
   return (
     <>
       <Box

@@ -1,9 +1,18 @@
 import { Box, Stack, Typography } from "@mui/material"
+import { useState } from "react";
 
 function SimplePlansCard({planos}) {
+  const [itemsPerPage, setItemsPerPage] = useState(3);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const pages = Math.ceil(planos.length / itemsPerPage);
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = planos.slice(startIndex, endIndex)
+
   return (
     <>
-      {planos.map((plano) => (
+      {currentItems.map((plano) => (
         <Box
           key={plano.title}
           sx={{
@@ -65,6 +74,17 @@ function SimplePlansCard({planos}) {
           </Box>
         </Box>
       ))}
+      <Box sx={{width: '100%', height: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1%'}}>
+        {Array.from(Array(pages), (item, index) => {
+          return <button value={index}
+            onClick={(e) => setCurrentPage(Number(e.target.value))}
+            style={{
+              width: '30px', height: '30px', cursor: 'pointer', border: 'none', color: '#fff', background: '#D40066',
+              borderRadius: '8px'
+            }}
+          >{index + 1}</button>
+        })}
+      </Box>
     </>
   )
 }

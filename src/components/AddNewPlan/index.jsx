@@ -17,12 +17,8 @@ function AddNewPlan({plansMenu, setPlansMenu, menuTitle, editMenu, setEditMenu, 
   const [planType, setPlanType] = useState('');
   const [priority, setPriority] = useState('');
   const [description, setDescription] = useState('');
-  const [providerLogo, setProviderLogo] = useState('');
+  const [providerLogo, setProviderLogo] = useState([]);
   const lines = 1;
-
-  // title, cost,
-  // period, franchise, unlimitedApps, unlimitedCall,
-  // planType, priority, description, lines, providerLogo, city, provider
 
   const auth = useContext(AuthContext);
   const api = useApi();
@@ -32,9 +28,21 @@ function AddNewPlan({plansMenu, setPlansMenu, menuTitle, editMenu, setEditMenu, 
     if(editMenu) setEditMenu(!editMenu);
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    if(provider, cost, title, inputDays, unlimitedApp,
+        city, period, franchise, unlimitedCall, planType,
+        priority, description, providerLogo, lines) {
 
+          providerLogo.then(data => setProviderLogo(data))
+          const response = await api.createPlans(title, cost,
+              period, franchise, city, unlimitedCall, planType, priority,
+              description, lines, providerLogo, provider
+            )
+          const data = await response.json();
+
+          console.log(data)
+        }
   }
 
   return (
