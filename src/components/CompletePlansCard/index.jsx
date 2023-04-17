@@ -1,6 +1,6 @@
 import {Box, Stack, Typography} from '@mui/material'
 import { useState } from 'react';
-import { AddNewPlan } from '../index'
+import { AddNewPlan, SeeMore } from '../index'
 
 function CompletePlansCard({plans}) {
   const [itemsPerPage, setItemsPerPage] = useState(3);
@@ -8,6 +8,7 @@ function CompletePlansCard({plans}) {
   const [editMenu, setEditMenu] = useState(false);
   const [seeMore, setSeeMore] = useState(false);
   const [planId, setPlanId] = useState('');
+  const [planInfo, setPlanInfo] = useState([])
 
   const pages = Math.ceil(plans.length / itemsPerPage);
   const startIndex = currentPage * itemsPerPage;
@@ -19,6 +20,11 @@ function CompletePlansCard({plans}) {
     setPlanId(item._id)
   }
 
+  const handleSeeMore = (plan) => {
+    setPlanInfo(plan);
+    setSeeMore(!seeMore)
+  }
+
   return (
     <>
       {currentItems.map((plano) => (
@@ -27,7 +33,7 @@ function CompletePlansCard({plans}) {
           sx={{
             width: '100%', height: '150px', borderBottom: '1px solid lightGray',
             display: 'flex', alignItems: 'center', justifyContent: 'space-between', overflowY: 'auto',
-            filter: editMenu ? 'blur(10px)' : ''
+            filter: editMenu || seeMore ? 'blur(10px)' : ''
           }}
         >
           <Box
@@ -67,7 +73,8 @@ function CompletePlansCard({plans}) {
                 <button style={{width: '120px', height: '40px', borderRadius: '10px',
                   border: '2px solid #D40066', background: 'transparent',
                   color: '#D40066', fontWeight: 'bold', cursor: 'pointer'}}
-                  onClick={() => setSeeMore(!seeMore)}
+                  onClick={() => handleSeeMore(plano)}
+                  disabled={seeMore ? 'true' : ''}
                 >Ver Detalhes</button>
                 <button style={{width: '120px', height: '40px', borderRadius: '10px',
                   border: '2px solid #D40066', background: 'transparent',
@@ -89,6 +96,9 @@ function CompletePlansCard({plans}) {
       </Box>
       {
         editMenu && <AddNewPlan menuTitle={'Editar Plano'} setEditMenu={setEditMenu} editMenu={editMenu} planId={planId} />
+      }
+      {
+        seeMore && <SeeMore seeMore={seeMore} setSeeMore={setSeeMore} planInfo={planInfo}/>
       }
     </>
   )

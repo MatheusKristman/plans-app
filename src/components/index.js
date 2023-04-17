@@ -9,3 +9,4 @@ export {default as UnlimitedApps} from './UnlimitedApps';
 export {default as NewPlanFinalInputs} from './NewPlanFinalInputs';
 export {default as Cityes} from './Cityes';
 export {default as CompletePlansCard} from './CompletePlansCard';
+export {default as SeeMore} from './SeeMore'
