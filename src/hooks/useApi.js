@@ -18,5 +18,14 @@ export const useApi = () => ({
   getPlans: async () => {
     const response = await api.get('plan/all');
     return response.data
+  },
+  editPlans: async (id, title, cost,
+      period, franchise, unlimitedApps, unlimitedCall,
+      planType, priority, description, lines) => {
+    const response = await api.put('plan/edit', {body: {
+      id, title, cost, period, franchise, unlimitedApps, unlimitedCall,
+      planType, priority, description, lines
+    }})
+    return response.data
   }
 })

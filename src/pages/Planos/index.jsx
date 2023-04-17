@@ -7,12 +7,12 @@ function Planos({plans}) {
   return (
     <>
       <Box
-        sx={{ width: '100%', height: 'auto', display: 'flex', overflowY: 'auto',
-          flexDirection: 'column', gap: '5%', paddingX: '7%'}}
+        sx={{ width: '100%', height: '1200px', display: 'flex', flexDirection: 'column',
+          paddingX: '7%', justifyContent: 'center', alignItems: 'center'}}
       >
         <Stack direction="row"
           sx={{
-            width: '100%', height: '100px',
+            width: '100%', height: '30px',
             marginTop: '3%', alignItems: 'center', justifyContent: 'space-between',
           }}
         >
@@ -39,7 +39,26 @@ function Planos({plans}) {
             </Box>
           </Stack>
         </Stack>
-        <CompletePlansCard plans={plans} />
+        <Box sx={{width: '100%', height: '500px'}}>
+          <CompletePlansCard plans={plans} />
+        </Box>
+
+        <Stack direction="row"
+          sx={{
+            width: '100%', height: '30px',
+            marginTop: '3%', alignItems: 'center', justifyContent: 'space-between',
+          }}
+        >
+          <Typography>
+            Planos arquivados: {plans.length}
+          </Typography>
+          <Stack sx={{ width: '40%', height: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'end' }}>
+            Esconder
+          </Stack>
+        </Stack>
+        <Box sx={{width: '100%', height: '500px'}}>
+
+        </Box>
       </Box>
     </>
   )

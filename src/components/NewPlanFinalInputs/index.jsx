@@ -1,18 +1,18 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
 import { planTypes } from '../../utils/PlanTypes/planTypes'
-import { priority } from '../../utils/Priority/piority'
+import { priorityes } from '../../utils/Priority/piority'
 
-function NewPlanFinalInputs() {
+function NewPlanFinalInputs({setUnlimitedCalls, setPlanType, setPriority, setDescription}) {
   return (
     <>
       <Box sx={{width: '100%', height: '10%', display: 'flex', alignItems: 'center'}}>
         <label style={{width: '20%', display: 'flex', alignItems: 'center', justifyContent: 'space-evenly'}}>
-          <input type="radio" name="unlimited-calls" id="sim" value="sim"/>
+          <input type="radio" name="unlimited-calls" id="sim" onChange={(e) => setUnlimitedCalls(e.target.value)} value="sim"/>
           Sim
         </label>
         <label style={{width: '20%', display: 'flex', alignItems: 'center', justifyContent: 'space-evenly'}}>
-          <input type="radio" name="unlimited-calls" id="nao" value="nao"/>
+          <input type="radio" name="unlimited-calls" id="nao" onChange={(e) => setUnlimitedCalls(e.target.value)} value="nao"/>
           Não
         </label>
       </Box>
@@ -22,7 +22,9 @@ function NewPlanFinalInputs() {
         </label>
         <select name="planType" id="planType"
           style={{width: '100%', height: '45px', border: '2px solid #000',
-            background: 'transparent', borderRadius: '10px', fontSize: '16px', fontWeight: 'bold', cursor: 'pointer'}}>
+            background: 'transparent', borderRadius: '10px', fontSize: '16px', fontWeight: 'bold', cursor: 'pointer'}}
+            onChange={(e) => setPlanType(e.target.value)}
+          >
           {planTypes.map((plan) => (
             <option
               value={plan.name}
@@ -36,20 +38,24 @@ function NewPlanFinalInputs() {
         </label>
         <select name="priority" id="priority"
           style={{width: '100%', height: '45px', border: '2px solid #000',
-            background: 'transparent', borderRadius: '10px', fontSize: '16px', fontWeight: 'bold', cursor: 'pointer'}}>
-          {priority.map((priority) => (
+            background: 'transparent', borderRadius: '10px', fontSize: '16px', fontWeight: 'bold', cursor: 'pointer'}}
+            onChange={(e) => setPriority(e.target.value)}
+          >
+          {priorityes.map((pri) => (
             <option
-              value={priority.name}
-              key={priority.id}
+              value={pri.name}
+              key={pri.id}
               style={{fontSize: '16px', fontWeight: 'bold'}}
-            >{priority.name}</option>
+            >{pri.name}</option>
           ))}
         </select>
         <label>
           <Typography variant='h7' fontWeight='bold'>Descrição:</Typography>
         </label>
         <textarea style={{width: '100%', height: '40%', borderRadius: '10px',
-          resize: 'none', border: '2px solid #000', fontSize: '18px', paddingLeft: '10px', paddingTop: '10px'}}/>
+          resize: 'none', border: '2px solid #000', fontSize: '18px', paddingLeft: '10px', paddingTop: '10px'}}
+          onChange={(e) => setDescription(e.target.value)}
+        />
       </Box>
     </>
   )

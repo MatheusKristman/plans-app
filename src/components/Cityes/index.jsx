@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material"
+import { mockCityes } from '../../utils/Cityes/cityes'
 
-function Cityes() {
+function Cityes({setCityName}) {
   return (
     <Box sx={{ width: '100%', height: '8%', display: 'flex', flexDirection: 'column', gap: '7%' }}>
       <label>
@@ -8,12 +9,16 @@ function Cityes() {
       </label>
       <select name="planType" id="planType"
         style={{width: '100%', height: '50px', border: '2px solid #000',
-        background: 'transparent', borderRadius: '10px', fontSize: '16px', fontWeight: 'bold', cursor: 'pointer'}}>
-          <option
-            value="first"
-            key="olá"
+        background: 'transparent', borderRadius: '10px', fontSize: '16px', fontWeight: 'bold', cursor: 'pointer'}}
+        onChange={(e) => setCityName(e.target.value)}
+      >
+          {mockCityes.map(city => (
+            <option
+            value={city.name}
+            key={city.id}
             style={{fontSize: '16px', fontWeight: 'bold'}}
-          >first</option>
+          >{city.name}</option>
+          ))}
       </select>
     </Box>
   )

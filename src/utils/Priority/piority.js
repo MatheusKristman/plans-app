@@ -1,4 +1,4 @@
-export const priority = [
+export const priorityes = [
   {
     id: '001',
     name: '1'
