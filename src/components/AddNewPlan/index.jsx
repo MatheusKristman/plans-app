@@ -1,20 +1,55 @@
 import { Box, Stack, Typography } from "@mui/material"
-import { NewPlanFinalInputs, NewPlanInputs, Operadoras, UnlimitedApps } from '../index'
-import { useState } from "react"
+import { NewPlanFinalInputs, NewPlanInputs, Operadoras, UnlimitedApps, Cityes } from '../index'
+import { useContext, useState } from "react"
+import { AuthContext } from "../../contexts/Auth/AuthContext";
+import { useApi } from "../../hooks/useApi";
 
-function AddNewPlan({plansMenu, setPlansMenu, title}) {
+function AddNewPlan({plansMenu, setPlansMenu, menuTitle, editMenu, setEditMenu, planId}) {
   const [provider, setProvider] = useState('claro');
-  const [inputValue, setInputValue] = useState('');
-  const [inputTitle, setInputTitle] = useState('');
-  const [inputDuration, setInputDuration] = useState('7');
-  const [unlimitedApp, setUnlimitedApp] = useState('whatsapp')
+  const [cost, setCost] = useState('');
+  const [title, setTitle] = useState('');
+  const [inputDays, setInputDays] = useState('');
+  const [unlimitedApp, setUnlimitedApp] = useState([])
+  const [city, setCity] = useState('');
+  const [period, setPeriod] = useState('');
+  const [franchise, setFranchise] = useState('');
+  const [unlimitedCall, setUnlimitedCall] = useState('nao');
+  const [planType, setPlanType] = useState('');
+  const [priority, setPriority] = useState('');
+  const [description, setDescription] = useState('');
+  const [providerLogo, setProviderLogo] = useState([]);
+  const lines = 1;
 
+  const auth = useContext(AuthContext);
+  const api = useApi();
+
+  const handleMenus = () => {
+    if(plansMenu) setPlansMenu(!plansMenu);
+    if(editMenu) setEditMenu(!editMenu);
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if(provider, cost, title, inputDays, unlimitedApp,
+        city, period, franchise, unlimitedCall, planType,
+        priority, description, providerLogo, lines) {
+
+          providerLogo.then(data => setProviderLogo(data))
+          const response = await api.createPlans(title, cost,
+              period, franchise, city, unlimitedCall, planType, priority,
+              description, lines, providerLogo, provider
+            )
+          const data = await response.json();
+
+          console.log(data)
+        }
+  }
 
   return (
-    <form onSubmit={(e) => {e.preventDefault(); console.log('Hello')}} style={{ width: '410px', height: '580px', overflowY: 'auto', position: 'absolute',
+    <form onSubmit={handleSubmit} style={{ width: '410px', height: '580px', overflowY: 'auto', position: 'absolute',
       top: '10%', left: '40%', borderRadius: '12px', boxShadow: '5px 5px 10px rgba(0,0,0,0.4)' }}
       >
-      <Stack sx={{ width: '100%', height: '1400px'}}>
+      <Stack sx={{ width: '100%', height: '1500px'}}>
         {/* Caixa da Imagem */}
 
         <Box sx={{position: 'relative', width: '100%', height: '13%'}}>
@@ -22,7 +57,7 @@ function AddNewPlan({plansMenu, setPlansMenu, title}) {
           <button
             style={{position: 'absolute', right: '20px', top: '20px', width: '25px',
               height: '25px', borderRadius: '5px', cursor: 'pointer'}}
-            onClick={() => setPlansMenu(!plansMenu)}
+            onClick={handleMenus}
           >
               X
           </button>
@@ -30,7 +65,7 @@ function AddNewPlan({plansMenu, setPlansMenu, title}) {
             position: 'absolute', bottom: '0px', borderTopRightRadius: '10px', display: 'flex',
             alignItems: 'center', justifyContent: 'center'
             }}>
-            <Typography variant="h7" fontWeight="bold">{title}</Typography>
+            <Typography variant="h7" fontWeight="bold">{menuTitle}</Typography>
           </Box>
         </Box>
 
@@ -44,15 +79,20 @@ function AddNewPlan({plansMenu, setPlansMenu, title}) {
               gap: '2%', flexDirection: 'column', justifyContent: 'center'
             }}>
               <Typography variant="h7" fontWeight="bold">Operadora</Typography>
-              <Operadoras setProvider={setProvider} provider={provider} />
+              <Operadoras setProvider={setProvider} provider={provider} setProviderLogo={setProviderLogo} />
             </Box>
 
           {/* Fim da caixa das operadoras */}
 
+          {/* Caixa das cidades */}
+            <Cityes setCity={setCity} />
+          {/* Fim da caixa das cidades */}
+
           {/* Caixa dos inputs */}
             <Box sx={{width: '100%', height: '30%', display: 'flex', flexDirection: 'column', gap: '2%'}}>
-              <NewPlanInputs inputDuration={inputDuration} inputValue={inputValue} setInputDuration={setInputDuration}
-                setInputValue={setInputValue} inputTitle={inputTitle} setInputTitle={setInputTitle}
+              <NewPlanInputs inputDays={inputDays} cost={cost} setInputDays={setInputDays}
+                setCost={setCost} title={title} setTitle={setTitle}
+                period={period} setPeriod={setPeriod} franchise={franchise} setFranchise={setFranchise}
               />
             </Box>
           {/* Fim da caixa dos inputs */}
@@ -67,7 +107,9 @@ function AddNewPlan({plansMenu, setPlansMenu, title}) {
           {/* Caixa dos inputs finais */}
             <Box sx={{width: '100%', height: '40%', display: 'flex', flexDirection: 'column', gap: '2%'}}>
               <Typography variant="h7" fontWeight="bold" mt="10px">Ligações ilimitadas</Typography>
-              <NewPlanFinalInputs />
+              <NewPlanFinalInputs setUnlimitedCall={setUnlimitedCall} setPlanType={setPlanType} setPriority={setPriority}
+                setDescription={setDescription}
+              />
             </Box>
           {/* Fim da caixa dos inputs finais */}
 
@@ -76,7 +118,10 @@ function AddNewPlan({plansMenu, setPlansMenu, title}) {
               <button type="submit"
                 style={{width: '100%', height: '50px', fontSize: '18px',
                   fontWeight: 'bold', background: '#D40066', color: '#fff',
-                  borderRadius: '10px', border: 'none', cursor: 'pointer'}}>Salvar</button>
+                  borderRadius: '10px', border: 'none', cursor: 'pointer'}}
+              >
+                Salvar
+              </button>
             </Box>
           {/* Fim da caixa do botão de submit */}
         </Box>

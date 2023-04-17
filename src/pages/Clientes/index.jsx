@@ -1,6 +1,8 @@
 import React from 'react'
 
-function Clientes() {
+function Clientes({plans}) {
+  console.log(plans)
+
   return (
     <div>Clientes</div>
   )
