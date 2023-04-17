@@ -3,16 +3,16 @@ import React from 'react'
 import { planTypes } from '../../utils/PlanTypes/planTypes'
 import { priorityes } from '../../utils/Priority/piority'
 
-function NewPlanFinalInputs({setUnlimitedCalls, setPlanType, setPriority, setDescription}) {
+function NewPlanFinalInputs({setUnlimitedCall, setPlanType, setPriority, setDescription}) {
   return (
     <>
       <Box sx={{width: '100%', height: '10%', display: 'flex', alignItems: 'center'}}>
         <label style={{width: '20%', display: 'flex', alignItems: 'center', justifyContent: 'space-evenly'}}>
-          <input type="radio" name="unlimited-calls" id="sim" onChange={(e) => setUnlimitedCalls(e.target.value)} value="sim"/>
+          <input type="radio" name="unlimited-calls" id="sim" onChange={(e) => setUnlimitedCall(e.target.value)} value="sim"/>
           Sim
         </label>
         <label style={{width: '20%', display: 'flex', alignItems: 'center', justifyContent: 'space-evenly'}}>
-          <input type="radio" name="unlimited-calls" id="nao" onChange={(e) => setUnlimitedCalls(e.target.value)} value="nao"/>
+          <input type="radio" name="unlimited-calls" id="nao" onChange={(e) => setUnlimitedCall(e.target.value)} value="nao"/>
           Não
         </label>
       </Box>

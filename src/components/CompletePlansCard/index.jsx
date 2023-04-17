@@ -88,7 +88,7 @@ function CompletePlansCard({plans}) {
         })}
       </Box>
       {
-        editMenu && <AddNewPlan title={'Editar Plano'} setEditMenu={setEditMenu} editMenu={editMenu} planId={planId} />
+        editMenu && <AddNewPlan menuTitle={'Editar Plano'} setEditMenu={setEditMenu} editMenu={editMenu} planId={planId} />
       }
     </>
   )

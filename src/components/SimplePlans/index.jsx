@@ -37,7 +37,7 @@ function SimplePlans({plans}) {
         <SimplePlansCard planos={plans} />
       </Box>
       {
-        plansMenu && (<AddNewPlan plansMenu={plansMenu} setPlansMenu={setPlansMenu} title="Novo Plano" />)
+        plansMenu && (<AddNewPlan plansMenu={plansMenu} setPlansMenu={setPlansMenu} menuTitle="Novo Plano" />)
       }
     </>
   )

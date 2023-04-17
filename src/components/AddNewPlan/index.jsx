@@ -1,20 +1,31 @@
 import { Box, Stack, Typography } from "@mui/material"
 import { NewPlanFinalInputs, NewPlanInputs, Operadoras, UnlimitedApps, Cityes } from '../index'
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { AuthContext } from "../../contexts/Auth/AuthContext";
+import { useApi } from "../../hooks/useApi";
 
-function AddNewPlan({plansMenu, setPlansMenu, title, editMenu, setEditMenu, planId}) {
+function AddNewPlan({plansMenu, setPlansMenu, menuTitle, editMenu, setEditMenu, planId}) {
   const [provider, setProvider] = useState('claro');
-  const [inputValue, setInputValue] = useState('');
-  const [inputTitle, setInputTitle] = useState('');
+  const [cost, setCost] = useState('');
+  const [title, setTitle] = useState('');
   const [inputDays, setInputDays] = useState('');
   const [unlimitedApp, setUnlimitedApp] = useState([])
-  const [cityName, setCityName] = useState('');
-  const [planDuration, setPlanDuration] = useState('');
+  const [city, setCity] = useState('');
+  const [period, setPeriod] = useState('');
   const [franchise, setFranchise] = useState('');
-  const [unlimitedCalls, setUnlimitedCalls] = useState('nao');
+  const [unlimitedCall, setUnlimitedCall] = useState('nao');
   const [planType, setPlanType] = useState('');
   const [priority, setPriority] = useState('');
   const [description, setDescription] = useState('');
+  const [providerLogo, setProviderLogo] = useState('');
+  const lines = 1;
+
+  // title, cost,
+  // period, franchise, unlimitedApps, unlimitedCall,
+  // planType, priority, description, lines, providerLogo, city, provider
+
+  const auth = useContext(AuthContext);
+  const api = useApi();
 
   const handleMenus = () => {
     if(plansMenu) setPlansMenu(!plansMenu);
@@ -23,17 +34,7 @@ function AddNewPlan({plansMenu, setPlansMenu, title, editMenu, setEditMenu, plan
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(cityName)
-    console.log(unlimitedApp)
-    console.log(inputTitle)
-    console.log(planDuration)
-    console.log(inputValue)
-    console.log(provider)
-    console.log(franchise)
-    console.log(unlimitedCalls)
-    console.log(planType)
-    console.log(priority)
-    console.log(description)
+
   }
 
   return (
@@ -56,7 +57,7 @@ function AddNewPlan({plansMenu, setPlansMenu, title, editMenu, setEditMenu, plan
             position: 'absolute', bottom: '0px', borderTopRightRadius: '10px', display: 'flex',
             alignItems: 'center', justifyContent: 'center'
             }}>
-            <Typography variant="h7" fontWeight="bold">{title}</Typography>
+            <Typography variant="h7" fontWeight="bold">{menuTitle}</Typography>
           </Box>
         </Box>
 
@@ -70,20 +71,20 @@ function AddNewPlan({plansMenu, setPlansMenu, title, editMenu, setEditMenu, plan
               gap: '2%', flexDirection: 'column', justifyContent: 'center'
             }}>
               <Typography variant="h7" fontWeight="bold">Operadora</Typography>
-              <Operadoras setProvider={setProvider} provider={provider} />
+              <Operadoras setProvider={setProvider} provider={provider} setProviderLogo={setProviderLogo} />
             </Box>
 
           {/* Fim da caixa das operadoras */}
 
           {/* Caixa das cidades */}
-            <Cityes setCityName={setCityName} />
+            <Cityes setCity={setCity} />
           {/* Fim da caixa das cidades */}
 
           {/* Caixa dos inputs */}
             <Box sx={{width: '100%', height: '30%', display: 'flex', flexDirection: 'column', gap: '2%'}}>
-              <NewPlanInputs inputDays={inputDays} inputValue={inputValue} setInputDays={setInputDays}
-                setInputValue={setInputValue} inputTitle={inputTitle} setInputTitle={setInputTitle}
-                planDuration={planDuration} setPlanDuration={setPlanDuration} franchise={franchise} setFranchise={setFranchise}
+              <NewPlanInputs inputDays={inputDays} cost={cost} setInputDays={setInputDays}
+                setCost={setCost} title={title} setTitle={setTitle}
+                period={period} setPeriod={setPeriod} franchise={franchise} setFranchise={setFranchise}
               />
             </Box>
           {/* Fim da caixa dos inputs */}
@@ -98,7 +99,7 @@ function AddNewPlan({plansMenu, setPlansMenu, title, editMenu, setEditMenu, plan
           {/* Caixa dos inputs finais */}
             <Box sx={{width: '100%', height: '40%', display: 'flex', flexDirection: 'column', gap: '2%'}}>
               <Typography variant="h7" fontWeight="bold" mt="10px">Ligações ilimitadas</Typography>
-              <NewPlanFinalInputs setUnlimitedCalls={setUnlimitedCalls} setPlanType={setPlanType} setPriority={setPriority}
+              <NewPlanFinalInputs setUnlimitedCall={setUnlimitedCall} setPlanType={setPlanType} setPriority={setPriority}
                 setDescription={setDescription}
               />
             </Box>

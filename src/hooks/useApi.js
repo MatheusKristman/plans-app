@@ -19,13 +19,17 @@ export const useApi = () => ({
     const response = await api.get('plan/all');
     return response.data
   },
-  editPlans: async (id, title, cost,
+  createPlans: async (title, cost,
       period, franchise, unlimitedApps, unlimitedCall,
-      planType, priority, description, lines) => {
-    const response = await api.put('plan/edit', {body: {
-      id, title, cost, period, franchise, unlimitedApps, unlimitedCall,
-      planType, priority, description, lines
-    }})
+      planType, priority, description, lines, providerLogo, city, provider) => {
+    const response = await api.post('plan/edit', {body: {
+      title, cost, period, franchise, unlimitedApps, unlimitedCall,
+      planType, priority, description, lines, city, provider
+    },
+    file: {
+      providerLogo
+    }
+  })
     return response.data
   }
 })

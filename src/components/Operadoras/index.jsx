@@ -1,7 +1,13 @@
 import { operadoras } from "../../utils/Menus/menuItems."
 import { Box } from "@mui/material"
 
-function Operadoras({setProvider, provider}) {
+function Operadoras({setProvider, provider, setProviderLogo}) {
+
+  const handleSets = (operadora) => {
+    setProvider(operadora?.name)
+    setProviderLogo(operadora?.image)
+  }
+
   return (
     <Box sx={{width: '100%', height: '80%', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
       {operadoras.map((operadora) => (
@@ -10,7 +16,7 @@ function Operadoras({setProvider, provider}) {
           border: operadora.name === provider ? '2px solid #D40066' : ''
         }}
           key={operadora.id}
-          onClick={() => setProvider(operadora.name)}
+          onClick={() => handleSets(operadora)}
         >
           <img src={operadora.image} alt={operadora.alt} />
         </Box>
