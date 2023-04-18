@@ -98,7 +98,7 @@ function CompletePlansCard({plans}) {
         editMenu && <AddNewPlan menuTitle={'Editar Plano'} setEditMenu={setEditMenu} editMenu={editMenu} planId={planId} />
       }
       {
-        seeMore && <SeeMore seeMore={seeMore} setSeeMore={setSeeMore} planInfo={planInfo}/>
+        seeMore && <SeeMore seeMore={seeMore} setSeeMore={setSeeMore} planInfo={planInfo} setEditMenu={setEditMenu} editMenu={editMenu}/>
       }
     </>
   )
