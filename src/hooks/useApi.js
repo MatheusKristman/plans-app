@@ -40,5 +40,9 @@ export const useApi = () => ({
     const response = await api.post('plan/new', {body: FormData});
     console.log(response.data)
     return response.data
+  },
+  getClients: async () => {
+    const response = await api.get('lead/all')
+    return response.data
   }
 })

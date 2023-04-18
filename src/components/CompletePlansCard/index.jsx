@@ -29,7 +29,7 @@ function CompletePlansCard({plans}) {
     <>
       {currentItems.map((plano) => (
         <Box
-          key={plano.title}
+          key={plano._id}
           sx={{
             width: '100%', height: '150px', borderBottom: '1px solid lightGray',
             display: 'flex', alignItems: 'center', justifyContent: 'space-between', overflowY: 'auto',
