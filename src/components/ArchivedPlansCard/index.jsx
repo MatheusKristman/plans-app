@@ -1,23 +1,21 @@
+import React, {useContext, useState} from 'react'
 import {Box, Stack, Typography} from '@mui/material'
-import { useContext, useState } from 'react';
-import { AddNewPlan, SeeMore } from '../index'
 import { AuthContext } from '../../contexts/Auth/AuthContext';
 import { useApi } from '../../hooks/useApi';
 
-function CompletePlansCard({plans, editMenu, setEditMenu, seeMore, setSeeMore, setPlanId, planId}) {
+function ArchivedPlansCard({plans, editMenu, setEditMenu, seeMore, setSeeMore, planId, setPlanId}) {
   const [itemsPerPage, setItemsPerPage] = useState(3);
   const [currentPage, setCurrentPage] = useState(0);
-  const [planInfo, setPlanInfo] = useState([]);
 
-  let unarchivedPlans = plans.filter(plan => !plan.archived)
+  const archivedPlans = plans.filter(plan => plan.archived)
 
   const auth = useContext(AuthContext);
   const api = useApi();
 
-  const pages = Math.ceil(unarchivedPlans.length / itemsPerPage);
+  const pages = Math.ceil(archivedPlans.length / itemsPerPage);
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentItems = unarchivedPlans.slice(startIndex, endIndex)
+  const currentItems = archivedPlans.slice(startIndex, endIndex)
 
   const handleEditMenu = (item) => {
     setEditMenu(!editMenu)
@@ -32,18 +30,20 @@ function CompletePlansCard({plans, editMenu, setEditMenu, seeMore, setSeeMore, s
   const handleToFile = async (plan) => {
     if(auth.user) {
       const data = await api.archivePlan(plan._id);
+
     }
   }
 
   return (
     <>
-      {currentItems.map((plano) => (
-        <Box
-          key={plano.title}
+      {
+        currentItems.map((item) => (
+          <Box
+          key={item.title}
           sx={{
             width: '100%', height: '150px', borderBottom: '1px solid lightGray',
             display: 'flex', alignItems: 'center', justifyContent: 'space-between', overflowY: 'auto',
-            filter: editMenu || seeMore ? 'blur(10px)' : ''
+            filter: editMenu ? 'blur(10px)' : ''
           }}
         >
           <Box
@@ -51,27 +51,27 @@ function CompletePlansCard({plans, editMenu, setEditMenu, seeMore, setSeeMore, s
               alignItems: 'center', justifyContent: 'start', gap: '3%'
             }}
           >
-            <img src={`https://planos-backend.onrender.com/assets/${plano.providerLogo}`} alt={plano.provider}/>
+            <img src={`https://planos-backend.onrender.com/assets/${item.providerLogo}`} alt={item.provider}/>
             <Typography variant="h7" fontWeight="bold">
-              {plano.title}
+              {item.title}
             </Typography>
           </Box>
             <Box sx={{width: '80%', height: '70%', display: 'flex', alignItems: 'center',
               justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
               <Stack>
-                <Typography variant="h7" fontWeight="bold">R$ {plano.cost.toFixed(2)}</Typography>
+                <Typography variant="h7" fontWeight="bold">R$ {item.cost.toFixed(2)}</Typography>
                 <Typography variant='span' sx={{color: 'lightGray'}}>Valor</Typography>
               </Stack>
               <Stack>
-                <Typography variant="h7" fontWeight="bold">{plano.franchise}GB</Typography>
+                <Typography variant="h7" fontWeight="bold">{item.franchise}GB</Typography>
                 <Typography variant='span' sx={{color: 'lightGray'}}>Franquia</Typography>
               </Stack>
               <Stack>
-                <Typography variant="h7" fontWeight="bold">{plano.contacts}</Typography>
+                <Typography variant="h7" fontWeight="bold">{item.contacts}</Typography>
                 <Typography variant='span' sx={{color: 'lightGray'}}>Contatos</Typography>
               </Stack>
               <Stack>
-                <Typography variant="h7" fontWeight="bold">{plano.createdAt.slice(0, 10).split('-').reverse().join('/')}</Typography>
+                <Typography variant="h7" fontWeight="bold">{item.createdAt.slice(0, 10).split('-').reverse().join('/')}</Typography>
                 <Typography variant='span' sx={{color: 'lightGray'}}>Criado em</Typography>
               </Stack>
               <Stack sx={{width: '75%', height: '45%', alignItems: 'center', justifyContent: 'center',
@@ -89,8 +89,8 @@ function CompletePlansCard({plans, editMenu, setEditMenu, seeMore, setSeeMore, s
                 <button style={{width: '120px', height: '40px', borderRadius: '10px',
                   border: '2px solid #D40066', background: 'transparent',
                   color: '#D40066', fontWeight: 'bold', cursor: 'pointer'}}
-                  onClick={() => handleToFile(plano)}
-                >Arquivar</button>
+                  onClick={() => handleToFile(item)}
+                >Restaurar</button>
               </Stack>
             </Box>
         </Box>
@@ -106,14 +106,8 @@ function CompletePlansCard({plans, editMenu, setEditMenu, seeMore, setSeeMore, s
           >{index + 1}</button>
         })}
       </Box>
-      {
-        editMenu && <AddNewPlan menuTitle={'Editar Plano'} setEditMenu={setEditMenu} editMenu={editMenu} planId={planId} />
-      }
-      {
-        seeMore && <SeeMore seeMore={seeMore} setSeeMore={setSeeMore} planInfo={planInfo} setEditMenu={setEditMenu} editMenu={editMenu}/>
-      }
     </>
   )
 }
 
-export default CompletePlansCard
+export default ArchivedPlansCard
