@@ -13,3 +13,4 @@ export {default as SeeMore} from './SeeMore';
 export {default as ClientsCard} from './ClientsCard';
 export {default as ArchivedPlansCard} from './ArchivedPlansCard';
 export {default as Header} from './Header';
+export {default as Benefits} from './Benefits';
