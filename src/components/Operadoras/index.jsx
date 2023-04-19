@@ -25,7 +25,7 @@ const onImageEdit = async (imgUrl) => {
 }
 
   const handleSets = (operadora) => {
-    setProvider(operadora?.name)
+    setProvider(operadora.name)
     setProviderLogo(onImageEdit(operadora.image))
   }
 

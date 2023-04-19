@@ -10,7 +10,6 @@ function UnlimitedApps({unlimitedApp, setUnlimitedApp}) {
       return
     }
     setUnlimitedApp([...unlimitedApp, app.name])
-    app.style = '2px solid #D40066'
   }
 
   return (
@@ -21,7 +20,7 @@ function UnlimitedApps({unlimitedApp, setUnlimitedApp}) {
           onClick={() => verifyUnlimitedApp(app)}
           sx={{width: '50px', height: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center',
           background: '#cccccc', borderRadius: '10px', cursor: 'pointer',
-          border: app.style }}
+          border: unlimitedApp.includes(app.name) ? '2px solid #D40066' : '' }}
         >
           <img src={app.icon} alt={app.name} />
         </Box>

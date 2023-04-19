@@ -1,5 +1,5 @@
 import {  Box, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React from 'react'
 import { franchisesNames } from '../../utils/Franchises/franchises'
 
 function NewPlanInput({setTitle, title, setCost, cost, setInputDays, inputDays, setPeriod, franchise, setFranchise}) {

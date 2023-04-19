@@ -89,7 +89,7 @@ function SeeMore({seeMore, setSeeMore, planInfo, setEditMenu, editMenu}) {
                 onClick={handleEditMenu}
               >Editar</button>
               <button style={{width: '150px', height: '40px', border: '2px solid #D40066',
-                color: '#D40066', fontSize: '18px', borderRadius: '8px', cursor: 'pointer'}}>Arquivar</button>
+                color: '#D40066', fontSize: '18px', borderRadius: '8px', cursor: 'pointer', background: 'none'}}>Arquivar</button>
             </Box>
         {/* Footer Box */}
       </Box>

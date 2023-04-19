@@ -5,10 +5,12 @@ function SimplePlansCard({planos}) {
   const [itemsPerPage, setItemsPerPage] = useState(3);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const pages = Math.ceil(planos.length / itemsPerPage);
+  let unarchivedPlans = planos.filter(plano => !plano.archived)
+
+  const pages = Math.ceil(unarchivedPlans.length / itemsPerPage);
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentItems = planos.slice(startIndex, endIndex)
+  const currentItems = unarchivedPlans.slice(startIndex, endIndex)
 
   return (
     <>

@@ -24,7 +24,7 @@ function SimplePlans({plans}) {
           }}
         >
           <Typography>
-            Planos ativos: {plans.length}
+            Planos ativos: {plans.filter(plano => !plano.archived).length}
           </Typography>
           <Button variant="contained"
             sx={{background: '#D40066', height: '45px', '&:hover': {background: '#D40066',}}}

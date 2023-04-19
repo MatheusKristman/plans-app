@@ -12,8 +12,8 @@ function AddNewPlan({plansMenu, setPlansMenu, menuTitle, editMenu, setEditMenu, 
   const [unlimitedApp, setUnlimitedApp] = useState([])
   const [city, setCity] = useState('');
   const [period, setPeriod] = useState('');
-  const [franchise, setFranchise] = useState('');
-  const [unlimitedCall, setUnlimitedCall] = useState('nao');
+  const [franchise, setFranchise] = useState('25');
+  const [unlimitedCall, setUnlimitedCall] = useState(false);
   const [planType, setPlanType] = useState('');
   const [priority, setPriority] = useState('');
   const [description, setDescription] = useState('');
@@ -30,19 +30,11 @@ function AddNewPlan({plansMenu, setPlansMenu, menuTitle, editMenu, setEditMenu, 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(provider, cost, title, inputDays, unlimitedApp,
-        city, period, franchise, unlimitedCall, planType,
-        priority, description, providerLogo, lines) {
-
-          providerLogo.then(data => setProviderLogo(data))
-          const response = await api.createPlans(title, cost,
-              period, franchise, city, unlimitedCall, planType, priority,
-              description, lines, providerLogo, provider
-            )
-          const data = await response.json();
-
-          console.log(data)
-        }
+    if(auth.user) {
+      const response = await api.createPlans(title, cost, period, franchise, unlimitedApp,
+        unlimitedCall, planType, priority, description, lines, providerLogo, city, provider)
+      console.log(response.data)
+    }
   }
 
   return (

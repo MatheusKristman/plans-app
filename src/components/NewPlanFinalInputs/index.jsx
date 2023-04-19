@@ -8,11 +8,11 @@ function NewPlanFinalInputs({setUnlimitedCall, setPlanType, setPriority, setDesc
     <>
       <Box sx={{width: '100%', height: '10%', display: 'flex', alignItems: 'center'}}>
         <label style={{width: '20%', display: 'flex', alignItems: 'center', justifyContent: 'space-evenly'}}>
-          <input type="radio" name="unlimited-calls" id="sim" onChange={(e) => setUnlimitedCall(e.target.value)} value="sim"/>
+          <input type="radio" name="unlimited-calls" id="sim" onChange={(e) => setUnlimitedCall(e.target.value)} value={true}/>
           Sim
         </label>
         <label style={{width: '20%', display: 'flex', alignItems: 'center', justifyContent: 'space-evenly'}}>
-          <input type="radio" name="unlimited-calls" id="nao" onChange={(e) => setUnlimitedCall(e.target.value)} value="nao"/>
+          <input type="radio" name="unlimited-calls" id="nao" onChange={(e) => setUnlimitedCall(e.target.value)} value={false}/>
           Não
         </label>
       </Box>

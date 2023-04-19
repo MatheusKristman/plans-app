@@ -10,8 +10,10 @@ import { AuthContext } from '../../contexts/Auth/AuthContext'
 function Dashboard() {
   const [selectedOption, setSelectedOption] = useState('Dashboard')
   const [plans, setPlans] = useState([]);
+  const [archivedPlans, setArchivedPlans] = useState([]);
   const auth = useContext(AuthContext)
   const api = useApi();
+
 
   useEffect(() => {
     const handleGetPlans = async () => {
@@ -23,6 +25,7 @@ function Dashboard() {
 
     handleGetPlans();
   }, [])
+
 
   return (
     <Box sx={{ width: '100%', height: '100vh', display: 'flex', gap: '5%'}}>

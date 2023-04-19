@@ -20,29 +20,43 @@ export const useApi = () => ({
     return response.data
   },
   createPlans: async (title, cost,
-      period, franchise, unlimitedApps, unlimitedCall,
+      period, franchise, unlimitedApp, unlimitedCall,
       planType, priority, description, lines, providerLogo, city, provider) => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("cost", cost);
     formData.append("period", period,);
     formData.append("franchise", franchise);
-    formData.append("unlimitedApps", unlimitedApps);
+    formData.append("unlimitedApp", unlimitedApp);
     formData.append("unlimitedCall", unlimitedCall);
     formData.append("planType", planType);
     formData.append("priority", priority);
     formData.append("description", description);
     formData.append("lines", lines);
-    formData.append("providerLogo", providerLogo);
-    formData.append("city", city);
     formData.append("provider", provider);
+    formData.append("city", city);
+    formData.append("providerLogo", providerLogo);
 
-    const response = await api.post('plan/new', {body: FormData});
-    console.log(response.data)
+    const response = await axios({
+      method: 'POST',
+      url: 'https://planos-backend.onrender.com/plan/new',
+      data: formData,
+      headers: {
+          "Content-Type": 'multipart/form-data'
+      }
+    });
     return response.data
   },
   getClients: async () => {
     const response = await api.get('lead/all')
+    return response.data
+  },
+  archivePlan: async (id) => {
+    // const formData = new FormData();
+
+    // formData.append("id", id);
+
+    const response = await api.put('plan/archive', {id})
     return response.data
   }
 })

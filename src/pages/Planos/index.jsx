@@ -1,8 +1,12 @@
 import { Box, Stack, Typography } from "@mui/material"
-import { CompletePlansCard } from "../../components"
+import { CompletePlansCard, ArchivedPlansCard } from "../../components"
 import { checkboxGroup } from "../../utils/Menus/menuItems."
+import { useState } from "react";
 
 function Planos({plans}) {
+  const [editMenu, setEditMenu] = useState(false);
+  const [seeMore, setSeeMore] = useState(false);
+  const [planId, setPlanId] = useState('');
   return (
     <>
       <Box
@@ -16,7 +20,7 @@ function Planos({plans}) {
           }}
         >
           <Typography>
-            Planos ativos: {plans.length}
+            Planos ativos: {plans.filter(plans => !plans.archived).length}
           </Typography>
           <Stack sx={{ width: '60%', height: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly' }}>
             {checkboxGroup.map((check) => (
@@ -39,7 +43,10 @@ function Planos({plans}) {
           </Stack>
         </Stack>
         <Box sx={{width: '100%', height: '500px'}}>
-          <CompletePlansCard plans={plans} />
+          <CompletePlansCard plans={plans} editMenu={editMenu}
+            setEditMenu={setEditMenu} seeMore={seeMore} setSeeMore={setSeeMore}
+              planId={planId} setPlanId={setPlanId}
+          />
         </Box>
 
         <Stack direction="row"
@@ -49,14 +56,17 @@ function Planos({plans}) {
           }}
         >
           <Typography>
-            Planos arquivados: {plans.length}
+            Planos arquivados: {plans.filter(plans => plans.archived  ).length}
           </Typography>
           <Stack sx={{ width: '40%', height: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'end' }}>
             Esconder
           </Stack>
         </Stack>
         <Box sx={{width: '100%', height: '500px'}}>
-
+          <ArchivedPlansCard plans={plans} editMenu={editMenu}
+            setEditMenu={setEditMenu} seeMore={seeMore} setSeeMore={setSeeMore}
+            planId={planId} setPlanId={setPlanId}
+          />
         </Box>
       </Box>
     </>
