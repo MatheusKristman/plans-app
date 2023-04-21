@@ -32,6 +32,7 @@ function Planos({plans, isEditing, setIsEditing}) {
               >
                 <input
                   type="checkbox" name={check.name} id={check.name} value={check.value}
+                  style={{accentColor: '#D40066'}}
                 />
                 {check.name}
               </label>

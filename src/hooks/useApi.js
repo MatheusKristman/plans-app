@@ -58,5 +58,11 @@ export const useApi = () => ({
 
     const response = await api.put('plan/archive', {id})
     return response.data
-  }
+  },
+  editPlan: async (id, title, cost, period, franchise, unlimitedApps,
+    unlimitedCall, planType, priority, description, lines) => {
+      const response = await api.put('plan/edit', {id, title, cost, period, franchise, unlimitedApps,
+        unlimitedCall, planType, priority, description, lines});
+      return response.data
+    }
 })

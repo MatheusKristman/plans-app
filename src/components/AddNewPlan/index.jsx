@@ -3,6 +3,7 @@ import { NewPlanFinalInputs, NewPlanInputs, Operadoras, UnlimitedApps, Cityes } 
 import { useContext, useState } from "react"
 import { AuthContext } from "../../contexts/Auth/AuthContext";
 import { useApi } from "../../hooks/useApi";
+import { useNavigate } from "react-router-dom";
 
 function AddNewPlan({plansMenu, setPlansMenu, menuTitle, editMenu, setEditMenu, planId, isEditing, setIsEditing}) {
   const [provider, setProvider] = useState('claro');
@@ -20,6 +21,7 @@ function AddNewPlan({plansMenu, setPlansMenu, menuTitle, editMenu, setEditMenu, 
   const [providerLogo, setProviderLogo] = useState([]);
   const lines = 1;
 
+  const navigate = useNavigate();
   const auth = useContext(AuthContext);
   const api = useApi();
 
@@ -31,6 +33,15 @@ function AddNewPlan({plansMenu, setPlansMenu, menuTitle, editMenu, setEditMenu, 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(auth.user && isEditing) {
+      const response = await api.editPlan(planId, title, cost, period, franchise,
+        unlimitedApp, unlimitedCall, planType, priority, description, lines)
+
+      if(response) {
+        navigate('/dashboard')
+      }
+      return
+    }
     if(auth.user) {
       const response = await api.createPlans(title, cost, period, franchise, unlimitedApp,
         unlimitedCall, planType, priority, description, lines, providerLogo, city, provider)

@@ -13,8 +13,6 @@ function Dashboard() {
   const [archivedPlans, setArchivedPlans] = useState([]);
   const [isEditing, setIsEditing] = useState(false)
 
-  console.log(isEditing)
-
   const auth = useContext(AuthContext)
   const api = useApi();
 
