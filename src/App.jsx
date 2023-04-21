@@ -1,22 +1,34 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Box, Stack, Typography } from '@mui/material';
-import { Header } from './components';
+import { Benefits, Header } from './components';
 import { stepsLoop } from './utils/steps/steps';
-import { benefitsLoop } from './utils/steps/benefits';
+import { aboutLoop } from './utils/About/about';
+import {FiArrowDownCircle, FiArrowUpCircle} from 'react-icons/fi';
 
 function App() {
+  const [aboutOn, setAboutOn] = useState(false);
+  const [aboutId, setAboutId] = useState('');
+
+  const handleMoreAbout = (about) => {
+    setAboutId(about.id)
+    setAboutOn(!aboutOn)
+    if(aboutOn) {
+      setAboutId('')
+    }
+  }
+
   return (
     <Stack sx={{width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center'}}>
       <Header />
-      <Stack sx={{width: '80%', height: '300px', position: 'relative', alignItems: 'center', justifyContent: 'center'}}>
-        <img src="./assets/images/XMLID_1124_.png" alt="bolinhas" style={{position: 'absolute', left: '-100px', top: '-150px'}} />
+      <Stack sx={{width: {xs: '90%', sm: '90%', md: '80%'}, height: {xs: '700px', sm: '900px', md: '300px'}, position: 'relative', alignItems: 'center', justifyContent: 'center'}}>
+        <img src="./assets/images/XMLID_1124_.png" alt="bolinhas" style={{position: 'absolute', left: '-100px', top: '-150px', width: '300px', height: '300px'}} />
         <Box sx={{width: '100%', height: '90%', zIndex: '99999', display: 'flex', justifyContent: 'center',
           flexDirection: 'column', gap: '5%'}}>
-          <Typography variant='h5' fontWeight="bold">Seu plano em apenas 3 passos</Typography>
-          <Stack direction="row" sx={{width: '100%', height: '80%', alignItems: 'center', justifyContent: 'space-between'}}>
+          <Typography variant='h5' fontWeight="semiBold">Seu plano em apenas 3 passos</Typography>
+          <Stack sx={{width: '100%', height: '70%', alignItems: 'center', justifyContent: 'space-between', flexDirection: {sm: 'column', md: 'row'}}}>
             {stepsLoop.map(step => (
-              <Stack direction="row" sx={{width: '32%', height: '70%', border: '2px solid #D40066',
-                borderRadius: '10px', position: 'relative', justifyContent: 'center', alignItems: 'center',
+              <Stack direction="row" sx={{width: {xs: '100%',sm: '100%', md: '32%'}, height: {xs: '30%', sm: '25%',md: '70%'}, border: '2px solid #D40066',
+                borderRadius: '10px', position: 'relative', justifyContent: 'center', alignItems: 'center', background: '#fff',
                 boxShadow: '5px 5px 10px #Aaa'}}
                 key={step.id}
               >
@@ -28,40 +40,81 @@ function App() {
                 <Box sx={{width: '90%', height: '90%', display: 'flex', alignItems: 'center', justifyContent: 'center',
                   flexDirection: 'column', textAlign: 'center'}}>
                   <Box sx={{width: '100%', height: '40%', textAlign: 'center'}}>
-                    <Typography variant='h6' fontWeight="bold">{step.name}</Typography>
+                    <Typography variant='h6' fontWeight="medium">{step.name}</Typography>
                   </Box>
-                  <Typography variant='h7' fontWeight="600">{step.description}</Typography>
+                  <Typography variant='h7' fontWeight="400">{step.description}</Typography>
                 </Box>
               </Stack>
             ))}
           </Stack>
         </Box>
       </Stack>
-      <Box sx={{width: '100%', height: '685px', backgroundImage: 'url(./assets/images/main-bg.png)',
+      <Box sx={{width: '100%', height: {xs: '700px', sm: '700px',md: '500px'}, backgroundImage: 'url(./assets/images/main-bg.png)',
         backgroundRepeat: 'no-repeat', backgroundSize: 'cover', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-        <Box sx={{width: '80%', height: '80%', display: 'flex',
-          alignItems: 'center', justifyContent: 'center'}}>
-            <Stack sx={{width: '100%', height: '70%', justifyContent: 'center', gap: '5%'}}>
-              <Typography variant='h5' fontWeight='bold'>Os benefícios levados até você</Typography>
-              <Box sx={{width: '100%', height: '80%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                flexWrap: 'wrap'}}>
-                {benefitsLoop.map(benefit => (
-                  <Box
-                    key={benefit.id}
-                    sx={{width: '45%', height: '40%', display: 'flex', alignItems: 'center'}}
-                  >
-                    <Box sx={{width: '18%', height: '100%'}}>
-                      <img src={benefit.icon} alt="" />
-                    </Box>
-                    <Stack sx={{width: '80%', height: '100%', gap: '10%'}}>
-                      <Typography variant='h7' fontWeight="bold">{benefit.name}</Typography>
-                      <Typography variant='span'>{benefit.description}</Typography>
-                    </Stack>
+        <Benefits />
+      </Box>
+      <Box sx={{width: '100%', height: {xs: '750px', sm: '600px',md: '600px'}, background: 'linear-gradient(180deg, rgba(255,241,238,1) 0%, rgba(255,255,255,1) 53%)',
+        alignItems: 'center', justifyContent: 'center', display: 'flex'}}>
+        <Box sx={{width: '80%', height: '100%', display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
+          <Stack sx={{gap: '12%', height: {xs: '25%', sm: '13%', md: '13%'}}}>
+            <Typography variant='h5' fontWeight="semiBold">Um pouco mais sobre (Nome da empresa)</Typography>
+            <Typography variant='h7'>Somos um comparador de ofertas de serviços financeiros e de telecom. Utilizando nossa ferramenta, você encontra planos de celular.</Typography>
+          </Stack>
+          <Stack sx={{width: '100%' , height: {xs: '75%', sm: '80%', md: '50%'}, gap: '10%', justifyContent: 'center'}}>
+            {aboutLoop.map(item => (
+              <Stack key={item.id} sx={{ width: '100%', height: aboutId === item.id ? '35%' : '15%', borderBottom: '2px solid lightGray', justifyContent: 'center', gap: '15%'}}>
+                <Box sx={{width: '100%', height: '35%', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                  <Box sx={{height: '100%', display: 'flex', alignItems: 'center', width: '90%'}}>
+                    <Typography variant='h7'>{item.name}</Typography>
                   </Box>
-                ))}
-              </Box>
-            </Stack>
+                  <Box
+                    sx={{height: '100%', display: 'flex', alignItems: 'center', width: '3%', justifyContent: 'center', cursor: 'pointer'}}
+                    onClick={() => handleMoreAbout(item)}
+                  >
+                    {
+                      aboutOn && aboutId === item.id ? <FiArrowUpCircle /> : <FiArrowDownCircle />
+                    }
+                  </Box>
+                </Box>
+                <Stack direction="row" sx={{width: '100%', height: '60%', alignItems: 'center', paddingLeft: '2%', display: aboutId === item.id ? 'flex' : 'none'}}>
+                  <Box sx={{width: '100%', height: '100%', borderLeft: '2px solid #D40066', paddingLeft: '2%', display: 'flex', alignItems: 'center', marginBottom: '20px'}}>
+                    <Typography>{item.description}</Typography>
+                  </Box>
+                </Stack>
+              </Stack>
+            ))}
+          </Stack>
         </Box>
+      </Box>
+      <Box sx={{width: '100%', height: {xs: '700px', sm: '400px', md: '400px'}, background: '#E9EBFF', display: 'flex', alignItems: 'center',
+        justifyContent: 'center', paddingTop: {xs: '0px', sm: '10%', md: '0px'}}}>
+        <Stack sx={{width: '80%', height: '100%'}}>
+          <Stack sx={{height: '85%', paddingTop: {xs: '15%', sm: '2%', md: '2%'}, justifyContent: 'space-between', flexDirection: {xs: 'column', sm: 'row', md: 'row'}}}>
+            <Stack sx={{width: {xs: '100%', sm: '30%', md: '30%'}, height: {xs: '35%', sm: '100%', md: '100%'}, gap: '10%'}}>
+              <Typography variant='h4'>Logo</Typography>
+              <Typography variant='h7'>Encontrado o plano perfeito com facilidade e praticidade</Typography>
+            </Stack>
+            <Stack sx={{width: {xs: '100%', sm: '30%', md: '30%'}, height: {xs: '35%', sm: '100%', md: '100%'}, gap: '8%',
+              alignItems: {xs: 'start',sm: 'center', md: 'start'}}}>
+              <Typography variant='h7'>Como funciona</Typography>
+              <Typography variant='h7'>Benefícios</Typography>
+              <Typography variant='h7'>FAQ</Typography>
+            </Stack>
+            <Stack sx={{width: {xs: '80%', sm: '30%', md: '30%'}, height: {xs: '50%', sm: '100%', md: '100%', gap: '8%'}}}>
+              <Typography variant='h4'>Suporte</Typography>
+              <input type="text" placeholder='Digite sua dúvida aqui' style={{width: '100%', height: '50px', paddingLeft: '3%',
+                borderRadius: '8px', outline: 'none', border: '2px solid gray', fontSize: '15px'}} />
+              <button style={{width: '100px', height: '40px', borderRadius: '8px', fontSize: '16px', border: 'none',
+                background: '#979EC2', color: '#fff', cursor: 'pointer'}}>Enviar</button>
+            </Stack>
+          </Stack>
+          <Stack sx={{height: '20%', borderTop: '2px solid lightGray', alignItems: 'center', justifyContent: 'space-between',
+            flexDirection: {xs: 'column', sm: 'row', md: 'row'}, paddingY: '5%'}}>
+            <Typography variant='h7'>Logo da Equipe</Typography>
+            <Typography variant='h7'>© Copyright - 2023 - nome da empresa</Typography>
+            <Typography variant='h7'>Logo Agência</Typography>
+          </Stack>
+        </Stack>
       </Box>
     </Stack>
   );
