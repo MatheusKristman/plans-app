@@ -11,7 +11,7 @@ function NewPlanInput({setTitle, title, setCost, cost, setInputDays, inputDays, 
         <input type="text" style={{height: '50px', border: '2px solid #000', borderRadius: '10px', paddingLeft: '10px',
           fontSize: '20px', background: 'transparent'}}
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => setTitle(e.target.value.toLowerCase())}
         />
       </label>
       <label style={{width: '100%', height: '25%', display: 'flex', flexDirection: 'column', gap: '5px'}}>

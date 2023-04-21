@@ -36,10 +36,7 @@ function AddNewPlan({plansMenu, setPlansMenu, menuTitle, editMenu, setEditMenu, 
     if(auth.user && isEditing) {
       const response = await api.editPlan(planId, title, cost, period, franchise,
         unlimitedApp, unlimitedCall, planType, priority, description, lines)
-
-      if(response) {
-        navigate('/dashboard')
-      }
+        setEditMenu(!editMenu)
       return
     }
     if(auth.user) {

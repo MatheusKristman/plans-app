@@ -3,7 +3,7 @@ import { useState } from "react"
 
 import {AddNewPlan, SimplePlansCard} from '../index'
 
-function SimplePlans({plans}) {
+function SimplePlans({plans, search}) {
   const [plansMenu, setPlansMenu] = useState(false);
 
   function handleIfMenuIsActive(){
@@ -34,7 +34,7 @@ function SimplePlans({plans}) {
             Novo Plano
           </Button>
         </Stack>
-        <SimplePlansCard planos={plans} />
+        <SimplePlansCard planos={plans} search={search} />
       </Box>
       {
         plansMenu && (<AddNewPlan plansMenu={plansMenu} setPlansMenu={setPlansMenu} menuTitle="Novo Plano" />)

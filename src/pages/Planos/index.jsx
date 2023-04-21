@@ -3,7 +3,7 @@ import { CompletePlansCard, ArchivedPlansCard } from "../../components"
 import { checkboxGroup } from "../../utils/Menus/menuItems."
 import { useState } from "react";
 
-function Planos({plans, isEditing, setIsEditing}) {
+function Planos({plans, isEditing, setIsEditing, search}) {
   const [editMenu, setEditMenu] = useState(false);
   const [seeMore, setSeeMore] = useState(false);
   const [planId, setPlanId] = useState('');
@@ -47,6 +47,7 @@ function Planos({plans, isEditing, setIsEditing}) {
           <CompletePlansCard plans={plans} editMenu={editMenu}
             setEditMenu={setEditMenu} seeMore={seeMore} setSeeMore={setSeeMore}
               planId={planId} setPlanId={setPlanId} setIsEditing={setIsEditing} isEditing={isEditing}
+              search={search}
           />
         </Box>
 
