@@ -11,6 +11,10 @@ function Dashboard() {
   const [selectedOption, setSelectedOption] = useState('Dashboard')
   const [plans, setPlans] = useState([]);
   const [archivedPlans, setArchivedPlans] = useState([]);
+  const [isEditing, setIsEditing] = useState(false)
+
+  console.log(isEditing)
+
   const auth = useContext(AuthContext)
   const api = useApi();
 
@@ -43,7 +47,7 @@ function Dashboard() {
           </Stack>
         </Box>
         { selectedOption === 'Dashboard' && <SimplePlans plans={plans} />}
-        { selectedOption === 'Planos' && <Planos plans={plans} /> }
+        { selectedOption === 'Planos' && <Planos plans={plans} isEditing={isEditing} setIsEditing={setIsEditing} /> }
         { selectedOption === 'Clientes' && <Clientes plans={plans} /> }
       </Stack>
     </Box>

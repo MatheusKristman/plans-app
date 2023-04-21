@@ -1,7 +1,7 @@
 import { operadoras } from "../../utils/Menus/menuItems."
 import { Box } from "@mui/material"
 
-function Operadoras({setProvider, provider, setProviderLogo}) {
+function Operadoras({setProvider, provider, setProviderLogo, isEditing}) {
 
 
   const getUrlExtension = (url) => {

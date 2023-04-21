@@ -4,7 +4,7 @@ import { AddNewPlan, SeeMore } from '../index'
 import { AuthContext } from '../../contexts/Auth/AuthContext';
 import { useApi } from '../../hooks/useApi';
 
-function CompletePlansCard({plans, editMenu, setEditMenu, seeMore, setSeeMore, setPlanId, planId}) {
+function CompletePlansCard({plans, editMenu, setEditMenu, seeMore, setSeeMore, setPlanId, planId, isEditing, setIsEditing}) {
   const [itemsPerPage, setItemsPerPage] = useState(3);
   const [currentPage, setCurrentPage] = useState(0);
   const [planInfo, setPlanInfo] = useState([]);
@@ -21,6 +21,7 @@ function CompletePlansCard({plans, editMenu, setEditMenu, seeMore, setSeeMore, s
 
   const handleEditMenu = (item) => {
     setEditMenu(!editMenu)
+    setIsEditing(!isEditing)
     setPlanId(item._id)
   }
 
@@ -107,7 +108,7 @@ function CompletePlansCard({plans, editMenu, setEditMenu, seeMore, setSeeMore, s
         })}
       </Box>
       {
-        editMenu && <AddNewPlan menuTitle={'Editar Plano'} setEditMenu={setEditMenu} editMenu={editMenu} planId={planId} />
+        editMenu && <AddNewPlan menuTitle={'Editar Plano'} setEditMenu={setEditMenu} editMenu={editMenu} planId={planId} isEditing={isEditing} setIsEditing={setIsEditing} />
       }
       {
         seeMore && <SeeMore seeMore={seeMore} setSeeMore={setSeeMore} planInfo={planInfo} setEditMenu={setEditMenu} editMenu={editMenu}/>

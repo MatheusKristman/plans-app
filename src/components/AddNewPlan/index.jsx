@@ -4,7 +4,7 @@ import { useContext, useState } from "react"
 import { AuthContext } from "../../contexts/Auth/AuthContext";
 import { useApi } from "../../hooks/useApi";
 
-function AddNewPlan({plansMenu, setPlansMenu, menuTitle, editMenu, setEditMenu, planId}) {
+function AddNewPlan({plansMenu, setPlansMenu, menuTitle, editMenu, setEditMenu, planId, isEditing, setIsEditing}) {
   const [provider, setProvider] = useState('claro');
   const [cost, setCost] = useState('');
   const [title, setTitle] = useState('');
@@ -26,6 +26,7 @@ function AddNewPlan({plansMenu, setPlansMenu, menuTitle, editMenu, setEditMenu, 
   const handleMenus = () => {
     if(plansMenu) setPlansMenu(!plansMenu);
     if(editMenu) setEditMenu(!editMenu);
+    if(isEditing) setIsEditing(!isEditing)
   }
 
   const handleSubmit = async (e) => {
@@ -67,11 +68,11 @@ function AddNewPlan({plansMenu, setPlansMenu, menuTitle, editMenu, setEditMenu, 
         <Box sx={{ width: '100%', height: '100%', background: 'rgba(255,255,255,0.7)', padding: '3%' }}>
           {/* Caixa das operadoras */}
 
-            <Box sx={{ width: '100%', height: '10%', display: 'flex',
+            <Box sx={{ width: '100%', height: '10%', display: isEditing ? 'none' : 'flex',
               gap: '2%', flexDirection: 'column', justifyContent: 'center'
             }}>
               <Typography variant="h7" fontWeight="bold">Operadora</Typography>
-              <Operadoras setProvider={setProvider} provider={provider} setProviderLogo={setProviderLogo} />
+              <Operadoras setProvider={setProvider} provider={provider} setProviderLogo={setProviderLogo} isEditing={isEditing}/>
             </Box>
 
           {/* Fim da caixa das operadoras */}
