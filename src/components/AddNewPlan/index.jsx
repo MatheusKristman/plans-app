@@ -3,8 +3,9 @@ import { NewPlanFinalInputs, NewPlanInputs, Operadoras, UnlimitedApps, Cityes } 
 import { useContext, useState } from "react"
 import { AuthContext } from "../../contexts/Auth/AuthContext";
 import { useApi } from "../../hooks/useApi";
+import { useNavigate } from "react-router-dom";
 
-function AddNewPlan({plansMenu, setPlansMenu, menuTitle, editMenu, setEditMenu, planId}) {
+function AddNewPlan({plansMenu, setPlansMenu, menuTitle, editMenu, setEditMenu, planId, isEditing, setIsEditing}) {
   const [provider, setProvider] = useState('claro');
   const [cost, setCost] = useState('');
   const [title, setTitle] = useState('');
@@ -20,16 +21,24 @@ function AddNewPlan({plansMenu, setPlansMenu, menuTitle, editMenu, setEditMenu, 
   const [providerLogo, setProviderLogo] = useState([]);
   const lines = 1;
 
+  const navigate = useNavigate();
   const auth = useContext(AuthContext);
   const api = useApi();
 
   const handleMenus = () => {
     if(plansMenu) setPlansMenu(!plansMenu);
     if(editMenu) setEditMenu(!editMenu);
+    if(isEditing) setIsEditing(!isEditing)
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(auth.user && isEditing) {
+      const response = await api.editPlan(planId, title, cost, period, franchise,
+        unlimitedApp, unlimitedCall, planType, priority, description, lines)
+        setEditMenu(!editMenu)
+      return
+    }
     if(auth.user) {
       const response = await api.createPlans(title, cost, period, franchise, unlimitedApp,
         unlimitedCall, planType, priority, description, lines, providerLogo, city, provider)
@@ -67,11 +76,11 @@ function AddNewPlan({plansMenu, setPlansMenu, menuTitle, editMenu, setEditMenu, 
         <Box sx={{ width: '100%', height: '100%', background: 'rgba(255,255,255,0.7)', padding: '3%' }}>
           {/* Caixa das operadoras */}
 
-            <Box sx={{ width: '100%', height: '10%', display: 'flex',
+            <Box sx={{ width: '100%', height: '10%', display: isEditing ? 'none' : 'flex',
               gap: '2%', flexDirection: 'column', justifyContent: 'center'
             }}>
               <Typography variant="h7" fontWeight="bold">Operadora</Typography>
-              <Operadoras setProvider={setProvider} provider={provider} setProviderLogo={setProviderLogo} />
+              <Operadoras setProvider={setProvider} provider={provider} setProviderLogo={setProviderLogo} isEditing={isEditing}/>
             </Box>
 
           {/* Fim da caixa das operadoras */}

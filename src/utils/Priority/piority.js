@@ -19,8 +19,4 @@ export const priorityes = [
     id: '005',
     name: '5'
   },
-  {
-    id: '006',
-    name: '6'
-  },
 ]

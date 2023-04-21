@@ -14,4 +14,5 @@ export {default as ClientsCard} from './ClientsCard';
 export {default as ArchivedPlansCard} from './ArchivedPlansCard';
 export {default as Header} from './Header';
 export {default as Benefits} from './Benefits';
-export {default as Menu} from './Menu'
+export {default as Menu} from './Menu';
+export {default as About} from './About';

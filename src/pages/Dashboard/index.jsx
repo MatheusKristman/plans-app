@@ -11,6 +11,9 @@ function Dashboard() {
   const [selectedOption, setSelectedOption] = useState('Dashboard')
   const [plans, setPlans] = useState([]);
   const [archivedPlans, setArchivedPlans] = useState([]);
+  const [isEditing, setIsEditing] = useState(false)
+  const [search, setSearch] = useState('');
+
   const auth = useContext(AuthContext)
   const api = useApi();
 
@@ -39,11 +42,11 @@ function Dashboard() {
             <Typography variant='h5' sx={{ fontWeight: '600', alignSelf: 'flex-end'}}>
               {selectedOption}
             </Typography>
-            <SearchBar />
+            <SearchBar search={search} setSearch={setSearch} />
           </Stack>
         </Box>
-        { selectedOption === 'Dashboard' && <SimplePlans plans={plans} />}
-        { selectedOption === 'Planos' && <Planos plans={plans} /> }
+        { selectedOption === 'Dashboard' && <SimplePlans plans={plans} search={search} />}
+        { selectedOption === 'Planos' && <Planos plans={plans} isEditing={isEditing} setIsEditing={setIsEditing} search={search} /> }
         { selectedOption === 'Clientes' && <Clientes plans={plans} /> }
       </Stack>
     </Box>
