@@ -1,13 +1,15 @@
 import {Box, Stack, Typography} from '@mui/material'
-import { useContext, useState } from 'react';
+import { useContext, useReducer, useState } from 'react';
 import { AddNewPlan, SeeMore } from '../index'
 import { AuthContext } from '../../contexts/Auth/AuthContext';
 import { useApi } from '../../hooks/useApi';
 
-function CompletePlansCard({plans, editMenu, setEditMenu, seeMore, setSeeMore, setPlanId, planId, isEditing, setIsEditing, search}) {
+function CompletePlansCard({plans, editMenu, setEditMenu, seeMore, setSeeMore,
+    setPlanId, planId, isEditing, setIsEditing, search}) {
   const [itemsPerPage, setItemsPerPage] = useState(3);
   const [currentPage, setCurrentPage] = useState(0);
   const [planInfo, setPlanInfo] = useState([]);
+  const [reducerValue, forceUpdate] = useReducer(() => {})
 
   let unarchivedPlans = plans.filter(plan => !plan.archived)
   let filteredPlans = search.length > 0 ? plans.filter(plan => plan.title.includes(search)) : []
@@ -34,6 +36,7 @@ function CompletePlansCard({plans, editMenu, setEditMenu, seeMore, setSeeMore, s
   const handleToFile = async (plan) => {
     if(auth.user) {
       const data = await api.archivePlan(plan._id);
+      forceUpdate();
     }
   }
 
@@ -41,7 +44,7 @@ function CompletePlansCard({plans, editMenu, setEditMenu, seeMore, setSeeMore, s
     <>
       {search.length > 0 ? (filteredPlans.map((plano) => (
         <Box
-          key={plano.title}
+          key={plano._id}
           sx={{
             width: '100%', height: '150px', borderBottom: '1px solid lightGray',
             display: 'flex', alignItems: 'center', justifyContent: 'space-between', overflowY: 'auto',
@@ -98,7 +101,7 @@ function CompletePlansCard({plans, editMenu, setEditMenu, seeMore, setSeeMore, s
         </Box>
       ))) : (currentItems.map((plano) => (
         <Box
-          key={plano.title}
+          key={plano._id}
           sx={{
             width: '100%', height: '150px', borderBottom: '1px solid lightGray',
             display: 'flex', alignItems: 'center', justifyContent: 'space-between', overflowY: 'auto',
@@ -157,6 +160,7 @@ function CompletePlansCard({plans, editMenu, setEditMenu, seeMore, setSeeMore, s
       <Box sx={{width: '100%', height: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1%'}}>
         {Array.from(Array(pages), (item, index) => {
           return <button value={index}
+            key={index}
             onClick={(e) => setCurrentPage(Number(e.target.value))}
             style={{
               width: '30px', height: '30px', cursor: 'pointer', border: 'none', color: '#fff', background: '#D40066',

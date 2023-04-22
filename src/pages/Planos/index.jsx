@@ -67,7 +67,7 @@ function Planos({plans, isEditing, setIsEditing, search}) {
         <Box sx={{width: '100%', height: '500px'}}>
           <ArchivedPlansCard plans={plans} editMenu={editMenu}
             setEditMenu={setEditMenu} seeMore={seeMore} setSeeMore={setSeeMore}
-            planId={planId} setPlanId={setPlanId}
+            planId={planId} setPlanId={setPlanId} isEditing={isEditing} setIsEditing={setIsEditing} search={search}
           />
         </Box>
       </Box>

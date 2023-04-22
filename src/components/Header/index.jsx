@@ -6,9 +6,20 @@ function Header() {
   const [isMobile, setIsMobile] = useState(false)
   const [menu, setMenu] = useState(false)
 
-  const ToggeIsMobile = () => {
-    setIsMobile(!isMobile)
+  useEffect(() => {
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [window.innerWidth])
+
+  const handleResize = () => {
+    if(window.innerWidth < 500) {
+      setIsMobile(!isMobile)
+    }
   }
+
 
   return (
     <Stack sx={{width: '100%', height: {xs: '1150px', sm: '1150px',md: '880px'}, justifyContent: 'center',

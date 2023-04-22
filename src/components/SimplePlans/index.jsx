@@ -1,14 +1,17 @@
 import { Box, Stack, Typography, Button } from "@mui/material"
-import { useState } from "react"
+import { useContext, useState } from "react"
 
 import {AddNewPlan, SimplePlansCard} from '../index'
+import { PlansContext } from "../../contexts/Plans/PlansContext";
 
-function SimplePlans({plans, search}) {
+function SimplePlans({search}) {
   const [plansMenu, setPlansMenu] = useState(false);
 
   function handleIfMenuIsActive(){
     setPlansMenu(!plansMenu)
   }
+
+  const allPlans = useContext(PlansContext)
 
   return (
     <>
@@ -24,7 +27,7 @@ function SimplePlans({plans, search}) {
           }}
         >
           <Typography>
-            Planos ativos: {plans.filter(plano => !plano.archived).length}
+            Planos ativos: {allPlans?.plans?.filter(plano => !plano.archived).length}
           </Typography>
           <Button variant="contained"
             sx={{background: '#D40066', height: '45px', '&:hover': {background: '#D40066',}}}
@@ -34,7 +37,7 @@ function SimplePlans({plans, search}) {
             Novo Plano
           </Button>
         </Stack>
-        <SimplePlansCard planos={plans} search={search} />
+        <SimplePlansCard search={search} />
       </Box>
       {
         plansMenu && (<AddNewPlan plansMenu={plansMenu} setPlansMenu={setPlansMenu} menuTitle="Novo Plano" />)
