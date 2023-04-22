@@ -1,22 +1,28 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react';
 import { Box, Stack, Typography } from '@mui/material'
+import { PlansContext } from '../../contexts/Plans/PlansContext';
 
-function ClientsCard({clients, plans}) {
+function ClientsCard({clients}) {
   const [itemsPerPage, setItemsPerPage] = useState(3);
   const [currentPage, setCurrentPage] = useState(0);
   const [planData, setPlanData] = useState([]);
   const [showMore, setShowMore] = useState(false)
   const [clientId, setClientId] = useState('');
 
+  const {allPlans} = useContext(PlansContext);
+
   const pages = Math.ceil(clients.length / itemsPerPage);
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentItems = clients.slice(startIndex, endIndex)
 
+
   const handleShowMore = (client) => {
     setShowMore(!showMore)
     setClientId(client._id)
+    setPlanData(allPlans.filter(plan => plan._id.includes(client.plan)))
+    console.log(client)
     if(showMore) {
       setClientId('')
     }
@@ -58,14 +64,18 @@ function ClientsCard({clients, plans}) {
                   background: '#D40066', border: 'none', borderRadius: '4px',
                   color: '#fff', cursor: 'pointer', fontSize: '18px', fontWeight: 'bold'}}
                   onClick={() => handleShowMore(client)}
-                >{showMore ? '-' : '+'}</button>
+                >{showMore && clientId === client._id ? '-' : '+'}</button>
               </Stack>
             </Stack>
           </Box>
           <Box sx={{display: clientId === client._id ? 'flex' : 'none', width: '100%', height: '40%'}}>
             <Stack sx={{width: '40%', height: '100%', gap: '5%', justifyContent: 'center', alignItems: 'center'}}>
-              <Typography variant='h7' fontWeight='bold'>{planData.title}</Typography>
+              <Typography variant='h7' fontWeight='bold'>{planData[0].title}</Typography>
               <Typography variant='span' color="lightgray">Plano</Typography>
+            </Stack>
+            <Stack sx={{width: '40%', height: '100%', gap: '5%', justifyContent: 'center', alignItems: 'center'}}>
+              <Typography variant='h7' fontWeight='bold'>{client.dateOfBirth}</Typography>
+              <Typography variant='span' color="lightgray">Data de Contato</Typography>
             </Stack>
           </Box>
         </Stack>

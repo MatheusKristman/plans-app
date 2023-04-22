@@ -1,15 +1,10 @@
 import { Box, Stack, Typography } from "@mui/material"
+import { useContext } from "react"
+import { PlansContext } from "../../contexts/Plans/PlansContext"
 
-function SeeMore({seeMore, setSeeMore, planInfo, setEditMenu, editMenu}) {
+function SeeMore() {
 
-  const handleEditMenu = () => {
-    setEditMenu(!editMenu);
-    setSeeMore(!seeMore)
-  }
-
-  // .slice(0, 10).split('-').reverse().join('/')
-
-  // .toFixed(2) * planInfo.contacts.toFixed(2)
+  const {planInfo, handleEditMenu, handleSeeMore} = useContext(PlansContext)
 
   return (
     <Box sx={{width: '555px', height: '550px', overflowY: 'auto', position: 'absolute',
@@ -22,7 +17,7 @@ function SeeMore({seeMore, setSeeMore, planInfo, setEditMenu, editMenu}) {
               border: 'none', background: '#fff', borderRadius: '8px', fontSize: '18px', fontWeight: 'bold',
               cursor: 'pointer'
             }}
-              onClick={() => setSeeMore(!seeMore)}
+              onClick={() => handleSeeMore()}
             >X
             </button>
             <Box sx={{width: '140px', height: '60px', background: '#fff', display: 'flex', alignItems: 'center',
@@ -40,7 +35,7 @@ function SeeMore({seeMore, setSeeMore, planInfo, setEditMenu, editMenu}) {
               </Stack>
               <Stack sx={{width: '40%', height: '10%', gap: '5%', alignItems: 'center'}}>
                 <Typography variant="h7" fontWeight="bold">Criado Em</Typography>
-                <Typography>{planInfo.createdAt}</Typography>
+                <Typography>{planInfo.createdAt.slice(0, 10).split('-').reverse().join('/')}</Typography>
               </Stack>
               <Stack sx={{width: '50%', height: '10%', gap: '5%'}}>
                 <Typography variant="h7" fontWeight="bold">Operadora</Typography>
@@ -60,7 +55,7 @@ function SeeMore({seeMore, setSeeMore, planInfo, setEditMenu, editMenu}) {
               </Stack>
               <Stack sx={{width: '50%', height: '10%', gap: '5%'}}>
                 <Typography variant="h7" fontWeight="bold">Total</Typography>
-                <Typography>R$ {planInfo.cost}</Typography>
+                <Typography>R$ {planInfo.cost.toFixed(2) * planInfo.contacts.toFixed(2)}</Typography>
               </Stack>
               <Stack sx={{width: '40%', height: '10%', gap: '5%', alignItems: 'center'}}>
                 <Typography variant="h7" fontWeight="bold">Apps Ilimitados</Typography>
@@ -90,7 +85,7 @@ function SeeMore({seeMore, setSeeMore, planInfo, setEditMenu, editMenu}) {
               paddingX: '5%', gap: '4%'}}>
               <button style={{width: '100px', height: '40px', border: 'none', background: '#D40066',
                 color: '#fff', fontSize: '18px', borderRadius: '8px', cursor: 'pointer'}}
-                onClick={handleEditMenu}
+                onClick={() => handleEditMenu(planInfo)}
               >Editar</button>
               <button style={{width: '150px', height: '40px', border: '2px solid #D40066',
                 color: '#D40066', fontSize: '18px', borderRadius: '8px', cursor: 'pointer', background: 'none'}}>Arquivar</button>

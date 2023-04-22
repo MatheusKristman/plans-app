@@ -23,7 +23,7 @@ function AddNewPlan({menuTitle}) {
   const lines = 1;
 
   const auth = useContext(AuthContext);
-  const {plansMenu, isEditing, setIsEditing, setPlansMenu, editMenu, setEditMenu} = useContext(PlansContext);
+  const {plansMenu, isEditing, setIsEditing, setPlansMenu, editMenu, setEditMenu, setLoading, setAllPlans, planId} = useContext(PlansContext);
   const api = useApi();
 
   const handleMenus = () => {
@@ -34,10 +34,13 @@ function AddNewPlan({menuTitle}) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     if(auth.user && isEditing) {
       const response = await api.editPlan(planId, title, cost, period, franchise,
         unlimitedApp, unlimitedCall, planType, priority, description, lines)
+        setAllPlans(response)
         setEditMenu(!editMenu)
+        setLoading(false)
       return
     }
     if(auth.user) {

@@ -5,7 +5,7 @@ import { useApi } from "../../hooks/useApi"
 import { AuthContext } from "../../contexts/Auth/AuthContext"
 import { ClientsCard } from "../../components"
 
-function Clientes({plans}) {
+function Clientes() {
   const [clients, setClients] = useState([])
 
   const auth = useContext(AuthContext)
@@ -57,7 +57,7 @@ function Clientes({plans}) {
           </Stack>
         </Stack>
         <Box sx={{width: '100%', height: '500px'}}>
-          <ClientsCard clients={clients} plans={plans} />
+          <ClientsCard clients={clients}/>
         </Box>
       </Box>
     </>

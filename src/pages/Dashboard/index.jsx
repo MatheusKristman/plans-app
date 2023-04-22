@@ -25,7 +25,7 @@ function Dashboard() {
         </Box>
         { selectedOption === 'Dashboard' && <SimplePlans />}
         { selectedOption === 'Planos' && <Planos /> }
-        {/* { selectedOption === 'Clientes' && <Clientes /> } */}
+        { selectedOption === 'Clientes' && <Clientes /> }
       </Stack>
     </Box>
   )
