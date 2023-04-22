@@ -10,7 +10,7 @@ function ClientsCard({clients}) {
   const [showMore, setShowMore] = useState(false)
   const [clientId, setClientId] = useState('');
 
-  const {allPlans} = useContext(PlansContext)
+  const {allPlans} = useContext(PlansContext);
 
   const pages = Math.ceil(clients.length / itemsPerPage);
   const startIndex = currentPage * itemsPerPage;
@@ -21,6 +21,8 @@ function ClientsCard({clients}) {
   const handleShowMore = (client) => {
     setShowMore(!showMore)
     setClientId(client._id)
+    setPlanData(allPlans.filter(plan => plan._id.includes(client.plan)))
+    console.log(client)
     if(showMore) {
       setClientId('')
     }
@@ -68,8 +70,12 @@ function ClientsCard({clients}) {
           </Box>
           <Box sx={{display: clientId === client._id ? 'flex' : 'none', width: '100%', height: '40%'}}>
             <Stack sx={{width: '40%', height: '100%', gap: '5%', justifyContent: 'center', alignItems: 'center'}}>
-              <Typography variant='h7' fontWeight='bold'>{planData.title}</Typography>
+              <Typography variant='h7' fontWeight='bold'>{planData[0].title}</Typography>
               <Typography variant='span' color="lightgray">Plano</Typography>
+            </Stack>
+            <Stack sx={{width: '40%', height: '100%', gap: '5%', justifyContent: 'center', alignItems: 'center'}}>
+              <Typography variant='h7' fontWeight='bold'>{client.dateOfBirth}</Typography>
+              <Typography variant='span' color="lightgray">Data de Contato</Typography>
             </Stack>
           </Box>
         </Stack>
