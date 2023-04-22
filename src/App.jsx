@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Box, Stack, Typography } from '@mui/material';
 import { About, Benefits, Header } from './components';
 import { stepsLoop } from './utils/steps/steps';
+import { PlansContext } from './contexts/Plans/PlansContext';
 
 function App() {
+
+  const {searchPlans} = useContext(PlansContext)
 
   return (
     <Stack sx={{width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center'}}>
       <Header />
-      <Stack sx={{width: {xs: '90%', sm: '90%', md: '80%'}, height: {xs: '700px', sm: '900px', md: '300px'}, position: 'relative', alignItems: 'center', justifyContent: 'center'}}>
+      <Stack sx={{width: {xs: '90%', sm: '90%', md: '80%'}, height: {xs: '700px', sm: '900px', md: '300px'},
+        position: 'relative', alignItems: 'center', justifyContent: 'center', filter: searchPlans && 'blur(10px)'}}>
         <img src="./assets/images/XMLID_1124_.png" alt="bolinhas" style={{position: 'absolute', left: '-100px', top: '-150px', width: '300px', height: '300px'}} />
         <Box sx={{width: '100%', height: '90%', zIndex: '99999', display: 'flex', justifyContent: 'center',
           flexDirection: 'column', gap: '5%'}}>

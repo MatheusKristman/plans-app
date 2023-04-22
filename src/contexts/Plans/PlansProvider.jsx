@@ -1,4 +1,4 @@
-import {useState, useEffect, useReducer} from 'react';
+import {useState, useEffect} from 'react';
 import { PlansContext } from './PlansContext';
 import { useApi } from '../../hooks/useApi';
 
@@ -12,9 +12,9 @@ export const PlansProvider = ({children}) => {
   const [seeMore, setSeeMore] = useState(false);
   const [plansMenu, setPlansMenu] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [searchPlans, setSearchPlans] = useState(false)
 
   const api = useApi();
-  const [reducerValue, forceUpdate] = useReducer((x) => {x + 1, 0})
 
   useEffect(() => {
     const getAllPlans = async () => {
@@ -49,7 +49,7 @@ export const PlansProvider = ({children}) => {
   return (
     <PlansContext.Provider value={{allPlans, search, editMenu, seeMore, handleEditMenu,
       handleSeeMore, toFile, setSearch, isEditing, setIsEditing, planId, planInfo,
-      plansMenu, setPlansMenu, setEditMenu, loading, setLoading, setAllPlans}}>
+      plansMenu, setPlansMenu, setEditMenu, loading, setLoading, setAllPlans, searchPlans, setSearchPlans}}>
       {children}
     </PlansContext.Provider>
   )
