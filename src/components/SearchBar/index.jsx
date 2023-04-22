@@ -1,6 +1,11 @@
 import {OutlinedInput, InputAdornment, Button, FormControl} from '@mui/material'
+import { useContext } from 'react'
+import { PlansContext } from '../../contexts/Plans/PlansContext'
 
-function SearchBar({search, setSearch}) {
+function SearchBar() {
+
+  const {setSearch} = useContext(PlansContext);
+
   return (
     <>
       <FormControl variant="outlined" sx={{width: '50%'}}>

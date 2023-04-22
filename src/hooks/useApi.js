@@ -52,10 +52,6 @@ export const useApi = () => ({
     return response.data
   },
   archivePlan: async (id) => {
-    // const formData = new FormData();
-
-    // formData.append("id", id);
-
     const response = await api.put('plan/archive', {id})
     return response.data
   },

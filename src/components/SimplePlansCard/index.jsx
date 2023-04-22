@@ -2,23 +2,26 @@ import { Box, Stack, Typography } from "@mui/material"
 import { useContext, useState } from "react";
 import { PlansContext } from "../../contexts/Plans/PlansContext";
 
-function SimplePlansCard({search}) {
+function SimplePlansCard() {
   const [itemsPerPage, setItemsPerPage] = useState(3);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const allPlans = useContext(PlansContext);
+  const {allPlans, search, loading} = useContext(PlansContext);
 
-  let unarchivedPlans = allPlans?.plans?.filter(plano => !plano.archived)
+  let unarchivedPlans = allPlans?.filter(plano => !plano.archived)
 
-  const pages = Math.ceil(unarchivedPlans.length / itemsPerPage);
+  const pages = Math.ceil(unarchivedPlans?.length / itemsPerPage);
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentItems = unarchivedPlans.slice(startIndex, endIndex)
+  const currentItems = unarchivedPlans?.slice(startIndex, endIndex)
 
-  let filteredPlans = search.length > 0 ? allPlans?.plans?.filter(plan => plan.title.includes(search)) : [];
+  let filteredPlans = search.length > 0 ? allPlans?.filter(plan => plan.title.includes(search)) : [];
+
+  console.log(loading)
 
   return (
     <>
+      {loading && <div>loading...</div>}
       {search.length > 0 ? (
         filteredPlans.map((plano) => (
           <Box
@@ -82,7 +85,7 @@ function SimplePlansCard({search}) {
             </Box>
           </Box>
         ))
-      ) : (currentItems.map((plano) => (
+      ) : (currentItems?.map((plano) => (
         <Box
           key={plano.title}
           sx={{

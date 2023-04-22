@@ -1,17 +1,12 @@
-import { useContext, useState, useEffect } from 'react'
+import { useState } from 'react'
 import Sidebar from '../../components/Sidebar/index.'
 import { Box, Stack, Typography } from '@mui/material'
 import { SearchBar, SimplePlans } from '../../components'
 import Planos from '../Planos'
 import Clientes from '../Clientes'
-import { AuthContext } from '../../contexts/Auth/AuthContext'
-import { PlansContext } from '../../contexts/Plans/PlansContext'
 
 function Dashboard() {
   const [selectedOption, setSelectedOption] = useState('Dashboard')
-  const [archivedPlans, setArchivedPlans] = useState([]);
-  const [isEditing, setIsEditing] = useState(false)
-  const [search, setSearch] = useState('');
 
   return (
     <Box sx={{ width: '100%', height: '100vh', display: 'flex', gap: '5%'}}>
@@ -25,12 +20,12 @@ function Dashboard() {
             <Typography variant='h5' sx={{ fontWeight: '600', alignSelf: 'flex-end'}}>
               {selectedOption}
             </Typography>
-            <SearchBar search={search} setSearch={setSearch} />
+            <SearchBar />
           </Stack>
         </Box>
-        { selectedOption === 'Dashboard' && <SimplePlans search={search} />}
-        {/* { selectedOption === 'Planos' && <Planos plans={plans} isEditing={isEditing} setIsEditing={setIsEditing} search={search} /> }
-        { selectedOption === 'Clientes' && <Clientes plans={plans} /> } */}
+        { selectedOption === 'Dashboard' && <SimplePlans />}
+        { selectedOption === 'Planos' && <Planos /> }
+        {/* { selectedOption === 'Clientes' && <Clientes /> } */}
       </Stack>
     </Box>
   )

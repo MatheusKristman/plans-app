@@ -4,17 +4,18 @@ import { useContext, useState } from "react"
 import {AddNewPlan, SimplePlansCard} from '../index'
 import { PlansContext } from "../../contexts/Plans/PlansContext";
 
-function SimplePlans({search}) {
+function SimplePlans() {
   const [plansMenu, setPlansMenu] = useState(false);
 
   function handleIfMenuIsActive(){
     setPlansMenu(!plansMenu)
   }
 
-  const allPlans = useContext(PlansContext)
+  const {allPlans, loading} = useContext(PlansContext)
 
   return (
     <>
+      {loading && (<div>Loading...</div>)}
       <Box
         sx={{ width: '100%', height: 'auto', display: 'flex', overflowY: 'auto',
           flexDirection: 'column', gap: '5%', paddingX: '7%', filter: plansMenu ? 'blur(8px)' : '',
@@ -27,7 +28,7 @@ function SimplePlans({search}) {
           }}
         >
           <Typography>
-            Planos ativos: {allPlans?.plans?.filter(plano => !plano.archived).length}
+            Planos ativos: {allPlans?.filter(plano => !plano.archived)?.length}
           </Typography>
           <Button variant="contained"
             sx={{background: '#D40066', height: '45px', '&:hover': {background: '#D40066',}}}
@@ -37,10 +38,10 @@ function SimplePlans({search}) {
             Novo Plano
           </Button>
         </Stack>
-        <SimplePlansCard search={search} />
+        <SimplePlansCard />
       </Box>
       {
-        plansMenu && (<AddNewPlan plansMenu={plansMenu} setPlansMenu={setPlansMenu} menuTitle="Novo Plano" />)
+        plansMenu && (<AddNewPlan menuTitle="Novo Plano" />)
       }
     </>
   )

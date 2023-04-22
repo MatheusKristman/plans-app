@@ -1,12 +1,13 @@
 import { Box, Stack, Typography } from "@mui/material"
 import { CompletePlansCard, ArchivedPlansCard } from "../../components"
 import { checkboxGroup } from "../../utils/Menus/menuItems."
-import { useState } from "react";
+import { useContext } from "react";
+import { PlansContext } from "../../contexts/Plans/PlansContext";
 
-function Planos({plans, isEditing, setIsEditing, search}) {
-  const [editMenu, setEditMenu] = useState(false);
-  const [seeMore, setSeeMore] = useState(false);
-  const [planId, setPlanId] = useState('');
+function Planos() {
+
+  const {allPlans, loading} = useContext(PlansContext);
+
   return (
     <>
       <Box
@@ -20,7 +21,7 @@ function Planos({plans, isEditing, setIsEditing, search}) {
           }}
         >
           <Typography>
-            Planos ativos: {plans.filter(plans => !plans.archived).length}
+            Planos ativos: {allPlans?.filter(plans => !plans.archived).length}
           </Typography>
           <Stack sx={{ width: '60%', height: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly' }}>
             {checkboxGroup.map((check) => (
@@ -43,13 +44,9 @@ function Planos({plans, isEditing, setIsEditing, search}) {
             </Box>
           </Stack>
         </Stack>
-        <Box sx={{width: '100%', height: '500px'}}>
-          <CompletePlansCard plans={plans} editMenu={editMenu}
-            setEditMenu={setEditMenu} seeMore={seeMore} setSeeMore={setSeeMore}
-              planId={planId} setPlanId={setPlanId} setIsEditing={setIsEditing} isEditing={isEditing}
-              search={search}
-          />
-        </Box>
+        {loading === true ? <div>loading...</div> : <Box sx={{width: '100%', height: '500px'}}>
+          <CompletePlansCard />
+        </Box>}
 
         <Stack direction="row"
           sx={{
@@ -58,18 +55,15 @@ function Planos({plans, isEditing, setIsEditing, search}) {
           }}
         >
           <Typography>
-            Planos arquivados: {plans.filter(plans => plans.archived  ).length}
+            Planos arquivados: {allPlans?.filter(plans => plans.archived  ).length}
           </Typography>
           <Stack sx={{ width: '40%', height: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'end' }}>
             Esconder
           </Stack>
         </Stack>
-        <Box sx={{width: '100%', height: '500px'}}>
-          <ArchivedPlansCard plans={plans} editMenu={editMenu}
-            setEditMenu={setEditMenu} seeMore={seeMore} setSeeMore={setSeeMore}
-            planId={planId} setPlanId={setPlanId} isEditing={isEditing} setIsEditing={setIsEditing} search={search}
-          />
-        </Box>
+        {loading === true ? <div>loading...</div> : <Box sx={{width: '100%', height: '500px'}}>
+          <ArchivedPlansCard />
+        </Box>}
       </Box>
     </>
   )
