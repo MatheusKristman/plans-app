@@ -7,7 +7,7 @@ function ArchivedPlansCard() {
   const [itemsPerPage, setItemsPerPage] = useState(3);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const {allPlans, search , editMenu, seeMore, handleSeeMore, handleEditMenu, toFile} = useContext(PlansContext)
+  const {allPlans, search , editMenu, seeMore, handleSeeMore, handleEditMenu, toFile, setSeeMore, planInfo} = useContext(PlansContext)
 
   const archivedPlans = allPlans?.filter(plan => plan.archived)
   let filteredPlans = search.length > 0 ? allPlans?.filter(plan => plan.title.includes(search)) : []
@@ -149,7 +149,7 @@ function ArchivedPlansCard() {
         })}
       </Box>
       {
-        seeMore && <SeeMore seeMore={seeMore} setSeeMore={setSeeMore} planInfo={planInfo} setEditMenu={setEditMenu} editMenu={editMenu}/>
+        seeMore && <SeeMore />
       }
     </>
   )

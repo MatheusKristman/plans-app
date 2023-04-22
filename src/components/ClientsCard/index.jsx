@@ -1,18 +1,22 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react';
 import { Box, Stack, Typography } from '@mui/material'
+import { PlansContext } from '../../contexts/Plans/PlansContext';
 
-function ClientsCard({clients, plans}) {
+function ClientsCard({clients}) {
   const [itemsPerPage, setItemsPerPage] = useState(3);
   const [currentPage, setCurrentPage] = useState(0);
   const [planData, setPlanData] = useState([]);
   const [showMore, setShowMore] = useState(false)
   const [clientId, setClientId] = useState('');
 
+  const {allPlans} = useContext(PlansContext)
+
   const pages = Math.ceil(clients.length / itemsPerPage);
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentItems = clients.slice(startIndex, endIndex)
+
 
   const handleShowMore = (client) => {
     setShowMore(!showMore)
@@ -58,7 +62,7 @@ function ClientsCard({clients, plans}) {
                   background: '#D40066', border: 'none', borderRadius: '4px',
                   color: '#fff', cursor: 'pointer', fontSize: '18px', fontWeight: 'bold'}}
                   onClick={() => handleShowMore(client)}
-                >{showMore ? '-' : '+'}</button>
+                >{showMore && clientId === client._id ? '-' : '+'}</button>
               </Stack>
             </Stack>
           </Box>

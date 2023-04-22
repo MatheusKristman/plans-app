@@ -35,14 +35,15 @@ export const PlansProvider = ({children}) => {
   }
 
   const handleSeeMore = (plan) => {
+    setSeeMore(!seeMore)
     setPlanInfo(plan);
-    setSeeMore(!setSeeMore)
   }
 
   const handleEditMenu = (plan) => {
     setEditMenu(!editMenu)
     setIsEditing(!isEditing)
     setPlanId(plan?._id)
+    if (seeMore) setSeeMore(!seeMore);
   }
 
   return (
