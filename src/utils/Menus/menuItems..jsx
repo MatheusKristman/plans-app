@@ -1,20 +1,27 @@
+import {RxDashboard} from 'react-icons/rx';
+import {SlScreenSmartphone} from 'react-icons/sl';
+import {BsPeopleFill} from 'react-icons/bs'
+
 export const menuItems = [
   {
     id: '001',
     name: 'Dashboard',
-    icon: './assets/icons/colecao.png',
+    icon: <RxDashboard color="#fff" />,
+    blackIcon: <RxDashboard color="#000" />,
     alt: 'quadrados',
   },
   {
     id: '002',
     name: 'Planos',
-    icon: './assets/icons/smartphone.png',
+    icon: <SlScreenSmartphone color="#fff" />,
+    blackIcon: <SlScreenSmartphone color="#000" />,
     alt: 'celular',
   },
   {
     id: '003',
     name: 'Clientes',
-    icon: './assets/icons/costumer.png',
+    icon: <BsPeopleFill color="#fff" />,
+    blackIcon: <BsPeopleFill color="#000" />,
     alt: 'pessoas',
   },
 ]
