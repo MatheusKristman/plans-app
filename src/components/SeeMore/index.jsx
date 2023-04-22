@@ -7,6 +7,10 @@ function SeeMore({seeMore, setSeeMore, planInfo, setEditMenu, editMenu}) {
     setSeeMore(!seeMore)
   }
 
+  // .slice(0, 10).split('-').reverse().join('/')
+
+  // .toFixed(2) * planInfo.contacts.toFixed(2)
+
   return (
     <Box sx={{width: '555px', height: '550px', overflowY: 'auto', position: 'absolute',
       top: '10%', left: '40%', borderRadius: '20px'}}>
@@ -36,7 +40,7 @@ function SeeMore({seeMore, setSeeMore, planInfo, setEditMenu, editMenu}) {
               </Stack>
               <Stack sx={{width: '40%', height: '10%', gap: '5%', alignItems: 'center'}}>
                 <Typography variant="h7" fontWeight="bold">Criado Em</Typography>
-                <Typography>{planInfo.createdAt.slice(0, 10).split('-').reverse().join('/')}</Typography>
+                <Typography>{planInfo.createdAt}</Typography>
               </Stack>
               <Stack sx={{width: '50%', height: '10%', gap: '5%'}}>
                 <Typography variant="h7" fontWeight="bold">Operadora</Typography>
@@ -48,7 +52,7 @@ function SeeMore({seeMore, setSeeMore, planInfo, setEditMenu, editMenu}) {
               </Stack>
               <Stack sx={{width: '50%', height: '10%', gap: '5%'}}>
                 <Typography variant="h7" fontWeight="bold">Valor</Typography>
-                <Typography>R$ {planInfo.cost.toFixed(2)}</Typography>
+                <Typography>R$ {planInfo.cost}</Typography>
               </Stack>
               <Stack sx={{width: '40%', height: '10%', gap: '5%', alignItems: 'center'}}>
                 <Typography variant="h7" fontWeight="bold">Prioridade</Typography>
@@ -56,7 +60,7 @@ function SeeMore({seeMore, setSeeMore, planInfo, setEditMenu, editMenu}) {
               </Stack>
               <Stack sx={{width: '50%', height: '10%', gap: '5%'}}>
                 <Typography variant="h7" fontWeight="bold">Total</Typography>
-                <Typography>R$ {planInfo.cost.toFixed(2) * planInfo.contacts.toFixed(2)}</Typography>
+                <Typography>R$ {planInfo.cost}</Typography>
               </Stack>
               <Stack sx={{width: '40%', height: '10%', gap: '5%', alignItems: 'center'}}>
                 <Typography variant="h7" fontWeight="bold">Apps Ilimitados</Typography>

@@ -48,7 +48,7 @@ function Sidebar({selectedOption, setSelectedOption}) {
                   onClick={() => setSelectedOption(item.name)}
                   key={item.id}
                 >
-                  <img src={item.icon} alt={item.alt} />
+                  {item.name === selectedOption ? item.icon : item.blackIcon}
                   <Typography sx={{color: item.name === selectedOption ? '#fff' : ''}}>
                     {item.name}
                   </Typography>

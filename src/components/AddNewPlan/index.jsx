@@ -4,25 +4,26 @@ import { useContext, useState } from "react"
 import { AuthContext } from "../../contexts/Auth/AuthContext";
 import { useApi } from "../../hooks/useApi";
 import { useNavigate } from "react-router-dom";
+import { PlansContext } from "../../contexts/Plans/PlansContext";
 
-function AddNewPlan({plansMenu, setPlansMenu, menuTitle, editMenu, setEditMenu, planId, isEditing, setIsEditing}) {
+function AddNewPlan({menuTitle}) {
   const [provider, setProvider] = useState('claro');
   const [cost, setCost] = useState('');
   const [title, setTitle] = useState('');
   const [inputDays, setInputDays] = useState('');
   const [unlimitedApp, setUnlimitedApp] = useState([])
-  const [city, setCity] = useState('');
+  const [city, setCity] = useState('Rio de Janeiro');
   const [period, setPeriod] = useState('');
   const [franchise, setFranchise] = useState('25');
   const [unlimitedCall, setUnlimitedCall] = useState(false);
-  const [planType, setPlanType] = useState('');
-  const [priority, setPriority] = useState('');
+  const [planType, setPlanType] = useState('Controle');
+  const [priority, setPriority] = useState('1');
   const [description, setDescription] = useState('');
   const [providerLogo, setProviderLogo] = useState([]);
   const lines = 1;
 
-  const navigate = useNavigate();
   const auth = useContext(AuthContext);
+  const {plansMenu, isEditing, setIsEditing, setPlansMenu, editMenu, setEditMenu} = useContext(PlansContext);
   const api = useApi();
 
   const handleMenus = () => {

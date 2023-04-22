@@ -1,21 +1,27 @@
 import { Box, Stack, Typography } from "@mui/material"
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { PlansContext } from "../../contexts/Plans/PlansContext";
 
-function SimplePlansCard({planos, search}) {
+function SimplePlansCard() {
   const [itemsPerPage, setItemsPerPage] = useState(3);
   const [currentPage, setCurrentPage] = useState(0);
 
-  let unarchivedPlans = planos.filter(plano => !plano.archived)
+  const {allPlans, search, loading} = useContext(PlansContext);
 
-  const pages = Math.ceil(unarchivedPlans.length / itemsPerPage);
+  let unarchivedPlans = allPlans?.filter(plano => !plano.archived)
+
+  const pages = Math.ceil(unarchivedPlans?.length / itemsPerPage);
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentItems = unarchivedPlans.slice(startIndex, endIndex)
+  const currentItems = unarchivedPlans?.slice(startIndex, endIndex)
 
-  let filteredPlans = search.length > 0 ? planos.filter(plan => plan.title.includes(search)) : [];
+  let filteredPlans = search.length > 0 ? allPlans?.filter(plan => plan.title.includes(search)) : [];
+
+  console.log(loading)
 
   return (
     <>
+      {loading && <div>loading...</div>}
       {search.length > 0 ? (
         filteredPlans.map((plano) => (
           <Box
@@ -79,7 +85,7 @@ function SimplePlansCard({planos, search}) {
             </Box>
           </Box>
         ))
-      ) : (currentItems.map((plano) => (
+      ) : (currentItems?.map((plano) => (
         <Box
           key={plano.title}
           sx={{
@@ -144,6 +150,7 @@ function SimplePlansCard({planos, search}) {
       <Box sx={{width: '100%', height: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1%'}}>
         {Array.from(Array(pages), (item, index) => {
           return <button value={index}
+            key={index}
             onClick={(e) => setCurrentPage(Number(e.target.value))}
             style={{
               width: '30px', height: '30px', cursor: 'pointer', border: 'none', color: '#fff', background: '#D40066',
