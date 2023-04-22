@@ -24,8 +24,6 @@ export const PlansProvider = ({children}) => {
       setAllPlans(plans);
       setLoading(false)
     }
-
-    console.log(allPlans)
     getAllPlans();
   }, [])
 
@@ -34,7 +32,6 @@ export const PlansProvider = ({children}) => {
     const data = await api.archivePlan(plan)
     setAllPlans(data)
     setLoading(false)
-
   }
 
   const handleSeeMore = (plan) => {
@@ -50,7 +47,8 @@ export const PlansProvider = ({children}) => {
 
   return (
     <PlansContext.Provider value={{allPlans, search, editMenu, seeMore, handleEditMenu,
-      handleSeeMore, toFile, setSearch, isEditing, setIsEditing, planId, planInfo, plansMenu, setPlansMenu, setEditMenu, loading}}>
+      handleSeeMore, toFile, setSearch, isEditing, setIsEditing, planId, planInfo,
+      plansMenu, setPlansMenu, setEditMenu, loading, setLoading, setAllPlans}}>
       {children}
     </PlansContext.Provider>
   )
