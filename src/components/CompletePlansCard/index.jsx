@@ -34,43 +34,43 @@ function CompletePlansCard() {
             }}
           >
             <img src={`https://planos-backend.onrender.com/assets/${plano.providerLogo}`} alt={plano.provider}/>
-            <Typography variant="h7" fontWeight="bold">
+            <Typography variant="h7" fontWeight="medium">
               {plano.title}
             </Typography>
           </Box>
             <Box sx={{width: '80%', height: '70%', display: 'flex', alignItems: 'center',
               justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
               <Stack>
-                <Typography variant="h7" fontWeight="bold">R$ {plano.cost.toFixed(2)}</Typography>
+                <Typography variant="h7" fontWeight="medium">R$ {plano.cost.toFixed(2)}</Typography>
                 <Typography variant='span' sx={{color: 'lightGray'}}>Valor</Typography>
               </Stack>
               <Stack>
-                <Typography variant="h7" fontWeight="bold">{plano.franchise}GB</Typography>
+                <Typography variant="h7" fontWeight="medium">{plano.franchise}GB</Typography>
                 <Typography variant='span' sx={{color: 'lightGray'}}>Franquia</Typography>
               </Stack>
               <Stack>
-                <Typography variant="h7" fontWeight="bold">{plano.contacts}</Typography>
+                <Typography variant="h7" fontWeight="medium">{plano.contacts}</Typography>
                 <Typography variant='span' sx={{color: 'lightGray'}}>Contatos</Typography>
               </Stack>
               <Stack>
-                <Typography variant="h7" fontWeight="bold">{plano.createdAt.slice(0, 10).split('-').reverse().join('/')}</Typography>
+                <Typography variant="h7" fontWeight="medium">{plano.createdAt.slice(0, 10).split('-').reverse().join('/')}</Typography>
                 <Typography variant='span' sx={{color: 'lightGray'}}>Criado em</Typography>
               </Stack>
               <Stack sx={{width: '75%', height: '45%', alignItems: 'center', justifyContent: 'center',
                 gap: '5%', flexDirection: 'row'}}>
                 <button style={{width: '80px', height: '40px', borderRadius: '10px',
-                  border: 'none', background: '#D40066', color: '#fff', fontWeight: 'bold', cursor: 'pointer'}}
+                  border: 'none', background: '#D40066', color: '#fff', fontWeight: 'medium', cursor: 'pointer'}}
                   onClick={() => handleEditMenu(plano)}
                 >Editar</button>
                 <button style={{width: '120px', height: '40px', borderRadius: '10px',
                   border: '2px solid #D40066', background: 'transparent',
-                  color: '#D40066', fontWeight: 'bold', cursor: 'pointer'}}
+                  color: '#D40066', fontWeight: 'medium', cursor: 'pointer'}}
                   onClick={() => handleSeeMore(plano)}
                   disabled={!seeMore ? '' : 'true'}
                 >Ver Detalhes</button>
                 <button style={{width: '120px', height: '40px', borderRadius: '10px',
                   border: '2px solid #D40066', background: 'transparent',
-                  color: '#D40066', fontWeight: 'bold', cursor: 'pointer'}}
+                  color: '#D40066', fontWeight: 'medium', cursor: 'pointer'}}
                   onClick={() => toFile(plano)}
                 >Arquivar</button>
               </Stack>
@@ -91,43 +91,43 @@ function CompletePlansCard() {
             }}
           >
             <img src={`https://planos-backend.onrender.com/assets/${plano.providerLogo}`} alt={plano.provider}/>
-            <Typography variant="h7" fontWeight="bold">
+            <Typography variant="h7" fontWeight="medium">
               {plano.title}
             </Typography>
           </Box>
             <Box sx={{width: '80%', height: '70%', display: 'flex', alignItems: 'center',
               justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
               <Stack>
-                <Typography variant="h7" fontWeight="bold">R$ {plano.cost.toFixed(2)}</Typography>
+                <Typography variant="h7" fontWeight="medium">R$ {plano.cost.toFixed(2)}</Typography>
                 <Typography variant='span' sx={{color: 'lightGray'}}>Valor</Typography>
               </Stack>
               <Stack>
-                <Typography variant="h7" fontWeight="bold">{plano.franchise}GB</Typography>
+                <Typography variant="h7" fontWeight="medium">{plano.franchise}GB</Typography>
                 <Typography variant='span' sx={{color: 'lightGray'}}>Franquia</Typography>
               </Stack>
               <Stack>
-                <Typography variant="h7" fontWeight="bold">{plano.contacts}</Typography>
+                <Typography variant="h7" fontWeight="medium">{plano.contacts}</Typography>
                 <Typography variant='span' sx={{color: 'lightGray'}}>Contatos</Typography>
               </Stack>
               <Stack>
-                <Typography variant="h7" fontWeight="bold">{plano.createdAt.slice(0, 10).split('-').reverse().join('/')}</Typography>
+                <Typography variant="h7" fontWeight="medium">{plano.createdAt.slice(0, 10).split('-').reverse().join('/')}</Typography>
                 <Typography variant='span' sx={{color: 'lightGray'}}>Criado em</Typography>
               </Stack>
               <Stack sx={{width: '75%', height: '45%', alignItems: 'center', justifyContent: 'center',
                 gap: '5%', flexDirection: 'row'}}>
                 <button style={{width: '80px', height: '40px', borderRadius: '10px',
-                  border: 'none', background: '#D40066', color: '#fff', fontWeight: 'bold', cursor: 'pointer'}}
+                  border: 'none', background: '#D40066', color: '#fff', fontWeight: 'medium', cursor: 'pointer'}}
                   onClick={() => handleEditMenu(plano)}
                 >Editar</button>
                 <button style={{width: '120px', height: '40px', borderRadius: '10px',
                   border: '2px solid #D40066', background: 'transparent',
-                  color: '#D40066', fontWeight: 'bold', cursor: 'pointer'}}
+                  color: '#D40066', fontWeight: 'medium', cursor: 'pointer'}}
                   onClick={() => handleSeeMore(plano)}
                   disabled={seeMore ? 'true' : ''}
                 >Ver Detalhes</button>
                 <button style={{width: '120px', height: '40px', borderRadius: '10px',
                   border: '2px solid #D40066', background: 'transparent',
-                  color: '#D40066', fontWeight: 'bold', cursor: 'pointer'}}
+                  color: '#D40066', fontWeight: 'medium', cursor: 'pointer'}}
                   onClick={() => toFile(plano)}
                 >Arquivar</button>
               </Stack>

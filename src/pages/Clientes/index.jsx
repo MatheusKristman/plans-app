@@ -4,21 +4,25 @@ import { useContext, useEffect, useState } from "react"
 import { useApi } from "../../hooks/useApi"
 import { AuthContext } from "../../contexts/Auth/AuthContext"
 import { ClientsCard } from "../../components"
+import { PlansContext } from "../../contexts/Plans/PlansContext"
 
 function Clientes() {
   const [clients, setClients] = useState([])
 
   const auth = useContext(AuthContext)
+  const {loading, setLoading} = useContext(PlansContext)
   const api = useApi();
 
   useEffect(() => {
-    const handleGetPlans = async () => {
+    const handleGetClients = async () => {
       if(auth.user) {
+        setLoading(true)
         const data = await api.getClients();
         setClients(data)
+        setLoading(false)
       }
     }
-    handleGetPlans();
+    handleGetClients();
   }, [])
 
   return (
@@ -57,7 +61,7 @@ function Clientes() {
           </Stack>
         </Stack>
         <Box sx={{width: '100%', height: '500px'}}>
-          <ClientsCard clients={clients}/>
+          {loading === true ? <div>loading...</div> : <ClientsCard clients={clients}/>}
         </Box>
       </Box>
     </>
