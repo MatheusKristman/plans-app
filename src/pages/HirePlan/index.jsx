@@ -1,5 +1,5 @@
 import { Box, Stack, Typography } from '@mui/material';
-import { HirePlanForm, ClientRegister } from '../../components';
+import { HirePlanForm, ClientRegister, Footer } from '../../components';
 import { useContext, useState } from 'react';
 import { PlansContext } from '../../contexts/Plans/PlansContext';
 
@@ -38,7 +38,7 @@ function HirePlan() {
       </Box>
       <Box sx={{width: '100%', height: '1900px', padding: '5%', display: 'flex', gap: '2%'}}>
         <HirePlanForm />
-        <Stack sx={{width: '80%', height: '2800px', gap: '2%', position: 'relative'}}>
+        <Stack sx={{width: '80%', height: '1000px', gap: '2%', position: 'relative'}}>
           {currentItems.map(plan => (
             <Box sx={{width: '100%', height: '300px', background: '#F0F1F6',
               borderRadius: '10px', display: 'flex', flexDirection: 'column',
@@ -99,6 +99,7 @@ function HirePlan() {
           }
         </Stack>
       </Box>
+      <Footer />
     </Stack>
   )
 }

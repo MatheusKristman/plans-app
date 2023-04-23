@@ -2,7 +2,7 @@ import { Box, Stack, Typography } from "@mui/material";
 
 function ClientRegister({clientRegisterMenu, setClientRegisterMenu, planInfos}) {
   return (
-    <Box sx={{width: '800px', height: '650px', background: '#fff', position: 'absolute'}}>
+    <Box sx={{width: '800px', height: '650px', background: '#fff', position: 'absolute', borderRadius: '10px'}}>
       <Box sx={{width: '100%', height: '20%',
         backgroundImage: 'url(./assets/images/registerClient-header.png)', backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat', position: 'relative'}}>
