@@ -12,7 +12,8 @@ export const PlansProvider = ({children}) => {
   const [seeMore, setSeeMore] = useState(false);
   const [plansMenu, setPlansMenu] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [searchPlans, setSearchPlans] = useState(false)
+  const [searchPlans, setSearchPlans] = useState(false);
+  const [selectedPlans, setSelectedPlans] = useState([])
 
   const api = useApi();
 
@@ -56,7 +57,8 @@ export const PlansProvider = ({children}) => {
   return (
     <PlansContext.Provider value={{allPlans, search, editMenu, seeMore, handleEditMenu,
       handleSeeMore, toFile, setSearch, isEditing, setIsEditing, planId, planInfo,
-      plansMenu, setPlansMenu, setEditMenu, loading, setLoading, setAllPlans, searchPlans, setSearchPlans, handleNewPlan}}>
+      plansMenu, setPlansMenu, setEditMenu, loading, setLoading, setAllPlans, searchPlans, setSearchPlans,
+      handleNewPlan, selectedPlans, setSelectedPlans, setPlanId}}>
       {children}
     </PlansContext.Provider>
   )

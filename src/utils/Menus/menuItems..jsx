@@ -30,25 +30,25 @@ export const operadoras = [
   {
     id: '001',
     name: 'claro',
-    image: './assets/icons/discman.png',
+    image: './assets/icons/claro.png',
     alt: 'claro'
   },
   {
     id: '002',
     name: 'tim',
-    image: './assets/icons/discman.png',
+    image: './assets/icons/tim.png',
     alt: 'tim'
   },
   {
     id: '003',
     name: 'vivo',
-    image: './assets/icons/discman.png',
+    image: './assets/icons/vivo.png',
     alt: 'vivo'
   },
   {
     id: '004',
     name: 'oi',
-    image: './assets/icons/discman.png',
+    image: './assets/icons/oi.png',
     alt: 'oi'
   },
 ]

@@ -39,7 +39,7 @@ const onImageEdit = async (imgUrl) => {
           key={operadora.id}
           onClick={() => handleSets(operadora)}
         >
-          <img src={operadora.image} alt={operadora.alt} />
+          <img src={operadora.image} alt={operadora.alt} style={{width: '100%', height: '100%'}} />
         </Box>
       ))}
     </Box>
