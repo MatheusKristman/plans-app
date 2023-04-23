@@ -17,8 +17,6 @@ function SimplePlansCard() {
 
   let filteredPlans = search.length > 0 ? allPlans?.filter(plan => plan.title.includes(search)) : [];
 
-  console.log(loading)
-
   return (
     <>
       {loading && <div>loading...</div>}
@@ -27,7 +25,7 @@ function SimplePlansCard() {
           <Box
             key={plano.title}
             sx={{
-              width: '100%', height: '100px', borderBottom: '1px solid gray',
+              width: '100%', height: '100px', borderBottom: '1px solid lightGray',
               display: 'flex', alignItems: 'center', justifyContent: 'space-between',
             }}
           >
@@ -53,7 +51,7 @@ function SimplePlansCard() {
                   alignItems: 'start', justifyContent: 'center'
                 }}
               >
-                <Typography sx={{fontWeight: '600'}}>
+                <Typography sx={{fontWeight: '500'}}>
                   {plano.contacts}
                 </Typography>
                 <Typography sx={{color: 'lightGray'}}>
@@ -64,7 +62,7 @@ function SimplePlansCard() {
                 alignItems: 'start', justifyContent: 'center'
                 }}
               >
-                <Typography sx={{fontWeight: '600'}}>
+                <Typography sx={{fontWeight: '500'}}>
                   R$ {plano.cost.toFixed(2)}
                 </Typography>
                 <Typography sx={{color: 'lightGray'}}>
@@ -75,7 +73,7 @@ function SimplePlansCard() {
                 alignItems: 'start', justifyContent: 'center'
                 }}
               >
-                <Typography sx={{fontWeight: '600'}}>
+                <Typography sx={{fontWeight: '500'}}>
                   {plano.createdAt.slice(0, 10).split('-').reverse().join('/')}
                 </Typography>
                 <Typography sx={{color: 'lightGray'}}>
@@ -89,7 +87,7 @@ function SimplePlansCard() {
         <Box
           key={plano.title}
           sx={{
-            width: '100%', height: '100px', borderBottom: '1px solid gray',
+            width: '100%', height: '100px', borderBottom: '1px solid lightGray',
             display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           }}
         >
@@ -115,7 +113,7 @@ function SimplePlansCard() {
                 alignItems: 'start', justifyContent: 'center'
               }}
             >
-              <Typography sx={{fontWeight: '600'}}>
+              <Typography sx={{fontWeight: '500'}}>
                 {plano.contacts}
               </Typography>
               <Typography sx={{color: 'lightGray'}}>
@@ -126,7 +124,7 @@ function SimplePlansCard() {
               alignItems: 'start', justifyContent: 'center'
               }}
             >
-              <Typography sx={{fontWeight: '600'}}>
+              <Typography sx={{fontWeight: '500'}}>
                 R$ {plano.cost.toFixed(2)}
               </Typography>
               <Typography sx={{color: 'lightGray'}}>
@@ -137,7 +135,7 @@ function SimplePlansCard() {
               alignItems: 'start', justifyContent: 'center'
               }}
             >
-              <Typography sx={{fontWeight: '600'}}>
+              <Typography sx={{fontWeight: '500'}}>
                 {plano.createdAt.slice(0, 10).split('-').reverse().join('/')}
               </Typography>
               <Typography sx={{color: 'lightGray'}}>

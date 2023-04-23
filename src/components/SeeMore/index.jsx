@@ -9,7 +9,7 @@ function SeeMore() {
   return (
     <Box sx={{width: '555px', height: '550px', overflowY: 'auto', position: 'absolute',
       top: '10%', left: '40%', borderRadius: '20px'}}>
-      <Box sx={{width: '100%', height: '1000px', background: 'rgba(255, 255, 255, 0.8)'}}>
+      <Box sx={{width: '100%', height: '1000px', background: 'rgba(255, 255, 255, 1)'}}>
         {/* Header Box */}
           <Box sx={{position: 'relative', width: '100%', height: '20%'}}>
             <img src="./assets/images/modal-figure-lg.png" alt="imagem" />

@@ -5,17 +5,11 @@ import {AddNewPlan, SimplePlansCard} from '../index'
 import { PlansContext } from "../../contexts/Plans/PlansContext";
 
 function SimplePlans() {
-  const [plansMenu, setPlansMenu] = useState(false);
 
-  function handleIfMenuIsActive(){
-    setPlansMenu(!plansMenu)
-  }
-
-  const {allPlans, loading} = useContext(PlansContext)
+  const {allPlans, loading, plansMenu, editMenu, setPlansMenu, handleNewPlan} = useContext(PlansContext)
 
   return (
     <>
-      {loading && (<div>Loading...</div>)}
       <Box
         sx={{ width: '100%', height: 'auto', display: 'flex', overflowY: 'auto',
           flexDirection: 'column', gap: '5%', paddingX: '7%', filter: plansMenu ? 'blur(8px)' : '',
@@ -32,13 +26,13 @@ function SimplePlans() {
           </Typography>
           <Button variant="contained"
             sx={{background: '#D40066', height: '45px', '&:hover': {background: '#D40066',}}}
-            onClick={handleIfMenuIsActive}
+            onClick={handleNewPlan}
             disabled={plansMenu}
           >
             Novo Plano
           </Button>
         </Stack>
-        <SimplePlansCard />
+        {loading === true ? <div>loading...</div> : <SimplePlansCard />}
       </Box>
       {
         plansMenu && (<AddNewPlan menuTitle="Novo Plano" />)
