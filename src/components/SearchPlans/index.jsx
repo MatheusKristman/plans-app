@@ -2,6 +2,7 @@ import React from 'react'
 import { Box, Stack, Typography } from '@mui/material'
 import { PlansContext } from '../../contexts/Plans/PlansContext'
 import { useContext } from 'react'
+import { mockCityes } from '../../utils/Cityes/cityes'
 
 function SearchPlans() {
   const {searchPlans, setSearchPlans} = useContext(PlansContext)
@@ -27,9 +28,15 @@ function SearchPlans() {
           <Typography variant='h5' fontWeight="medium">
             Qual cidade que você mora?
           </Typography>
-          <input style={{
-            width: '80%', height: '18%', paddingLeft: '2%', borderRadius: '10px', fontSize: '16px'
-          }} type="text" placeholder='Onde você mora?'/>
+          <select name="city" id="city"
+            style={{width: '80%', height: '18%', paddingLeft: '2%', borderRadius: '10px', fontSize: '16px'}}
+          >
+            {mockCityes.map(city => (
+              <option value={city.name} key={city.id}>
+                {city.name}
+              </option>
+            ))}
+          </select>
           <button type='submit'
           style={{width: '30%', height: '15%', borderRadius: '10px', border: 'none',
             background: '#D40066', color: '#fff', fontSize: '16px', cursor: 'pointer'}}>Procurar</button>

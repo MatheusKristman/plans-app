@@ -34,8 +34,8 @@ function AddNewPlan({menuTitle}) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true)
     if(auth.user && isEditing) {
+      setLoading(true)
       const response = await api.editPlan(planId, title, cost, period, franchise,
         unlimitedApp, unlimitedCall, planType, priority, description, lines)
         setAllPlans(response)
@@ -43,11 +43,11 @@ function AddNewPlan({menuTitle}) {
         setLoading(false)
       return
     }
-    if(auth.user) {
-      const response = await api.createPlans(title, cost, period, franchise, unlimitedApp,
-        unlimitedCall, planType, priority, description, lines, providerLogo, city, provider)
-      console.log(response.data)
-    }
+    // if(auth.user) {
+    //   const response = await api.createPlans(title, cost, period, franchise, unlimitedApp,
+    //     unlimitedCall, planType, priority, description, lines, providerLogo, city, provider)
+    //   console.log(response.data)
+    // }
   }
 
   return (
@@ -62,7 +62,7 @@ function AddNewPlan({menuTitle}) {
           <button
             style={{position: 'absolute', right: '20px', top: '20px', width: '25px',
               height: '25px', borderRadius: '5px', cursor: 'pointer'}}
-            onClick={handleMenus}
+              onClick={handleMenus}
           >
               X
           </button>

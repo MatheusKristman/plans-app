@@ -40,16 +40,23 @@ export const PlansProvider = ({children}) => {
   }
 
   const handleEditMenu = (plan) => {
+    setPlansMenu(false)
     setEditMenu(!editMenu)
     setIsEditing(!isEditing)
     setPlanId(plan?._id)
     if (seeMore) setSeeMore(!seeMore);
   }
 
+  const handleNewPlan = () => {
+    setEditMenu(false);
+    setIsEditing(false);
+    setPlansMenu(!plansMenu)
+  }
+
   return (
     <PlansContext.Provider value={{allPlans, search, editMenu, seeMore, handleEditMenu,
       handleSeeMore, toFile, setSearch, isEditing, setIsEditing, planId, planInfo,
-      plansMenu, setPlansMenu, setEditMenu, loading, setLoading, setAllPlans, searchPlans, setSearchPlans}}>
+      plansMenu, setPlansMenu, setEditMenu, loading, setLoading, setAllPlans, searchPlans, setSearchPlans, handleNewPlan}}>
       {children}
     </PlansContext.Provider>
   )
