@@ -1,11 +1,16 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Box, Stack, Typography } from '@mui/material'
 import { PlansContext } from '../../contexts/Plans/PlansContext'
 import { useContext } from 'react'
 import { mockCityes } from '../../utils/Cityes/cityes'
+import { Link } from 'react-router-dom'
 
 function SearchPlans() {
-  const {searchPlans, setSearchPlans} = useContext(PlansContext)
+  const {searchPlans, setSearchPlans, allPlans} = useContext(PlansContext)
+  const [cityName, setCityName] = useState('Rio de Janeiro')
+
+  let filteredPlan = allPlans.filter(plan => plan?.city?.includes(cityName))
+
 
   return (
     <Box sx={{position: 'absolute', width: '900px', height: '400px', background: '#fff', top: '15%',
@@ -30,6 +35,7 @@ function SearchPlans() {
           </Typography>
           <select name="city" id="city"
             style={{width: '80%', height: '18%', paddingLeft: '2%', borderRadius: '10px', fontSize: '16px'}}
+            onChange={(e) => setCityName(e.target.value)}
           >
             {mockCityes.map(city => (
               <option value={city.name} key={city.id}>
@@ -37,9 +43,11 @@ function SearchPlans() {
               </option>
             ))}
           </select>
-          <button type='submit'
-          style={{width: '30%', height: '15%', borderRadius: '10px', border: 'none',
-            background: '#D40066', color: '#fff', fontSize: '16px', cursor: 'pointer'}}>Procurar</button>
+          <Link to="/hireplan">
+            <button type='submit'
+            style={{width: '30%', height: '15%', borderRadius: '10px', border: 'none',
+              background: '#D40066', color: '#fff', fontSize: '16px', cursor: 'pointer'}}>Procurar</button>
+          </Link>
         </Stack>
       </Stack>
     </Box>

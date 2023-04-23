@@ -9,6 +9,7 @@ import { AuthProvider } from './contexts/Auth/AuthProvider'
 import { PlansProvider } from './contexts/Plans/PlansProvider'
 import { RequireAuth } from './contexts/Auth/RequireAuth'
 import Dashboard from './pages/Dashboard'
+import HirePlan from './pages/HirePlan'
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,9 @@ const router = createBrowserRouter([
   {
     path: '/admin',
     element: <Admin />
+  },
+  { path: '/hireplan',
+    element: <HirePlan />
   },
   {
     path: '/dashboard',
