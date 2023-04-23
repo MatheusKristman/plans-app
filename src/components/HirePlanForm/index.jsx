@@ -8,7 +8,7 @@ import { planTypes } from '../../utils/PlanTypes/planTypes';
 import { unlimitedApps } from '../../utils/UnlimitedApps/unlimitedApps';
 import { useState } from 'react';
 
-function HirePlanForm() {
+function HirePlanForm({clientRegisterMenu}) {
   const [city, setCity] = useState('Rio de Janeiro');
   const [lines, setLines] = useState('');
   const [cost, setCost] = useState('');
@@ -50,7 +50,8 @@ function HirePlanForm() {
 
   return (
     <form style={{width: '25%', height: '1800px', background: '#F0F1F6', position: 'relative', borderRadius: '10px',
-          padding: '2%', display: 'flex', flexDirection: 'column', gap: '2%', zIndex: '99'}} onSubmit={handleSubmit}>
+          padding: '2%', display: 'flex', flexDirection: 'column', gap: '2%', zIndex: '99',
+          filter: clientRegisterMenu === true ? 'blur(10px)' : ''}} onSubmit={handleSubmit}>
           <Stack sx={{width: '100%', height: '8%', borderBottom: '2px solid lightGray', justifyContent: 'space-evenly'}}>
             <Typography variant='h6'>Cidade</Typography>
             <select name="city" id="city" style={{width: '100%', height: '50px', borderRadius: '5px', cursor: 'pointer'}}
@@ -149,7 +150,9 @@ function HirePlanForm() {
           </Stack>
           <button type='submit' style={{width: '100%', height: '55px', background: '#D40066',
             color: '#fff', fontSize: '18px', position: 'absolute', top: '-45px', zIndex: '0', right: '0%',
-            border: 'none', borderTopLeftRadius: '10px', borderTopRightRadius: '10px', cursor: 'pointer',}}>Aplicar</button>
+            border: 'none', borderTopLeftRadius: '10px', borderTopRightRadius: '10px', cursor: 'pointer',}}
+            disabled={clientRegisterMenu === true}
+            >Aplicar</button>
         </form>
   )
 }

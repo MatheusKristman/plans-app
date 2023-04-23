@@ -60,5 +60,9 @@ export const useApi = () => ({
       const response = await api.put('plan/edit', {id, title, cost, period, franchise, unlimitedApps,
         unlimitedCall, planType, priority, description, lines});
       return response.data
-    }
+    },
+  registerLead: async (name, cpf, dateOfBirth, motherName, cel, planId) => {
+    const response = await api.post('lead/register', {name, cpf, dateOfBirth, motherName, cel, planId})
+    return response.data
+  }
 })
