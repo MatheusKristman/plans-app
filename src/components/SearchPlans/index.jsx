@@ -11,6 +11,7 @@ function SearchPlans() {
 
   let filteredPlan = allPlans.filter(plan => plan?.city?.includes(cityName))
 
+  console.log(filteredPlan)
 
   return (
     <Box sx={{position: 'absolute', width: '900px', height: '400px', background: '#fff', top: '15%',
@@ -43,9 +44,10 @@ function SearchPlans() {
               </option>
             ))}
           </select>
-          <Link to="/hireplan">
+          <Link to="/hireplan" style={{width: '30%', height: '15%', borderRadius: '10px', border: 'none',
+              background: '#D40066', color: '#fff', fontSize: '16px', cursor: 'pointer'}}>
             <button type='submit'
-            style={{width: '30%', height: '15%', borderRadius: '10px', border: 'none',
+            style={{width: '100%', height: '100%', borderRadius: '10px', border: 'none',
               background: '#D40066', color: '#fff', fontSize: '16px', cursor: 'pointer'}}>Procurar</button>
           </Link>
         </Stack>
