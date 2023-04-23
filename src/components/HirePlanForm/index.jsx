@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import { mockCityes } from '../../utils/Cityes/cityes';
 import { linesLoop } from '../../utils/Lines/Lines';
 import { pricesLoop } from '../../utils/Price/Price';
@@ -6,14 +6,57 @@ import { franchiseAtLeast } from '../../utils/Franchises/franchises';
 import { operadoras } from '../../utils/Menus/menuItems.';
 import { planTypes } from '../../utils/PlanTypes/planTypes';
 import { unlimitedApps } from '../../utils/UnlimitedApps/unlimitedApps';
+import { useState } from 'react';
 
-function HirePlanForm() {
+function HirePlanForm({clientRegisterMenu}) {
+  const [city, setCity] = useState('Rio de Janeiro');
+  const [lines, setLines] = useState('');
+  const [cost, setCost] = useState('');
+  const [franchise, setFranchise] = useState('5');
+  const [provider, setProvider] = useState([]);
+  const [planType, setPlanType] = useState([]);
+  const [unlimitedApp, setUnlimitedApp] = useState([]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
+
+  const handleProviders = (operadora) => {
+    if(provider.includes(operadora.name)) {
+      let providerIndex = provider.indexOf(operadora.name);
+      provider.splice(providerIndex, 1)
+      return
+    }
+    setProvider([...provider, operadora.name])
+  }
+
+  const handlePlanType = (plan) => {
+    if(planType.includes(plan.name)) {
+      let providerIndex = planType.indexOf(plan.name);
+      planType.splice(providerIndex, 1)
+      return
+    }
+    setPlanType([...planType, plan.name])
+  }
+
+  const verifyUnlimitedApp = (app) => {
+    if(unlimitedApp.includes(app.name)) {
+      let appIndex = unlimitedApp.indexOf(app.name)
+      unlimitedApp.splice(appIndex, 1)
+      return
+    }
+    setUnlimitedApp([...unlimitedApp, app.name])
+  }
+
   return (
     <form style={{width: '25%', height: '1800px', background: '#F0F1F6', position: 'relative', borderRadius: '10px',
-          padding: '2%', display: 'flex', flexDirection: 'column', gap: '2%', zIndex: '99'}}>
+          padding: '2%', display: 'flex', flexDirection: 'column', gap: '2%', zIndex: '99',
+          filter: clientRegisterMenu === true ? 'blur(10px)' : ''}} onSubmit={handleSubmit}>
           <Stack sx={{width: '100%', height: '8%', borderBottom: '2px solid lightGray', justifyContent: 'space-evenly'}}>
             <Typography variant='h6'>Cidade</Typography>
-            <select name="city" id="city" style={{width: '100%', height: '50px', borderRadius: '5px', cursor: 'pointer'}}>
+            <select name="city" id="city" style={{width: '100%', height: '50px', borderRadius: '5px', cursor: 'pointer'}}
+              onChange={(e) => setCity(e.target.value)}
+            >
               {mockCityes.map(city => (
                 <option key={city.id} value={city.name}>
                   {city.name}
@@ -28,6 +71,7 @@ function HirePlanForm() {
                 style={{display: 'flex', justifyContent: 'flex-start', width: '100%', height: '50%',
                   alignItems: 'center', gap: '3%', cursor: 'pointer'}}
                 key={line.id}
+                onChange={(e) => setLines(e.target.value)}
               >
                 <input type="radio" name='plan-line' value={line.name}/>
                 {line.name}
@@ -41,6 +85,7 @@ function HirePlanForm() {
                 style={{display: 'flex', justifyContent: 'flex-start', width: '100%', height: '50%',
                   alignItems: 'center', gap: '3%', cursor: 'pointer'}}
                 key={price.id}
+                onChange={(e) => setCost(e.target.value)}
               >
                 <input type="radio" name='plan-price' value={price.value}/>
                 {price.name}
@@ -54,6 +99,7 @@ function HirePlanForm() {
                 style={{display: 'flex', justifyContent: 'flex-start', width: '100%', height: '50%',
                   alignItems: 'center', gap: '3%', cursor: 'pointer'}}
                 key={franchise.id}
+                onChange={(e) => setFranchise(e.target.value)}
               >
                 <input type="radio" name='plan-franchise' value={franchise.value}/>
                 {franchise.name}
@@ -67,6 +113,7 @@ function HirePlanForm() {
                 style={{display: 'flex', justifyContent: 'flex-start', width: '100%', height: '50%',
                   alignItems: 'center', gap: '3%', cursor: 'pointer'}}
                 key={operadora.id}
+                onChange={() => {handleProviders(operadora)}}
               >
                 <input type="checkbox" name='plan-provider' value={operadora.name}/>
                 {operadora.name}
@@ -80,6 +127,7 @@ function HirePlanForm() {
                 style={{display: 'flex', justifyContent: 'flex-start', width: '100%', height: '50%',
                   alignItems: 'center', gap: '3%', cursor: 'pointer'}}
                 key={plan.id}
+                onChange={() => {handlePlanType(plan)}}
               >
                 <input type="checkbox" name='plan-type' value={plan.name}/>
                 {plan.name}
@@ -93,6 +141,7 @@ function HirePlanForm() {
                 style={{display: 'flex', justifyContent: 'flex-start', width: '100%', height: '50%',
                   alignItems: 'center', gap: '3%', cursor: 'pointer'}}
                 key={app.id}
+                onChange={() => {verifyUnlimitedApp(app)}}
               >
                 <input type="checkbox" name='plan-apps' value={app.name}/>
                 {app.name}
@@ -101,7 +150,9 @@ function HirePlanForm() {
           </Stack>
           <button type='submit' style={{width: '100%', height: '55px', background: '#D40066',
             color: '#fff', fontSize: '18px', position: 'absolute', top: '-45px', zIndex: '0', right: '0%',
-            border: 'none', borderTopLeftRadius: '10px', borderTopRightRadius: '10px', cursor: 'pointer',}}>Aplicar</button>
+            border: 'none', borderTopLeftRadius: '10px', borderTopRightRadius: '10px', cursor: 'pointer',}}
+            disabled={clientRegisterMenu === true}
+            >Aplicar</button>
         </form>
   )
 }

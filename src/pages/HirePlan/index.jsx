@@ -37,12 +37,12 @@ function HirePlan() {
         </Stack>
       </Box>
       <Box sx={{width: '100%', height: '1900px', padding: '5%', display: 'flex', gap: '2%'}}>
-        <HirePlanForm />
+        <HirePlanForm clientRegisterMenu={clientRegisterMenu} />
         <Stack sx={{width: '80%', height: '1000px', gap: '2%', position: 'relative'}}>
           {currentItems.map(plan => (
             <Box sx={{width: '100%', height: '300px', background: '#F0F1F6',
               borderRadius: '10px', display: 'flex', flexDirection: 'column',
-              alignItems: 'center', padding: '2%'}} key={plan._id}>
+              alignItems: 'center', padding: '2%', filter: clientRegisterMenu === true ? 'blur(10px)' : ''}} key={plan._id}>
               <Box sx={{width: '100%', height: '25%', display: 'flex', justifyContent: 'space-between'}}>
                 <Box sx={{width: '20%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                   <img src={plan.providerLogo} alt={plan.provider} />
@@ -74,6 +74,7 @@ function HirePlan() {
                   <button style={{width: '80%', height: '30%', border: 'none', background: '#D40066', color: '#fff', fontSize: '16px',
                   borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold'}}
                   onClick={() => handleRegisterMenu(plan)}
+                  disabled={clientRegisterMenu === true}
                   >CONTRATAR</button>
                 </Box>
               </Box>

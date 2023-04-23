@@ -1,6 +1,27 @@
 import { Box, Stack, Typography } from "@mui/material";
+import { useState } from "react";
+import { useApi } from '../../hooks/useApi'
 
 function ClientRegister({clientRegisterMenu, setClientRegisterMenu, planInfos}) {
+  const [cpf, setCpf] = useState('');
+  const [name, setName] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState('');
+  const [motherName, setMotherName] = useState('');
+  const [cel, setCel] = useState('');
+  const [planId, setPlanId] = useState(planInfos?._id);
+
+  const api = useApi();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await api.registerLead(name, cpf, dateOfBirth, motherName, cel, planId);
+    console.log(response)
+  }
+
+  const insertMaskInCpf = (cpf) => {
+    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g, '$1.$2.$3-$4');
+  }
+
   return (
     <Box sx={{width: '800px', height: '650px', background: '#fff', position: 'absolute', borderRadius: '10px'}}>
       <Box sx={{width: '100%', height: '20%',
@@ -18,50 +39,57 @@ function ClientRegister({clientRegisterMenu, setClientRegisterMenu, planInfos}) 
         </Box>
       </Box>
       <Stack sx={{width: '100%', height: '80%', flexDirection: 'row', paddingTop: '1%'}}>
-        <form style={{width: '55%', height: '100%', padding: '1.2%', display: 'flex', flexDirection: 'column', gap: '3%'}}>
+        <form style={{width: '55%', height: '100%', padding: '1.2%', display: 'flex', flexDirection: 'column', gap: '3%'}}
+          onSubmit={handleSubmit}
+        >
           <Stack gap="4px">
             <Typography variant="h7" fontWeight="medium">
               Nome Completo
             </Typography>
-            <input type="text" placeholder="Nome Completo" style={{width: '100%', height: '50px', borderRadius: '8px',
-              paddingLeft: '2%', fontSize: '16px', border: '2px solid lightGray'}} />
+            <input type="text" style={{width: '100%', height: '50px', borderRadius: '8px',
+              paddingLeft: '2%', fontSize: '16px', border: '2px solid lightGray'}} onChange={(e) => setName(e.target.value)} />
           </Stack>
           <Box sx={{display: 'flex'}}>
             <Stack gap="4px" sx={{width: '50%'}}>
               <Typography variant="h7" fontWeight="medium">
                 CPF
               </Typography>
-              <input type="text" placeholder="xxx.xxx.xxx-xx" style={{width: '95%', height: '50px', borderRadius: '8px',
-                paddingLeft: '4%', fontSize: '16px', border: '2px solid lightGray'}} />
+              <input type="text" style={{width: '95%', height: '50px', borderRadius: '8px',
+                paddingLeft: '4%', fontSize: '16px', border: '2px solid lightGray'}}
+                onChange={(e) => setCpf(e.target.value)}
+                value={insertMaskInCpf(cpf)}
+                />
             </Stack>
             <Stack gap="4px" sx={{width: '50%'}}>
               <Typography variant="h7" fontWeight="medium">
                 Data de nascimento
               </Typography>
-              <input type="text" placeholder="Data de nascimento" style={{width: '100%', height: '50px', borderRadius: '8px',
-                paddingLeft: '4%', fontSize: '16px', border: '2px solid lightGray'}} />
+              <input type="text" style={{width: '100%', height: '50px', borderRadius: '8px',
+                paddingLeft: '4%', fontSize: '16px', border: '2px solid lightGray'}} onChange={(e) => setDateOfBirth(e.target.value)} />
             </Stack>
           </Box>
           <Stack gap="4px">
             <Typography variant="h7" fontWeight="medium">
               Nome completo da mãe
             </Typography>
-            <input type="text" placeholder="Nome completo da mãe" style={{width: '100%', height: '50px', borderRadius: '8px',
-              paddingLeft: '2%', fontSize: '16px', border: '2px solid lightGray'}} />
+            <input type="text" style={{width: '100%', height: '50px', borderRadius: '8px',
+              paddingLeft: '2%', fontSize: '16px', border: '2px solid lightGray'}} onChange={(e) => setMotherName(e.target.value)}/>
           </Stack>
           <Stack gap="4px">
             <Typography variant="h7" fontWeight="medium">
               Celular
             </Typography>
-            <input type="text" placeholder="Celular" style={{width: '100%', height: '50px', borderRadius: '8px',
-              paddingLeft: '2%', fontSize: '16px', border: '2px solid lightGray'}} />
+            <input type="text" style={{width: '100%', height: '50px', borderRadius: '8px',
+              paddingLeft: '2%', fontSize: '16px', border: '2px solid lightGray'}} onChange={(e) => setCel(e.target.value)} />
           </Stack>
           <label style={{width: '100%', height: '10%', display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
             <input type="checkbox" name="Authorization" id="" style={{accentColor: '#D40066'}} />
             <Typography variant="h7" width="90%">Autorizo a comunicação referente ao meu pedido e confirmação dos dados para contratação do plano.</Typography>
           </label>
           <button style={{width: '100%', height: '50px', background: '#D40066', color: '#fff', fontSize: '16px',
-            fontWeight: 'bold', border: 'none', borderRadius: '8px', cursor: 'pointer'}}>FAZER PEDIDO</button>
+            fontWeight: 'bold', border: 'none', borderRadius: '8px', cursor: 'pointer'}}
+            type="submit"
+          >FAZER PEDIDO</button>
         </form>
         <Stack sx={{width: '43.5%', height: '45%', background: '#EFEFEF', borderRadius: '8px', marginTop: '1%', padding: '2%', justifyContent: 'space-evenly'}}>
           <Typography variant="h7" fontWeight="bold">Resumo do Pedido</Typography>
