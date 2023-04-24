@@ -28,6 +28,10 @@ function ClientsCard({clients}) {
     }
   }
 
+  const insertMaskInCpf = (cpf) => {
+    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g, '$1.$2.$3-$4');
+  }
+
   return (
     <>
       {currentItems.map((client) => (
@@ -52,7 +56,7 @@ function ClientsCard({clients}) {
                 <Typography variant='span' color="lightgray">Celular</Typography>
               </Stack>
               <Stack sx={{width: '40%', height: '100%', gap: '5%', justifyContent: 'center'}}>
-                <Typography variant='h7' fontWeight='medium'>{client.cpf}</Typography>
+                <Typography variant='h7' fontWeight='medium'>{insertMaskInCpf(client.cpf)}</Typography>
                 <Typography variant='span' color="lightgray">Cpf</Typography>
               </Stack>
               <Stack sx={{width: '45%', height: '100%', gap: '5%', justifyContent: 'center'}}>

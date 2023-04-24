@@ -9,17 +9,59 @@ function ClientRegister({clientRegisterMenu, setClientRegisterMenu, planInfos}) 
   const [motherName, setMotherName] = useState('');
   const [cel, setCel] = useState('');
   const [planId, setPlanId] = useState(planInfos?._id);
+  const [validCpf, setIsValidCpf] = useState();
+  const [error, setError] = useState(false)
 
   const api = useApi();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let valid = isValidCpf(cpf)
+    setIsValidCpf(valid)
+    if(!valid) {
+      setError(!error);
+      return
+    }
     const response = await api.registerLead(name, cpf, dateOfBirth, motherName, cel, planId);
     console.log(response)
   }
 
-  const insertMaskInCpf = (cpf) => {
-    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g, '$1.$2.$3-$4');
+  const isValidCpf = (cpf) => {
+    cpf.replace(/[^\d]+/g,'');
+    if(cpf === '') return false
+    // Elimina CPFs invalidos conhecidos
+    if (cpf.length != 11 ||
+      cpf === "00000000000" ||
+      cpf === "11111111111" ||
+      cpf === "22222222222" ||
+      cpf === "33333333333" ||
+      cpf === "44444444444" ||
+      cpf === "55555555555" ||
+      cpf === "66666666666" ||
+      cpf === "77777777777" ||
+      cpf === "88888888888" ||
+      cpf === "99999999999")
+        return false;
+      // Valida 1º digito
+        let add = 0;
+        for (let i=0; i < 9; i ++)
+          add += parseInt(cpf.charAt(i)) * (10 - i);
+          let rev = 11 - (add % 11);
+          if (rev == 10 || rev == 11)
+            rev = 0;
+          if (rev != parseInt(cpf.charAt(9)))
+            return false;
+      // Valida 2º digito
+        add = 0;
+        for (let i = 0; i < 10; i ++)
+          add += parseInt(cpf.charAt(i)) * (11 - i);
+        rev = 11 - (add % 11);
+        if (rev == 10 || rev == 11)
+          rev = 0;
+        if (rev != parseInt(cpf.charAt(10)))
+          return false;
+        return true;
+
   }
 
   return (
@@ -52,12 +94,12 @@ function ClientRegister({clientRegisterMenu, setClientRegisterMenu, planInfos}) 
           <Box sx={{display: 'flex'}}>
             <Stack gap="4px" sx={{width: '50%'}}>
               <Typography variant="h7" fontWeight="medium">
-                CPF
+                {!error ? 'CPF' : 'CPF Inválido'}
               </Typography>
               <input type="text" style={{width: '95%', height: '50px', borderRadius: '8px',
-                paddingLeft: '4%', fontSize: '16px', border: '2px solid lightGray'}}
+                paddingLeft: '4%', fontSize: '16px', border: !error ? '2px solid lightGray' : '2px solid red'}}
                 onChange={(e) => setCpf(e.target.value)}
-                value={insertMaskInCpf(cpf)}
+                value={cpf}
                 />
             </Stack>
             <Stack gap="4px" sx={{width: '50%'}}>
