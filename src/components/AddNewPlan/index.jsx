@@ -43,11 +43,19 @@ function AddNewPlan({menuTitle}) {
         setLoading(false)
       return
     }
-    // if(auth.user) {
-    //   const response = await api.createPlans(title, cost, period, franchise, unlimitedApp,
-    //     unlimitedCall, planType, priority, description, lines, providerLogo, city, provider)
-    //   console.log(response.data)
-    // }
+
+    // Matheus, precisa fazer a conversão da imagem para um arquivo e enviar ela para o banco de dados.
+    // Eu adicionei uma seção onde o cliente consegue fazer o upload de uma imagem para o banco caso ele queira adicionar
+    // alguma nova operadora, alguma regional.
+    // Falta apenas isso pra conseguir criar o plano através do botão AddNewPlan;
+
+    // A função de conversão para arquivo tá na pasta Components/Operadoras
+
+    if(auth.user && !isEditing) {
+      const response = await api.createPlans(title, cost, period, franchise, unlimitedApp,
+        unlimitedCall, planType, priority, description, lines, providerLogo, city, provider)
+      console.log(response)
+    }
   }
 
   return (
