@@ -1,8 +1,7 @@
 import { operadoras } from "../../utils/Menus/menuItems."
-import { Box } from "@mui/material"
+import { Box } from "@mui/material";
 
-function Operadoras({setProvider, provider, setProviderLogo, isEditing}) {
-
+function Operadoras({setProvider, provider, setProviderLogo, providerLogo}) {
 
   const getUrlExtension = (url) => {
     return url
@@ -17,7 +16,7 @@ const onImageEdit = async (imgUrl) => {
 
   const response = await fetch(imgUrl);
   const blob = await response.blob();
-  const file = new File([blob], "profileImage." + imgExt, {
+  const file = new File([blob], `${provider.name}` + imgExt, {
     type: blob.type,
   });
 
@@ -27,6 +26,7 @@ const onImageEdit = async (imgUrl) => {
   const handleSets = (operadora) => {
     setProvider(operadora.name)
     setProviderLogo(onImageEdit(operadora.image))
+    console.log(typeof providerLogo)
   }
 
   return (
@@ -46,7 +46,8 @@ const onImageEdit = async (imgUrl) => {
           alignItems: 'center', justifyContent: 'center', background: '#ECECEC', borderRadius: '10px', cursor: 'pointer',
           fontSize: '30px'}}>
         +
-        <input type="file" name="arquivo" style={{display: 'none'}} id="arquivo" />
+        <input type="file" name="arquivo" style={{display: 'none'}} id="arquivo" onChange={(e) => setProviderLogo(e.target.files[0])} />
+        {/* <img src={imageBase64} alt="image Base 64"/> */}
       </label>
     </Box>
   )
