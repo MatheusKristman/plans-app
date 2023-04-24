@@ -30,7 +30,7 @@ const onImageEdit = async (imgUrl) => {
   }
 
   return (
-    <Box sx={{width: '100%', height: '80%', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+    <Box sx={{width: '100%', height: '80%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap'}}>
       {operadoras.map((operadora) => (
         <Box sx={{width: '80px', height: '70px', display: 'flex',
           alignItems: 'center', justifyContent: 'center', background: '#ECECEC', borderRadius: '10px', cursor: 'pointer',
@@ -42,6 +42,12 @@ const onImageEdit = async (imgUrl) => {
           <img src={operadora.image} alt={operadora.alt} style={{width: '100%', height: '100%'}} />
         </Box>
       ))}
+      <label htmlFor="arquivo" style={{width: '80px', height: '70px', display: 'flex',
+          alignItems: 'center', justifyContent: 'center', background: '#ECECEC', borderRadius: '10px', cursor: 'pointer',
+          fontSize: '30px'}}>
+        +
+        <input type="file" name="arquivo" style={{display: 'none'}} id="arquivo" />
+      </label>
     </Box>
   )
 }

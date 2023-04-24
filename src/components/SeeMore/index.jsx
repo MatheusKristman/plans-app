@@ -9,7 +9,7 @@ function SeeMore() {
   return (
     <Box sx={{width: '555px', height: '550px', overflowY: 'auto', position: 'absolute',
       top: '10%', left: '40%', borderRadius: '20px'}}>
-      <Box sx={{width: '100%', height: '1000px', background: 'rgba(255, 255, 255, 1)'}}>
+      <Box sx={{width: '100%', height: '900px', background: 'rgba(255, 255, 255, 1)'}}>
         {/* Header Box */}
           <Box sx={{position: 'relative', width: '100%', height: '20%'}}>
             <img src="./assets/images/modal-figure-lg.png" alt="imagem" />
@@ -21,7 +21,7 @@ function SeeMore() {
             >X
             </button>
             <Box sx={{width: '140px', height: '60px', background: '#fff', display: 'flex', alignItems: 'center',
-              justifyContent: 'center', position: 'absolute', bottom: '-5px', borderRadius: '10px'}}>
+              justifyContent: 'center', position: 'absolute', bottom: '-25px', borderRadius: '10px'}}>
               <Typography variant="h5" fontWeight="bold">Detalhes</Typography>
             </Box>
           </Box>
@@ -73,7 +73,7 @@ function SeeMore() {
                 <Typography variant="h7" fontWeight="bold">Ligações ilimitadas</Typography>
                 <Typography>{planInfo.unlimitedCall === 'true' ? 'Sim' : 'Não'}</Typography>
               </Stack>
-              <Stack sx={{width: '100%', height: '20%', gap: '5%'}}>
+              <Stack sx={{width: '100%', height: '15%', gap: '5%'}}>
                 <Typography variant="h7" fontWeight="bold">Descrição</Typography>
                 <Typography>{planInfo.description}</Typography>
               </Stack>
