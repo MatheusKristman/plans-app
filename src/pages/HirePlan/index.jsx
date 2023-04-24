@@ -45,7 +45,9 @@ function HirePlan() {
               alignItems: 'center', padding: '2%', filter: clientRegisterMenu === true ? 'blur(10px)' : ''}} key={plan._id}>
               <Box sx={{width: '100%', height: '25%', display: 'flex', justifyContent: 'space-between'}}>
                 <Box sx={{width: '20%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                  <img src={plan.providerLogo} alt={plan.provider} />
+                  <img src={`https://planos-backend.onrender.com/assets/${plan.providerLogo}`} alt={plan.provider} style={
+                    {width: '40%', height: '40%'}
+                  } />
                 </Box>
                 <Box sx={{width: '70%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
                   <Typography variant='h5' color="#D40066" fontWeight="bold">

@@ -66,7 +66,7 @@ function CompletePlansCard() {
                   border: '2px solid #D40066', background: 'transparent',
                   color: '#D40066', fontWeight: 'medium', cursor: 'pointer'}}
                   onClick={() => handleSeeMore(plano)}
-                  disabled={!seeMore ? '' : 'true'}
+                  disabled={seeMore}
                 >Ver Detalhes</button>
                 <button style={{width: '120px', height: '40px', borderRadius: '10px',
                   border: '2px solid #D40066', background: 'transparent',

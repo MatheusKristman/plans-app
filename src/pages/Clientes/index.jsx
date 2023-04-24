@@ -5,6 +5,7 @@ import { useApi } from "../../hooks/useApi"
 import { AuthContext } from "../../contexts/Auth/AuthContext"
 import { ClientsCard } from "../../components"
 import { PlansContext } from "../../contexts/Plans/PlansContext"
+import Loading from "../../components/Loading"
 
 function Clientes() {
   const [clients, setClients] = useState([])
@@ -12,6 +13,7 @@ function Clientes() {
   const auth = useContext(AuthContext)
   const {loading, setLoading} = useContext(PlansContext)
   const api = useApi();
+
 
   useEffect(() => {
     const handleGetClients = async () => {
@@ -61,7 +63,7 @@ function Clientes() {
           </Stack>
         </Stack>
         <Box sx={{width: '100%', height: '500px'}}>
-          {loading === true ? <div>loading...</div> : <ClientsCard clients={clients}/>}
+          {loading === true ? <Loading /> : <ClientsCard clients={clients}/>}
         </Box>
       </Box>
     </>

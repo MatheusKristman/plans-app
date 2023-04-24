@@ -53,15 +53,15 @@ function AddNewPlan({menuTitle}) {
   return (
     <form onSubmit={handleSubmit} style={{ width: '410px', height: '580px', overflowY: 'auto', position: 'absolute',
       top: '10%', left: '40%', borderRadius: '12px', boxShadow: '5px 5px 10px rgba(0,0,0,0.4)' }}
-      >
-      <Stack sx={{ width: '100%', height: '1500px'}}>
+      encType="multipart/form-data">
+      <Stack sx={{ width: '100%', height: menuTitle === 'Editar Plano' ? '1300px' : '1800px'}}>
         {/* Caixa da Imagem */}
 
         <Box sx={{position: 'relative', width: '100%', height: '13%'}}>
           <img src="./assets/images/modal-figure.png" className="main-image" />
           <button
-            style={{position: 'absolute', right: '20px', top: '20px', width: '25px',
-              height: '25px', borderRadius: '5px', cursor: 'pointer'}}
+            style={{position: 'absolute', right: '20px', top: '20px', width: '35px',
+              height: '35px', borderRadius: '5px', cursor: 'pointer', border: 'none'}}
               onClick={handleMenus}
           >
               X
@@ -80,7 +80,7 @@ function AddNewPlan({menuTitle}) {
         <Box sx={{ width: '100%', height: '100%', background: 'rgba(255,255,255,0.7)', padding: '3%' }}>
           {/* Caixa das operadoras */}
 
-            <Box sx={{ width: '100%', height: '10%', display: isEditing ? 'none' : 'flex',
+            <Box sx={{ width: '100%', height: '14%', display: isEditing ? 'none' : 'flex',
               gap: '2%', flexDirection: 'column', justifyContent: 'center'
             }}>
               <Typography variant="h7" fontWeight="bold">Operadora</Typography>
@@ -94,7 +94,7 @@ function AddNewPlan({menuTitle}) {
           {/* Fim da caixa das cidades */}
 
           {/* Caixa dos inputs */}
-            <Box sx={{width: '100%', height: '30%', display: 'flex', flexDirection: 'column', gap: '2%'}}>
+            <Box sx={{width: '100%', height: menuTitle === 'Editar Plano' ? '30%' : '23%', display: 'flex', flexDirection: 'column', gap: '2%'}}>
               <NewPlanInputs inputDays={inputDays} cost={cost} setInputDays={setInputDays}
                 setCost={setCost} title={title} setTitle={setTitle}
                 period={period} setPeriod={setPeriod} franchise={franchise} setFranchise={setFranchise}
