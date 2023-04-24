@@ -4,7 +4,7 @@ import { PlansContext } from "../../contexts/Plans/PlansContext"
 
 function SeeMore() {
 
-  const {planInfo, handleEditMenu, handleSeeMore} = useContext(PlansContext)
+  const {planInfo, handleEditMenu, handleSeeMore, toFile} = useContext(PlansContext)
 
   return (
     <Box sx={{width: '555px', height: '550px', overflowY: 'auto', position: 'absolute',
@@ -88,7 +88,9 @@ function SeeMore() {
                 onClick={() => handleEditMenu(planInfo)}
               >Editar</button>
               <button style={{width: '150px', height: '40px', border: '2px solid #D40066',
-                color: '#D40066', fontSize: '18px', borderRadius: '8px', cursor: 'pointer', background: 'none'}}>Arquivar</button>
+                color: '#D40066', fontSize: '18px', borderRadius: '8px', cursor: 'pointer', background: 'none'}}
+                onClick={() => {toFile(planInfo)}}
+              >Arquivar</button>
             </Box>
         {/* Footer Box */}
       </Box>

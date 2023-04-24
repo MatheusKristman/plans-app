@@ -1,11 +1,12 @@
 import { Box, Stack, Typography } from "@mui/material"
 import { CompletePlansCard, ArchivedPlansCard } from "../../components"
 import { checkboxGroup } from "../../utils/Menus/menuItems."
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { PlansContext } from "../../contexts/Plans/PlansContext";
+import Loading from "../../components/Loading";
 
 function Planos() {
-
+  const [hide, setHide] = useState(false);
   const {allPlans, loading} = useContext(PlansContext);
 
   return (
@@ -44,7 +45,7 @@ function Planos() {
             </Box>
           </Stack>
         </Stack>
-        {loading === true ? <div>loading...</div> : <Box sx={{width: '100%', height: '500px'}}>
+        {loading === true ? <Loading /> : <Box sx={{width: '100%', height: '500px'}}>
           <CompletePlansCard />
         </Box>}
 
@@ -57,11 +58,14 @@ function Planos() {
           <Typography>
             Planos arquivados: {allPlans?.filter(plans => plans.archived  ).length}
           </Typography>
-          <Stack sx={{ width: '40%', height: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'end' }}>
-            Esconder
+          <Stack sx={{ width: '40%', height: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'end', cursor: 'pointer'}}
+          >
+            <Typography variant="h7" onClick={() => setHide(!hide)}>
+              {hide === true ? 'Esconder' : 'Mostrar'}
+            </Typography>
           </Stack>
         </Stack>
-        {loading === true ? <div>loading...</div> : <Box sx={{width: '100%', height: '500px'}}>
+        {loading === true ? <Loading /> : <Box sx={{width: '100%', height: '500px', display: hide === true ? 'block' : 'none'}}>
           <ArchivedPlansCard />
         </Box>}
       </Box>

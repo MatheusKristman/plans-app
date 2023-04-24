@@ -89,7 +89,10 @@ function ClientRegister({clientRegisterMenu, setClientRegisterMenu, planInfos}) 
               Nome Completo
             </Typography>
             <input type="text" style={{width: '100%', height: '50px', borderRadius: '8px',
-              paddingLeft: '2%', fontSize: '16px', border: '2px solid lightGray'}} onChange={(e) => setName(e.target.value)} />
+              paddingLeft: '2%', fontSize: '16px', border: '2px solid lightGray'}} onChange={(e) => setName(e.target.value)}
+              required
+              autoComplete="off"
+            />
           </Stack>
           <Box sx={{display: 'flex'}}>
             <Stack gap="4px" sx={{width: '50%'}}>
@@ -100,6 +103,7 @@ function ClientRegister({clientRegisterMenu, setClientRegisterMenu, planInfos}) 
                 paddingLeft: '4%', fontSize: '16px', border: !error ? '2px solid lightGray' : '2px solid red'}}
                 onChange={(e) => setCpf(e.target.value)}
                 value={cpf}
+                required
                 />
             </Stack>
             <Stack gap="4px" sx={{width: '50%'}}>
@@ -125,7 +129,7 @@ function ClientRegister({clientRegisterMenu, setClientRegisterMenu, planInfos}) 
               paddingLeft: '2%', fontSize: '16px', border: '2px solid lightGray'}} onChange={(e) => setCel(e.target.value)} />
           </Stack>
           <label style={{width: '100%', height: '10%', display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
-            <input type="checkbox" name="Authorization" id="" style={{accentColor: '#D40066'}} />
+            <input type="checkbox" name="Authorization" id="" style={{accentColor: '#D40066'}} required />
             <Typography variant="h7" width="90%">Autorizo a comunicação referente ao meu pedido e confirmação dos dados para contratação do plano.</Typography>
           </label>
           <button style={{width: '100%', height: '50px', background: '#D40066', color: '#fff', fontSize: '16px',
