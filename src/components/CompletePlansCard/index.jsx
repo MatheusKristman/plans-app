@@ -33,7 +33,7 @@ function CompletePlansCard() {
               alignItems: 'center', justifyContent: 'start', gap: '3%'
             }}
           >
-            <img src={`https://planos-backend.onrender.com/assets/${plano.providerLogo}`} alt={plano.provider}/>
+            <img src={`https://planos-backend.onrender.com/assets/${plano.providerLogo}`} style={{maxWidth: '100px', maxHeight: '100px'}} alt={plano.provider}/>
             <Typography variant="h7" fontWeight="medium">
               {plano.title}
             </Typography>

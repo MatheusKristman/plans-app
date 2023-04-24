@@ -39,7 +39,9 @@ function SeeMore() {
               </Stack>
               <Stack sx={{width: '50%', height: '10%', gap: '5%'}}>
                 <Typography variant="h7" fontWeight="bold">Operadora</Typography>
-                <img src={planInfo.providerLogo} alt="logo" />
+                <Box sx={{width: '30%', height: '90%'}}>
+                  <img src={`https://planos-backend.onrender.com/assets/${planInfo.providerLogo}`} alt="logo" style={{width: '100%', height: '100%'}} />
+                </Box>
               </Stack>
               <Stack sx={{width: '40%', height: '10%', gap: '5%', alignItems: 'center'}}>
                 <Typography variant="h7" fontWeight="bold">Contatos</Typography>
