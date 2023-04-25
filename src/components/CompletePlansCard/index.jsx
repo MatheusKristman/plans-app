@@ -7,7 +7,7 @@ function CompletePlansCard() {
   const [itemsPerPage, setItemsPerPage] = useState(3);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const {allPlans, search , editMenu, seeMore, handleSeeMore, handleEditMenu, toFile} = useContext(PlansContext)
+  const {allPlans, search , editMenu, seeMore, handleSeeMore, handleEditMenu, toFile, isEditing} = useContext(PlansContext)
 
   let unarchivedPlans = allPlans?.filter(plan => !plan.archived)
   let filteredPlans = search.length > 0 ? allPlans?.filter(plan => plan.title.includes(search)) : []
@@ -135,7 +135,7 @@ function CompletePlansCard() {
             </Box>
         </Box>
       )))}
-      <Box sx={{width: '100%', height: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1%'}}>
+      <Box sx={{width: '100%', height: '50px', display: isEditing ? 'none' : 'flex', alignItems: 'center', justifyContent: 'center', gap: '1%'}}>
         {Array.from(Array(pages), (item, index) => {
           return <button value={index}
             key={index}

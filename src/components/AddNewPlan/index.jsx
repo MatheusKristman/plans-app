@@ -63,7 +63,7 @@ function AddNewPlan({menuTitle}) {
     <form onSubmit={handleSubmit} style={{ width: '410px', height: '580px', overflowY: 'auto', position: 'absolute',
       top: '10%', left: '40%', borderRadius: '12px', boxShadow: '5px 5px 10px rgba(0,0,0,0.4)' }}
       encType="multipart/form-data">
-      <Stack sx={{ width: '100%', height: menuTitle === 'Editar Plano' ? '1300px' : '1800px'}}>
+      <Stack sx={{ width: '100%', height: menuTitle === 'Editar Plano' ? '1200px' : '1500px'}}>
         {/* Caixa da Imagem */}
 
         <Box sx={{position: 'relative', width: '100%', height: '13%'}}>
@@ -86,10 +86,10 @@ function AddNewPlan({menuTitle}) {
         {/* Fim da caixa da imagem */}
 
         {/* Corpo da página */}
-        <Box sx={{ width: '100%', height: '100%', background: 'rgba(255,255,255,0.7)', padding: '3%' }}>
+        <Box sx={{ width: '100%', height: '100%', background: 'rgba(255,255,255,0.9)', padding: '3%' }}>
           {/* Caixa das operadoras */}
 
-            <Box sx={{ width: '100%', height: '14%', display: isEditing ? 'none' : 'flex',
+            <Box sx={{ width: '100%', height: '15%', display: isEditing ? 'none' : 'flex',
               gap: '2%', flexDirection: 'column', justifyContent: 'center'
             }}>
               <Typography variant="h7" fontWeight="bold">Operadora</Typography>
@@ -99,7 +99,7 @@ function AddNewPlan({menuTitle}) {
           {/* Fim da caixa das operadoras */}
 
           {/* Caixa das cidades */}
-          <Stack sx={{width: '100%', height: '10%', alignItems: 'center', justifyContent: 'space-evenly'}}>
+          <Stack sx={{width: '100%', height: '10%', alignItems: 'center', justifyContent: 'space-evenly', display: isEditing ? 'none' : 'flex'}}>
             <Box sx={{width: '100%', height: '40%'}}>
               <States onChange={setSelectedUf} />
             </Box>
@@ -110,7 +110,7 @@ function AddNewPlan({menuTitle}) {
           {/* Fim da caixa das cidades */}
 
           {/* Caixa dos inputs */}
-            <Box sx={{width: '100%', height: menuTitle === 'Editar Plano' ? '30%' : '23%', display: 'flex', flexDirection: 'column', gap: '2%'}}>
+            <Box sx={{width: '100%', height: menuTitle === 'Editar Plano' ? '35%' : '24%', display: 'flex', flexDirection: 'column', gap: '2%'}}>
               <NewPlanInputs inputDays={inputDays} cost={cost} setInputDays={setInputDays}
                 setCost={setCost} title={title} setTitle={setTitle}
                 period={period} setPeriod={setPeriod} franchise={franchise} setFranchise={setFranchise}
@@ -119,14 +119,14 @@ function AddNewPlan({menuTitle}) {
           {/* Fim da caixa dos inputs */}
 
           {/* Caixa dos apps ilimitados */}
-            <Box sx={{width: '100%', height: menuTitle === 'Editar Plano' ? '15%' : '10%', display: 'flex', flexDirection: 'column', gap: '5%'}}>
+            <Box sx={{width: '100%', height: menuTitle === 'Editar Plano' ? '15%' : '12%', display: 'flex', flexDirection: 'column', gap: '5%'}}>
               <Typography variant="h7" fontWeight="bold">Apps ilimitados</Typography>
               <UnlimitedApps unlimitedApp={unlimitedApp} setUnlimitedApp={setUnlimitedApp} />
             </Box>
           {/* Fim da caixa dos apps ilimitados */}
 
           {/* Caixa dos inputs finais */}
-            <Box sx={{width: '100%', height: menuTitle === 'Editar Plano' ? '40%': '25%', display: 'flex', flexDirection: 'column', gap: '2%'}}>
+            <Box sx={{width: '100%', height: menuTitle === 'Editar Plano' ? '45%': '35%', display: 'flex', flexDirection: 'column', gap: '2%'}}>
               <Typography variant="h7" fontWeight="bold" mt="10px">Ligações ilimitadas</Typography>
               <NewPlanFinalInputs setUnlimitedCall={setUnlimitedCall} setPlanType={setPlanType} setPriority={setPriority}
                 setDescription={setDescription}
