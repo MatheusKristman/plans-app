@@ -33,7 +33,8 @@ function CompletePlansCard() {
               alignItems: 'center', justifyContent: 'start', gap: '3%'
             }}
           >
-            <img src={`https://planos-backend.onrender.com/assets/${plano.providerLogo}`} style={{maxWidth: '100px', maxHeight: '100px'}} alt={plano.provider}/>
+            {planos.providerLogo ? (<img src={`https://planos-backend.onrender.com/assets/${plano.providerLogo}`} style={{maxWidth: '100px', maxHeight: '100px'}} alt={plano.provider}/>):
+            (<img src='./assets/icons/nao-ha-fotos.png' style={{maxWidth: '100px', maxHeight: '100px'}}/>)}
             <Typography variant="h7" fontWeight="medium">
               {plano.title}
             </Typography>

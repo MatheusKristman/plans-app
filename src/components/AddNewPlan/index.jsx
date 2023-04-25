@@ -1,23 +1,23 @@
 import { Box, Stack, Typography } from "@mui/material"
-import { NewPlanFinalInputs, NewPlanInputs, Operadoras, UnlimitedApps, Cityes } from '../index'
+import { NewPlanFinalInputs, NewPlanInputs, Operadoras, UnlimitedApps, Cities, States } from '../index'
 import { useContext, useState } from "react"
 import { AuthContext } from "../../contexts/Auth/AuthContext";
 import { useApi } from "../../hooks/useApi";
-import { useNavigate } from "react-router-dom";
 import { PlansContext } from "../../contexts/Plans/PlansContext";
 
 function AddNewPlan({menuTitle}) {
+  const [selectedUf, setSelectedUf] = useState('')
   const [provider, setProvider] = useState('');
   const [cost, setCost] = useState('');
   const [title, setTitle] = useState('');
   const [inputDays, setInputDays] = useState('');
   const [unlimitedApp, setUnlimitedApp] = useState([])
-  const [city, setCity] = useState('Rio de Janeiro');
+  const [city, setCity] = useState('');
   const [period, setPeriod] = useState('');
-  const [franchise, setFranchise] = useState('25');
+  const [franchise, setFranchise] = useState('');
   const [unlimitedCall, setUnlimitedCall] = useState(false);
-  const [planType, setPlanType] = useState('Controle');
-  const [priority, setPriority] = useState('1');
+  const [planType, setPlanType] = useState('');
+  const [priority, setPriority] = useState('');
   const [description, setDescription] = useState('');
   const [providerLogo, setProviderLogo] = useState([]);
   const lines = 1;
@@ -43,13 +43,6 @@ function AddNewPlan({menuTitle}) {
         setLoading(false)
       return
     }
-
-    // Matheus, precisa fazer a conversão da imagem para um arquivo e enviar ela para o banco de dados.
-    // Eu adicionei uma seção onde o cliente consegue fazer o upload de uma imagem para o banco caso ele queira adicionar
-    // alguma nova operadora, alguma regional.
-    // Falta apenas isso pra conseguir criar o plano através do botão AddNewPlan;
-
-    // A função de conversão para arquivo tá na pasta Components/Operadoras
 
     if(auth.user && !isEditing) {
       const response = await api.createPlans(title, cost, period, franchise, unlimitedApp,
@@ -106,7 +99,14 @@ function AddNewPlan({menuTitle}) {
           {/* Fim da caixa das operadoras */}
 
           {/* Caixa das cidades */}
-            <Cityes setCity={setCity} />
+          <Stack sx={{width: '100%', height: '10%', alignItems: 'center', justifyContent: 'space-evenly'}}>
+            <Box sx={{width: '100%', height: '40%'}}>
+              <States onChange={setSelectedUf} />
+            </Box>
+            <Box sx={{width: '100%', height: '40%'}}>
+              <Cities setCity={setCity} uf={selectedUf} city={city} />
+            </Box>
+          </Stack>
           {/* Fim da caixa das cidades */}
 
           {/* Caixa dos inputs */}
@@ -119,14 +119,14 @@ function AddNewPlan({menuTitle}) {
           {/* Fim da caixa dos inputs */}
 
           {/* Caixa dos apps ilimitados */}
-            <Box sx={{width: '100%', height: '15%', display: 'flex', flexDirection: 'column', gap: '5%'}}>
+            <Box sx={{width: '100%', height: menuTitle === 'Editar Plano' ? '15%' : '10%', display: 'flex', flexDirection: 'column', gap: '5%'}}>
               <Typography variant="h7" fontWeight="bold">Apps ilimitados</Typography>
               <UnlimitedApps unlimitedApp={unlimitedApp} setUnlimitedApp={setUnlimitedApp} />
             </Box>
           {/* Fim da caixa dos apps ilimitados */}
 
           {/* Caixa dos inputs finais */}
-            <Box sx={{width: '100%', height: '40%', display: 'flex', flexDirection: 'column', gap: '2%'}}>
+            <Box sx={{width: '100%', height: menuTitle === 'Editar Plano' ? '40%': '25%', display: 'flex', flexDirection: 'column', gap: '2%'}}>
               <Typography variant="h7" fontWeight="bold" mt="10px">Ligações ilimitadas</Typography>
               <NewPlanFinalInputs setUnlimitedCall={setUnlimitedCall} setPlanType={setPlanType} setPriority={setPriority}
                 setDescription={setDescription}

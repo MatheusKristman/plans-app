@@ -11,12 +11,12 @@ function Operadoras({setProvider, provider, setProviderLogo, providerLogo}) {
       .trim();
   }
 
-const onImageEdit = async (imgUrl) => {
+const onImageEdit = async (imgUrl, operadora) => {
   let imgExt = getUrlExtension(imgUrl);
 
   const response = await fetch(imgUrl);
   const blob = await response.blob();
-  const file = new File([blob], `${provider.name}` + imgExt, {
+  const file = new File([blob], `${operadora?.name}` + imgExt, {
     type: blob.type,
   });
 
@@ -25,7 +25,7 @@ const onImageEdit = async (imgUrl) => {
 
   const handleSets = (operadora) => {
     setProvider(operadora.name)
-    setProviderLogo(onImageEdit(operadora.image))
+    setProviderLogo(onImageEdit(operadora.image, operadora))
     console.log(typeof providerLogo)
   }
 

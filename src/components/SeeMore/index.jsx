@@ -6,6 +6,8 @@ function SeeMore() {
 
   const {planInfo, handleEditMenu, handleSeeMore, toFile} = useContext(PlansContext)
 
+  console.log(planInfo)
+
   return (
     <Box sx={{width: '555px', height: '550px', overflowY: 'auto', position: 'absolute',
       top: '10%', left: '40%', borderRadius: '20px'}}>

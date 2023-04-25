@@ -23,6 +23,42 @@ export const franchisesNames = [
     id: '006',
     name: '30',
   },
+  {
+    id: '007',
+    name: '35',
+  },
+  {
+    id: '008',
+    name: '40',
+  },
+  {
+    id: '009',
+    name: '45',
+  },
+  {
+    id: '010',
+    name: '50',
+  },
+  {
+    id: '011',
+    name: '60',
+  },
+  {
+    id: '012',
+    name: '70',
+  },
+  {
+    id: '013',
+    name: '80',
+  },
+  {
+    id: '014',
+    name: '90',
+  },
+  {
+    id: '015',
+    name: '100',
+  },
 ]
 
 export const franchiseAtLeast = [

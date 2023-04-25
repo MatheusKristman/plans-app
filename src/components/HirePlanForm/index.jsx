@@ -1,5 +1,5 @@
 import { Stack, Typography } from '@mui/material';
-import { mockCityes } from '../../utils/Cityes/cityes';
+import { mockCities } from '../../utils/Cities/cities';
 import { linesLoop } from '../../utils/Lines/Lines';
 import { pricesLoop } from '../../utils/Price/Price';
 import { franchiseAtLeast } from '../../utils/Franchises/franchises';
@@ -57,7 +57,7 @@ function HirePlanForm({clientRegisterMenu}) {
             <select name="city" id="city" style={{width: '100%', height: '50px', borderRadius: '5px', cursor: 'pointer'}}
               onChange={(e) => setCity(e.target.value)}
             >
-              {mockCityes.map(city => (
+              {mockCities.map(city => (
                 <option key={city.id} value={city.name}>
                   {city.name}
                 </option>
