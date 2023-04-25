@@ -1,17 +1,19 @@
 import { unlimitedApps } from '../../utils/UnlimitedApps/unlimitedApps'
 import { Box } from '@mui/material'
+import { useState } from 'react';
 
 function UnlimitedApps({unlimitedApp, setUnlimitedApp}) {
+
+  const [removedApps, setRemovedApps] = useState([])
 
   function verifyUnlimitedApp(app) {
     if(unlimitedApp.includes(app.name)) {
       let appIndex = unlimitedApp.indexOf(app.name)
-      unlimitedApp.splice(appIndex, 1)
+      setRemovedApps(removedApps.concat(unlimitedApp.splice(appIndex, 1)));
       return
     }
     setUnlimitedApp([...unlimitedApp, app.name])
   }
-
   return (
     <Box sx={{width: '100%', height: '80%', display: 'flex', flexFlow: 'row wrap',
       alignItems: 'center', justifyContent: 'space-around'}}>

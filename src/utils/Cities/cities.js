@@ -1,4 +1,4 @@
-export const mockCityes = [
+export const mockCities = [
   {
     id: '001',
     name: 'Rio de Janeiro',

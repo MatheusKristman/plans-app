@@ -7,7 +7,7 @@ function CompletePlansCard() {
   const [itemsPerPage, setItemsPerPage] = useState(3);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const {allPlans, search , editMenu, seeMore, handleSeeMore, handleEditMenu, toFile} = useContext(PlansContext)
+  const {allPlans, search , editMenu, seeMore, handleSeeMore, handleEditMenu, toFile, isEditing} = useContext(PlansContext)
 
   let unarchivedPlans = allPlans?.filter(plan => !plan.archived)
   let filteredPlans = search.length > 0 ? allPlans?.filter(plan => plan.title.includes(search)) : []
@@ -33,7 +33,8 @@ function CompletePlansCard() {
               alignItems: 'center', justifyContent: 'start', gap: '3%'
             }}
           >
-            <img src={`https://planos-backend.onrender.com/assets/${plano.providerLogo}`} style={{maxWidth: '100px', maxHeight: '100px'}} alt={plano.provider}/>
+            {planos.providerLogo ? (<img src={`https://planos-backend.onrender.com/assets/${plano.providerLogo}`} style={{maxWidth: '100px', maxHeight: '100px'}} alt={plano.provider}/>):
+            (<img src='./assets/icons/nao-ha-fotos.png' style={{maxWidth: '100px', maxHeight: '100px'}}/>)}
             <Typography variant="h7" fontWeight="medium">
               {plano.title}
             </Typography>
@@ -134,7 +135,7 @@ function CompletePlansCard() {
             </Box>
         </Box>
       )))}
-      <Box sx={{width: '100%', height: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1%'}}>
+      <Box sx={{width: '100%', height: '50px', display: isEditing ? 'none' : 'flex', alignItems: 'center', justifyContent: 'center', gap: '1%'}}>
         {Array.from(Array(pages), (item, index) => {
           return <button value={index}
             key={index}

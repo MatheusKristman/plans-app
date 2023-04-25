@@ -6,7 +6,7 @@ import { priorityes } from '../../utils/Priority/piority'
 function NewPlanFinalInputs({setUnlimitedCall, setPlanType, setPriority, setDescription}) {
   return (
     <>
-      <Box sx={{width: '100%', height: '10%', display: 'flex', alignItems: 'center'}}>
+      <Box sx={{width: '100%', height: '8%', display: 'flex', alignItems: 'center'}}>
         <label style={{width: '20%', display: 'flex', alignItems: 'center', justifyContent: 'space-evenly'}}>
           <input type="radio" name="unlimited-calls" id="sim" onChange={(e) => setUnlimitedCall(e.target.value)} value={true}/>
           Sim
@@ -16,7 +16,7 @@ function NewPlanFinalInputs({setUnlimitedCall, setPlanType, setPriority, setDesc
           Não
         </label>
       </Box>
-      <Box sx={{width: '100%', height: '80%', display: 'flex', justifyContent: 'center', flexDirection: 'column', gap: '3%'}}>
+      <Box sx={{width: '100%', height: '90%', display: 'flex', justifyContent: 'center', flexDirection: 'column', gap: '3%'}}>
         <label>
           <Typography variant='h7' fontWeight='bold'>Tipo do plano</Typography>
         </label>

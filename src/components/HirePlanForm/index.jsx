@@ -1,5 +1,5 @@
 import { Stack, Typography } from '@mui/material';
-import { mockCityes } from '../../utils/Cityes/cityes';
+import { mockCities } from '../../utils/Cities/cities';
 import { linesLoop } from '../../utils/Lines/Lines';
 import { pricesLoop } from '../../utils/Price/Price';
 import { franchiseAtLeast } from '../../utils/Franchises/franchises';
@@ -7,15 +7,18 @@ import { operadoras } from '../../utils/Menus/menuItems.';
 import { planTypes } from '../../utils/PlanTypes/planTypes';
 import { unlimitedApps } from '../../utils/UnlimitedApps/unlimitedApps';
 import { useState } from 'react';
+import States from '../States';
+import Cities from '../Cities';
 
 function HirePlanForm({clientRegisterMenu}) {
-  const [city, setCity] = useState('Rio de Janeiro');
+  const [city, setCity] = useState('');
   const [lines, setLines] = useState('');
   const [cost, setCost] = useState('');
-  const [franchise, setFranchise] = useState('5');
+  const [franchise, setFranchise] = useState('');
   const [provider, setProvider] = useState([]);
   const [planType, setPlanType] = useState([]);
   const [unlimitedApp, setUnlimitedApp] = useState([]);
+  const [selectedUf, setSelectedUf] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -54,15 +57,8 @@ function HirePlanForm({clientRegisterMenu}) {
           filter: clientRegisterMenu === true ? 'blur(10px)' : ''}} onSubmit={handleSubmit}>
           <Stack sx={{width: '100%', height: '8%', borderBottom: '2px solid lightGray', justifyContent: 'space-evenly'}}>
             <Typography variant='h6'>Cidade</Typography>
-            <select name="city" id="city" style={{width: '100%', height: '50px', borderRadius: '5px', cursor: 'pointer'}}
-              onChange={(e) => setCity(e.target.value)}
-            >
-              {mockCityes.map(city => (
-                <option key={city.id} value={city.name}>
-                  {city.name}
-                </option>
-              ))}
-            </select>
+            <States onChange={setSelectedUf} />
+            <Cities uf={selectedUf} city={city} setCity={setCity}/>
           </Stack>
           <Stack sx={{width: '100%', height: '10%', borderBottom: '2px solid lightGray', justifyContent: 'space-evenly'}}>
             <Typography variant='h6'>Numero de Linhas</Typography>

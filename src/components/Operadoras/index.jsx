@@ -11,22 +11,28 @@ function Operadoras({setProvider, provider, setProviderLogo, providerLogo}) {
       .trim();
   }
 
-const onImageEdit = async (imgUrl) => {
+const onImageEdit = async (imgUrl, operadora) => {
   let imgExt = getUrlExtension(imgUrl);
 
   const response = await fetch(imgUrl);
   const blob = await response.blob();
-  const file = new File([blob], `${provider.name}` + imgExt, {
+  const file = new File([blob], `${operadora?.name}` + imgExt, {
     type: blob.type,
   });
 
   return file
 }
 
+  // (e) => setProviderLogo(e.target.files[0])
+
   const handleSets = (operadora) => {
     setProvider(operadora.name)
     setProviderLogo(onImageEdit(operadora.image))
-    console.log(typeof providerLogo)
+  }
+
+  const handleUploadedImage = (e) => {
+    setProvider(e.target.files[0].name)
+    setProviderLogo(e.target.files[0])
   }
 
   return (
@@ -46,7 +52,7 @@ const onImageEdit = async (imgUrl) => {
           alignItems: 'center', justifyContent: 'center', background: '#ECECEC', borderRadius: '10px', cursor: 'pointer',
           fontSize: '30px'}}>
         +
-        <input type="file" name="arquivo" style={{display: 'none'}} id="arquivo" onChange={(e) => setProviderLogo(e.target.files[0])} />
+        <input type="file" name="arquivo" style={{display: 'none'}} id="arquivo" onChange={(e) => handleUploadedImage(e)} />
         {/* <img src={imageBase64} alt="image Base 64"/> */}
       </label>
     </Box>

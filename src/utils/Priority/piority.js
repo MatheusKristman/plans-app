@@ -19,4 +19,24 @@ export const priorityes = [
     id: '005',
     name: '5'
   },
+  {
+    id: '006',
+    name: '6'
+  },
+  {
+    id: '007',
+    name: '7'
+  },
+  {
+    id: '008',
+    name: '8'
+  },
+  {
+    id: '009',
+    name: '9'
+  },
+  {
+    id: '010',
+    name: '10'
+  },
 ]

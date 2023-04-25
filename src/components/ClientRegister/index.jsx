@@ -99,7 +99,7 @@ function ClientRegister({clientRegisterMenu, setClientRegisterMenu, planInfos}) 
               <Typography variant="h7" fontWeight="medium">
                 {!error ? 'CPF' : 'CPF Inválido'}
               </Typography>
-              <input type="text" style={{width: '95%', height: '50px', borderRadius: '8px',
+              <input type="text" maxLength='11' style={{width: '95%', height: '50px', borderRadius: '8px',
                 paddingLeft: '4%', fontSize: '16px', border: !error ? '2px solid lightGray' : '2px solid red'}}
                 onChange={(e) => setCpf(e.target.value)}
                 value={cpf}
@@ -123,9 +123,9 @@ function ClientRegister({clientRegisterMenu, setClientRegisterMenu, planInfos}) 
           </Stack>
           <Stack gap="4px">
             <Typography variant="h7" fontWeight="medium">
-              Celular
+              Celular + DDD
             </Typography>
-            <input type="text" style={{width: '100%', height: '50px', borderRadius: '8px',
+            <input type="tel" maxLength="11" style={{width: '100%', height: '50px', borderRadius: '8px',
               paddingLeft: '2%', fontSize: '16px', border: '2px solid lightGray'}} onChange={(e) => setCel(e.target.value)} />
           </Stack>
           <label style={{width: '100%', height: '10%', display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
