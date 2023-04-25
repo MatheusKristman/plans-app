@@ -3,10 +3,11 @@ import { useContext, useState } from "react"
 
 import {AddNewPlan, SimplePlansCard} from '../index'
 import { PlansContext } from "../../contexts/Plans/PlansContext";
+import Loading from "../Loading";
 
 function SimplePlans() {
 
-  const {allPlans, loading, plansMenu, editMenu, setPlansMenu, handleNewPlan} = useContext(PlansContext)
+  const {allPlans, loading, plansMenu, handleNewPlan} = useContext(PlansContext)
 
   return (
     <>
@@ -32,7 +33,7 @@ function SimplePlans() {
             Novo Plano
           </Button>
         </Stack>
-        {loading === true ? <div>loading...</div> : <SimplePlansCard />}
+        {loading === true ? <Loading /> : <SimplePlansCard />}
       </Box>
       {
         plansMenu && (<AddNewPlan menuTitle="Novo Plano" />)

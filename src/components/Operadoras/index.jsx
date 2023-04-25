@@ -23,10 +23,16 @@ const onImageEdit = async (imgUrl, operadora) => {
   return file
 }
 
+  // (e) => setProviderLogo(e.target.files[0])
+
   const handleSets = (operadora) => {
     setProvider(operadora.name)
-    setProviderLogo(onImageEdit(operadora.image, operadora))
-    console.log(typeof providerLogo)
+    setProviderLogo(onImageEdit(operadora.image))
+  }
+
+  const handleUploadedImage = (e) => {
+    setProvider(e.target.files[0].name)
+    setProviderLogo(e.target.files[0])
   }
 
   return (
@@ -46,7 +52,7 @@ const onImageEdit = async (imgUrl, operadora) => {
           alignItems: 'center', justifyContent: 'center', background: '#ECECEC', borderRadius: '10px', cursor: 'pointer',
           fontSize: '30px'}}>
         +
-        <input type="file" name="arquivo" style={{display: 'none'}} id="arquivo" onChange={(e) => setProviderLogo(e.target.files[0])} />
+        <input type="file" name="arquivo" style={{display: 'none'}} id="arquivo" onChange={(e) => handleUploadedImage(e)} />
         {/* <img src={imageBase64} alt="image Base 64"/> */}
       </label>
     </Box>

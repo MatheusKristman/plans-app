@@ -45,17 +45,12 @@ function AddNewPlan({menuTitle}) {
     }
 
     if(auth.user && !isEditing) {
+      setLoading(true)
       const response = await api.createPlans(title, cost, period, franchise, unlimitedApp,
         unlimitedCall, planType, priority, description, lines, providerLogo, city, provider)
-        .then((response) => {
-          console.log(response)
-        }).catch((err) => {
-          if(err.response) {
-            console.log(err.response)
-          }else {
-            console.log("Erro: BD offline")
-          }
-        })
+        // setAllPlans(response)
+        setPlansMenu(!plansMenu)
+        setLoading(false);
     }
   }
 

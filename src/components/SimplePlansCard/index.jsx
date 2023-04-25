@@ -19,9 +19,8 @@ function SimplePlansCard() {
 
   return (
     <>
-      {loading && <div>loading...</div>}
       {search.length > 0 ? (
-        filteredPlans.map((plano) => (
+        filteredPlans?.map((plano) => (
           <Box
             key={plano.title}
             sx={{

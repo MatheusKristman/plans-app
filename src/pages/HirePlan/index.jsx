@@ -46,7 +46,7 @@ function HirePlan() {
               <Box sx={{width: '100%', height: '25%', display: 'flex', justifyContent: 'space-between'}}>
                 <Box sx={{width: '20%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                   <img src={`https://planos-backend.onrender.com/assets/${plan.providerLogo}`} alt={plan.provider} style={
-                    {width: '40%', height: '40%'}
+                    {width: '30%', height: '90%'}
                   } />
                 </Box>
                 <Box sx={{width: '70%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>

@@ -42,8 +42,8 @@ export const useApi = () => ({
     formData.append("city", city);
     const resposta = await providerLogo;
     formData.append("providerLogo", resposta);
-
     const response = await api.post('plan/new', formData)
+
     return response.data
   },
 
