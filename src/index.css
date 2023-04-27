@@ -73,6 +73,14 @@
     animation: fadeIn 0.2s ease 0.2s forwards;
 }
 
+.filter-btn-active {
+    animation: filterBtnIn 0.3s ease-in forwards;
+}
+
+.filter-btn-desactive {
+    animation: filterBtnOut 0.3s ease-in forwards;
+}
+
 @media screen and (max-width: 900px) {
     .container {
         flex-flow: column-reverse;
@@ -131,5 +139,29 @@
     to {
         opacity: 0;
         transform: translateY(-100px) translateX(-50%);
+    }
+}
+
+@keyframes filterBtnIn {
+    from {
+        top: 0;
+        opacity: 0;
+    }
+
+    to {
+        top: -60px;
+        opacity: 1;
+    }
+}
+
+@keyframes filterBtnOut {
+    from {
+        top: -60px;
+        opacity: 1;
+    }
+
+    to {
+        top: 0;
+        opacity: 0;
     }
 }
