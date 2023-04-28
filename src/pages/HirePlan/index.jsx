@@ -86,8 +86,7 @@ function HirePlan() {
             <Box
                 sx={{
                     width: '100%',
-                    height: '1900px',
-                    padding: '5%',
+                    padding: '100px 5% 200px',
                     display: 'flex',
                     gap: '2%',
                 }}
