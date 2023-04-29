@@ -81,6 +81,14 @@
     animation: filterBtnOut 0.3s ease-in forwards;
 }
 
+.contract-plan-btn {
+    transition: filter 0.3s ease;
+}
+
+.contract-plan-btn:hover {
+    filter: brightness(80%);
+}
+
 @media screen and (max-width: 900px) {
     .container {
         flex-flow: column-reverse;
