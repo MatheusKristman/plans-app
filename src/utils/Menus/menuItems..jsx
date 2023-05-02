@@ -6,22 +6,46 @@ export const menuItems = [
     {
         id: '001',
         name: 'Dashboard',
-        icon: <RxDashboard color='#fff' />,
-        blackIcon: <RxDashboard color='#000' />,
+        icon: (
+            <RxDashboard
+                color='#fff'
+                style={{
+                    minWidth: '20px',
+                    maxWidth: '20px',
+                    width: '20px',
+                    minHeight: '20px',
+                    maxHeight: '20px',
+                    height: '20px',
+                }}
+            />
+        ),
+        blackIcon: (
+            <RxDashboard
+                color='#000'
+                style={{
+                    minWidth: '20px',
+                    maxWidth: '20px',
+                    width: '20px',
+                    minHeight: '20px',
+                    maxHeight: '20px',
+                    height: '20px',
+                }}
+            />
+        ),
         alt: 'quadrados',
     },
     {
         id: '002',
         name: 'Planos',
-        icon: <SlScreenSmartphone color='#fff' />,
-        blackIcon: <SlScreenSmartphone color='#000' />,
+        icon: <SlScreenSmartphone color='#fff' size={20} />,
+        blackIcon: <SlScreenSmartphone color='#000' size={20} />,
         alt: 'celular',
     },
     {
         id: '003',
         name: 'Clientes',
-        icon: <BsPeopleFill color='#fff' />,
-        blackIcon: <BsPeopleFill color='#000' />,
+        icon: <BsPeopleFill color='#fff' size={20} />,
+        blackIcon: <BsPeopleFill color='#000' size={20} />,
         alt: 'pessoas',
     },
 ];

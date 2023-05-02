@@ -128,7 +128,6 @@ function HirePlanForm({ clientRegisterMenu }) {
                     gap: '30px',
                     position: 'relative',
                     zIndex: '2',
-                    filter: clientRegisterMenu === true ? 'blur(10px)' : '',
                 }}
             >
                 <Stack

@@ -9,6 +9,7 @@
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-stroke: 0.45px rgba(0, 0, 0, 0.1);
     scroll-behavior: smooth;
+    outline: none;
 }
 
 ::-webkit-scrollbar {
@@ -40,7 +41,6 @@
 .login-form {
     width: 100%;
     height: 70%;
-    gap: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -86,6 +86,30 @@
 }
 
 .contract-plan-btn:hover {
+    filter: brightness(80%);
+}
+
+.client-name-input,
+.client-cpf-input,
+.client-birth-input,
+.client-mother-name-input,
+.client-tel-input {
+    border: 2px solid #cccccc;
+}
+
+.client-name-input:focus,
+.client-cpf-input:focus,
+.client-birth-input:focus,
+.client-mother-name-input:focus,
+.client-tel-input:focus {
+    border-color: #7a7a7a;
+}
+
+.client-btn {
+    transition: filter 0.3s ease;
+}
+
+.client-btn:hover {
     filter: brightness(80%);
 }
 
@@ -171,5 +195,17 @@
     to {
         top: 0;
         opacity: 0;
+    }
+}
+
+@keyframes fadeInAdminImage {
+    from {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
