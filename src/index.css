@@ -1,92 +1,125 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-family: Montserrat, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-text-stroke: 0.45px rgba(0, 0, 0, 0.1);
-    scroll-behavior: smooth;
-    outline: none;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-stroke: 0.45px rgba(0, 0, 0, 0.1);
+  scroll-behavior: smooth;
+  outline: none;
 }
 
 ::-webkit-scrollbar {
-    width: 5px;
-    background: transparent;
+  width: 5px;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+  background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #d40066;
-    border-radius: 10px;
+  background: #d40066;
+  border-radius: 10px;
 }
 
 .main-image {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .container {
-    display: flex;
-    flex-flow: row-reverse wrap-reverse;
-    width: 100%;
-    height: 100vh;
+  display: flex;
+  flex-flow: row-reverse wrap-reverse;
+  width: 100%;
+  height: 100vh;
 }
 
 .login-form {
-    width: 100%;
-    height: 70%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-flow: column;
+  width: 100%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
 }
 
 .plans-form {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
 }
 
 .header-menu-item {
-    color: #252525;
+  color: #252525;
 }
 
 .header-menu-item:hover {
-    color: #d40066;
+  color: #d40066;
 }
 
 .initial-search-bg {
-    opacity: 0;
-    animation: fadeInBG 0.4s ease forwards;
+  opacity: 0;
+  animation: fadeInBG 0.4s ease forwards;
 }
 
 .initial-search-modal {
-    opacity: 0;
-    animation: fadeIn 0.2s ease 0.2s forwards;
+  opacity: 0;
+  animation: fadeIn 0.2s ease 0.2s forwards;
+}
+
+.plan-modal-bg {
+  opacity: 0;
+  animation: fadeInBG 0.4s ease forwards;
+}
+
+.plan-modal-box {
+  opacity: 0;
+  animation: fadeIn 0.2s ease 0.2s forwards;
+}
+
+.detail-modal-bg {
+  opacity: 0;
+  animation: fadeInBG 0.4s ease forwards;
+}
+
+.detail-modal-box {
+  opacity: 0;
+  animation: fadeIn 0.2s ease 0.2s forwards;
 }
 
 .filter-btn-active {
-    animation: filterBtnIn 0.3s ease-in forwards;
+  animation: filterBtnIn 0.3s ease-in forwards;
 }
 
 .filter-btn-desactive {
-    animation: filterBtnOut 0.3s ease-in forwards;
+  animation: filterBtnOut 0.3s ease-in forwards;
 }
 
-.contract-plan-btn {
-    transition: filter 0.3s ease;
+.contract-plan-btn,
+.details-edit-btn {
+  transition: filter 0.3s ease;
 }
 
-.contract-plan-btn:hover {
-    filter: brightness(80%);
+.details-archive-btn {
+  background-color: #fff;
+  color: #d40066;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.contract-plan-btn:hover,
+.details-edit-btn:hover {
+  filter: brightness(80%);
+}
+
+.details-archive-btn:hover {
+  background-color: rgba(213, 0, 102, 1);
+  color: #fff;
 }
 
 .client-name-input,
@@ -94,7 +127,7 @@
 .client-birth-input,
 .client-mother-name-input,
 .client-tel-input {
-    border: 2px solid #cccccc;
+  border: 2px solid #cccccc;
 }
 
 .client-name-input:focus,
@@ -102,110 +135,137 @@
 .client-birth-input:focus,
 .client-mother-name-input:focus,
 .client-tel-input:focus {
-    border-color: #7a7a7a;
+  border-color: #7a7a7a;
 }
 
 .client-btn {
-    transition: filter 0.3s ease;
+  transition: filter 0.3s ease;
 }
 
 .client-btn:hover {
-    filter: brightness(80%);
+  filter: brightness(80%);
+}
+
+.new-plan-title-input,
+.new-plan-cost-input,
+.new-plan-franchise-input,
+.new-plan-plan-type-input,
+.new-plan-priority-input,
+.new-plan-desc-textarea {
+  border: 2px solid #cccccc;
+  transition: border-color 0.3s ease;
+}
+
+.new-plan-title-input:focus,
+.new-plan-cost-input:focus,
+.new-plan-franchise-input:focus,
+.new-plan-plan-type-input:focus,
+.new-plan-priority-input:focus,
+.new-plan-desc-textarea:focus {
+  border-color: #7a7a7a;
+}
+
+.new-plan-save-btn {
+  transition: filter 0.3s ease;
+}
+
+.new-plan-save-btn:hover {
+  filter: brightness(80%);
 }
 
 @media screen and (max-width: 900px) {
-    .container {
-        flex-flow: column-reverse;
-    }
+  .container {
+    flex-flow: column-reverse;
+  }
 
-    .login-form {
-        height: 80%;
-    }
+  .login-form {
+    height: 80%;
+  }
 }
 
 @media screen and (max-width: 414px) {
-    img {
-        width: '100%';
-        height: '100%';
-    }
+  img {
+    width: "100%";
+    height: "100%";
+  }
 }
 
 @keyframes fadeInBG {
-    from {
-        opacity: 0;
-    }
+  from {
+    opacity: 0;
+  }
 
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-100px) translateX(-50%);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-100px) translateX(-50%);
+  }
 
-    to {
-        opacity: 1;
-        transform: translateY(0px) translateX(-50%);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0px) translateX(-50%);
+  }
 }
 
 @keyframes fadeOutBG {
-    from {
-        opacity: 1;
-    }
+  from {
+    opacity: 1;
+  }
 
-    to {
-        opacity: 0;
-    }
+  to {
+    opacity: 0;
+  }
 }
 
 @keyframes fadeOut {
-    from {
-        opacity: 1;
-        transform: translateY(0px) translateX(-50%);
-    }
+  from {
+    opacity: 1;
+    transform: translateY(0px) translateX(-50%);
+  }
 
-    to {
-        opacity: 0;
-        transform: translateY(-100px) translateX(-50%);
-    }
+  to {
+    opacity: 0;
+    transform: translateY(-100px) translateX(-50%);
+  }
 }
 
 @keyframes filterBtnIn {
-    from {
-        top: 0;
-        opacity: 0;
-    }
+  from {
+    top: 0;
+    opacity: 0;
+  }
 
-    to {
-        top: -60px;
-        opacity: 1;
-    }
+  to {
+    top: -60px;
+    opacity: 1;
+  }
 }
 
 @keyframes filterBtnOut {
-    from {
-        top: -60px;
-        opacity: 1;
-    }
+  from {
+    top: -60px;
+    opacity: 1;
+  }
 
-    to {
-        top: 0;
-        opacity: 0;
-    }
+  to {
+    top: 0;
+    opacity: 0;
+  }
 }
 
 @keyframes fadeInAdminImage {
-    from {
-        opacity: 0;
-        transform: translateY(-100px);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -1,5 +1,5 @@
 import { Box, Stack, Typography, Button } from "@mui/material";
-import { useContext, useState } from "react";
+import { useContext, useEffect } from "react";
 
 import { AddNewPlan, SimplePlansCard } from "../index";
 import { PlansContext } from "../../contexts/Plans/PlansContext";
@@ -8,6 +8,14 @@ import Loading from "../Loading";
 function SimplePlans() {
   const { allPlans, loading, plansMenu, handleNewPlan } =
     useContext(PlansContext);
+
+  useEffect(() => {
+    if (plansMenu) {
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.documentElement.style.overflow = "unset";
+    }
+  }, [plansMenu]);
 
   return (
     <>
