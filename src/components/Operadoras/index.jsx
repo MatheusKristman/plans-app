@@ -1,9 +1,11 @@
 import { operadoras } from "../../utils/Menus/menuItems";
 import { Box } from "@mui/material";
 import { HiPlus } from "react-icons/hi";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function Operadoras({ setProvider, provider, setProviderLogo, providerLogo }) {
+  const [providerLogoUrl, setProviderLogoUrl] = useState("");
+
   const getUrlExtension = (url) => {
     return url.split(/[#?]/)[0].split(".").pop().trim();
   };
@@ -15,29 +17,48 @@ function Operadoras({ setProvider, provider, setProviderLogo, providerLogo }) {
 
     const response = await fetch(imgUrl);
     const blob = await response.blob();
-    const file = new File([blob], `${operadora?.name}.` + imgExt, {
-      type: blob.type,
-    });
+    const file = new File(
+      [blob],
+      `${operadora?.name.toLowerCase()}.` + imgExt,
+      {
+        type: blob.type,
+      }
+    );
 
     return file;
   };
-
-  // (e) => setProviderLogo(e.target.files[0])
 
   const handleSets = (operadora) => {
     setProvider(operadora.name);
     setProviderLogo(onImageEdit(operadora.image, operadora));
   };
 
-  const handleUploadedImage = (e) => {
-    setProvider(e.target.files[0].name);
-    setProviderLogo(e.target.files[0]);
+  const handleUploadedImage = async (e) => {
+    const file = await e.target.files[0];
+
+    setProvider("");
+    setProviderLogo(file);
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        setProviderLogoUrl(reader.result);
+      };
+
+      console.log(reader);
+    }
+  };
+
+  const resetUploadedImage = () => {
+    setProviderLogoUrl("");
+    setProviderLogo([]);
+    setProvider("");
   };
 
   useEffect(() => {
-    if (providerLogo.length !== 0) {
-      providerLogo.then((res) => console.log(res));
-    }
+    console.log(provider);
   }, [providerLogo]);
 
   return (
@@ -84,17 +105,47 @@ function Operadoras({ setProvider, provider, setProviderLogo, providerLogo }) {
           borderRadius: "10px",
           cursor: "pointer",
           fontSize: "30px",
+          overflow: "hidden",
+          border:
+            provider !== "Claro" &&
+            provider !== "Vivo" &&
+            provider !== "Tim" &&
+            provider !== "Oi"
+              ? "2px solid #D40066"
+              : "",
+        }}
+        onClick={() => {
+          if (providerLogoUrl !== "") {
+            resetUploadedImage();
+          }
         }}
       >
-        <HiPlus color={"#252525"} />
-        <input
-          type="file"
-          name="arquivo"
-          style={{ display: "none" }}
-          id="arquivo"
-          onChange={(e) => handleUploadedImage(e)}
-        />
-        {/* <img src={imageBase64} alt="image Base 64"/> */}
+        {provider === "Claro" ||
+          provider === "Vivo" ||
+          provider === "Tim" ||
+          provider === "Oi" || <HiPlus color={"#252525"} />}
+        {providerLogoUrl === "" && (
+          <input
+            type="file"
+            name="arquivo"
+            style={{ display: "none" }}
+            id="arquivo"
+            onChange={handleUploadedImage}
+          />
+        )}
+
+        {providerLogoUrl && (
+          <img
+            src={providerLogoUrl}
+            alt="image Base 64"
+            style={{
+              width: "100%",
+              height: "auto",
+              objectFit: "cover",
+              objectPosition: "center",
+            }}
+          />
+        )}
       </label>
     </Box>
   );

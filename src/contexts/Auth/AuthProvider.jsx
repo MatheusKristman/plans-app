@@ -6,20 +6,6 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const api = useApi();
 
-  useEffect(() => {
-    const validateToken = async () => {
-      const storageData = localStorage.getItem("authToken");
-      if (storageData) {
-        const data = await api.validateToken(storageData);
-        if (data.verified) {
-          setUser(data.token);
-        }
-      }
-    };
-
-    validateToken();
-  }, []);
-
   const signIn = async (email, password) => {
     const data = await api.signIn(email, password);
     if (data.token) {
@@ -40,7 +26,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, signIn, signOut }}>
+    <AuthContext.Provider value={{ user, setUser, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );

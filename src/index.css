@@ -151,6 +151,7 @@
 .new-plan-franchise-input,
 .new-plan-plan-type-input,
 .new-plan-priority-input,
+.new-plan-provider-input,
 .new-plan-desc-textarea {
   border: 2px solid #cccccc;
   transition: border-color 0.3s ease;
@@ -161,6 +162,7 @@
 .new-plan-franchise-input:focus,
 .new-plan-plan-type-input:focus,
 .new-plan-priority-input:focus,
+.new-plan-provider-input:focus,
 .new-plan-desc-textarea:focus {
   border-color: #7a7a7a;
 }
@@ -171,6 +173,10 @@
 
 .new-plan-save-btn:hover {
   filter: brightness(80%);
+}
+
+.filter-box {
+  animation: filterBoxIn 0.4s ease forwards;
 }
 
 @media screen and (max-width: 900px) {
@@ -267,5 +273,29 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes filterBoxIn {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes filterBoxOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-100px);
   }
 }

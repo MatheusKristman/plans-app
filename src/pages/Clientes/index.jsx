@@ -22,6 +22,8 @@ function Clientes() {
         setClients(data);
         setLoading(false);
       }
+
+      console.log("clientes", clients);
     };
     handleGetClients();
   }, []);
@@ -56,59 +58,8 @@ function Clientes() {
           >
             Clientes ativos: {clients.length}
           </Typography>
-          <Stack
-            sx={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "flex-end",
-              gap: "50px",
-            }}
-          >
-            {checkboxGroup.map((check) => (
-              <label
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  cursor: "pointer",
-                  gap: "10px",
-                  fontFamily: "Montserrat",
-                  fontSize: "1.125rem",
-                  color: "#252525",
-                }}
-                key={check.id}
-              >
-                <input
-                  type="checkbox"
-                  name={check.name}
-                  id={check.name}
-                  value={check.value}
-                  style={{ accentColor: "#D40066" }}
-                />
-                {check.name}
-              </label>
-            ))}
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-evenly",
-                gap: "10px",
-                cursor: "pointer",
-              }}
-            >
-              <img src="./assets/icons/Filter.png" alt="filtro" />
-              <Typography
-                variant="h7"
-                fontFamily="Montserrat"
-                fontSize="1.125rem"
-                color="#252525"
-              >
-                Filtrar
-              </Typography>
-            </Box>
-          </Stack>
         </Stack>
-        <Box sx={{ width: "100%", height: "500px" }}>
+        <Box sx={{ width: "100%" }}>
           {loading === true ? <Loading /> : <ClientsCard clients={clients} />}
         </Box>
       </Box>

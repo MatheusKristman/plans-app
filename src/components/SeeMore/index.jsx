@@ -1,5 +1,5 @@
 import { Box, Stack, Typography } from "@mui/material";
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { PlansContext } from "../../contexts/Plans/PlansContext";
 import { CgClose } from "react-icons/cg";
 
@@ -31,6 +31,10 @@ function SeeMore() {
       }, 400);
     }
   };
+
+  useEffect(() => {
+    console.log("renderizado see more");
+  }, []);
 
   return (
     <Box
@@ -194,7 +198,7 @@ function SeeMore() {
               <img
                 src={`https://planos-backend.onrender.com/assets/${planInfo.providerLogo}`}
                 alt="logo"
-                style={{ width: "auto", height: "25px" }}
+                style={{ width: "60px", height: "auto" }}
               />
             </Box>
           </Stack>

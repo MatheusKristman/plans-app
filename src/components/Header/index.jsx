@@ -63,11 +63,22 @@ function Header() {
         backgroundImage: 'url("./assets/images/header-bg.png")',
         backgroundRepeat: "no-repeat",
         backgroundSize: "100% 110%",
+        paddingLeft: {
+          xs: "25px",
+          md: "60px",
+          lg: "120px",
+        },
+        paddingRight: {
+          xs: "25px",
+          md: "60px",
+          lg: "120px",
+        },
       }}
     >
       <Stack
         sx={{
-          width: { xs: "90%", sm: "90%", md: "80%" },
+          width: "100%",
+          maxWidth: "1200px",
           height: "100%",
         }}
       >
@@ -75,20 +86,23 @@ function Header() {
           direction="row"
           sx={{
             width: "100%",
-            height: { xs: "10%", sm: "10%", md: "10%" },
+            height: { xs: "5%", md: "10%" },
             alignItems: "center",
             justifyContent: "space-between",
           }}
         >
           <Box
             sx={{
-              width: { sm: "50%", md: "40%" },
               height: "100%",
               display: "flex",
               alignItems: "center",
             }}
           >
-            <Typography variant="h7" fontWeight="600" fontSize="2rem">
+            <Typography
+              variant="h7"
+              fontWeight="600"
+              sx={{ fontSize: { xs: "1.5rem", md: "2rem" } }}
+            >
               Logo
             </Typography>
           </Box>

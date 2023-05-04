@@ -10,6 +10,7 @@ function NewPlanInput({
   setInputDays,
   inputDays,
   setPeriod,
+  period,
   franchise,
   setFranchise,
 }) {
@@ -129,7 +130,7 @@ function NewPlanInput({
               textAlign: "center",
               marginRight: "10px",
             }}
-            required
+            required={period !== "1 mês"}
           />
           dias
         </label>

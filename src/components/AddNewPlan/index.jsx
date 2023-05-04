@@ -288,6 +288,42 @@ function AddNewPlan({ menuTitle }) {
             {/* Fim da caixa das operadoras */}
 
             {/* Caixa das cidades */}
+            {!isEditing && providerLogo instanceof Promise === false && (
+              <label
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "5px",
+                  marginBottom: "15px",
+                }}
+              >
+                <Typography
+                  variant="h7"
+                  fontFamily="Montserrat"
+                  fontWeight="500"
+                  fontSize="1.25rem"
+                  color="#252525"
+                >
+                  Provedor
+                </Typography>
+                <input
+                  type="text"
+                  style={{
+                    height: "50px",
+                    borderRadius: "10px",
+                    paddingLeft: "16px",
+                    fontSize: "1rem",
+                    background: "transparent",
+                    color: "#252525",
+                  }}
+                  className="new-plan-provider-input"
+                  value={provider}
+                  onChange={(e) => setProvider(e.target.value)}
+                  required
+                />
+              </label>
+            )}
             {!isEditing && (
               <Stack
                 sx={{
