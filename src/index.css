@@ -63,6 +63,20 @@
   color: #d40066;
 }
 
+.header-mobile-menu-btn {
+  display: none;
+}
+
+.hero-bottom-phone-box {
+  bottom: 25%;
+  right: 15%;
+}
+
+.hero-top-phone-box {
+  top: 5%;
+  left: 15%;
+}
+
 .initial-search-bg {
   opacity: 0;
   animation: fadeInBG 0.4s ease forwards;
@@ -93,11 +107,21 @@
   animation: fadeIn 0.2s ease 0.2s forwards;
 }
 
-.filter-btn-active {
+.filter-submit-btn-active {
+  transition: top 0.3s ease;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  right: 0%;
+  top: 0px;
   animation: filterBtnIn 0.3s ease-in forwards;
 }
 
-.filter-btn-desactive {
+.filter-submit-btn-desactive {
+  transition: top 0.3s ease;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  right: 0%;
+  top: 0px;
   animation: filterBtnOut 0.3s ease-in forwards;
 }
 
@@ -179,6 +203,38 @@
   animation: filterBoxIn 0.4s ease forwards;
 }
 
+.header-mobile-menu {
+  opacity: 0;
+  animation: fadeInBG 0.5s ease forwards;
+}
+
+.hire-plan-logo {
+  margin-bottom: 50px;
+}
+
+.hide-plan-filter-btn {
+  display: none;
+}
+
+.hire-plan-box {
+  width: 25%;
+}
+
+.hire-plan-filter-btn {
+  display: none;
+}
+
+.hire-plan-form {
+  width: 100%;
+  position: relative;
+}
+
+.register-client-form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
 @media screen and (max-width: 900px) {
   .container {
     flex-flow: column-reverse;
@@ -187,12 +243,99 @@
   .login-form {
     height: 80%;
   }
+
+  .hero-bottom-phone-box {
+    right: 5%;
+  }
+
+  .hero-top-phone-box {
+    left: 25%;
+  }
+
+  .hire-plan-logo {
+    margin-bottom: 25px;
+  }
+
+  .hire-plan-filter-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 10px;
+    background-color: #f0f1f6;
+    padding: 15px 50px;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hire-plan-box {
+    width: 100%;
+  }
+
+  .hire-plan-form {
+    width: 100%;
+    height: 100%;
+    margin-top: -15px;
+    overflow: hidden;
+  }
+
+  .hire-plan-form.active {
+    animation: hirePlanFormIn 0.5s ease forwards;
+  }
+
+  .hire-plan-form.desactive {
+    animation: hirePlanFormOut 0.5s ease forwards;
+  }
+
+  .filter-submit-btn-active {
+    display: none;
+  }
+
+  .filter-submit-btn-desactive {
+    display: none;
+  }
+
+  .register-client-form {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .contract-plan-btn {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .header-menu-item {
+    display: none;
+  }
+
+  .header-mobile-menu-btn {
+    display: flex;
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    outline: none;
+  }
 }
 
 @media screen and (max-width: 414px) {
   img {
     width: "100%";
     height: "100%";
+  }
+
+  .register-client-product-box {
+    flex-direction: column;
+  }
+
+  .register-client-total-box {
+    flex-direction: column;
   }
 }
 
@@ -252,6 +395,18 @@
   }
 }
 
+@keyframes filterBtnInMobile {
+  from {
+    top: 0px;
+    opacity: 0;
+  }
+
+  to {
+    top: -110px;
+    opacity: 1;
+  }
+}
+
 @keyframes filterBtnOut {
   from {
     top: -60px;
@@ -260,6 +415,18 @@
 
   to {
     top: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes filterBtnOutMobile {
+  from {
+    top: -110px;
+    opacity: 1;
+  }
+
+  to {
+    top: 0px;
     opacity: 0;
   }
 }
@@ -297,5 +464,25 @@
   to {
     opacity: 0;
     transform: translateY(-100px);
+  }
+}
+
+@keyframes hirePlanFormIn {
+  from {
+    max-height: 0vh;
+  }
+
+  to {
+    max-height: 200vh;
+  }
+}
+
+@keyframes hirePlanFormOut {
+  from {
+    max-height: 200vh;
+  }
+
+  to {
+    max-height: 0vh;
   }
 }

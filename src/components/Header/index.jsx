@@ -2,6 +2,7 @@ import { Box, Button, Link, Stack, Typography } from "@mui/material";
 import { useContext, useEffect, useState, useRef } from "react";
 import { Menu, SearchPlans } from "..";
 import { PlansContext } from "../../contexts/Plans/PlansContext";
+import { HiBars3 } from "react-icons/hi2";
 
 function Header() {
   const [isMobile, setIsMobile] = useState(false);
@@ -53,16 +54,30 @@ function Header() {
     handleContentMove();
   }, [mousePos]);
 
+  useEffect(() => {
+    if (menu) {
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.documentElement.style.overflow = "unset";
+    }
+  }, [menu]);
+
   return (
     <Stack
       sx={{
         width: "100%",
-        height: { xs: "1150px", sm: "1150px", md: "880px" },
         justifyContent: "center",
         alignItems: "center",
-        backgroundImage: 'url("./assets/images/header-bg.png")',
+        backgroundImage: {
+          xs: 'url("./assets/images/hero-mobile-bg.png")',
+          sm: 'url("./assets/images/hero-tablet-bg.png")',
+          md: 'url("./assets/images/header-bg.png")',
+        },
         backgroundRepeat: "no-repeat",
-        backgroundSize: "100% 110%",
+        backgroundSize: {
+          xs: "100% 100%",
+          lg: "100% 110%",
+        },
         paddingLeft: {
           xs: "25px",
           md: "60px",
@@ -78,17 +93,19 @@ function Header() {
       <Stack
         sx={{
           width: "100%",
-          maxWidth: "1200px",
-          height: "100%",
+          maxWidth: "1400px",
         }}
       >
         <Stack
           direction="row"
           sx={{
             width: "100%",
-            height: { xs: "5%", md: "10%" },
             alignItems: "center",
             justifyContent: "space-between",
+            padding: {
+              xs: "15px 0",
+              lg: "25px 0",
+            },
           }}
         >
           <Box
@@ -115,84 +132,98 @@ function Header() {
               gap: "50px",
             }}
           >
-            {isMobile ? (
-              <img
-                src="./assets/icons/Menu.png"
-                onClick={() => setMenu(!menu)}
-                style={{ width: "100%", height: "100%" }}
-              />
-            ) : (
-              <>
-                <a
-                  href="#about"
-                  style={{
-                    fontWeight: "600",
-                    textDecoration: "none",
-                    transition: "color 0.3s ease",
-                  }}
-                  className="header-menu-item"
-                >
-                  Como funciona
-                </a>
-                <a
-                  href="#benefits"
-                  style={{
-                    fontWeight: "600",
-                    textDecoration: "none",
-                    transition: "color 0.3s ease",
-                  }}
-                  className="header-menu-item"
-                >
-                  Benefícios
-                </a>
-                <a
-                  href="#faq"
-                  style={{
-                    fontWeight: "600",
-                    textDecoration: "none",
-                    transition: "color 0.3s ease",
-                  }}
-                  className="header-menu-item"
-                >
-                  FAQ
-                </a>
-              </>
-            )}
+            <button
+              type="button"
+              className="header-mobile-menu-btn"
+              onClick={() => setMenu(true)}
+            >
+              <HiBars3 />
+            </button>
+
+            <a
+              href="#about"
+              style={{
+                fontWeight: "600",
+                textDecoration: "none",
+                transition: "color 0.3s ease",
+              }}
+              className="header-menu-item"
+            >
+              Como funciona
+            </a>
+            <a
+              href="#benefits"
+              style={{
+                fontWeight: "600",
+                textDecoration: "none",
+                transition: "color 0.3s ease",
+              }}
+              className="header-menu-item"
+            >
+              Benefícios
+            </a>
+            <a
+              href="#faq"
+              style={{
+                fontWeight: "600",
+                textDecoration: "none",
+                transition: "color 0.3s ease",
+              }}
+              className="header-menu-item"
+            >
+              FAQ
+            </a>
             {menu && <Menu menu={menu} setMenu={setMenu} />}
           </Box>
         </Stack>
+
         <Stack
           direction="row"
           sx={{
             width: "100%",
-            height: { xs: "90%", sm: "90%", md: "90%" },
-            alignItems: "center",
+            padding: {
+              xs: "50px 0",
+              sm: "70px 0",
+              md: "100px 0",
+            },
+            alignItems: "flex-start",
             justifyContent: "space-between",
-            flexWrap: "wrap",
+            flexDirection: {
+              xs: "column",
+              md: "row",
+            },
           }}
         >
           <Stack
             sx={{
-              width: { xs: "100%", sm: "100%", md: "35%" },
-              height: { xs: "40%", sm: "40%", md: "80%" },
+              width: {
+                xs: "100%",
+                md: "50%",
+              },
               justifyContent: {
                 xs: "center",
                 sm: "start",
                 md: "start",
               },
+              marginTop: "50px",
             }}
           >
             <Typography
               sx={{
+                maxWidth: "600px",
                 fontSize: {
-                  xs: "45px",
-                  sm: "66px",
-                  md: "75px",
+                  xs: "2.188rem",
+                  sm: "3.75rem",
+                  md: "5rem",
                 },
                 fontFamily: "montserrat",
                 fontWeight: 500,
                 marginBottom: "15px",
-                lineHeight: "100px",
+                lineHeight: {
+                  xs: "45px",
+                  sm: "70px",
+                  md: "100px",
+                },
               }}
             >
               Economize Tempo e Dinheiro
@@ -202,6 +233,7 @@ function Header() {
               fontSize="1.25rem"
               lineHeight="28px"
               marginBottom="25px"
+              maxWidth="600px"
             >
               Encontre os melhores planos da sua cidade com ótimos preços e
               facilidade.
@@ -232,12 +264,28 @@ function Header() {
           </Stack>
           <Box
             sx={{
-              width: { sm: "100%", md: "50%" },
-              height: { xs: "60%", sm: "60%", md: "100%" },
+              width: {
+                xs: "80%",
+                sm: "50%",
+              },
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               position: "relative",
+              alignSelf: {
+                xs: "flex-end",
+                md: "unset",
+              },
+              transform: {
+                xs: "translateY(50px)",
+                sm: "translateY(50px)",
+                md: "translateY(0)",
+              },
+              marginTop: {
+                xs: "0px",
+                sm: "-120px",
+                md: "0",
+              },
             }}
           >
             <img
@@ -245,9 +293,8 @@ function Header() {
               style={{
                 width: "40%",
                 position: "absolute",
-                top: "5%",
-                left: "15%",
               }}
+              className="hero-top-phone-box"
               ref={topBox}
             />
             <img
@@ -255,9 +302,8 @@ function Header() {
               style={{
                 width: "40%",
                 position: "absolute",
-                bottom: "25%",
-                right: "15%",
               }}
+              className="hero-bottom-phone-box"
               ref={bottomBox}
             />
             <img

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import { About, Benefits, Footer, Header } from "./components";
 import { stepsLoop } from "./utils/steps/steps";
@@ -7,6 +7,14 @@ import { SearchPlans } from "./components";
 
 function App() {
   const { searchPlans } = useContext(PlansContext);
+
+  useEffect(() => {
+    if (searchPlans) {
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.documentElement.style.overflow = "unset";
+    }
+  }, []);
 
   return (
     <Stack
@@ -22,12 +30,21 @@ function App() {
       <Stack
         id="about"
         sx={{
-          width: { xs: "90%", sm: "90%", md: "80%" },
-          height: { xs: "700px", sm: "900px", md: "300px" },
           position: "relative",
           alignItems: "center",
           justifyContent: "center",
           marginTop: "100px",
+          width: "100%",
+          paddingLeft: {
+            xs: "25px",
+            md: "60px",
+            lg: "120px",
+          },
+          paddingRight: {
+            xs: "25px",
+            md: "60px",
+            lg: "120px",
+          },
         }}
       >
         <img
@@ -39,16 +56,20 @@ function App() {
             top: "-150px",
             width: "300px",
             height: "300px",
+            zIndex: "1",
           }}
         />
         <Box
           sx={{
             width: "100%",
             height: "90%",
+            maxWidth: "1400px",
             display: "flex",
             justifyContent: "center",
             flexDirection: "column",
             gap: "5%",
+            position: "relative",
+            zIndex: "2",
           }}
         >
           <Typography
@@ -56,27 +77,41 @@ function App() {
             fontWeight="600"
             fontSize="2rem"
             fontFamily="montserrat"
+            marginBottom="50px"
           >
             Seu plano em apenas 3 passos
           </Typography>
-          <Stack
+          <Box
             sx={{
               width: "100%",
-              alignItems: "center",
-              justifyContent: "space-between",
-              flexDirection: { sm: "column", md: "row" },
+              display: "grid",
+              gridTemplateColumns: {
+                xs: "1fr",
+                md: "1fr 1fr 1fr",
+              },
+              gridTemplateRows: {
+                xs: "1fr 1fr 1fr",
+                md: "1fr",
+              },
+              gap: "25px",
             }}
           >
-            {stepsLoop.map((step) => (
+            {stepsLoop.map((step, i) => (
               <Stack
                 direction="row"
                 sx={{
                   width: {
                     xs: "100%",
-                    sm: "100%",
-                    md: "32%",
+                    sm: "50%",
+                    md: "100%",
                   },
                   height: "100%",
+                  justifySelf: {
+                    xs: "flex-start",
+                    sm:
+                      i === 0 ? "flex-start" : i === 1 ? "center" : "flex-end",
+                    md: "flex-start",
+                  },
                   padding: "15px 30px 20px",
                   border: "2px solid #D40066",
                   borderRadius: "16px",
@@ -144,20 +179,34 @@ function App() {
                 </Box>
               </Stack>
             ))}
-          </Stack>
+          </Box>
         </Box>
       </Stack>
       <Box
         sx={{
           width: "100%",
-          backgroundImage: "url(./assets/images/main-bg.png)",
+          backgroundImage: {
+            xs: "url('./assets/images/benefits-mobile-bg.png')",
+            sm: "url('./assets/images/benefits-tablet-bg.png')",
+            md: "url(./assets/images/main-bg.png)",
+          },
           backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
+          backgroundSize: "100% 100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           paddingTop: "300px",
           paddingBottom: "100px",
+          paddingLeft: {
+            xs: "25px",
+            md: "60px",
+            lg: "120px",
+          },
+          paddingRight: {
+            xs: "25px",
+            md: "60px",
+            lg: "120px",
+          },
           marginTop: "-150px",
         }}
       >
@@ -172,6 +221,16 @@ function App() {
           display: "flex",
           paddingTop: "50px",
           paddingBottom: "150px",
+          paddingLeft: {
+            xs: "25px",
+            md: "60px",
+            lg: "120px",
+          },
+          paddingRight: {
+            xs: "25px",
+            md: "60px",
+            lg: "120px",
+          },
         }}
       >
         <About />

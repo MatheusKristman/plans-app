@@ -10,6 +10,7 @@ import { useState, useContext, useEffect } from "react";
 import States from "../States";
 import { PlansContext } from "../../contexts/Plans/PlansContext";
 import axios from "axios";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 function HirePlanForm({ clientRegisterMenu }) {
   const { initialFilterOptions, setFilteredPlans } = useContext(PlansContext);
@@ -26,6 +27,7 @@ function HirePlanForm({ clientRegisterMenu }) {
   );
   const [filterChanged, setFilterChanged] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,6 +52,16 @@ function HirePlanForm({ clientRegisterMenu }) {
       return;
     }
     setPlanType([...planType, plan.name]);
+  };
+
+  const handleMobileFilterBtn = () => {
+    if (filterChanged) {
+      setFilterChanged(false);
+      setSubmitting(true);
+      return;
+    }
+
+    setIsMobileFilterOpen((prev) => !prev);
   };
 
   const verifyUnlimitedApp = (app) => {
@@ -96,6 +108,10 @@ function HirePlanForm({ clientRegisterMenu }) {
           setFilteredPlans(res.data);
           setSubmitting(false);
           setFilterChanged(false);
+
+          if (window.innerWidth <= 900) {
+            setIsMobileFilterOpen(false);
+          }
         })
         .catch((err) => {
           document.documentElement.style.pointerEvents = "unset";
@@ -110,371 +126,414 @@ function HirePlanForm({ clientRegisterMenu }) {
   }, [submitting]);
 
   return (
-    <form
-      style={{
-        width: "25%",
-        position: "relative",
-      }}
-      onSubmit={handleSubmit}
-    >
-      <Box
-        sx={{
-          width: "100%",
-          background: "#F0F1F6",
-          borderRadius: "10px",
-          padding: "30px 25px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "30px",
-          position: "relative",
-          zIndex: "2",
-        }}
-      >
-        <Stack
-          sx={{
-            width: "100%",
-            borderBottom: "2px solid lightGray",
-            paddingBottom: "30px",
-          }}
-        >
-          <States
-            selectedCity={city}
-            setSelectedCity={setCity}
-            setSelectedStateName={setState}
-            stateLabel={"Estado"}
-            cityLabel={"Cidade"}
-            isSearchPage={true}
-            setFilterChanged={setFilterChanged}
-          />
-        </Stack>
-
-        <Stack
-          sx={{
-            width: "100%",
-            borderBottom: "2px solid lightGray",
-            paddingBottom: "30px",
-          }}
+    <>
+      <Box className="hide-plan-box">
+        <button
+          className="hire-plan-filter-btn"
+          onClick={handleMobileFilterBtn}
         >
           <Typography
-            variant="h6"
-            sx={{
-              cursor: "default",
-              fontFamily: "Montserrat",
-              fontWeight: "600",
-              fontSize: "1.25rem",
-              marginBottom: "15px",
-              color: "#252525",
-            }}
+            fontFamily="Montserrat"
+            fontWeight="600"
+            fontSize="1.25rem"
+            color="#5C679B"
           >
-            Número de Linhas
+            {filterChanged
+              ? "Aplicar"
+              : !filterChanged && submitting
+              ? "Aplicando"
+              : "Filtrar"}
           </Typography>
-          {linesLoop.map((line, i) => (
-            <label
+          {isMobileFilterOpen && !filterChanged && !submitting ? ( // propriedade para abrir quando tablet/mobile
+            <IoIosArrowUp
+              color="#5C679B"
+              size="20"
               style={{
-                display: "flex",
-                justifyContent: "flex-start",
-                width: "100%",
-                alignItems: "center",
-                gap: "10px",
-                cursor: "pointer",
-                position: "relative",
-                marginBottom: i === linesLoop.length - 1 ? "" : "10px",
+                position: "absolute",
+                top: "50%",
+                right: "25px",
+                transform: "translateY(-50%)",
               }}
-              key={line.id}
-              onChange={(e) => {
-                setLines(e.target.value);
-                setFilterChanged(true);
+            />
+          ) : !isMobileFilterOpen && !filterChanged && !submitting ? (
+            <IoIosArrowDown
+              color="#5C679B"
+              size="20"
+              style={{
+                position: "absolute",
+                top: "50%",
+                right: "25px",
+                transform: "translateY(-50%)",
               }}
-            >
-              <input
-                type="radio"
-                name="plan-line"
-                defaultChecked={i == linesLoop.length - 1}
-                value={line.value}
-                style={{
-                  accentColor: "#D40066",
-                }}
-              />
-              {line.name}
-            </label>
-          ))}
-        </Stack>
-
-        <Stack
-          sx={{
-            width: "100%",
-            borderBottom: "2px solid lightGray",
-            paddingBottom: "30px",
-          }}
+            />
+          ) : null}
+        </button>
+        <form
+          className={`hire-plan-form ${
+            isMobileFilterOpen ? "active" : "desactive"
+          }`}
+          onSubmit={handleSubmit}
         >
-          <Typography
-            variant="h6"
+          <Box
             sx={{
-              fontFamily: "Montserrat",
-              fontWeight: "600",
-              fontSize: "1.25rem",
-              marginBottom: "15px",
-              color: "#252525",
+              width: "100%",
+              background: "#F0F1F6",
+              borderRadius: "10px",
+              padding: "30px 25px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "30px",
+              position: "relative",
+              zIndex: "2",
             }}
           >
-            Preço
-          </Typography>
-          {pricesLoop.map((price, i) => (
-            <label
-              style={{
-                display: "flex",
-                justifyContent: "flex-start",
+            <Stack
+              sx={{
                 width: "100%",
-                alignItems: "center",
-                gap: "10px",
-                cursor: "pointer",
-                marginBottom: i === pricesLoop.length - 1 ? "" : "10px",
-              }}
-              key={price.id}
-              onChange={(e) => {
-                setCost(e.target.value);
-                setFilterChanged(true);
+                borderBottom: "2px solid lightGray",
+                paddingBottom: "30px",
               }}
             >
-              <input
-                type="radio"
-                name="plan-price"
-                defaultChecked={i == pricesLoop.length - 1}
-                value={price.value}
-                style={{
-                  accentColor: "#D40066",
-                }}
+              <States
+                selectedCity={city}
+                setSelectedCity={setCity}
+                setSelectedStateName={setState}
+                stateLabel={"Estado"}
+                cityLabel={"Cidade"}
+                isSearchPage={true}
+                setFilterChanged={setFilterChanged}
               />
-              {price.name}
-            </label>
-          ))}
-        </Stack>
+            </Stack>
 
-        <Stack
-          sx={{
-            width: "100%",
-            borderBottom: "2px solid lightGray",
-            paddingBottom: "30px",
-          }}
-        >
-          <Typography
-            variant="h6"
-            sx={{
-              fontFamily: "Montserrat",
-              fontWeight: "600",
-              fontSize: "1.25rem",
-              marginBottom: "15px",
-              color: "#252525",
-            }}
-          >
-            Franquias de internet
-          </Typography>
-          {franchiseAtLeast.map((franchise, i) => (
-            <label
-              style={{
-                display: "flex",
-                justifyContent: "flex-start",
+            <Stack
+              sx={{
                 width: "100%",
-                alignItems: "center",
-                gap: "10px",
-                cursor: "pointer",
-                marginBottom: i === franchiseAtLeast.length - 1 ? "" : "10px",
-              }}
-              key={franchise.id}
-              onChange={(e) => {
-                setFranchise(e.target.value);
-                setFilterChanged(true);
+                borderBottom: "2px solid lightGray",
+                paddingBottom: "30px",
               }}
             >
-              <input
-                type="radio"
-                name="plan-franchise"
-                defaultChecked={i == franchiseAtLeast.length - 1}
-                value={franchise.value}
-                style={{
-                  accentColor: "#D40066",
+              <Typography
+                variant="h6"
+                sx={{
+                  cursor: "default",
+                  fontFamily: "Montserrat",
+                  fontWeight: "600",
+                  fontSize: "1.25rem",
+                  marginBottom: "15px",
+                  color: "#252525",
                 }}
-              />
-              {franchise.name}
-            </label>
-          ))}
-        </Stack>
+              >
+                Número de Linhas
+              </Typography>
+              {linesLoop.map((line, i) => (
+                <label
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    width: "100%",
+                    alignItems: "center",
+                    gap: "10px",
+                    cursor: "pointer",
+                    position: "relative",
+                    marginBottom: i === linesLoop.length - 1 ? "" : "10px",
+                  }}
+                  key={line.id}
+                  onChange={(e) => {
+                    setLines(e.target.value);
+                    setFilterChanged(true);
+                  }}
+                >
+                  <input
+                    type="radio"
+                    name="plan-line"
+                    defaultChecked={i == linesLoop.length - 1}
+                    value={line.value}
+                    style={{
+                      accentColor: "#D40066",
+                    }}
+                  />
+                  {line.name}
+                </label>
+              ))}
+            </Stack>
 
-        <Stack
-          sx={{
-            width: "100%",
-            borderBottom: "2px solid lightGray",
-            paddingBottom: "30px",
-          }}
-        >
-          <Typography
-            variant="h6"
-            sx={{
-              fontFamily: "Montserrat",
-              fontWeight: "600",
-              fontSize: "1.25rem",
-              marginBottom: "15px",
-              color: "#252525",
-            }}
-          >
-            Provedores
-          </Typography>
-          {operadoras.map((operadora, i) => (
-            <label
-              style={{
-                display: "flex",
-                justifyContent: "flex-start",
+            <Stack
+              sx={{
                 width: "100%",
-                alignItems: "center",
-                gap: "10px",
-                cursor: "pointer",
-                marginBottom: i === operadoras.length - 1 ? "" : "10px",
-              }}
-              key={operadora.id}
-              onChange={() => {
-                handleProviders(operadora);
+                borderBottom: "2px solid lightGray",
+                paddingBottom: "30px",
               }}
             >
-              <input
-                type="checkbox"
-                name="plan-provider"
-                defaultChecked={true}
-                value={operadora.name}
-                style={{
-                  accentColor: "#D40066",
+              <Typography
+                variant="h6"
+                sx={{
+                  fontFamily: "Montserrat",
+                  fontWeight: "600",
+                  fontSize: "1.25rem",
+                  marginBottom: "15px",
+                  color: "#252525",
                 }}
-              />
-              {operadora.name}
-            </label>
-          ))}
-        </Stack>
+              >
+                Preço
+              </Typography>
+              {pricesLoop.map((price, i) => (
+                <label
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    width: "100%",
+                    alignItems: "center",
+                    gap: "10px",
+                    cursor: "pointer",
+                    marginBottom: i === pricesLoop.length - 1 ? "" : "10px",
+                  }}
+                  key={price.id}
+                  onChange={(e) => {
+                    setCost(e.target.value);
+                    setFilterChanged(true);
+                  }}
+                >
+                  <input
+                    type="radio"
+                    name="plan-price"
+                    defaultChecked={i == pricesLoop.length - 1}
+                    value={price.value}
+                    style={{
+                      accentColor: "#D40066",
+                    }}
+                  />
+                  {price.name}
+                </label>
+              ))}
+            </Stack>
 
-        <Stack
-          sx={{
-            width: "100%",
-            borderBottom: "2px solid lightGray",
-            paddingBottom: "30px",
-          }}
-        >
-          <Typography
-            variant="h6"
-            sx={{
-              fontFamily: "Montserrat",
-              fontWeight: "600",
-              fontSize: "1.25rem",
-              marginBottom: "15px",
-              color: "#252525",
-            }}
-          >
-            Planos
-          </Typography>
-          {planTypes.map((plan, i) => (
-            <label
-              style={{
-                display: "flex",
-                justifyContent: "flex-start",
+            <Stack
+              sx={{
                 width: "100%",
-                alignItems: "center",
-                gap: "10px",
-                cursor: "pointer",
-                marginBottom: i === planTypes.length - 1 ? "" : "10px",
-              }}
-              key={plan.id}
-              onChange={() => {
-                handlePlanType(plan);
+                borderBottom: "2px solid lightGray",
+                paddingBottom: "30px",
               }}
             >
-              <input
-                type="checkbox"
-                name="plan-type"
-                defaultChecked={true}
-                value={plan.name}
-                style={{
-                  accentColor: "#D40066",
+              <Typography
+                variant="h6"
+                sx={{
+                  fontFamily: "Montserrat",
+                  fontWeight: "600",
+                  fontSize: "1.25rem",
+                  marginBottom: "15px",
+                  color: "#252525",
                 }}
-              />
-              {plan.name}
-            </label>
-          ))}
-        </Stack>
+              >
+                Franquias de internet
+              </Typography>
+              {franchiseAtLeast.map((franchise, i) => (
+                <label
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    width: "100%",
+                    alignItems: "center",
+                    gap: "10px",
+                    cursor: "pointer",
+                    marginBottom:
+                      i === franchiseAtLeast.length - 1 ? "" : "10px",
+                  }}
+                  key={franchise.id}
+                  onChange={(e) => {
+                    setFranchise(e.target.value);
+                    setFilterChanged(true);
+                  }}
+                >
+                  <input
+                    type="radio"
+                    name="plan-franchise"
+                    defaultChecked={i == franchiseAtLeast.length - 1}
+                    value={franchise.value}
+                    style={{
+                      accentColor: "#D40066",
+                    }}
+                  />
+                  {franchise.name}
+                </label>
+              ))}
+            </Stack>
 
-        <Stack
-          sx={{
-            width: "100%",
-          }}
-        >
-          <Typography
-            variant="h6"
-            sx={{
-              fontFamily: "Montserrat",
-              fontWeight: "600",
-              fontSize: "1.25rem",
-              marginBottom: "15px",
-              color: "#252525",
-            }}
-          >
-            Apps Ilimitados
-          </Typography>
-          {unlimitedApps.map((app, i) => (
-            <label
-              style={{
-                display: "flex",
-                justifyContent: "flex-start",
+            <Stack
+              sx={{
                 width: "100%",
-                alignItems: "center",
-                gap: "10px",
-                cursor: "pointer",
-                marginBottom: i === unlimitedApps.length - 1 ? "" : "10px",
-              }}
-              key={app.id}
-              onChange={() => {
-                verifyUnlimitedApp(app);
+                borderBottom: "2px solid lightGray",
+                paddingBottom: "30px",
               }}
             >
-              <input
-                type="checkbox"
-                name="plan-apps"
-                defaultChecked={true}
-                value={app.name}
-                style={{
-                  accentColor: "#D40066",
+              <Typography
+                variant="h6"
+                sx={{
+                  fontFamily: "Montserrat",
+                  fontWeight: "600",
+                  fontSize: "1.25rem",
+                  marginBottom: "15px",
+                  color: "#252525",
                 }}
-              />
-              {app.name}
-            </label>
-          ))}
-        </Stack>
+              >
+                Provedores
+              </Typography>
+              {operadoras.map((operadora, i) => (
+                <label
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    width: "100%",
+                    alignItems: "center",
+                    gap: "10px",
+                    cursor: "pointer",
+                    marginBottom: i === operadoras.length - 1 ? "" : "10px",
+                  }}
+                  key={operadora.id}
+                  onChange={() => {
+                    handleProviders(operadora);
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    name="plan-provider"
+                    defaultChecked={true}
+                    value={operadora.name}
+                    style={{
+                      accentColor: "#D40066",
+                    }}
+                  />
+                  {operadora.name}
+                </label>
+              ))}
+            </Stack>
+
+            <Stack
+              sx={{
+                width: "100%",
+                borderBottom: "2px solid lightGray",
+                paddingBottom: "30px",
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{
+                  fontFamily: "Montserrat",
+                  fontWeight: "600",
+                  fontSize: "1.25rem",
+                  marginBottom: "15px",
+                  color: "#252525",
+                }}
+              >
+                Planos
+              </Typography>
+              {planTypes.map((plan, i) => (
+                <label
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    width: "100%",
+                    alignItems: "center",
+                    gap: "10px",
+                    cursor: "pointer",
+                    marginBottom: i === planTypes.length - 1 ? "" : "10px",
+                  }}
+                  key={plan.id}
+                  onChange={() => {
+                    handlePlanType(plan);
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    name="plan-type"
+                    defaultChecked={true}
+                    value={plan.name}
+                    style={{
+                      accentColor: "#D40066",
+                    }}
+                  />
+                  {plan.name}
+                </label>
+              ))}
+            </Stack>
+
+            <Stack
+              sx={{
+                width: "100%",
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{
+                  fontFamily: "Montserrat",
+                  fontWeight: "600",
+                  fontSize: "1.25rem",
+                  marginBottom: "15px",
+                  color: "#252525",
+                }}
+              >
+                Apps Ilimitados
+              </Typography>
+              {unlimitedApps.map((app, i) => (
+                <label
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    width: "100%",
+                    alignItems: "center",
+                    gap: "10px",
+                    cursor: "pointer",
+                    marginBottom: i === unlimitedApps.length - 1 ? "" : "10px",
+                  }}
+                  key={app.id}
+                  onChange={() => {
+                    verifyUnlimitedApp(app);
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    name="plan-apps"
+                    defaultChecked={true}
+                    value={app.name}
+                    style={{
+                      accentColor: "#D40066",
+                    }}
+                  />
+                  {app.name}
+                </label>
+              ))}
+            </Stack>
+          </Box>
+
+          <button
+            type="submit"
+            style={{
+              width: "100%",
+              background: "#D40066",
+              color: "#fff",
+              fontSize: "1.25rem",
+              fontWeight: "600",
+              textTransform: "uppercase",
+              padding: "25px 50px",
+              position: "absolute",
+              zIndex: "1",
+              display: "block",
+              border: "none",
+              cursor: "pointer",
+              filter: submitting ? "brightness(80%)" : "",
+              pointerEvents: submitting ? "none" : "unset",
+            }}
+            className={
+              filterChanged
+                ? "filter-submit-btn-active"
+                : "filter-submit-btn-desactive"
+            }
+            disabled={!filterChanged}
+          >
+            {submitting ? "Aplicando" : "Aplicar"}
+          </button>
+        </form>
       </Box>
-
-      <button
-        type="submit"
-        style={{
-          width: "100%",
-          background: "#D40066",
-          color: "#fff",
-          fontSize: "1.25rem",
-          fontWeight: "600",
-          textTransform: "uppercase",
-          padding: "25px 50px",
-          position: "absolute",
-          top: "0px",
-          zIndex: "1",
-          display: "block",
-          right: "0%",
-          border: "none",
-          borderTopLeftRadius: "10px",
-          borderTopRightRadius: "10px",
-          cursor: "pointer",
-          transition: "top 0.3s ease",
-          filter: submitting ? "brightness(80%)" : "",
-          pointerEvents: submitting ? "none" : "unset",
-        }}
-        className={filterChanged ? "filter-btn-active" : "filter-btn-desactive"}
-        disabled={!filterChanged}
-      >
-        {submitting ? "Aplicando" : "Aplicar"}
-      </button>
-    </form>
+    </>
   );
 }
 
