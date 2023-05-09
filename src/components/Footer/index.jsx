@@ -187,10 +187,17 @@ function Footer() {
             justifyContent: 'space-between',
             flexDirection: { xs: 'column', sm: 'row', md: 'row' },
             paddingY: '5%',
+            gap: '15px',
           }}
         >
-          <Typography variant='h7'>Logo da Equipe</Typography>
-          <Typography variant='h7' fontSize='0.875rem'>
+          <a
+            href='https://portfolio-2-0-iota-henna.vercel.app/'
+            target='_blank'
+            rel='noreferrer noopener'
+          >
+            <img src='/assets/icons/mk-logo.svg' />
+          </a>
+          <Typography variant='h7' fontSize='0.875rem' textAlign='center' fontFamily='Montserrat'>
             © Copyright - 2023 - nome da empresa
           </Typography>
           <Typography variant='h7'>Logo Agência</Typography>
