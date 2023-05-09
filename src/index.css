@@ -130,6 +130,11 @@
   transition: filter 0.3s ease;
 }
 
+.details-edit-btn,
+.details-archive-btn {
+  width: fit-content;
+}
+
 .details-archive-btn {
   background-color: #fff;
   color: #d40066;
@@ -192,6 +197,7 @@
 }
 
 .new-plan-save-btn {
+  font-size: 1.5rem;
   transition: filter 0.3s ease;
 }
 
@@ -251,6 +257,14 @@
 
 .sidebar-mobile-close-btn {
   display: none;
+}
+
+.plans-btn {
+  width: fit-content;
+}
+
+.client-show-more-btn {
+  display: flex;
 }
 
 @media screen and (max-width: 1200px) {
@@ -342,10 +356,27 @@
     height: 90%;
     width: auto;
   }
+
+  .client-show-more-btn {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 600px) {
   .contract-plan-btn {
+    width: 100%;
+  }
+
+  .plans-btn {
+    width: 100%;
+  }
+
+  .new-plan-save-btn {
+    font-size: 1.125rem;
+  }
+
+  .details-edit-btn,
+  .details-archive-btn {
     width: 100%;
   }
 }

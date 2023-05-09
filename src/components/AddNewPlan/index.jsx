@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from '@mui/material';
 import {
   NewPlanFinalInputs,
   NewPlanInputs,
@@ -6,28 +6,28 @@ import {
   UnlimitedApps,
   Cities,
   States,
-} from "../index";
-import { useContext, useState, useRef, useEffect } from "react";
-import { AuthContext } from "../../contexts/Auth/AuthContext";
-import { useApi } from "../../hooks/useApi";
-import { PlansContext } from "../../contexts/Plans/PlansContext";
-import { CgClose } from "react-icons/cg";
+} from '../index';
+import { useContext, useState, useRef, useEffect } from 'react';
+import { AuthContext } from '../../contexts/Auth/AuthContext';
+import { useApi } from '../../hooks/useApi';
+import { PlansContext } from '../../contexts/Plans/PlansContext';
+import { CgClose } from 'react-icons/cg';
 
 function AddNewPlan({ menuTitle }) {
-  const [selectedUf, setSelectedUf] = useState("");
-  const [provider, setProvider] = useState("");
-  const [cost, setCost] = useState("");
-  const [title, setTitle] = useState("");
-  const [inputDays, setInputDays] = useState("");
+  const [selectedUf, setSelectedUf] = useState('');
+  const [provider, setProvider] = useState('');
+  const [cost, setCost] = useState('');
+  const [title, setTitle] = useState('');
+  const [inputDays, setInputDays] = useState('');
   const [unlimitedApp, setUnlimitedApp] = useState([]);
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [period, setPeriod] = useState("");
-  const [franchise, setFranchise] = useState("");
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [period, setPeriod] = useState('');
+  const [franchise, setFranchise] = useState('');
   const [unlimitedCall, setUnlimitedCall] = useState(false);
-  const [planType, setPlanType] = useState("");
-  const [priority, setPriority] = useState("");
-  const [description, setDescription] = useState("");
+  const [planType, setPlanType] = useState('');
+  const [priority, setPriority] = useState('');
+  const [description, setDescription] = useState('');
   const [providerLogo, setProviderLogo] = useState([]);
   const lines = 1;
 
@@ -113,8 +113,8 @@ function AddNewPlan({ menuTitle }) {
   };
 
   const handleCloseModal = () => {
-    backgroundRef.current.style.animation = "fadeOutBG 0.4s ease forwards";
-    modalRef.current.style.animation = "fadeOut 0.2s ease forwards";
+    backgroundRef.current.style.animation = 'fadeOutBG 0.4s ease forwards';
+    modalRef.current.style.animation = 'fadeOut 0.2s ease forwards';
 
     setTimeout(() => {
       handleMenus();
@@ -122,9 +122,9 @@ function AddNewPlan({ menuTitle }) {
   };
 
   const handleCloseModalOnScreen = (e) => {
-    if (e.target.classList.contains("plan-modal-bg")) {
-      backgroundRef.current.style.animation = "fadeOutBG 0.4s ease forwards";
-      modalRef.current.style.animation = "fadeOut 0.2s ease forwards";
+    if (e.target.classList.contains('plan-modal-bg')) {
+      backgroundRef.current.style.animation = 'fadeOutBG 0.4s ease forwards';
+      modalRef.current.style.animation = 'fadeOut 0.2s ease forwards';
 
       setTimeout(() => {
         handleMenus();
@@ -147,99 +147,99 @@ function AddNewPlan({ menuTitle }) {
   return (
     <Box
       sx={{
-        width: "100%",
-        height: "100%",
-        position: "fixed",
-        top: "0",
-        left: "0",
-        right: "0",
-        bottom: "0",
-        backgroundColor: "rgba(32, 33, 36, .5)",
-        zIndex: "9",
-        "::before": {
+        width: '100%',
+        height: '100%',
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        right: '0',
+        bottom: '0',
+        backgroundColor: 'rgba(32, 33, 36, .5)',
+        zIndex: '9',
+        '::before': {
           content: '""',
-          height: "100%",
-          display: "inline-block",
-          verticalAlign: "middle",
+          height: '100%',
+          display: 'inline-block',
+          verticalAlign: 'middle',
         },
-        padding: "50px",
-        overflow: "auto",
+        padding: '25px',
+        overflow: 'auto',
       }}
-      className="plan-modal-bg"
+      className='plan-modal-bg'
       ref={backgroundRef}
       onClick={handleCloseModalOnScreen}
     >
       <form
         onSubmit={handleSubmit}
         style={{
-          backgroundColor: "#fff",
-          display: "inline-block",
-          width: "100%",
-          height: "auto",
-          maxWidth: "460px",
-          verticalAlign: "middle",
-          position: "relative",
-          left: "50%",
-          transform: "translateX(-50%)",
-          borderRadius: "16px",
-          overflow: "hidden",
-          zIndex: "3",
+          backgroundColor: '#fff',
+          display: 'inline-block',
+          width: '100%',
+          height: 'auto',
+          maxWidth: '460px',
+          verticalAlign: 'middle',
+          position: 'relative',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          borderRadius: '16px',
+          overflow: 'hidden',
+          zIndex: '3',
         }}
-        className="plan-modal-box"
-        encType="multipart/form-data"
+        className='plan-modal-box'
+        encType='multipart/form-data'
         ref={modalRef}
       >
         <Stack
           sx={{
-            width: "100%",
+            width: '100%',
           }}
         >
           {/* Caixa da Imagem */}
 
-          <Box sx={{ position: "relative", width: "100%", height: "13%" }}>
-            <img
-              src="./assets/images/modal-figure.png"
-              className="main-image"
-            />
+          <Box sx={{ position: 'relative', width: '100%', height: '13%' }}>
+            <img src='./assets/images/modal-figure.png' className='main-image' />
             <button
               style={{
-                position: "absolute",
-                right: "30px",
-                top: "30px",
-                width: "35px",
-                height: "35px",
-                borderRadius: "5px",
-                cursor: "pointer",
-                border: "none",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "#fff",
+                position: 'absolute',
+                right: '30px',
+                top: '30px',
+                width: '35px',
+                height: '35px',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                border: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: '#fff',
               }}
-              type="button"
+              type='button'
               onClick={handleCloseModal}
             >
               <CgClose size={25} />
             </button>
             <Box
               sx={{
-                padding: "15px 30px",
-                background: "#fff",
-                position: "absolute",
-                bottom: "0px",
-                left: "0px",
-                borderTopRightRadius: "10px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                width: {
+                  xs: '100%',
+                  sm: 'fit-content',
+                },
+                padding: '15px 30px',
+                background: '#fff',
+                position: 'absolute',
+                bottom: '0px',
+                left: '0px',
+                borderTopRightRadius: '10px',
+                borderTopLeftRadius: {
+                  xs: '10px',
+                  sm: '0',
+                },
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
-              <Typography
-                variant="h7"
-                fontFamily="Montserrat"
-                fontWeight="600"
-                fontSize="1.875rem"
-              >
+              <Typography variant='h7' fontFamily='Montserrat' fontWeight='600' fontSize='1.875rem'>
                 {menuTitle}
               </Typography>
             </Box>
@@ -250,9 +250,9 @@ function AddNewPlan({ menuTitle }) {
           {/* Corpo da página */}
           <Box
             sx={{
-              width: "100%",
-              background: "rgba(255,255,255,0.9)",
-              padding: "35px 30px",
+              width: '100%',
+              background: 'rgba(255,255,255,0.9)',
+              padding: '35px 30px',
             }}
           >
             {/* Caixa das operadoras */}
@@ -260,19 +260,19 @@ function AddNewPlan({ menuTitle }) {
             {!isEditing && (
               <Box
                 sx={{
-                  width: "100%",
-                  display: "flex",
-                  gap: "10px",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  marginBottom: "15px",
+                  width: '100%',
+                  display: 'flex',
+                  gap: '10px',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  marginBottom: '15px',
                 }}
               >
                 <Typography
-                  variant="h7"
-                  fontFamily="Montserrat"
-                  fontWeight="500"
-                  fontSize="1.25rem"
+                  variant='h7'
+                  fontFamily='Montserrat'
+                  fontWeight='500'
+                  fontSize='1.25rem'
                 >
                   Operadora
                 </Typography>
@@ -291,33 +291,33 @@ function AddNewPlan({ menuTitle }) {
             {!isEditing && providerLogo instanceof Promise === false && (
               <label
                 style={{
-                  width: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "5px",
-                  marginBottom: "15px",
+                  width: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '5px',
+                  marginBottom: '15px',
                 }}
               >
                 <Typography
-                  variant="h7"
-                  fontFamily="Montserrat"
-                  fontWeight="500"
-                  fontSize="1.25rem"
-                  color="#252525"
+                  variant='h7'
+                  fontFamily='Montserrat'
+                  fontWeight='500'
+                  fontSize='1.25rem'
+                  color='#252525'
                 >
                   Provedor
                 </Typography>
                 <input
-                  type="text"
+                  type='text'
                   style={{
-                    height: "50px",
-                    borderRadius: "10px",
-                    paddingLeft: "16px",
-                    fontSize: "1rem",
-                    background: "transparent",
-                    color: "#252525",
+                    height: '50px',
+                    borderRadius: '10px',
+                    paddingLeft: '16px',
+                    fontSize: '1rem',
+                    background: 'transparent',
+                    color: '#252525',
                   }}
-                  className="new-plan-provider-input"
+                  className='new-plan-provider-input'
                   value={provider}
                   onChange={(e) => setProvider(e.target.value)}
                   required
@@ -327,29 +327,29 @@ function AddNewPlan({ menuTitle }) {
             {!isEditing && (
               <Stack
                 sx={{
-                  width: "100%",
-                  height: "10%",
-                  justifyContent: "space-evenly",
-                  display: "flex",
-                  marginBottom: "15px",
+                  width: '100%',
+                  height: '10%',
+                  justifyContent: 'space-evenly',
+                  display: 'flex',
+                  marginBottom: '15px',
                 }}
               >
                 <Typography
-                  variant="h7"
-                  fontFamily="Montserrat"
-                  fontWeight="500"
-                  fontSize="1.25rem"
+                  variant='h7'
+                  fontFamily='Montserrat'
+                  fontWeight='500'
+                  fontSize='1.25rem'
                 >
                   Localidade
                 </Typography>
-                <Box sx={{ width: "100%", height: "40%" }}>
+                <Box sx={{ width: '100%', height: '40%' }}>
                   <States
                     onChange={setSelectedUf}
                     selectedCity={city}
                     setSelectedCity={setCity}
                     setSelectedStateName={setState}
-                    stateLabel={""}
-                    cityLabel={""}
+                    stateLabel={''}
+                    cityLabel={''}
                   />
                 </Box>
               </Stack>
@@ -359,9 +359,9 @@ function AddNewPlan({ menuTitle }) {
             {/* Caixa dos inputs */}
             <Box
               sx={{
-                width: "100%",
-                display: "flex",
-                flexDirection: "column",
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
               <NewPlanInputs
@@ -382,45 +382,42 @@ function AddNewPlan({ menuTitle }) {
             {/* Caixa dos apps ilimitados */}
             <Box
               sx={{
-                width: "100%",
-                display: "flex",
-                flexDirection: "column",
-                marginBottom: "15px",
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                marginBottom: '15px',
               }}
             >
               <Typography
-                variant="h7"
-                fontFamily="Montserrat"
-                fontWeight="500"
-                fontSize="1.25rem"
-                color="#252525"
-                marginBottom="5px"
+                variant='h7'
+                fontFamily='Montserrat'
+                fontWeight='500'
+                fontSize='1.25rem'
+                color='#252525'
+                marginBottom='5px'
               >
                 Apps ilimitados
               </Typography>
-              <UnlimitedApps
-                unlimitedApp={unlimitedApp}
-                setUnlimitedApp={setUnlimitedApp}
-              />
+              <UnlimitedApps unlimitedApp={unlimitedApp} setUnlimitedApp={setUnlimitedApp} />
             </Box>
             {/* Fim da caixa dos apps ilimitados */}
 
             {/* Caixa dos inputs finais */}
             <Box
               sx={{
-                width: "100%",
-                display: "flex",
-                flexDirection: "column",
-                marginBottom: "25px",
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                marginBottom: '25px',
               }}
             >
               <Typography
-                variant="h7"
-                fontFamily="Montserrat"
-                fontWeight="500"
-                fontSize="1.25rem"
-                color="#252525"
-                marginBottom="5px"
+                variant='h7'
+                fontFamily='Montserrat'
+                fontWeight='500'
+                fontSize='1.25rem'
+                color='#252525'
+                marginBottom='5px'
               >
                 Ligações ilimitadas
               </Typography>
@@ -439,39 +436,38 @@ function AddNewPlan({ menuTitle }) {
             {/* Caixa do botão de submit */}
             <Box
               sx={{
-                width: "100%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
               <button
-                type="submit"
+                type='submit'
                 style={{
-                  width: "100%",
-                  fontSize: "1.5rem",
-                  fontWeight: "600",
-                  background: "#D40066",
-                  color: "#fff",
-                  borderRadius: "10px",
-                  border: "none",
-                  cursor: "pointer",
-                  padding: "15px 50px",
+                  width: '100%',
+                  fontWeight: '600',
+                  background: '#D40066',
+                  color: '#fff',
+                  borderRadius: '10px',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: '15px 50px',
                 }}
-                className="new-plan-save-btn"
+                className='new-plan-save-btn'
               >
                 {loading ? (
                   <img
-                    src="/assets/images/loading-sending.svg"
-                    alt="Loading"
+                    src='/assets/images/loading-sending.svg'
+                    alt='Loading'
                     style={{
-                      width: "23px",
-                      height: "100%",
-                      transform: "scale(1.5) translateY(2px)",
+                      width: '23px',
+                      height: '100%',
+                      transform: 'scale(1.5) translateY(2px)',
                     }}
                   />
                 ) : (
-                  "Salvar"
+                  'Salvar'
                 )}
               </button>
             </Box>

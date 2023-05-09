@@ -71,7 +71,7 @@ function ClientsCard({ clients }) {
               alignItems: 'flex-end',
               justifyContent: 'center',
               overflowY: 'auto',
-              gap: '25px',
+              gap: '50px',
             }}
             key={client.name + i}
           >
@@ -80,7 +80,15 @@ function ClientsCard({ clients }) {
                 display: 'flex',
                 width: '100%',
                 justifyContent: 'space-between',
-                alignItems: 'center',
+                alignItems: {
+                  xs: 'flex-start',
+                  md: 'center',
+                },
+                flexDirection: {
+                  xs: 'column',
+                  md: 'row',
+                },
+                gap: '50px',
               }}
             >
               <Stack
@@ -128,6 +136,7 @@ function ClientsCard({ clients }) {
                   sx={{
                     display: 'flex',
                     alignItems: 'center',
+                    flexWrap: 'wrap',
                     gap: '50px',
                   }}
                 >
@@ -264,10 +273,10 @@ function ClientsCard({ clients }) {
                       cursor: 'pointer',
                       fontSize: '18px',
                       fontWeight: 'bold',
-                      display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                     }}
+                    className='client-show-more-btn'
                     onClick={() => handleShowMore(client)}
                   >
                     {showMore && clientId === client._id ? <HiMinus /> : <HiPlus />}
@@ -277,8 +286,17 @@ function ClientsCard({ clients }) {
             </Box>
             <Box
               sx={{
-                display: clientId === client._id ? 'flex' : 'none',
-                width: '80%',
+                display:
+                  clientId === client._id
+                    ? 'flex'
+                    : {
+                        xs: 'flex',
+                        md: 'none',
+                      },
+                width: {
+                  xs: '100%',
+                  md: '80%',
+                },
                 justifyContent: 'flex-start',
                 gap: '50px',
               }}
@@ -355,7 +373,7 @@ function ClientsCard({ clients }) {
               alignItems: 'flex-end',
               justifyContent: 'center',
               overflowY: 'auto',
-              gap: '25px',
+              gap: '50px',
             }}
             key={client.name}
           >
@@ -364,7 +382,15 @@ function ClientsCard({ clients }) {
                 display: 'flex',
                 width: '100%',
                 justifyContent: 'space-between',
-                alignItems: 'center',
+                alignItems: {
+                  xs: 'flex-start',
+                  md: 'center',
+                },
+                flexDirection: {
+                  xs: 'column',
+                  md: 'row',
+                },
+                gap: '50px',
               }}
             >
               <Stack
@@ -412,6 +438,7 @@ function ClientsCard({ clients }) {
                   sx={{
                     display: 'flex',
                     alignItems: 'center',
+                    flexWrap: 'wrap',
                     gap: '50px',
                   }}
                 >
@@ -548,10 +575,10 @@ function ClientsCard({ clients }) {
                       cursor: 'pointer',
                       fontSize: '18px',
                       fontWeight: 'bold',
-                      display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                     }}
+                    className='client-show-more-btn'
                     onClick={() => handleShowMore(client)}
                   >
                     {showMore && clientId === client._id ? <HiMinus /> : <HiPlus />}
@@ -561,8 +588,17 @@ function ClientsCard({ clients }) {
             </Box>
             <Box
               sx={{
-                display: clientId === client._id ? 'flex' : 'none',
-                width: '80%',
+                display:
+                  clientId === client._id
+                    ? 'flex'
+                    : {
+                        xs: 'flex',
+                        md: 'none',
+                      },
+                width: {
+                  xs: '100%',
+                  md: '80%',
+                },
                 justifyContent: 'flex-start',
                 gap: '50px',
               }}
@@ -611,6 +647,7 @@ function ClientsCard({ clients }) {
             alignItems: 'center',
             justifyContent: 'center',
             gap: '15px',
+            flexWrap: 'wrap',
           }}
         >
           {Array.from(Array(pages), (item, index) => {
