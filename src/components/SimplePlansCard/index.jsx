@@ -1,163 +1,401 @@
-import { Box, Stack, Typography } from "@mui/material"
-import { useContext, useState } from "react";
-import { PlansContext } from "../../contexts/Plans/PlansContext";
+import { Box, Stack, Typography } from '@mui/material';
+import { useContext, useState, useEffect } from 'react';
+import { PlansContext } from '../../contexts/Plans/PlansContext';
 
 function SimplePlansCard() {
-  const [itemsPerPage, setItemsPerPage] = useState(3);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(0);
+  const [filteredPlans, setFilteredPlans] = useState([]);
 
-  const {allPlans, search, loading} = useContext(PlansContext);
+  const { allPlans, search, loading } = useContext(PlansContext);
 
-  let unarchivedPlans = allPlans?.filter(plano => !plano.archived)
+  let unarchivedPlans = allPlans?.filter((plano) => !plano.archived);
 
   const pages = Math.ceil(unarchivedPlans?.length / itemsPerPage);
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentItems = unarchivedPlans?.slice(startIndex, endIndex)
+  const currentItems = unarchivedPlans?.slice(startIndex, endIndex);
 
-  let filteredPlans = search.length > 0 ? allPlans?.filter(plan => plan.title.includes(search)) : [];
+  useEffect(() => {
+    search.length > 0
+      ? setFilteredPlans(allPlans?.filter((plan) => plan.title.includes(search)))
+      : setFilteredPlans([]);
+  }, [search]);
+
+  useEffect(() => {
+    console.log(filteredPlans);
+  }, [filteredPlans]);
 
   return (
     <>
-      {search.length > 0 ? (
+      {search.length > 0 && filteredPlans.length === 0 ? (
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Typography
+            sx={{
+              fontFamily: 'Montserrat',
+              fontWeight: '600',
+              fontSize: '1.5rem',
+              color: '#B0B0B0',
+            }}
+          >
+            Nenhum resultado encontrado
+          </Typography>
+        </Box>
+      ) : search.length > 0 ? (
         filteredPlans?.map((plano) => (
           <Box
             key={plano.title}
             sx={{
-              width: '100%', height: '100px', borderBottom: '1px solid lightGray',
-              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+              width: '100%',
+              padding: '25px 0',
+              borderBottom: '2px solid lightGray',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '15px',
             }}
           >
             <Box
-              sx={{ display: 'flex', width: '50%', height: '100%',
-                alignItems: 'center', justifyContent: 'start', gap: '5%'
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'start',
+                gap: '25px',
               }}
             >
-              <img src={`https://planos-backend.onrender.com/assets/${plano.providerLogo}`} alt={plano.provider}/>
-              <Typography variant="h6">
+              <Box
+                sx={{
+                  width: '50px',
+                  minWidth: '50px',
+                  maxWidth: '50px',
+                  height: '50px',
+                  minHeight: '50px',
+                  maxHeight: '50px',
+                  backgroundColor: '#f5e0d9',
+                  borderRadius: '10px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <img
+                  src={`https://planos-backend.onrender.com/assets/${plano.providerLogo}`}
+                  alt={plano.provider}
+                  style={{
+                    width: '80%',
+                    height: 'auto',
+                  }}
+                />
+              </Box>
+              <Typography
+                variant='h6'
+                fontFamily='Montserrat'
+                fontWeight='600'
+                fontSize='1.125rem'
+                color='#252525'
+              >
                 {plano.title}
               </Typography>
             </Box>
             <Box
               sx={{
-                width: '48%', height: '100%',
-                alignItems: 'center', justifyContent: 'center', display: 'flex'
+                alignItems: 'center',
+                justifyContent: 'center',
+                display: 'flex',
+                gap: '70px',
               }}
             >
               <Stack
                 sx={{
-                  width: '25%', height: '100%',
-                  alignItems: 'start', justifyContent: 'center'
+                  height: '100%',
+                  alignItems: 'start',
+                  justifyContent: 'center',
                 }}
               >
-                <Typography sx={{fontWeight: '500'}}>
+                <Typography
+                  sx={{
+                    fontWeight: '500',
+                    fontSize: '1.125rem',
+                    fontFamily: 'Montserrat',
+                    color: '#252525',
+                  }}
+                >
                   {plano.contacts}
                 </Typography>
-                <Typography sx={{color: 'lightGray'}}>
+                <Typography
+                  sx={{
+                    color: '#b0b0b0',
+                    fontFamily: 'Montserrat',
+                    fontWeight: '500',
+                    fontSize: '0.875rem',
+                  }}
+                >
                   Contatos
                 </Typography>
               </Stack>
-              <Stack sx={{ width: '25%', height: '100%',
-                alignItems: 'start', justifyContent: 'center'
+              <Stack
+                sx={{
+                  width: '100px',
+                  height: '100%',
+                  alignItems: 'start',
+                  justifyContent: 'center',
                 }}
               >
-                <Typography sx={{fontWeight: '500'}}>
+                <Typography
+                  sx={{
+                    fontWeight: '500',
+                    fontSize: '1.125rem',
+                    fontFamily: 'Montserrat',
+                    color: '#252525',
+                  }}
+                >
                   R$ {plano.cost.toFixed(2)}
                 </Typography>
-                <Typography sx={{color: 'lightGray'}}>
+                <Typography
+                  sx={{
+                    color: '#b0b0b0',
+                    fontFamily: 'Montserrat',
+                    fontWeight: '500',
+                    fontSize: '0.875rem',
+                  }}
+                >
                   Total
                 </Typography>
               </Stack>
-              <Stack sx={{ width: '25%', height: '100%',
-                alignItems: 'start', justifyContent: 'center'
+              <Stack
+                sx={{
+                  width: '120px',
+                  height: '100%',
+                  alignItems: 'start',
+                  justifyContent: 'center',
                 }}
               >
-                <Typography sx={{fontWeight: '500'}}>
+                <Typography
+                  sx={{
+                    fontWeight: '500',
+                    fontSize: '1.125rem',
+                    fontFamily: 'Montserrat',
+                    color: '#252525',
+                  }}
+                >
                   {plano.createdAt.slice(0, 10).split('-').reverse().join('/')}
                 </Typography>
-                <Typography sx={{color: 'lightGray'}}>
+                <Typography
+                  sx={{
+                    color: '#b0b0b0',
+                    fontFamily: 'Montserrat',
+                    fontWeight: '500',
+                    fontSize: '0.875rem',
+                  }}
+                >
                   Criado em
                 </Typography>
               </Stack>
             </Box>
           </Box>
         ))
-      ) : (currentItems?.map((plano) => (
+      ) : (
+        currentItems?.map((plano) => (
+          <Box
+            key={plano.title}
+            sx={{
+              width: '100%',
+              padding: '25px 0',
+              borderBottom: '2px solid lightGray',
+              display: 'flex',
+              alignItems: { xs: 'flex-start', md: 'center' },
+              justifyContent: 'space-between',
+              flexDirection: { xs: 'column', md: 'row' },
+              gap: '15px',
+            }}
+          >
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'start',
+                gap: '25px',
+              }}
+            >
+              <Box
+                sx={{
+                  width: '50px',
+                  minWidth: '50px',
+                  maxWidth: '50px',
+                  height: '50px',
+                  minHeight: '50px',
+                  maxHeight: '50px',
+                  backgroundColor: '#f5e0d9',
+                  borderRadius: '10px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <img
+                  src={`https://planos-backend.onrender.com/assets/${plano.providerLogo}`}
+                  alt={plano.provider}
+                  style={{
+                    width: '80%',
+                    height: 'auto',
+                  }}
+                />
+              </Box>
+              <Typography
+                variant='h6'
+                fontFamily='Montserrat'
+                fontWeight='600'
+                fontSize='1.125rem'
+                color='#252525'
+              >
+                {plano.title}
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                width: { xs: '100%', md: 'auto' },
+                alignItems: { xs: 'flex-start', md: 'center' },
+                justifyContent: { xs: 'center', sm: 'space-between', md: 'center' },
+                display: 'flex',
+                gap: '70px',
+                flexDirection: { xs: 'column', sm: 'row' },
+                marginLeft: { xs: '75px', sm: '0' },
+              }}
+            >
+              <Stack
+                sx={{
+                  height: '100%',
+                  alignItems: 'start',
+                  justifyContent: 'center',
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontWeight: '500',
+                    fontSize: '1.125rem',
+                    fontFamily: 'Montserrat',
+                    color: '#252525',
+                  }}
+                >
+                  {plano.contacts}
+                </Typography>
+                <Typography
+                  sx={{
+                    color: '#b0b0b0',
+                    fontFamily: 'Montserrat',
+                    fontWeight: '500',
+                    fontSize: '0.875rem',
+                  }}
+                >
+                  Contatos
+                </Typography>
+              </Stack>
+              <Stack
+                sx={{
+                  width: '100px',
+                  height: '100%',
+                  alignItems: 'start',
+                  justifyContent: 'center',
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontWeight: '500',
+                    fontSize: '1.125rem',
+                    fontFamily: 'Montserrat',
+                    color: '#252525',
+                  }}
+                >
+                  R$ {plano.cost.toFixed(2)}
+                </Typography>
+                <Typography
+                  sx={{
+                    color: '#b0b0b0',
+                    fontFamily: 'Montserrat',
+                    fontWeight: '500',
+                    fontSize: '0.875rem',
+                  }}
+                >
+                  Total
+                </Typography>
+              </Stack>
+              <Stack
+                sx={{
+                  width: '120px',
+                  height: '100%',
+                  alignItems: 'start',
+                  justifyContent: 'center',
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontWeight: '500',
+                    fontSize: '1.125rem',
+                    fontFamily: 'Montserrat',
+                    color: '#252525',
+                  }}
+                >
+                  {plano.createdAt.slice(0, 10).split('-').reverse().join('/')}
+                </Typography>
+                <Typography
+                  sx={{
+                    color: '#b0b0b0',
+                    fontFamily: 'Montserrat',
+                    fontWeight: '500',
+                    fontSize: '0.875rem',
+                  }}
+                >
+                  Criado em
+                </Typography>
+              </Stack>
+            </Box>
+          </Box>
+        ))
+      )}
+      {search.length === 0 ? (
         <Box
-          key={plano.title}
           sx={{
-            width: '100%', height: '100px', borderBottom: '1px solid lightGray',
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            marginTop: '50px',
+            width: '100%',
+            height: '50px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '15px',
           }}
         >
-          <Box
-            sx={{ display: 'flex', width: '50%', height: '100%',
-              alignItems: 'center', justifyContent: 'start', gap: '5%'
-            }}
-          >
-            <img src={`https://planos-backend.onrender.com/assets/${plano.providerLogo}`} alt={plano.provider}/>
-            <Typography variant="h6">
-              {plano.title}
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              width: '48%', height: '100%',
-              alignItems: 'center', justifyContent: 'center', display: 'flex'
-            }}
-          >
-            <Stack
-              sx={{
-                width: '25%', height: '100%',
-                alignItems: 'start', justifyContent: 'center'
-              }}
-            >
-              <Typography sx={{fontWeight: '500'}}>
-                {plano.contacts}
-              </Typography>
-              <Typography sx={{color: 'lightGray'}}>
-                Contatos
-              </Typography>
-            </Stack>
-            <Stack sx={{ width: '25%', height: '100%',
-              alignItems: 'start', justifyContent: 'center'
-              }}
-            >
-              <Typography sx={{fontWeight: '500'}}>
-                R$ {plano.cost.toFixed(2)}
-              </Typography>
-              <Typography sx={{color: 'lightGray'}}>
-                Total
-              </Typography>
-            </Stack>
-            <Stack sx={{ width: '25%', height: '100%',
-              alignItems: 'start', justifyContent: 'center'
-              }}
-            >
-              <Typography sx={{fontWeight: '500'}}>
-                {plano.createdAt.slice(0, 10).split('-').reverse().join('/')}
-              </Typography>
-              <Typography sx={{color: 'lightGray'}}>
-                Criado em
-              </Typography>
-            </Stack>
-          </Box>
+          {Array.from(Array(pages), (item, index) => {
+            return (
+              <button
+                value={index}
+                key={index}
+                onClick={(e) => setCurrentPage(Number(e.target.value))}
+                style={{
+                  width: '30px',
+                  height: '30px',
+                  cursor: 'pointer',
+                  border: 'none',
+                  color: currentPage === index ? '#fff' : '#D40066',
+                  background: currentPage === index ? '#D40066' : '#fff',
+                  borderRadius: '8px',
+                  border: '2px solid #D40066',
+                }}
+              >
+                {index + 1}
+              </button>
+            );
+          })}
         </Box>
-      )))}
-      <Box sx={{width: '100%', height: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1%'}}>
-        {Array.from(Array(pages), (item, index) => {
-          return <button value={index}
-            key={index}
-            onClick={(e) => setCurrentPage(Number(e.target.value))}
-            style={{
-              width: '30px', height: '30px', cursor: 'pointer', border: 'none', color: '#fff', background: '#D40066',
-              borderRadius: '8px'
-            }}
-          >{index + 1}</button>
-        })}
-      </Box>
+      ) : null}
     </>
-  )
+  );
 }
 
-export default SimplePlansCard
+export default SimplePlansCard;

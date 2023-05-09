@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
-
 * {
   box-sizing: border-box;
   padding: 0;
@@ -9,6 +8,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-stroke: 0.45px rgba(0, 0, 0, 0.1);
+  scroll-behavior: smooth;
+  outline: none;
 }
 
 ::-webkit-scrollbar {
@@ -21,13 +22,13 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D40066;
+  background: #d40066;
   border-radius: 10px;
 }
 
 .main-image {
   width: 100%;
-  height: 100%;
+  height: auto;
 }
 
 .container {
@@ -35,13 +36,11 @@
   flex-flow: row-reverse wrap-reverse;
   width: 100%;
   height: 100vh;
-
 }
 
 .login-form {
   width: 100%;
   height: 70%;
-  gap: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,6 +55,236 @@
   align-items: center;
 }
 
+.header-menu-item {
+  color: #252525;
+}
+
+.header-menu-item:hover {
+  color: #d40066;
+}
+
+.header-mobile-menu-btn {
+  display: none;
+}
+
+.hero-bottom-phone-box {
+  bottom: 25%;
+  right: 15%;
+}
+
+.hero-top-phone-box {
+  top: 5%;
+  left: 15%;
+}
+
+.initial-search-bg {
+  opacity: 0;
+  animation: fadeInBG 0.4s ease forwards;
+}
+
+.initial-search-modal {
+  opacity: 0;
+  animation: fadeIn 0.2s ease 0.2s forwards;
+}
+
+.plan-modal-bg {
+  opacity: 0;
+  animation: fadeInBG 0.4s ease forwards;
+}
+
+.plan-modal-box {
+  opacity: 0;
+  animation: fadeIn 0.2s ease 0.2s forwards;
+}
+
+.detail-modal-bg {
+  opacity: 0;
+  animation: fadeInBG 0.4s ease forwards;
+}
+
+.detail-modal-box {
+  opacity: 0;
+  animation: fadeIn 0.2s ease 0.2s forwards;
+}
+
+.filter-submit-btn-active {
+  transition: top 0.3s ease;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  right: 0%;
+  top: 0px;
+  animation: filterBtnIn 0.3s ease-in forwards;
+}
+
+.filter-submit-btn-desactive {
+  transition: top 0.3s ease;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  right: 0%;
+  top: 0px;
+  animation: filterBtnOut 0.3s ease-in forwards;
+}
+
+.contract-plan-btn,
+.details-edit-btn {
+  transition: filter 0.3s ease;
+}
+
+.details-edit-btn,
+.details-archive-btn {
+  width: fit-content;
+}
+
+.details-archive-btn {
+  background-color: #fff;
+  color: #d40066;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.contract-plan-btn:hover,
+.details-edit-btn:hover {
+  filter: brightness(80%);
+}
+
+.details-archive-btn:hover {
+  background-color: rgba(213, 0, 102, 1);
+  color: #fff;
+}
+
+.client-name-input,
+.client-cpf-input,
+.client-birth-input,
+.client-mother-name-input,
+.client-tel-input {
+  border: 2px solid #cccccc;
+}
+
+.client-name-input:focus,
+.client-cpf-input:focus,
+.client-birth-input:focus,
+.client-mother-name-input:focus,
+.client-tel-input:focus {
+  border-color: #7a7a7a;
+}
+
+.client-btn {
+  transition: filter 0.3s ease;
+}
+
+.client-btn:hover {
+  filter: brightness(80%);
+}
+
+.new-plan-title-input,
+.new-plan-cost-input,
+.new-plan-franchise-input,
+.new-plan-plan-type-input,
+.new-plan-priority-input,
+.new-plan-provider-input,
+.new-plan-desc-textarea {
+  border: 2px solid #cccccc;
+  transition: border-color 0.3s ease;
+}
+
+.new-plan-title-input:focus,
+.new-plan-cost-input:focus,
+.new-plan-franchise-input:focus,
+.new-plan-plan-type-input:focus,
+.new-plan-priority-input:focus,
+.new-plan-provider-input:focus,
+.new-plan-desc-textarea:focus {
+  border-color: #7a7a7a;
+}
+
+.new-plan-save-btn {
+  font-size: 1.5rem;
+  transition: filter 0.3s ease;
+}
+
+.new-plan-save-btn:hover {
+  filter: brightness(80%);
+}
+
+.filter-box {
+  animation: filterBoxIn 0.4s ease forwards;
+}
+
+.header-mobile-menu {
+  opacity: 0;
+  animation: fadeInBG 0.5s ease forwards;
+}
+
+.hire-plan-logo {
+  margin-bottom: 50px;
+}
+
+.hide-plan-filter-btn {
+  display: none;
+}
+
+.hire-plan-box {
+  width: 25%;
+}
+
+.hire-plan-filter-btn {
+  display: none;
+}
+
+.hire-plan-form {
+  width: 100%;
+  position: relative;
+}
+
+.register-client-form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-mobile-menu-btn {
+  width: fit-content;
+  height: fit-content;
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  margin-right: 25px;
+  cursor: pointer;
+  outline: none;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-mobile-close-btn {
+  display: none;
+}
+
+.plans-btn {
+  width: fit-content;
+}
+
+.client-show-more-btn {
+  display: flex;
+}
+
+@media screen and (max-width: 1200px) {
+  .dashboard-mobile-menu-btn {
+    display: flex;
+  }
+
+  .sidebar-mobile-close-btn {
+    display: block;
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+    outline: none;
+  }
+}
+
 @media screen and (max-width: 900px) {
   .container {
     flex-flow: column-reverse;
@@ -64,11 +293,268 @@
   .login-form {
     height: 80%;
   }
+
+  .hero-bottom-phone-box {
+    right: 5%;
+  }
+
+  .hero-top-phone-box {
+    left: 25%;
+  }
+
+  .hire-plan-logo {
+    margin-bottom: 25px;
+  }
+
+  .hire-plan-filter-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 10px;
+    background-color: #f0f1f6;
+    padding: 15px 50px;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hire-plan-box {
+    width: 100%;
+  }
+
+  .hire-plan-form {
+    width: 100%;
+    height: 100%;
+    margin-top: -15px;
+    overflow: hidden;
+  }
+
+  .hire-plan-form.active {
+    animation: hirePlanFormIn 0.5s ease forwards;
+  }
+
+  .hire-plan-form.desactive {
+    animation: hirePlanFormOut 0.5s ease forwards;
+  }
+
+  .filter-submit-btn-active {
+    display: none;
+  }
+
+  .filter-submit-btn-desactive {
+    display: none;
+  }
+
+  .register-client-form {
+    width: 100%;
+  }
+
+  .main-image {
+    height: 90%;
+    width: auto;
+  }
+
+  .client-show-more-btn {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .contract-plan-btn {
+    width: 100%;
+  }
+
+  .plans-btn {
+    width: 100%;
+  }
+
+  .new-plan-save-btn {
+    font-size: 1.125rem;
+  }
+
+  .details-edit-btn,
+  .details-archive-btn {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .header-menu-item {
+    display: none;
+  }
+
+  .header-mobile-menu-btn {
+    display: flex;
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    outline: none;
+  }
 }
 
 @media screen and (max-width: 414px) {
   img {
     width: '100%';
     height: '100%';
+  }
+
+  .register-client-product-box {
+    flex-direction: column;
+  }
+
+  .register-client-total-box {
+    flex-direction: column;
+  }
+}
+
+@keyframes fadeInBG {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-100px) translateX(-50%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0px) translateX(-50%);
+  }
+}
+
+@keyframes fadeOutBG {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0px) translateX(-50%);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-100px) translateX(-50%);
+  }
+}
+
+@keyframes filterBtnIn {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+
+  to {
+    top: -60px;
+    opacity: 1;
+  }
+}
+
+@keyframes filterBtnInMobile {
+  from {
+    top: 0px;
+    opacity: 0;
+  }
+
+  to {
+    top: -110px;
+    opacity: 1;
+  }
+}
+
+@keyframes filterBtnOut {
+  from {
+    top: -60px;
+    opacity: 1;
+  }
+
+  to {
+    top: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes filterBtnOutMobile {
+  from {
+    top: -110px;
+    opacity: 1;
+  }
+
+  to {
+    top: 0px;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInAdminImage {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes filterBoxIn {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes filterBoxOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+}
+
+@keyframes hirePlanFormIn {
+  from {
+    max-height: 0vh;
+  }
+
+  to {
+    max-height: 200vh;
+  }
+}
+
+@keyframes hirePlanFormOut {
+  from {
+    max-height: 200vh;
+  }
+
+  to {
+    max-height: 0vh;
   }
 }
