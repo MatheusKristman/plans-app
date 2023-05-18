@@ -1,0 +1,16 @@
+// breakpoints
+
+$breakpoints: (
+  tablet: 500px,
+  smallScreen: 768px,
+  largeScreen: 1024px,
+  extraLargeScreen: 1200px,
+);
+
+@mixin breakpoint($size) {
+  $breakpoint-value: map-get($breakpoints, $size);
+
+  @media screen and (min-width: $breakpoint-value) {
+    @content;
+  }
+}
