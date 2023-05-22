@@ -27,6 +27,12 @@ body {
   overflow-x: hidden;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .wrapper {
   padding-left: 25px;
   padding-right: 25px;
@@ -50,6 +56,675 @@ body {
     margin: 0 auto 0 auto;
     max-width: 1500px;
   }
+}
+
+.admin-container {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+@media screen and (min-width: 1024px) {
+  .admin-container {
+    flex-direction: row;
+  }
+}
+.admin-container .info {
+  width: 100%;
+}
+.admin-container .info .info-wrapper {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+@media screen and (min-width: 1024px) {
+  .admin-container .info .info-wrapper {
+    padding-left: 60px;
+    padding-right: 60px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+.admin-container .info .info-wrapper .admin-header {
+  padding-top: 15px;
+  width: 100%;
+}
+@media screen and (min-width: 1024px) {
+  .admin-container .info .info-wrapper .admin-header {
+    padding-top: 60px;
+  }
+  .admin-container .info .info-wrapper .admin-header .logo {
+    width: 100%;
+    text-align: center;
+  }
+}
+.admin-container .info .info-wrapper .admin-header .logo {
+  font-weight: 400;
+  font-size: 2.188rem;
+}
+.admin-container .info .info-wrapper .info-content {
+  margin-top: 50px;
+  width: 100%;
+}
+.admin-container .info .info-wrapper .info-content .admin-title {
+  width: 100%;
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-size: 2.188rem;
+  color: #252525;
+  text-align: center;
+}
+.admin-container .info .info-wrapper .info-content .admin-desc {
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #9f9f9f;
+  text-align: center;
+}
+.admin-container .info .info-wrapper .info-content .admin-form {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.admin-container .info .info-wrapper .info-content .admin-form .email-box {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  max-width: 400px;
+  height: 50px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 6px 0;
+  position: relative;
+  transition: border-color 0.3s ease;
+  margin-bottom: 15px;
+}
+.admin-container .info .info-wrapper .info-content .admin-form .email-box .email-icon {
+  height: 100%;
+  width: 55px;
+  min-width: 55px;
+  max-width: 55px;
+  border-right: 1px solid #bbbbbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.admin-container .info .info-wrapper .info-content .admin-form .email-box .email-icon svg {
+  width: 20px;
+  height: auto;
+  color: #d40066;
+}
+.admin-container .info .info-wrapper .info-content .admin-form .email-box .email-placeholder {
+  position: absolute;
+  width: fit-content;
+  display: block;
+  top: 50%;
+  left: 71px;
+  transform: translateY(-50%);
+  color: #bbbbbb;
+  font-size: 1rem;
+  transition: transform 0.3s ease, top 0.3s ease, left 0.3s ease;
+}
+.admin-container .info .info-wrapper .info-content .admin-form .email-box .email-placeholder.active {
+  transform: scale(0.7) translateY(-50%);
+  top: 15%;
+  left: 62px;
+}
+.admin-container .info .info-wrapper .info-content .admin-form .email-box .email-input {
+  margin-left: 16px;
+  width: 100%;
+  font-size: 1rem;
+  color: #252525;
+  border: none;
+}
+.admin-container .info .info-wrapper .info-content .admin-form .email-box:focus-within {
+  border-color: #7a7a7a;
+}
+.admin-container .info .info-wrapper .info-content .admin-form .password-box {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  max-width: 400px;
+  height: 50px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 6px 0;
+  position: relative;
+  transition: border-color 0.3s ease;
+  margin-bottom: 25px;
+}
+.admin-container .info .info-wrapper .info-content .admin-form .password-box .password-icon {
+  height: 100%;
+  width: 55px;
+  min-width: 55px;
+  max-width: 55px;
+  border-right: 1px solid #bbbbbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.admin-container .info .info-wrapper .info-content .admin-form .password-box .password-icon svg {
+  width: 20px;
+  height: auto;
+  color: #d40066;
+}
+.admin-container .info .info-wrapper .info-content .admin-form .password-box .password-placeholder {
+  position: absolute;
+  width: fit-content;
+  display: block;
+  top: 50%;
+  left: 71px;
+  transform: translateY(-50%);
+  color: #bbbbbb;
+  font-size: 1rem;
+  transition: transform 0.3s ease, top 0.3s ease, left 0.3s ease;
+}
+.admin-container .info .info-wrapper .info-content .admin-form .password-box .password-placeholder.active {
+  transform: scale(0.7) translateY(-50%);
+  top: 15%;
+  left: 62px;
+}
+.admin-container .info .info-wrapper .info-content .admin-form .password-box .password-input {
+  margin-left: 16px;
+  width: 100%;
+  font-size: 1rem;
+  color: #252525;
+  border: none;
+}
+.admin-container .info .info-wrapper .info-content .admin-form .password-box .toggle-view-password-btn {
+  width: 50px;
+  min-width: 50px;
+  max-width: 50px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.admin-container .info .info-wrapper .info-content .admin-form .password-box .toggle-view-password-btn svg {
+  width: 20px;
+  height: auto;
+  color: #d40066;
+}
+.admin-container .info .info-wrapper .info-content .admin-form .password-box:focus-within {
+  border-color: #7a7a7a;
+}
+.admin-container .info .info-wrapper .info-content .admin-form .submit-btn {
+  width: 100%;
+  max-width: 400px;
+  height: 50px;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #d40066;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: filter 0.3s ease;
+}
+.admin-container .info .info-wrapper .info-content .admin-form .submit-btn img {
+  width: 25px;
+  height: 25px;
+}
+.admin-container .info .info-wrapper .info-content .admin-form .submit-btn:hover {
+  filter: brightness(80%);
+}
+.admin-container .info .info-wrapper .admin-footer {
+  width: 100%;
+  margin-bottom: 50px;
+}
+.admin-container .info .info-wrapper .admin-footer span {
+  color: #252525;
+  font-size: 1rem;
+}
+.admin-container .image-box {
+  width: 100%;
+  background: linear-gradient(180deg, #d5a595 0%, #f5e0d9 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0;
+}
+.admin-container .image-box .image {
+  width: 70%;
+  height: auto;
+}
+@media screen and (min-width: 500px) {
+  .admin-container .image-box .image {
+    width: 60%;
+  }
+}
+
+.dashboard-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.dashboard-wrapper .dashboard-menu-container {
+  position: relative;
+}
+.dashboard-wrapper .dashboard-menu-container .dashboard-menu {
+  width: 330px;
+  min-width: 330px;
+  max-width: 330px;
+  background-color: #f5e0d9;
+  border-bottom-right-radius: 16px;
+}
+.dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-header {
+  padding: 30px 80px;
+  border-bottom: 2px solid #e3c4ba;
+}
+.dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-header a {
+  text-decoration: none;
+  width: fit-content;
+  display: block;
+}
+.dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-header a .dashboard-menu-logo {
+  font-size: 2rem;
+  font-weight: 400;
+  color: #252525;
+}
+.dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-body {
+  padding: 80px 80px 50px;
+}
+.dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-body .dashboard-menu-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-body .dashboard-menu-nav ul li {
+  list-style: none;
+  width: fit-content;
+}
+.dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-body .dashboard-menu-nav ul li .dashboard-menu-item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #252525;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-body .dashboard-menu-nav ul li .dashboard-menu-item svg {
+  width: 24px;
+  min-width: 24px;
+  max-width: 24px;
+  color: #252525;
+  transition: color 0.3s ease;
+}
+.dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-body .dashboard-menu-nav ul .selected {
+  position: relative;
+}
+.dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-body .dashboard-menu-nav ul .selected .dashboard-menu-item {
+  color: #fff;
+  position: relative;
+  z-index: 3;
+}
+.dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-body .dashboard-menu-nav ul .selected .dashboard-menu-item svg {
+  color: #fff;
+}
+.dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-body .dashboard-menu-nav ul .selected::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: -10px;
+  left: -15px;
+  right: -15px;
+  bottom: -10px;
+  border-radius: 8px;
+  background-color: #252525;
+  cursor: pointer;
+}
+.dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-body .logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #252525;
+  text-decoration: none;
+  margin-top: 150px;
+}
+.dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-body .logout-btn svg {
+  width: 24px;
+  min-width: 24px;
+  max-width: 24px;
+  color: #252525;
+}
+
+.dashboard-component-container {
+  width: 100%;
+  height: 100%;
+  padding: 0 50px;
+}
+.dashboard-component-container .dashboard-component-wrapper {
+  width: 100%;
+  max-width: 1250px;
+  height: 100%;
+  margin: auto;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-header {
+  width: 100%;
+  padding-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-header .dashboard-component-menu-btn {
+  display: none;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-header .header-title {
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: #252525;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-header .search-box {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-radius: 8px;
+  border: 2px solid #cccccc;
+  padding: 0 16px;
+  transition: border-color 0.3s ease;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-header .search-box:focus-within {
+  border-color: #252525;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-header .search-box svg {
+  width: 24px;
+  min-width: 24px;
+  max-width: 24px;
+  color: #d40066;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-header .search-box .search-input {
+  font-size: 1rem;
+  color: #252525;
+  border: none;
+  width: 100%;
+  height: 50px;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-header .dashboard-admin-tag {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 2px solid #252525;
+  user-select: none;
+  pointer-events: none;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info {
+  width: 100%;
+  margin-top: 75px;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper {
+  width: 100%;
+  margin-bottom: 150px;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-status-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-status-box .dashboard-component-status {
+  font-size: 1rem;
+  color: #252525;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-status-box .dashboard-component-create-plan-btn {
+  background-color: #d40066;
+  color: #fff;
+  padding: 15px 30px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1.125rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-status-box .dashboard-component-create-plan-btn:hover {
+  filter: brightness(80%);
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-status-box .dashboard-component-create-plan-btn svg {
+  width: 24px;
+  min-width: 24px;
+  max-width: 24px;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper {
+  margin-top: 80px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box {
+  width: 100%;
+  padding-bottom: 25px;
+  border-bottom: 2px solid #c7c7c7;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-image-title-wrapper {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-image-title-wrapper .dashboard-plan-image-box {
+  background-color: #f5e0d9;
+  width: 50px;
+  min-width: 50px;
+  max-width: 50px;
+  height: 50px;
+  min-height: 50px;
+  max-height: 50px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-image-title-wrapper .dashboard-plan-image-box .dashboard-plan-image {
+  width: 80%;
+  height: auto;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-image-title-wrapper .dashboard-plan-title {
+  font-size: 1.125rem;
+  font-weith: 600;
+  color: #252525;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-contact-box,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-total-box,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-created-box {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-contact-box .dashboard-plan-contact-value,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-contact-box .dashboard-plan-total-value,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-contact-box .dashboard-plan-created-value,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-total-box .dashboard-plan-contact-value,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-total-box .dashboard-plan-total-value,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-total-box .dashboard-plan-created-value,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-created-box .dashboard-plan-contact-value,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-created-box .dashboard-plan-total-value,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-created-box .dashboard-plan-created-value {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-contact-box .dashboard-plan-contact-placeholder,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-contact-box .dashboard-plan-total-placeholder,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-contact-box .dashboard-plan-created-placeholder,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-total-box .dashboard-plan-contact-placeholder,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-total-box .dashboard-plan-total-placeholder,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-total-box .dashboard-plan-created-placeholder,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-created-box .dashboard-plan-contact-placeholder,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-created-box .dashboard-plan-total-placeholder,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-created-box .dashboard-plan-created-placeholder {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #b0b0b0;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper {
+  width: 100%;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-status-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-status-box .dashboard-component-status {
+  font-size: 1rem;
+  color: #252525;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-status-box .dashboard-component-show-archived-btn {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #252525;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-status-box .dashboard-component-show-archived-btn svg {
+  width: 24px;
+  min-width: 24px;
+  max-width: 24px;
+  color: #252525;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper {
+  margin-top: 80px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box {
+  width: 100%;
+  padding-bottom: 25px;
+  border-bottom: 2px solid #c7c7c7;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-image-title-wrapper {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-image-title-wrapper .dashboard-plan-image-box {
+  background-color: #f5e0d9;
+  width: 50px;
+  min-width: 50px;
+  max-width: 50px;
+  height: 50px;
+  min-height: 50px;
+  max-height: 50px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-image-title-wrapper .dashboard-plan-image-box .dashboard-plan-image {
+  width: 80%;
+  height: auto;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-image-title-wrapper .dashboard-plan-title {
+  font-size: 1.125rem;
+  font-weith: 600;
+  color: #252525;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-contact-box,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-total-box,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-created-box,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-archived-date-box {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-contact-box .dashboard-plan-contact-value,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-contact-box .dashboard-plan-total-value,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-contact-box .dashboard-plan-created-value,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-contact-box .dashboard-plan-archived-date-value,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-total-box .dashboard-plan-contact-value,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-total-box .dashboard-plan-total-value,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-total-box .dashboard-plan-created-value,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-total-box .dashboard-plan-archived-date-value,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-created-box .dashboard-plan-contact-value,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-created-box .dashboard-plan-total-value,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-created-box .dashboard-plan-created-value,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-created-box .dashboard-plan-archived-date-value,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-archived-date-box .dashboard-plan-contact-value,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-archived-date-box .dashboard-plan-total-value,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-archived-date-box .dashboard-plan-created-value,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-archived-date-box .dashboard-plan-archived-date-value {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-contact-box .dashboard-plan-contact-placeholder,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-contact-box .dashboard-plan-total-placeholder,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-contact-box .dashboard-plan-created-placeholder,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-contact-box .dashboard-plan-archived-date-placeholder,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-total-box .dashboard-plan-contact-placeholder,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-total-box .dashboard-plan-total-placeholder,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-total-box .dashboard-plan-created-placeholder,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-total-box .dashboard-plan-archived-date-placeholder,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-created-box .dashboard-plan-contact-placeholder,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-created-box .dashboard-plan-total-placeholder,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-created-box .dashboard-plan-created-placeholder,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-created-box .dashboard-plan-archived-date-placeholder,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-archived-date-box .dashboard-plan-contact-placeholder,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-archived-date-box .dashboard-plan-total-placeholder,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-archived-date-box .dashboard-plan-created-placeholder,
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-archived-date-box .dashboard-plan-archived-date-placeholder {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #b0b0b0;
 }
 
 /*# sourceMappingURL=index.css.map */

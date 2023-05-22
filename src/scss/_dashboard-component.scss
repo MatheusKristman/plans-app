@@ -1,0 +1,325 @@
+.dashboard-component-container {
+  width: 100%;
+  height: 100%;
+  padding: 0 50px;
+
+  .dashboard-component-wrapper {
+    width: 100%;
+    max-width: 1250px;
+    height: 100%;
+    margin: auto;
+
+    .dashboard-component-header {
+      width: 100%;
+      padding-top: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .dashboard-component-menu-btn {
+        display: none;
+      }
+
+      .header-title {
+        font-size: 1.875rem;
+        font-weight: 600;
+        color: #252525;
+      }
+
+      .search-box {
+        width: 100%;
+        max-width: 400px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        border-radius: 8px;
+        border: 2px solid #cccccc;
+        padding: 0 16px;
+        transition: border-color 0.3s ease;
+
+        &:focus-within {
+          border-color: #252525;
+        }
+
+        svg {
+          width: 24px;
+          min-width: 24px;
+          max-width: 24px;
+          color: #d40066;
+        }
+
+        .search-input {
+          font-size: 1rem;
+          color: #252525;
+          border: none;
+          width: 100%;
+          height: 50px;
+        }
+      }
+
+      .dashboard-admin-tag {
+        font-size: 1.125rem;
+        font-weight: 500;
+        color: #252525;
+        padding: 10px 20px;
+        border-radius: 8px;
+        border: 2px solid #252525;
+        user-select: none;
+        pointer-events: none;
+      }
+    }
+
+    .dashboard-component-info {
+      width: 100%;
+      margin-top: 75px;
+
+      .dashboard-component-active-wrapper {
+        width: 100%;
+        margin-bottom: 150px;
+
+        .dashboard-component-status-box {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .dashboard-component-status {
+            font-size: 1rem;
+            color: #252525;
+          }
+
+          .dashboard-component-create-plan-btn {
+            background-color: #d40066;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1.125rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: filter 0.3s ease;
+
+            &:hover {
+              filter: brightness(80%);
+            }
+
+            svg {
+              width: 24px;
+              min-width: 24px;
+              max-width: 24px;
+            }
+          }
+        }
+
+        .dashboard-component-plans-wrapper {
+          margin-top: 80px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 25px;
+
+          .dashboard-plan-box {
+            width: 100%;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #c7c7c7;
+
+            .dashboard-plan-wrapper {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+
+              .dashboard-plan-image-title-wrapper {
+                width: 50%;
+                display: flex;
+                align-items: center;
+                gap: 25px;
+
+                .dashboard-plan-image-box {
+                  background-color: #f5e0d9;
+                  width: 50px;
+                  min-width: 50px;
+                  max-width: 50px;
+                  height: 50px;
+                  min-height: 50px;
+                  max-height: 50px;
+                  border-radius: 10px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+
+                  .dashboard-plan-image {
+                    width: 80%;
+                    height: auto;
+                  }
+                }
+
+                .dashboard-plan-title {
+                  font-size: 1.125rem;
+                  font-weith: 600;
+                  color: #252525;
+                }
+              }
+
+              .dashboard-plan-details-wrapper {
+                width: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .dashboard-plan-contact-box,
+                .dashboard-plan-total-box,
+                .dashboard-plan-created-box {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 5px;
+
+                  .dashboard-plan-contact-value,
+                  .dashboard-plan-total-value,
+                  .dashboard-plan-created-value {
+                    font-size: 1.125rem;
+                    font-weight: 500;
+                    color: #252525;
+                  }
+
+                  .dashboard-plan-contact-placeholder,
+                  .dashboard-plan-total-placeholder,
+                  .dashboard-plan-created-placeholder {
+                    font-size: 0.875rem;
+                    font-weight: 500;
+                    color: #b0b0b0;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .dashboard-component-archived-wrapper {
+        width: 100%;
+
+        .dashboard-component-status-box {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .dashboard-component-status {
+            font-size: 1rem;
+            color: #252525;
+          }
+
+          .dashboard-component-show-archived-btn {
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #252525;
+
+            svg {
+              width: 24px;
+              min-width: 24px;
+              max-width: 24px;
+              color: #252525;
+            }
+          }
+        }
+
+        .dashboard-component-archived-plans-wrapper {
+          margin-top: 80px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 25px;
+
+          .dashboard-plan-box {
+            width: 100%;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #c7c7c7;
+
+            .dashboard-plan-wrapper {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+
+              .dashboard-plan-image-title-wrapper {
+                width: 50%;
+                display: flex;
+                align-items: center;
+                gap: 25px;
+
+                .dashboard-plan-image-box {
+                  background-color: #f5e0d9;
+                  width: 50px;
+                  min-width: 50px;
+                  max-width: 50px;
+                  height: 50px;
+                  min-height: 50px;
+                  max-height: 50px;
+                  border-radius: 10px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+
+                  .dashboard-plan-image {
+                    width: 80%;
+                    height: auto;
+                  }
+                }
+
+                .dashboard-plan-title {
+                  font-size: 1.125rem;
+                  font-weith: 600;
+                  color: #252525;
+                }
+              }
+
+              .dashboard-plan-details-wrapper {
+                width: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .dashboard-plan-contact-box,
+                .dashboard-plan-total-box,
+                .dashboard-plan-created-box,
+                .dashboard-plan-archived-date-box {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 5px;
+
+                  .dashboard-plan-contact-value,
+                  .dashboard-plan-total-value,
+                  .dashboard-plan-created-value,
+                  .dashboard-plan-archived-date-value {
+                    font-size: 1.125rem;
+                    font-weight: 500;
+                    color: #252525;
+                  }
+
+                  .dashboard-plan-contact-placeholder,
+                  .dashboard-plan-total-placeholder,
+                  .dashboard-plan-created-placeholder,
+                  .dashboard-plan-archived-date-placeholder {
+                    font-size: 0.875rem;
+                    font-weight: 500;
+                    color: #b0b0b0;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
