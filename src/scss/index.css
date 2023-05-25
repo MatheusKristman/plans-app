@@ -313,20 +313,43 @@ body {
   height: 100%;
   display: flex;
   justify-content: space-between;
+  flex: 1;
 }
 .dashboard-wrapper .dashboard-menu-container {
-  position: relative;
+  width: 100%;
+  position: absolute;
+  transition: left 0.3s ease;
+  z-index: 4;
+}
+@media screen and (min-width: 500px) {
+  .dashboard-wrapper .dashboard-menu-container {
+    width: auto;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .dashboard-wrapper .dashboard-menu-container {
+    position: relative;
+    width: auto;
+  }
 }
 .dashboard-wrapper .dashboard-menu-container .dashboard-menu {
-  width: 330px;
-  min-width: 330px;
-  max-width: 330px;
+  width: 100%;
   background-color: #f5e0d9;
+  border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
 }
+@media screen and (min-width: 500px) {
+  .dashboard-wrapper .dashboard-menu-container .dashboard-menu {
+    width: 330px;
+    min-width: 330px;
+    max-width: 330px;
+    border-bottom-left-radius: 0px;
+  }
+}
 .dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-header {
-  padding: 30px 80px;
+  padding: 30px 25%;
   border-bottom: 2px solid #e3c4ba;
+  position: relative;
 }
 .dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-header a {
   text-decoration: none;
@@ -338,8 +361,31 @@ body {
   font-weight: 400;
   color: #252525;
 }
+.dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-header .dashboard-menu-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-header .dashboard-menu-close-btn svg {
+  width: 30px;
+  min-width: 30px;
+  max-width: 30px;
+  color: #252525;
+}
+@media screen and (min-width: 1024px) {
+  .dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-header .dashboard-menu-close-btn {
+    display: none;
+  }
+}
 .dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-body {
-  padding: 80px 80px 50px;
+  padding: 80px 20% 50px;
 }
 .dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-body .dashboard-menu-nav ul {
   display: flex;
@@ -354,7 +400,7 @@ body {
   display: flex;
   gap: 10px;
   align-items: center;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #252525;
   cursor: pointer;
@@ -362,11 +408,21 @@ body {
   transition: color 0.3s ease;
 }
 .dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-body .dashboard-menu-nav ul li .dashboard-menu-item svg {
-  width: 24px;
-  min-width: 24px;
-  max-width: 24px;
+  width: 20px;
+  min-width: 20px;
+  max-width: 20px;
   color: #252525;
   transition: color 0.3s ease;
+}
+@media screen and (min-width: 500px) {
+  .dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-body .dashboard-menu-nav ul li .dashboard-menu-item {
+    font-size: 1.25rem;
+  }
+  .dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-body .dashboard-menu-nav ul li .dashboard-menu-item svg {
+    width: 24px;
+    min-width: 24px;
+    max-width: 24px;
+  }
 }
 .dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-body .dashboard-menu-nav ul .selected {
   position: relative;
@@ -407,34 +463,60 @@ body {
   max-width: 24px;
   color: #252525;
 }
+.dashboard-wrapper .menu-active {
+  left: 0;
+}
+.dashboard-wrapper .menu-desactive {
+  left: -100%;
+}
+@media screen and (min-width: 500px) {
+  .dashboard-wrapper .menu-desactive {
+    left: -330px;
+  }
+}
 
-.dashboard-component-container {
-  width: 100%;
-  height: 100%;
-  padding: 0 50px;
-}
-.dashboard-component-container .dashboard-component-wrapper {
-  width: 100%;
-  max-width: 1250px;
-  height: 100%;
-  margin: auto;
-}
-.dashboard-component-container .dashboard-component-wrapper .dashboard-component-header {
+.dashboard-component-header {
   width: 100%;
   padding-top: 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 50px;
 }
-.dashboard-component-container .dashboard-component-wrapper .dashboard-component-header .dashboard-component-menu-btn {
+@media screen and (min-width: 500px) {
+  .dashboard-component-header {
+    gap: 25px;
+  }
+}
+.dashboard-component-header .dashboard-component-menu-btn {
+  display: flex;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.dashboard-component-header .dashboard-component-menu-btn svg {
+  width: 30px;
+  min-width: 30px;
+  max-width: 30px;
+  color: #252525;
+}
+@media screen and (min-width: 1024px) {
+  .dashboard-component-header .dashboard-component-menu-btn {
+    display: none;
+  }
+}
+.dashboard-component-header .header-title {
   display: none;
-}
-.dashboard-component-container .dashboard-component-wrapper .dashboard-component-header .header-title {
   font-size: 1.875rem;
   font-weight: 600;
   color: #252525;
 }
-.dashboard-component-container .dashboard-component-wrapper .dashboard-component-header .search-box {
+@media screen and (min-width: 1024px) {
+  .dashboard-component-header .header-title {
+    display: block;
+  }
+}
+.dashboard-component-header .search-box {
   width: 100%;
   max-width: 400px;
   display: flex;
@@ -445,23 +527,23 @@ body {
   padding: 0 16px;
   transition: border-color 0.3s ease;
 }
-.dashboard-component-container .dashboard-component-wrapper .dashboard-component-header .search-box:focus-within {
+.dashboard-component-header .search-box:focus-within {
   border-color: #252525;
 }
-.dashboard-component-container .dashboard-component-wrapper .dashboard-component-header .search-box svg {
-  width: 24px;
-  min-width: 24px;
-  max-width: 24px;
+.dashboard-component-header .search-box svg {
+  width: 20px;
+  min-width: 20px;
+  max-width: 20px;
   color: #d40066;
 }
-.dashboard-component-container .dashboard-component-wrapper .dashboard-component-header .search-box .search-input {
+.dashboard-component-header .search-box .search-input {
   font-size: 1rem;
   color: #252525;
   border: none;
   width: 100%;
-  height: 50px;
+  height: 36px;
 }
-.dashboard-component-container .dashboard-component-wrapper .dashboard-component-header .dashboard-admin-tag {
+.dashboard-component-header .dashboard-admin-tag {
   font-size: 1.125rem;
   font-weight: 500;
   color: #252525;
@@ -470,6 +552,29 @@ body {
   border: 2px solid #252525;
   user-select: none;
   pointer-events: none;
+  display: none;
+}
+@media screen and (min-width: 500px) {
+  .dashboard-component-header .dashboard-admin-tag {
+    display: block;
+  }
+}
+
+.dashboard-component-container {
+  width: 100%;
+  height: 100%;
+  padding: 0 25px 150px;
+}
+@media screen and (min-width: 500px) {
+  .dashboard-component-container {
+    padding: 0 50px 150px;
+  }
+}
+.dashboard-component-container .dashboard-component-wrapper {
+  width: 100%;
+  max-width: 1250px;
+  height: 100%;
+  margin: auto;
 }
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info {
   width: 100%;
@@ -479,26 +584,49 @@ body {
   width: 100%;
   margin-bottom: 150px;
 }
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-mobile-title {
+  display: block;
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: #252525;
+  margin-bottom: 35px;
+}
+@media screen and (min-width: 1024px) {
+  .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-mobile-title {
+    display: none;
+  }
+}
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-status-box {
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  flex-direction: column;
+  gap: 25px;
+}
+@media screen and (min-width: 500px) {
+  .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-status-box {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-status-box .dashboard-component-status {
   font-size: 1rem;
   color: #252525;
 }
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-status-box .dashboard-component-create-plan-btn {
+  width: 100%;
   background-color: #d40066;
   color: #fff;
-  padding: 15px 30px;
+  padding: 10px 20px;
   border-radius: 8px;
   border: none;
-  font-size: 1.125rem;
+  font-size: 0.875rem;
   font-weight: 600;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   cursor: pointer;
   transition: filter 0.3s ease;
@@ -510,6 +638,11 @@ body {
   width: 24px;
   min-width: 24px;
   max-width: 24px;
+}
+@media screen and (min-width: 500px) {
+  .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-status-box .dashboard-component-create-plan-btn {
+    width: fit-content;
+  }
 }
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper {
   margin-top: 80px;
@@ -526,14 +659,28 @@ body {
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper {
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  flex-direction: column;
+  gap: 25px;
+}
+@media screen and (min-width: 768px) {
+  .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-image-title-wrapper {
-  width: 50%;
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 25px;
+}
+@media screen and (min-width: 768px) {
+  .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-image-title-wrapper {
+    width: 50%;
+  }
 }
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-image-title-wrapper .dashboard-plan-image-box {
   background-color: #f5e0d9;
@@ -554,14 +701,29 @@ body {
 }
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-image-title-wrapper .dashboard-plan-title {
   font-size: 1.125rem;
-  font-weith: 600;
+  font-weight: 600;
   color: #252525;
 }
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper {
-  width: 50%;
+  width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  flex-direction: column;
+  margin-left: 75px;
+  gap: 25px;
+}
+@media screen and (min-width: 500px) {
+  .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper {
+    flex-direction: row;
+    align-items: center;
+    margin-left: 0;
+  }
+}
+@media screen and (min-width: 768px) {
+  .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper {
+    width: 50%;
+  }
 }
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-contact-box,
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-total-box,
@@ -602,8 +764,16 @@ body {
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-status-box {
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  flex-direction: column;
+  gap: 25px;
+}
+@media screen and (min-width: 500px) {
+  .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-status-box {
+    flex-direction: row;
+    align-items: center;
+  }
 }
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-status-box .dashboard-component-status {
   font-size: 1rem;
@@ -641,14 +811,27 @@ body {
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper {
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  flex-direction: column;
+  gap: 25px;
+}
+@media screen and (min-width: 1200px) {
+  .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper {
+    flex-direction: row;
+    align-items: center;
+  }
 }
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-image-title-wrapper {
-  width: 50%;
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 25px;
+}
+@media screen and (min-width: 1200px) {
+  .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-image-title-wrapper {
+    width: 50%;
+  }
 }
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-image-title-wrapper .dashboard-plan-image-box {
   background-color: #f5e0d9;
@@ -669,14 +852,30 @@ body {
 }
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-image-title-wrapper .dashboard-plan-title {
   font-size: 1.125rem;
-  font-weith: 600;
+  font-weight: 600;
   color: #252525;
 }
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper {
-  width: 50%;
+  width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  flex-direction: column;
+  gap: 25px;
+  margin-left: 75px;
+}
+@media screen and (min-width: 500px) {
+  .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper {
+    flex-direction: row;
+    align-items: center;
+    margin-left: 0;
+    gap: 15px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper {
+    width: 50%;
+  }
 }
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-contact-box,
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-archived-plans-wrapper .dashboard-plan-box .dashboard-plan-wrapper .dashboard-plan-details-wrapper .dashboard-plan-total-box,
@@ -725,6 +924,792 @@ body {
   font-size: 0.875rem;
   font-weight: 500;
   color: #b0b0b0;
+}
+
+.providers-component-container {
+  width: 100%;
+  height: 100%;
+  padding: 0 25px 150px;
+}
+.providers-component-container .providers-component-wrapper {
+  width: 100%;
+  max-width: 1250px;
+  height: 100%;
+  margin: auto;
+}
+.providers-component-container .providers-component-wrapper .providers-component-info {
+  width: 100%;
+  margin-top: 75px;
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-status-container {
+  width: 100%;
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-status-container .providers-component-mobile-title {
+  display: block;
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: #252525;
+  margin-bottom: 35px;
+}
+@media screen and (min-width: 1024px) {
+  .providers-component-container .providers-component-wrapper .providers-component-info .providers-component-status-container .providers-component-mobile-title {
+    display: none;
+  }
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-status-container .providers-component-status-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 25px;
+}
+@media screen and (min-width: 500px) {
+  .providers-component-container .providers-component-wrapper .providers-component-info .providers-component-status-container .providers-component-status-wrapper {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-status-container .providers-component-status-wrapper .providers-component-status {
+  font-size: 1rem;
+  color: #252525;
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-status-container .providers-component-status-wrapper .providers-component-new-provider-button {
+  width: 100%;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #d40066;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-status-container .providers-component-status-wrapper .providers-component-new-provider-button:hover {
+  filter: brightness(80%);
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-status-container .providers-component-status-wrapper .providers-component-new-provider-button svg {
+  width: 24px;
+  min-width: 24px;
+  max-width: 24px;
+}
+@media screen and (min-width: 500px) {
+  .providers-component-container .providers-component-wrapper .providers-component-info .providers-component-status-container .providers-component-status-wrapper .providers-component-new-provider-button {
+    width: fit-content;
+  }
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper {
+  width: 100%;
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container {
+  width: 100%;
+  padding-bottom: 25px;
+  border-bottom: 2px solid #c7c7c7;
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 25px;
+}
+@media screen and (min-width: 500px) {
+  .providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-info-box {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 25px;
+}
+@media screen and (min-width: 500px) {
+  .providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-info-box {
+    flex-direction: row;
+    width: 50%;
+    align-items: center;
+  }
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-info-box .providers-component-image-title-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-info-box .providers-component-image-title-box .providers-component-image-box {
+  width: 50px;
+  min-width: 50px;
+  max-width: 50px;
+  height: 50px;
+  min-height: 50px;
+  max-height: 50px;
+  border-radius: 10px;
+  background-color: #f5e0d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-info-box .providers-component-image-title-box .providers-component-image-box .providers-component-image {
+  width: 80%;
+  height: auto;
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-info-box .providers-component-image-title-box .providers-component-provider-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #252525;
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-info-box .providers-component-registered-box {
+  width: 100%;
+  margin-left: 75px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+@media screen and (min-width: 500px) {
+  .providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-info-box .providers-component-registered-box {
+    margin-left: 0;
+  }
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-info-box .providers-component-registered-box .providers-component-registered-value {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-info-box .providers-component-registered-box .providers-component-registered-desc {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #b0b0b0;
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-buttons-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+@media screen and (min-width: 500px) {
+  .providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-buttons-box {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    width: 50%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-buttons-box {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-buttons-box .providers-component-details-button {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #d40066;
+  background-color: #fff;
+  border: 2px solid #d40066;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-buttons-box .providers-component-details-button:hover {
+  background-color: #d40066;
+  color: #fff;
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-buttons-box .providers-component-edit-button {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #fff;
+  background-color: #d40066;
+  border: 2px solid #d40066;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-buttons-box .providers-component-edit-button:hover {
+  filter: brightness(80%);
+}
+
+.plans-component-container {
+  width: 100%;
+  height: 100%;
+  padding: 0 25px 150px;
+}
+.plans-component-container .plans-component-wrapper {
+  width: 100%;
+  max-width: 1250px;
+  height: 100%;
+  margin: auto;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info {
+  width: 100%;
+  margin-top: 75px;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-mobile-title {
+  display: block;
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: #252525;
+  margin-bottom: 35px;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 35px;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-all-wrapper,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-internet-wrapper,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-cel-wrapper,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-tv-wrapper {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-all-wrapper .plans-component-categories-all-button,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-all-wrapper .plans-component-categories-internet-button,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-all-wrapper .plans-component-categories-cel-button,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-all-wrapper .plans-component-categories-tv-button,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-internet-wrapper .plans-component-categories-all-button,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-internet-wrapper .plans-component-categories-internet-button,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-internet-wrapper .plans-component-categories-cel-button,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-internet-wrapper .plans-component-categories-tv-button,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-cel-wrapper .plans-component-categories-all-button,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-cel-wrapper .plans-component-categories-internet-button,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-cel-wrapper .plans-component-categories-cel-button,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-cel-wrapper .plans-component-categories-tv-button,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-tv-wrapper .plans-component-categories-all-button,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-tv-wrapper .plans-component-categories-internet-button,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-tv-wrapper .plans-component-categories-cel-button,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-tv-wrapper .plans-component-categories-tv-button {
+  width: 100%;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #252525;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-all-wrapper .plans-component-categories-line,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-internet-wrapper .plans-component-categories-line,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-cel-wrapper .plans-component-categories-line,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-tv-wrapper .plans-component-categories-line {
+  background-color: #d40066;
+  height: 2px;
+  transition: width 0.5s ease;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-all-wrapper .active,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-internet-wrapper .active,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-cel-wrapper .active,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-tv-wrapper .active {
+  width: 100%;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-all-wrapper .desactive,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-internet-wrapper .desactive,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-cel-wrapper .desactive,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-tv-wrapper .desactive {
+  width: 0%;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-all-wrapper:hover .plans-component-categories-line,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-internet-wrapper:hover .plans-component-categories-line,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-cel-wrapper:hover .plans-component-categories-line,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-tv-wrapper:hover .plans-component-categories-line {
+  width: 100%;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans {
+  width: 100%;
+  margin-bottom: 150px;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-status-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 25px;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-status-box .plans-component-status {
+  font-size: 1rem;
+  color: #252525;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-status-box .plans-component-filter-button {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #252525;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-status-box .plans-component-filter-button svg {
+  width: 20px;
+  min-width: 20px;
+  max-width: 20px;
+  height: auto;
+  color: #d40066;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-status-box .plans-component-filter-button:hover {
+  color: #d40066;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 80px;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container {
+  width: 100%;
+  padding-bottom: 25px;
+  border-bottom: 2px solid #c7c7c7;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 25px;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-image-title-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-image-title-box .plans-component-image-box {
+  width: 50px;
+  min-width: 50px;
+  max-width: 50px;
+  height: 50px;
+  min-height: 50px;
+  max-height: 50px;
+  background-color: #f5e0d9;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-image-title-box .plans-component-image-box .plans-component-image {
+  width: 80%;
+  height: auto;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-cost-box,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-franchise-box,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-contact-box,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-created-at-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-left: 75px;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-cost-box .plans-component-cost-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-cost-box .plans-component-franchise-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-cost-box .plans-component-contact-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-cost-box .plans-component-created-at-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-franchise-box .plans-component-cost-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-franchise-box .plans-component-franchise-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-franchise-box .plans-component-contact-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-franchise-box .plans-component-created-at-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-contact-box .plans-component-cost-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-contact-box .plans-component-franchise-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-contact-box .plans-component-contact-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-contact-box .plans-component-created-at-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-created-at-box .plans-component-cost-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-created-at-box .plans-component-franchise-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-created-at-box .plans-component-contact-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-created-at-box .plans-component-created-at-value {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-cost-box .plans-component-cost-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-cost-box .plans-component-franchise-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-cost-box .plans-component-contact-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-cost-box .plans-component-created-at-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-franchise-box .plans-component-cost-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-franchise-box .plans-component-franchise-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-franchise-box .plans-component-contact-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-franchise-box .plans-component-created-at-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-contact-box .plans-component-cost-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-contact-box .plans-component-franchise-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-contact-box .plans-component-contact-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-contact-box .plans-component-created-at-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-created-at-box .plans-component-cost-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-created-at-box .plans-component-franchise-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-created-at-box .plans-component-contact-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-created-at-box .plans-component-created-at-desc {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #b0b0b0;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-priority-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  height: 44px;
+  min-height: 44px;
+  max-height: 44px;
+  margin-left: 75px;
+  background-image: url("/assets/icons/polygon.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-priority-box .plans-component-priority-value {
+  font-size: 1.25rem;
+  color: #d40066;
+  text-align: center;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  flex-direction: column;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-buttons .plans-component-edit-button {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #d40066;
+  border: 2px solid #d40066;
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-buttons .plans-component-edit-button:hover {
+  filter: brightness(80%);
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-buttons .plans-component-details-button {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #d40066;
+  background-color: #fff;
+  border: 2px solid #d40066;
+  border-radius: 8px;
+  width: 100%;
+  height: 40px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-buttons .plans-component-details-button:hover {
+  background-color: #d40066;
+  color: #fff;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-buttons .plans-component-archivate-button {
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+  border: 2px solid #d40066;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #d40066;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-buttons .plans-component-archivate-button svg {
+  width: 20px;
+  min-width: 20px;
+  max-width: 20px;
+  height: auto;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-buttons .plans-component-archivate-button:hover {
+  background-color: #d40066;
+  color: #fff;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans {
+  width: 100%;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-status-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 25px;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-status-box .plans-component-status {
+  font-size: 1rem;
+  color: #252525;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-status-box .plans-component-visibility-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  color: #252525;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-status-box .plans-component-visibility-button svg {
+  width: 20px;
+  min-width: 20px;
+  max-width: 20px;
+  height: auto;
+  color: #252525;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 80px;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container {
+  width: 100%;
+  padding-bottom: 25px;
+  border-bottom: 2px solid #c7c7c7;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 25px;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-image-title-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-image-title-box .plans-component-image-box {
+  width: 50px;
+  min-width: 50px;
+  max-width: 50px;
+  height: 50px;
+  min-height: 50px;
+  max-height: 50px;
+  background-color: #f5e0d9;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-image-title-box .plans-component-image-box .plans-component-image {
+  width: 80%;
+  height: auto;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-left: 75px;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box .plans-component-cost-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box .plans-component-franchise-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box .plans-component-contact-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box .plans-component-created-at-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box .plans-component-archived-at-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box .plans-component-cost-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box .plans-component-franchise-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box .plans-component-contact-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box .plans-component-created-at-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box .plans-component-archived-at-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box .plans-component-cost-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box .plans-component-franchise-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box .plans-component-contact-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box .plans-component-created-at-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box .plans-component-archived-at-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box .plans-component-cost-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box .plans-component-franchise-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box .plans-component-contact-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box .plans-component-created-at-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box .plans-component-archived-at-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box .plans-component-cost-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box .plans-component-franchise-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box .plans-component-contact-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box .plans-component-created-at-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box .plans-component-archived-at-value {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box .plans-component-cost-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box .plans-component-franchise-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box .plans-component-contact-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box .plans-component-created-at-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box .plans-component-archived-at-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box .plans-component-cost-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box .plans-component-franchise-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box .plans-component-contact-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box .plans-component-created-at-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box .plans-component-archived-at-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box .plans-component-cost-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box .plans-component-franchise-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box .plans-component-contact-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box .plans-component-created-at-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box .plans-component-archived-at-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box .plans-component-cost-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box .plans-component-franchise-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box .plans-component-contact-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box .plans-component-created-at-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box .plans-component-archived-at-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box .plans-component-cost-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box .plans-component-franchise-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box .plans-component-contact-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box .plans-component-created-at-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box .plans-component-archived-at-desc {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #b0b0b0;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-priority-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  height: 44px;
+  min-height: 44px;
+  max-height: 44px;
+  margin-left: 75px;
+  background-image: url("/assets/icons/polygon.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-priority-box .plans-component-priority-value {
+  font-size: 1.25rem;
+  color: #d40066;
+  text-align: center;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  flex-direction: column;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-restore-button {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #d40066;
+  border: 2px solid #d40066;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-restore-button svg {
+  width: 20px;
+  min-width: 20px;
+  max-width: 20px;
+  height: auto;
+  color: #fff;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-restore-button:hover {
+  filter: brightness(80%);
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-details-button {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #d40066;
+  background-color: #fff;
+  border: 2px solid #d40066;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-details-button:hover {
+  background-color: #d40066;
+  color: #fff;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-delete-button {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #d40066;
+  background-color: #fff;
+  border: 2px solid #d40066;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-delete-button svg {
+  width: 20px;
+  min-width: 20px;
+  max-width: 20px;
+  height: auto;
+  color: #d40066;
+  transition: color 0.3s ease;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-delete-button:hover {
+  background-color: #d40066;
+  color: #fff;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-delete-button:hover svg {
+  color: #fff;
 }
 
 /*# sourceMappingURL=index.css.map */

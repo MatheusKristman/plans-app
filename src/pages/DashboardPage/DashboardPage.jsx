@@ -1,30 +1,67 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import { Outlet } from "react-router-dom";
 import api from "../../services/api.js";
 import { useNavigate, useLocation, Link } from "react-router-dom";
+import { shallow } from "zustand/shallow";
 
 import useDashboardPageStore from "../../stores/useDashboardPageStore.js";
 
 const DashboardPage = () => {
-  const { id, setId } = useDashboardPageStore((state) => ({
-    id: state.id,
-    setId: state.setId,
-  }));
+  const { id, setId, isMenuOpen, openMenu, closeMenu, size, setSize } =
+    useDashboardPageStore(
+      (state) => ({
+        id: state.id,
+        setId: state.setId,
+        isMenuOpen: state.isMenuOpen,
+        openMenu: state.openMenu,
+        closeMenu: state.closeMenu,
+        size: state.size,
+        setSize: state.setSize,
+      }),
+      shallow
+    );
 
   const navigate = useNavigate();
   const location = useLocation();
+
+  const menu = useRef();
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     setId("");
   };
 
+  useLayoutEffect(() => {
+    function updateSize() {
+      setSize(window.innerWidth);
+    }
+
+    window.addEventListener("resize", updateSize);
+
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const menuHandler = (e) => {
+      if (!menu.current.contains(e.target) && window.innerWidth < 1024) {
+        closeMenu();
+        return;
+      }
+    };
+
+    document.addEventListener("mousedown", menuHandler);
+
+    return () => {
+      document.removeEventListener("mousedown", menuHandler);
+    };
+  }, []);
+
+  /*useEffect(() => {
+    const token = localStorage.getItem('token');
 
     console.log(token);
     api
-      .get("/admin/is-admin", {
+      .get('/admin/is-admin', {
         headers: {
           Authorization: token,
         },
@@ -34,22 +71,72 @@ const DashboardPage = () => {
       })
       .catch((err) => {
         console.error(err);
-        navigate("/admin");
+        navigate('/admin');
       });
-  }, []);
+  }, []);*/
 
   useEffect(() => {
-    console.log(location.pathname);
-  }, [location]);
+    function handleMenuOnWindowChange() {
+      if (size >= 1024) {
+        openMenu();
+        return;
+      }
+
+      if (window.innerWidth >= 1024) {
+        openMenu();
+        return;
+      }
+
+      closeMenu();
+    }
+
+    handleMenuOnWindowChange();
+  }, [size]);
+
+  useEffect(() => {
+    const handleScrollOnMenuOpen = () => {
+      if (isMenuOpen && window.innerWidth <= 1024) {
+        document.documentElement.style.overflowY = "hidden";
+      } else {
+        document.documentElement.style.overflowY = "unset";
+      }
+    };
+
+    handleScrollOnMenuOpen();
+  }, [isMenuOpen]);
 
   return (
     <div className="dashboard-wrapper">
-      <div className="dashboard-menu-container">
+      <div
+        ref={menu}
+        className={
+          isMenuOpen
+            ? "dashboard-menu-container menu-active"
+            : "dashboard-menu-container menu-desactive"
+        }
+      >
         <div className="dashboard-menu">
           <div className="dashboard-menu-header">
             <Link to="/">
               <h1 className="dashboard-menu-logo">Logo</h1>
             </Link>
+
+            <button className="dashboard-menu-close-btn" onClick={closeMenu}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5"
+                />
+              </svg>
+            </button>
           </div>
           <div className="dashboard-menu-body">
             <nav className="dashboard-menu-nav">

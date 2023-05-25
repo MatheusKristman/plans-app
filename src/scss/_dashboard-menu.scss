@@ -3,20 +3,40 @@
   height: 100%;
   display: flex;
   justify-content: space-between;
+  flex: 1;
 
   .dashboard-menu-container {
-    position: relative;
+    width: 100%;
+    position: absolute;
+    transition: left 0.3s ease;
+    z-index: 4;
+
+    @include breakpoint(tablet) {
+      width: auto;
+    }
+
+    @include breakpoint(largeScreen) {
+      position: relative;
+      width: auto;
+    }
 
     .dashboard-menu {
-      width: 330px;
-      min-width: 330px;
-      max-width: 330px;
+      width: 100%;
       background-color: #f5e0d9;
+      border-bottom-left-radius: 16px;
       border-bottom-right-radius: 16px;
 
+      @include breakpoint(tablet) {
+        width: 330px;
+        min-width: 330px;
+        max-width: 330px;
+        border-bottom-left-radius: 0px;
+      }
+
       .dashboard-menu-header {
-        padding: 30px 80px;
+        padding: 30px 25%;
         border-bottom: 2px solid #e3c4ba;
+        position: relative;
 
         a {
           text-decoration: none;
@@ -29,10 +49,34 @@
             color: #252525;
           }
         }
+
+        .dashboard-menu-close-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: transparent;
+          border: none;
+          position: absolute;
+          right: 30px;
+          top: 50%;
+          transform: translateY(-50%);
+          cursor: pointer;
+
+          svg {
+            width: 30px;
+            min-width: 30px;
+            max-width: 30px;
+            color: #252525;
+          }
+
+          @include breakpoint(largeScreen) {
+            display: none;
+          }
+        }
       }
 
       .dashboard-menu-body {
-        padding: 80px 80px 50px;
+        padding: 80px 20% 50px;
 
         .dashboard-menu-nav {
           ul {
@@ -48,7 +92,7 @@
                 display: flex;
                 gap: 10px;
                 align-items: center;
-                font-size: 1.25rem;
+                font-size: 1rem;
                 font-weight: 600;
                 color: #252525;
                 cursor: pointer;
@@ -56,11 +100,21 @@
                 transition: color 0.3s ease;
 
                 svg {
-                  width: 24px;
-                  min-width: 24px;
-                  max-width: 24px;
+                  width: 20px;
+                  min-width: 20px;
+                  max-width: 20px;
                   color: #252525;
                   transition: color 0.3s ease;
+                }
+
+                @include breakpoint(tablet) {
+                  font-size: 1.25rem;
+
+                  svg {
+                    width: 24px;
+                    min-width: 24px;
+                    max-width: 24px;
+                  }
                 }
               }
             }
@@ -79,7 +133,7 @@
               }
 
               &::before {
-                content: "";
+                content: '';
                 position: absolute;
                 z-index: 2;
                 top: -10px;
@@ -112,6 +166,18 @@
           }
         }
       }
+    }
+  }
+
+  .menu-active {
+    left: 0;
+  }
+
+  .menu-desactive {
+    left: -100%;
+
+    @include breakpoint(tablet) {
+      left: -330px;
     }
   }
 }

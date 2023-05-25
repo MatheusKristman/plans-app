@@ -1,0 +1,543 @@
+.plans-component-container {
+  width: 100%;
+  height: 100%;
+  padding: 0 25px 150px;
+
+  .plans-component-wrapper {
+    width: 100%;
+    max-width: 1250px;
+    height: 100%;
+    margin: auto;
+
+    .plans-component-info {
+      width: 100%;
+      margin-top: 75px;
+
+      .plans-component-mobile-title {
+        display: block;
+        font-size: 1.875rem;
+        font-weight: 600;
+        color: #252525;
+        margin-bottom: 35px;
+      }
+
+      .plans-component-categories-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 25px;
+        margin-bottom: 35px;
+
+        .plans-component-categories-all-wrapper,
+        .plans-component-categories-internet-wrapper,
+        .plans-component-categories-cel-wrapper,
+        .plans-component-categories-tv-wrapper {
+          width: fit-content;
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+
+          .plans-component-categories-all-button,
+          .plans-component-categories-internet-button,
+          .plans-component-categories-cel-button,
+          .plans-component-categories-tv-button {
+            width: 100%;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #252525;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+          }
+
+          .plans-component-categories-line {
+            background-color: #d40066;
+            height: 2px;
+            transition: width 0.5s ease;
+          }
+
+          .active {
+            width: 100%;
+          }
+
+          .desactive {
+            width: 0%;
+          }
+
+          &:hover {
+            .plans-component-categories-line {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      .plans-component-active-plans {
+        width: 100%;
+        margin-bottom: 150px;
+
+        .plans-component-status-box {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 25px;
+
+          .plans-component-status {
+            font-size: 1rem;
+            color: #252525;
+          }
+
+          .plans-component-filter-button {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #252525;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s ease;
+
+            svg {
+              width: 20px;
+              min-width: 20px;
+              max-width: 20px;
+              height: auto;
+              color: #d40066;
+            }
+
+            &:hover {
+              color: #d40066;
+            }
+          }
+        }
+
+        .plans-component-plans-wrapper {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 25px;
+          margin-top: 80px;
+
+          .plans-component-plan-container {
+            width: 100%;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #c7c7c7;
+
+            .plans-component-plan-wrapper {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              justify-content: space-between;
+              gap: 25px;
+
+              .plans-component-plan-info {
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 25px;
+
+                .plans-component-image-title-box {
+                  width: 100%;
+                  display: flex;
+                  align-items: center;
+                  gap: 25px;
+
+                  .plans-component-image-box {
+                    width: 50px;
+                    min-width: 50px;
+                    max-width: 50px;
+                    height: 50px;
+                    min-height: 50px;
+                    max-height: 50px;
+                    background-color: #f5e0d9;
+                    border-radius: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    .plans-component-image {
+                      width: 80%;
+                      height: auto;
+                    }
+                  }
+                }
+
+                .plans-component-cost-box,
+                .plans-component-franchise-box,
+                .plans-component-contact-box,
+                .plans-component-created-at-box {
+                  width: 100%;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 5px;
+                  margin-left: 75px;
+
+                  .plans-component-cost-value,
+                  .plans-component-franchise-value,
+                  .plans-component-contact-value,
+                  .plans-component-created-at-value {
+                    font-size: 1.125rem;
+                    font-weight: 500;
+                    color: #252525;
+                  }
+
+                  .plans-component-cost-desc,
+                  .plans-component-franchise-desc,
+                  .plans-component-contact-desc,
+                  .plans-component-created-at-desc {
+                    font-size: 0.875rem;
+                    font-weight: 500;
+                    color: #b0b0b0;
+                  }
+                }
+
+                .plans-component-priority-box {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 40px;
+                  min-width: 40px;
+                  max-width: 40px;
+                  height: 44px;
+                  min-height: 44px;
+                  max-height: 44px;
+                  margin-left: 75px;
+                  background-image: url("/assets/icons/polygon.svg");
+                  background-size: cover;
+                  background-repeat: no-repeat;
+                  background-position: center;
+
+                  .plans-component-priority-value {
+                    font-size: 1.25rem;
+                    color: #d40066;
+                    text-align: center;
+                  }
+                }
+              }
+
+              .plans-component-plan-buttons {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 15px;
+                flex-direction: column;
+
+                .plans-component-edit-button {
+                  font-size: 0.875rem;
+                  font-weight: 600;
+                  color: #fff;
+                  background-color: #d40066;
+                  border: 2px solid #d40066;
+                  width: 100%;
+                  height: 40px;
+                  border-radius: 8px;
+                  cursor: pointer;
+                  transition: filter 0.3s ease;
+
+                  &:hover {
+                    filter: brightness(80%);
+                  }
+                }
+
+                .plans-component-details-button {
+                  font-size: 0.875rem;
+                  font-weight: 600;
+                  color: #d40066;
+                  background-color: #fff;
+                  border: 2px solid #d40066;
+                  border-radius: 8px;
+                  width: 100%;
+                  height: 40px;
+                  cursor: pointer;
+                  transition: background 0.3s ease, color 0.3s ease;
+
+                  &:hover {
+                    background-color: #d40066;
+                    color: #fff;
+                  }
+                }
+
+                .plans-component-archivate-button {
+                  width: 100%;
+                  height: 40px;
+                  background-color: #fff;
+                  border: 2px solid #d40066;
+                  border-radius: 8px;
+                  font-size: 0.875rem;
+                  font-weight: 600;
+                  color: #d40066;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 10px;
+                  cursor: pointer;
+                  transition: background 0.3s ease, color 0.3s ease;
+
+                  svg {
+                    width: 20px;
+                    min-width: 20px;
+                    max-width: 20px;
+                    height: auto;
+                  }
+
+                  &:hover {
+                    background-color: #d40066;
+                    color: #fff;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .plans-component-archived-plans {
+        width: 100%;
+
+        .plans-component-status-box {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 25px;
+
+          .plans-component-status {
+            font-size: 1rem;
+            color: #252525;
+          }
+
+          .plans-component-visibility-button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            color: #252525;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+
+            svg {
+              width: 20px;
+              min-width: 20px;
+              max-width: 20px;
+              height: auto;
+              color: #252525;
+            }
+          }
+        }
+
+        .plans-component-archived-plans-wrapper {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 25px;
+          margin-top: 80px;
+
+          .plans-component-archived-plan-container {
+            width: 100%;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #c7c7c7;
+
+            .plans-component-archived-plan-wrapper {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 25px;
+
+              .plans-component-archived-plan-info {
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 25px;
+
+                .plans-component-image-title-box {
+                  width: 100%;
+                  display: flex;
+                  align-items: center;
+                  gap: 25px;
+
+                  .plans-component-image-box {
+                    width: 50px;
+                    min-width: 50px;
+                    max-width: 50px;
+                    height: 50px;
+                    min-height: 50px;
+                    max-height: 50px;
+                    background-color: #f5e0d9;
+                    border-radius: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    .plans-component-image {
+                      width: 80%;
+                      height: auto;
+                    }
+                  }
+                }
+
+                .plans-component-cost-box,
+                .plans-component-franchise-box,
+                .plans-component-contact-box,
+                .plans-component-created-at-box,
+                .plans-component-archived-at-box {
+                  width: 100%;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 5px;
+                  margin-left: 75px;
+
+                  .plans-component-cost-value,
+                  .plans-component-franchise-value,
+                  .plans-component-contact-value,
+                  .plans-component-created-at-value,
+                  .plans-component-archived-at-value {
+                    font-size: 1.125rem;
+                    font-weight: 500;
+                    color: #252525;
+                  }
+
+                  .plans-component-cost-desc,
+                  .plans-component-franchise-desc,
+                  .plans-component-contact-desc,
+                  .plans-component-created-at-desc,
+                  .plans-component-archived-at-desc {
+                    font-size: 0.875rem;
+                    font-weight: 500;
+                    color: #b0b0b0;
+                  }
+                }
+
+                .plans-component-priority-box {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 40px;
+                  min-width: 40px;
+                  max-width: 40px;
+                  height: 44px;
+                  min-height: 44px;
+                  max-height: 44px;
+                  margin-left: 75px;
+                  background-image: url("/assets/icons/polygon.svg");
+                  background-size: cover;
+                  background-repeat: no-repeat;
+                  background-position: center;
+
+                  .plans-component-priority-value {
+                    font-size: 1.25rem;
+                    color: #d40066;
+                    text-align: center;
+                  }
+                }
+              }
+
+              .plans-component-archived-plan-buttons {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 15px;
+                flex-direction: column;
+
+                .plans-component-restore-button {
+                  width: 100%;
+                  height: 40px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 10px;
+                  font-size: 1rem;
+                  font-weight: 600;
+                  color: #fff;
+                  background-color: #d40066;
+                  border: 2px solid #d40066;
+                  border-radius: 8px;
+                  cursor: pointer;
+                  transition: filter 0.3s ease;
+
+                  svg {
+                    width: 20px;
+                    min-width: 20px;
+                    max-width: 20px;
+                    height: auto;
+                    color: #fff;
+                  }
+
+                  &:hover {
+                    filter: brightness(80%);
+                  }
+                }
+
+                .plans-component-details-button {
+                  width: 100%;
+                  height: 40px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 1rem;
+                  font-weight: 600;
+                  color: #d40066;
+                  background-color: #fff;
+                  border: 2px solid #d40066;
+                  border-radius: 8px;
+                  cursor: pointer;
+                  transition: background 0.3s ease, color 0.3s ease;
+
+                  &:hover {
+                    background-color: #d40066;
+                    color: #fff;
+                  }
+                }
+
+                .plans-component-delete-button {
+                  width: 100%;
+                  height: 40px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 1rem;
+                  font-weight: 600;
+                  color: #d40066;
+                  background-color: #fff;
+                  border: 2px solid #d40066;
+                  border-radius: 8px;
+                  cursor: pointer;
+                  transition: background 0.3s ease, color 0.3s ease;
+
+                  svg {
+                    width: 20px;
+                    min-width: 20px;
+                    max-width: 20px;
+                    height: auto;
+                    color: #d40066;
+                    transition: color 0.3s ease;
+                  }
+
+                  &:hover {
+                    background-color: #d40066;
+                    color: #fff;
+
+                    svg {
+                      color: #fff;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
