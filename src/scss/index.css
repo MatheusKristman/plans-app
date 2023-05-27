@@ -347,7 +347,7 @@ body {
   }
 }
 .dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-header {
-  padding: 30px 25%;
+  padding: 30px 20%;
   border-bottom: 2px solid #e3c4ba;
   position: relative;
 }
@@ -400,7 +400,7 @@ body {
   display: flex;
   gap: 10px;
   align-items: center;
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: #252525;
   cursor: pointer;
@@ -408,21 +408,11 @@ body {
   transition: color 0.3s ease;
 }
 .dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-body .dashboard-menu-nav ul li .dashboard-menu-item svg {
-  width: 20px;
-  min-width: 20px;
-  max-width: 20px;
+  width: 24px;
+  min-width: 24px;
+  max-width: 24px;
   color: #252525;
   transition: color 0.3s ease;
-}
-@media screen and (min-width: 500px) {
-  .dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-body .dashboard-menu-nav ul li .dashboard-menu-item {
-    font-size: 1.25rem;
-  }
-  .dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-body .dashboard-menu-nav ul li .dashboard-menu-item svg {
-    width: 24px;
-    min-width: 24px;
-    max-width: 24px;
-  }
 }
 .dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-body .dashboard-menu-nav ul .selected {
   position: relative;
@@ -603,6 +593,7 @@ body {
   justify-content: space-between;
   flex-direction: column;
   gap: 25px;
+  position: relative;
 }
 @media screen and (min-width: 500px) {
   .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-status-box {
@@ -613,6 +604,7 @@ body {
 }
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-status-box .dashboard-component-status {
   font-size: 1rem;
+  font-weight: 500;
   color: #252525;
 }
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-status-box .dashboard-component-create-plan-btn {
@@ -643,6 +635,48 @@ body {
   .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-status-box .dashboard-component-create-plan-btn {
     width: fit-content;
   }
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-status-box .dashboard-component-plan-type-options {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 25px 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  border: 2px solid #d40066;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  width: fit-content;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-status-box .dashboard-component-plan-type-options .dashboard-component-plan-type-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #252525;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-status-box .dashboard-component-plan-type-options .dashboard-component-plan-type-buttons {
+  list-style: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-status-box .dashboard-component-plan-type-options .dashboard-component-plan-type-buttons .dashboard-component-plan-type-button {
+  width: 100%;
+  background-color: #d40066;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+.dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-status-box .dashboard-component-plan-type-options .dashboard-component-plan-type-buttons .dashboard-component-plan-type-button:hover {
+  filter: brightness(80%);
 }
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper {
   margin-top: 80px;
@@ -972,6 +1006,7 @@ body {
 }
 .providers-component-container .providers-component-wrapper .providers-component-info .providers-component-status-container .providers-component-status-wrapper .providers-component-status {
   font-size: 1rem;
+  font-weight: 500;
   color: #252525;
 }
 .providers-component-container .providers-component-wrapper .providers-component-info .providers-component-status-container .providers-component-status-wrapper .providers-component-new-provider-button {
@@ -1117,7 +1152,7 @@ body {
 }
 .providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-buttons-box .providers-component-details-button {
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   color: #d40066;
   background-color: #fff;
   border: 2px solid #d40066;
@@ -1132,7 +1167,7 @@ body {
 }
 .providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-buttons-box .providers-component-edit-button {
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   color: #fff;
   background-color: #d40066;
   border: 2px solid #d40066;
@@ -1149,6 +1184,11 @@ body {
   width: 100%;
   height: 100%;
   padding: 0 25px 150px;
+}
+@media screen and (min-width: 500px) {
+  .plans-component-container {
+    padding: 0 50px 150px;
+  }
 }
 .plans-component-container .plans-component-wrapper {
   width: 100%;
@@ -1167,6 +1207,11 @@ body {
   color: #252525;
   margin-bottom: 35px;
 }
+@media screen and (min-width: 1024px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-mobile-title {
+    display: none;
+  }
+}
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container {
   width: 100%;
   display: flex;
@@ -1174,7 +1219,7 @@ body {
   align-items: flex-start;
   justify-content: space-between;
   gap: 25px;
-  margin-bottom: 35px;
+  margin-bottom: 50px;
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-all-wrapper,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-internet-wrapper,
@@ -1183,7 +1228,6 @@ body {
   width: fit-content;
   display: flex;
   flex-direction: column;
-  gap: 5px;
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-all-wrapper .plans-component-categories-all-button,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-all-wrapper .plans-component-categories-internet-button,
@@ -1235,6 +1279,12 @@ body {
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-tv-wrapper:hover .plans-component-categories-line {
   width: 100%;
 }
+@media screen and (min-width: 500px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans {
   width: 100%;
   margin-bottom: 150px;
@@ -1249,6 +1299,7 @@ body {
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-status-box .plans-component-status {
   font-size: 1rem;
+  font-weight: 500;
   color: #252525;
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-status-box .plans-component-filter-button {
@@ -1274,6 +1325,11 @@ body {
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-status-box .plans-component-filter-button:hover {
   color: #d40066;
 }
+@media screen and (min-width: 500px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-status-box {
+    flex-direction: row;
+  }
+}
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper {
   width: 100%;
   display: flex;
@@ -1294,17 +1350,34 @@ body {
   justify-content: space-between;
   gap: 25px;
 }
+@media screen and (min-width: 768px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper {
+    flex-direction: row;
+  }
+}
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info {
   width: 100%;
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   gap: 25px;
+}
+@media screen and (min-width: 768px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info {
+    width: 70%;
+    gap: 25px 130px;
+  }
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-image-title-box {
   width: 100%;
   display: flex;
   align-items: center;
   gap: 25px;
+}
+@media screen and (min-width: 768px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-image-title-box {
+    width: fit-content;
+  }
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-image-title-box .plans-component-image-box {
   width: 50px;
@@ -1323,9 +1396,15 @@ body {
   width: 80%;
   height: auto;
 }
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-image-title-box .plans-component-plan-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #252525;
+}
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-cost-box,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-franchise-box,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-contact-box,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-total-box,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-created-at-box {
   width: 100%;
   display: flex;
@@ -1333,21 +1412,40 @@ body {
   gap: 5px;
   margin-left: 75px;
 }
+@media screen and (min-width: 768px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-cost-box,
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-franchise-box,
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-contact-box,
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-total-box,
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-created-at-box {
+    width: fit-content;
+    margin-left: 0;
+  }
+}
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-cost-box .plans-component-cost-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-cost-box .plans-component-franchise-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-cost-box .plans-component-contact-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-cost-box .plans-component-total-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-cost-box .plans-component-created-at-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-franchise-box .plans-component-cost-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-franchise-box .plans-component-franchise-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-franchise-box .plans-component-contact-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-franchise-box .plans-component-total-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-franchise-box .plans-component-created-at-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-contact-box .plans-component-cost-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-contact-box .plans-component-franchise-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-contact-box .plans-component-contact-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-contact-box .plans-component-total-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-contact-box .plans-component-created-at-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-total-box .plans-component-cost-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-total-box .plans-component-franchise-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-total-box .plans-component-contact-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-total-box .plans-component-total-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-total-box .plans-component-created-at-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-created-at-box .plans-component-cost-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-created-at-box .plans-component-franchise-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-created-at-box .plans-component-contact-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-created-at-box .plans-component-total-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-created-at-box .plans-component-created-at-value {
   font-size: 1.125rem;
   font-weight: 500;
@@ -1356,24 +1454,46 @@ body {
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-cost-box .plans-component-cost-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-cost-box .plans-component-franchise-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-cost-box .plans-component-contact-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-cost-box .plans-component-total-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-cost-box .plans-component-created-at-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-franchise-box .plans-component-cost-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-franchise-box .plans-component-franchise-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-franchise-box .plans-component-contact-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-franchise-box .plans-component-total-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-franchise-box .plans-component-created-at-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-contact-box .plans-component-cost-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-contact-box .plans-component-franchise-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-contact-box .plans-component-contact-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-contact-box .plans-component-total-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-contact-box .plans-component-created-at-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-total-box .plans-component-cost-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-total-box .plans-component-franchise-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-total-box .plans-component-contact-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-total-box .plans-component-total-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-total-box .plans-component-created-at-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-created-at-box .plans-component-cost-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-created-at-box .plans-component-franchise-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-created-at-box .plans-component-contact-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-created-at-box .plans-component-total-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-created-at-box .plans-component-created-at-desc {
   font-size: 0.875rem;
   font-weight: 500;
   color: #b0b0b0;
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-priority-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-left: 75px;
+}
+@media screen and (min-width: 768px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-priority-box {
+    width: fit-content;
+    margin-left: 0;
+  }
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-priority-box .plans-component-priority-polygon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1383,16 +1503,20 @@ body {
   height: 44px;
   min-height: 44px;
   max-height: 44px;
-  margin-left: 75px;
   background-image: url("/assets/icons/polygon.svg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
-.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-priority-box .plans-component-priority-value {
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-priority-box .plans-component-priority-polygon .plans-component-priority-value {
   font-size: 1.25rem;
   color: #d40066;
   text-align: center;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-priority-box .plans-component-priority-desc {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #b0b0b0;
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-buttons {
   width: 100%;
@@ -1400,7 +1524,16 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 15px;
-  flex-direction: column;
+  flex-wrap: wrap;
+}
+@media screen and (min-width: 768px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-buttons {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    width: 30%;
+  }
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-buttons .plans-component-edit-button {
   font-size: 0.875rem;
@@ -1408,14 +1541,19 @@ body {
   color: #fff;
   background-color: #d40066;
   border: 2px solid #d40066;
+  padding: 10px 20px;
   width: 100%;
-  height: 40px;
   border-radius: 8px;
   cursor: pointer;
   transition: filter 0.3s ease;
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-buttons .plans-component-edit-button:hover {
   filter: brightness(80%);
+}
+@media screen and (min-width: 768px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-buttons .plans-component-edit-button {
+    width: auto;
+  }
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-buttons .plans-component-details-button {
   font-size: 0.875rem;
@@ -1424,8 +1562,8 @@ body {
   background-color: #fff;
   border: 2px solid #d40066;
   border-radius: 8px;
+  padding: 10px 20px;
   width: 100%;
-  height: 40px;
   cursor: pointer;
   transition: background 0.3s ease, color 0.3s ease;
 }
@@ -1433,12 +1571,22 @@ body {
   background-color: #d40066;
   color: #fff;
 }
+@media screen and (min-width: 500px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-buttons .plans-component-details-button {
+    width: calc(50% - 7.5px);
+  }
+}
+@media screen and (min-width: 768px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-buttons .plans-component-details-button {
+    width: auto;
+  }
+}
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-buttons .plans-component-archivate-button {
   width: 100%;
-  height: 40px;
   background-color: #fff;
   border: 2px solid #d40066;
   border-radius: 8px;
+  padding: 10px 20px;
   font-size: 0.875rem;
   font-weight: 600;
   color: #d40066;
@@ -1459,6 +1607,16 @@ body {
   background-color: #d40066;
   color: #fff;
 }
+@media screen and (min-width: 500px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-buttons .plans-component-archivate-button {
+    width: calc(50% - 7.5px);
+  }
+}
+@media screen and (min-width: 768px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-buttons .plans-component-archivate-button {
+    width: fit-content;
+  }
+}
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans {
   width: 100%;
 }
@@ -1467,10 +1625,17 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: space-between;
   gap: 25px;
+}
+@media screen and (min-width: 500px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-status-box {
+    flex-direction: row;
+  }
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-status-box .plans-component-status {
   font-size: 1rem;
+  font-weight: 500;
   color: #252525;
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-status-box .plans-component-visibility-button {
@@ -1478,6 +1643,7 @@ body {
   align-items: center;
   gap: 10px;
   font-size: 1rem;
+  font-weight: 500;
   color: #252525;
   background-color: transparent;
   border: none;
@@ -1509,17 +1675,34 @@ body {
   align-items: flex-start;
   gap: 25px;
 }
+@media screen and (min-width: 768px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper {
+    flex-direction: row;
+  }
+}
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info {
   width: 100%;
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   gap: 25px;
+}
+@media screen and (min-width: 768px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info {
+    width: 70%;
+    gap: 25px 130px;
+  }
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-image-title-box {
   width: 100%;
   display: flex;
   align-items: center;
   gap: 25px;
+}
+@media screen and (min-width: 768px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-image-title-box {
+    width: fit-content;
+  }
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-image-title-box .plans-component-image-box {
   width: 50px;
@@ -1538,9 +1721,15 @@ body {
   width: 80%;
   height: auto;
 }
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-image-title-box .plans-component-plan-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #252525;
+}
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-total-box,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box {
   width: 100%;
@@ -1549,29 +1738,51 @@ body {
   gap: 5px;
   margin-left: 75px;
 }
+@media screen and (min-width: 768px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box,
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box,
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box,
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-total-box,
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box,
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box {
+    width: fit-content;
+    margin-left: 0;
+  }
+}
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box .plans-component-cost-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box .plans-component-franchise-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box .plans-component-contact-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box .plans-component-total-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box .plans-component-created-at-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box .plans-component-archived-at-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box .plans-component-cost-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box .plans-component-franchise-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box .plans-component-contact-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box .plans-component-total-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box .plans-component-created-at-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box .plans-component-archived-at-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box .plans-component-cost-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box .plans-component-franchise-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box .plans-component-contact-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box .plans-component-total-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box .plans-component-created-at-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box .plans-component-archived-at-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-total-box .plans-component-cost-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-total-box .plans-component-franchise-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-total-box .plans-component-contact-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-total-box .plans-component-total-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-total-box .plans-component-created-at-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-total-box .plans-component-archived-at-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box .plans-component-cost-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box .plans-component-franchise-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box .plans-component-contact-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box .plans-component-total-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box .plans-component-created-at-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box .plans-component-archived-at-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box .plans-component-cost-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box .plans-component-franchise-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box .plans-component-contact-value,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box .plans-component-total-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box .plans-component-created-at-value,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box .plans-component-archived-at-value {
   font-size: 1.125rem;
@@ -1581,26 +1792,37 @@ body {
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box .plans-component-cost-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box .plans-component-franchise-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box .plans-component-contact-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box .plans-component-total-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box .plans-component-created-at-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-cost-box .plans-component-archived-at-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box .plans-component-cost-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box .plans-component-franchise-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box .plans-component-contact-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box .plans-component-total-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box .plans-component-created-at-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-franchise-box .plans-component-archived-at-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box .plans-component-cost-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box .plans-component-franchise-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box .plans-component-contact-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box .plans-component-total-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box .plans-component-created-at-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-contact-box .plans-component-archived-at-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-total-box .plans-component-cost-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-total-box .plans-component-franchise-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-total-box .plans-component-contact-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-total-box .plans-component-total-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-total-box .plans-component-created-at-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-total-box .plans-component-archived-at-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box .plans-component-cost-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box .plans-component-franchise-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box .plans-component-contact-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box .plans-component-total-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box .plans-component-created-at-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-created-at-box .plans-component-archived-at-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box .plans-component-cost-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box .plans-component-franchise-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box .plans-component-contact-desc,
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box .plans-component-total-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box .plans-component-created-at-desc,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-archived-at-box .plans-component-archived-at-desc {
   font-size: 0.875rem;
@@ -1608,25 +1830,41 @@ body {
   color: #b0b0b0;
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-priority-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-left: 75px;
+}
+@media screen and (min-width: 768px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-priority-box {
+    width: fit-content;
+    margin-left: 0;
+  }
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-priority-box .plans-component-priority-polygon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
   min-width: 40px;
   max-width: 40px;
   height: 44px;
   min-height: 44px;
   max-height: 44px;
-  margin-left: 75px;
   background-image: url("/assets/icons/polygon.svg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
-.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-priority-box .plans-component-priority-value {
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-priority-box .plans-component-priority-polygon .plans-component-priority-value {
   font-size: 1.25rem;
   color: #d40066;
   text-align: center;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-priority-box .plans-component-priority-desc {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #b0b0b0;
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons {
   width: 100%;
@@ -1634,7 +1872,15 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 15px;
-  flex-direction: column;
+  flex-wrap: wrap;
+}
+@media screen and (min-width: 768px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons {
+    align-items: flex-end;
+    width: 30%;
+    flex-wrap: nowrap;
+    flex-direction: column;
+  }
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-restore-button {
   width: 100%;
@@ -1643,14 +1889,20 @@ body {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 600;
   color: #fff;
+  padding: 10px 20px;
   background-color: #d40066;
   border: 2px solid #d40066;
   border-radius: 8px;
   cursor: pointer;
   transition: filter 0.3s ease;
+}
+@media screen and (min-width: 768px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-restore-button {
+    width: fit-content;
+  }
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-restore-button svg {
   width: 20px;
@@ -1665,10 +1917,11 @@ body {
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-details-button {
   width: 100%;
   height: 40px;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 600;
   color: #d40066;
   background-color: #fff;
@@ -1676,6 +1929,16 @@ body {
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s ease, color 0.3s ease;
+}
+@media screen and (min-width: 500px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-details-button {
+    width: calc(50% - 7.5px);
+  }
+}
+@media screen and (min-width: 768px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-details-button {
+    width: fit-content;
+  }
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-details-button:hover {
   background-color: #d40066;
@@ -1684,10 +1947,11 @@ body {
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-delete-button {
   width: 100%;
   height: 40px;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 600;
   color: #d40066;
   background-color: #fff;
@@ -1695,6 +1959,17 @@ body {
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s ease, color 0.3s ease;
+  gap: 10px;
+}
+@media screen and (min-width: 500px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-delete-button {
+    width: calc(50% - 7.5px);
+  }
+}
+@media screen and (min-width: 768px) {
+  .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-delete-button {
+    width: fit-content;
+  }
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-delete-button svg {
   width: 20px;
@@ -1710,6 +1985,2001 @@ body {
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-delete-button:hover svg {
   color: #fff;
+}
+
+.leads-component-container {
+  width: 100%;
+  height: 100%;
+  padding: 0 25px 150px;
+}
+@media screen and (min-width: 500px) {
+  .leads-component-container {
+    padding: 0 50px 150px;
+  }
+}
+.leads-component-container .leads-component-wrapper {
+  width: 100%;
+  height: 100%;
+  max-width: 1250px;
+  margin: auto;
+}
+.leads-component-container .leads-component-wrapper .leads-component-info {
+  width: 100%;
+  margin-top: 75px;
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-mobile-title {
+  display: block;
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: #252525;
+  margin-bottom: 35px;
+}
+@media screen and (min-width: 1024px) {
+  .leads-component-container .leads-component-wrapper .leads-component-info .leads-component-mobile-title {
+    display: none;
+  }
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-status-box {
+  width: 100%;
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-status-box .leads-component-status {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #252525;
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 80px;
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box {
+  width: 100%;
+  padding-bottom: 25px;
+  border-bottom: 2px solid #c7c7c7;
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 25px;
+}
+@media screen and (min-width: 768px) {
+  .leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper {
+    flex-direction: row;
+    gap: 25px 130px;
+  }
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-image-title-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+@media screen and (min-width: 768px) {
+  .leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-image-title-box {
+    width: fit-content;
+  }
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-image-title-box .leads-component-image-box {
+  width: 50px;
+  min-width: 50px;
+  max-width: 50px;
+  height: 50px;
+  min-height: 50px;
+  max-height: 50px;
+  border-radius: 10px;
+  background-color: #f5e0d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-image-title-box .leads-component-image-box .leads-component-image {
+  width: 80%;
+  height: auto;
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-image-title-box .leads-component-lead-name-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-image-title-box .leads-component-lead-name-box .leads-component-lead-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #252525;
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-image-title-box .leads-component-lead-name-box .leads-component-lead-name-desc {
+  font-size: 0.875rem;
+  color: #b0b0b0;
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel1-box,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel2-box,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-cpf-box,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-date-of-birth-box,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-plan-box,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-contact-at-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  margin-left: 75px;
+}
+@media screen and (min-width: 768px) {
+  .leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel1-box,
+  .leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel2-box,
+  .leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-cpf-box,
+  .leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-date-of-birth-box,
+  .leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-plan-box,
+  .leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-contact-at-box {
+    width: fit-content;
+  }
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel1-box .leads-component-tel1-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel1-box .leads-component-tel2-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel1-box .leads-component-cpf-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel1-box .leads-component-date-of-birth-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel1-box .leads-component-plan-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel1-box .leads-component-contact-at-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel2-box .leads-component-tel1-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel2-box .leads-component-tel2-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel2-box .leads-component-cpf-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel2-box .leads-component-date-of-birth-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel2-box .leads-component-plan-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel2-box .leads-component-contact-at-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-cpf-box .leads-component-tel1-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-cpf-box .leads-component-tel2-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-cpf-box .leads-component-cpf-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-cpf-box .leads-component-date-of-birth-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-cpf-box .leads-component-plan-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-cpf-box .leads-component-contact-at-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-date-of-birth-box .leads-component-tel1-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-date-of-birth-box .leads-component-tel2-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-date-of-birth-box .leads-component-cpf-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-date-of-birth-box .leads-component-date-of-birth-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-date-of-birth-box .leads-component-plan-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-date-of-birth-box .leads-component-contact-at-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-plan-box .leads-component-tel1-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-plan-box .leads-component-tel2-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-plan-box .leads-component-cpf-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-plan-box .leads-component-date-of-birth-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-plan-box .leads-component-plan-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-plan-box .leads-component-contact-at-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-contact-at-box .leads-component-tel1-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-contact-at-box .leads-component-tel2-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-contact-at-box .leads-component-cpf-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-contact-at-box .leads-component-date-of-birth-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-contact-at-box .leads-component-plan-value,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-contact-at-box .leads-component-contact-at-value {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #252525;
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel1-box .leads-component-tel1-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel1-box .leads-component-tel2-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel1-box .leads-component-cpf-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel1-box .leads-component-date-of-birth-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel1-box .leads-component-plan-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel1-box .leads-component-contact-at-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel2-box .leads-component-tel1-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel2-box .leads-component-tel2-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel2-box .leads-component-cpf-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel2-box .leads-component-date-of-birth-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel2-box .leads-component-plan-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel2-box .leads-component-contact-at-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-cpf-box .leads-component-tel1-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-cpf-box .leads-component-tel2-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-cpf-box .leads-component-cpf-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-cpf-box .leads-component-date-of-birth-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-cpf-box .leads-component-plan-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-cpf-box .leads-component-contact-at-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-date-of-birth-box .leads-component-tel1-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-date-of-birth-box .leads-component-tel2-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-date-of-birth-box .leads-component-cpf-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-date-of-birth-box .leads-component-date-of-birth-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-date-of-birth-box .leads-component-plan-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-date-of-birth-box .leads-component-contact-at-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-plan-box .leads-component-tel1-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-plan-box .leads-component-tel2-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-plan-box .leads-component-cpf-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-plan-box .leads-component-date-of-birth-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-plan-box .leads-component-plan-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-plan-box .leads-component-contact-at-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-contact-at-box .leads-component-tel1-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-contact-at-box .leads-component-tel2-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-contact-at-box .leads-component-cpf-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-contact-at-box .leads-component-date-of-birth-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-contact-at-box .leads-component-plan-desc,
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-contact-at-box .leads-component-contact-at-desc {
+  font-size: 0.875rem;
+  color: #b0b0b0;
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-button-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+@media screen and (min-width: 768px) {
+  .leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-button-wrapper {
+    width: 30%;
+  }
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-button-wrapper .leads-component-details-button {
+  width: 100%;
+  background-color: #d40066;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-button-wrapper .leads-component-details-button:hover {
+  filter: brightness(80%);
+}
+@media screen and (min-width: 768px) {
+  .leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-button-wrapper .leads-component-details-button {
+    width: fit-content;
+  }
+}
+
+.new-internet-plan-modal-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(32, 33, 36, 0.5);
+  overflow: auto;
+  padding: 50px 15px;
+  z-index: 6;
+}
+.new-internet-plan-modal-overlay::before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container {
+  background-color: #fff;
+  width: 100%;
+  height: auto;
+  max-width: 460px;
+  vertical-align: middle;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 16px;
+  z-index: 7;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-header {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  background-image: url("/assets/images/modal-header.png");
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-header .new-internet-plan-modal-close-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-header .new-internet-plan-modal-close-button svg {
+  width: 80%;
+  height: auto;
+  color: #252525;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-header .new-internet-plan-modal-title {
+  background-color: #fff;
+  padding: 15px 30px;
+  border-top-right-radius: 16px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  color: #252525;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body {
+  width: 100%;
+  padding: 30px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form {
+  width: 100%;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-provider-box {
+  width: 100%;
+  margin-bottom: 15px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-provider-box .new-internet-plan-modal-provider-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  display: block;
+  margin-bottom: 10px;
+}
+@media screen and (min-width: 500px) {
+  .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-provider-box .new-internet-plan-modal-provider-title {
+    font-size: 1.25rem;
+  }
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-provider-box .new-internet-plan-modal-provider-options {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  gap: 20px;
+}
+@media screen and (min-width: 500px) {
+  .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-provider-box .new-internet-plan-modal-provider-options {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-provider-box .new-internet-plan-modal-provider-options .new-internet-plan-modal-provider-label {
+  background-color: #ececec;
+  border-radius: 10px;
+  border: 2px solid #ececec;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100%;
+  position: relative;
+  cursor: pointer;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-provider-box .new-internet-plan-modal-provider-options .new-internet-plan-modal-provider-label .new-internet-plan-modal-provider-label-logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-provider-box .new-internet-plan-modal-provider-options .new-internet-plan-modal-provider-label .new-internet-plan-modal-provider-label-logo .new-internet-plan-modal-provider-image {
+  width: 70%;
+  height: auto;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-provider-box .new-internet-plan-modal-provider-options .new-internet-plan-modal-provider-label .new-internet-plan-modal-provider-item {
+  display: none;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-provider-box .new-internet-plan-modal-provider-options .provider-selected {
+  border: 2px solid #d40066;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-title-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-title-box .new-internet-plan-modal-title-label {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+}
+@media screen and (min-width: 500px) {
+  .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-title-box .new-internet-plan-modal-title-label {
+    font-size: 1.25rem;
+  }
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-title-box .new-internet-plan-modal-title-input {
+  width: 100%;
+  height: 40px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-title-box .new-internet-plan-modal-title-input:focus {
+  border-color: #7a7a7a;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-cost-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-cost-box .new-internet-plan-modal-cost-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+}
+@media screen and (min-width: 500px) {
+  .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-cost-box .new-internet-plan-modal-cost-title {
+    font-size: 1.25rem;
+  }
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-cost-box .new-internet-plan-modal-cost-input {
+  width: 100%;
+  height: 40px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-cost-box .new-internet-plan-modal-cost-input:focus {
+  border-color: #7a7a7a;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-installation-cost-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-installation-cost-box .new-internet-plan-modal-installation-cost-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-installation-cost-box .new-internet-plan-modal-installation-cost-title {
+    font-size: 1.25rem;
+  }
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-installation-cost-box .new-internet-plan-modal-installation-cost-input {
+  width: 100%;
+  height: 40px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+  margin-bottom: 10px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-installation-cost-box .new-internet-plan-modal-installation-cost-input:focus {
+  border-color: #7a7a7a;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-installation-cost-box .new-internet-plan-modal-installation-cost-label {
+  display: flex;
+  align-items: center;
+  user-select: none;
+  font-size: 1rem;
+  color: #252525;
+  gap: 5px;
+  width: fit-content;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-installation-cost-box .new-internet-plan-modal-installation-cost-label .new-internet-plan-modal-installation-cost-checkbox {
+  accent-color: #d40066;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-download-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-download-box .new-internet-plan-modal-download-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-download-box .new-internet-plan-modal-download-title {
+    font-size: 1.25rem;
+  }
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-download-box .new-internet-plan-modal-download-input {
+  width: 100%;
+  height: 40px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+  margin-bottom: 10px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-download-box .new-internet-plan-modal-download-input:focus {
+  border-color: #7a7a7a;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-download-box .new-internet-plan-modal-download-unit-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-download-box .new-internet-plan-modal-download-unit-wrapper .new-internet-plan-modal-download-unit-label {
+  display: flex;
+  align-items: center;
+  user-select: none;
+  font-size: 1rem;
+  color: #252525;
+  gap: 5px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-download-box .new-internet-plan-modal-download-unit-wrapper .new-internet-plan-modal-download-unit-label .new-internet-plan-modal-download-unit-input {
+  accent-color: #d40066;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-upload-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-upload-box .new-internet-plan-modal-upload-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-upload-box .new-internet-plan-modal-upload-title {
+    font-size: 1.25rem;
+  }
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-upload-box .new-internet-plan-modal-upload-input {
+  width: 100%;
+  height: 40px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+  margin-bottom: 10px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-upload-box .new-internet-plan-modal-upload-input:focus {
+  border-color: #7a7a7a;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-upload-box .new-internet-plan-modal-upload-unit-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-upload-box .new-internet-plan-modal-upload-unit-wrapper .new-internet-plan-modal-upload-unit-label {
+  display: flex;
+  align-items: center;
+  user-select: none;
+  font-size: 1rem;
+  color: #252525;
+  gap: 5px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-upload-box .new-internet-plan-modal-upload-unit-wrapper .new-internet-plan-modal-upload-unit-label .new-internet-plan-modal-upload-unit-input {
+  accent-color: #d40066;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-franchise-limit-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-franchise-limit-box .new-internet-plan-modal-franchise-limit-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-franchise-limit-box .new-internet-plan-modal-franchise-limit-title {
+    font-size: 1.25rem;
+  }
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-franchise-limit-box .new-internet-plan-modal-franchise-limit-input {
+  width: 100%;
+  height: 40px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+  margin-bottom: 10px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-franchise-limit-box .new-internet-plan-modal-franchise-limit-input:focus {
+  border-color: #7a7a7a;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-franchise-limit-box .new-internet-plan-modal-franchise-limit-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1rem;
+  user-select: none;
+  color: #252525;
+  width: fit-content;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-franchise-limit-box .new-internet-plan-modal-franchise-limit-label .new-internet-plan-modal-franchise-limit-checkbox {
+  accent-color: #d40066;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-technology-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-technology-box .new-internet-plan-modal-technology-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-technology-box .new-internet-plan-modal-technology-title {
+    font-size: 1.25rem;
+  }
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-technology-box .new-internet-plan-modal-technology-select {
+  appearance: none;
+  width: 100%;
+  height: 40px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+  background-image: url("/assets/icons/arrowdown.svg");
+  background-repeat: no-repeat;
+  background-position: 98% center;
+  background-size: 14px 8px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-technology-box .new-internet-plan-modal-technology-select:focus {
+  border-color: #7a7a7a;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-has-wifi-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-has-wifi-box .new-internet-plan-modal-has-wifi-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-has-wifi-box .new-internet-plan-modal-has-wifi-title {
+    font-size: 1.25rem;
+  }
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-has-wifi-box .new-internet-plan-modal-has-wifi-options {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-has-wifi-box .new-internet-plan-modal-has-wifi-options .new-internet-plan-modal-has-wifi-label {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #252525;
+  user-select: none;
+  gap: 5px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-has-wifi-box .new-internet-plan-modal-has-wifi-options .new-internet-plan-modal-has-wifi-label .new-internet-plan-modal-has-wifi-input {
+  accent-color: #d40066;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-benefits-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-benefits-box .new-internet-plan-modal-benefits-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-benefits-box .new-internet-plan-modal-benefits-title {
+    font-size: 1.25rem;
+  }
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-benefits-box .new-internet-plan-modal-benefits-options {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: 10px;
+}
+@media screen and (min-width: 500px) {
+  .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-benefits-box .new-internet-plan-modal-benefits-options {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-priority-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-priority-box .new-internet-plan-modal-priority-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-priority-box .new-internet-plan-modal-priority-title {
+    font-size: 1.25rem;
+  }
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-priority-box .new-internet-plan-modal-priority-select {
+  appearance: none;
+  width: 100%;
+  height: 40px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+  background-image: url("/assets/icons/arrowdown.svg");
+  background-repeat: no-repeat;
+  background-position: 98% center;
+  background-size: 14px 8px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-priority-box .new-internet-plan-modal-priority-select:focus {
+  border-color: #7a7a7a;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-description-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-description-box .new-internet-plan-modal-description-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-description-box .new-internet-plan-modal-description-title {
+    font-size: 1.25rem;
+  }
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-description-box .new-internet-plan-modal-description-textarea {
+  resize: none;
+  font-size: 1rem;
+  color: #252525;
+  width: 100%;
+  height: 150px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 10px;
+  transition: border-color 0.3s ease;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-description-box .new-internet-plan-modal-description-textarea:focus {
+  border-color: #7a7a7a;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-submit-button {
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d40066;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 500;
+  transition: filter 0.3s ease;
+  cursor: pointer;
+}
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-submit-button:hover {
+  filter: brightness(80%);
+}
+
+.new-cel-plan-modal-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(32, 33, 36, 0.5);
+  overflow: auto;
+  padding: 50px 15px;
+  z-index: 6;
+}
+.new-cel-plan-modal-overlay::before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container {
+  background-color: #fff;
+  width: 100%;
+  height: auto;
+  max-width: 460px;
+  vertical-align: middle;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 16px;
+  z-index: 7;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-header {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  background-image: url("/assets/images/modal-header.png");
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-header .new-cel-plan-modal-close-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-header .new-cel-plan-modal-close-button svg {
+  width: 80%;
+  height: auto;
+  color: #252525;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-header .new-cel-plan-modal-title {
+  background-color: #fff;
+  padding: 15px 30px;
+  border-top-right-radius: 16px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  color: #252525;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body {
+  width: 100%;
+  padding: 30px;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form {
+  width: 100%;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-provider-box {
+  width: 100%;
+  margin-bottom: 15px;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-provider-box .new-cel-plan-modal-provider-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  display: block;
+  margin-bottom: 10px;
+}
+@media screen and (min-width: 500px) {
+  .new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-provider-box .new-cel-plan-modal-provider-title {
+    font-size: 1.25rem;
+  }
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-provider-box .new-cel-plan-modal-provider-options {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  gap: 20px;
+}
+@media screen and (min-width: 500px) {
+  .new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-provider-box .new-cel-plan-modal-provider-options {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-provider-box .new-cel-plan-modal-provider-options .new-cel-plan-modal-provider-label {
+  background-color: #ececec;
+  border-radius: 10px;
+  border: 2px solid #ececec;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100%;
+  position: relative;
+  cursor: pointer;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-provider-box .new-cel-plan-modal-provider-options .new-cel-plan-modal-provider-label .new-cel-plan-modal-provider-label-logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-provider-box .new-cel-plan-modal-provider-options .new-cel-plan-modal-provider-label .new-cel-plan-modal-provider-label-logo .new-cel-plan-modal-provider-image {
+  width: 70%;
+  height: auto;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-provider-box .new-cel-plan-modal-provider-options .new-cel-plan-modal-provider-label .new-cel-plan-modal-provider-item {
+  display: none;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-provider-box .new-cel-plan-modal-provider-options .provider-selected {
+  border: 2px solid #d40066;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-title-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-title-box .new-cel-plan-modal-title-label {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+}
+@media screen and (min-width: 500px) {
+  .new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-title-box .new-cel-plan-modal-title-label {
+    font-size: 1.25rem;
+  }
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-title-box .new-cel-plan-modal-title-input {
+  width: 100%;
+  height: 40px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-title-box .new-cel-plan-modal-title-input:focus {
+  border-color: #7a7a7a;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-cost-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-cost-box .new-cel-plan-modal-cost-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+}
+@media screen and (min-width: 500px) {
+  .new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-cost-box .new-cel-plan-modal-cost-title {
+    font-size: 1.25rem;
+  }
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-cost-box .new-cel-plan-modal-cost-input {
+  width: 100%;
+  height: 40px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-cost-box .new-cel-plan-modal-cost-input:focus {
+  border-color: #7a7a7a;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-franchise-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-franchise-box .new-cel-plan-modal-franchise-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-franchise-box .new-cel-plan-modal-franchise-title {
+    font-size: 1.25rem;
+  }
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-franchise-box .new-cel-plan-modal-franchise-input {
+  width: 100%;
+  height: 40px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+  margin-bottom: 10px;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-franchise-box .new-cel-plan-modal-franchise-input:focus {
+  border-color: #7a7a7a;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-franchise-box .new-cel-plan-modal-franchise-unit-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-franchise-box .new-cel-plan-modal-franchise-unit-wrapper .new-cel-plan-modal-franchise-unit-label {
+  font-size: 1rem;
+  color: #252525;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-franchise-box .new-cel-plan-modal-franchise-unit-wrapper .new-cel-plan-modal-franchise-unit-label .new-cel-plan-modal-franchise-unit-input {
+  accent-color: #d40066;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-unlimited-apps-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-unlimited-apps-box .new-cel-plan-modal-unlimited-apps-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-unlimited-apps-box .new-cel-plan-modal-unlimited-apps-title {
+    font-size: 1.25rem;
+  }
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-unlimited-apps-box .new-cel-plan-modal-unlimited-apps-options {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: 10px;
+}
+@media screen and (min-width: 500px) {
+  .new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-unlimited-apps-box .new-cel-plan-modal-unlimited-apps-options {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-unlimited-call-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-unlimited-call-box .new-cel-plan-modal-unlimited-call-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-unlimited-call-box .new-cel-plan-modal-unlimited-call-title {
+    font-size: 1.25rem;
+  }
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-unlimited-call-box .new-cel-plan-modal-unlimited-call-options {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-unlimited-call-box .new-cel-plan-modal-unlimited-call-options .new-cel-plan-modal-unlimited-call-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1rem;
+  color: #252525;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-unlimited-call-box .new-cel-plan-modal-unlimited-call-options .new-cel-plan-modal-unlimited-call-label .new-cel-plan-modal-unlimited-call-input {
+  accent-color: #d40066;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-plan-type-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-plan-type-box .new-cel-plan-modal-plan-type-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-plan-type-box .new-cel-plan-modal-plan-type-title {
+    font-size: 1.25rem;
+  }
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-plan-type-box .new-cel-plan-modal-plan-type-select {
+  appearance: none;
+  width: 100%;
+  height: 40px;
+  transition: border-color 0.3s ease;
+  padding: 0 12px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #252525;
+  background-image: url("/assets/icons/arrowdown.svg");
+  background-repeat: no-repeat;
+  background-position: 98% center;
+  background-size: 14px 8px;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-plan-type-box .new-cel-plan-modal-plan-type-select:focus {
+  border-color: #7a7a7a;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-priority-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-priority-box .new-cel-plan-modal-priority-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-priority-box .new-cel-plan-modal-priority-title {
+    font-size: 1.25rem;
+  }
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-priority-box .new-cel-plan-modal-priority-select {
+  appearance: none;
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+  background-image: url("/assets/icons/arrowdown.svg");
+  background-repeat: no-repeat;
+  background-position: 98% center;
+  background-size: 14px 8px;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-priority-box .new-cel-plan-modal-priority-select:focus {
+  border-color: #7a7a7a;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-description-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-description-box .new-cel-plan-modal-description-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-description-box .new-cel-plan-modal-description-title {
+    font-size: 1.25rem;
+  }
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-description-box .new-cel-plan-modal-description-textarea {
+  width: 100%;
+  height: 150px;
+  padding: 10px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+  resize: none;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-description-box .new-cel-plan-modal-description-textarea:focus {
+  border-color: #7a7a7a;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-submit-button {
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d40066;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 500;
+  transition: filter 0.3s ease;
+  cursor: pointer;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-submit-button:hover {
+  filter: brightness(80%);
+}
+
+.new-tv-plan-modal-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(32, 33, 36, 0.5);
+  overflow: auto;
+  padding: 50px 15px;
+  z-index: 6;
+}
+.new-tv-plan-modal-overlay::before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container {
+  background-color: #fff;
+  width: 100%;
+  height: auto;
+  max-width: 460px;
+  vertical-align: middle;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 16px;
+  z-index: 7;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-header {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  background-image: url("/assets/images/modal-header.png");
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-header .new-tv-plan-modal-close-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-header .new-tv-plan-modal-close-button svg {
+  width: 80%;
+  height: auto;
+  color: #252525;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-header .new-tv-plan-modal-title {
+  background-color: #fff;
+  padding: 15px 30px;
+  border-top-right-radius: 16px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  color: #252525;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body {
+  width: 100%;
+  padding: 30px;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form {
+  width: 100%;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-provider-box {
+  width: 100%;
+  margin-bottom: 15px;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-provider-box .new-tv-plan-modal-provider-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  display: block;
+  margin-bottom: 10px;
+}
+@media screen and (min-width: 500px) {
+  .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-provider-box .new-tv-plan-modal-provider-title {
+    font-size: 1.25rem;
+  }
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-provider-box .new-tv-plan-modal-provider-options {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  gap: 20px;
+}
+@media screen and (min-width: 500px) {
+  .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-provider-box .new-tv-plan-modal-provider-options {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-provider-box .new-tv-plan-modal-provider-options .new-tv-plan-modal-provider-label {
+  background-color: #ececec;
+  border-radius: 10px;
+  border: 2px solid #ececec;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100%;
+  position: relative;
+  cursor: pointer;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-provider-box .new-tv-plan-modal-provider-options .new-tv-plan-modal-provider-label .new-tv-plan-modal-provider-label-logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-provider-box .new-tv-plan-modal-provider-options .new-tv-plan-modal-provider-label .new-tv-plan-modal-provider-label-logo .new-tv-plan-modal-provider-image {
+  width: 70%;
+  height: auto;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-provider-box .new-tv-plan-modal-provider-options .new-tv-plan-modal-provider-label .new-tv-plan-modal-provider-item {
+  display: none;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-provider-box .new-tv-plan-modal-provider-options .provider-selected {
+  border: 2px solid #d40066;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-title-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-title-box .new-tv-plan-modal-title-label {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+}
+@media screen and (min-width: 500px) {
+  .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-title-box .new-tv-plan-modal-title-label {
+    font-size: 1.25rem;
+  }
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-title-box .new-tv-plan-modal-title-input {
+  width: 100%;
+  height: 40px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-title-box .new-tv-plan-modal-title-input:focus {
+  border-color: #7a7a7a;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-cost-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-cost-box .new-tv-plan-modal-cost-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+}
+@media screen and (min-width: 500px) {
+  .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-cost-box .new-tv-plan-modal-cost-title {
+    font-size: 1.25rem;
+  }
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-cost-box .new-tv-plan-modal-cost-input {
+  width: 100%;
+  height: 40px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-cost-box .new-tv-plan-modal-cost-input:focus {
+  border-color: #7a7a7a;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-cost-changes-after-period-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-cost-changes-after-period-box .new-tv-plan-modal-cost-changes-after-period-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-cost-changes-after-period-box .new-tv-plan-modal-cost-changes-after-period-title {
+    font-size: 1.25rem;
+  }
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-cost-changes-after-period-box .new-tv-plan-modal-cost-changes-after-period-options {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-cost-changes-after-period-box .new-tv-plan-modal-cost-changes-after-period-options .new-tv-plan-modal-cost-changes-after-period-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1rem;
+  color: #252525;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-cost-changes-after-period-box .new-tv-plan-modal-cost-changes-after-period-options .new-tv-plan-modal-cost-changes-after-period-label .new-tv-plan-modal-cost-changes-after-period-input {
+  accent-color: #d40066;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-after-cost-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-after-cost-box .new-tv-plan-modal-after-cost-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-after-cost-box .new-tv-plan-modal-after-cost-title {
+    font-size: 1.25rem;
+  }
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-after-cost-box .new-tv-plan-modal-after-cost-input {
+  width: 100%;
+  height: 40px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-after-cost-box .new-tv-plan-modal-after-cost-input:focus {
+  border-color: #7a7a7a;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-period-to-change-cost-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-period-to-change-cost-box .new-tv-plan-modal-period-to-change-cost-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-period-to-change-cost-box .new-tv-plan-modal-period-to-change-cost-title {
+    font-size: 1.25rem;
+  }
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-period-to-change-cost-box .new-tv-plan-modal-period-to-change-cost-wrapper {
+  display: flex;
+  gap: 5px;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-period-to-change-cost-box .new-tv-plan-modal-period-to-change-cost-wrapper .new-tv-plan-modal-period-to-change-cost-input {
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-period-to-change-cost-box .new-tv-plan-modal-period-to-change-cost-wrapper .new-tv-plan-modal-period-to-change-cost-input:focus {
+  border-color: #7a7a7a;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-installation-cost-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-installation-cost-box .new-tv-plan-modal-installation-cost-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-installation-cost-box .new-tv-plan-modal-installation-cost-title {
+    font-size: 1.25rem;
+  }
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-installation-cost-box .new-tv-plan-modal-installation-cost-input {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+  margin-bottom: 10px;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-installation-cost-box .new-tv-plan-modal-installation-cost-input:focus {
+  border-color: #7a7a7a;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-installation-cost-box .new-tv-plan-modal-installation-cost-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1rem;
+  color: #252525;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-installation-cost-box .new-tv-plan-modal-installation-cost-label .new-tv-plan-modal-installation-cost-checkbox {
+  accent-color: #d40066;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-devices-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-devices-box .new-tv-plan-modal-devices-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-devices-box .new-tv-plan-modal-devices-title {
+    font-size: 1.25rem;
+  }
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-devices-box .new-tv-plan-modal-devices-select {
+  appearance: none;
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+  background-image: url("/assets/icons/arrowdown.svg");
+  background-repeat: no-repeat;
+  background-position: 98% center;
+  background-size: 14px 8px;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-devices-box .new-tv-plan-modal-devices-select:focus {
+  border-color: #7a7a7a;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-benefits-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-benefits-box .new-tv-plan-modal-benefits-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-benefits-box .new-tv-plan-modal-benefits-title {
+    font-size: 1.25rem;
+  }
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-benefits-box .new-tv-plan-modal-benefits-options {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: 10px;
+}
+@media screen and (min-width: 500px) {
+  .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-benefits-box .new-tv-plan-modal-benefits-options {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-priority-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-priority-box .new-tv-plan-modal-priority-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-priority-box .new-tv-plan-modal-priority-title {
+    font-size: 1.25rem;
+  }
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-priority-box .new-tv-plan-modal-priority-select {
+  appearance: none;
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+  background-image: url("/assets/icons/arrowdown.svg");
+  background-repeat: no-repeat;
+  background-position: 98% center;
+  background-size: 14px 8px;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-priority-box .new-tv-plan-modal-priority-select:focus {
+  border-color: #7a7a7a;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-description-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-description-box .new-tv-plan-modal-description-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-description-box .new-tv-plan-modal-description-textarea {
+  width: 100%;
+  height: 150px;
+  padding: 10px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-description-box .new-tv-plan-modal-description-textarea:focus {
+  border-color: #7a7a7a;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-submit-button {
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d40066;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 500;
+  transition: filter 0.3s ease;
+  cursor: pointer;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-submit-button:hover {
+  filter: brightness(80%);
+}
+
+.benefits-label {
+  background-color: #ececec;
+  border-radius: 10px;
+  border: 2px solid #ececec;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100%;
+  position: relative;
+  cursor: pointer;
+}
+.benefits-label .benefits-logo-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* TODO melhorar qualidade das imagens */
+}
+.benefits-label .benefits-logo-box .benefits-logo {
+  width: 50%;
+  height: auto;
+}
+.benefits-label .benefits-checkbox {
+  display: none;
+}
+
+.new-provider-form-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(32, 33, 36, 0.5);
+  overflow: auto;
+  padding: 50px 15px;
+  z-index: 6;
+}
+.new-provider-form-overlay::before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+}
+.new-provider-form-overlay .new-provider-form-container {
+  background-color: #fff;
+  width: 100%;
+  height: auto;
+  max-width: 460px;
+  vertical-align: middle;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 16px;
+  z-index: 7;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-header {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  background-image: url("/assets/images/modal-header.png");
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-header .new-provider-form-close-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-header .new-provider-form-close-button svg {
+  width: 80%;
+  height: auto;
+  color: #252525;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-header .new-provider-form-title {
+  background-color: #fff;
+  padding: 15px 30px;
+  border-top-right-radius: 16px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  color: #252525;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body {
+  width: 100%;
+  padding: 30px;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form {
+  width: 100%;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-logo-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-logo-box .new-provider-form-logo-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-logo-box .new-provider-form-logo-title {
+    font-size: 1.25rem;
+  }
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-logo-box .new-provider-form-logo-label {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #d40066;
+  border-radius: 10px;
+  background-color: #ececec;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-logo-box .new-provider-form-logo-label svg {
+  width: 70%;
+  height: auto;
+  color: #d40066;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-logo-box .new-provider-form-logo-label .new-provider-form-logo-input {
+  display: none;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-provider-name-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-provider-name-box .new-provider-form-provider-name-label {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-provider-name-box .new-provider-form-provider-name-label {
+    font-size: 1.25rem;
+  }
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-provider-name-box .new-provider-form-provider-name-input {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-provider-name-box .new-provider-form-provider-name-input:focus {
+  border-color: #7a7a7a;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-cep-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-cep-box .new-provider-form-cep-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 500px) {
+  .new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-cep-box .new-provider-form-cep-title {
+    font-size: 1.25rem;
+  }
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-cep-box .new-provider-form-cep-label {
+  width: fit-content;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #d40066;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-cep-box .new-provider-form-cep-label svg {
+  width: auto;
+  height: 17px;
+  color: #fff;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-cep-box .new-provider-form-cep-label .new-provider-form-cep-xml-converter-input {
+  display: none;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-cep-box .new-provider-form-cep-textarea {
+  width: 100%;
+  height: 150px;
+  resize: none;
+  padding: 10px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-cep-box .new-provider-form-cep-textarea:focus {
+  border-color: #7a7a7a;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-submit-button {
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d40066;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 500;
+  transition: filter 0.3s ease;
+  cursor: pointer;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-submit-button:hover {
+  filter: brightness(80%);
 }
 
 /*# sourceMappingURL=index.css.map */

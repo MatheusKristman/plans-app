@@ -43,7 +43,11 @@ const DashboardPage = () => {
 
   useEffect(() => {
     const menuHandler = (e) => {
-      if (!menu.current.contains(e.target) && window.innerWidth < 1024) {
+      if (
+        menu.current &&
+        !menu.current.contains(e.target) &&
+        window.innerWidth < 1024
+      ) {
         closeMenu();
         return;
       }
@@ -56,12 +60,12 @@ const DashboardPage = () => {
     };
   }, []);
 
-  /*useEffect(() => {
-    const token = localStorage.getItem('token');
+  useEffect(() => {
+    const token = localStorage.getItem("token");
 
     console.log(token);
     api
-      .get('/admin/is-admin', {
+      .get("/admin/is-admin", {
         headers: {
           Authorization: token,
         },
@@ -71,9 +75,9 @@ const DashboardPage = () => {
       })
       .catch((err) => {
         console.error(err);
-        navigate('/admin');
+        navigate("/admin");
       });
-  }, []);*/
+  }, []);
 
   useEffect(() => {
     function handleMenuOnWindowChange() {
@@ -100,10 +104,14 @@ const DashboardPage = () => {
       } else {
         document.documentElement.style.overflowY = "unset";
       }
+
+      if (window.innerWidth > 1024) {
+        document.documentElement.style.overflowY = "unset";
+      }
     };
 
     handleScrollOnMenuOpen();
-  }, [isMenuOpen]);
+  }, [isMenuOpen, size]);
 
   return (
     <div className="dashboard-wrapper">

@@ -34,7 +34,7 @@
       }
 
       .dashboard-menu-header {
-        padding: 30px 25%;
+        padding: 30px 20%;
         border-bottom: 2px solid #e3c4ba;
         position: relative;
 
@@ -92,7 +92,7 @@
                 display: flex;
                 gap: 10px;
                 align-items: center;
-                font-size: 1rem;
+                font-size: 1.25rem;
                 font-weight: 600;
                 color: #252525;
                 cursor: pointer;
@@ -100,21 +100,11 @@
                 transition: color 0.3s ease;
 
                 svg {
-                  width: 20px;
-                  min-width: 20px;
-                  max-width: 20px;
+                  width: 24px;
+                  min-width: 24px;
+                  max-width: 24px;
                   color: #252525;
                   transition: color 0.3s ease;
-                }
-
-                @include breakpoint(tablet) {
-                  font-size: 1.25rem;
-
-                  svg {
-                    width: 24px;
-                    min-width: 24px;
-                    max-width: 24px;
-                  }
                 }
               }
             }
@@ -133,7 +123,7 @@
               }
 
               &::before {
-                content: '';
+                content: "";
                 position: absolute;
                 z-index: 2;
                 top: -10px;

@@ -30,12 +30,20 @@ const PlanBox = () => {
           </div>
 
           <div className="plans-component-priority-box">
-            <span className="plans-component-priority-value">1</span>
+            <div className="plans-component-priority-polygon">
+              <span className="plans-component-priority-value">1</span>
+            </div>
+            <span className="plans-component-priority-desc">Prioridade</span>
           </div>
 
           <div className="plans-component-contact-box">
             <span className="plans-component-contact-value">5</span>
-            <span className="plans-component-contact-desc">Contato</span>
+            <span className="plans-component-contact-desc">Contatos</span>
+          </div>
+
+          <div className="plans-component-total-box">
+            <span className="plans-component-total-value">R$ 100,00</span>
+            <span className="plans-component-total-desc">Total</span>
           </div>
 
           <div className="plans-component-created-at-box">
