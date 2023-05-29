@@ -284,7 +284,7 @@ const NewInternetPlanModal = () => {
                     name="franchiseLimit"
                     className="new-internet-plan-modal-franchise-limit-checkbox"
                   />
-                  Ilimitado
+                  Franquia ilimitada
                 </label>
               </div>
 

@@ -1,11 +1,33 @@
 import React from "react";
+import usePlansStore from "../../../stores/usePlansStore";
+import useGeneralStore from "../../../stores/useGeneralStore";
+
+import PlansFilterBox from "./PlansFilterBox";
 
 const PlansStatusBox = () => {
+  const { isFilterBoxOpen, openFilterBox } = usePlansStore((state) => ({
+    isFilterBoxOpen: state.isFilterBoxOpen,
+    openFilterBox: state.openFilterBox,
+  }));
+  const { activateModalAnimation } = useGeneralStore((state) => ({
+    activateModalAnimation: state.activateModalAnimation,
+  }));
+
+  const handleFilterBoxOpen = () => {
+    openFilterBox();
+    activateModalAnimation();
+  };
+
   return (
     <div className="plans-component-status-box">
+      {isFilterBoxOpen && <PlansFilterBox />}
+
       <span className="plans-component-status">Planos ativos: </span>
 
-      <button className="plans-component-filter-button">
+      <button
+        onClick={handleFilterBoxOpen}
+        className="plans-component-filter-button"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

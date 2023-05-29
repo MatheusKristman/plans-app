@@ -75,7 +75,7 @@
 
           &:hover {
             .plans-component-categories-line {
-              width: 100%;
+              width: 50%;
             }
           }
         }
@@ -97,6 +97,7 @@
           align-items: flex-start;
           justify-content: space-between;
           gap: 25px;
+          position: relative;
 
           .plans-component-status {
             font-size: 1rem;
@@ -211,7 +212,9 @@
                 .plans-component-franchise-box,
                 .plans-component-contact-box,
                 .plans-component-total-box,
-                .plans-component-created-at-box {
+                .plans-component-created-at-box,
+                .plans-component-download-box,
+                .plans-component-upload-box {
                   width: 100%;
                   display: flex;
                   flex-direction: column;
@@ -227,7 +230,9 @@
                   .plans-component-franchise-value,
                   .plans-component-contact-value,
                   .plans-component-total-value,
-                  .plans-component-created-at-value {
+                  .plans-component-created-at-value,
+                  .plans-component-download-value,
+                  .plans-component-upload-value {
                     font-size: 1.125rem;
                     font-weight: 500;
                     color: #252525;
@@ -237,7 +242,9 @@
                   .plans-component-franchise-desc,
                   .plans-component-contact-desc,
                   .plans-component-total-desc,
-                  .plans-component-created-at-desc {
+                  .plans-component-created-at-desc,
+                  .plans-component-download-desc,
+                  .plans-component-upload-desc {
                     font-size: 0.875rem;
                     font-weight: 500;
                     color: #b0b0b0;

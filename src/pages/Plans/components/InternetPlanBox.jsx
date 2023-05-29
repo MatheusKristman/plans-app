@@ -1,6 +1,6 @@
 import React from "react";
 
-const PlanBox = () => {
+const InternetPlanBox = () => {
   return (
     <div className="plans-component-plan-container">
       <div className="plans-component-plan-wrapper">
@@ -15,18 +15,27 @@ const PlanBox = () => {
             </div>
 
             <h3 className="plans-component-plan-name">
-              Claro Controle 25GB Fidelizado
+              Claro Banda Larga 250MB
             </h3>
           </div>
 
           <div className="plans-component-cost-box">
-            <span className="plans-component-cost-value">R$ 49,90</span>
+            <span className="plans-component-cost-value">R$ 79,90</span>
             <span className="plans-component-cost-desc">Valor</span>
           </div>
 
-          <div className="plans-component-franchise-box">
-            <span className="plans-component-franchise-value">25GB</span>
-            <span className="plans-component-franchise-desc">Franquia</span>
+          <div className="plans-component-download-box">
+            <span className="plans-component-download-value">250MB</span>
+            <span className="plans-component-download-desc">
+              Velocidade de download
+            </span>
+          </div>
+
+          <div className="plans-component-upload-box">
+            <span className="plans-component-upload-value">100MB</span>
+            <span className="plans-component-upload-desc">
+              Velocidade de upload
+            </span>
           </div>
 
           <div className="plans-component-priority-box">
@@ -82,4 +91,4 @@ const PlanBox = () => {
   );
 };
 
-export default PlanBox;
+export default InternetPlanBox;

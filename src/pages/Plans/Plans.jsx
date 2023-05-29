@@ -1,15 +1,31 @@
 import React from "react";
+import usePlansStore from "../../stores/usePlansStore";
+import { shallow } from "zustand/shallow";
 
 import DashboardHeader from "../components/DashboardHeader";
 import PlansCategories from "./components/PlansCategories";
 import PlansStatusBox from "./components/PlansStatusBox";
-import PlanBox from "./components/PlanBox";
+import CelPlanBox from "./components/CelPlanBox";
+import InternetPlanBox from "./components/InternetPlanBox";
+import TVPlanBox from "./components/TVPlanBox";
 import PlansArchivedStatusBox from "./components/PlansArchivedStatusBox";
-import PlansArchivedBox from "./components/PlansArchivedBox.jsx";
+import CelPlansArchivedBox from "./components/CelPlansArchivedBox.jsx";
+import InternetPlansArchivedBox from "./components/InternetPlansArchivedBox";
+import TVPlansArchivedBox from "./components/TVPlansArchivedBox";
+import EditInternetPlanForm from "./components/EditInternetPlanForm";
 
 const Plans = () => {
+  const { isEditInternetFormOpen } = usePlansStore(
+    (state) => ({
+      isEditInternetFormOpen: state.isEditInternetFormOpen,
+    }),
+    shallow
+  );
+
   return (
     <div className="plans-component-container">
+      {isEditInternetFormOpen && <EditInternetPlanForm />}
+
       <div className="plans-component-wrapper">
         <DashboardHeader
           pageName="Planos"
@@ -24,7 +40,9 @@ const Plans = () => {
             <PlansStatusBox />
 
             <div className="plans-component-plans-wrapper">
-              <PlanBox />
+              <CelPlanBox />
+              <InternetPlanBox />
+              <TVPlanBox />
             </div>
           </div>
 
@@ -32,7 +50,9 @@ const Plans = () => {
             <PlansArchivedStatusBox />
 
             <div className="plans-component-archived-plans-wrapper">
-              <PlansArchivedBox />
+              <CelPlansArchivedBox />
+              <InternetPlansArchivedBox />
+              <TVPlansArchivedBox />
             </div>
           </div>
         </div>
