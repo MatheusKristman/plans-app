@@ -1,0 +1,225 @@
+.internet-details-box-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(32, 33, 36, 0.5);
+  overflow: auto;
+  padding: 50px 15px;
+  z-index: 6;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .internet-details-box-container {
+    background-color: #fff;
+    width: 100%;
+    height: auto;
+    max-width: 720px;
+    vertical-align: middle;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 16px;
+    z-index: 7;
+
+    .internet-details-box-wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .internet-details-box-header {
+        width: 100%;
+        height: 200px;
+        position: relative;
+        background-image: url("/assets/images/modal-image-lg.png");
+        background-position: right center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+
+        .internet-details-box-close-button {
+          width: 40px;
+          height: 40px;
+          border-radius: 8px;
+          border: none;
+          background-color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          position: absolute;
+          top: 30px;
+          right: 30px;
+
+          svg {
+            width: 80%;
+            height: auto;
+            color: #252525;
+          }
+        }
+
+        .internet-details-box-title {
+          background-color: #fff;
+          padding: 15px 30px;
+          border-top-right-radius: 16px;
+          font-size: 1.5rem;
+          font-weight: 600;
+          text-align: center;
+          color: #252525;
+        }
+      }
+
+      .internet-details-box-body {
+        width: 100%;
+        padding: 30px;
+
+        .internet-details-box-info-wrapper {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+
+          .internet-details-box-info {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 25px;
+
+            .internet-details-box-title-box,
+            .internet-details-box-created-at-box,
+            .internet-details-box-provider-box,
+            .internet-details-box-contacts-box,
+            .internet-details-box-cost-box,
+            .internet-details-box-total-box,
+            .internet-details-box-priority-box,
+            .internet-details-box-franchise-limit-box,
+            .internet-details-box-download-box,
+            .internet-details-box-upload-box,
+            .internet-details-box-has-wifi-box,
+            .internet-details-box-technology-box {
+              width: 50%;
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+
+              .internet-details-box-title-label,
+              .internet-details-box-created-at-label,
+              .internet-details-box-provider-label,
+              .internet-details-box-contacts-label,
+              .internet-details-box-cost-label,
+              .internet-details-box-total-label,
+              .internet-details-box-priority-label,
+              .internet-details-box-franchise-limit-label,
+              .internet-details-box-download-label,
+              .internet-details-box-upload-label,
+              .internet-details-box-has-wifi-label,
+              .internet-details-box-technology-label {
+                font-size: 1.125rem;
+                font-weight: 600;
+                color: #252525;
+              }
+
+              .internet-details-box-title-desc,
+              .internet-details-box-created-at-desc,
+              .internet-details-box-contacts-desc,
+              .internet-details-box-cost-desc,
+              .internet-details-box-total-desc,
+              .internet-details-box-priority-desc,
+              .internet-details-box-franchise-limit-desc,
+              .internet-details-box-download-desc,
+              .internet-details-box-upload-desc,
+              .internet-details-box-has-wifi-desc,
+              .internet-details-box-technology-desc {
+                font-size: 1rem;
+                color: #252525;
+              }
+
+              .internet-details-box-provider-logo {
+                height: 40px;
+                width: fit-content;
+                display: block;
+              }
+            }
+          }
+
+          .internet-details-box-description-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 50px;
+
+            .internet-details-box-description-label {
+              font-size: 1.125rem;
+              font-weight: 600;
+              color: #252525;
+            }
+
+            .internet-details-box-description-desc {
+              font-size: 1rem;
+              line-height: 26px;
+            }
+          }
+
+          .internet-details-box-buttons-wrapper {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+
+            .internet-details-box-edit-button {
+              background-color: #d40066;
+              border-radius: 8px;
+              border: 2px solid #d40066;
+              padding: 10px 15px;
+              font-size: 0.875rem;
+              font-weight: 600;
+              color: #fff;
+              cursor: pointer;
+              transition: filter 0.3s ease;
+
+              &:hover {
+                filter: brightness(80%);
+              }
+            }
+
+            .internet-details-box-archive-button {
+              background-color: #fff;
+              border: 2px solid #d40066;
+              border-radius: 8px;
+              padding: 10px 15px;
+              font-size: 0.875rem;
+              font-weight: 600;
+              color: #d40066;
+              cursor: pointer;
+              transition: background 0.3s ease, color 0.3s ease;
+              display: flex;
+              align-items: center;
+              gap: 5px;
+
+              svg {
+                width: 18px;
+                height: auto;
+              }
+
+              &:hover {
+                background-color: #d40066;
+                color: #fff;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

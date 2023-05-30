@@ -214,7 +214,8 @@
                 .plans-component-total-box,
                 .plans-component-created-at-box,
                 .plans-component-download-box,
-                .plans-component-upload-box {
+                .plans-component-upload-box,
+                .plans-component-devices-box {
                   width: 100%;
                   display: flex;
                   flex-direction: column;
@@ -232,7 +233,8 @@
                   .plans-component-total-value,
                   .plans-component-created-at-value,
                   .plans-component-download-value,
-                  .plans-component-upload-value {
+                  .plans-component-upload-value,
+                  .plans-component-devices-value {
                     font-size: 1.125rem;
                     font-weight: 500;
                     color: #252525;
@@ -244,7 +246,8 @@
                   .plans-component-total-desc,
                   .plans-component-created-at-desc,
                   .plans-component-download-desc,
-                  .plans-component-upload-desc {
+                  .plans-component-upload-desc,
+                  .plans-component-devices-desc {
                     font-size: 0.875rem;
                     font-weight: 500;
                     color: #b0b0b0;
@@ -273,7 +276,7 @@
                     height: 44px;
                     min-height: 44px;
                     max-height: 44px;
-                    background-image: url("/assets/icons/polygon.svg");
+                    background-image: url('/assets/icons/polygon.svg');
                     background-size: cover;
                     background-repeat: no-repeat;
                     background-position: center;
@@ -356,7 +359,7 @@
                   }
                 }
 
-                .plans-component-archivate-button {
+                .plans-component-archive-button {
                   width: 100%;
                   background-color: #fff;
                   border: 2px solid #d40066;
@@ -516,7 +519,10 @@
                 .plans-component-contact-box,
                 .plans-component-total-box,
                 .plans-component-created-at-box,
-                .plans-component-archived-at-box {
+                .plans-component-archived-at-box,
+                .plans-component-download-box,
+                .plans-component-upload-box,
+                .plans-component-devices-box {
                   width: 100%;
                   display: flex;
                   flex-direction: column;
@@ -533,7 +539,10 @@
                   .plans-component-contact-value,
                   .plans-component-total-value,
                   .plans-component-created-at-value,
-                  .plans-component-archived-at-value {
+                  .plans-component-archived-at-value,
+                  .plans-component-download-value,
+                  .plans-component-upload-value,
+                  .plans-component-devices-value {
                     font-size: 1.125rem;
                     font-weight: 500;
                     color: #252525;
@@ -544,7 +553,10 @@
                   .plans-component-contact-desc,
                   .plans-component-total-desc,
                   .plans-component-created-at-desc,
-                  .plans-component-archived-at-desc {
+                  .plans-component-archived-at-desc,
+                  .plans-component-download-desc,
+                  .plans-component-upload-desc,
+                  .plans-component-devices-desc {
                     font-size: 0.875rem;
                     font-weight: 500;
                     color: #b0b0b0;
@@ -572,7 +584,7 @@
                     height: 44px;
                     min-height: 44px;
                     max-height: 44px;
-                    background-image: url("/assets/icons/polygon.svg");
+                    background-image: url('/assets/icons/polygon.svg');
                     background-size: cover;
                     background-repeat: no-repeat;
                     background-position: center;

@@ -1,4 +1,4 @@
-.new-tv-plan-modal-overlay {
+.edit-tv-plan-overlay {
   width: 100%;
   height: 100%;
   position: fixed;
@@ -17,7 +17,7 @@
     vertical-align: middle;
   }
 
-  .new-tv-plan-modal-container {
+  .edit-tv-plan-container {
     background-color: #fff;
     width: 100%;
     height: auto;
@@ -29,12 +29,12 @@
     border-radius: 16px;
     z-index: 7;
 
-    .new-tv-plan-modal-wrapper {
+    .edit-tv-plan-wrapper {
       width: 100%;
       display: flex;
       flex-direction: column;
 
-      .new-tv-plan-modal-header {
+      .edit-tv-plan-header {
         width: 100%;
         height: 200px;
         position: relative;
@@ -49,7 +49,7 @@
         align-items: flex-end;
         justify-content: flex-start;
 
-        .new-tv-plan-modal-close-button {
+        .edit-tv-plan-close-button {
           width: 40px;
           height: 40px;
           border-radius: 8px;
@@ -70,7 +70,7 @@
           }
         }
 
-        .new-tv-plan-modal-title {
+        .edit-tv-plan-title {
           background-color: #fff;
           padding: 15px 30px;
           border-top-right-radius: 16px;
@@ -81,88 +81,21 @@
         }
       }
 
-      .new-tv-plan-modal-body {
+      .edit-tv-plan-body {
         width: 100%;
         padding: 30px;
 
-        .new-tv-plan-modal-form {
+        .edit-tv-plan-form {
           width: 100%;
 
-          .new-tv-plan-modal-provider-box {
-            width: 100%;
-            margin-bottom: 15px;
-
-            .new-tv-plan-modal-provider-title {
-              font-size: 1.125rem;
-              font-weight: 500;
-              color: #252525;
-              display: block;
-              margin-bottom: 10px;
-
-              @include breakpoint(tablet) {
-                font-size: 1.25rem;
-              }
-            }
-
-            .new-tv-plan-modal-provider-options {
-              width: 100%;
-              display: grid;
-              grid-template-columns: repeat(2, 1fr);
-              grid-template-rows: auto;
-              gap: 20px;
-
-              @include breakpoint(tablet) {
-                grid-template-columns: repeat(4, 1fr);
-              }
-
-              .new-tv-plan-modal-provider-label {
-                background-color: #ececec;
-                border-radius: 10px;
-                border: 2px solid #ececec;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding-top: 100%;
-                position: relative;
-                cursor: pointer;
-
-                .new-tv-plan-modal-provider-label-logo {
-                  position: absolute;
-                  top: 0;
-                  left: 0;
-                  right: 0;
-                  bottom: 0;
-                  width: 100%;
-                  height: 100%;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-
-                  .new-tv-plan-modal-provider-image {
-                    width: 70%;
-                    height: auto;
-                  }
-                }
-
-                .new-tv-plan-modal-provider-item {
-                  display: none;
-                }
-              }
-
-              .provider-selected {
-                border: 2px solid #d40066;
-              }
-            }
-          }
-
-          .new-tv-plan-modal-title-box {
+          .edit-tv-plan-title-box {
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: 5px;
             margin-bottom: 15px;
 
-            .new-tv-plan-modal-title-label {
+            .edit-tv-plan-title-label {
               font-size: 1.125rem;
               font-weight: 500;
               color: #252525;
@@ -172,7 +105,7 @@
               }
             }
 
-            .new-tv-plan-modal-title-input {
+            .edit-tv-plan-title-input {
               width: 100%;
               height: 40px;
               border: 2px solid #cccccc;
@@ -188,14 +121,14 @@
             }
           }
 
-          .new-tv-plan-modal-cost-box {
+          .edit-tv-plan-cost-box {
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: 5px;
             margin-bottom: 15px;
 
-            .new-tv-plan-modal-cost-title {
+            .edit-tv-plan-cost-title {
               font-size: 1.125rem;
               font-weight: 500;
               color: #252525;
@@ -205,7 +138,7 @@
               }
             }
 
-            .new-tv-plan-modal-cost-input {
+            .edit-tv-plan-cost-input {
               width: 100%;
               height: 40px;
               border: 2px solid #cccccc;
@@ -221,13 +154,13 @@
             }
           }
 
-          .new-tv-plan-modal-cost-changes-after-period-box {
+          .edit-tv-plan-cost-changes-after-period-box {
             width: 100%;
             display: flex;
             flex-direction: column;
             margin-bottom: 15px;
 
-            .new-tv-plan-modal-cost-changes-after-period-title {
+            .edit-tv-plan-cost-changes-after-period-title {
               font-size: 1.125rem;
               font-weight: 500;
               color: #252525;
@@ -238,32 +171,32 @@
               }
             }
 
-            .new-tv-plan-modal-cost-changes-after-period-options {
+            .edit-tv-plan-cost-changes-after-period-options {
               display: flex;
               align-items: center;
               gap: 25px;
 
-              .new-tv-plan-modal-cost-changes-after-period-label {
+              .edit-tv-plan-cost-changes-after-period-label {
                 display: flex;
                 align-items: center;
                 gap: 5px;
                 font-size: 1rem;
                 color: #252525;
 
-                .new-tv-plan-modal-cost-changes-after-period-input {
+                .edit-tv-plan-cost-changes-after-period-input {
                   accent-color: #d40066;
                 }
               }
             }
           }
 
-          .new-tv-plan-modal-after-cost-box {
+          .edit-tv-plan-after-cost-box {
             width: 100%;
             display: flex;
             flex-direction: column;
             margin-bottom: 15px;
 
-            .new-tv-plan-modal-after-cost-title {
+            .edit-tv-plan-after-cost-title {
               font-size: 1.125rem;
               font-weight: 500;
               color: #252525;
@@ -274,7 +207,7 @@
               }
             }
 
-            .new-tv-plan-modal-after-cost-input {
+            .edit-tv-plan-after-cost-input {
               width: 100%;
               height: 40px;
               border: 2px solid #cccccc;
@@ -290,13 +223,13 @@
             }
           }
 
-          .new-tv-plan-modal-period-to-change-cost-box {
+          .edit-tv-plan-period-to-change-cost-box {
             width: 100%;
             display: flex;
             flex-direction: column;
             margin-bottom: 15px;
 
-            .new-tv-plan-modal-period-to-change-cost-title {
+            .edit-tv-plan-period-to-change-cost-title {
               font-size: 1.125rem;
               font-weight: 500;
               color: #252525;
@@ -307,11 +240,11 @@
               }
             }
 
-            .new-tv-plan-modal-period-to-change-cost-wrapper {
+            .edit-tv-plan-period-to-change-cost-wrapper {
               display: flex;
               gap: 5px;
 
-              .new-tv-plan-modal-period-to-change-cost-input {
+              .edit-tv-plan-period-to-change-cost-input {
                 width: 40px;
                 height: 40px;
                 padding: 10px;
@@ -328,13 +261,13 @@
             }
           }
 
-          .new-tv-plan-modal-installation-cost-box {
+          .edit-tv-plan-installation-cost-box {
             width: 100%;
             display: flex;
             flex-direction: column;
             margin-bottom: 15px;
 
-            .new-tv-plan-modal-installation-cost-title {
+            .edit-tv-plan-installation-cost-title {
               font-size: 1.125rem;
               font-weight: 500;
               color: #252525;
@@ -345,7 +278,7 @@
               }
             }
 
-            .new-tv-plan-modal-installation-cost-input {
+            .edit-tv-plan-installation-cost-input {
               width: 100%;
               height: 40px;
               padding: 0 12px;
@@ -361,26 +294,26 @@
               }
             }
 
-            .new-tv-plan-modal-installation-cost-label {
+            .edit-tv-plan-installation-cost-label {
               display: flex;
               align-items: center;
               gap: 5px;
               font-size: 1rem;
               color: #252525;
 
-              .new-tv-plan-modal-installation-cost-checkbox {
+              .edit-tv-plan-installation-cost-checkbox {
                 accent-color: #d40066;
               }
             }
           }
 
-          .new-tv-plan-modal-devices-box {
+          .edit-tv-plan-devices-box {
             width: 100%;
             display: flex;
             flex-direction: column;
             margin-bottom: 15px;
 
-            .new-tv-plan-modal-devices-title {
+            .edit-tv-plan-devices-title {
               font-size: 1.125rem;
               font-weight: 500;
               color: #252525;
@@ -391,7 +324,7 @@
               }
             }
 
-            .new-tv-plan-modal-devices-select {
+            .edit-tv-plan-devices-select {
               appearance: none;
               width: 100%;
               height: 40px;
@@ -412,13 +345,13 @@
             }
           }
 
-          .new-tv-plan-modal-benefits-box {
+          .edit-tv-plan-benefits-box {
             width: 100%;
             display: flex;
             flex-direction: column;
             margin-bottom: 15px;
 
-            .new-tv-plan-modal-benefits-title {
+            .edit-tv-plan-benefits-title {
               font-size: 1.125rem;
               font-weight: 500;
               color: #252525;
@@ -429,7 +362,7 @@
               }
             }
 
-            .new-tv-plan-modal-benefits-options {
+            .edit-tv-plan-benefits-options {
               width: 100%;
               display: grid;
               grid-template-columns: repeat(3, 1fr);
@@ -442,13 +375,13 @@
             }
           }
 
-          .new-tv-plan-modal-priority-box {
+          .edit-tv-plan-priority-box {
             width: 100%;
             display: flex;
             flex-direction: column;
             margin-bottom: 15px;
 
-            .new-tv-plan-modal-priority-title {
+            .edit-tv-plan-priority-title {
               font-size: 1.125rem;
               font-weight: 500;
               color: #252525;
@@ -459,7 +392,7 @@
               }
             }
 
-            .new-tv-plan-modal-priority-select {
+            .edit-tv-plan-priority-select {
               appearance: none;
               width: 100%;
               height: 40px;
@@ -480,13 +413,13 @@
             }
           }
 
-          .new-tv-plan-modal-description-box {
+          .edit-tv-plan-description-box {
             width: 100%;
             display: flex;
             flex-direction: column;
             margin-bottom: 25px;
 
-            .new-tv-plan-modal-description-title {
+            .edit-tv-plan-description-title {
               font-size: 1.125rem;
               font-weight: 500;
               color: #252525;
@@ -497,7 +430,7 @@
               }
             }
 
-            .new-tv-plan-modal-description-textarea {
+            .edit-tv-plan-description-textarea {
               width: 100%;
               height: 150px;
               padding: 10px;
@@ -514,7 +447,7 @@
             }
           }
 
-          .new-tv-plan-modal-submit-button {
+          .edit-tv-plan-submit-button {
             width: 100%;
             padding: 10px 20px;
             display: flex;

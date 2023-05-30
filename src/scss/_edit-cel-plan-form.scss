@@ -1,4 +1,4 @@
-.new-tv-plan-modal-overlay {
+.edit-cel-plan-overlay {
   width: 100%;
   height: 100%;
   position: fixed;
@@ -17,7 +17,7 @@
     vertical-align: middle;
   }
 
-  .new-tv-plan-modal-container {
+  .edit-cel-plan-container {
     background-color: #fff;
     width: 100%;
     height: auto;
@@ -29,12 +29,12 @@
     border-radius: 16px;
     z-index: 7;
 
-    .new-tv-plan-modal-wrapper {
+    .edit-cel-plan-wrapper {
       width: 100%;
       display: flex;
       flex-direction: column;
 
-      .new-tv-plan-modal-header {
+      .edit-cel-plan-header {
         width: 100%;
         height: 200px;
         position: relative;
@@ -49,7 +49,7 @@
         align-items: flex-end;
         justify-content: flex-start;
 
-        .new-tv-plan-modal-close-button {
+        .edit-cel-plan-close-button {
           width: 40px;
           height: 40px;
           border-radius: 8px;
@@ -70,7 +70,7 @@
           }
         }
 
-        .new-tv-plan-modal-title {
+        .edit-cel-plan-title {
           background-color: #fff;
           padding: 15px 30px;
           border-top-right-radius: 16px;
@@ -81,88 +81,21 @@
         }
       }
 
-      .new-tv-plan-modal-body {
+      .edit-cel-plan-body {
         width: 100%;
         padding: 30px;
 
-        .new-tv-plan-modal-form {
+        .edit-cel-plan-form {
           width: 100%;
 
-          .new-tv-plan-modal-provider-box {
-            width: 100%;
-            margin-bottom: 15px;
-
-            .new-tv-plan-modal-provider-title {
-              font-size: 1.125rem;
-              font-weight: 500;
-              color: #252525;
-              display: block;
-              margin-bottom: 10px;
-
-              @include breakpoint(tablet) {
-                font-size: 1.25rem;
-              }
-            }
-
-            .new-tv-plan-modal-provider-options {
-              width: 100%;
-              display: grid;
-              grid-template-columns: repeat(2, 1fr);
-              grid-template-rows: auto;
-              gap: 20px;
-
-              @include breakpoint(tablet) {
-                grid-template-columns: repeat(4, 1fr);
-              }
-
-              .new-tv-plan-modal-provider-label {
-                background-color: #ececec;
-                border-radius: 10px;
-                border: 2px solid #ececec;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding-top: 100%;
-                position: relative;
-                cursor: pointer;
-
-                .new-tv-plan-modal-provider-label-logo {
-                  position: absolute;
-                  top: 0;
-                  left: 0;
-                  right: 0;
-                  bottom: 0;
-                  width: 100%;
-                  height: 100%;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-
-                  .new-tv-plan-modal-provider-image {
-                    width: 70%;
-                    height: auto;
-                  }
-                }
-
-                .new-tv-plan-modal-provider-item {
-                  display: none;
-                }
-              }
-
-              .provider-selected {
-                border: 2px solid #d40066;
-              }
-            }
-          }
-
-          .new-tv-plan-modal-title-box {
+          .edit-cel-plan-title-box {
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: 5px;
             margin-bottom: 15px;
 
-            .new-tv-plan-modal-title-label {
+            .edit-cel-plan-title-label {
               font-size: 1.125rem;
               font-weight: 500;
               color: #252525;
@@ -172,7 +105,7 @@
               }
             }
 
-            .new-tv-plan-modal-title-input {
+            .edit-cel-plan-title-input {
               width: 100%;
               height: 40px;
               border: 2px solid #cccccc;
@@ -188,14 +121,14 @@
             }
           }
 
-          .new-tv-plan-modal-cost-box {
+          .edit-cel-plan-cost-box {
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: 5px;
             margin-bottom: 15px;
 
-            .new-tv-plan-modal-cost-title {
+            .edit-cel-plan-cost-title {
               font-size: 1.125rem;
               font-weight: 500;
               color: #252525;
@@ -205,7 +138,7 @@
               }
             }
 
-            .new-tv-plan-modal-cost-input {
+            .edit-cel-plan-cost-input {
               width: 100%;
               height: 40px;
               border: 2px solid #cccccc;
@@ -221,13 +154,13 @@
             }
           }
 
-          .new-tv-plan-modal-cost-changes-after-period-box {
+          .edit-cel-plan-franchise-box {
             width: 100%;
             display: flex;
             flex-direction: column;
             margin-bottom: 15px;
 
-            .new-tv-plan-modal-cost-changes-after-period-title {
+            .edit-cel-plan-franchise-title {
               font-size: 1.125rem;
               font-weight: 500;
               color: #252525;
@@ -238,32 +171,48 @@
               }
             }
 
-            .new-tv-plan-modal-cost-changes-after-period-options {
+            .edit-cel-plan-franchise-input {
+              width: 100%;
+              height: 40px;
+              border: 2px solid #cccccc;
+              border-radius: 8px;
+              padding: 0 12px;
+              font-size: 1rem;
+              color: #252525;
+              transition: border-color 0.3s ease;
+              margin-bottom: 10px;
+
+              &:focus {
+                border-color: #7a7a7a;
+              }
+            }
+
+            .edit-cel-plan-franchise-unit-wrapper {
               display: flex;
               align-items: center;
               gap: 25px;
 
-              .new-tv-plan-modal-cost-changes-after-period-label {
+              .edit-cel-plan-franchise-unit-label {
+                font-size: 1rem;
+                color: #252525;
                 display: flex;
                 align-items: center;
                 gap: 5px;
-                font-size: 1rem;
-                color: #252525;
 
-                .new-tv-plan-modal-cost-changes-after-period-input {
+                .edit-cel-plan-franchise-unit-input {
                   accent-color: #d40066;
                 }
               }
             }
           }
 
-          .new-tv-plan-modal-after-cost-box {
+          .edit-cel-plan-unlimited-apps-box {
             width: 100%;
             display: flex;
             flex-direction: column;
             margin-bottom: 15px;
 
-            .new-tv-plan-modal-after-cost-title {
+            .edit-cel-plan-unlimited-apps-title {
               font-size: 1.125rem;
               font-weight: 500;
               color: #252525;
@@ -274,162 +223,7 @@
               }
             }
 
-            .new-tv-plan-modal-after-cost-input {
-              width: 100%;
-              height: 40px;
-              border: 2px solid #cccccc;
-              border-radius: 8px;
-              padding: 0 12px;
-              font-size: 1rem;
-              color: #252525;
-              transition: border-color 0.3s ease;
-
-              &:focus {
-                border-color: #7a7a7a;
-              }
-            }
-          }
-
-          .new-tv-plan-modal-period-to-change-cost-box {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 15px;
-
-            .new-tv-plan-modal-period-to-change-cost-title {
-              font-size: 1.125rem;
-              font-weight: 500;
-              color: #252525;
-              margin-bottom: 5px;
-
-              @include breakpoint(tablet) {
-                font-size: 1.25rem;
-              }
-            }
-
-            .new-tv-plan-modal-period-to-change-cost-wrapper {
-              display: flex;
-              gap: 5px;
-
-              .new-tv-plan-modal-period-to-change-cost-input {
-                width: 40px;
-                height: 40px;
-                padding: 10px;
-                border: 2px solid #cccccc;
-                border-radius: 8px;
-                font-size: 1rem;
-                color: #252525;
-                transition: border-color 0.3s ease;
-
-                &:focus {
-                  border-color: #7a7a7a;
-                }
-              }
-            }
-          }
-
-          .new-tv-plan-modal-installation-cost-box {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 15px;
-
-            .new-tv-plan-modal-installation-cost-title {
-              font-size: 1.125rem;
-              font-weight: 500;
-              color: #252525;
-              margin-bottom: 5px;
-
-              @include breakpoint(tablet) {
-                font-size: 1.25rem;
-              }
-            }
-
-            .new-tv-plan-modal-installation-cost-input {
-              width: 100%;
-              height: 40px;
-              padding: 0 12px;
-              border: 2px solid #cccccc;
-              border-radius: 8px;
-              font-size: 1rem;
-              color: #252525;
-              transition: border-color 0.3s ease;
-              margin-bottom: 10px;
-
-              &:focus {
-                border-color: #7a7a7a;
-              }
-            }
-
-            .new-tv-plan-modal-installation-cost-label {
-              display: flex;
-              align-items: center;
-              gap: 5px;
-              font-size: 1rem;
-              color: #252525;
-
-              .new-tv-plan-modal-installation-cost-checkbox {
-                accent-color: #d40066;
-              }
-            }
-          }
-
-          .new-tv-plan-modal-devices-box {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 15px;
-
-            .new-tv-plan-modal-devices-title {
-              font-size: 1.125rem;
-              font-weight: 500;
-              color: #252525;
-              margin-bottom: 5px;
-
-              @include breakpoint(tablet) {
-                font-size: 1.25rem;
-              }
-            }
-
-            .new-tv-plan-modal-devices-select {
-              appearance: none;
-              width: 100%;
-              height: 40px;
-              padding: 0 12px;
-              border: 2px solid #cccccc;
-              border-radius: 8px;
-              font-size: 1rem;
-              color: #252525;
-              transition: border-color 0.3s ease;
-              background-image: url('/assets/icons/arrowdown.svg');
-              background-repeat: no-repeat;
-              background-position: 98% center;
-              background-size: 14px 8px;
-
-              &:focus {
-                border-color: #7a7a7a;
-              }
-            }
-          }
-
-          .new-tv-plan-modal-benefits-box {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 15px;
-
-            .new-tv-plan-modal-benefits-title {
-              font-size: 1.125rem;
-              font-weight: 500;
-              color: #252525;
-              margin-bottom: 5px;
-
-              @include breakpoint(tablet) {
-                font-size: 1.25rem;
-              }
-            }
-
-            .new-tv-plan-modal-benefits-options {
+            .edit-cel-plan-unlimited-apps-options {
               width: 100%;
               display: grid;
               grid-template-columns: repeat(3, 1fr);
@@ -442,13 +236,13 @@
             }
           }
 
-          .new-tv-plan-modal-priority-box {
+          .edit-cel-plan-unlimited-call-box {
             width: 100%;
             display: flex;
             flex-direction: column;
             margin-bottom: 15px;
 
-            .new-tv-plan-modal-priority-title {
+            .edit-cel-plan-unlimited-call-title {
               font-size: 1.125rem;
               font-weight: 500;
               color: #252525;
@@ -459,7 +253,81 @@
               }
             }
 
-            .new-tv-plan-modal-priority-select {
+            .edit-cel-plan-unlimited-call-options {
+              display: flex;
+              align-items: center;
+              gap: 25px;
+
+              .edit-cel-plan-unlimited-call-label {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                font-size: 1rem;
+                color: #252525;
+
+                .edit-cel-plan-unlimited-call-input {
+                  accent-color: #d40066;
+                }
+              }
+            }
+          }
+
+          .edit-cel-plan-plan-type-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+
+            .edit-cel-plan-plan-type-title {
+              font-size: 1.125rem;
+              font-weight: 500;
+              color: #252525;
+              margin-bottom: 5px;
+
+              @include breakpoint(tablet) {
+                font-size: 1.25rem;
+              }
+            }
+
+            .edit-cel-plan-plan-type-select {
+              appearance: none;
+              width: 100%;
+              height: 40px;
+              transition: border-color 0.3s ease;
+              padding: 0 12px;
+              border: 2px solid #cccccc;
+              border-radius: 8px;
+              font-size: 1rem;
+              color: #252525;
+              background-image: url('/assets/icons/arrowdown.svg');
+              background-repeat: no-repeat;
+              background-position: 98% center;
+              background-size: 14px 8px;
+
+              &:focus {
+                border-color: #7a7a7a;
+              }
+            }
+          }
+
+          .edit-cel-plan-priority-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+
+            .edit-cel-plan-priority-title {
+              font-size: 1.125rem;
+              font-weight: 500;
+              color: #252525;
+              margin-bottom: 5px;
+
+              @include breakpoint(tablet) {
+                font-size: 1.25rem;
+              }
+            }
+
+            .edit-cel-plan-priority-select {
               appearance: none;
               width: 100%;
               height: 40px;
@@ -480,13 +348,13 @@
             }
           }
 
-          .new-tv-plan-modal-description-box {
+          .edit-cel-plan-description-box {
             width: 100%;
             display: flex;
             flex-direction: column;
             margin-bottom: 25px;
 
-            .new-tv-plan-modal-description-title {
+            .edit-cel-plan-description-title {
               font-size: 1.125rem;
               font-weight: 500;
               color: #252525;
@@ -497,7 +365,7 @@
               }
             }
 
-            .new-tv-plan-modal-description-textarea {
+            .edit-cel-plan-description-textarea {
               width: 100%;
               height: 150px;
               padding: 10px;
@@ -514,7 +382,7 @@
             }
           }
 
-          .new-tv-plan-modal-submit-button {
+          .edit-cel-plan-submit-button {
             width: 100%;
             padding: 10px 20px;
             display: flex;

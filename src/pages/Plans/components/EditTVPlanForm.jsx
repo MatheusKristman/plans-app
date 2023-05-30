@@ -4,9 +4,9 @@ import useGeneralStore from '../../../stores/useGeneralStore';
 
 import BenefitsLabel from '../../DashboardComponent/components/BenefitsLabel';
 
-const EditInternetPlanForm = () => {
-  const { closeEditInternetForm } = usePlansStore((state) => ({
-    closeEditInternetForm: state.closeEditInternetForm,
+const EditTVPlanForm = () => {
+  const { closeEditTVForm } = usePlansStore((state) => ({
+    closeEditTVForm: state.closeEditTVForm,
   }));
   const { modalAnimation, deactivateModalAnimation } = useGeneralStore((state) => ({
     modalAnimation: state.modalAnimation,
@@ -17,12 +17,12 @@ const EditInternetPlanForm = () => {
     deactivateModalAnimation();
 
     setTimeout(() => {
-      closeEditInternetForm();
+      closeEditTVForm();
     }, 800);
   };
 
   const handleCloseOnBlur = (e) => {
-    if (e.target.classList.contains('edit-internet-plan-overlay')) {
+    if (e.target.classList.contains('edit-tv-plan-overlay')) {
       handleCloseForm();
     }
   };
@@ -32,18 +32,14 @@ const EditInternetPlanForm = () => {
       onClick={handleCloseOnBlur}
       className={
         modalAnimation
-          ? 'edit-internet-plan-overlay animate__animated animate__fast animate__fadeIn'
-          : 'edit-internet-plan-overlay animate__animated animate__fast animate__fadeOut'
+          ? 'edit-tv-plan-overlay animate__animated animate__fast animate__fadeIn'
+          : 'edit-tv-plan-overlay animate__animated animate__fast animate__fadeOut'
       }
     >
-      <div className='edit-internet-plan-container'>
-        <div className='edit-internet-plan-wrapper'>
-          <div className='edit-internet-plan-header'>
-            <button
-              type='button'
-              onClick={handleCloseForm}
-              className='edit-internet-plan-close-button'
-            >
+      <div className='edit-tv-plan-container'>
+        <div className='edit-tv-plan-wrapper'>
+          <div className='edit-tv-plan-header'>
+            <button type='button' onClick={handleCloseForm} className='edit-tv-plan-close-button'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
@@ -55,168 +51,105 @@ const EditInternetPlanForm = () => {
                 <path strokeLinecap='round' strokeLinejoin='round' d='M6 18L18 6M6 6l12 12' />
               </svg>
             </button>
-            <h3 className='edit-internet-plan-title'>Editar Plano</h3>
+
+            <h3 className='edit-tv-plan-title'>Editar Plano</h3>
           </div>
 
-          <div className='edit-internet-plan-body'>
-            <form className='edit-internet-plan-form'>
-              <div className='edit-internet-plan-title-box'>
-                <span className='edit-internet-plan-title-label'>Título</span>
-                <input type='text' name='title' className='edit-internet-plan-title-input' />
+          <div className='edit-tv-plan-body'>
+            <form className='edit-tv-plan-form'>
+              <div className='edit-tv-plan-title-box'>
+                <span className='edit-tv-plan-title-label'>Título</span>
+                <input type='text' name='title' className='edit-tv-plan-title-input' />
               </div>
 
-              <div className='edit-internet-plan-cost-box'>
-                <span className='edit-internet-plan-cost-title'>Valor</span>
-                <input type='text' name='cost' className='edit-internet-plan-cost-input' />
+              <div className='edit-tv-plan-cost-box'>
+                <span className='edit-tv-plan-cost-title'>Valor</span>
+                <input type='text' name='cost' className='edit-tv-plan-cost-input' />
               </div>
 
-              <div className='edit-internet-plan-installation-cost-box'>
-                <span className='edit-internet-plan-installation-cost-title'>
-                  Valor da instalação
-                </span>
-                <input
-                  type='text'
-                  name='installationCost'
-                  className='edit-internet-plan-installation-cost-input'
-                />
-                <label
-                  htmlFor='freeInstallationCost'
-                  className='edit-internet-plan-installation-cost-label'
-                >
-                  <input
-                    type='checkbox'
-                    name='installationCost'
-                    id='freeInstallationCost'
-                    className='edit-internet-plan-installation-cost-checkbox'
-                  />
-                  Instalação grátis
-                </label>
-              </div>
-
-              <div className='edit-internet-plan-download-box'>
-                <span className='edit-internet-plan-download-title'>Velocidade de download</span>
-
-                <input type='text' name='download' className='edit-internet-plan-download-input' />
-
-                <div className='edit-internet-plan-download-unit-wrapper'>
-                  <label htmlFor='downloadMB' className='edit-internet-plan-download-unit-label'>
-                    <input
-                      type='radio'
-                      id='downloadMB'
-                      name='downloadUnit'
-                      className='edit-internet-plan-download-unit-input'
-                    />
-                    MB
-                  </label>
-
-                  <label htmlFor='downloadGB' className='edit-internet-plan-download-unit-label'>
-                    <input
-                      type='radio'
-                      id='downloadGB'
-                      name='downloadUnit'
-                      className='edit-internet-plan-download-unit-input'
-                    />
-                    GB
-                  </label>
-                </div>
-              </div>
-
-              <div className='edit-internet-plan-upload-box'>
-                <span className='edit-internet-plan-upload-title'>Velocidade de upload</span>
-
-                <input type='text' name='upload' className='edit-internet-plan-upload-input' />
-
-                <div className='edit-internet-plan-upload-unit-wrapper'>
-                  <label htmlFor='uploadMB' className='edit-internet-plan-upload-unit-label'>
-                    <input
-                      type='radio'
-                      id='uploadMB'
-                      name='uploadUnit'
-                      className='edit-internet-plan-upload-unit-input'
-                    />
-                    MB
-                  </label>
-
-                  <label htmlFor='uploadGB' className='edit-internet-plan-upload-unit-label'>
-                    <input
-                      type='radio'
-                      id='uploadGB'
-                      name='uploadUnit'
-                      className='edit-internet-plan-upload-unit-input'
-                    />
-                    GB
-                  </label>
-                </div>
-              </div>
-
-              <div className='edit-internet-plan-franchise-limit-box'>
-                <span className='edit-internet-plan-franchise-limit-title'>
-                  Franquia de download
+              <div className='edit-tv-plan-cost-changes-after-period-box'>
+                <span className='edit-tv-plan-cost-changes-after-period-title'>
+                  Valor muda depois de um período?
                 </span>
 
-                <input
-                  type='text'
-                  name='franchiseLimit'
-                  className='edit-internet-plan-franchise-limit-input'
-                />
-
-                <label
-                  htmlFor='unlimitedFranchise'
-                  className='edit-internet-plan-franchise-limit-label'
-                >
-                  <input
-                    type='checkbox'
-                    id='unlimitedFranchise'
-                    name='franchiseLimit'
-                    className='edit-internet-plan-franchise-limit-checkbox'
-                  />
-                  Franquia ilimitada
-                </label>
-              </div>
-
-              <div className='edit-internet-plan-technology-box'>
-                <span className='edit-internet-plan-technology-title'>Tecnologia do modem</span>
-
-                <select name='technology' className='edit-internet-plan-technology-select'>
-                  <option value='Fibra Ótica'>Fibra Ótica</option>
-
-                  <option value='Cabo metálico'>Cabo metálico</option>
-
-                  <option value='Via Rádio'>Via Rádio</option>
-
-                  <option value='Via Satélite'>Via Satélite</option>
-                </select>
-              </div>
-
-              <div className='edit-internet-plan-has-wifi-box'>
-                <span className='edit-internet-plan-has-wifi-title'>Wifi incluso?</span>
-
-                <div className='edit-internet-plan-has-wifi-wrapper'>
-                  <label htmlFor='yes' className='edit-internet-plan-has-wifi-label'>
+                <div className='edit-tv-plan-cost-changes-after-period-options'>
+                  <label htmlFor='yes' className='edit-tv-plan-cost-changes-after-period-label'>
                     <input
                       type='radio'
                       id='yes'
-                      name='hasWifi'
-                      className='edit-internet-plan-has-wifi-input'
+                      name='costChangesAfterPeriod'
+                      className='edit-tv-plan-cost-changes-after-period-input'
                     />
                     Sim
                   </label>
 
-                  <label htmlFor='no' className='edit-internet-plan-has-wifi-label'>
+                  <label htmlFor='no' className='edit-tv-plan-cost-changes-after-period-label'>
                     <input
                       type='radio'
                       id='no'
-                      name='hasWifi'
-                      className='edit-internet-plan-has-wifi-input'
+                      name='costChangesAfterPeriod'
+                      className='edit-tv-plan-cost-changes-after-period-input'
                     />
                     Não
                   </label>
                 </div>
               </div>
 
-              <div className='edit-internet-plan-benefits-box'>
-                <span className='edit-internet-plan-benefits-title'>Benefícios</span>
-                <div className='edit-internet-plan-benefits-options'>
+              <div className='edit-tv-plan-after-cost-box'>
+                <span className='edit-tv-plan-after-cost-title'>Valor depois do período</span>
+                <input type='text' name='afterCost' className='edit-tv-plan-after-cost-input' />
+              </div>
+
+              <div className='edit-tv-plan-period-to-change-cost-box'>
+                <span className='edit-tv-plan-period-to-change-cost-title'>
+                  A partir de qual mês?
+                </span>
+                <div className='edit-tv-plan-period-to-change-cost-wrapper'>
+                  <input
+                    type='text'
+                    name='periodToChangeCost'
+                    className='edit-tv-plan-period-to-change-cost-input'
+                  />
+                  <span className='edit-tv-plan-period-to-change-cost-tag'>°</span>
+                </div>
+              </div>
+
+              <div className='edit-tv-plan-installation-cost-box'>
+                <span className='edit-tv-plan-installation-cost-title'>Valor da instalação</span>
+                <input
+                  type='text'
+                  name='installationCost'
+                  className='edit-tv-plan-installation-cost-input'
+                />
+
+                <label
+                  htmlFor='freeInstallationCost'
+                  className='edit-tv-plan-installation-cost-label'
+                >
+                  <input
+                    type='checkbox'
+                    id='freeInstallationCost'
+                    name='installationCost'
+                    className='edit-tv-plan-installation-cost-checkbox'
+                  />
+                  Instalação grátis
+                </label>
+              </div>
+
+              <div className='edit-tv-plan-devices-box'>
+                <span className='edit-tv-plan-devices-title'>Pontos de TV</span>
+                <select name='devices' className='edit-tv-plan-devices-select'>
+                  <option value='1'>1</option>
+                  <option value='2'>2</option>
+                  <option value='3'>3</option>
+                  <option value='4'>4</option>
+                  <option value='5'>5</option>
+                </select>
+              </div>
+
+              <div className='edit-tv-plan-benefits-box'>
+                <span className='edit-tv-plan-benefits-title'>Benefícios</span>
+                <div className='edit-tv-plan-benefits-options'>
                   <BenefitsLabel
                     htmlFor='audiobookTim'
                     imageSrc='/assets/icons/audiobook-tim.png'
@@ -370,29 +303,48 @@ const EditInternetPlanForm = () => {
                 </div>
               </div>
 
-              <div className='edit-internet-plan-priority-box'>
-                <span className='edit-internet-plan-priority-title'>Prioridade</span>
-
-                <select name='priority' className='edit-internet-plan-priority-select'>
-                  <option value='1'>1</option>
-                  <option value='2'>2</option>
-                  <option value='3'>3</option>
-                  <option value='4'>4</option>
-                  <option value='5'>5</option>
-                  <option value='6'>6</option>
-                  <option value='7'>7</option>
-                  <option value='8'>8</option>
-                  <option value='9'>9</option>
-                  <option value='10'>10</option>
+              <div className='edit-tv-plan-priority-box'>
+                <span className='edit-tv-plan-priority-title'>Prioridade</span>
+                <select name='priority' className='edit-tv-plan-priority-select'>
+                  <option className='edit-tv-plan-priority-option' value='1'>
+                    1
+                  </option>
+                  <option className='edit-tv-plan-priority-option' value='2'>
+                    2
+                  </option>
+                  <option className='edit-tv-plan-priority-option' value='3'>
+                    3
+                  </option>
+                  <option className='edit-tv-plan-priority-option' value='4'>
+                    4
+                  </option>
+                  <option className='edit-tv-plan-priority-option' value='5'>
+                    5
+                  </option>
+                  <option className='edit-tv-plan-priority-option' value='6'>
+                    6
+                  </option>
+                  <option className='edit-tv-plan-priority-option' value='7'>
+                    7
+                  </option>
+                  <option className='edit-tv-plan-priority-option' value='8'>
+                    8
+                  </option>
+                  <option className='edit-tv-plan-priority-option' value='9'>
+                    9
+                  </option>
+                  <option className='edit-tv-plan-priority-option' value='10'>
+                    10
+                  </option>
                 </select>
               </div>
 
-              <div className='edit-internet-plan-description-box'>
-                <span className='edit-internet-plan-description-title'>Descrição</span>
-                <textarea name='description' className='edit-internet-plan-description-textarea' />
+              <div className='edit-tv-plan-description-box'>
+                <span className='edit-tv-plan-description-title'>Descrição</span>
+                <textarea name='description' className='edit-tv-plan-description-textarea' />
               </div>
 
-              <button type='submit' className='edit-internet-plan-submit-button'>
+              <button type='submit' className='edit-tv-plan-submit-button'>
                 Salvar
               </button>
             </form>
@@ -403,4 +355,4 @@ const EditInternetPlanForm = () => {
   );
 };
 
-export default EditInternetPlanForm;
+export default EditTVPlanForm;

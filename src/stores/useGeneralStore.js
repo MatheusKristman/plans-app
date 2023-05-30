@@ -1,9 +1,9 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
 const useGeneralStore = create((set) => ({
   modalAnimation: false,
   activateModalAnimation: () => set(() => ({ modalAnimation: true })),
-  desactivateModalAnimation: () => set(() => ({ modalAnimation: false })),
+  deactivateModalAnimation: () => set(() => ({ modalAnimation: false })),
 }));
 
 export default useGeneralStore;
