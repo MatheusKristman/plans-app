@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 const usePlansStore = create((set) => ({
   planCategory: {
@@ -47,13 +47,22 @@ const usePlansStore = create((set) => ({
   closeEditTVForm: () => set(() => ({ isEditTVFormOpen: false })),
   isInternetDetailsBoxOpen: false,
   openInternetDetailsBox: () => set(() => ({ isInternetDetailsBoxOpen: true })),
-  closeInternetDetailsBox: () => set(() => ({ isInternetDetailsBoxOpen: false })),
+  closeInternetDetailsBox: () =>
+    set(() => ({ isInternetDetailsBoxOpen: false })),
   isCelDetailsBoxOpen: false,
   openCelDetailsBox: () => set(() => ({ isCelDetailsBoxOpen: true })),
   closeCelDetailsBox: () => set(() => ({ isCelDetailsBoxOpen: false })),
   isTVDetailsBoxOpen: false,
   openTVDetailsBox: () => set(() => ({ isTVDetailsBoxOpen: true })),
   closeTVDetailsBox: () => set(() => ({ isTVDetailsBoxOpen: false })),
+  isArchivedPlansVisible: false,
+  enablePlansVisibility: () => set(() => ({ isArchivedPlansVisible: true })),
+  disablePlansVisibility: () => set(() => ({ isArchivedPlansVisible: false })),
+  isArchivedPlansAnimation: false,
+  enableArchivedPlansAnimation: () =>
+    set(() => ({ isArchivedPlansAnimation: true })),
+  disableArchivedPlansAnimation: () =>
+    set(() => ({ isArchivedPlansAnimation: false })),
 }));
 
 export default usePlansStore;

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import useDashboardPageStore from "../../stores/useDashboardPageStore";
 import useDashboardComponentStore from "../../stores/useDashboardComponentStore";
 import { shallow } from "zustand/shallow";
+import api from "../../services/api";
 
 import DashboardHeader from "../components/DashboardHeader";
 import DashboardPlanBox from "./components/DashboardPlanBox";
@@ -12,15 +12,40 @@ import NewInternetPlanModal from "./components/NewInternetPlanModal";
 import NewTVPlanModal from "./components/NewTVPlanModal";
 
 const Dashboard = () => {
-  const { isInternetFormOpen, isCelFormOpen, isTVFormOpen } =
-    useDashboardComponentStore(
-      (state) => ({
-        isInternetFormOpen: state.isInternetFormOpen,
-        isCelFormOpen: state.isCelFormOpen,
-        isTVFormOpen: state.isTVFormOpen,
-      }),
-      shallow
-    );
+  const {
+    isInternetFormOpen,
+    isCelFormOpen,
+    isTVFormOpen,
+    isArchivedPlansAnimation,
+    isArchivedPlansVisible,
+    activePlans,
+    setActivePlans,
+    archivedPlans,
+    setArchivedPlans,
+  } = useDashboardComponentStore(
+    (state) => ({
+      isInternetFormOpen: state.isInternetFormOpen,
+      isCelFormOpen: state.isCelFormOpen,
+      isTVFormOpen: state.isTVFormOpen,
+      isArchivedPlansAnimation: state.isArchivedPlansAnimation,
+      isArchivedPlansVisible: state.isArchivedPlansVisible,
+      activePlans: state.activePlans,
+      setActivePlans: state.setActivePlans,
+      archivedPlans: state.archivedPlans,
+      setArchivedPlans: state.setArchivedPlans,
+    }),
+    shallow
+  );
+
+  useEffect(() => {
+    api
+      .get("/plan/all-plans/all")
+      .then((res) => {
+        setActivePlans(res.data.filter((plan) => !plan.archived));
+        setArchivedPlans(res.data.filter((plan) => plan.archived));
+      })
+      .catch((error) => console.error(error.message));
+  }, []);
 
   useEffect(() => {
     if (isInternetFormOpen || isCelFormOpen || isTVFormOpen) {
@@ -30,7 +55,6 @@ const Dashboard = () => {
     }
   }, [isInternetFormOpen, isCelFormOpen]);
 
-  // TODO create cel plan modal and tv modal
   return (
     <div className="dashboard-component-container">
       {isInternetFormOpen && <NewInternetPlanModal />}
@@ -48,29 +72,55 @@ const Dashboard = () => {
             <DashboardPlanActiveStatus />
 
             <div className="dashboard-component-plans-wrapper">
-              <DashboardPlanBox
-                providerIconPath="/assets/icons/claro.png"
-                planTitle="Claro Controle 25GB Fidelizado"
-                contactValue="5"
-                totalValue={150.4}
-                createdValue="24/03/2023"
-              />
+              {activePlans.length !== 0 ? (
+                activePlans.map((plan, index) => (
+                  <DashboardPlanBox
+                    key={`plan-${index}`}
+                    providerIconPath={plan.providerIcon}
+                    planTitle={plan.title}
+                    contactValue={plan.contacts}
+                    totalValue={plan.cost * plan.contacts}
+                    createdValue={plan.createdAt}
+                  />
+                ))
+              ) : (
+                <span className="dashboard-component-no-plan-adviser">
+                  Nenhum plano ativo no momento
+                </span>
+              )}
             </div>
           </div>
 
           <div className="dashboard-component-archived-wrapper">
             <DashboardPlanArchivedStatus />
 
-            <div className="dashboard-component-archived-plans-wrapper">
-              <DashboardPlanBox
-                providerIconPath="/assets/icons/claro.png"
-                planTitle="Claro Controle 25GB Fidelizado"
-                contactValue="5"
-                totalValue={150.4}
-                createdValue="24/03/2023"
-                archivedValue="24/03/2023"
-              />
-            </div>
+            {isArchivedPlansVisible && (
+              <div
+                className={
+                  isArchivedPlansAnimation
+                    ? "dashboard-component-archived-plans-wrapper animate__animated animate__faster animate__fadeIn"
+                    : "dashboard-component-archived-plans-wrapper animate__animated animate__faster animate__fadeOut"
+                }
+              >
+                {archivedPlans.length !== 0 ? (
+                  archivedPlans.map((plan, index) => (
+                    <DashboardPlanBox
+                      key={`plan-${index}`}
+                      providerIconPath={plan.providerIcon}
+                      planTitle={plan.title}
+                      contactValue={plan.contacts}
+                      totalValue={plan.cost * plan.contacts}
+                      createdValue={plan.createdAt}
+                      archivedValue={plan.archivedAt}
+                    />
+                  ))
+                ) : (
+                  <span className="dashboard-component-archived-plans-no-plan-adviser">
+                    Nenhum plano arquivado no momento
+                  </span>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>

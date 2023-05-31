@@ -106,7 +106,8 @@
             .internet-details-box-download-box,
             .internet-details-box-upload-box,
             .internet-details-box-has-wifi-box,
-            .internet-details-box-technology-box {
+            .internet-details-box-technology-box,
+            .internet-details-box-archived-at-box {
               width: 50%;
               display: flex;
               flex-direction: column;
@@ -123,7 +124,8 @@
               .internet-details-box-download-label,
               .internet-details-box-upload-label,
               .internet-details-box-has-wifi-label,
-              .internet-details-box-technology-label {
+              .internet-details-box-technology-label,
+              .internet-details-box-archived-at-label {
                 font-size: 1.125rem;
                 font-weight: 600;
                 color: #252525;
@@ -139,7 +141,8 @@
               .internet-details-box-download-desc,
               .internet-details-box-upload-desc,
               .internet-details-box-has-wifi-desc,
-              .internet-details-box-technology-desc {
+              .internet-details-box-technology-desc,
+              .internet-details-box-archived-at-desc {
                 font-size: 1rem;
                 color: #252525;
               }

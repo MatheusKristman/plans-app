@@ -1,6 +1,27 @@
 import React from "react";
+import useGeneralStore from "../../../stores/useGeneralStore";
+import usePlansStore from "../../../stores/usePlansStore";
+import { shallow } from "zustand/shallow";
 
 const TVPlansArchivedBox = () => {
+  const { activateModalAnimation } = useGeneralStore(
+    (state) => ({
+      activateModalAnimation: state.activateModalAnimation,
+    }),
+    shallow
+  );
+  const { openTVDetailsBox } = usePlansStore(
+    (state) => ({
+      openTVDetailsBox: state.openTVDetailsBox,
+    }),
+    shallow
+  );
+
+  const handleOpenDetailsBox = () => {
+    openTVDetailsBox();
+    activateModalAnimation();
+  };
+
   return (
     <div className="plans-component-archived-plan-container">
       <div className="plans-component-archived-plan-wrapper">
@@ -78,7 +99,10 @@ const TVPlansArchivedBox = () => {
             Restaurar
           </button>
 
-          <button className="plans-component-details-button">
+          <button
+            onClick={handleOpenDetailsBox}
+            className="plans-component-details-button"
+          >
             Ver Detalhes
           </button>
 

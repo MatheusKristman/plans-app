@@ -1,17 +1,24 @@
 import React from "react";
 import usePlansStore from "../../../stores/usePlansStore";
 import useGeneralStore from "../../../stores/useGeneralStore";
+import { shallow } from "zustand/shallow";
 
 import PlansFilterBox from "./PlansFilterBox";
 
 const PlansStatusBox = () => {
-  const { isFilterBoxOpen, openFilterBox } = usePlansStore((state) => ({
-    isFilterBoxOpen: state.isFilterBoxOpen,
-    openFilterBox: state.openFilterBox,
-  }));
-  const { activateModalAnimation } = useGeneralStore((state) => ({
-    activateModalAnimation: state.activateModalAnimation,
-  }));
+  const { isFilterBoxOpen, openFilterBox } = usePlansStore(
+    (state) => ({
+      isFilterBoxOpen: state.isFilterBoxOpen,
+      openFilterBox: state.openFilterBox,
+    }),
+    shallow
+  );
+  const { activateModalAnimation } = useGeneralStore(
+    (state) => ({
+      activateModalAnimation: state.activateModalAnimation,
+    }),
+    shallow
+  );
 
   const handleFilterBoxOpen = () => {
     openFilterBox();

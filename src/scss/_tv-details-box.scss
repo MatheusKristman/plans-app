@@ -12,7 +12,7 @@
   z-index: 6;
 
   &::before {
-    content: '';
+    content: "";
     display: inline-block;
     vertical-align: middle;
   }
@@ -38,7 +38,7 @@
         width: 100%;
         height: 200px;
         position: relative;
-        background-image: url('/assets/images/modal-image-lg.png');
+        background-image: url("/assets/images/modal-image-lg.png");
         background-position: right center;
         background-size: cover;
         background-repeat: no-repeat;
@@ -106,7 +106,8 @@
             .tv-details-box-priority-box,
             .tv-details-box-benefits-box,
             .tv-details-box-installation-cost-box,
-            .tv-details-box-devices-box {
+            .tv-details-box-devices-box,
+            .tv-details-box-archived-at-box {
               width: 50%;
               display: flex;
               flex-direction: column;
@@ -123,7 +124,8 @@
               .tv-details-box-priority-label,
               .tv-details-box-benefits-label,
               .tv-details-box-installation-cost-label,
-              .tv-details-box-devices-label {
+              .tv-details-box-devices-label,
+              .tv-details-box-archived-at-label {
                 font-size: 1.125rem;
                 font-weight: 600;
                 color: #252525;
@@ -140,7 +142,8 @@
               .tv-details-box-priority-desc,
               .tv-details-box-benefits-desc,
               .tv-details-box-installation-cost-desc,
-              .tv-details-box-devices-desc {
+              .tv-details-box-devices-desc,
+              .tv-details-box-archived-at-desc {
                 font-size: 1rem;
                 color: #252525;
               }

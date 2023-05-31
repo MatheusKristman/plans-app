@@ -12,7 +12,7 @@
   z-index: 6;
 
   &::before {
-    content: '';
+    content: "";
     display: inline-block;
     vertical-align: middle;
   }
@@ -38,7 +38,7 @@
         width: 100%;
         height: 200px;
         position: relative;
-        background-image: url('/assets/images/modal-image-lg.png');
+        background-image: url("/assets/images/modal-image-lg.png");
         background-position: right center;
         background-size: cover;
         background-repeat: no-repeat;
@@ -105,7 +105,8 @@
             .cel-details-box-unlimited-apps-box,
             .cel-details-box-plan-type-box,
             .cel-details-box-franchise-box,
-            .cel-details-box-unlimited-call-box {
+            .cel-details-box-unlimited-call-box,
+            .cel-details-box-archived-at-box {
               width: 50%;
               display: flex;
               flex-direction: column;
@@ -121,7 +122,8 @@
               .cel-details-box-unlimited-apps-label,
               .cel-details-box-plan-type-label,
               .cel-details-box-franchise-label,
-              .cel-details-box-unlimited-call-label {
+              .cel-details-box-unlimited-call-label,
+              .cel-details-box-archived-at-label {
                 font-size: 1.125rem;
                 font-weight: 600;
                 color: #252525;
@@ -137,7 +139,8 @@
               .cel-details-box-unlimited-apps-desc,
               .cel-details-box-plan-type-desc,
               .cel-details-box-franchise-desc,
-              .cel-details-box-unlimited-call-desc {
+              .cel-details-box-unlimited-call-desc,
+              .cel-detais-box-archived-at-desc {
                 font-size: 1rem;
                 color: #252525;
               }

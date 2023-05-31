@@ -1,11 +1,15 @@
 import React, { useEffect } from "react";
 import usePlansStore from "../../../stores/usePlansStore";
+import { shallow } from "zustand/shallow";
 
 const PlansCategories = () => {
-  const { planCategory, handleCategory } = usePlansStore((state) => ({
-    planCategory: state.planCategory,
-    handleCategory: state.handleCategory,
-  }));
+  const { planCategory, handleCategory } = usePlansStore(
+    (state) => ({
+      planCategory: state.planCategory,
+      handleCategory: state.handleCategory,
+    }),
+    shallow
+  );
 
   useEffect(() => {
     console.log(planCategory);

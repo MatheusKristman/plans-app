@@ -125,6 +125,11 @@
                 padding-top: 100%;
                 position: relative;
                 cursor: pointer;
+                transition: filter 0.3s ease;
+
+                &:hover {
+                  filter: brightness(80%);
+                }
 
                 .new-internet-plan-modal-provider-label-logo {
                   position: absolute;
@@ -214,10 +219,17 @@
               font-size: 1rem;
               color: #252525;
               transition: border-color 0.3s ease;
+              -moz-appearance: textfield;
 
               &:focus {
                 border-color: #7a7a7a;
               }
+            }
+
+            .new-internet-plan-modal-cost-input::-webkit-outer-spin-button,
+            .new-internet-plan-modal-cost-input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
             }
           }
 
@@ -248,10 +260,17 @@
               color: #252525;
               transition: border-color 0.3s ease;
               margin-bottom: 10px;
+              -moz-appearance: textfield;
 
               &:focus {
                 border-color: #7a7a7a;
               }
+            }
+
+            .new-internet-plan-modal-installation-cost-input::-webkit-outer-spin-button,
+            .new-internet-plan-modal-installation-cost-input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
             }
 
             .new-internet-plan-modal-installation-cost-label {
@@ -296,10 +315,17 @@
               color: #252525;
               transition: border-color 0.3s ease;
               margin-bottom: 10px;
+              -moz-appearance: textfield;
 
               &:focus {
                 border-color: #7a7a7a;
               }
+            }
+
+            .new-internet-plan-modal-download-input::-webkit-outer-spin-button,
+            .new-internet-plan-modal-download-input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
             }
 
             .new-internet-plan-modal-download-unit-wrapper {
@@ -349,10 +375,17 @@
               color: #252525;
               transition: border-color 0.3s ease;
               margin-bottom: 10px;
+              -moz-appearance: textfield;
 
               &:focus {
                 border-color: #7a7a7a;
               }
+            }
+
+            .new-internet-plan-modal-upload-input::-webkit-outer-spin-button,
+            .new-internet-plan-modal-upload-input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
             }
 
             .new-internet-plan-modal-upload-unit-wrapper {
@@ -402,10 +435,17 @@
               color: #252525;
               transition: border-color 0.3s ease;
               margin-bottom: 10px;
+              -moz-appearance: textfield;
 
               &:focus {
                 border-color: #7a7a7a;
               }
+            }
+
+            .new-internet-plan-modal-franchise-limit-input::-webkit-outer-spin-button,
+            .new-internet-plan-modal-franchise-limit-input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
             }
 
             .new-internet-plan-modal-franchise-limit-label {

@@ -141,6 +141,14 @@
           flex-direction: column;
           gap: 25px;
 
+          .dashboard-component-no-plan-adviser {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #b0b0b0;
+            width: 100%;
+            text-align: center;
+          }
+
           .dashboard-plan-box {
             width: 100%;
             padding-bottom: 25px;
@@ -291,6 +299,14 @@
           display: flex;
           flex-direction: column;
           gap: 25px;
+
+          .dashboard-component-archived-plans-no-plan-adviser {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #b0b0b0;
+            width: 100%;
+            text-align: center;
+          }
 
           .dashboard-plan-box {
             width: 100%;

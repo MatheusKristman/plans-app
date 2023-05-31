@@ -1,6 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 import usePlansStore from "../../../stores/usePlansStore";
 import useGeneralStore from "../../../stores/useGeneralStore";
+import { shallow } from "zustand/shallow";
 
 const PlansFilterBox = () => {
   const { plansFilter, handleFilter, closeFilterBox } = usePlansStore(
@@ -8,13 +9,15 @@ const PlansFilterBox = () => {
       plansFilter: state.plansFilter,
       handleFilter: state.handleFilter,
       closeFilterBox: state.closeFilterBox,
-    })
+    }),
+    shallow
   );
-  const { modalAnimation, desactivateModalAnimation } = useGeneralStore(
+  const { modalAnimation, deactivateModalAnimation } = useGeneralStore(
     (state) => ({
       modalAnimation: state.modalAnimation,
-      desactivateModalAnimation: state.desactivateModalAnimation,
-    })
+      deactivateModalAnimation: state.deactivateModalAnimation,
+    }),
+    shallow
   );
   const filterBoxRef = useRef();
 
@@ -29,7 +32,7 @@ const PlansFilterBox = () => {
         !filterBoxRef.current.contains(e.target) &&
         !e.target.classList.contains("plans-component-filter-button")
       ) {
-        desactivateModalAnimation();
+        deactivateModalAnimation();
 
         setTimeout(() => {
           closeFilterBox();
@@ -58,7 +61,7 @@ const PlansFilterBox = () => {
         <li
           onClick={() => {
             handleFilter("recent");
-            desactivateModalAnimation();
+            deactivateModalAnimation();
 
             setTimeout(() => {
               closeFilterBox();
@@ -75,7 +78,7 @@ const PlansFilterBox = () => {
         <li
           onClick={() => {
             handleFilter("old");
-            desactivateModalAnimation();
+            deactivateModalAnimation();
 
             setTimeout(() => {
               closeFilterBox();
@@ -92,7 +95,7 @@ const PlansFilterBox = () => {
         <li
           onClick={() => {
             handleFilter("priorityCrescent");
-            desactivateModalAnimation();
+            deactivateModalAnimation();
 
             setTimeout(() => {
               closeFilterBox();
@@ -109,7 +112,7 @@ const PlansFilterBox = () => {
         <li
           onClick={() => {
             handleFilter("priorityDecrescent");
-            desactivateModalAnimation();
+            deactivateModalAnimation();
 
             setTimeout(() => {
               closeFilterBox();

@@ -1,8 +1,9 @@
-import React, { useEffect, useLayoutEffect, useRef, useMemo } from "react";
-import useDashboardComponentStore from "../../../stores/useDashboardComponentStore";
-import useGeneralStore from "../../../stores/useGeneralStore";
-import { shallow } from "zustand/shallow";
-import { motion } from "framer-motion";
+import React, { useEffect, useLayoutEffect, useRef, useMemo } from 'react';
+import useDashboardComponentStore from '../../../stores/useDashboardComponentStore';
+import useGeneralStore from '../../../stores/useGeneralStore';
+import { shallow } from 'zustand/shallow';
+import { motion } from 'framer-motion';
+import api from '../../../services/api';
 
 const DashboardPlanActiveStatus = () => {
   const {
@@ -15,6 +16,7 @@ const DashboardPlanActiveStatus = () => {
     openInternetForm,
     openCelForm,
     openTVForm,
+    activePlans,
   } = useDashboardComponentStore(
     (state) => ({
       isStatusMenuOpen: state.isStatusMenuOpen,
@@ -26,6 +28,7 @@ const DashboardPlanActiveStatus = () => {
       openInternetForm: state.openInternetForm,
       openCelForm: state.openCelForm,
       openTVForm: state.openTVForm,
+      activePlans: state.activePlans,
     }),
     shallow
   );
@@ -69,7 +72,7 @@ const DashboardPlanActiveStatus = () => {
       if (
         statusMenuRef.current &&
         !statusMenuRef.current.contains(e.target) &&
-        !e.target.classList.contains("dashboard-component-create-plan-btn")
+        !e.target.classList.contains('dashboard-component-create-plan-btn')
       ) {
         closeStatusAnimation();
 
@@ -80,33 +83,26 @@ const DashboardPlanActiveStatus = () => {
       }
     };
 
-    document.addEventListener("mousedown", statusMenuHandler);
+    document.addEventListener('mousedown', statusMenuHandler);
 
     return () => {
-      document.removeEventListener("mousedown", statusMenuHandler);
+      document.removeEventListener('mousedown', statusMenuHandler);
     };
   }, []);
 
   return (
-    <div className="dashboard-component-status-box">
-      <span className="dashboard-component-status">Planos ativos: </span>
-      <button
-        className="dashboard-component-create-plan-btn"
-        onClick={handleOpenStatusMenu}
-      >
+    <div className='dashboard-component-status-box'>
+      <span className='dashboard-component-status'>Planos ativos: {activePlans.length}</span>
+      <button className='dashboard-component-create-plan-btn' onClick={handleOpenStatusMenu}>
         <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
+          xmlns='http://www.w3.org/2000/svg'
+          fill='none'
+          viewBox='0 0 24 24'
           strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-6 h-6"
+          stroke='currentColor'
+          className='w-6 h-6'
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M12 4.5v15m7.5-7.5h-15"
-          />
+          <path strokeLinecap='round' strokeLinejoin='round' d='M12 4.5v15m7.5-7.5h-15' />
         </svg>
         NOVO PLANO
       </button>
@@ -117,31 +113,20 @@ const DashboardPlanActiveStatus = () => {
           ref={statusMenuRef}
           className={
             statusMenuAnimation
-              ? "dashboard-component-plan-type-options animate__animated animate__fadeInDown animate__fast"
-              : "dashboard-component-plan-type-options animate__animated animate__fadeOutUp animate__fast"
+              ? 'dashboard-component-plan-type-options animate__animated animate__fadeInDown animate__fast'
+              : 'dashboard-component-plan-type-options animate__animated animate__fadeOutUp animate__fast'
           }
         >
-          <h4 className="dashboard-component-plan-type-title">
-            Qual o tipo do plano?
-          </h4>
+          <h4 className='dashboard-component-plan-type-title'>Qual o tipo do plano?</h4>
 
-          <ul className="dashboard-component-plan-type-buttons">
-            <li
-              onClick={handleOpenInternetForm}
-              className="dashboard-component-plan-type-button"
-            >
+          <ul className='dashboard-component-plan-type-buttons'>
+            <li onClick={handleOpenInternetForm} className='dashboard-component-plan-type-button'>
               Banda Larga
             </li>
-            <li
-              onClick={handleOpenCelForm}
-              className="dashboard-component-plan-type-button"
-            >
+            <li onClick={handleOpenCelForm} className='dashboard-component-plan-type-button'>
               Celular
             </li>
-            <li
-              onClick={handleOpenTVForm}
-              className="dashboard-component-plan-type-button"
-            >
+            <li onClick={handleOpenTVForm} className='dashboard-component-plan-type-button'>
               TV por assinatura
             </li>
           </ul>
