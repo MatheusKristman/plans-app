@@ -2,12 +2,38 @@ import React from "react";
 import usePlansStore from "../../../stores/usePlansStore";
 import useGeneralStore from "../../../stores/useGeneralStore";
 import { shallow } from "zustand/shallow";
+import api from "../../../services/api";
+import { toast } from "react-toastify";
 
-const InternetPlanBox = () => {
-  const { openEditInternetForm, openInternetDetailsBox } = usePlansStore(
+const InternetPlanBox = ({
+  benefits,
+  contacts,
+  cost,
+  createdAt,
+  description,
+  download,
+  franchiseLimit,
+  hasWifi,
+  installationCost,
+  priority,
+  providerIcon,
+  technology,
+  title,
+  upload,
+  planId,
+  category,
+}) => {
+  const {
+    openEditInternetForm,
+    openInternetDetailsBox,
+    setIdSelectedForDetails,
+    setPlans,
+  } = usePlansStore(
     (state) => ({
       openEditInternetForm: state.openEditInternetForm,
       openInternetDetailsBox: state.openInternetDetailsBox,
+      setIdSelectedForDetails: state.setIdSelectedForDetails,
+      setPlans: state.setPlans,
     }),
     shallow
   );
@@ -21,11 +47,45 @@ const InternetPlanBox = () => {
   const handleOpenForm = () => {
     openEditInternetForm();
     activateModalAnimation();
+    setIdSelectedForDetails(planId);
   };
 
   const handleOpenDetailsBox = () => {
     openInternetDetailsBox();
     activateModalAnimation();
+    setIdSelectedForDetails(planId);
+  };
+
+  const handleArchive = (id) => {
+    api
+      .put("plan/internet-plan/archive", { id })
+      .then((res) => {
+        setPlans(res.data);
+
+        toast.success("Plano arquivado com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(error.response.data.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      });
   };
 
   return (
@@ -35,31 +95,31 @@ const InternetPlanBox = () => {
           <div className="plans-component-image-title-box">
             <div className="plans-component-image-box">
               <img
-                src="/assets/icons/claro.png"
-                alt="Claro"
+                src={`https://planos-backend.onrender.com/assets/${providerIcon}`}
+                alt={providerIcon.substring(0, providerIcon.length - 4)}
                 className="plans-component-image"
               />
             </div>
 
-            <h3 className="plans-component-plan-name">
-              Claro Banda Larga 250MB
-            </h3>
+            <h3 className="plans-component-plan-name">{title}</h3>
           </div>
 
           <div className="plans-component-cost-box">
-            <span className="plans-component-cost-value">R$ 79,90</span>
+            <span className="plans-component-cost-value">
+              R$ {cost.toFixed(2).replace(".", ",")}
+            </span>
             <span className="plans-component-cost-desc">Valor</span>
           </div>
 
           <div className="plans-component-download-box">
-            <span className="plans-component-download-value">250MB</span>
+            <span className="plans-component-download-value">{download}</span>
             <span className="plans-component-download-desc">
               Velocidade de download
             </span>
           </div>
 
           <div className="plans-component-upload-box">
-            <span className="plans-component-upload-value">100MB</span>
+            <span className="plans-component-upload-value">{upload}</span>
             <span className="plans-component-upload-desc">
               Velocidade de upload
             </span>
@@ -67,23 +127,27 @@ const InternetPlanBox = () => {
 
           <div className="plans-component-priority-box">
             <div className="plans-component-priority-polygon">
-              <span className="plans-component-priority-value">1</span>
+              <span className="plans-component-priority-value">{priority}</span>
             </div>
             <span className="plans-component-priority-desc">Prioridade</span>
           </div>
 
           <div className="plans-component-contact-box">
-            <span className="plans-component-contact-value">5</span>
+            <span className="plans-component-contact-value">{contacts}</span>
             <span className="plans-component-contact-desc">Contatos</span>
           </div>
 
           <div className="plans-component-total-box">
-            <span className="plans-component-total-value">R$ 100,00</span>
+            <span className="plans-component-total-value">
+              R$ {(cost * contacts).toFixed(2).replace(".", ",")}
+            </span>
             <span className="plans-component-total-desc">Total</span>
           </div>
 
           <div className="plans-component-created-at-box">
-            <span className="plans-component-created-at-value">24/03/2023</span>
+            <span className="plans-component-created-at-value">
+              {createdAt}
+            </span>
             <span className="plans-component-created-at-desc">Criado em</span>
           </div>
         </div>
@@ -103,7 +167,10 @@ const InternetPlanBox = () => {
             Ver Detalhes
           </button>
 
-          <button className="plans-component-archive-button">
+          <button
+            onClick={() => handleArchive(planId)}
+            className="plans-component-archive-button"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

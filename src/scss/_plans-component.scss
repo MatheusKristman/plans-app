@@ -143,6 +143,14 @@
           gap: 25px;
           margin-top: 80px;
 
+          .plans-component-no-plan-adviser {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #b0b0b0;
+            width: 100%;
+            text-align: center;
+          }
+
           .plans-component-plan-container {
             width: 100%;
             padding-bottom: 25px;
@@ -276,7 +284,7 @@
                     height: 44px;
                     min-height: 44px;
                     max-height: 44px;
-                    background-image: url('/assets/icons/polygon.svg');
+                    background-image: url("/assets/icons/polygon.svg");
                     background-size: cover;
                     background-repeat: no-repeat;
                     background-position: center;
@@ -398,6 +406,24 @@
               }
             }
           }
+
+          .plans-component-active-show-more-button {
+            width: fit-content;
+            padding: 10px 20px;
+            background-color: #d40066;
+            border: 2px solid #d40066;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            margin: auto;
+            transition: filter 0.3s ease;
+
+            &:hover {
+              filter: brightness(80%);
+            }
+          }
         }
       }
 
@@ -449,6 +475,14 @@
           flex-direction: column;
           gap: 25px;
           margin-top: 80px;
+
+          .plans-component-archived-plans-no-plan-adviser {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #b0b0b0;
+            width: 100%;
+            text-align: center;
+          }
 
           .plans-component-archived-plan-container {
             width: 100%;
@@ -584,7 +618,7 @@
                     height: 44px;
                     min-height: 44px;
                     max-height: 44px;
-                    background-image: url('/assets/icons/polygon.svg');
+                    background-image: url("/assets/icons/polygon.svg");
                     background-size: cover;
                     background-repeat: no-repeat;
                     background-position: center;
@@ -728,6 +762,24 @@
                 }
               }
             }
+          }
+        }
+
+        .plans-component-archived-show-more-button {
+          width: fit-content;
+          padding: 10px 20px;
+          background-color: #d40066;
+          border: 2px solid #d40066;
+          border-radius: 8px;
+          font-size: 1rem;
+          font-weight: 600;
+          color: #fff;
+          cursor: pointer;
+          margin: auto;
+          transition: filter 0.3s ease;
+
+          &:hover {
+            filter: brightness(80%);
           }
         }
       }

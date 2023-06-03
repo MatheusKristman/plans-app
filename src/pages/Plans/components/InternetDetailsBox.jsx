@@ -13,10 +13,15 @@ const InternetDetailsBox = ({ archivedAt }) => {
       }),
       shallow
     );
-  const { closeInternetDetailsBox, openEditInternetForm } = usePlansStore(
+  const {
+    closeInternetDetailsBox,
+    openEditInternetForm,
+    planSelectedForDetails,
+  } = usePlansStore(
     (state) => ({
       closeInternetDetailsBox: state.closeInternetDetailsBox,
       openEditInternetForm: state.openEditInternetForm,
+      planSelectedForDetails: state.planSelectedForDetails,
     }),
     shallow
   );
@@ -89,7 +94,7 @@ const InternetDetailsBox = ({ archivedAt }) => {
                     Título
                   </span>
                   <span className="internet-details-box-title-desc">
-                    Claro Banda Larga 250MB
+                    {planSelectedForDetails.title}
                   </span>
                 </div>
 
@@ -98,7 +103,7 @@ const InternetDetailsBox = ({ archivedAt }) => {
                     Criado em
                   </span>
                   <span className="internet-details-box-created-at-desc">
-                    24/03/2023
+                    {planSelectedForDetails.createdAt}
                   </span>
                 </div>
               </div>
@@ -109,8 +114,11 @@ const InternetDetailsBox = ({ archivedAt }) => {
                     Operadora
                   </span>
                   <img
-                    src="/assets/icons/claro.png"
-                    alt="Claro"
+                    src={`https://planos-backend.onrender.com/assets/${planSelectedForDetails.providerIcon}`}
+                    alt={planSelectedForDetails.providerIcon?.substring(
+                      0,
+                      planSelectedForDetails.providerIcon.length - 4
+                    )}
                     className="internet-details-box-provider-logo"
                   />
                 </div>
@@ -119,7 +127,9 @@ const InternetDetailsBox = ({ archivedAt }) => {
                   <span className="internet-details-box-contacts-label">
                     Contatos
                   </span>
-                  <span className="internet-details-box-contacts-desc">5</span>
+                  <span className="internet-details-box-contacts-desc">
+                    {planSelectedForDetails.contacts}
+                  </span>
                 </div>
               </div>
 
@@ -127,7 +137,8 @@ const InternetDetailsBox = ({ archivedAt }) => {
                 <div className="internet-details-box-cost-box">
                   <span className="internet-details-box-cost-label">Valor</span>
                   <span className="internet-details-box-cost-desc">
-                    R$ 49,90
+                    R${" "}
+                    {planSelectedForDetails.cost?.toFixed(2).replace(".", ",")}
                   </span>
                 </div>
 
@@ -136,7 +147,13 @@ const InternetDetailsBox = ({ archivedAt }) => {
                     Total
                   </span>
                   <span className="internet-details-box-total-desc">
-                    R$ 49,90
+                    R${" "}
+                    {(
+                      planSelectedForDetails.cost *
+                      planSelectedForDetails.contacts
+                    )
+                      .toFixed(2)
+                      .replace(".", ",")}
                   </span>
                 </div>
               </div>
@@ -146,7 +163,9 @@ const InternetDetailsBox = ({ archivedAt }) => {
                   <span className="internet-details-box-priority-label">
                     Prioridade
                   </span>
-                  <span className="internet-details-box-priority-desc">2</span>
+                  <span className="internet-details-box-priority-desc">
+                    {planSelectedForDetails.priority}
+                  </span>
                 </div>
 
                 <div className="internet-details-box-franchise-limit-box">
@@ -154,7 +173,7 @@ const InternetDetailsBox = ({ archivedAt }) => {
                     Franquia de download
                   </span>
                   <span className="internet-details-box-franchise-limit-desc">
-                    Ilimitado
+                    {planSelectedForDetails.franchiseLimit}
                   </span>
                 </div>
               </div>
@@ -165,7 +184,7 @@ const InternetDetailsBox = ({ archivedAt }) => {
                     Velocidade de download
                   </span>
                   <span className="internet-details-box-download-desc">
-                    250MB
+                    {planSelectedForDetails.download}
                   </span>
                 </div>
 
@@ -174,7 +193,7 @@ const InternetDetailsBox = ({ archivedAt }) => {
                     Velocidade de upload
                   </span>
                   <span className="internet-details-box-upload-desc">
-                    100MB
+                    {planSelectedForDetails.upload}
                   </span>
                 </div>
               </div>
@@ -185,7 +204,7 @@ const InternetDetailsBox = ({ archivedAt }) => {
                     Wifi ilimitado?
                   </span>
                   <span className="internet-details-box-has-wifi-desc">
-                    Sim
+                    {planSelectedForDetails.hasWifi ? "Sim" : "Não"}
                   </span>
                 </div>
 
@@ -194,7 +213,7 @@ const InternetDetailsBox = ({ archivedAt }) => {
                     Tecnologia do modem
                   </span>
                   <span className="internet-details-box-technology-desc">
-                    Fibra ótica
+                    {planSelectedForDetails.technology}
                   </span>
                 </div>
               </div>
@@ -206,7 +225,7 @@ const InternetDetailsBox = ({ archivedAt }) => {
                       Arquivado em
                     </span>
                     <span className="internet-details-box-archived-at-desc">
-                      30/05/2023
+                      {planSelectedForDetails?.archivedAt}
                     </span>
                   </div>
                 </div>
@@ -217,7 +236,7 @@ const InternetDetailsBox = ({ archivedAt }) => {
                   Descrição
                 </span>
                 <span className="internet-details-box-description-desc">
-                  Descrição teste
+                  {planSelectedForDetails.description}
                 </span>
               </div>
 

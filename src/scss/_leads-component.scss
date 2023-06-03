@@ -69,53 +69,23 @@
               display: flex;
               align-items: center;
               flex-wrap: wrap;
-              gap: 25px;
+              gap: 25px 130px;
 
-              .leads-component-image-title-box {
-                width: 100%;
+              .leads-component-lead-name-box {
                 display: flex;
-                align-items: center;
-                gap: 25px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
 
-                @include breakpoint(smallScreen) {
-                  width: fit-content;
+                .leads-component-lead-name {
+                  font-size: 1.125rem;
+                  font-weight: 600;
+                  color: #252525;
                 }
 
-                .leads-component-image-box {
-                  width: 50px;
-                  min-width: 50px;
-                  max-width: 50px;
-                  height: 50px;
-                  min-height: 50px;
-                  max-height: 50px;
-                  border-radius: 10px;
-                  background-color: #f5e0d9;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-
-                  .leads-component-image {
-                    width: 80%;
-                    height: auto;
-                  }
-                }
-
-                .leads-component-lead-name-box {
-                  display: flex;
-                  flex-direction: column;
-                  align-items: flex-start;
-                  gap: 5px;
-
-                  .leads-component-lead-name {
-                    font-size: 1.125rem;
-                    font-weight: 600;
-                    color: #252525;
-                  }
-
-                  .leads-component-lead-name-desc {
-                    font-size: 0.875rem;
-                    color: #b0b0b0;
-                  }
+                .leads-component-lead-name-desc {
+                  font-size: 0.875rem;
+                  color: #b0b0b0;
                 }
               }
 
@@ -130,7 +100,6 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 5px;
-                margin-left: 75px;
 
                 @include breakpoint(smallScreen) {
                   width: fit-content;

@@ -3,14 +3,28 @@ import useDashboardComponentStore from "../../../stores/useDashboardComponentSto
 import useGeneralStore from "../../../stores/useGeneralStore";
 import { shallow } from "zustand/shallow";
 import api from "../../../services/api";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { toast } from "react-toastify";
 
 import BenefitsLabel from "./BenefitsLabel";
+
+const schema = yup.object({
+  title: yup.string().required("Título é obrigatório"),
+  cost: yup.string().required("Valor é obrigatório"),
+  installationCost: yup.mixed().required("Valor da instalação é obrigatório"),
+  download: yup.string().required("Velocidade de Download é obrigatório"),
+  upload: yup.string().required("Velocidade de Upload é obrigatório"),
+  franchiseLimit: yup.mixed().required("Franquia de Download é obrigatório"),
+  technology: yup.string().required("Tecnologia do modem é obrigatório"),
+  description: yup.string().required("Descrição é obrigatório"),
+});
 
 const NewInternetPlanModal = () => {
   const {
     closeInternetForm,
     allProviders,
-    setAllProviders,
     internetProviderId,
     setInternetProviderId,
     internetTitle,
@@ -33,17 +47,23 @@ const NewInternetPlanModal = () => {
     setInternetTechnology,
     internetHasWifi,
     setInternetHasWifi,
-    internetBenefits,
-    setInternetBenefits,
     internetPriority,
     setInternetPriority,
     internetDescription,
     setInternetDescription,
+    isSubmitting,
+    setToSubmit,
+    cancelSubmit,
+    setActivePlans,
+    setArchivedPlans,
+    internetProviderError,
+    setInternetProviderError,
+    unsetInternetProviderError,
+    internetResetInputs,
   } = useDashboardComponentStore(
     (state) => ({
       closeInternetForm: state.closeInternetForm,
       allProviders: state.allProviders,
-      setAllProviders: state.setAllProviders,
       internetProviderId: state.internetProviderId,
       setInternetProviderId: state.setInternetProviderId,
       internetTitle: state.internetTitle,
@@ -66,40 +86,134 @@ const NewInternetPlanModal = () => {
       setInternetTechnology: state.setInternetTechnology,
       internetHasWifi: state.internetHasWifi,
       setInternetHasWifi: state.setInternetHasWifi,
-      internetBenefits: state.internetBenefits,
-      setInternetBenefits: state.setInternetBenefits,
       internetPriority: state.internetPriority,
       setInternetPriority: state.setInternetPriority,
       internetDescription: state.internetDescription,
       setInternetDescription: state.setInternetDescription,
+      isSubmitting: state.isSubmitting,
+      setToSubmit: state.setToSubmit,
+      cancelSubmit: state.cancelSubmit,
+      setActivePlans: state.setActivePlans,
+      setArchivedPlans: state.setArchivedPlans,
+      internetProviderError: state.internetProviderError,
+      setInternetProviderError: state.setInternetProviderError,
+      unsetInternetProviderError: state.unsetInternetProviderError,
+      internetResetInputs: state.internetResetInputs,
     }),
     shallow
   );
-  const { deactivateModalAnimation, modalAnimation } = useGeneralStore(
-    (state) => ({
-      deactivateModalAnimation: state.deactivateModalAnimation,
-      modalAnimation: state.modalAnimation,
-    }),
-    shallow
-  );
+  const { deactivateModalAnimation, modalAnimation, benefits, resetBenefits } =
+    useGeneralStore(
+      (state) => ({
+        deactivateModalAnimation: state.deactivateModalAnimation,
+        modalAnimation: state.modalAnimation,
+        benefits: state.benefits,
+        resetBenefits: state.resetBenefits,
+      }),
+      shallow
+    );
 
   const installationCostCheckboxRef = useRef();
   const franchiseLimitRef = useRef();
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
   const handleCloseModal = () => {
     deactivateModalAnimation();
+    internetResetInputs();
+    resetBenefits();
 
     setTimeout(() => {
       closeInternetForm();
     }, 800);
   };
 
+  const onSubmit = (data) => {
+    if (internetProviderId === "") {
+      scrollTo(0, 0);
+      setInternetProviderError();
+    }
+
+    if (
+      internetFranchiseLimit !== "" &&
+      internetInstallationCost !== "" &&
+      internetProviderId !== ""
+    ) {
+      unsetInternetProviderError();
+      setToSubmit();
+    }
+  };
+
   useEffect(() => {
-    api
-      .get("/provider/all")
-      .then((res) => setAllProviders(res.data))
-      .catch((error) => console.error(error.message));
-  }, []);
+    const submitData = () => {
+      console.log(internetTechnology);
+      const data = {
+        providerId: internetProviderId,
+        title: internetTitle,
+        cost: internetCost,
+        installationCost: internetInstallationCost,
+        download: internetDownload + internetDownloadUnit,
+        upload: internetUpload + internetUploadUnit,
+        franchiseLimit: internetFranchiseLimit,
+        technology: internetTechnology,
+        hasWifi: internetHasWifi,
+        benefits: benefits,
+        priority: internetPriority,
+        description: internetDescription,
+      };
+
+      api
+        .post("/plan/internet-plan/new", data)
+        .then((res) => {
+          setActivePlans(res.data.filter((plan) => !plan.archived));
+          setArchivedPlans(res.data.filter((plan) => plan.archived));
+
+          toast.success("Plano criado com sucesso!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+          toast.error(error.response.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        })
+        .finally(() => {
+          internetResetInputs();
+          resetBenefits();
+          cancelSubmit();
+          handleCloseModal();
+        });
+    };
+
+    const checkSubmit = () => {
+      if (isSubmitting) {
+        submitData();
+      }
+    };
+
+    checkSubmit();
+  }, [isSubmitting]);
 
   useEffect(() => {
     console.log(internetDescription);
@@ -141,7 +255,10 @@ const NewInternetPlanModal = () => {
           </div>
 
           <div className="new-internet-plan-modal-body">
-            <form className="new-internet-plan-modal-form">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="new-internet-plan-modal-form"
+            >
               <div className="new-internet-plan-modal-provider-box">
                 <span className="new-internet-plan-modal-provider-title">
                   Operadora
@@ -180,6 +297,14 @@ const NewInternetPlanModal = () => {
                     </label>
                   ))}
                 </div>
+                {internetProviderError && (
+                  <span
+                    style={{ marginTop: "3px" }}
+                    className="new-internet-plan-modal-error-form"
+                  >
+                    Operadora é obrigatório
+                  </span>
+                )}
               </div>
 
               <div className="new-internet-plan-modal-title-box">
@@ -187,14 +312,21 @@ const NewInternetPlanModal = () => {
                   Título
                 </span>
                 <input
+                  {...register("title")}
                   type="text"
                   name="title"
                   onChange={setInternetTitle}
                   value={internetTitle}
                   autoCorrect="off"
                   autoComplete="off"
+                  style={errors.title ? { border: "2px solid #EF5959" } : {}}
                   className="new-internet-plan-modal-title-input"
                 />
+                {errors.title && (
+                  <span className="new-internet-plan-modal-error-form">
+                    {errors.title.message}
+                  </span>
+                )}
               </div>
 
               <div className="new-internet-plan-modal-cost-box">
@@ -202,14 +334,21 @@ const NewInternetPlanModal = () => {
                   Valor
                 </span>
                 <input
+                  {...register("cost")}
                   type="number"
                   name="cost"
                   onChange={setInternetCost}
                   value={internetCost}
                   autoCorrect="off"
                   autoComplete="off"
+                  style={errors.cost ? { border: "2px solid #ef5959" } : {}}
                   className="new-internet-plan-modal-cost-input"
                 />
+                {errors.cost && (
+                  <span className="new-internet-plan-modal-error-form">
+                    {errors.cost.message}
+                  </span>
+                )}
               </div>
 
               <div className="new-internet-plan-modal-installation-cost-box">
@@ -217,6 +356,7 @@ const NewInternetPlanModal = () => {
                   Valor da instalação
                 </span>
                 <input
+                  {...register("installationCost")}
                   type="number"
                   name="installationCost"
                   onChange={setInternetInstallationCost}
@@ -224,8 +364,18 @@ const NewInternetPlanModal = () => {
                   disabled={installationCostCheckboxRef.current?.checked}
                   autoCorrect="off"
                   autoComplete="off"
+                  style={
+                    errors.installationCost
+                      ? { border: "2px solid #ef5959" }
+                      : {}
+                  }
                   className="new-internet-plan-modal-installation-cost-input"
                 />
+                {errors.installationCost && (
+                  <span className="new-internet-plan-modal-error-form">
+                    {errors.installationCost.message}
+                  </span>
+                )}
                 <label className="new-internet-plan-modal-installation-cost-label">
                   <input
                     type="checkbox"
@@ -243,14 +393,21 @@ const NewInternetPlanModal = () => {
                   Velocidade de download
                 </span>
                 <input
+                  {...register("download")}
                   type="number"
                   name="download"
                   onChange={setInternetDownload}
                   value={internetDownload}
                   autoCorrect="off"
                   autoComplete="off"
+                  style={errors.download ? { border: "2px solid #ef5959" } : {}}
                   className="new-internet-plan-modal-download-input"
                 />
+                {errors.download && (
+                  <span className="new-internet-plan-modal-error-form">
+                    {errors.download.message}
+                  </span>
+                )}
 
                 <div className="new-internet-plan-modal-download-unit-wrapper">
                   <label
@@ -291,14 +448,21 @@ const NewInternetPlanModal = () => {
                   Velocidade de upload
                 </span>
                 <input
+                  {...register("upload")}
                   type="number"
                   name="upload"
                   onChange={setInternetUpload}
                   value={internetUpload}
                   autoCorrect="off"
                   autoComplete="off"
+                  style={errors.upload ? { border: "2px solid #ef5959" } : {}}
                   className="new-internet-plan-modal-upload-input"
                 />
+                {errors.upload && (
+                  <span className="new-internet-plan-modal-error-form">
+                    {errors.upload.message}
+                  </span>
+                )}
 
                 <div className="new-internet-plan-modal-upload-unit-wrapper">
                   <label
@@ -338,6 +502,7 @@ const NewInternetPlanModal = () => {
                   Franquia de download
                 </span>
                 <input
+                  {...register("franchiseLimit")}
                   type="number"
                   name="franchiseLimit"
                   onChange={setInternetFranchiseLimit}
@@ -345,8 +510,16 @@ const NewInternetPlanModal = () => {
                   disabled={franchiseLimitRef.current?.checked}
                   autoCorrect="off"
                   autoComplete="off"
+                  style={
+                    errors.franchiseLimit ? { border: "2px solid #ef5959" } : {}
+                  }
                   className="new-internet-plan-modal-franchise-limit-input"
                 />
+                {errors.franchiseLimit && (
+                  <span className="new-internet-plan-modal-error-form">
+                    {errors.franchiseLimit.message}
+                  </span>
+                )}
                 <label className="new-internet-plan-modal-franchise-limit-label">
                   <input
                     type="checkbox"
@@ -364,11 +537,15 @@ const NewInternetPlanModal = () => {
                   Tecnologia do modem
                 </span>
                 <select
+                  {...register("technology")}
                   name="technology"
                   onChange={setInternetTechnology}
                   defaultValue="Fibra Ótica"
                   autoCorrect="off"
                   autoComplete="off"
+                  style={
+                    errors.technology ? { border: "2px solid #ef5959" } : {}
+                  }
                   className="new-internet-plan-modal-technology-select"
                 >
                   <option
@@ -399,6 +576,11 @@ const NewInternetPlanModal = () => {
                     Via Satélite
                   </option>
                 </select>
+                {errors.technology && (
+                  <span className="new-internet-plan-modal-error-form">
+                    {errors.technology.message}
+                  </span>
+                )}
               </div>
 
               <div className="new-internet-plan-modal-has-wifi-box">
@@ -416,6 +598,7 @@ const NewInternetPlanModal = () => {
                       id="yes"
                       name="hasWifi"
                       onChange={setInternetHasWifi}
+                      defaultChecked
                       value={true}
                       className="new-internet-plan-modal-has-wifi-input"
                     />
@@ -701,11 +884,20 @@ const NewInternetPlanModal = () => {
                 </span>
 
                 <textarea
+                  {...register("description")}
                   name="description"
                   onChange={setInternetDescription}
                   value={internetDescription}
+                  style={
+                    errors.description ? { border: "2px solid #ef5959" } : {}
+                  }
                   className="new-internet-plan-modal-description-textarea"
                 />
+                {errors.description && (
+                  <span className="new-internet-plan-modal-error-form">
+                    {errors.description.message}
+                  </span>
+                )}
               </div>
 
               <button

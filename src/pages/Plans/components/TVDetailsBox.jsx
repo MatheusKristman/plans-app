@@ -13,13 +13,15 @@ const TVDetailsBox = ({ archivedAt }) => {
       }),
       shallow
     );
-  const { closeTVDetailsBox, openEditTVForm } = usePlansStore(
-    (state) => ({
-      closeTVDetailsBox: state.closeTVDetailsBox,
-      openEditTVForm: state.openEditTVForm,
-    }),
-    shallow
-  );
+  const { closeTVDetailsBox, openEditTVForm, planSelectedForDetails } =
+    usePlansStore(
+      (state) => ({
+        closeTVDetailsBox: state.closeTVDetailsBox,
+        openEditTVForm: state.openEditTVForm,
+        planSelectedForDetails: state.planSelectedForDetails,
+      }),
+      shallow
+    );
 
   const handleCloseDetailsBox = () => {
     deactivateModalAnimation();
@@ -86,7 +88,7 @@ const TVDetailsBox = ({ archivedAt }) => {
                 <div className="tv-details-box-title-box">
                   <span className="tv-details-box-title-label">Título</span>
                   <span className="tv-details-box-title-desc">
-                    Claro TV 150 Canais
+                    {planSelectedForDetails.title}
                   </span>
                 </div>
 
@@ -95,7 +97,7 @@ const TVDetailsBox = ({ archivedAt }) => {
                     Criado em
                   </span>
                   <span className="tv-details-box-created-at-desc">
-                    24/03/2023
+                    {planSelectedForDetails.createdAt}
                   </span>
                 </div>
               </div>
@@ -106,8 +108,11 @@ const TVDetailsBox = ({ archivedAt }) => {
                     Operadora
                   </span>
                   <img
-                    src="/assets/icons/claro.png"
-                    alt="Claro"
+                    src={`https://planos-backend.onrender.com/assets/${planSelectedForDetails.providerIcon}`}
+                    alt={planSelectedForDetails.providerIcon?.substring(
+                      0,
+                      planSelectedForDetails.providerIcon?.length - 4
+                    )}
                     className="tv-details-box-provider-logo"
                   />
                 </div>
@@ -116,48 +121,70 @@ const TVDetailsBox = ({ archivedAt }) => {
                   <span className="tv-details-box-contacts-label">
                     Contatos
                   </span>
-                  <span className="tv-details-box-contacts-desc">5</span>
+                  <span className="tv-details-box-contacts-desc">
+                    {planSelectedForDetails.contacts}
+                  </span>
                 </div>
               </div>
 
               <div className="tv-details-box-info">
                 <div className="tv-details-box-cost-box">
                   <span className="tv-details-box-cost-label">Valor</span>
-                  <span className="tv-details-box-cost-desc">R$ 39,90</span>
+                  <span className="tv-details-box-cost-desc">
+                    R${" "}
+                    {planSelectedForDetails.cost?.toFixed(2)?.replace(".", ",")}
+                  </span>
                 </div>
 
                 <div className="tv-details-box-total-box">
                   <span className="tv-details-box-total-label">Total</span>
-                  <span className="tv-details-box-total-desc">R$ 100,00</span>
-                </div>
-              </div>
-
-              <div className="tv-details-box-info">
-                <div className="tv-details-box-after-cost-box">
-                  <span className="tv-details-box-after-cost-label">
-                    Valor original
-                  </span>
-                  <span className="tv-details-box-after-cost-desc">
-                    R$ 59,90
-                  </span>
-                </div>
-
-                <div className="tv-details-box-period-to-change-cost-box">
-                  <span className="tv-details-box-period-to-change-cost-label">
-                    Período para mudar o valor
-                  </span>
-                  <span className="tv-details-box-period-to-change-cost-desc">
-                    Depois do 5° mês
+                  <span className="tv-details-box-total-desc">
+                    R${" "}
+                    {(
+                      planSelectedForDetails.cost *
+                      planSelectedForDetails.contacts
+                    )
+                      ?.toFixed(2)
+                      ?.replace(".", ",")}
                   </span>
                 </div>
               </div>
+
+              {planSelectedForDetails?.afterCost &&
+                planSelectedForDetails?.periodToChangeCost && (
+                  <div className="tv-details-box-info">
+                    <div className="tv-details-box-after-cost-box">
+                      <span className="tv-details-box-after-cost-label">
+                        Valor original
+                      </span>
+                      <span className="tv-details-box-after-cost-desc">
+                        R${" "}
+                        {planSelectedForDetails.afterCost
+                          ?.toFixed(2)
+                          ?.replace(".", ",")}
+                      </span>
+                    </div>
+
+                    <div className="tv-details-box-period-to-change-cost-box">
+                      <span className="tv-details-box-period-to-change-cost-label">
+                        Período para mudar o valor
+                      </span>
+                      <span className="tv-details-box-period-to-change-cost-desc">
+                        Depois do {planSelectedForDetails.periodToChangeCost}°
+                        mês
+                      </span>
+                    </div>
+                  </div>
+                )}
 
               <div className="tv-details-box-info">
                 <div className="tv-details-box-priority-box">
                   <span className="tv-details-box-priority-label">
                     Prioridade
                   </span>
-                  <span className="tv-details-box-priority-desc">2</span>
+                  <span className="tv-details-box-priority-desc">
+                    {planSelectedForDetails.priority}
+                  </span>
                 </div>
 
                 <div className="tv-details-box-benefits-box">
@@ -165,7 +192,9 @@ const TVDetailsBox = ({ archivedAt }) => {
                     Benefícios
                   </span>
                   <span className="tv-details-box-benefits-desc">
-                    Skeelo Audiobook, Paramount Channel
+                    {planSelectedForDetails.benefits
+                      ?.toString()
+                      ?.replaceAll(",", ", ")}
                   </span>
                 </div>
               </div>
@@ -176,7 +205,7 @@ const TVDetailsBox = ({ archivedAt }) => {
                     Valor da instalação
                   </span>
                   <span className="tv-details-box-installation-cost-desc">
-                    Grátis
+                    {planSelectedForDetails.installationCost}
                   </span>
                 </div>
 
@@ -184,7 +213,9 @@ const TVDetailsBox = ({ archivedAt }) => {
                   <span className="tv-details-box-devices-label">
                     Pontos de tv
                   </span>
-                  <span className="tv-details-box-devices-desc">2</span>
+                  <span className="tv-details-box-devices-desc">
+                    {planSelectedForDetails.devicesQuant}
+                  </span>
                 </div>
               </div>
 
@@ -195,7 +226,7 @@ const TVDetailsBox = ({ archivedAt }) => {
                       Arquivado em
                     </span>
                     <span className="tv-details-box-archived-at-desc">
-                      30/05/2023
+                      {planSelectedForDetails?.archivedAt}
                     </span>
                   </div>
                 </div>
@@ -206,11 +237,7 @@ const TVDetailsBox = ({ archivedAt }) => {
                   Descrição
                 </span>
                 <span className="tv-details-box-description-desc">
-                  **6GB no plano + 3GB bônus do pagamento por débito automático
-                  + 3GB bônus do pagamento por fatura digital + 6GB bônus para
-                  Instagram, Tiktok, Twitter, Facebook, Pinterest, Tinder,
-                  Messenger, Youtube. *Assinaturas inclusas: GoRead, Babbel,
-                  Vivo Pay, Skeelo, Hube Jornais{" "}
+                  {planSelectedForDetails.description}
                 </span>
               </div>
 

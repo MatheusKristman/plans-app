@@ -12,7 +12,7 @@
   z-index: 6;
 
   &::before {
-    content: '';
+    content: "";
     display: inline-block;
     vertical-align: middle;
   }
@@ -38,7 +38,7 @@
         width: 100%;
         height: 200px;
         position: relative;
-        background-image: url('/assets/images/modal-header.png');
+        background-image: url("/assets/images/modal-header.png");
         background-repeat: no-repeat;
         background-position: right;
         background-size: cover;
@@ -214,10 +214,17 @@
               font-size: 1rem;
               color: #252525;
               transition: border-color 0.3s ease;
+              -moz-appearance: textfield;
 
               &:focus {
                 border-color: #7a7a7a;
               }
+            }
+
+            .new-tv-plan-modal-cost-input::-webkit-outer-spin-button,
+            .new-tv-plan-modal-cost-input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
             }
           }
 
@@ -283,10 +290,17 @@
               font-size: 1rem;
               color: #252525;
               transition: border-color 0.3s ease;
+              -moz-appearance: textfield;
 
               &:focus {
                 border-color: #7a7a7a;
               }
+            }
+
+            .new-tv-plan-modal-after-cost-input::-webkit-outer-spin-button,
+            .new-tv-plan-modal-after-cost-input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
             }
           }
 
@@ -314,16 +328,23 @@
               .new-tv-plan-modal-period-to-change-cost-input {
                 width: 40px;
                 height: 40px;
-                padding: 10px;
+                padding: 8px;
                 border: 2px solid #cccccc;
                 border-radius: 8px;
                 font-size: 1rem;
                 color: #252525;
                 transition: border-color 0.3s ease;
+                -moz-appearance: textfield;
 
                 &:focus {
                   border-color: #7a7a7a;
                 }
+              }
+
+              .new-tv-plan-modal-period-to-change-cost-input::-webkit-outer-spin-button,
+              .new-tv-plan-modal-period-to-change-cost-input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
               }
             }
           }
@@ -367,6 +388,7 @@
               gap: 5px;
               font-size: 1rem;
               color: #252525;
+              user-select: none;
 
               .new-tv-plan-modal-installation-cost-checkbox {
                 accent-color: #d40066;
@@ -401,10 +423,11 @@
               font-size: 1rem;
               color: #252525;
               transition: border-color 0.3s ease;
-              background-image: url('/assets/icons/arrowdown.svg');
+              background-image: url("/assets/icons/arrowdown.svg");
               background-repeat: no-repeat;
               background-position: 98% center;
               background-size: 14px 8px;
+              cursor: pointer;
 
               &:focus {
                 border-color: #7a7a7a;
@@ -469,10 +492,11 @@
               font-size: 1rem;
               color: #252525;
               transition: border-color 0.3s ease;
-              background-image: url('/assets/icons/arrowdown.svg');
+              background-image: url("/assets/icons/arrowdown.svg");
               background-repeat: no-repeat;
               background-position: 98% center;
               background-size: 14px 8px;
+              cursor: pointer;
 
               &:focus {
                 border-color: #7a7a7a;
@@ -536,5 +560,15 @@
         }
       }
     }
+  }
+}
+
+.new-tv-plan-modal-error-form {
+  font-size: 1rem;
+  color: #ef5959;
+  margin-top: -3px;
+
+  &:last-child {
+    margin-top: 5px;
   }
 }

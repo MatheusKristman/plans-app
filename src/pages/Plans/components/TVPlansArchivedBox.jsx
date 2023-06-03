@@ -2,17 +2,37 @@ import React from "react";
 import useGeneralStore from "../../../stores/useGeneralStore";
 import usePlansStore from "../../../stores/usePlansStore";
 import { shallow } from "zustand/shallow";
+import api from "../../../services/api";
+import { toast } from "react-toastify";
 
-const TVPlansArchivedBox = () => {
+const TVPlansArchivedBox = ({
+  afterCost,
+  benefits,
+  category,
+  cost,
+  createdAt,
+  description,
+  devicesQuant,
+  installationCost,
+  periodToChangeCost,
+  priority,
+  providerIcon,
+  title,
+  planId,
+  contacts,
+  archivedAt,
+}) => {
   const { activateModalAnimation } = useGeneralStore(
     (state) => ({
       activateModalAnimation: state.activateModalAnimation,
     }),
     shallow
   );
-  const { openTVDetailsBox } = usePlansStore(
+  const { openTVDetailsBox, setIdSelectedForDetails, setPlans } = usePlansStore(
     (state) => ({
       openTVDetailsBox: state.openTVDetailsBox,
+      setIdSelectedForDetails: state.setIdSelectedForDetails,
+      setPlans: state.setPlans,
     }),
     shallow
   );
@@ -20,6 +40,71 @@ const TVPlansArchivedBox = () => {
   const handleOpenDetailsBox = () => {
     openTVDetailsBox();
     activateModalAnimation();
+    setIdSelectedForDetails(planId);
+  };
+
+  const handleUnarchive = (id) => {
+    api
+      .put("plan/tv-plan/archive", { id })
+      .then((res) => {
+        setPlans(res.data);
+
+        toast.success("Plano restaurado com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(error.response.data.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      });
+  };
+
+  const handleDelete = (id) => {
+    api
+      .delete(`plan/tv-plan/delete/${id}`)
+      .then((res) => {
+        setPlans(res.data);
+
+        toast.success("Plano deletado com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(error.response.data.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      });
   };
 
   return (
@@ -29,50 +114,58 @@ const TVPlansArchivedBox = () => {
           <div className="plans-component-image-title-box">
             <div className="plans-component-image-box">
               <img
-                src="/assets/icons/claro.png"
-                alt="Claro"
+                src={`https://planos-backend.onrender.com/assets/${providerIcon}`}
+                alt={providerIcon?.substring(0, providerIcon?.length - 4)}
                 className="plans-component-image"
               />
             </div>
 
-            <h3 className="plans-component-plan-name">Claro TV 150 Canais</h3>
+            <h3 className="plans-component-plan-name">{title}</h3>
           </div>
 
           <div className="plans-component-cost-box">
-            <span className="plans-component-cost-value">R$ 39,90</span>
+            <span className="plans-component-cost-value">
+              R$ {cost.toFixed(2).replace(".", ",")}
+            </span>
             <span className="plans-component-cost-desc">Valor</span>
           </div>
 
           <div className="plans-component-devices-box">
-            <span className="plans-component-devices-value">2</span>
+            <span className="plans-component-devices-value">
+              {devicesQuant}
+            </span>
             <span className="plans-component-devices-desc">Pontos de tv</span>
           </div>
 
           <div className="plans-component-priority-box">
             <div className="plans-component-priority-polygon">
-              <span className="plans-component-priority-value">1</span>
+              <span className="plans-component-priority-value">{priority}</span>
             </div>
             <span className="plans-component-priority-desc">Prioridade</span>
           </div>
 
           <div className="plans-component-contact-box">
-            <span className="plans-component-contact-value">5</span>
+            <span className="plans-component-contact-value">{contacts}</span>
             <span className="plans-component-contact-desc">Contato</span>
           </div>
 
           <div className="plans-component-total-box">
-            <span className="plans-component-total-value">R$ 100,00</span>
+            <span className="plans-component-total-value">
+              R$ {(cost * contacts).toFixed(2).replace(".", ",")}
+            </span>
             <span className="plans-component-total-desc">Total</span>
           </div>
 
           <div className="plans-component-created-at-box">
-            <span className="plans-component-created-at-value">24/03/2023</span>
+            <span className="plans-component-created-at-value">
+              {createdAt}
+            </span>
             <span className="plans-component-created-at-desc">Criado em</span>
           </div>
 
           <div className="plans-component-archived-at-box">
             <span className="plans-component-archived-at-value">
-              28/03/2023
+              {archivedAt}
             </span>
             <span className="plans-component-archived-at-desc">
               Arquivado em
@@ -81,7 +174,10 @@ const TVPlansArchivedBox = () => {
         </div>
 
         <div className="plans-component-archived-plan-buttons">
-          <button className="plans-component-restore-button">
+          <button
+            onClick={() => handleUnarchive(planId)}
+            className="plans-component-restore-button"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -106,7 +202,10 @@ const TVPlansArchivedBox = () => {
             Ver Detalhes
           </button>
 
-          <button className="plans-component-delete-button">
+          <button
+            onClick={() => handleDelete(planId)}
+            className="plans-component-delete-button"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

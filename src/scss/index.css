@@ -163,6 +163,7 @@ body {
 }
 .admin-container .info .info-wrapper .info-content .admin-form .email-box .email-placeholder {
   position: absolute;
+  width: -moz-fit-content;
   width: fit-content;
   display: block;
   top: 50%;
@@ -217,6 +218,7 @@ body {
 }
 .admin-container .info .info-wrapper .info-content .admin-form .password-box .password-placeholder {
   position: absolute;
+  width: -moz-fit-content;
   width: fit-content;
   display: block;
   top: 50%;
@@ -353,6 +355,7 @@ body {
 }
 .dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-header a {
   text-decoration: none;
+  width: -moz-fit-content;
   width: fit-content;
   display: block;
 }
@@ -394,6 +397,7 @@ body {
 }
 .dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-body .dashboard-menu-nav ul li {
   list-style: none;
+  width: -moz-fit-content;
   width: fit-content;
 }
 .dashboard-wrapper .dashboard-menu-container .dashboard-menu .dashboard-menu-body .dashboard-menu-nav ul li .dashboard-menu-item {
@@ -540,7 +544,9 @@ body {
   padding: 10px 20px;
   border-radius: 8px;
   border: 2px solid #252525;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   pointer-events: none;
   display: none;
 }
@@ -633,6 +639,7 @@ body {
 }
 @media screen and (min-width: 500px) {
   .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-status-box .dashboard-component-create-plan-btn {
+    width: -moz-fit-content;
     width: fit-content;
   }
 }
@@ -647,6 +654,7 @@ body {
   position: absolute;
   right: 0;
   top: 50px;
+  width: -moz-fit-content;
   width: fit-content;
 }
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-status-box .dashboard-component-plan-type-options .dashboard-component-plan-type-title {
@@ -821,6 +829,7 @@ body {
   color: #252525;
 }
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-archived-wrapper .dashboard-component-status-box .dashboard-component-show-archived-btn {
+  width: -moz-fit-content;
   width: fit-content;
   display: flex;
   align-items: center;
@@ -1049,6 +1058,7 @@ body {
 }
 @media screen and (min-width: 500px) {
   .providers-component-container .providers-component-wrapper .providers-component-info .providers-component-status-container .providers-component-status-wrapper .providers-component-new-provider-button {
+    width: -moz-fit-content;
     width: fit-content;
   }
 }
@@ -1239,6 +1249,7 @@ body {
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-internet-wrapper,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-cel-wrapper,
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-categories-container .plans-component-categories-tv-wrapper {
+  width: -moz-fit-content;
   width: fit-content;
   display: flex;
   flex-direction: column;
@@ -1352,6 +1363,13 @@ body {
   gap: 25px;
   margin-top: 80px;
 }
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-no-plan-adviser {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #b0b0b0;
+  width: 100%;
+  text-align: center;
+}
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container {
   width: 100%;
   padding-bottom: 25px;
@@ -1391,6 +1409,7 @@ body {
 }
 @media screen and (min-width: 768px) {
   .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-image-title-box {
+    width: -moz-fit-content;
     width: fit-content;
   }
 }
@@ -1439,6 +1458,7 @@ body {
   .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-download-box,
   .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-upload-box,
   .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-devices-box {
+    width: -moz-fit-content;
     width: fit-content;
     margin-left: 0;
   }
@@ -1588,6 +1608,7 @@ body {
 }
 @media screen and (min-width: 768px) {
   .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-info .plans-component-priority-box {
+    width: -moz-fit-content;
     width: fit-content;
     margin-left: 0;
   }
@@ -1713,8 +1734,26 @@ body {
 }
 @media screen and (min-width: 768px) {
   .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-plan-container .plans-component-plan-wrapper .plans-component-plan-buttons .plans-component-archive-button {
+    width: -moz-fit-content;
     width: fit-content;
   }
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-active-show-more-button {
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 10px 20px;
+  background-color: #d40066;
+  border: 2px solid #d40066;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: auto;
+  transition: filter 0.3s ease;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-active-show-more-button:hover {
+  filter: brightness(80%);
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans {
   width: 100%;
@@ -1762,6 +1801,13 @@ body {
   gap: 25px;
   margin-top: 80px;
 }
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plans-no-plan-adviser {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #b0b0b0;
+  width: 100%;
+  text-align: center;
+}
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container {
   width: 100%;
   padding-bottom: 25px;
@@ -1800,6 +1846,7 @@ body {
 }
 @media screen and (min-width: 768px) {
   .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-image-title-box {
+    width: -moz-fit-content;
     width: fit-content;
   }
 }
@@ -1850,6 +1897,7 @@ body {
   .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-download-box,
   .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-upload-box,
   .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-devices-box {
+    width: -moz-fit-content;
     width: fit-content;
     margin-left: 0;
   }
@@ -2033,6 +2081,7 @@ body {
 }
 @media screen and (min-width: 768px) {
   .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-info .plans-component-priority-box {
+    width: -moz-fit-content;
     width: fit-content;
     margin-left: 0;
   }
@@ -2096,6 +2145,7 @@ body {
 }
 @media screen and (min-width: 768px) {
   .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-restore-button {
+    width: -moz-fit-content;
     width: fit-content;
   }
 }
@@ -2132,6 +2182,7 @@ body {
 }
 @media screen and (min-width: 768px) {
   .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-details-button {
+    width: -moz-fit-content;
     width: fit-content;
   }
 }
@@ -2163,6 +2214,7 @@ body {
 }
 @media screen and (min-width: 768px) {
   .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-delete-button {
+    width: -moz-fit-content;
     width: fit-content;
   }
 }
@@ -2180,6 +2232,23 @@ body {
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-plans-wrapper .plans-component-archived-plan-container .plans-component-archived-plan-wrapper .plans-component-archived-plan-buttons .plans-component-delete-button:hover svg {
   color: #fff;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-show-more-button {
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 10px 20px;
+  background-color: #d40066;
+  border: 2px solid #d40066;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: auto;
+  transition: filter 0.3s ease;
+}
+.plans-component-container .plans-component-wrapper .plans-component-info .plans-component-archived-plans .plans-component-archived-show-more-button:hover {
+  filter: brightness(80%);
 }
 
 .leads-component-container {
@@ -2253,48 +2322,20 @@ body {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 25px;
+  gap: 25px 130px;
 }
-.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-image-title-box {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 25px;
-}
-@media screen and (min-width: 768px) {
-  .leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-image-title-box {
-    width: fit-content;
-  }
-}
-.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-image-title-box .leads-component-image-box {
-  width: 50px;
-  min-width: 50px;
-  max-width: 50px;
-  height: 50px;
-  min-height: 50px;
-  max-height: 50px;
-  border-radius: 10px;
-  background-color: #f5e0d9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-image-title-box .leads-component-image-box .leads-component-image {
-  width: 80%;
-  height: auto;
-}
-.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-image-title-box .leads-component-lead-name-box {
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-lead-name-box {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 5px;
 }
-.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-image-title-box .leads-component-lead-name-box .leads-component-lead-name {
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-lead-name-box .leads-component-lead-name {
   font-size: 1.125rem;
   font-weight: 600;
   color: #252525;
 }
-.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-image-title-box .leads-component-lead-name-box .leads-component-lead-name-desc {
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-lead-name-box .leads-component-lead-name-desc {
   font-size: 0.875rem;
   color: #b0b0b0;
 }
@@ -2309,7 +2350,6 @@ body {
   flex-direction: column;
   align-items: flex-start;
   gap: 5px;
-  margin-left: 75px;
 }
 @media screen and (min-width: 768px) {
   .leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-tel1-box,
@@ -2318,6 +2358,7 @@ body {
   .leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-date-of-birth-box,
   .leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-plan-box,
   .leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-info-box .leads-component-contact-at-box {
+    width: -moz-fit-content;
     width: fit-content;
   }
 }
@@ -2431,6 +2472,7 @@ body {
 }
 @media screen and (min-width: 768px) {
   .leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-button-wrapper .leads-component-details-button {
+    width: -moz-fit-content;
     width: fit-content;
   }
 }
@@ -2691,10 +2733,13 @@ body {
 .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-installation-cost-box .new-internet-plan-modal-installation-cost-label {
   display: flex;
   align-items: center;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   font-size: 1rem;
   color: #252525;
   gap: 5px;
+  width: -moz-fit-content;
   width: fit-content;
 }
 .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-installation-cost-box .new-internet-plan-modal-installation-cost-label .new-internet-plan-modal-installation-cost-checkbox {
@@ -2745,7 +2790,9 @@ body {
 .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-download-box .new-internet-plan-modal-download-unit-wrapper .new-internet-plan-modal-download-unit-label {
   display: flex;
   align-items: center;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   font-size: 1rem;
   color: #252525;
   gap: 5px;
@@ -2798,7 +2845,9 @@ body {
 .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-upload-box .new-internet-plan-modal-upload-unit-wrapper .new-internet-plan-modal-upload-unit-label {
   display: flex;
   align-items: center;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   font-size: 1rem;
   color: #252525;
   gap: 5px;
@@ -2848,8 +2897,11 @@ body {
   align-items: center;
   gap: 5px;
   font-size: 1rem;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   color: #252525;
+  width: -moz-fit-content;
   width: fit-content;
 }
 .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-franchise-limit-box .new-internet-plan-modal-franchise-limit-label .new-internet-plan-modal-franchise-limit-checkbox {
@@ -2873,7 +2925,9 @@ body {
   }
 }
 .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-technology-box .new-internet-plan-modal-technology-select {
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   width: 100%;
   height: 40px;
   border: 2px solid #cccccc;
@@ -2886,6 +2940,7 @@ body {
   background-repeat: no-repeat;
   background-position: 98% center;
   background-size: 14px 8px;
+  cursor: pointer;
 }
 .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-technology-box .new-internet-plan-modal-technology-select:focus {
   border-color: #7a7a7a;
@@ -2917,7 +2972,9 @@ body {
   align-items: center;
   font-size: 1rem;
   color: #252525;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   gap: 5px;
 }
 .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-has-wifi-box .new-internet-plan-modal-has-wifi-options .new-internet-plan-modal-has-wifi-label .new-internet-plan-modal-has-wifi-input {
@@ -2970,7 +3027,9 @@ body {
   }
 }
 .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-priority-box .new-internet-plan-modal-priority-select {
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   width: 100%;
   height: 40px;
   border: 2px solid #cccccc;
@@ -2983,6 +3042,7 @@ body {
   background-repeat: no-repeat;
   background-position: 98% center;
   background-size: 14px 8px;
+  cursor: pointer;
 }
 .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-priority-box .new-internet-plan-modal-priority-select:focus {
   border-color: #7a7a7a;
@@ -3035,6 +3095,15 @@ body {
 }
 .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-submit-button:hover {
   filter: brightness(80%);
+}
+
+.new-internet-plan-modal-error-form {
+  font-size: 1rem;
+  color: #ef5959;
+  margin-top: -3px;
+}
+.new-internet-plan-modal-error-form:last-child {
+  margin-top: 5px;
 }
 
 .new-cel-plan-modal-overlay {
@@ -3239,9 +3308,15 @@ body {
   font-size: 1rem;
   color: #252525;
   transition: border-color 0.3s ease;
+  -moz-appearance: textfield;
 }
 .new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-cost-box .new-cel-plan-modal-cost-input:focus {
   border-color: #7a7a7a;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-cost-box .new-cel-plan-modal-cost-input::-webkit-outer-spin-button,
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-cost-box .new-cel-plan-modal-cost-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-franchise-box {
   width: 100%;
@@ -3270,9 +3345,15 @@ body {
   color: #252525;
   transition: border-color 0.3s ease;
   margin-bottom: 10px;
+  -moz-appearance: textfield;
 }
 .new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-franchise-box .new-cel-plan-modal-franchise-input:focus {
   border-color: #7a7a7a;
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-franchise-box .new-cel-plan-modal-franchise-input::-webkit-outer-spin-button,
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-franchise-box .new-cel-plan-modal-franchise-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-franchise-box .new-cel-plan-modal-franchise-unit-wrapper {
   display: flex;
@@ -3368,7 +3449,9 @@ body {
   }
 }
 .new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-plan-type-box .new-cel-plan-modal-plan-type-select {
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   width: 100%;
   height: 40px;
   transition: border-color 0.3s ease;
@@ -3381,6 +3464,7 @@ body {
   background-repeat: no-repeat;
   background-position: 98% center;
   background-size: 14px 8px;
+  cursor: pointer;
 }
 .new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-plan-type-box .new-cel-plan-modal-plan-type-select:focus {
   border-color: #7a7a7a;
@@ -3403,7 +3487,9 @@ body {
   }
 }
 .new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-priority-box .new-cel-plan-modal-priority-select {
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   width: 100%;
   height: 40px;
   padding: 0 12px;
@@ -3416,6 +3502,7 @@ body {
   background-repeat: no-repeat;
   background-position: 98% center;
   background-size: 14px 8px;
+  cursor: pointer;
 }
 .new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-priority-box .new-cel-plan-modal-priority-select:focus {
   border-color: #7a7a7a;
@@ -3468,6 +3555,15 @@ body {
 }
 .new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-submit-button:hover {
   filter: brightness(80%);
+}
+
+.new-cel-plan-modal-error-form {
+  font-size: 1rem;
+  color: #ef5959;
+  margin-top: -3px;
+}
+.new-cel-plan-modal-error-form:last-child {
+  margin-top: 5px;
 }
 
 .new-tv-plan-modal-overlay {
@@ -3672,9 +3768,15 @@ body {
   font-size: 1rem;
   color: #252525;
   transition: border-color 0.3s ease;
+  -moz-appearance: textfield;
 }
 .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-cost-box .new-tv-plan-modal-cost-input:focus {
   border-color: #7a7a7a;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-cost-box .new-tv-plan-modal-cost-input::-webkit-outer-spin-button,
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-cost-box .new-tv-plan-modal-cost-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-cost-changes-after-period-box {
   width: 100%;
@@ -3734,9 +3836,15 @@ body {
   font-size: 1rem;
   color: #252525;
   transition: border-color 0.3s ease;
+  -moz-appearance: textfield;
 }
 .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-after-cost-box .new-tv-plan-modal-after-cost-input:focus {
   border-color: #7a7a7a;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-after-cost-box .new-tv-plan-modal-after-cost-input::-webkit-outer-spin-button,
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-after-cost-box .new-tv-plan-modal-after-cost-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-period-to-change-cost-box {
   width: 100%;
@@ -3762,15 +3870,21 @@ body {
 .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-period-to-change-cost-box .new-tv-plan-modal-period-to-change-cost-wrapper .new-tv-plan-modal-period-to-change-cost-input {
   width: 40px;
   height: 40px;
-  padding: 10px;
+  padding: 8px;
   border: 2px solid #cccccc;
   border-radius: 8px;
   font-size: 1rem;
   color: #252525;
   transition: border-color 0.3s ease;
+  -moz-appearance: textfield;
 }
 .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-period-to-change-cost-box .new-tv-plan-modal-period-to-change-cost-wrapper .new-tv-plan-modal-period-to-change-cost-input:focus {
   border-color: #7a7a7a;
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-period-to-change-cost-box .new-tv-plan-modal-period-to-change-cost-wrapper .new-tv-plan-modal-period-to-change-cost-input::-webkit-outer-spin-button,
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-period-to-change-cost-box .new-tv-plan-modal-period-to-change-cost-wrapper .new-tv-plan-modal-period-to-change-cost-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-installation-cost-box {
   width: 100%;
@@ -3809,6 +3923,9 @@ body {
   gap: 5px;
   font-size: 1rem;
   color: #252525;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-installation-cost-box .new-tv-plan-modal-installation-cost-label .new-tv-plan-modal-installation-cost-checkbox {
   accent-color: #d40066;
@@ -3831,7 +3948,9 @@ body {
   }
 }
 .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-devices-box .new-tv-plan-modal-devices-select {
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   width: 100%;
   height: 40px;
   padding: 0 12px;
@@ -3844,6 +3963,7 @@ body {
   background-repeat: no-repeat;
   background-position: 98% center;
   background-size: 14px 8px;
+  cursor: pointer;
 }
 .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-devices-box .new-tv-plan-modal-devices-select:focus {
   border-color: #7a7a7a;
@@ -3895,7 +4015,9 @@ body {
   }
 }
 .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-priority-box .new-tv-plan-modal-priority-select {
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   width: 100%;
   height: 40px;
   padding: 0 12px;
@@ -3908,6 +4030,7 @@ body {
   background-repeat: no-repeat;
   background-position: 98% center;
   background-size: 14px 8px;
+  cursor: pointer;
 }
 .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-priority-box .new-tv-plan-modal-priority-select:focus {
   border-color: #7a7a7a;
@@ -3960,6 +4083,15 @@ body {
 }
 .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-submit-button:hover {
   filter: brightness(80%);
+}
+
+.new-tv-plan-modal-error-form {
+  font-size: 1rem;
+  color: #ef5959;
+  margin-top: -3px;
+}
+.new-tv-plan-modal-error-form:last-child {
+  margin-top: 5px;
 }
 
 .benefits-label {
@@ -4167,6 +4299,7 @@ body {
   }
 }
 .new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-cep-box .new-provider-form-cep-label {
+  width: -moz-fit-content;
   width: fit-content;
   font-size: 0.875rem;
   font-weight: 600;
@@ -4556,6 +4689,7 @@ body {
   }
 }
 .edit-provider-form-overlay .edit-provider-form-container .edit-provider-form-wrapper .edit-provider-form-body .edit-provider-form-form .edit-provider-form-cep-box .edit-provider-form-cep-label {
+  width: -moz-fit-content;
   width: fit-content;
   font-size: 0.875rem;
   font-weight: 600;
@@ -4789,9 +4923,15 @@ body {
   font-size: 1rem;
   color: #252525;
   transition: border-color 0.3s ease;
+  -moz-appearance: textfield;
 }
 .edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-cost-box .edit-internet-plan-cost-input:focus {
   border-color: #7a7a7a;
+}
+.edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-cost-box .edit-internet-plan-cost-input::-webkit-outer-spin-button,
+.edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-cost-box .edit-internet-plan-cost-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-installation-cost-box {
   width: 100%;
@@ -4820,17 +4960,26 @@ body {
   color: #252525;
   transition: border-color 0.3s ease;
   margin-bottom: 10px;
+  -moz-appearance: textfield;
 }
 .edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-installation-cost-box .edit-internet-plan-installation-cost-input:focus {
   border-color: #7a7a7a;
 }
+.edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-installation-cost-box .edit-internet-plan-installation-cost-input::-webkit-outer-spin-button,
+.edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-installation-cost-box .edit-internet-plan-installation-cost-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-installation-cost-box .edit-internet-plan-installation-cost-label {
   display: flex;
   align-items: center;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   font-size: 1rem;
   color: #252525;
   gap: 5px;
+  width: -moz-fit-content;
   width: fit-content;
 }
 .edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-installation-cost-box .edit-internet-plan-installation-cost-label .edit-internet-plan-installation-cost-checkbox {
@@ -4863,9 +5012,15 @@ body {
   color: #252525;
   transition: border-color 0.3s ease;
   margin-bottom: 10px;
+  -moz-appearance: textfield;
 }
 .edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-download-box .edit-internet-plan-download-input:focus {
   border-color: #7a7a7a;
+}
+.edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-download-box .edit-internet-plan-download-input::-webkit-outer-spin-button,
+.edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-download-box .edit-internet-plan-download-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-download-box .edit-internet-plan-download-unit-wrapper {
   display: flex;
@@ -4875,7 +5030,9 @@ body {
 .edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-download-box .edit-internet-plan-download-unit-wrapper .edit-internet-plan-download-unit-label {
   display: flex;
   align-items: center;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   font-size: 1rem;
   color: #252525;
   gap: 5px;
@@ -4910,9 +5067,15 @@ body {
   color: #252525;
   transition: border-color 0.3s ease;
   margin-bottom: 10px;
+  -moz-appearance: textfield;
 }
 .edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-upload-box .edit-internet-plan-upload-input:focus {
   border-color: #7a7a7a;
+}
+.edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-upload-box .edit-internet-plan-upload-input::-webkit-outer-spin-button,
+.edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-upload-box .edit-internet-plan-upload-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-upload-box .edit-internet-plan-upload-unit-wrapper {
   display: flex;
@@ -4922,7 +5085,9 @@ body {
 .edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-upload-box .edit-internet-plan-upload-unit-wrapper .edit-internet-plan-upload-unit-label {
   display: flex;
   align-items: center;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   font-size: 1rem;
   color: #252525;
   gap: 5px;
@@ -4957,17 +5122,26 @@ body {
   color: #252525;
   transition: border-color 0.3s ease;
   margin-bottom: 10px;
+  -moz-appearance: textfield;
 }
 .edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-franchise-limit-box .edit-internet-plan-franchise-limit-input:focus {
   border-color: #7a7a7a;
+}
+.edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-franchise-limit-box .edit-internet-plan-franchise-limit-input::-webkit-outer-spin-button,
+.edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-franchise-limit-box .edit-internet-plan-franchise-limit-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-franchise-limit-box .edit-internet-plan-franchise-limit-label {
   display: flex;
   align-items: center;
   gap: 5px;
   font-size: 1rem;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   color: #252525;
+  width: -moz-fit-content;
   width: fit-content;
 }
 .edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-franchise-limit-box .edit-internet-plan-franchise-limit-label .edit-internet-plan-franchise-limit-checkbox {
@@ -4991,7 +5165,9 @@ body {
   }
 }
 .edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-technology-box .edit-internet-plan-technology-select {
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   width: 100%;
   height: 40px;
   border: 2px solid #cccccc;
@@ -5004,6 +5180,7 @@ body {
   background-repeat: no-repeat;
   background-position: 98% center;
   background-size: 14px 8px;
+  cursor: pointer;
 }
 .edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-technology-box .edit-internet-plan-technology-select:focus {
   border-color: #7a7a7a;
@@ -5035,7 +5212,9 @@ body {
   align-items: center;
   font-size: 1rem;
   color: #252525;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   gap: 5px;
 }
 .edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-has-wifi-box .edit-internet-plan-has-wifi-wrapper .edit-internet-plan-has-wifi-label .edit-internet-plan-has-wifi-input {
@@ -5088,7 +5267,9 @@ body {
   }
 }
 .edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-priority-box .edit-internet-plan-priority-select {
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   width: 100%;
   height: 40px;
   border: 2px solid #cccccc;
@@ -5101,6 +5282,7 @@ body {
   background-repeat: no-repeat;
   background-position: 98% center;
   background-size: 14px 8px;
+  cursor: pointer;
 }
 .edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-priority-box .edit-internet-plan-priority-select:focus {
   border-color: #7a7a7a;
@@ -5153,6 +5335,15 @@ body {
 }
 .edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-submit-button:hover {
   filter: brightness(80%);
+}
+
+.edit-internet-plan-modal-error-form {
+  font-size: 1rem;
+  color: #ef5959;
+  margin-top: -3px;
+}
+.edit-internet-plan-modal-error-form:last-child {
+  margin-top: 5px;
 }
 
 .edit-cel-plan-overlay {
@@ -5296,9 +5487,15 @@ body {
   font-size: 1rem;
   color: #252525;
   transition: border-color 0.3s ease;
+  -moz-appearance: textfield;
 }
 .edit-cel-plan-overlay .edit-cel-plan-container .edit-cel-plan-wrapper .edit-cel-plan-body .edit-cel-plan-form .edit-cel-plan-cost-box .edit-cel-plan-cost-input:focus {
   border-color: #7a7a7a;
+}
+.edit-cel-plan-overlay .edit-cel-plan-container .edit-cel-plan-wrapper .edit-cel-plan-body .edit-cel-plan-form .edit-cel-plan-cost-box .edit-cel-plan-cost-input::-webkit-outer-spin-button,
+.edit-cel-plan-overlay .edit-cel-plan-container .edit-cel-plan-wrapper .edit-cel-plan-body .edit-cel-plan-form .edit-cel-plan-cost-box .edit-cel-plan-cost-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .edit-cel-plan-overlay .edit-cel-plan-container .edit-cel-plan-wrapper .edit-cel-plan-body .edit-cel-plan-form .edit-cel-plan-franchise-box {
   width: 100%;
@@ -5327,9 +5524,15 @@ body {
   color: #252525;
   transition: border-color 0.3s ease;
   margin-bottom: 10px;
+  -moz-appearance: textfield;
 }
 .edit-cel-plan-overlay .edit-cel-plan-container .edit-cel-plan-wrapper .edit-cel-plan-body .edit-cel-plan-form .edit-cel-plan-franchise-box .edit-cel-plan-franchise-input:focus {
   border-color: #7a7a7a;
+}
+.edit-cel-plan-overlay .edit-cel-plan-container .edit-cel-plan-wrapper .edit-cel-plan-body .edit-cel-plan-form .edit-cel-plan-franchise-box .edit-cel-plan-franchise-input::-webkit-outer-spin-button,
+.edit-cel-plan-overlay .edit-cel-plan-container .edit-cel-plan-wrapper .edit-cel-plan-body .edit-cel-plan-form .edit-cel-plan-franchise-box .edit-cel-plan-franchise-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .edit-cel-plan-overlay .edit-cel-plan-container .edit-cel-plan-wrapper .edit-cel-plan-body .edit-cel-plan-form .edit-cel-plan-franchise-box .edit-cel-plan-franchise-unit-wrapper {
   display: flex;
@@ -5425,7 +5628,9 @@ body {
   }
 }
 .edit-cel-plan-overlay .edit-cel-plan-container .edit-cel-plan-wrapper .edit-cel-plan-body .edit-cel-plan-form .edit-cel-plan-plan-type-box .edit-cel-plan-plan-type-select {
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   width: 100%;
   height: 40px;
   transition: border-color 0.3s ease;
@@ -5438,6 +5643,7 @@ body {
   background-repeat: no-repeat;
   background-position: 98% center;
   background-size: 14px 8px;
+  cursor: pointer;
 }
 .edit-cel-plan-overlay .edit-cel-plan-container .edit-cel-plan-wrapper .edit-cel-plan-body .edit-cel-plan-form .edit-cel-plan-plan-type-box .edit-cel-plan-plan-type-select:focus {
   border-color: #7a7a7a;
@@ -5460,7 +5666,9 @@ body {
   }
 }
 .edit-cel-plan-overlay .edit-cel-plan-container .edit-cel-plan-wrapper .edit-cel-plan-body .edit-cel-plan-form .edit-cel-plan-priority-box .edit-cel-plan-priority-select {
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   width: 100%;
   height: 40px;
   padding: 0 12px;
@@ -5473,6 +5681,7 @@ body {
   background-repeat: no-repeat;
   background-position: 98% center;
   background-size: 14px 8px;
+  cursor: pointer;
 }
 .edit-cel-plan-overlay .edit-cel-plan-container .edit-cel-plan-wrapper .edit-cel-plan-body .edit-cel-plan-form .edit-cel-plan-priority-box .edit-cel-plan-priority-select:focus {
   border-color: #7a7a7a;
@@ -5525,6 +5734,15 @@ body {
 }
 .edit-cel-plan-overlay .edit-cel-plan-container .edit-cel-plan-wrapper .edit-cel-plan-body .edit-cel-plan-form .edit-cel-plan-submit-button:hover {
   filter: brightness(80%);
+}
+
+.edit-cel-plan-modal-error-form {
+  font-size: 1rem;
+  color: #ef5959;
+  margin-top: -3px;
+}
+.edit-cel-plan-modal-error-form:last-child {
+  margin-top: 5px;
 }
 
 .edit-tv-plan-overlay {
@@ -5668,9 +5886,15 @@ body {
   font-size: 1rem;
   color: #252525;
   transition: border-color 0.3s ease;
+  -moz-appearance: textfield;
 }
 .edit-tv-plan-overlay .edit-tv-plan-container .edit-tv-plan-wrapper .edit-tv-plan-body .edit-tv-plan-form .edit-tv-plan-cost-box .edit-tv-plan-cost-input:focus {
   border-color: #7a7a7a;
+}
+.edit-tv-plan-overlay .edit-tv-plan-container .edit-tv-plan-wrapper .edit-tv-plan-body .edit-tv-plan-form .edit-tv-plan-cost-box .edit-tv-plan-cost-input::-webkit-outer-spin-button,
+.edit-tv-plan-overlay .edit-tv-plan-container .edit-tv-plan-wrapper .edit-tv-plan-body .edit-tv-plan-form .edit-tv-plan-cost-box .edit-tv-plan-cost-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .edit-tv-plan-overlay .edit-tv-plan-container .edit-tv-plan-wrapper .edit-tv-plan-body .edit-tv-plan-form .edit-tv-plan-cost-changes-after-period-box {
   width: 100%;
@@ -5730,9 +5954,15 @@ body {
   font-size: 1rem;
   color: #252525;
   transition: border-color 0.3s ease;
+  -moz-appearance: textfield;
 }
 .edit-tv-plan-overlay .edit-tv-plan-container .edit-tv-plan-wrapper .edit-tv-plan-body .edit-tv-plan-form .edit-tv-plan-after-cost-box .edit-tv-plan-after-cost-input:focus {
   border-color: #7a7a7a;
+}
+.edit-tv-plan-overlay .edit-tv-plan-container .edit-tv-plan-wrapper .edit-tv-plan-body .edit-tv-plan-form .edit-tv-plan-after-cost-box .edit-tv-plan-after-cost-input::-webkit-outer-spin-button,
+.edit-tv-plan-overlay .edit-tv-plan-container .edit-tv-plan-wrapper .edit-tv-plan-body .edit-tv-plan-form .edit-tv-plan-after-cost-box .edit-tv-plan-after-cost-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .edit-tv-plan-overlay .edit-tv-plan-container .edit-tv-plan-wrapper .edit-tv-plan-body .edit-tv-plan-form .edit-tv-plan-period-to-change-cost-box {
   width: 100%;
@@ -5758,15 +5988,22 @@ body {
 .edit-tv-plan-overlay .edit-tv-plan-container .edit-tv-plan-wrapper .edit-tv-plan-body .edit-tv-plan-form .edit-tv-plan-period-to-change-cost-box .edit-tv-plan-period-to-change-cost-wrapper .edit-tv-plan-period-to-change-cost-input {
   width: 40px;
   height: 40px;
-  padding: 10px;
+  padding: 8px;
   border: 2px solid #cccccc;
   border-radius: 8px;
   font-size: 1rem;
+  text-align: center;
   color: #252525;
   transition: border-color 0.3s ease;
+  -moz-appearance: textfield;
 }
 .edit-tv-plan-overlay .edit-tv-plan-container .edit-tv-plan-wrapper .edit-tv-plan-body .edit-tv-plan-form .edit-tv-plan-period-to-change-cost-box .edit-tv-plan-period-to-change-cost-wrapper .edit-tv-plan-period-to-change-cost-input:focus {
   border-color: #7a7a7a;
+}
+.edit-tv-plan-overlay .edit-tv-plan-container .edit-tv-plan-wrapper .edit-tv-plan-body .edit-tv-plan-form .edit-tv-plan-period-to-change-cost-box .edit-tv-plan-period-to-change-cost-wrapper .edit-tv-plan-period-to-change-cost-input::-webkit-outer-spin-button,
+.edit-tv-plan-overlay .edit-tv-plan-container .edit-tv-plan-wrapper .edit-tv-plan-body .edit-tv-plan-form .edit-tv-plan-period-to-change-cost-box .edit-tv-plan-period-to-change-cost-wrapper .edit-tv-plan-period-to-change-cost-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .edit-tv-plan-overlay .edit-tv-plan-container .edit-tv-plan-wrapper .edit-tv-plan-body .edit-tv-plan-form .edit-tv-plan-installation-cost-box {
   width: 100%;
@@ -5827,7 +6064,9 @@ body {
   }
 }
 .edit-tv-plan-overlay .edit-tv-plan-container .edit-tv-plan-wrapper .edit-tv-plan-body .edit-tv-plan-form .edit-tv-plan-devices-box .edit-tv-plan-devices-select {
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   width: 100%;
   height: 40px;
   padding: 0 12px;
@@ -5840,6 +6079,7 @@ body {
   background-repeat: no-repeat;
   background-position: 98% center;
   background-size: 14px 8px;
+  cursor: pointer;
 }
 .edit-tv-plan-overlay .edit-tv-plan-container .edit-tv-plan-wrapper .edit-tv-plan-body .edit-tv-plan-form .edit-tv-plan-devices-box .edit-tv-plan-devices-select:focus {
   border-color: #7a7a7a;
@@ -5891,7 +6131,9 @@ body {
   }
 }
 .edit-tv-plan-overlay .edit-tv-plan-container .edit-tv-plan-wrapper .edit-tv-plan-body .edit-tv-plan-form .edit-tv-plan-priority-box .edit-tv-plan-priority-select {
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   width: 100%;
   height: 40px;
   padding: 0 12px;
@@ -5904,6 +6146,7 @@ body {
   background-repeat: no-repeat;
   background-position: 98% center;
   background-size: 14px 8px;
+  cursor: pointer;
 }
 .edit-tv-plan-overlay .edit-tv-plan-container .edit-tv-plan-wrapper .edit-tv-plan-body .edit-tv-plan-form .edit-tv-plan-priority-box .edit-tv-plan-priority-select:focus {
   border-color: #7a7a7a;
@@ -5956,6 +6199,15 @@ body {
 }
 .edit-tv-plan-overlay .edit-tv-plan-container .edit-tv-plan-wrapper .edit-tv-plan-body .edit-tv-plan-form .edit-tv-plan-submit-button:hover {
   filter: brightness(80%);
+}
+
+.edit-tv-plan-modal-error-form {
+  font-size: 1rem;
+  color: #ef5959;
+  margin-top: -3px;
+}
+.edit-tv-plan-modal-error-form:last-child {
+  margin-top: 5px;
 }
 
 .internet-details-box-overlay {
@@ -6414,6 +6666,7 @@ body {
 .internet-details-box-overlay .internet-details-box-container .internet-details-box-wrapper .internet-details-box-body .internet-details-box-info-wrapper .internet-details-box-info .internet-details-box-technology-box .internet-details-box-provider-logo,
 .internet-details-box-overlay .internet-details-box-container .internet-details-box-wrapper .internet-details-box-body .internet-details-box-info-wrapper .internet-details-box-info .internet-details-box-archived-at-box .internet-details-box-provider-logo {
   height: 40px;
+  width: -moz-fit-content;
   width: fit-content;
   display: block;
 }
@@ -6893,6 +7146,7 @@ body {
 .cel-details-box-overlay .cel-details-box-container .cel-details-box-wrapper .cel-details-box-body .cel-details-box-info-wrapper .cel-details-box-info .cel-details-box-unlimited-call-box .cel-details-box-provider-logo,
 .cel-details-box-overlay .cel-details-box-container .cel-details-box-wrapper .cel-details-box-body .cel-details-box-info-wrapper .cel-details-box-info .cel-details-box-archived-at-box .cel-details-box-provider-logo {
   height: 40px;
+  width: -moz-fit-content;
   width: fit-content;
   display: block;
 }
@@ -7424,6 +7678,7 @@ body {
 .tv-details-box-overlay .tv-details-box-container .tv-details-box-wrapper .tv-details-box-body .tv-details-box-info-wrapper .tv-details-box-info .tv-details-box-devices-box .tv-details-box-provider-logo,
 .tv-details-box-overlay .tv-details-box-container .tv-details-box-wrapper .tv-details-box-body .tv-details-box-info-wrapper .tv-details-box-info .tv-details-box-archived-at-box .tv-details-box-provider-logo {
   height: 40px;
+  width: -moz-fit-content;
   width: fit-content;
   display: block;
 }
@@ -8492,6 +8747,4 @@ body {
 .lead-details-box-overlay .lead-details-box-container .lead-details-box-wrapper .lead-details-box-body .lead-details-box-info-wrapper .lead-details-box-info .lead-details-box-installation-period-box .lead-details-box-installation-period-desc {
   font-size: 1rem;
   color: #252525;
-}
-
-/*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=index.css.map */

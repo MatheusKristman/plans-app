@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import useDashboardComponentStore from "../../stores/useDashboardComponentStore";
 import { shallow } from "zustand/shallow";
 import api from "../../services/api";
+import { ToastContainer } from "react-toastify";
 
 import DashboardHeader from "../components/DashboardHeader";
 import DashboardPlanBox from "./components/DashboardPlanBox";
@@ -22,6 +23,7 @@ const Dashboard = () => {
     setActivePlans,
     archivedPlans,
     setArchivedPlans,
+    setAllProviders,
   } = useDashboardComponentStore(
     (state) => ({
       isInternetFormOpen: state.isInternetFormOpen,
@@ -33,6 +35,7 @@ const Dashboard = () => {
       setActivePlans: state.setActivePlans,
       archivedPlans: state.archivedPlans,
       setArchivedPlans: state.setArchivedPlans,
+      setAllProviders: state.setAllProviders,
     }),
     shallow
   );
@@ -44,6 +47,13 @@ const Dashboard = () => {
         setActivePlans(res.data.filter((plan) => !plan.archived));
         setArchivedPlans(res.data.filter((plan) => plan.archived));
       })
+      .catch((error) => console.error(error.message));
+  }, []);
+
+  useEffect(() => {
+    api
+      .get("/provider/all")
+      .then((res) => setAllProviders(res.data))
       .catch((error) => console.error(error.message));
   }, []);
 
@@ -60,6 +70,7 @@ const Dashboard = () => {
       {isInternetFormOpen && <NewInternetPlanModal />}
       {isCelFormOpen && <NewCelPlanModal />}
       {isTVFormOpen && <NewTVPlanModal />}
+      <ToastContainer />
       <div className="dashboard-component-wrapper">
         <DashboardHeader
           pageName="Dashboard"

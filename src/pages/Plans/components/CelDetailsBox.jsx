@@ -13,13 +13,15 @@ const CelDetailsBox = ({ archivedAt }) => {
       }),
       shallow
     );
-  const { closeCelDetailsBox, openEditCelForm } = usePlansStore(
-    (state) => ({
-      closeCelDetailsBox: state.closeCelDetailsBox,
-      openEditCelForm: state.openEditCelForm,
-    }),
-    shallow
-  );
+  const { closeCelDetailsBox, openEditCelForm, planSelectedForDetails } =
+    usePlansStore(
+      (state) => ({
+        closeCelDetailsBox: state.closeCelDetailsBox,
+        openEditCelForm: state.openEditCelForm,
+        planSelectedForDetails: state.planSelectedForDetails,
+      }),
+      shallow
+    );
 
   const handleCloseDetailBox = () => {
     deactivateModalAnimation();
@@ -87,7 +89,7 @@ const CelDetailsBox = ({ archivedAt }) => {
                 <div className="cel-details-box-title-box">
                   <span className="cel-details-box-title-label">Título</span>
                   <span className="cel-details-box-title-desc">
-                    Claro Controle 25GB Fidelizado
+                    {planSelectedForDetails.title}
                   </span>
                 </div>
 
@@ -96,7 +98,7 @@ const CelDetailsBox = ({ archivedAt }) => {
                     Criado em
                   </span>
                   <span className="cel-details-box-created-at-desc">
-                    23/03/2023
+                    {planSelectedForDetails.createdAt}
                   </span>
                 </div>
               </div>
@@ -107,7 +109,11 @@ const CelDetailsBox = ({ archivedAt }) => {
                     Operadora
                   </span>
                   <img
-                    src="/assets/icons/claro.png"
+                    src={`https://planos-backend.onrender.com/assets/${planSelectedForDetails.providerIcon}`}
+                    alt={planSelectedForDetails.providerIcon?.substring(
+                      0,
+                      planSelectedForDetails.providerIcon?.length - 4
+                    )}
                     className="cel-details-box-provider-logo"
                   />
                 </div>
@@ -116,19 +122,32 @@ const CelDetailsBox = ({ archivedAt }) => {
                   <span className="cel-details-box-contacts-label">
                     Contatos
                   </span>
-                  <span className="cel-details-box-contacts-desc">5</span>
+                  <span className="cel-details-box-contacts-desc">
+                    {planSelectedForDetails.contacts}
+                  </span>
                 </div>
               </div>
 
               <div className="cel-details-box-info">
                 <div className="cel-details-box-cost-box">
                   <span className="cel-details-box-cost-label">Valor</span>
-                  <span className="cel-details-box-cost-desc">R$ 49,90</span>
+                  <span className="cel-details-box-cost-desc">
+                    R${" "}
+                    {planSelectedForDetails.cost?.toFixed(2)?.replace(".", ",")}
+                  </span>
                 </div>
 
                 <div className="cel-details-box-total-box">
                   <span className="cel-details-box-total-label">Total</span>
-                  <span className="cel-details-box-total-desc">R$ 100,00</span>
+                  <span className="cel-details-box-total-desc">
+                    R${" "}
+                    {(
+                      planSelectedForDetails.cost *
+                      planSelectedForDetails.contacts
+                    )
+                      ?.toFixed(2)
+                      ?.replace(".", ",")}
+                  </span>
                 </div>
               </div>
 
@@ -137,7 +156,9 @@ const CelDetailsBox = ({ archivedAt }) => {
                   <span className="cel-details-box-priority-label">
                     Prioridade
                   </span>
-                  <span className="cel-details-box-priority-desc">2</span>
+                  <span className="cel-details-box-priority-desc">
+                    {planSelectedForDetails.priority}
+                  </span>
                 </div>
 
                 <div className="cel-details-box-unlimited-apps-box">
@@ -145,7 +166,9 @@ const CelDetailsBox = ({ archivedAt }) => {
                     Apps ilimitados
                   </span>
                   <span className="cel-details-box-unlimited-apps-desc">
-                    Whatsapp, Instagram
+                    {planSelectedForDetails.unlimitedApps
+                      ?.toString()
+                      ?.replaceAll(",", ", ")}
                   </span>
                 </div>
               </div>
@@ -156,7 +179,7 @@ const CelDetailsBox = ({ archivedAt }) => {
                     Tipo do plano
                   </span>
                   <span className="cel-details-box-plan-type-desc">
-                    Controle
+                    {planSelectedForDetails.planType}
                   </span>
                 </div>
 
@@ -164,7 +187,9 @@ const CelDetailsBox = ({ archivedAt }) => {
                   <span className="cel-details-box-franchise-label">
                     Franquia de internet
                   </span>
-                  <span className="cel-details-box-franchise-desc">25GB</span>
+                  <span className="cel-details-box-franchise-desc">
+                    {planSelectedForDetails.franchise}
+                  </span>
                 </div>
               </div>
 
@@ -174,7 +199,7 @@ const CelDetailsBox = ({ archivedAt }) => {
                     Ligações ilimitadas
                   </span>
                   <span className="cel-details-box-unlimited-call-desc">
-                    Sim
+                    {planSelectedForDetails.unlimitedCall ? "Sim" : "Não"}
                   </span>
                 </div>
                 {archivedAt && (
@@ -183,7 +208,7 @@ const CelDetailsBox = ({ archivedAt }) => {
                       Arquivado em
                     </span>
                     <span className="cel-details-box-archived-at-desc">
-                      30/05/2023
+                      {planSelectedForDetails?.archivedAt}
                     </span>
                   </div>
                 )}
@@ -194,11 +219,7 @@ const CelDetailsBox = ({ archivedAt }) => {
                   Descrição
                 </span>
                 <span className="cel-details-box-description-desc">
-                  **6GB no plano + 3GB bônus do pagamento por débito automático
-                  + 3GB bônus do pagamento por fatura digital + 6GB bônus para
-                  Instagram, Tiktok, Twitter, Facebook, Pinterest, Tinder,
-                  Messenger, Youtube. *Assinaturas inclusas: GoRead, Babbel,
-                  Vivo Pay, Skeelo, Hube Jornais{" "}
+                  {planSelectedForDetails.description}
                 </span>
               </div>
 

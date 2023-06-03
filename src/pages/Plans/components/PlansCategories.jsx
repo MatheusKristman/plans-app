@@ -11,10 +11,6 @@ const PlansCategories = () => {
     shallow
   );
 
-  useEffect(() => {
-    console.log(planCategory);
-  }, [planCategory]);
-
   return (
     <div className="plans-component-categories-container">
       <div className="plans-component-categories-all-wrapper">

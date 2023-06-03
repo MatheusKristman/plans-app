@@ -1,20 +1,22 @@
 import React from "react";
 import useDashboardComponentStore from "../../../stores/useDashboardComponentStore";
+import useGeneralStore from "../../../stores/useGeneralStore";
 import { shallow } from "zustand/shallow";
 
 const BenefitsLabel = ({ htmlFor, imageSrc, imageAlt, inputId, value }) => {
-  const { internetBenefits, setInternetBenefits } = useDashboardComponentStore(
+  const { benefits, setBenefits } = useGeneralStore(
     (state) => ({
-      internetBenefits: state.internetBenefits,
-      setInternetBenefits: state.setInternetBenefits,
-    })
+      benefits: state.benefits,
+      setBenefits: state.setBenefits,
+    }),
+    shallow
   );
 
   return (
     <label
       htmlFor={htmlFor}
       className={
-        internetBenefits.includes(value)
+        benefits?.includes(value)
           ? "benefits-label benefits-selected"
           : "benefits-label"
       }
@@ -27,7 +29,7 @@ const BenefitsLabel = ({ htmlFor, imageSrc, imageAlt, inputId, value }) => {
         type="checkbox"
         id={inputId}
         name="benefits"
-        onChange={() => setInternetBenefits(value)}
+        onChange={() => setBenefits(value)}
         className="benefits-checkbox"
       />
     </label>

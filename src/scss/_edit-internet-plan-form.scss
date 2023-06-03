@@ -147,10 +147,17 @@
               font-size: 1rem;
               color: #252525;
               transition: border-color 0.3s ease;
+              -moz-appearance: textfield;
 
               &:focus {
                 border-color: #7a7a7a;
               }
+            }
+
+            .edit-internet-plan-cost-input::-webkit-outer-spin-button,
+            .edit-internet-plan-cost-input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
             }
           }
 
@@ -181,10 +188,17 @@
               color: #252525;
               transition: border-color 0.3s ease;
               margin-bottom: 10px;
+              -moz-appearance: textfield;
 
               &:focus {
                 border-color: #7a7a7a;
               }
+            }
+
+            .edit-internet-plan-installation-cost-input::-webkit-outer-spin-button,
+            .edit-internet-plan-installation-cost-input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
             }
 
             .edit-internet-plan-installation-cost-label {
@@ -229,10 +243,17 @@
               color: #252525;
               transition: border-color 0.3s ease;
               margin-bottom: 10px;
+              -moz-appearance: textfield;
 
               &:focus {
                 border-color: #7a7a7a;
               }
+            }
+
+            .edit-internet-plan-download-input::-webkit-outer-spin-button,
+            .edit-internet-plan-download-input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
             }
 
             .edit-internet-plan-download-unit-wrapper {
@@ -282,10 +303,17 @@
               color: #252525;
               transition: border-color 0.3s ease;
               margin-bottom: 10px;
+              -moz-appearance: textfield;
 
               &:focus {
                 border-color: #7a7a7a;
               }
+            }
+
+            .edit-internet-plan-upload-input::-webkit-outer-spin-button,
+            .edit-internet-plan-upload-input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
             }
 
             .edit-internet-plan-upload-unit-wrapper {
@@ -335,10 +363,17 @@
               color: #252525;
               transition: border-color 0.3s ease;
               margin-bottom: 10px;
+              -moz-appearance: textfield;
 
               &:focus {
                 border-color: #7a7a7a;
               }
+            }
+
+            .edit-internet-plan-franchise-limit-input::-webkit-outer-spin-button,
+            .edit-internet-plan-franchise-limit-input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
             }
 
             .edit-internet-plan-franchise-limit-label {
@@ -387,6 +422,7 @@
               background-repeat: no-repeat;
               background-position: 98% center;
               background-size: 14px 8px;
+              cursor: pointer;
 
               &:focus {
                 border-color: #7a7a7a;
@@ -492,6 +528,7 @@
               background-repeat: no-repeat;
               background-position: 98% center;
               background-size: 14px 8px;
+              cursor: pointer;
 
               &:focus {
                 border-color: #7a7a7a;
@@ -555,5 +592,15 @@
         }
       }
     }
+  }
+}
+
+.edit-internet-plan-modal-error-form {
+  font-size: 1rem;
+  color: #ef5959;
+  margin-top: -3px;
+
+  &:last-child {
+    margin-top: 5px;
   }
 }

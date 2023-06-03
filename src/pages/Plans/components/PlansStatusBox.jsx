@@ -6,10 +6,11 @@ import { shallow } from "zustand/shallow";
 import PlansFilterBox from "./PlansFilterBox";
 
 const PlansStatusBox = () => {
-  const { isFilterBoxOpen, openFilterBox } = usePlansStore(
+  const { isFilterBoxOpen, openFilterBox, plans } = usePlansStore(
     (state) => ({
       isFilterBoxOpen: state.isFilterBoxOpen,
       openFilterBox: state.openFilterBox,
+      plans: state.plans,
     }),
     shallow
   );
@@ -29,7 +30,9 @@ const PlansStatusBox = () => {
     <div className="plans-component-status-box">
       {isFilterBoxOpen && <PlansFilterBox />}
 
-      <span className="plans-component-status">Planos ativos: </span>
+      <span className="plans-component-status">
+        Planos ativos: {plans.length}
+      </span>
 
       <button
         onClick={handleFilterBoxOpen}

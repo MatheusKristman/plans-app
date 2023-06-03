@@ -2,24 +2,112 @@ import React from "react";
 import useGeneralStore from "../../../stores/useGeneralStore";
 import usePlansStore from "../../../stores/usePlansStore";
 import { shallow } from "zustand/shallow";
+import api from "../../../services/api";
+import { toast } from "react-toastify";
 
-const InternetPlansArchivedBox = () => {
+const InternetPlansArchivedBox = ({
+  providerIcon,
+  title,
+  cost,
+  installationCost,
+  benefits,
+  contacts,
+  createdAt,
+  description,
+  download,
+  franchiseLimit,
+  hasWifi,
+  priority,
+  technology,
+  upload,
+  planId,
+  category,
+  archivedAt,
+}) => {
   const { activateModalAnimation } = useGeneralStore(
     (state) => ({
       activateModalAnimation: state.activateModalAnimation,
     }),
     shallow
   );
-  const { openInternetDetailsBox } = usePlansStore(
-    (state) => ({
-      openInternetDetailsBox: state.openInternetDetailsBox,
-    }),
-    shallow
-  );
+  const { openInternetDetailsBox, setIdSelectedForDetails, setPlans } =
+    usePlansStore(
+      (state) => ({
+        openInternetDetailsBox: state.openInternetDetailsBox,
+        setIdSelectedForDetails: state.setIdSelectedForDetails,
+        setPlans: state.setPlans,
+      }),
+      shallow
+    );
 
   const handleOpenDetailsBox = () => {
     activateModalAnimation();
     openInternetDetailsBox();
+    setIdSelectedForDetails(planId);
+  };
+
+  const handleUnarchive = (id) => {
+    api
+      .put("plan/internet-plan/archive", { id })
+      .then((res) => {
+        setPlans(res.data);
+
+        toast.success("Plano restaurado com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(error.response.data.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      });
+  };
+
+  const handleDelete = (id) => {
+    api
+      .delete(`plan/internet-plan/delete/${id}`)
+      .then((res) => {
+        setPlans(res.data);
+
+        toast.success("Plano deletado com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(error.response.data.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      });
   };
 
   return (
@@ -29,31 +117,31 @@ const InternetPlansArchivedBox = () => {
           <div className="plans-component-image-title-box">
             <div className="plans-component-image-box">
               <img
-                src="/assets/icons/claro.png"
-                alt="Claro"
+                src={`https://planos-backend.onrender.com/assets/${providerIcon}`}
+                alt={providerIcon?.substring(0, providerIcon?.length - 4)}
                 className="plans-component-image"
               />
             </div>
 
-            <h3 className="plans-component-plan-name">
-              Claro Banda Larga 500MB
-            </h3>
+            <h3 className="plans-component-plan-name">{title}</h3>
           </div>
 
           <div className="plans-component-cost-box">
-            <span className="plans-component-cost-value">R$ 50,00</span>
+            <span className="plans-component-cost-value">
+              R$ {cost.toFixed(2).replace(".", ",")}
+            </span>
             <span className="plans-component-cost-desc">Valor</span>
           </div>
 
           <div className="plans-component-download-box">
-            <span className="plans-component-download-value">250MB</span>
+            <span className="plans-component-download-value">{download}</span>
             <span className="plans-component-download-desc">
               Velocidade de download
             </span>
           </div>
 
           <div className="plans-component-upload-box">
-            <span className="plans-component-upload-value">100MB</span>
+            <span className="plans-component-upload-value">{upload}</span>
             <span className="plans-component-upload-desc">
               Velocidade de upload
             </span>
@@ -61,29 +149,33 @@ const InternetPlansArchivedBox = () => {
 
           <div className="plans-component-priority-box">
             <div className="plans-component-priority-polygon">
-              <span className="plans-component-priority-value">1</span>
+              <span className="plans-component-priority-value">{priority}</span>
             </div>
             <span className="plans-component-priority-desc">Prioridade</span>
           </div>
 
           <div className="plans-component-contact-box">
-            <span className="plans-component-contact-value">5</span>
+            <span className="plans-component-contact-value">{contacts}</span>
             <span className="plans-component-contact-desc">Contatos</span>
           </div>
 
           <div className="plans-component-total-box">
-            <span className="plans-component-total-value">R$ 100,00</span>
+            <span className="plans-component-total-value">
+              R$ {(cost * contacts).toFixed(2).replace(".", ",")}
+            </span>
             <span className="plans-component-total-desc">Total</span>
           </div>
 
           <div className="plans-component-created-at-box">
-            <span className="plans-component-created-at-value">24/03/2023</span>
+            <span className="plans-component-created-at-value">
+              {createdAt}
+            </span>
             <span className="plans-component-created-at-desc">Criado em</span>
           </div>
 
           <div className="plans-component-archived-at-box">
             <span className="plans-component-archived-at-value">
-              28/03/2023
+              {archivedAt}
             </span>
             <span className="plans-component-archived-at-desc">
               Arquivado em
@@ -92,7 +184,10 @@ const InternetPlansArchivedBox = () => {
         </div>
 
         <div className="plans-component-archived-plan-buttons">
-          <button className="plans-component-restore-button">
+          <button
+            onClick={() => handleUnarchive(planId)}
+            className="plans-component-restore-button"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -117,7 +212,10 @@ const InternetPlansArchivedBox = () => {
             Ver Detalhes
           </button>
 
-          <button className="plans-component-delete-button">
+          <button
+            onClick={() => handleDelete(planId)}
+            className="plans-component-delete-button"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

@@ -4,14 +4,17 @@ import useGeneralStore from "../../../stores/useGeneralStore";
 import { shallow } from "zustand/shallow";
 
 const PlansFilterBox = () => {
-  const { plansFilter, handleFilter, closeFilterBox } = usePlansStore(
-    (state) => ({
-      plansFilter: state.plansFilter,
-      handleFilter: state.handleFilter,
-      closeFilterBox: state.closeFilterBox,
-    }),
-    shallow
-  );
+  const { plansFilter, handleFilter, closeFilterBox, plans, setPlans } =
+    usePlansStore(
+      (state) => ({
+        plansFilter: state.plansFilter,
+        handleFilter: state.handleFilter,
+        closeFilterBox: state.closeFilterBox,
+        plans: state.plans,
+        setPlans: state.setPlans,
+      }),
+      shallow
+    );
   const { modalAnimation, deactivateModalAnimation } = useGeneralStore(
     (state) => ({
       modalAnimation: state.modalAnimation,
@@ -20,10 +23,6 @@ const PlansFilterBox = () => {
     shallow
   );
   const filterBoxRef = useRef();
-
-  useEffect(() => {
-    console.log(plansFilter);
-  }, [plansFilter]);
 
   useLayoutEffect(() => {
     const statusMenuHandler = (e) => {
@@ -47,6 +46,10 @@ const PlansFilterBox = () => {
       document.removeEventListener("mousedown", statusMenuHandler);
     };
   }, []);
+
+  useEffect(() => {
+    console.log(plans);
+  }, [plans]);
 
   return (
     <div
