@@ -172,6 +172,16 @@ const usePlansStore = create((set) => ({
   internetDescription: "",
   setInternetDescription: (event) =>
     set(() => ({ internetDescription: event.target.value })),
+  internetInstallationCostError: false,
+  setInternetInstallationCostError: () =>
+    set(() => ({ internetInstallationCostError: true })),
+  unsetInternetInstallationCostError: () =>
+    set(() => ({ internetInstallationCostError: false })),
+  internetFranchiseLimitError: false,
+  setInternetFranchiseLimitError: () =>
+    set(() => ({ internetFranchiseLimitError: true })),
+  unsetInternetFranchiseLimitError: () =>
+    set(() => ({ internetFranchiseLimitError: false })),
   isSubmitting: false,
   setToSubmit: () => set(() => ({ isSubmitting: true })),
   cancelSubmit: () => set(() => ({ isSubmitting: false })),

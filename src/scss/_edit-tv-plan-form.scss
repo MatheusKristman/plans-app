@@ -310,10 +310,17 @@
               color: #252525;
               transition: border-color 0.3s ease;
               margin-bottom: 10px;
+              -moz-appearance: textfield;
 
               &:focus {
                 border-color: #7a7a7a;
               }
+            }
+
+            .edit-tv-plan-installation-cost-input::-webkit-outer-spin-button,
+            .edit-tv-plan-installation-cost-input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
             }
 
             .edit-tv-plan-installation-cost-label {

@@ -7,19 +7,28 @@ import { shallow } from "zustand/shallow";
 import useDashboardPageStore from "../../stores/useDashboardPageStore.js";
 
 const DashboardPage = () => {
-  const { id, setId, isMenuOpen, openMenu, closeMenu, size, setSize } =
-    useDashboardPageStore(
-      (state) => ({
-        id: state.id,
-        setId: state.setId,
-        isMenuOpen: state.isMenuOpen,
-        openMenu: state.openMenu,
-        closeMenu: state.closeMenu,
-        size: state.size,
-        setSize: state.setSize,
-      }),
-      shallow
-    );
+  const {
+    id,
+    setId,
+    isMenuOpen,
+    openMenu,
+    closeMenu,
+    size,
+    setSize,
+    resetSearchValue,
+  } = useDashboardPageStore(
+    (state) => ({
+      id: state.id,
+      setId: state.setId,
+      isMenuOpen: state.isMenuOpen,
+      openMenu: state.openMenu,
+      closeMenu: state.closeMenu,
+      size: state.size,
+      setSize: state.setSize,
+      resetSearchValue: state.resetSearchValue,
+    }),
+    shallow
+  );
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,6 +36,7 @@ const DashboardPage = () => {
   const menu = useRef();
 
   const handleLogout = () => {
+    resetSearchValue();
     localStorage.removeItem("token");
     setId("");
   };
@@ -150,6 +160,7 @@ const DashboardPage = () => {
             <nav className="dashboard-menu-nav">
               <ul>
                 <li
+                  onClick={resetSearchValue}
                   className={
                     location.pathname === "/admin/painel-de-controle"
                       ? "selected"
@@ -178,6 +189,7 @@ const DashboardPage = () => {
                   </Link>
                 </li>
                 <li
+                  onClick={resetSearchValue}
                   className={
                     location.pathname === "/admin/painel-de-controle/operadoras"
                       ? "selected"
@@ -206,6 +218,7 @@ const DashboardPage = () => {
                   </Link>
                 </li>
                 <li
+                  onClick={resetSearchValue}
                   className={
                     location.pathname === "/admin/painel-de-controle/planos"
                       ? "selected"
@@ -234,6 +247,7 @@ const DashboardPage = () => {
                   </Link>
                 </li>
                 <li
+                  onClick={resetSearchValue}
                   className={
                     location.pathname === "/admin/painel-de-controle/clientes"
                       ? "selected"

@@ -13,10 +13,8 @@ import BenefitsLabel from "../../DashboardComponent/components/BenefitsLabel";
 const schema = yup.object({
   title: yup.string().required("Título é obrigatório"),
   cost: yup.string().required("Valor é obrigatório"),
-  installationCost: yup.mixed().required("Valor da instalação é obrigatório"),
   download: yup.string().required("Velocidade de Download é obrigatório"),
   upload: yup.string().required("Velocidade de Upload é obrigatório"),
-  franchiseLimit: yup.mixed().required("Franquia de Download é obrigatório"),
   technology: yup.string().required("Tecnologia do modem é obrigatório"),
   description: yup.string().required("Descrição é obrigatório"),
 });
@@ -57,6 +55,12 @@ const EditInternetPlanForm = () => {
     setIdSelectedForDetails,
     internetResetInputs,
     setPlans,
+    internetInstallationCostError,
+    setInternetInstallationCostError,
+    unsetInternetInstallationCostError,
+    internetFranchiseLimitError,
+    setInternetFranchiseLimitError,
+    unsetInternetFranchiseLimitError,
   } = usePlansStore(
     (state) => ({
       closeEditInternetForm: state.closeEditInternetForm,
@@ -93,6 +97,13 @@ const EditInternetPlanForm = () => {
       setIdSelectedForDetails: state.setIdSelectedForDetails,
       internetResetInputs: state.internetResetInputs,
       setPlans: state.setPlans,
+      internetInstallationCostError: state.internetInstallationCostError,
+      setInternetInstallationCostError: state.setInternetInstallationCostError,
+      unsetInternetInstallationCostError:
+        state.unsetInternetInstallationCostError,
+      internetFranchiseLimitError: state.internetFranchiseLimitError,
+      setInternetFranchiseLimitError: state.setInternetFranchiseLimitError,
+      unsetInternetFranchiseLimitError: state.unsetInternetFranchiseLimitError,
     }),
     shallow
   );
@@ -126,10 +137,8 @@ const EditInternetPlanForm = () => {
     defaultValues: {
       title: internetTitle,
       cost: internetCost,
-      installationCost: internetInstallationCost,
       download: internetDownload,
       upload: internetUpload,
-      franchiseLimit: internetFranchiseLimit,
       technology: internetTechnology,
       description: internetDescription,
     },
@@ -149,7 +158,18 @@ const EditInternetPlanForm = () => {
   const onSubmit = (data) => {
     console.log(data);
 
+    if (internetInstallationCost === "") {
+      setInternetInstallationCostError();
+    }
+
+    if (internetFranchiseLimit === "") {
+      setInternetFranchiseLimitError();
+    }
+
     if (internetFranchiseLimit !== "" && internetInstallationCost !== "") {
+      unsetInternetInstallationCostError();
+      unsetInternetFranchiseLimitError();
+
       setToSubmit();
     }
   };
@@ -225,11 +245,9 @@ const EditInternetPlanForm = () => {
       defaultBenefits(planSelectedForDetails.benefits);
       setValue("title", internetTitle);
       setValue("cost", internetCost);
-      setValue("installationCost", internetInstallationCost);
       setValue("download", internetDownload);
       setValue("download", internetDownload);
       setValue("upload", internetUpload);
-      setValue("franchiseLimit", internetFranchiseLimit);
       setValue("technology", internetTechnology);
       setValue("description", internetDescription);
     }
@@ -321,22 +339,21 @@ const EditInternetPlanForm = () => {
                   Valor da instalação
                 </span>
                 <input
-                  {...register("installationCost")}
                   type="number"
                   name="installationCost"
                   onChange={setInternetInstallationCost}
                   value={internetInstallationCost}
                   disabled={installationCostCheckboxRef.current?.checked}
                   style={
-                    errors.installationCost
+                    internetInstallationCostError
                       ? { border: "2px solid #ef5959" }
                       : {}
                   }
                   className="edit-internet-plan-installation-cost-input"
                 />
-                {errors.installationCost && (
+                {internetInstallationCostError && (
                   <span className="edit-internet-plan-modal-error-form">
-                    {errors.installationCost.message}
+                    Valor da instalação é obrigatório
                   </span>
                 )}
                 <label
@@ -470,20 +487,21 @@ const EditInternetPlanForm = () => {
                 </span>
 
                 <input
-                  {...register("franchiseLimit")}
                   type="number"
                   name="franchiseLimit"
                   onChange={setInternetFranchiseLimit}
                   value={internetFranchiseLimit}
                   disabled={franchiseLimitRef.current?.checked}
                   style={
-                    errors.franchiseLimit ? { border: "2px solid #ef5959" } : {}
+                    internetFranchiseLimitError
+                      ? { border: "2px solid #ef5959" }
+                      : {}
                   }
                   className="edit-internet-plan-franchise-limit-input"
                 />
-                {errors.franchiseLimit && (
+                {internetFranchiseLimitError && (
                   <span className="edit-internet-plan-modal-error-form">
-                    {errors.franchiseLimit.message}
+                    Franquia de internet é obrigatório
                   </span>
                 )}
 

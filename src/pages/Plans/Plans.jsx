@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import usePlansStore from "../../stores/usePlansStore";
 import useGeneralStore from "../../stores/useGeneralStore";
+import useDashboardPageStore from "../../stores/useDashboardPageStore";
 import { shallow } from "zustand/shallow";
 import api from "../../services/api";
 import { ToastContainer } from "react-toastify";
@@ -89,6 +90,21 @@ const Plans = () => {
     }),
     shallow
   );
+  const { searchValue } = useDashboardPageStore(
+    (state) => ({
+      searchValue: state.searchValue,
+    }),
+    shallow
+  );
+
+  const activePlans = filteredPlans.filter((plan) => !plan.archived);
+  const searchFilteredActivePlan = activePlans.filter((plan) =>
+    plan.title.toLowerCase().includes(searchValue.toLowerCase())
+  );
+  const archivedPlans = filteredPlans.filter((plan) => plan.archived);
+  const searchFilteredArchivedPlan = archivedPlans.filter((plan) =>
+    plan.title.toLowerCase().includes(searchValue.toLowerCase())
+  );
 
   useEffect(() => {
     api
@@ -105,6 +121,12 @@ const Plans = () => {
       .get("/plan/tv-plan/all")
       .then((res) => setTVPlans(res.data))
       .catch((error) => console.error(error.message));
+
+    if (isEditInternetFormOpen || isEditCelFormOpen || isEditTVFormOpen) {
+      document.documentElement.style.overflowY = "hidden";
+    } else {
+      document.documentElement.style.overflowY = "unset";
+    }
 
     console.log("plansRefreshed");
   }, [isEditInternetFormOpen, isEditCelFormOpen, isEditTVFormOpen]);
@@ -216,9 +238,73 @@ const Plans = () => {
             <PlansStatusBox />
 
             <div className="plans-component-plans-wrapper">
-              {filteredPlans.filter((plan) => !plan.archived).length !== 0 ? (
-                filteredPlans
-                  .filter((plan) => !plan.archived)
+              {searchValue.length !== 0 &&
+              searchFilteredActivePlan.length !== 0 ? (
+                searchFilteredActivePlan.map((plan, index) =>
+                  plan.category === "Internet" ? (
+                    <InternetPlanBox
+                      key={`internet-plan-${index}`}
+                      providerIcon={plan.providerIcon}
+                      title={plan.title}
+                      cost={plan.cost}
+                      installationCost={plan.installationCost}
+                      benefits={plan.benefits}
+                      contacts={plan.contacts}
+                      createdAt={plan.createdAt}
+                      description={plan.description}
+                      download={plan.download}
+                      franchiseLimit={plan.franchiseLimit}
+                      hasWifi={plan.hasWifi}
+                      priority={plan.priority}
+                      technology={plan.technology}
+                      upload={plan.upload}
+                      planId={plan._id}
+                      category={plan.category}
+                    />
+                  ) : plan.category === "Cel" ? (
+                    <CelPlanBox
+                      key={`cel-plan-${index}`}
+                      contacts={plan.contacts}
+                      cost={plan.cost}
+                      createdAt={plan.createdAt}
+                      description={plan.description}
+                      franchise={plan.franchise}
+                      planType={plan.planType}
+                      priority={plan.priority}
+                      providerIcon={plan.providerIcon}
+                      title={plan.title}
+                      unlimitedApps={plan.unlimitedApps}
+                      unlimitedCall={plan.unlimitedCall}
+                      planId={plan._id}
+                      category={plan.category}
+                    />
+                  ) : plan.category === "TV" ? (
+                    <TVPlanBox
+                      key={`tv-plan-${index}`}
+                      afterCost={plan.afterCost}
+                      benefits={plan.benefits}
+                      category={plan.category}
+                      cost={plan.cost}
+                      createdAt={plan.createdAt}
+                      description={plan.description}
+                      devicesQuant={plan.devicesQuant}
+                      installationCost={plan.installationCost}
+                      periodToChangeCost={plan.periodToChangeCost}
+                      priority={plan.priority}
+                      providerIcon={plan.providerIcon}
+                      title={plan.title}
+                      planId={plan._id}
+                      contacts={plan.contacts}
+                    />
+                  ) : null
+                )
+              ) : searchValue.length !== 0 &&
+                searchFilteredActivePlan.length === 0 ? (
+                <span className="plans-component-no-plan-adviser">
+                  Nenhum plano ativo encontrado
+                </span>
+              ) : activePlans.length !== 0 ? (
+                activePlans
                   .slice(0, activePlansSliceValue)
                   .map((plan, index) =>
                     plan.category === "Internet" ? (
@@ -283,9 +369,9 @@ const Plans = () => {
                   Nenhum plano ativo no momento
                 </span>
               )}
-              {filteredPlans.filter((plan) => !plan.archived).length >=
-                activePlansSliceValue &&
-                filteredPlans.filter((plan) => !plan.archived).length !== 0 && (
+              {searchValue.length === 0 &&
+                activePlans.length >= activePlansSliceValue &&
+                activePlans.length !== 0 && (
                   <button
                     type="button"
                     onClick={setActivePlansSliceValue}
@@ -308,9 +394,76 @@ const Plans = () => {
                     : "plans-component-archived-plans-wrapper animate__animated animate__faster animate__fadeOut"
                 }
               >
-                {filteredPlans.filter((plan) => plan.archived).length !== 0 ? (
-                  filteredPlans
-                    .filter((plan) => plan.archived)
+                {searchValue.length !== 0 &&
+                searchFilteredArchivedPlan.length !== 0 ? (
+                  searchFilteredArchivedPlan.map((plan, index) =>
+                    plan.category === "Internet" ? (
+                      <InternetPlansArchivedBox
+                        key={`internet-plan-${index}`}
+                        providerIcon={plan.providerIcon}
+                        title={plan.title}
+                        cost={plan.cost}
+                        installationCost={plan.installationCost}
+                        benefits={plan.benefits}
+                        contacts={plan.contacts}
+                        createdAt={plan.createdAt}
+                        description={plan.description}
+                        download={plan.download}
+                        franchiseLimit={plan.franchiseLimit}
+                        hasWifi={plan.hasWifi}
+                        priority={plan.priority}
+                        technology={plan.technology}
+                        upload={plan.upload}
+                        planId={plan._id}
+                        category={plan.category}
+                        archivedAt={plan.archivedAt}
+                      />
+                    ) : plan.category === "Cel" ? (
+                      <CelPlansArchivedBox
+                        key={`cel-plan-${index}`}
+                        contacts={plan.contacts}
+                        cost={plan.cost}
+                        createdAt={plan.createdAt}
+                        description={plan.description}
+                        franchise={plan.franchise}
+                        planType={plan.planType}
+                        priority={plan.priority}
+                        providerIcon={plan.providerIcon}
+                        title={plan.title}
+                        unlimitedApps={plan.unlimitedApps}
+                        unlimitedCall={plan.unlimitedCall}
+                        planId={plan._id}
+                        category={plan.category}
+                        archivedAt={plan.archivedAt}
+                      />
+                    ) : plan.category === "TV" ? (
+                      <TVPlansArchivedBox
+                        key={`tv-plan-${index}`}
+                        afterCost={plan.afterCost}
+                        benefits={plan.benefits}
+                        category={plan.category}
+                        cost={plan.cost}
+                        createdAt={plan.createdAt}
+                        description={plan.description}
+                        devicesQuant={plan.devicesQuant}
+                        installationCost={plan.installationCost}
+                        periodToChangeCost={plan.periodToChangeCost}
+                        priority={plan.priority}
+                        providerIcon={plan.providerIcon}
+                        title={plan.title}
+                        planId={plan._id}
+                        contacts={plan.contacts}
+                        archivedAt={plan.archivedAt}
+                      />
+                    ) : null
+                  )
+                ) : searchValue.length !== 0 &&
+                  searchFilteredArchivedPlan.length === 0 ? (
+                  <span className="plans-component-archived-plans-no-plan-adviser">
+                    Nenhum plano arquivado encontrado
+                  </span>
+                ) : archivedPlans.length !== 0 ? (
+                  archivedPlans
                     .slice(0, archivedPlansSliceValue)
                     .map((plan, index) =>
                       plan.category === "Internet" ? (
@@ -378,10 +531,8 @@ const Plans = () => {
                     Nenhum plano arquivado no momento
                   </span>
                 )}
-                {filteredPlans.filter((plan) => plan.archived).length >=
-                  archivedPlansSliceValue &&
-                  filteredPlans.filter((plan) => plan.archived).length !==
-                    0 && (
+                {archivedPlans.length >= archivedPlansSliceValue &&
+                  archivedPlans.length !== 0 && (
                     <button
                       type="button"
                       onClick={setArchivedPlansSliceValue}

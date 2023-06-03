@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import useDashboardComponentStore from "../../stores/useDashboardComponentStore";
+import useDashboardPageStore from "../../stores/useDashboardPageStore";
 import { shallow } from "zustand/shallow";
 import api from "../../services/api";
 import { ToastContainer } from "react-toastify";
@@ -38,6 +39,19 @@ const Dashboard = () => {
       setAllProviders: state.setAllProviders,
     }),
     shallow
+  );
+  const { searchValue } = useDashboardPageStore(
+    (state) => ({
+      searchValue: state.searchValue,
+    }),
+    shallow
+  );
+
+  const filteredActivePlans = activePlans.filter((plan) =>
+    plan.title.toLowerCase().includes(searchValue.toLowerCase())
+  );
+  const filteredArchivedPlans = archivedPlans.filter((plan) =>
+    plan.title.toLowerCase().includes(searchValue.toLowerCase())
   );
 
   useEffect(() => {
@@ -83,7 +97,22 @@ const Dashboard = () => {
             <DashboardPlanActiveStatus />
 
             <div className="dashboard-component-plans-wrapper">
-              {activePlans.length !== 0 ? (
+              {searchValue.length !== 0 && filteredActivePlans.length === 0 ? (
+                <span className="dashboard-component-no-plan-adviser">
+                  Nenhum plano encontrado
+                </span>
+              ) : searchValue.length !== 0 && activePlans.length !== 0 ? (
+                filteredActivePlans.map((plan, index) => (
+                  <DashboardPlanBox
+                    key={`plan-${index}`}
+                    providerIconPath={plan.providerIcon}
+                    planTitle={plan.title}
+                    contactValue={plan.contacts}
+                    totalValue={plan.cost * plan.contacts}
+                    createdValue={plan.createdAt}
+                  />
+                ))
+              ) : activePlans.length !== 0 ? (
                 activePlans.map((plan, index) => (
                   <DashboardPlanBox
                     key={`plan-${index}`}
@@ -113,7 +142,24 @@ const Dashboard = () => {
                     : "dashboard-component-archived-plans-wrapper animate__animated animate__faster animate__fadeOut"
                 }
               >
-                {archivedPlans.length !== 0 ? (
+                {searchValue.length !== 0 &&
+                filteredArchivedPlans.length === 0 ? (
+                  <span className="dashboard-component-archived-plans-no-plan-adviser">
+                    Nenhum plano encontrado
+                  </span>
+                ) : searchValue.length !== 0 && archivedPlans.length !== 0 ? (
+                  filteredArchivedPlans.map((plan, index) => (
+                    <DashboardPlanBox
+                      key={`plan-${index}`}
+                      providerIconPath={plan.providerIcon}
+                      planTitle={plan.title}
+                      contactValue={plan.contacts}
+                      totalValue={plan.cost * plan.contacts}
+                      createdValue={plan.createdAt}
+                      archivedValue={plan.archivedAt}
+                    />
+                  ))
+                ) : archivedPlans.length !== 0 ? (
                   archivedPlans.map((plan, index) => (
                     <DashboardPlanBox
                       key={`plan-${index}`}

@@ -12,6 +12,9 @@ const useDashboardPageStore = create((set) => ({
   closeMenu: () => set(() => ({ isMenuOpen: false })),
   size: 0,
   setSize: (value) => set(() => ({ size: value })),
+  searchValue: "",
+  setSearchValue: (event) => set(() => ({ searchValue: event.target.value })),
+  resetSearchValue: () => set(() => ({ searchValue: "" })),
 }));
 
 export default useDashboardPageStore;

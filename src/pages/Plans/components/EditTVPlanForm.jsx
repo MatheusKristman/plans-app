@@ -141,6 +141,7 @@ const EditTVPlanForm = () => {
     }
 
     if (tvInstallationCost !== "") {
+      unsetTVInstallationCostError();
       setToSubmit();
     }
   };
@@ -429,7 +430,6 @@ const EditTVPlanForm = () => {
                     id="freeInstallationCost"
                     name="installationCost"
                     onChange={setTVInstallationCost}
-                    value="Grátis"
                     checked={tvInstallationCost === "Grátis"}
                     className="edit-tv-plan-installation-cost-checkbox"
                   />

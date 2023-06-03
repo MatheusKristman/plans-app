@@ -1,0 +1,323 @@
+.container {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  background-image: url("/assets/images/hero-mobile-bg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 80%;
+  background-position: top;
+
+  @include breakpoint(tablet) {
+    background-image: url("/assets/images/hero-tablet-bg.png");
+    background-size: 100% 70%;
+  }
+
+  @include breakpoint(largeScreen) {
+    background-image: url("/assets/images/hero-bg.png");
+    background-size: 100% 80%;
+  }
+
+  .header-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 45px;
+    margin-top: 15px;
+
+    .header-logo-box {
+      height: 90%;
+      width: auto;
+
+      .header-logo {
+        height: 100%;
+        width: auto;
+        font-size: 2rem;
+        font-weight: 500;
+        color: #252525;
+      }
+    }
+
+    .header-mobile-nav-menu {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      height: 100%;
+      position: relative;
+
+      @include breakpoint(smallScreen) {
+        display: none;
+      }
+
+      .header-nav-button {
+        height: 90%;
+        width: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+
+        svg {
+          height: 70%;
+          width: auto;
+          color: #252525;
+        }
+      }
+
+      .header-nav-list {
+        position: absolute;
+        top: 100%;
+        background-color: #fff;
+        border: 2px solid #d40066;
+        border-radius: 8px;
+        padding: 10px 20px;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        transition: right 0.5s ease;
+        width: 230px;
+
+        .header-nav-item {
+          margin-bottom: 10px;
+
+          a {
+            text-decoration: none;
+            color: #252525;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 500;
+            width: 100%;
+            display: block;
+            transition: color 0.3s ease;
+
+            &:hover {
+              color: #b0b0b0;
+            }
+          }
+        }
+
+        .header-nav-cta-item {
+          width: 100%;
+
+          .header-nav-cta-button {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            background-color: #d40066;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 5px 15px;
+            cursor: pointer;
+            transition: filter 0.3s ease;
+
+            &:hover {
+              filter: brightness(80%);
+            }
+          }
+        }
+      }
+
+      .nav-active {
+        right: 0;
+      }
+
+      .nav-desactive {
+        right: -350px;
+      }
+    }
+
+    .header-nav-menu {
+      display: none;
+
+      @include breakpoint(smallScreen) {
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+
+        .header-nav-list {
+          list-style: none;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          gap: 25px;
+
+          @include breakpoint(largeScreen) {
+            gap: 50px;
+          }
+
+          .header-nav-item a {
+            text-decoration: none;
+            color: #252525;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+
+            &:hover {
+              opacity: 0.5;
+            }
+          }
+
+          .header-nav-cta-item .header-nav-cta-button {
+            background-color: #d40066;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: filter 0.3s ease;
+
+            &:hover {
+              filter: brightness(80%);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .hero-wrapper {
+    margin-top: 25vw;
+    display: flex;
+    flex-direction: column;
+    gap: 20vw;
+    width: 100%;
+
+    @include breakpoint(tablet) {
+      margin-top: 70px;
+      gap: 0px;
+    }
+
+    @include breakpoint(largeScreen) {
+      flex-direction: row;
+      align-items: center;
+      margin-top: 100px;
+    }
+
+    .hero-info {
+      width: 100%;
+      position: relative;
+      z-index: 2;
+
+      .hero-title {
+        font-size: 2rem;
+        font-weight: 500;
+        color: #252525;
+        max-width: 300px;
+        display: block;
+        margin-bottom: 15px;
+
+        @include breakpoint(tablet) {
+          font-size: 3rem;
+          max-width: 450px;
+          line-height: 60px;
+        }
+
+        @include breakpoint(largeScreen) {
+          font-size: 5rem;
+          line-height: 100px;
+          line-height: 100px;
+        }
+      }
+
+      .hero-desc {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #252525;
+        line-height: 25px;
+        margin-bottom: 25px;
+        max-width: 300px;
+        display: block;
+
+        @include breakpoint(tablet) {
+          max-width: 400px;
+        }
+
+        @include breakpoint(largeScreen) {
+          font-size: 1.25rem;
+          line-height: 30px;
+        }
+      }
+
+      .hero-cta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #d40066;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 1.25rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: filter 0.3s ease;
+
+        &:hover {
+          filter: brightness(80%);
+        }
+
+        @include breakpoint(tablet) {
+          padding: 15px 25px;
+        }
+      }
+    }
+
+    .hero-image {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+
+      @include breakpoint(tablet) {
+        margin-top: -50px;
+      }
+
+      @include breakpoint(largeScreen) {
+        margin-top: 0;
+      }
+
+      .image-box {
+        width: 80%;
+        position: relative;
+
+        @include breakpoint(tablet) {
+          width: 50%;
+        }
+
+        @include breakpoint(largeScreen) {
+          width: 75%;
+        }
+
+        .image-phone {
+          width: 100%;
+          height: auto;
+        }
+
+        .image-top-box {
+          position: absolute;
+          width: 50%;
+          height: auto;
+          top: 25px;
+          left: 35px;
+        }
+
+        .image-bottom-box {
+          position: absolute;
+          bottom: 50px;
+          right: 30px;
+          width: 50%;
+          height: auto;
+        }
+      }
+    }
+  }
+}
