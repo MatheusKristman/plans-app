@@ -4,17 +4,17 @@
   flex: 1;
   background-image: url("/assets/images/hero-mobile-bg.png");
   background-repeat: no-repeat;
-  background-size: 100% 750px;
+  background-size: 100% 80%;
   background-position: top;
 
   @include breakpoint(tablet) {
     background-image: url("/assets/images/hero-tablet-bg.png");
-    background-size: 100% 700px;
+    background-size: 100% 70%;
   }
 
   @include breakpoint(largeScreen) {
     background-image: url("/assets/images/hero-bg.png");
-    background-size: 100% 750px;
+    background-size: 100% 80%;
   }
 
   .header-wrapper {
@@ -323,23 +323,6 @@
 
   .how-it-works-container {
     width: 100%;
-    margin-top: 150px;
-    position: relative;
-
-    &::before {
-      content: "";
-      background-image: url("/assets/images/hero-dots.png");
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: left;
-      display: block;
-      width: 50%;
-      padding-top: 50%;
-      position: absolute;
-      top: -100px;
-      left: -25px;
-
-    }
 
     .how-it-works-title {
       font-size: 1.875rem;
@@ -349,18 +332,18 @@
     }
 
     .how-it-works-wrapper {
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr 1fr 1fr;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       gap: 20px;
 
       .how-it-works-card {
         background-color: #fff;
         border: 2px solid #d40066;
         border-radius: 16px;
-        padding: 20px 30px;
+        padding: 30px;
         position: relative;
-        box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.25);
 
         .how-it-works-tag {
           position: absolute;
@@ -368,25 +351,7 @@
           left: 0;
           background-color: #d40066;
           color: #fff;
-          font-size: 1.25rem;
-          font-weight: 600;
-          padding: 10px 20px;
-          border-top-left-radius: 12px;
-          border-bottom-right-radius: 16px;
-        }
-
-        .how-it-works-card-title {
-          font-size: 1.5rem;
-          font-weight: 500;
-          color: #252525;
-          margin-left: 25px;
-          margin-bottom: 30px;
-        }
-
-        .how-it-works-desc {
-          font-size: 1rem;
-          line-height: 26px;
-          color: #252525;
+          padding: 10px;
         }
       }
     }

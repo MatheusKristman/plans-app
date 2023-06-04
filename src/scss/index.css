@@ -8694,19 +8694,19 @@ body {
   flex: 1;
   background-image: url("/assets/images/hero-mobile-bg.png");
   background-repeat: no-repeat;
-  background-size: 100% 80%;
+  background-size: 100% 750px;
   background-position: top;
 }
 @media screen and (min-width: 500px) {
   .container {
     background-image: url("/assets/images/hero-tablet-bg.png");
-    background-size: 100% 70%;
+    background-size: 100% 700px;
   }
 }
 @media screen and (min-width: 1024px) {
   .container {
     background-image: url("/assets/images/hero-bg.png");
-    background-size: 100% 80%;
+    background-size: 100% 750px;
   }
 }
 .container .header-wrapper {
@@ -8996,6 +8996,68 @@ body {
   right: 30px;
   width: 50%;
   height: auto;
+}
+.container .how-it-works-container {
+  width: 100%;
+  margin-top: 150px;
+  position: relative;
+}
+.container .how-it-works-container::before {
+  content: "";
+  background-image: url("/assets/images/hero-dots.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left;
+  display: block;
+  width: 50%;
+  padding-top: 50%;
+  position: absolute;
+  top: -100px;
+  left: -25px;
+}
+.container .how-it-works-container .how-it-works-title {
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: #252525;
+  margin-bottom: 50px;
+}
+.container .how-it-works-container .how-it-works-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 20px;
+}
+.container .how-it-works-container .how-it-works-wrapper .how-it-works-card {
+  background-color: #fff;
+  border: 2px solid #d40066;
+  border-radius: 16px;
+  padding: 20px 30px;
+  position: relative;
+  box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.25);
+}
+.container .how-it-works-container .how-it-works-wrapper .how-it-works-card .how-it-works-tag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #d40066;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-top-left-radius: 12px;
+  border-bottom-right-radius: 16px;
+}
+.container .how-it-works-container .how-it-works-wrapper .how-it-works-card .how-it-works-card-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #252525;
+  margin-left: 25px;
+  margin-bottom: 30px;
+}
+.container .how-it-works-container .how-it-works-wrapper .how-it-works-card .how-it-works-desc {
+  font-size: 1rem;
+  line-height: 26px;
+  color: #252525;
 }
 
 /*# sourceMappingURL=index.css.map */
