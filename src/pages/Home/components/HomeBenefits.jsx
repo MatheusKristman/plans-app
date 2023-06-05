@@ -17,7 +17,7 @@ const BenefitCard = ({ imgUrl, title, text }) => {
 
 const HomeBenefits = () => {
   return (
-    <div className='benefits-container'>
+    <div id='benefits' className='benefits-container'>
       <div className='benefits-wrapper wrapper'>
         <BenefitCard
           imgUrl='/assets/icons/transparency-icon.png'

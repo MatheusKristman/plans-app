@@ -1,6 +1,6 @@
 import React from 'react';
 
-const StepsCard = ({tag, title, desc}) => {
+const StepsCard = ({ tag, title, desc }) => {
   return (
     <div className='how-it-works-card'>
       <span className='how-it-works-tag'>{tag}</span>
@@ -12,7 +12,7 @@ const StepsCard = ({tag, title, desc}) => {
 
 const HomeHowItWorks = () => {
   return (
-    <div className='how-it-works-container'>
+    <div id='howItWorks' className='how-it-works-container'>
       <div className='wrapper'>
         <h2 className='how-it-works-title'>Seu plano em apenas 3 passos</h2>
 
