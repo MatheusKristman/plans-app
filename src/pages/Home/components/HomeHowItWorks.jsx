@@ -12,8 +12,8 @@ const StepsCard = ({tag, title, desc}) => {
 
 const HomeHowItWorks = () => {
   return (
-    <div className='wrapper'>
-      <div className='how-it-works-container'>
+    <div className='how-it-works-container'>
+      <div className='wrapper'>
         <h2 className='how-it-works-title'>Seu plano em apenas 3 passos</h2>
 
         <div className='how-it-works-wrapper'>
