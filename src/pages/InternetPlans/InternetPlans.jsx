@@ -1,9 +1,13 @@
 import React from "react";
 
+import InternetPlansHeader from "./components/InternetPlansHeader";
+import InternetPlansBody from "./components/InternetPlansBody";
+
 const InternetPlans = () => {
   return (
-    <div>
-      <h1>InternetPlans</h1>
+    <div className="internet-plans-container">
+      <InternetPlansHeader />
+      <InternetPlansBody />
     </div>
   );
 };
