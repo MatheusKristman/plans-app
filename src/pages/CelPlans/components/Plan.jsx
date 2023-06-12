@@ -1,30 +1,29 @@
 import React, { useRef } from 'react';
-import useInternetPlanStore from '../../../stores/useInternetPlansStore';
+
+import useCelPlansStore from '../../../stores/useCelPlansStore';
 import { shallow } from 'zustand/shallow';
 
-const Plan = ({ providerLogo, title, download, benefits, technology, cost, description }) => {
-  const {
-    isSeeMoreOpen,
-    activateSeeMore,
-    deactivateSeeMore,
-    isFilterOpen,
-    openFilterBox,
-    closeFilterBox,
-  } = useInternetPlanStore(
+const Plan = ({
+  providerLogo,
+  title,
+  franchise,
+  unlimitedApps,
+  unlimitedCall,
+  cost,
+  description,
+}) => {
+  const { isSeeMoreOpen, activateSeeMore, deactivateSeeMore } = useCelPlansStore(
     (state) => ({
       isSeeMoreOpen: state.isSeeMoreOpen,
       activateSeeMore: state.activateSeeMore,
       deactivateSeeMore: state.deactivateSeeMore,
-      isFilterOpen: state.isFilterOpen,
-      openFilterBox: state.openFilterBox,
-      closeFilterBox: state.closeFilterBox,
     }),
     shallow
   );
 
   const descriptionRef = useRef();
 
-  const handleDescriptionVisualization = () => {
+  const handleSeeMore = () => {
     if (isSeeMoreOpen) {
       deactivateSeeMore();
       return;
@@ -44,50 +43,49 @@ const Plan = ({ providerLogo, title, download, benefits, technology, cost, descr
               className='plan-provider-logo'
             />
           </div>
-
           <h5 className='plan-title'>{title}</h5>
         </div>
 
         <div className='plan-benefits-wrapper'>
           <div className='plan-benefits-box'>
-            <div className='plan-benefits-download-box'>
-              <span className='plan-benefits-download'>{download}</span>
+            <div className='plan-benefits-franchise-box'>
+              <span className='plan-benefits-franchise'>{franchise}</span>
             </div>
 
-            <div className='plan-benefits-benefits-box'>
-              <span className='plan-benefits-benefits-title'>Benefícios</span>
+            <div className='plan-benefits-unlimited-apps-box'>
+              <span className='plan-benefits-unlimited-apps-title'>Apps Ilimitados</span>
 
-              <ul className='plan-benefits-benefits-list'>
-                {benefits?.length > 2 ? (
+              <ul className='plan-benefits-unlimited-apps-list'>
+                {unlimitedApps?.length > 2 ? (
                   <>
-                    {benefits?.slice(0, 2).map((app, index) => (
-                      <li key={`app-${index}`} className='plan-benefits-benefits-item'>
+                    {unlimitedApps?.slice(0, 2).map((app, index) => (
+                      <li key={`app-${index}`} className='plan-benefits-unlimited-apps-item'>
                         {app}
                       </li>
                     ))}
-                    <li>+{benefits?.length - 2}</li>
+                    <li className='plan-benefits-unlimited-apps-item'>
+                      +{unlimitedApps?.length - 2}
+                    </li>
                   </>
-                ) : benefits?.length !== 0 ? (
-                  benefits?.map((app, index) => (
-                    <li key={`app-${index}`} className='plan-benefits-benefits-item'>
+                ) : unlimitedApps?.length !== 0 ? (
+                  unlimitedApps?.map((app, index) => (
+                    <li key={`app-${index}`} className='plan-benefits-unlimited-apps-item'>
                       {app}
                     </li>
                   ))
                 ) : (
-                  <li key={`app-${index}`} className='plan-benefits-benefits-item'>
-                    Não possui
-                  </li>
+                  <li className='plan-benefits-unlimited-apps-item'>Não possui</li>
                 )}
               </ul>
             </div>
 
-            <div className='plan-benefits-technology-box'>
-              <span className='plan-benefits-technology-title'>Tecnologia do modem</span>
+            <div className='plan-benefits-unlimited-call-box'>
+              <span className='plan-benefits-unlimited-call-title'>Ligações Ilimitadas</span>
 
-              {technology ? (
-                <span className='plan-benefits-technology'>Possui</span>
+              {unlimitedCall ? (
+                <span className='plan-benefits-unlimited-call'>Possui</span>
               ) : (
-                <span className='plan-benefits-technology'>Não possui</span>
+                <span className='plan-benefits-unlimited-call'>Não possui</span>
               )}
             </div>
 
@@ -123,6 +121,7 @@ const Plan = ({ providerLogo, title, download, benefits, technology, cost, descr
           <div className='plan-details-wrapper'>
             <span
               ref={descriptionRef}
+              className='plan-details-desc'
               style={
                 isSeeMoreOpen
                   ? {
@@ -131,15 +130,10 @@ const Plan = ({ providerLogo, title, download, benefits, technology, cost, descr
                     }
                   : { maxHeight: '100px', paddingBottom: '0px' }
               }
-              className='plan-details-desc'
             >
               {description}
             </span>
-            <button
-              type='button'
-              onClick={handleDescriptionVisualization}
-              className='plan-details-expand-button'
-            >
+            <button type='button' onClick={handleSeeMore} className='plan-details-expand-button'>
               {isSeeMoreOpen ? 'Ler menos' : 'Ler mais'}
             </button>
           </div>

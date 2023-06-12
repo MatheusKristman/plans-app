@@ -8,7 +8,7 @@ import HomeHero from "./components/HomeHero";
 import HomeHowItWorks from "./components/HomeHowItWorks";
 import HomeBenefits from "./components/HomeBenefits";
 import HomeFAQ from "./components/HomeFAQ";
-import HomeFooter from "./components/HomeFooter";
+import Footer from "../components/Footer";
 import HomeInitialFilterBox from "./components/HomeInitialFilterBox";
 
 const Home = () => {
@@ -28,7 +28,7 @@ const Home = () => {
       <HomeHowItWorks />
       <HomeBenefits />
       <HomeFAQ />
-      <HomeFooter />
+      <Footer />
     </div>
   );
 };

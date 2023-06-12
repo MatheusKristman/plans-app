@@ -1,4 +1,4 @@
-.internet-plans-container {
+.tv-plans-container {
   width: 100%;
   height: 100%;
   flex: 1;
@@ -66,6 +66,33 @@
           }
         }
 
+        .filter-form-submit-button {
+          width: 100%;
+          height: 40px;
+          min-height: 40px;
+          background-color: #d2d6e9;
+          border: none;
+          border-radius: 8px;
+          font-size: 1rem;
+          font-weight: 600;
+          color: #5c679b;
+          cursor: pointer;
+          transition: filter 0.3s ease;
+          margin-bottom: 25px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &:hover {
+            filter: brightness(80%);
+          }
+
+          &:disabled {
+            filter: brightness(80%);
+            pointer-events: none;
+          }
+        }
+
         .filter-form-box {
           background-color: #f0f1f6;
           border-radius: 10px;
@@ -76,34 +103,7 @@
           overflow: hidden;
 
           @include breakpoint(largeScreen) {
-            max-height: 1083px !important;
-          }
-
-          .filter-form-submit-button {
-            width: 100%;
-            height: 40px;
-            min-height: 40px;
-            background-color: #d2d6e9;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #5c679b;
-            cursor: pointer;
-            transition: filter 0.3s ease;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            &:hover {
-              filter: brightness(80%);
-            }
-
-            &:disabled {
-              filter: brightness(80%);
-              pointer-events: none;
-            }
+            max-height: 911px !important;
           }
 
           .filter-form-wrapper {
@@ -162,6 +162,7 @@
                 margin-bottom: 10px;
                 display: flex;
                 align-items: center;
+
                 gap: 10px;
                 font-size: 1rem;
                 color: #252525;
@@ -175,62 +176,29 @@
               }
             }
 
-            .filter-form-download-box {
+            .filter-form-devices-box {
               width: 100%;
-              padding: 30px 0px;
+              padding: 30px 0;
               display: flex;
               flex-direction: column;
               border-bottom: 1px solid #b2b7d1;
 
-              .filter-form-download-title {
+              .filter-form-devices-title {
                 font-size: 1.125rem;
                 font-weight: 500;
                 color: #5c679b;
                 margin-bottom: 15px;
               }
 
-              .filter-form-download-label {
-                margin-bottom: 10px;
+              .filter-form-devices-label {
                 display: flex;
                 align-items: center;
-                gap: 10px;
                 font-size: 1rem;
-                color: #252525;
-                cursor: pointer;
-                user-select: none;
-
-                .filter-form-download-input {
-                  accent-color: #979ec2;
-                  cursor: pointer;
-                }
-              }
-            }
-
-            .filter-form-plan-type-box {
-              width: 100%;
-              padding: 30px 0px;
-              display: flex;
-              flex-direction: column;
-              border-bottom: 1px solid #b2b7d1;
-
-              .filter-form-plan-type-title {
-                font-size: 1.125rem;
-                font-weight: 500;
-                color: #5c679b;
-                margin-bottom: 15px;
-              }
-
-              .filter-form-plan-type-label {
                 margin-bottom: 10px;
-                display: flex;
-                align-items: center;
                 gap: 10px;
-                font-size: 1rem;
-                color: #252525;
                 cursor: pointer;
-                user-select: none;
 
-                .filter-form-plan-type-input {
+                .filter-form-devices-input {
                   accent-color: #979ec2;
                   cursor: pointer;
                 }
@@ -238,11 +206,10 @@
             }
 
             .filter-form-provider-box {
+              padding: 30px 0;
               width: 100%;
-              padding: 30px 0px;
               display: flex;
               flex-direction: column;
-              border-bottom: 1px solid #b2b7d1;
 
               .filter-form-provider-title {
                 font-size: 1.125rem;
@@ -252,14 +219,12 @@
               }
 
               .filter-form-provider-label {
-                margin-bottom: 10px;
+                font-size: 1rem;
                 display: flex;
                 align-items: center;
                 gap: 10px;
-                font-size: 1rem;
-                color: #252525;
+                margin-bottom: 10px;
                 cursor: pointer;
-                user-select: none;
 
                 .filter-form-provider-input {
                   accent-color: #979ec2;
@@ -370,11 +335,94 @@
                     grid-template-rows: 1fr;
                   }
 
-                  .plan-benefits-download-box {
+                  .plan-benefits-channels-box {
                     width: 100%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    border-bottom: 1px solid #b2b7d1;
+
+                    @include breakpoint(tablet) {
+                      border-bottom: none;
+                      border-right: none;
+                    }
+
+                    @include breakpoint(smallScreen) {
+                      padding-right: 20px;
+                    }
+
+                    @include breakpoint(extraLargeScreen) {
+                      border-right: 1px solid #b2b7d1;
+                    }
+
+                    .plan-benefits-channels-value {
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      justify-content: center;
+                      gap: 5px;
+                      font-size: 1.125rem;
+                      font-weight: 600;
+                      color: #5c679b;
+
+                      strong {
+                        font-size: 1.5rem;
+                        font-weight: 600;
+
+                        @include breakpoint(tablet) {
+                          font-size: 2rem;
+                        }
+                      }
+                    }
+                  }
+
+                  .plan-benefits-benefit-box {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    border-bottom: 1px solid #b2b7d1;
+                    padding: 20px;
+
+                    @include breakpoint(tablet) {
+                      border-bottom: none;
+                    }
+
+                    @include breakpoint(extraLargeScreen) {
+                      border-right: 1px solid #b2b7d1;
+                    }
+
+                    .plan-benefits-benefit-title {
+                      font-size: 1.125rem;
+                      font-weight: 500;
+                      text-align: center;
+                      color: #5c679b;
+                      margin-bottom: 10px;
+                    }
+
+                    .plan-benefits-benefit-list {
+                      list-style: none;
+                      display: flex;
+                      flex-direction: column;
+                      gap: 5px;
+
+                      .plan-benefits-benefit-item {
+                        font-size: 1rem;
+                        font-weight: 500;
+                        color: #5c679b;
+                        text-align: center;
+                      }
+                    }
+                  }
+
+                  .plan-benefits-devices-box {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 5px;
                     border-bottom: 1px solid #b2b7d1;
                     padding: 20px;
 
@@ -388,10 +436,10 @@
                     }
 
                     @include breakpoint(extraLargeScreen) {
-                      border-right: 1px solid #b2b7b1;
+                      border-right: 1px solid #b2b7d1;
                     }
 
-                    .plan-benefits-download {
+                    .plan-benefits-devices-quant {
                       font-size: 1.5rem;
                       font-weight: 600;
                       color: #5c679b;
@@ -400,202 +448,142 @@
                         font-size: 2rem;
                       }
                     }
-                  }
 
-                  .plan-benefits-benefits-box {
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    border-bottom: 1px solid #b2b7d1;
-                    padding: 0;
-
-                    @include breakpoint(tablet) {
-                      border-bottom: none;
-                      padding: 20px;
-                    }
-
-                    @include breakpoint(extraLargeScreen) {
-                      border-right: 1px solid #b2b7d1;
-                    }
-
-                    .plan-benefits-benefits-title {
+                    .plan-benefits-devices-label {
                       font-size: 1.125rem;
-                      font-weight: 500;
-                      text-align: center;
+                      font-weight: 600;
                       color: #5c679b;
-                      margin-bottom: 10px;
-                    }
-
-                    .plan-benefits-benefits-list {
-                      list-style: none;
-                      display: flex;
-                      flex-direction: column;
-                      gap: 5px;
-
-                      .plan-benefits-benefits-item {
-                        font-size: 1rem;
-                        font-weight: 500;
-                        color: #5c679b;
-                      }
-                    }
-                  }
-
-                  .plan-benefits-technology-box {
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    border-bottom: 1px solid #b2b7d1;
-                    padding: 20px 0;
-
-                    @include breakpoint(tablet) {
-                      border-bottom: none;
-                      border-right: none;
-                    }
-
-                    @include breakpoint(smallScreen) {
-                      padding: 20px;
-                    }
-
-                    @include breakpoint(extraLargeScreen) {
-                      border-right: 1px solid #b2b7d1;
-                    }
-
-                    .plan-benefits-technology-title {
-                      font-size: 1.125rem;
-                      font-weight: 500;
-                      color: #5c679b;
-                      text-align: center;
-                      margin-bottom: 10px;
-                    }
-
-                    .plan-benefits-technology {
-                      font-size: 1rem;
-                      color: #5c679b;
-                      text-align: center;
                     }
                   }
 
                   .plan-benefits-cost-box {
                     width: 100%;
                     display: flex;
+                    flex-direction: column;
                     align-items: center;
                     justify-content: center;
-                    padding: 20px 0;
-
-                    @include breakpoint(tablet) {
-                      padding: 20px;
-                    }
-
-                    .plan-benefits-cost-unit {
-                      font-size: 1.125rem;
-                      font-weight: 500;
-                      color: #5c679b;
-                      margin-right: 5px;
-                    }
-
-                    .plan-benefits-cost-value {
-                      font-size: 1.75rem;
-                      font-weight: 600;
-                      color: #5c679b;
-                      margin-right: 5px;
-
-                      @include breakpoint(tablet) {
-                        font-size: 2rem;
-                      }
-                    }
+                    padding: 20px;
 
                     .plan-benefits-cost-wrapper {
                       display: flex;
-                      flex-direction: column;
-                      gap: 3px;
+                      align-items: center;
+                      justify-content: center;
 
-                      .plan-benefits-cost-decimal {
-                        font-size: 0.875rem;
+                      .plan-benefits-cost-unit {
+                        font-size: 1.125rem;
                         font-weight: 500;
                         color: #5c679b;
+                        margin-right: 5px;
                       }
 
-                      .plan-benefits-cost-period {
-                        font-size: 1rem;
+                      .plan-benefits-cost-value {
+                        font-size: 1.75rem;
+                        font-weight: 600;
                         color: #5c679b;
-                        font-weight: 500;
+                        margin-right: 5px;
+
+                        @include breakpoint(tablet) {
+                          font-size: 2rem;
+                        }
+                      }
+
+                      .plan-benefits-cost-decimal-wrapper {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 3px;
+
+                        .plan-benefits-cost-decimal {
+                          font-size: 0.875rem;
+                          font-weight: 500;
+                          color: #5c679b;
+                        }
+
+                        .plan-benefits-cost-period {
+                          font-size: 1rem;
+                          color: #5c679b;
+                          font-weight: 500;
+                        }
                       }
                     }
-                  }
-                }
 
-                .plan-acquire-button {
-                  background-color: #d40066;
-                  border: none;
-                  border-radius: 8px;
-                  width: 100%;
-                  height: 40px;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  font-size: 1rem;
-                  font-weight: 600;
-                  color: #fff;
-                  cursor: pointer;
-                  transition: filter 0.3s ease;
-
-                  &:hover {
-                    filter: brightness(80%);
-                  }
-
-                  @include breakpoint(smallScreen) {
-                    width: fit-content;
-                    padding: 0 30px;
-                  }
-
-                  @include breakpoint(largeScreen) {
-                    width: 100%;
-                  }
-
-                  @include breakpoint(extraLargeScreen) {
-                    width: fit-content;
+                    .plan-benefits-cost-after-cost {
+                      font-size: 0.875rem;
+                      text-align: center;
+                      color: #5c679b;
+                      display: block;
+                      margin-top: 10px;
+                    }
                   }
                 }
               }
 
-              .plan-details-box {
+              .plan-benefits-acquire-button {
+                background-color: #d40066;
+                border: none;
+                border-radius: 8px;
                 width: 100%;
-                padding-top: 25px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1rem;
+                font-weight: 600;
+                color: #fff;
+                cursor: pointer;
+                transition: filter 0.3s ease;
 
-                .plan-details-wrapper {
+                &:hover {
+                  filter: brightness(80%);
+                }
+
+                @include breakpoint(smallScreen) {
+                  width: fit-content;
+                  padding: 0 30px;
+                }
+
+                @include breakpoint(largeScreen) {
                   width: 100%;
+                }
+
+                @include breakpoint(extraLargeScreen) {
+                  width: fit-content;
+                }
+              }
+            }
+
+            .plan-details-box {
+              width: 100%;
+              padding-top: 25px;
+
+              .plan-details-wrapper {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                overflow: hidden;
+
+                .plan-details-desc {
+                  font-size: 1rem;
+                  color: #252525;
+                  height: 100%;
+                  transition: max-height 0.3s ease, padding 0.3s ease;
+                  display: block;
+                }
+
+                .plan-details-expand-button {
+                  position: absolute;
+                  bottom: 0;
+                  width: 100%;
+                  height: 50px;
+                  background: linear-gradient(0deg, #f0f1f6 30%, #f0f1f600 100%);
+                  border: none;
                   display: flex;
-                  flex-direction: column;
-                  position: relative;
-                  overflow: hidden;
-
-                  .plan-details-desc {
-                    font-size: 1rem;
-                    color: #252525;
-                    height: 100%;
-                    transition: max-height 0.3s ease, padding 0.3s ease;
-                    display: block;
-                  }
-
-                  .plan-details-expand-button {
-                    position: absolute;
-                    bottom: 0;
-                    width: 100%;
-                    height: 50px;
-                    background: linear-gradient(0deg, #f0f1f6 30%, #f0f1f600 100%);
-                    border: none;
-                    display: flex;
-                    align-items: flex-end;
-                    justify-content: center;
-                    font-size: 1rem;
-                    font-weight: 600;
-                    color: #5c679b;
-                    cursor: pointer;
-                  }
+                  align-items: flex-end;
+                  justify-content: center;
+                  font-size: 1rem;
+                  font-weight: 600;
+                  color: #5c679b;
+                  cursor: pointer;
                 }
               }
             }

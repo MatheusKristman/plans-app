@@ -1,17 +1,36 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
+import useInternetPlanStore from "../../../stores/useInternetPlansStore"
+import { shallow } from "zustand/shallow";
 
 import Plan from "./Plan";
 
 const InternetPlansBody = () => {
+  const { isFilterOpen, openFilterBox, closeFilterBox } = useInternetPlanStore((state) => ({
+    isFilterOpen: state.isFilterOpen,
+    openFilterBox: state.openFilterBox,
+    closeFilterBox: state.closeFilterBox,
+  }), shallow);
+
+  const filterRef = useRef();
+
+  const handleFilterBoxButton = () => {
+    if(isFilterOpen) {
+      closeFilterBox();
+      return;
+    }
+
+    openFilterBox();
+  }
+
   return (
     <div className="body-container">
       <div className="body-wrapper wrapper">
         <div className="filter-form-container">
-          <button type="button" className="filter-form-button">
+          <button type="button" onClick={handleFilterBoxButton} className="filter-form-button">
             Filtrar
           </button>
 
-          <form className="filter-form-box">
+          <form ref={filterRef} style={isFilterOpen ? { maxHeight: `${filterRef.current.scrollHeight + 25}px` } : { maxHeight: "0px" }} className="filter-form-box">
             <div className="filter-form-wrapper">
               <div className="filter-form-cep-box">
                 <span className="filter-form-cep-title">Cep</span>
@@ -55,6 +74,7 @@ const InternetPlansBody = () => {
                   />
                   Até R$ 200,00
                 </label>
+
                 <label htmlFor="cost201" className="filter-form-cost-label">
                   <input
                     id="cost201"
@@ -237,10 +257,10 @@ const InternetPlansBody = () => {
               providerLogo="claro.png"
               title="Claro Controle 25GB Fidelizado"
               download="25GB"
-              unlimitedApps={["Whatsapp", "Instagram"]}
-              unlimitedCall={true}
+              benefits={["Whatsapp", "Instagram"]}
+              technology="Fibra Ótica"
               cost={59.9}
-              description="Descrição teste"
+              description="Descrição testeDescrição testeDescrição testeDescrição testeDescrição testeDescrição testeDescrição testeDescrição testeDescrição testeDescrição testeDescrição testeDescrição testeDescrição testeDescrição testeDescrição testeDescrição teste"
             />
           </div>
         </div>

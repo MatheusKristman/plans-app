@@ -1,9 +1,6 @@
 import { create } from "zustand";
 
-const useInternetPlansStore = create((set) => ({
-  isMobileMenuOpen: false,
-  openMobileMenu: () => set(() => ({ isMobileMenuOpen: true })),
-  closeMobileMenu: () => set(() => ({ isMobileMenuOpen: false })),
+const useCelPlansStore = create((set) => ({
   isSeeMoreOpen: false,
   activateSeeMore: () => set(() => ({ isSeeMoreOpen: true })),
   deactivateSeeMore: () => set(() => ({ isSeeMoreOpen: false })),
@@ -12,4 +9,4 @@ const useInternetPlansStore = create((set) => ({
   closeFilterBox: () => set(() => ({ isFilterOpen: false })),
 }));
 
-export default useInternetPlansStore;
+export default useCelPlansStore;

@@ -1,4 +1,4 @@
-.internet-plans-container {
+.cel-plans-container {
   width: 100%;
   height: 100%;
   flex: 1;
@@ -76,7 +76,7 @@
           overflow: hidden;
 
           @include breakpoint(largeScreen) {
-            max-height: 1083px !important;
+            max-height: 1054px !important;
           }
 
           .filter-form-submit-button {
@@ -175,21 +175,21 @@
               }
             }
 
-            .filter-form-download-box {
+            .filter-form-franchise-box {
+              padding: 30px 0;
               width: 100%;
-              padding: 30px 0px;
               display: flex;
               flex-direction: column;
               border-bottom: 1px solid #b2b7d1;
 
-              .filter-form-download-title {
+              .filter-form-franchise-title {
                 font-size: 1.125rem;
                 font-weight: 500;
                 color: #5c679b;
                 margin-bottom: 15px;
               }
 
-              .filter-form-download-label {
+              .filter-form-franchise-label {
                 margin-bottom: 10px;
                 display: flex;
                 align-items: center;
@@ -199,7 +199,7 @@
                 cursor: pointer;
                 user-select: none;
 
-                .filter-form-download-input {
+                .filter-form-franchise-input {
                   accent-color: #979ec2;
                   cursor: pointer;
                 }
@@ -207,8 +207,8 @@
             }
 
             .filter-form-plan-type-box {
+              padding: 30px 0;
               width: 100%;
-              padding: 30px 0px;
               display: flex;
               flex-direction: column;
               border-bottom: 1px solid #b2b7d1;
@@ -238,11 +238,10 @@
             }
 
             .filter-form-provider-box {
+              padding: 30px 0;
               width: 100%;
-              padding: 30px 0px;
               display: flex;
               flex-direction: column;
-              border-bottom: 1px solid #b2b7d1;
 
               .filter-form-provider-title {
                 font-size: 1.125rem;
@@ -370,7 +369,7 @@
                     grid-template-rows: 1fr;
                   }
 
-                  .plan-benefits-download-box {
+                  .plan-benefits-franchise-box {
                     width: 100%;
                     display: flex;
                     align-items: center;
@@ -380,18 +379,13 @@
 
                     @include breakpoint(tablet) {
                       border-bottom: none;
-                      border-right: none;
-                    }
-
-                    @include breakpoint(smallScreen) {
-                      padding-right: 20px;
                     }
 
                     @include breakpoint(extraLargeScreen) {
-                      border-right: 1px solid #b2b7b1;
+                      border-right: 1px solid #b2b7d1;
                     }
 
-                    .plan-benefits-download {
+                    .plan-benefits-franchise {
                       font-size: 1.5rem;
                       font-weight: 600;
                       color: #5c679b;
@@ -402,25 +396,24 @@
                     }
                   }
 
-                  .plan-benefits-benefits-box {
+                  .plan-benefits-unlimited-apps-box {
                     width: 100%;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
                     border-bottom: 1px solid #b2b7d1;
-                    padding: 0;
+                    padding: 20px;
 
                     @include breakpoint(tablet) {
                       border-bottom: none;
-                      padding: 20px;
                     }
 
                     @include breakpoint(extraLargeScreen) {
                       border-right: 1px solid #b2b7d1;
                     }
 
-                    .plan-benefits-benefits-title {
+                    .plan-benefits-unlimited-apps-title {
                       font-size: 1.125rem;
                       font-weight: 500;
                       text-align: center;
@@ -428,54 +421,50 @@
                       margin-bottom: 10px;
                     }
 
-                    .plan-benefits-benefits-list {
+                    .plan-benefits-unlimited-apps-list {
                       list-style: none;
                       display: flex;
                       flex-direction: column;
                       gap: 5px;
 
-                      .plan-benefits-benefits-item {
+                      .plan-benefits-unlimited-apps-item {
                         font-size: 1rem;
                         font-weight: 500;
                         color: #5c679b;
+                        text-align: center;
                       }
                     }
                   }
 
-                  .plan-benefits-technology-box {
+                  .plan-benefits-unlimited-call-box {
                     width: 100%;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
                     border-bottom: 1px solid #b2b7d1;
-                    padding: 20px 0;
+                    padding: 20px;
 
                     @include breakpoint(tablet) {
                       border-bottom: none;
-                      border-right: none;
-                    }
-
-                    @include breakpoint(smallScreen) {
-                      padding: 20px;
                     }
 
                     @include breakpoint(extraLargeScreen) {
                       border-right: 1px solid #b2b7d1;
                     }
 
-                    .plan-benefits-technology-title {
+                    .plan-benefits-unlimited-call-title {
                       font-size: 1.125rem;
                       font-weight: 500;
-                      color: #5c679b;
                       text-align: center;
+                      color: #5c679b;
                       margin-bottom: 10px;
                     }
 
-                    .plan-benefits-technology {
+                    .plan-benefits-unlimited-call {
                       font-size: 1rem;
+                      font-weight: 500;
                       color: #5c679b;
-                      text-align: center;
                     }
                   }
 
@@ -484,10 +473,10 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    padding: 20px 0;
+                    padding: 20px;
 
                     @include breakpoint(tablet) {
-                      padding: 20px;
+                      border-bottom: none;
                     }
 
                     .plan-benefits-cost-unit {

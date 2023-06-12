@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import useHomeStore from "../../../stores/useHomeStore";
+import useHomeStore from "../../stores/useHomeStore" 
 import { shallow } from "zustand/shallow";
 import { toast } from "react-toastify";
 
-const HomeFooter = () => {
+const Footer = () => {
   const { footerMessage, setFooterMessage } = useHomeStore(
     (state) => ({
       footerMessage: state.footerMessage,
@@ -104,4 +104,4 @@ const HomeFooter = () => {
   );
 };
 
-export default HomeFooter;
+export default Footer;
