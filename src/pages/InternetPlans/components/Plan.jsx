@@ -40,7 +40,7 @@ const Plan = ({ providerLogo, title, download, benefits, technology, cost, descr
           <div className='plan-provider-logo-box'>
             <img
               src={`https://planos-backend.onrender.com/assets/${providerLogo}`}
-              alt='claro'
+              alt={providerLogo?.slice(providerLogo.length - 4)}
               className='plan-provider-logo'
             />
           </div>
@@ -65,7 +65,7 @@ const Plan = ({ providerLogo, title, download, benefits, technology, cost, descr
                         {app}
                       </li>
                     ))}
-                    <li>+{benefits?.length - 2}</li>
+                    <li className='plan-benefits-benefits-item'>+{benefits?.length - 2}</li>
                   </>
                 ) : benefits?.length !== 0 ? (
                   benefits?.map((app, index) => (
@@ -121,27 +121,33 @@ const Plan = ({ providerLogo, title, download, benefits, technology, cost, descr
 
         <div className='plan-details-box'>
           <div className='plan-details-wrapper'>
-            <span
-              ref={descriptionRef}
-              style={
-                isSeeMoreOpen
-                  ? {
-                      maxHeight: `${descriptionRef.current?.scrollHeight + 50}px`,
-                      paddingBottom: '50px',
-                    }
-                  : { maxHeight: '100px', paddingBottom: '0px' }
-              }
-              className='plan-details-desc'
-            >
-              {description}
-            </span>
-            <button
-              type='button'
-              onClick={handleDescriptionVisualization}
-              className='plan-details-expand-button'
-            >
-              {isSeeMoreOpen ? 'Ler menos' : 'Ler mais'}
-            </button>
+            {description.length > 150 ? (
+              <>
+                <span
+                  ref={descriptionRef}
+                  style={
+                    isSeeMoreOpen
+                      ? {
+                          maxHeight: `${descriptionRef.current?.scrollHeight + 50}px`,
+                          paddingBottom: '50px',
+                        }
+                      : { maxHeight: '100px', paddingBottom: '0px' }
+                  }
+                  className='plan-details-desc'
+                >
+                  {description}
+                </span>
+                <button
+                  type='button'
+                  onClick={handleDescriptionVisualization}
+                  className='plan-details-expand-button'
+                >
+                  {isSeeMoreOpen ? 'Ler menos' : 'Ler mais'}
+                </button>
+              </>
+            ) : (
+              <span className='plan-details-desc'>{description}</span>
+            )}
           </div>
         </div>
       </div>

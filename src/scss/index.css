@@ -9811,7 +9811,7 @@ body {
   font-size: 1.125rem;
   font-weight: 500;
   color: #252525;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
   display: block;
 }
 .internet-plans-container .body-container .body-wrapper .result-box .result-wrapper {
@@ -9928,11 +9928,6 @@ body {
   font-weight: 600;
   color: #5c679b;
 }
-@media screen and (min-width: 500px) {
-  .internet-plans-container .body-container .body-wrapper .result-box .result-wrapper .plan-box .plan-wrapper .plan-benefits-wrapper .plan-benefits-box .plan-benefits-download-box .plan-benefits-download {
-    font-size: 2rem;
-  }
-}
 .internet-plans-container .body-container .body-wrapper .result-box .result-wrapper .plan-box .plan-wrapper .plan-benefits-wrapper .plan-benefits-box .plan-benefits-benefits-box {
   width: 100%;
   display: flex;
@@ -9970,6 +9965,7 @@ body {
   font-size: 1rem;
   font-weight: 500;
   color: #5c679b;
+  text-align: center;
 }
 .internet-plans-container .body-container .body-wrapper .result-box .result-wrapper .plan-box .plan-wrapper .plan-benefits-wrapper .plan-benefits-box .plan-benefits-technology-box {
   width: 100%;
@@ -10031,11 +10027,6 @@ body {
   font-weight: 600;
   color: #5c679b;
   margin-right: 5px;
-}
-@media screen and (min-width: 500px) {
-  .internet-plans-container .body-container .body-wrapper .result-box .result-wrapper .plan-box .plan-wrapper .plan-benefits-wrapper .plan-benefits-box .plan-benefits-cost-box .plan-benefits-cost-value {
-    font-size: 2rem;
-  }
 }
 .internet-plans-container .body-container .body-wrapper .result-box .result-wrapper .plan-box .plan-wrapper .plan-benefits-wrapper .plan-benefits-box .plan-benefits-cost-box .plan-benefits-cost-wrapper {
   display: flex;
@@ -10118,6 +10109,23 @@ body {
   font-weight: 600;
   color: #5c679b;
   cursor: pointer;
+}
+.internet-plans-container .body-container .body-wrapper .result-box .result-wrapper .result-show-more-button {
+  width: fit-content;
+  height: 40px;
+  margin: auto;
+  padding: 0px 20px;
+  background-color: #fff;
+  color: #d40066;
+  border: 2px solid #d40066;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: padding 0.3s ease;
+}
+.internet-plans-container .body-container .body-wrapper .result-box .result-wrapper .result-show-more-button:hover {
+  padding: 0px 30px;
 }
 
 .cel-plans-container {
