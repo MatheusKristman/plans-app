@@ -1,8 +1,8 @@
-import React from 'react';
-import useHomeStore from '../../../stores/useHomeStore';
-import useGeneralStore from '../../../stores/useGeneralStore';
-import { shallow } from 'zustand/shallow';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import useHomeStore from "../../../stores/useHomeStore";
+import useGeneralStore from "../../../stores/useGeneralStore";
+import { shallow } from "zustand/shallow";
+import { useNavigate } from "react-router-dom";
 
 const ProviderFilter = () => {
   const { providerValue, setProviderValue, isProviderAnimation } = useHomeStore(
@@ -18,20 +18,22 @@ const ProviderFilter = () => {
     <div
       className={
         isProviderAnimation
-          ? 'home-filter-box-provider-box animate__animated animate__faster animate__fadeInLeft'
-          : 'home-filter-box-provider-box animate__animated animate__faster animate__fadeOutLeft'
+          ? "home-filter-box-provider-box animate__animated animate__faster animate__fadeInLeft"
+          : "home-filter-box-provider-box animate__animated animate__faster animate__fadeOutLeft"
       }
     >
-      <span className='home-filter-box-provider-label'>Precisa de qual serviço?</span>
+      <span className="home-filter-box-provider-label">
+        Precisa de qual serviço?
+      </span>
 
       <select
         onChange={setProviderValue}
         defaultValue={providerValue}
-        className='home-filter-box-provider-select'
+        className="home-filter-box-provider-select"
       >
-        <option value='banda-larga'>Banda Larga</option>
-        <option value='celular'>Celular</option>
-        <option value='tv'>TV</option>
+        <option value="banda-larga">Banda Larga</option>
+        <option value="celular">Celular</option>
+        <option value="tv">TV</option>
       </select>
     </div>
   );
@@ -51,20 +53,20 @@ const CepFilter = () => {
     <div
       className={
         isCepAnimation
-          ? 'home-filter-box-cep-wrapper animate__animated animate__faster animate__fadeInRight'
-          : 'home-filter-box-cep-wrapper animate__animated animate__faster animate__fadeOutRight'
+          ? "home-filter-box-cep-wrapper animate__animated animate__faster animate__fadeInRight"
+          : "home-filter-box-cep-wrapper animate__animated animate__faster animate__fadeOutRight"
       }
     >
-      <span className='home-filter-box-cep-title'>Qual é o seu cep?</span>
+      <span className="home-filter-box-cep-title">Qual é o seu cep?</span>
 
       <input
-        type='text'
-        autoComplete='off'
-        autoCorrect='off'
+        type="text"
+        autoComplete="off"
+        autoCorrect="off"
         onChange={setCepValue}
         value={cepValue}
-        maxLength='8'
-        className='home-filter-box-cep-input'
+        maxLength="8"
+        className="home-filter-box-cep-input"
       />
     </div>
   );
@@ -146,15 +148,15 @@ const HomeInitialFilterBox = () => {
     }
 
     if (cepValue.length === 9) {
-      navigate(`/planos/${providerValue}`);
+      navigate(`/planos/${providerValue}/${cepValue}`);
     }
   };
 
   const handleBack = (event) => {
     unsetCepAnimation();
     resetCepValue();
-    event.target.classList.remove('animate__fadeIn');
-    event.target.classList.add('animate__fadeOut');
+    event.target.classList.remove("animate__fadeIn");
+    event.target.classList.add("animate__fadeOut");
 
     setTimeout(() => {
       unsetCepQuestionRendered();
@@ -167,53 +169,61 @@ const HomeInitialFilterBox = () => {
     <div
       className={
         modalAnimation
-          ? 'home-filter-box-overlay animate__animated animate__fast animate__fadeIn'
-          : 'home-filter-box-overlay animate__animated animate__fast animate__fadeOut'
+          ? "home-filter-box-overlay animate__animated animate__fast animate__fadeIn"
+          : "home-filter-box-overlay animate__animated animate__fast animate__fadeOut"
       }
     >
-      <div className='home-filter-box-container'>
-        <div className='home-filter-box-wrapper'>
-          <div className='home-filter-box-illustration-box'>
+      <div className="home-filter-box-container">
+        <div className="home-filter-box-wrapper">
+          <div className="home-filter-box-illustration-box">
             <button
-              type='button'
+              type="button"
               onClick={handleFilterBoxClose}
-              className='home-filter-box-close-button'
+              className="home-filter-box-close-button"
             >
               <svg
-                xmlns='http://www.w3.org/2000/svg'
-                fill='none'
-                viewBox='0 0 24 24'
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
                 strokeWidth={1.5}
-                stroke='currentColor'
-                className='w-6 h-6'
+                stroke="currentColor"
+                className="w-6 h-6"
               >
-                <path strokeLinecap='round' strokeLinejoin='round' d='M6 18L18 6M6 6l12 12' />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
 
             <img
-              src='/assets/images/filter-box-animation.gif'
-              alt='Filter'
-              className='home-filter-box-animation'
+              src="/assets/images/filter-box-animation.gif"
+              alt="Filter"
+              className="home-filter-box-animation"
             />
           </div>
 
-          <div className='home-filter-box-infos-box'>
-            <h5 className='home-filter-box-title'>Antes de começar</h5>
+          <div className="home-filter-box-infos-box">
+            <h5 className="home-filter-box-title">Antes de começar</h5>
 
             {isProviderQuestionRendered && <ProviderFilter />}
             {isCepQuestionRendered && <CepFilter />}
 
-            <div className='home-filter-box-button-wrapper'>
-              <button type='button' onClick={handleNext} className='home-filter-box-submit-button'>
+            <div className="home-filter-box-button-wrapper">
+              <button
+                type="button"
+                onClick={handleNext}
+                className="home-filter-box-submit-button"
+              >
                 Proximo
               </button>
 
               {isCepQuestionRendered && (
                 <button
-                  type='button'
+                  type="button"
                   onClick={handleBack}
-                  className='home-filter-box-back-button animate__animated animate__faster animate__fadeIn'
+                  className="home-filter-box-back-button animate__animated animate__faster animate__fadeIn"
                 >
                   Voltar
                 </button>

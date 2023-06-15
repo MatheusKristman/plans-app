@@ -37,11 +37,6 @@ const PlansHeader = ({ headerTitle, headerDesc }) => {
     }
   };
 
-  useEffect(() => {
-    console.log('isMobileMenuOpen: ', isMobileMenuOpen);
-    console.log('modalAnimation: ', modalAnimation);
-  }, [isMobileMenuOpen, modalAnimation]);
-
   return (
     <header className='header-container'>
       <div className='header-top-box'>

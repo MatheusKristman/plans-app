@@ -1,0 +1,639 @@
+.register-form-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(32, 33, 36, 0.5);
+  overflow: auto;
+  padding: 60px 25px;
+  z-index: 50;
+
+  @include breakpoint(tablet) {
+    padding: 60px;
+  }
+
+  &::before {
+    content: '';
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .register-form-container {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    max-width: 1000px;
+    vertical-align: middle;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 60;
+
+    .register-form-illustration-box {
+      width: 100%;
+      height: 250px;
+      background-image: url('/assets/images/register-client-header-mobile.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: right center;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      position: relative;
+
+      @include breakpoint(tablet) {
+        background-color: url('/assets/images/register-client-header-tablet.png');
+      }
+
+      .register-form-close-button {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 40px;
+        height: 40px;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+
+        svg {
+          width: 75%;
+          height: auto;
+        }
+      }
+
+      .register-form-title {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background-color: #fff;
+        padding: 20px 30px;
+        width: fit-content;
+        display: block;
+        border-top-right-radius: 16px;
+        font-size: 1.5;
+        font-weight: 600;
+        color: #252525;
+
+        @include breakpoint(smallScreen) {
+          font-size: 2rem;
+        }
+      }
+    }
+
+    .register-form-body {
+      width: 100%;
+      padding: 30px 20px;
+      background-color: #fff;
+      border-bottom-left-radius: 16px;
+      border-bottom-right-radius: 16px;
+      display: flex;
+      flex-direction: column;
+
+      @include breakpoint(tablet) {
+        padding: 40px 50px;
+      }
+
+      .register-form-progress-box {
+        order: 2;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 50px;
+
+        @include breakpoint(tablet) {
+          order: 1;
+          flex-direction: row;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 5px;
+        }
+
+        .register-form-progress-step {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 5px;
+
+          .register-form-progress-ball {
+            border: 2px solid #d40066;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #d40066;
+          }
+
+          .actual-progress {
+            background-color: #d40066;
+            color: #fff;
+          }
+
+          .register-form-progress-desc {
+            font-size: 0.85rem;
+            color: #252525;
+            text-align: center;
+          }
+        }
+
+        .register-form-progress-line {
+          background-color: #cccccc;
+          height: 30px;
+          width: 2px;
+
+          @include breakpoint(tablet) {
+            width: 100%;
+            height: 2px;
+            margin-top: 25px;
+          }
+        }
+      }
+
+      .register-form-info-box {
+        order: 3;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+
+        .personal-data-form {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+
+          .personal-data-label {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #252525;
+
+            .personal-data-input {
+              width: 100%;
+              height: 40px;
+              border: 2px solid #cccccc;
+              border-radius: 8px;
+              padding: 0 10px;
+              font-size: 1rem;
+              color: #252525;
+              transition: border-color 0.3s ease;
+
+              &:focus {
+                border-color: #7a7a7a;
+              }
+            }
+          }
+
+          .personal-data-wrapper {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+            gap: 15px;
+
+            @include breakpoint(tablet) {
+              grid-template-columns: 1fr 1fr;
+              grid-template-rows: auto;
+            }
+          }
+
+          .personal-data-name-wrapper {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+            gap: 15px;
+
+            @include breakpoint(tablet) {
+              grid-template-columns: 1fr 1fr;
+              grid-template-rows: auto;
+            }
+
+            @include breakpoint(smallScreen) {
+              grid-template-columns: 70% calc(30% - 15px);
+            }
+          }
+        }
+
+        .address-form {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+
+          .address-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+            gap: 15px;
+
+            @include breakpoint(tablet) {
+              grid-template-columns: 1fr 1fr;
+              grid-template-rows: auto;
+            }
+          }
+
+          .address-cep-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+            gap: 15px;
+
+            @include breakpoint(tablet) {
+              grid-template-columns: calc(40% - 7.5px) calc(60% - 7.5px);
+              grid-template-rows: auto;
+            }
+
+            @include breakpoint(smallScreen) {
+              grid-template-columns: calc(20% - 7.5px) calc(80% - 7.5px);
+            }
+          }
+
+          .address-num-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+            gap: 15px;
+
+            @include breakpoint(tablet) {
+              grid-template-columns: calc(30% - 7.5px) calc(70% - 7.5px);
+              grid-template-rows: 1fr;
+            }
+          }
+
+          .address-label {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            gap: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #252525;
+
+            .address-select {
+              appearance: none;
+              width: 100%;
+              height: 40px;
+              background-color: #fff;
+              border: 2px solid #cccccc;
+              border-radius: 8px;
+              padding: 0 10px;
+              font-size: 1rem;
+              color: #252525;
+              transition: border-color 0.3s ease;
+              background-image: url('/assets/icons/arrowdown.svg');
+              background-repeat: no-repeat;
+              background-position: 98% center;
+              background-size: 14px 8px;
+              cursor: pointer;
+
+              &:focus {
+                border-color: #7a7a7a;
+              }
+            }
+
+            .address-input {
+              width: 100%;
+              height: 40px;
+              background-color: #fff;
+              border: 2px solid #cccccc;
+              border-radius: 8px;
+              padding: 0 10px;
+              font-size: 1rem;
+              color: #252525;
+              transition: border-color 0.3s ease;
+
+              &:focus {
+                border-color: #7a7a7a;
+              }
+            }
+          }
+        }
+
+        .payment-form {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+
+          .payment-wrapper {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+            gap: 15px;
+
+            @include breakpoint(tablet) {
+              grid-template-columns: 1fr 1fr;
+              grid-template-rows: auto;
+            }
+
+            .payment-method-box {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+
+              .payment-method-title {
+                font-size: 1rem;
+                font-weight: 500;
+                color: #252525;
+              }
+
+              .payment-method-wrapper {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                .payment-method-label {
+                  display: flex;
+                  align-items: center;
+                  gap: 5px;
+                  font-size: 1rem;
+                  color: #252525;
+
+                  @include breakpoint(tablet) {
+                    margin-top: 8px;
+                  }
+
+                  .payment-method-input {
+                    accent-color: #d40066;
+                  }
+                }
+              }
+            }
+          }
+
+          .payment-label {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #252525;
+
+            .payment-select {
+              appearance: none;
+              width: 100%;
+              height: 40px;
+              background-color: #fff;
+              border: 2px solid #cccccc;
+              border-radius: 8px;
+              padding: 0 10px;
+              font-size: 1rem;
+              color: #252525;
+              transition: border-color 0.3s ease;
+              background-image: url('/assets/icons/arrowdown.svg');
+              background-repeat: no-repeat;
+              background-position: 98% center;
+              background-size: 14px 8px;
+              cursor: pointer;
+
+              &:focus {
+                border-color: #7a7a7a;
+              }
+            }
+
+            .payment-input {
+              width: 100%;
+              height: 40px;
+              background-color: #fff;
+              border: 2px solid #cccccc;
+              border-radius: 8px;
+              padding: 0 10px;
+              font-size: 1rem;
+              color: #252525;
+              transition: border-color 0.3s ease;
+
+              &:focus {
+                border-color: #7a7a7a;
+              }
+            }
+          }
+
+          .payment-account-wrapper {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(3, auto);
+            gap: 15px;
+
+            @include breakpoint(tablet) {
+              grid-template-columns: 20% 20% calc(60% - 30px);
+              grid-template-rows: auto;
+            }
+          }
+        }
+
+        .installation-form {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+
+          .installation-date-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+            gap: 15px;
+
+            @include breakpoint(tablet) {
+              grid-template-columns: 1fr 1fr;
+              grid-template-rows: auto;
+            }
+          }
+
+          .installation-period-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+            gap: 15px;
+
+            @include breakpoint(tablet) {
+              grid-template-columns: 1fr 1fr;
+              grid-template-rows: auto;
+            }
+          }
+
+          .installation-label {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #252525;
+
+            .installation-input {
+              margin-top: 5px;
+              width: 100%;
+              height: 40px;
+              background-color: #fff;
+              border: 2px solid #cccccc;
+              border-radius: 8px;
+              padding: 0 10px;
+              font-size: 1rem;
+              color: #252525;
+              transition: border-color 0.3s ease;
+
+              &:focus {
+                border-color: #7a7a7a;
+              }
+            }
+
+            .installation-select {
+              margin-top: 5px;
+              appearance: none;
+              width: 100%;
+              height: 40px;
+              background-color: #fff;
+              border: 2px solid #cccccc;
+              border-radius: 8px;
+              padding: 0 10px;
+              font-size: 1rem;
+              color: #252525;
+              transition: border-color 0.3s ease;
+              background-image: url('/assets/icons/arrowdown.svg');
+              background-repeat: no-repeat;
+              background-position: 98% center;
+              background-size: 14px 8px;
+              cursor: pointer;
+
+              &:focus {
+                border-color: #7a7a7a;
+              }
+            }
+          }
+        }
+
+        .register-form-button {
+          width: 100%;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #d40066;
+          border: none;
+          border-radius: 8px;
+          color: #fff;
+          font-size: 1rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: filter 0.3s ease;
+
+          &:hover {
+            filter: brightness(80%);
+          }
+        }
+      }
+
+      .register-form-plan-wrapper {
+        order: 1;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 35px;
+
+        @include breakpoint(tablet) {
+          order: 2;
+        }
+
+        .register-form-plan-box {
+          width: 100%;
+          background-color: #efefef;
+          border-radius: 8px;
+          padding: 25px;
+
+          @include breakpoint(tablet) {
+            max-width: 400px;
+          }
+
+          .register-form-plan-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #252525;
+            margin-bottom: 35px;
+            display: block;
+          }
+
+          .register-form-plan-details-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            flex-direction: column; // row no tablet
+
+            @include breakpoint(tablet) {
+              flex-direction: row;
+            }
+
+            .register-form-plan-details-box {
+              display: flex;
+              align-items: center;
+              gap: 15px;
+
+              .register-form-plan-provider-icon-box {
+                background-color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 60px;
+                min-width: 60px;
+                height: 60px;
+                border-radius: 8px;
+
+                .register-form-plan-provider-icon {
+                  width: 80%;
+                  height: auto;
+                }
+              }
+
+              .register-form-plan-details-infos-box {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+
+                .register-form-plan-details-infos-plan-title {
+                  font-size: 0.875rem;
+                  font-weight: 500;
+                  color: #252525;
+                }
+
+                .register-form-plan-details-infos-plan-detail {
+                  font-size: 1.125rem;
+                  font-weight: 600;
+                  color: #252525;
+                }
+              }
+            }
+
+            .register-form-plan-price {
+              font-size: 1rem;
+              font-weight: 600;
+              color: #252525;
+            }
+          }
+        }
+      }
+    }
+  }
+}

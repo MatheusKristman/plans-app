@@ -1,15 +1,56 @@
-import React, { useRef, useEffect } from 'react';
-import useTVPlansStore from '../../../stores/useTVPlansStore';
-import { shallow } from 'zustand/shallow';
+import React, { useRef, useEffect } from "react";
+import useTVPlansStore from "../../../stores/useTVPlansStore";
+import { shallow } from "zustand/shallow";
+import api from "../../../services/api";
 
-import Plan from './Plan';
+import Plan from "./Plan";
 
 const TVPlansBody = () => {
-  const { isFilterOpen, openFilterBox, closeFilterBox } = useTVPlansStore(
+  const {
+    isFilterOpen,
+    openFilterBox,
+    closeFilterBox,
+    tvPlans,
+    setTvPlans,
+    filteredTvPlans,
+    setFilteredTvPlans,
+    sliceBegin,
+    setSliceBegin,
+    sliceEnd,
+    setSliceEnd,
+    filterValues,
+    setFilterValues,
+    handleProviderFilterOption,
+    providers,
+    submittingFilter,
+    setSubmittingFilter,
+    unsetSubmittingFilter,
+    validFilterOptions,
+    setValidFilterOptions,
+    unsetValidFilterOptions,
+  } = useTVPlansStore(
     (state) => ({
       isFilterOpen: state.isFilterOpen,
       openFilterBox: state.openFilterBox,
       closeFilterBox: state.closeFilterBox,
+      tvPlans: state.tvPlans,
+      setTvPlans: state.setTvPlans,
+      filteredTvPlans: state.filteredTvPlans,
+      setFilteredTvPlans: state.setFilteredTvPlans,
+      sliceBegin: state.sliceBegin,
+      setSliceBegin: state.setSliceBegin,
+      sliceEnd: state.sliceEnd,
+      setSliceEnd: state.setSliceEnd,
+      filterValues: state.filterValues,
+      setFilterValues: state.setFilterValues,
+      handleProviderFilterOption: state.handleProviderFilterOption,
+      providers: state.providers,
+      submittingFilter: state.submittingFilter,
+      setSubmittingFilter: state.setSubmittingFilter,
+      unsetSubmittingFilter: state.unsetSubmittingFilter,
+      validFilterOptions: state.validFilterOptions,
+      setValidFilterOptions: state.setValidFilterOptions,
+      unsetValidFilterOptions: state.unsetValidFilterOptions,
     }),
     shallow
   );
@@ -25,15 +66,72 @@ const TVPlansBody = () => {
     openFilterBox();
   };
 
+  const handleShowMore = () => {
+    if (tvPlans.length <= sliceEnd) {
+      return;
+    }
+
+    setSliceEnd(sliceEnd + 5);
+    setSliceBegin(sliceBegin + 5);
+  };
+
+  const handleSubmitFilterButton = (event) => {
+    event.preventDefault();
+
+    setSubmittingFilter();
+  };
+
   useEffect(() => {
-    console.log(filterRef.current?.scrollHeight);
-  }, [filterRef]);
+    if (
+      filterValues.cep !== "" &&
+      filterValues.cep.length === 9 &&
+      filterValues.cost !== 0 &&
+      filterValues.devicesQuant !== 0
+    ) {
+      setValidFilterOptions();
+    }
+  }, [filterValues]);
+
+  useEffect(() => {
+    const submitData = () => {
+      const data = {
+        cep: filterValues.cep,
+        provider: filterValues.provider,
+        cost: filterValues.cost,
+        devicesQuant: filterValues.devicesQuant,
+      };
+
+      api
+        .post("plan/tv-plan/filter", data)
+        .then((res) => setFilteredTvPlans(res.data))
+        .catch((err) => console.error(err))
+        .finally(() => {
+          unsetSubmittingFilter();
+          unsetValidFilterOptions();
+          setTvPlans([]);
+          setSliceBegin(0);
+          setSliceEnd(5);
+        });
+    };
+
+    if (submittingFilter) {
+      submitData();
+    }
+  }, [submittingFilter]);
+
+  useEffect(() => {
+    console.log(filteredTvPlans);
+  }, [filteredTvPlans]);
 
   return (
-    <div className='body-container'>
-      <div className='body-wrapper wrapper'>
-        <div className='filter-form-container'>
-          <button type='button' onClick={handleFilterBoxButton} className='filter-form-button'>
+    <div className="body-container">
+      <div className="body-wrapper wrapper">
+        <div className="filter-form-container">
+          <button
+            type="button"
+            onClick={handleFilterBoxButton}
+            className="filter-form-button"
+          >
             Filtrar
           </button>
 
@@ -42,151 +140,250 @@ const TVPlansBody = () => {
             style={
               isFilterOpen
                 ? { maxHeight: `${filterRef.current.scrollHeight + 25}px` }
-                : { maxHeight: '0px' }
+                : { maxHeight: "0px" }
             }
-            className='filter-form-box'
+            className="filter-form-box"
           >
-            <div className='filter-form-wrapper'>
-              <div className='filter-form-cep-box'>
-                <span className='filter-form-cep-title'>Cep</span>
-                <input type='text' name='cep' className='filter-form-cep-input' />
+            <div className="filter-form-wrapper">
+              <div className="filter-form-cep-box">
+                <span className="filter-form-cep-title">Cep</span>
+                <input
+                  type="text"
+                  name="cep"
+                  autoCorrect="off"
+                  autoComplete="off"
+                  onChange={(event) => {
+                    let cep = event.target.value.replace(/\D/g, "");
+
+                    if (cep.length === 8) {
+                      cep = cep.replace(/(\d{5})(\d)/, "$1-$2");
+                    }
+
+                    setFilterValues("cep", cep);
+                  }}
+                  value={filterValues.cep}
+                  maxLength="8"
+                  className="filter-form-cep-input"
+                />
               </div>
 
-              <div className='filter-form-cost-box'>
-                <span className='filter-form-cost-title'>Preço</span>
+              <div className="filter-form-cost-box">
+                <span className="filter-form-cost-title">Preço</span>
 
-                <label htmlFor='cost50' className='filter-form-cost-label'>
-                  <input type='radio' id='cost50' name='cost' className='filter-form-cost-input' />
+                <label htmlFor="cost50" className="filter-form-cost-label">
+                  <input
+                    type="radio"
+                    id="cost50"
+                    name="cost"
+                    value={50}
+                    onChange={(e) =>
+                      setFilterValues("cost", Number(e.target.value))
+                    }
+                    className="filter-form-cost-input"
+                  />
                   Até R$ 50,00
                 </label>
 
-                <label htmlFor='cost100' className='filter-form-cost-label'>
-                  <input type='radio' id='cost100' name='cost' className='filter-form-cost-input' />
+                <label htmlFor="cost100" className="filter-form-cost-label">
+                  <input
+                    type="radio"
+                    id="cost100"
+                    name="cost"
+                    value={100}
+                    onChange={(e) =>
+                      setFilterValues("cost", Number(e.target.value))
+                    }
+                    className="filter-form-cost-input"
+                  />
                   Até R$ 100,00
                 </label>
 
-                <label htmlFor='cost200' className='filter-form-cost-label'>
-                  <input type='radio' id='cost200' name='cost' className='filter-form-cost-input' />
-                  Até R$ 200,00
+                <label htmlFor="cost150" className="filter-form-cost-label">
+                  <input
+                    type="radio"
+                    id="cost150"
+                    name="cost"
+                    value={150}
+                    onChange={(e) =>
+                      setFilterValues("cost", Number(e.target.value))
+                    }
+                    className="filter-form-cost-input"
+                  />
+                  Até R$ 150,00
                 </label>
 
-                <label htmlFor='cost201' className='filter-form-cost-label'>
-                  <input type='radio' id='cost201' name='cost' className='filter-form-cost-input' />
-                  Mais de R$ 200,00
+                <label htmlFor="cost250" className="filter-form-cost-label">
+                  <input
+                    type="radio"
+                    id="cost250"
+                    name="cost"
+                    value={250}
+                    onChange={(e) =>
+                      setFilterValues("cost", Number(e.target.value))
+                    }
+                    className="filter-form-cost-input"
+                  />
+                  Até R$ 250,00
                 </label>
               </div>
 
-              <div className='filter-form-devices-box'>
-                <span className='filter-form-devices-title'>Quantidade de dispositivos</span>
+              <div className="filter-form-devices-box">
+                <span className="filter-form-devices-title">
+                  Quantidade de dispositivos
+                </span>
 
-                <label htmlFor='device1' className='filter-form-devices-label'>
+                <label htmlFor="device1" className="filter-form-devices-label">
                   <input
-                    type='radio'
-                    id='device1'
-                    name='devicesQuant'
-                    className='filter-form-devices-input'
+                    type="radio"
+                    id="device1"
+                    name="devicesQuant"
+                    value={1}
+                    onChange={(e) =>
+                      setFilterValues("devicesQuant", Number(e.target.value))
+                    }
+                    className="filter-form-devices-input"
                   />
                   1 aparelho
                 </label>
 
-                <label htmlFor='device2' className='filter-form-devices-label'>
+                <label htmlFor="device2" className="filter-form-devices-label">
                   <input
-                    type='radio'
-                    id='device2'
-                    name='devicesQuant'
-                    className='filter-form-devices-input'
+                    type="radio"
+                    id="device2"
+                    name="devicesQuant"
+                    value={2}
+                    onChange={(e) =>
+                      setFilterValues("devicesQuant", Number(e.target.value))
+                    }
+                    className="filter-form-devices-input"
                   />
                   2 aparelhos
                 </label>
 
-                <label htmlFor='device3' className='filter-form-devices-label'>
+                <label htmlFor="device3" className="filter-form-devices-label">
                   <input
-                    type='radio'
-                    id='device3'
-                    name='devicesQuant'
-                    className='filter-form-devices-input'
+                    type="radio"
+                    id="device3"
+                    name="devicesQuant"
+                    value={3}
+                    onChange={(e) =>
+                      setFilterValues("devicesQuant", Number(e.target.value))
+                    }
+                    className="filter-form-devices-input"
                   />
                   3 aparelhos
                 </label>
 
-                <label htmlFor='device4' className='filter-form-devices-label'>
+                <label htmlFor="device4" className="filter-form-devices-label">
                   <input
-                    type='radio'
-                    id='device4'
-                    name='devicesQuant'
-                    className='filter-form-devices-input'
+                    type="radio"
+                    id="device4"
+                    name="devicesQuant"
+                    value={4}
+                    onChange={(e) =>
+                      setFilterValues("devicesQuant", Number(e.target.value))
+                    }
+                    className="filter-form-devices-input"
                   />
                   4 aparelhos
                 </label>
               </div>
 
-              {/* TODO criar layout para operadoras */}
-              <div className='filter-form-provider-box'>
-                <span className='filter-form-provider-title'>Operadoras</span>
+              <div className="filter-form-provider-box">
+                <span className="filter-form-provider-title">Operadoras</span>
 
-                <label htmlFor='claro' className='filter-form-provider-label'>
-                  <input
-                    type='checkbox'
-                    id='claro'
-                    name='provider'
-                    className='filter-form-provider-input'
-                  />
-                  Claro
-                </label>
-
-                <label htmlFor='tim' className='filter-form-provider-label'>
-                  <input
-                    type='checkbox'
-                    id='tim'
-                    name='provider'
-                    className='filter-form-provider-input'
-                  />
-                  Tim
-                </label>
-
-                <label htmlFor='vivo' className='filter-form-provider-label'>
-                  <input
-                    type='checkbox'
-                    id='vivo'
-                    name='provider'
-                    className='filter-form-provider-input'
-                  />
-                  Vivo
-                </label>
-
-                <label htmlFor='oi' className='filter-form-provider-label'>
-                  <input
-                    type='checkbox'
-                    id='oi'
-                    name='provider'
-                    className='filter-form-provider-input'
-                  />
-                  Oi
-                </label>
+                {providers.map((provider, index) => (
+                  <label
+                    key={`provider-${index}`}
+                    htmlFor={provider}
+                    className="filter-form-provider-label"
+                  >
+                    <input
+                      type="checkbox"
+                      id={provider}
+                      name="provider"
+                      value={provider}
+                      onChange={(event) =>
+                        handleProviderFilterOption(event.target.value)
+                      }
+                      className="filter-form-provider-input"
+                    />
+                    {provider}
+                  </label>
+                ))}
               </div>
             </div>
 
-            <button type='submit' disabled className='filter-form-submit-button'>
+            <button
+              type="submit"
+              onClick={handleSubmitFilterButton}
+              disabled={!validFilterOptions}
+              className="filter-form-submit-button"
+            >
               Aplicar
             </button>
           </form>
         </div>
 
-        <div className='result-box'>
-          <span className='result-status'>1 Resultado</span>
+        <div className="result-box">
+          <span className="result-status">
+            {tvPlans.length !== 0 ? tvPlans.length : filteredTvPlans.length}{" "}
+            Resultado(s)
+          </span>
 
-          <div className='result-wrapper'>
-            <Plan
-              providerLogo='claro.png'
-              title='Claro TV 150 Canais'
-              channelsQuant='150'
-              benefits={['Whatsapp', 'Instagram', 'Telegram']}
-              devicesQuant={2}
-              cost={69.9}
-              afterCost={79.9}
-              periodToChangeCost={5}
-              description='descrição teste descrição teste descrição teste descrição teste descrição teste descrição teste descrição teste descrição teste descrição teste descrição teste descrição teste descrição teste descrição teste descrição teste descrição teste descrição teste descrição teste descrição teste '
-            />
+          <div className="result-wrapper">
+            {filteredTvPlans.length !== 0 ? (
+              filteredTvPlans
+                .slice(sliceBegin, sliceEnd)
+                .map((plan) => (
+                  <Plan
+                    key={plan._id}
+                    id={plan._id}
+                    providerLogo={plan.providerIcon}
+                    title={plan.title}
+                    installationCost={plan.installationCost}
+                    benefits={plan.benefits}
+                    devicesQuant={plan.devicesQuant}
+                    cost={plan.cost}
+                    afterCost={plan.afterCost}
+                    periodToChangeCost={plan.periodToChangeCost}
+                    description={plan.description}
+                  />
+                ))
+            ) : tvPlans.length !== 0 ? (
+              tvPlans
+                .slice(sliceBegin, sliceEnd)
+                .map((plan) => (
+                  <Plan
+                    key={plan._id}
+                    id={plan._id}
+                    providerLogo={plan.providerIcon}
+                    title={plan.title}
+                    installationCost={plan.installationCost}
+                    benefits={plan.benefits}
+                    devicesQuant={plan.devicesQuant}
+                    cost={plan.cost}
+                    afterCost={plan.afterCost}
+                    periodToChangeCost={plan.periodToChangeCost}
+                    description={plan.description}
+                  />
+                ))
+            ) : (
+              <span className="result-not-found-message">
+                Nenhum plano encontrado
+              </span>
+            )}
+            {tvPlans.length > sliceEnd ? (
+              <button
+                type="button"
+                onClick={handleShowMore}
+                className="result-show-more-button"
+              >
+                MOSTRAR MAIS
+              </button>
+            ) : (
+              false
+            )}
           </div>
         </div>
       </div>

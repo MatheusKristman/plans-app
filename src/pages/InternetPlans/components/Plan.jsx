@@ -2,36 +2,16 @@ import React, { useRef } from 'react';
 import useInternetPlanStore from '../../../stores/useInternetPlansStore';
 import { shallow } from 'zustand/shallow';
 
-const Plan = ({ providerLogo, title, download, benefits, technology, cost, description }) => {
-  const {
-    isSeeMoreOpen,
-    activateSeeMore,
-    deactivateSeeMore,
-    isFilterOpen,
-    openFilterBox,
-    closeFilterBox,
-  } = useInternetPlanStore(
+const Plan = ({ id, providerLogo, title, download, benefits, technology, cost, description }) => {
+  const { idActiveToSeeMore, handleIdActiveToSeeMore } = useInternetPlanStore(
     (state) => ({
-      isSeeMoreOpen: state.isSeeMoreOpen,
-      activateSeeMore: state.activateSeeMore,
-      deactivateSeeMore: state.deactivateSeeMore,
-      isFilterOpen: state.isFilterOpen,
-      openFilterBox: state.openFilterBox,
-      closeFilterBox: state.closeFilterBox,
+      idActiveToSeeMore: state.idActiveToSeeMore,
+      handleIdActiveToSeeMore: state.handleIdActiveToSeeMore,
     }),
     shallow
   );
 
   const descriptionRef = useRef();
-
-  const handleDescriptionVisualization = () => {
-    if (isSeeMoreOpen) {
-      deactivateSeeMore();
-      return;
-    }
-
-    activateSeeMore();
-  };
 
   return (
     <div className='plan-box'>
@@ -126,7 +106,7 @@ const Plan = ({ providerLogo, title, download, benefits, technology, cost, descr
                 <span
                   ref={descriptionRef}
                   style={
-                    isSeeMoreOpen
+                    idActiveToSeeMore === id
                       ? {
                           maxHeight: `${descriptionRef.current?.scrollHeight + 50}px`,
                           paddingBottom: '50px',
@@ -139,10 +119,10 @@ const Plan = ({ providerLogo, title, download, benefits, technology, cost, descr
                 </span>
                 <button
                   type='button'
-                  onClick={handleDescriptionVisualization}
+                  onClick={() => handleIdActiveToSeeMore(id)}
                   className='plan-details-expand-button'
                 >
-                  {isSeeMoreOpen ? 'Ler menos' : 'Ler mais'}
+                  {idActiveToSeeMore === id ? 'Ler menos' : 'Ler mais'}
                 </button>
               </>
             ) : (

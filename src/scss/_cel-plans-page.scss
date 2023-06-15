@@ -589,6 +589,33 @@
               }
             }
           }
+
+          .result-not-found-message {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #b0b0b0;
+            width: 100%;
+            text-align: center;
+          }
+
+          .result-show-more-button {
+            width: fit-content;
+            height: 40px;
+            margin: auto;
+            padding: 0px 20px;
+            background-color: #fff;
+            color: #d40066;
+            border: 2px solid #d40066;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: padding 0.3s ease;
+
+            &:hover {
+              padding: 0px 30px;
+            }
+          }
         }
       }
     }

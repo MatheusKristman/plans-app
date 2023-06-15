@@ -4,6 +4,7 @@ import useCelPlansStore from '../../../stores/useCelPlansStore';
 import { shallow } from 'zustand/shallow';
 
 const Plan = ({
+  id,
   providerLogo,
   title,
   franchise,
@@ -12,25 +13,15 @@ const Plan = ({
   cost,
   description,
 }) => {
-  const { isSeeMoreOpen, activateSeeMore, deactivateSeeMore } = useCelPlansStore(
+  const { idActiveToSeeMore, handleIdActiveToSeeMore } = useCelPlansStore(
     (state) => ({
-      isSeeMoreOpen: state.isSeeMoreOpen,
-      activateSeeMore: state.activateSeeMore,
-      deactivateSeeMore: state.deactivateSeeMore,
+      idActiveToSeeMore: state.idActiveToSeeMore,
+      handleIdActiveToSeeMore: state.handleIdActiveToSeeMore,
     }),
     shallow
   );
 
   const descriptionRef = useRef();
-
-  const handleSeeMore = () => {
-    if (isSeeMoreOpen) {
-      deactivateSeeMore();
-      return;
-    }
-
-    activateSeeMore();
-  };
 
   return (
     <div className='plan-box'>
@@ -119,23 +110,33 @@ const Plan = ({
 
         <div className='plan-details-box'>
           <div className='plan-details-wrapper'>
-            <span
-              ref={descriptionRef}
-              className='plan-details-desc'
-              style={
-                isSeeMoreOpen
-                  ? {
-                      maxHeight: `${descriptionRef.current?.scrollHeight + 50}px`,
-                      paddingBottom: '50px',
-                    }
-                  : { maxHeight: '100px', paddingBottom: '0px' }
-              }
-            >
-              {description}
-            </span>
-            <button type='button' onClick={handleSeeMore} className='plan-details-expand-button'>
-              {isSeeMoreOpen ? 'Ler menos' : 'Ler mais'}
-            </button>
+            {description.length > 150 ? (
+              <>
+                <span
+                  ref={descriptionRef}
+                  className='plan-details-desc'
+                  style={
+                    idActiveToSeeMore === id
+                      ? {
+                          maxHeight: `${descriptionRef.current?.scrollHeight + 50}px`,
+                          paddingBottom: '50px',
+                        }
+                      : { maxHeight: '100px', paddingBottom: '0px' }
+                  }
+                >
+                  {description}
+                </span>
+                <button
+                  type='button'
+                  onClick={() => handleIdActiveToSeeMore(id)}
+                  className='plan-details-expand-button'
+                >
+                  {idActiveToSeeMore === id ? 'Ler menos' : 'Ler mais'}
+                </button>
+              </>
+            ) : (
+              <span className='plan-details-desc'>{description}</span>
+            )}
           </div>
         </div>
       </div>

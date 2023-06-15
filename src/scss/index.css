@@ -10110,6 +10110,13 @@ body {
   color: #5c679b;
   cursor: pointer;
 }
+.internet-plans-container .body-container .body-wrapper .result-box .result-wrapper .result-not-found-message {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #b0b0b0;
+  width: 100%;
+  text-align: center;
+}
 .internet-plans-container .body-container .body-wrapper .result-box .result-wrapper .result-show-more-button {
   width: fit-content;
   height: 40px;
@@ -10683,6 +10690,30 @@ body {
   color: #5c679b;
   cursor: pointer;
 }
+.cel-plans-container .body-container .body-wrapper .result-box .result-wrapper .result-not-found-message {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #b0b0b0;
+  width: 100%;
+  text-align: center;
+}
+.cel-plans-container .body-container .body-wrapper .result-box .result-wrapper .result-show-more-button {
+  width: fit-content;
+  height: 40px;
+  margin: auto;
+  padding: 0px 20px;
+  background-color: #fff;
+  color: #d40066;
+  border: 2px solid #d40066;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: padding 0.3s ease;
+}
+.cel-plans-container .body-container .body-wrapper .result-box .result-wrapper .result-show-more-button:hover {
+  padding: 0px 30px;
+}
 
 .tv-plans-container {
   width: 100%;
@@ -11000,47 +11031,42 @@ body {
     grid-template-rows: 1fr;
   }
 }
-.tv-plans-container .body-container .body-wrapper .result-box .result-wrapper .plan-box .plan-wrapper .plan-benefits-wrapper .plan-benefits-box .plan-benefits-channels-box {
+.tv-plans-container .body-container .body-wrapper .result-box .result-wrapper .plan-box .plan-wrapper .plan-benefits-wrapper .plan-benefits-box .plan-benefits-installation-cost-box {
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid #b2b7d1;
 }
 @media screen and (min-width: 500px) {
-  .tv-plans-container .body-container .body-wrapper .result-box .result-wrapper .plan-box .plan-wrapper .plan-benefits-wrapper .plan-benefits-box .plan-benefits-channels-box {
+  .tv-plans-container .body-container .body-wrapper .result-box .result-wrapper .plan-box .plan-wrapper .plan-benefits-wrapper .plan-benefits-box .plan-benefits-installation-cost-box {
     border-bottom: none;
     border-right: none;
   }
 }
 @media screen and (min-width: 768px) {
-  .tv-plans-container .body-container .body-wrapper .result-box .result-wrapper .plan-box .plan-wrapper .plan-benefits-wrapper .plan-benefits-box .plan-benefits-channels-box {
+  .tv-plans-container .body-container .body-wrapper .result-box .result-wrapper .plan-box .plan-wrapper .plan-benefits-wrapper .plan-benefits-box .plan-benefits-installation-cost-box {
     padding-right: 20px;
   }
 }
 @media screen and (min-width: 1200px) {
-  .tv-plans-container .body-container .body-wrapper .result-box .result-wrapper .plan-box .plan-wrapper .plan-benefits-wrapper .plan-benefits-box .plan-benefits-channels-box {
+  .tv-plans-container .body-container .body-wrapper .result-box .result-wrapper .plan-box .plan-wrapper .plan-benefits-wrapper .plan-benefits-box .plan-benefits-installation-cost-box {
     border-right: 1px solid #b2b7d1;
   }
 }
-.tv-plans-container .body-container .body-wrapper .result-box .result-wrapper .plan-box .plan-wrapper .plan-benefits-wrapper .plan-benefits-box .plan-benefits-channels-box .plan-benefits-channels-value {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
+.tv-plans-container .body-container .body-wrapper .result-box .result-wrapper .plan-box .plan-wrapper .plan-benefits-wrapper .plan-benefits-box .plan-benefits-installation-cost-box .plan-benefits-installation-cost-title {
   font-size: 1.125rem;
-  font-weight: 600;
+  font-weight: 500;
+  text-align: center;
   color: #5c679b;
+  margin-bottom: 10px;
 }
-.tv-plans-container .body-container .body-wrapper .result-box .result-wrapper .plan-box .plan-wrapper .plan-benefits-wrapper .plan-benefits-box .plan-benefits-channels-box .plan-benefits-channels-value strong {
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-@media screen and (min-width: 500px) {
-  .tv-plans-container .body-container .body-wrapper .result-box .result-wrapper .plan-box .plan-wrapper .plan-benefits-wrapper .plan-benefits-box .plan-benefits-channels-box .plan-benefits-channels-value strong {
-    font-size: 2rem;
-  }
+.tv-plans-container .body-container .body-wrapper .result-box .result-wrapper .plan-box .plan-wrapper .plan-benefits-wrapper .plan-benefits-box .plan-benefits-installation-cost-box .plan-benefits-installation-cost-value {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #5c679b;
+  text-align: center;
 }
 .tv-plans-container .body-container .body-wrapper .result-box .result-wrapper .plan-box .plan-wrapper .plan-benefits-wrapper .plan-benefits-box .plan-benefits-benefit-box {
   width: 100%;
@@ -11240,6 +11266,30 @@ body {
   color: #5c679b;
   cursor: pointer;
 }
+.tv-plans-container .body-container .body-wrapper .result-box .result-not-found-message {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #b0b0b0;
+  width: 100%;
+  text-align: center;
+}
+.tv-plans-container .body-container .body-wrapper .result-box .result-show-more-button {
+  width: fit-content;
+  height: 40px;
+  margin: auto;
+  padding: 0px 20px;
+  background-color: #fff;
+  color: #d40066;
+  border: 2px solid #d40066;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: padding 0.3s ease;
+}
+.tv-plans-container .body-container .body-wrapper .result-box .result-show-more-button:hover {
+  padding: 0px 30px;
+}
 
 .header-container {
   width: 100%;
@@ -11417,6 +11467,604 @@ body {
   .header-container .header-bottom-box .header-bottom-wrapper .header-bottom-desc {
     max-width: 500px;
   }
+}
+
+.register-form-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(32, 33, 36, 0.5);
+  overflow: auto;
+  padding: 60px 25px;
+  z-index: 50;
+}
+@media screen and (min-width: 500px) {
+  .register-form-overlay {
+    padding: 60px;
+  }
+}
+.register-form-overlay::before {
+  content: "";
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.register-form-overlay .register-form-container {
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  max-width: 1000px;
+  vertical-align: middle;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+}
+.register-form-overlay .register-form-container .register-form-illustration-box {
+  width: 100%;
+  height: 250px;
+  background-image: url("/assets/images/register-client-header-mobile.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right center;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  position: relative;
+}
+@media screen and (min-width: 500px) {
+  .register-form-overlay .register-form-container .register-form-illustration-box {
+    background-color: url("/assets/images/register-client-header-tablet.png");
+  }
+}
+.register-form-overlay .register-form-container .register-form-illustration-box .register-form-close-button {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+.register-form-overlay .register-form-container .register-form-illustration-box .register-form-close-button svg {
+  width: 75%;
+  height: auto;
+}
+.register-form-overlay .register-form-container .register-form-illustration-box .register-form-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  padding: 20px 30px;
+  width: fit-content;
+  display: block;
+  border-top-right-radius: 16px;
+  font-size: 1.5;
+  font-weight: 600;
+  color: #252525;
+}
+@media screen and (min-width: 768px) {
+  .register-form-overlay .register-form-container .register-form-illustration-box .register-form-title {
+    font-size: 2rem;
+  }
+}
+.register-form-overlay .register-form-container .register-form-body {
+  width: 100%;
+  padding: 30px 20px;
+  background-color: #fff;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (min-width: 500px) {
+  .register-form-overlay .register-form-container .register-form-body {
+    padding: 40px 50px;
+  }
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-progress-box {
+  order: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 50px;
+}
+@media screen and (min-width: 500px) {
+  .register-form-overlay .register-form-container .register-form-body .register-form-progress-box {
+    order: 1;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 5px;
+  }
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-progress-box .register-form-progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-progress-box .register-form-progress-step .register-form-progress-ball {
+  border: 2px solid #d40066;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #d40066;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-progress-box .register-form-progress-step .actual-progress {
+  background-color: #d40066;
+  color: #fff;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-progress-box .register-form-progress-step .register-form-progress-desc {
+  font-size: 0.85rem;
+  color: #252525;
+  text-align: center;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-progress-box .register-form-progress-line {
+  background-color: #cccccc;
+  height: 30px;
+  width: 2px;
+}
+@media screen and (min-width: 500px) {
+  .register-form-overlay .register-form-container .register-form-body .register-form-progress-box .register-form-progress-line {
+    width: 100%;
+    height: 2px;
+    margin-top: 25px;
+  }
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box {
+  order: 3;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .personal-data-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .personal-data-form .personal-data-label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #252525;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .personal-data-form .personal-data-label .personal-data-input {
+  width: 100%;
+  height: 40px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 0 10px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .personal-data-form .personal-data-label .personal-data-input:focus {
+  border-color: #7a7a7a;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .personal-data-form .personal-data-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  gap: 15px;
+}
+@media screen and (min-width: 500px) {
+  .register-form-overlay .register-form-container .register-form-body .register-form-info-box .personal-data-form .personal-data-wrapper {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .personal-data-form .personal-data-name-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  gap: 15px;
+}
+@media screen and (min-width: 500px) {
+  .register-form-overlay .register-form-container .register-form-body .register-form-info-box .personal-data-form .personal-data-name-wrapper {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+}
+@media screen and (min-width: 768px) {
+  .register-form-overlay .register-form-container .register-form-body .register-form-info-box .personal-data-form .personal-data-name-wrapper {
+    grid-template-columns: 70% calc(30% - 15px);
+  }
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .address-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .address-form .address-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  gap: 15px;
+}
+@media screen and (min-width: 500px) {
+  .register-form-overlay .register-form-container .register-form-body .register-form-info-box .address-form .address-wrapper {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .address-form .address-cep-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  gap: 15px;
+}
+@media screen and (min-width: 500px) {
+  .register-form-overlay .register-form-container .register-form-body .register-form-info-box .address-form .address-cep-wrapper {
+    grid-template-columns: calc(40% - 7.5px) calc(60% - 7.5px);
+    grid-template-rows: auto;
+  }
+}
+@media screen and (min-width: 768px) {
+  .register-form-overlay .register-form-container .register-form-body .register-form-info-box .address-form .address-cep-wrapper {
+    grid-template-columns: calc(20% - 7.5px) calc(80% - 7.5px);
+  }
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .address-form .address-num-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  gap: 15px;
+}
+@media screen and (min-width: 500px) {
+  .register-form-overlay .register-form-container .register-form-body .register-form-info-box .address-form .address-num-wrapper {
+    grid-template-columns: calc(30% - 7.5px) calc(70% - 7.5px);
+    grid-template-rows: 1fr;
+  }
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .address-form .address-label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #252525;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .address-form .address-label .address-select {
+  appearance: none;
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 0 10px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+  background-image: url("/assets/icons/arrowdown.svg");
+  background-repeat: no-repeat;
+  background-position: 98% center;
+  background-size: 14px 8px;
+  cursor: pointer;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .address-form .address-label .address-select:focus {
+  border-color: #7a7a7a;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .address-form .address-label .address-input {
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 0 10px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .address-form .address-label .address-input:focus {
+  border-color: #7a7a7a;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form .payment-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  gap: 15px;
+}
+@media screen and (min-width: 500px) {
+  .register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form .payment-wrapper {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form .payment-wrapper .payment-method-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form .payment-wrapper .payment-method-box .payment-method-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #252525;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form .payment-wrapper .payment-method-box .payment-method-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form .payment-wrapper .payment-method-box .payment-method-wrapper .payment-method-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1rem;
+  color: #252525;
+}
+@media screen and (min-width: 500px) {
+  .register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form .payment-wrapper .payment-method-box .payment-method-wrapper .payment-method-label {
+    margin-top: 8px;
+  }
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form .payment-wrapper .payment-method-box .payment-method-wrapper .payment-method-label .payment-method-input {
+  accent-color: #d40066;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form .payment-label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #252525;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form .payment-label .payment-select {
+  appearance: none;
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 0 10px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+  background-image: url("/assets/icons/arrowdown.svg");
+  background-repeat: no-repeat;
+  background-position: 98% center;
+  background-size: 14px 8px;
+  cursor: pointer;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form .payment-label .payment-select:focus {
+  border-color: #7a7a7a;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form .payment-label .payment-input {
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 0 10px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form .payment-label .payment-input:focus {
+  border-color: #7a7a7a;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form .payment-account-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, auto);
+  gap: 15px;
+}
+@media screen and (min-width: 500px) {
+  .register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form .payment-account-wrapper {
+    grid-template-columns: 20% 20% calc(60% - 30px);
+    grid-template-rows: auto;
+  }
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .installation-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .installation-form .installation-date-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  gap: 15px;
+}
+@media screen and (min-width: 500px) {
+  .register-form-overlay .register-form-container .register-form-body .register-form-info-box .installation-form .installation-date-wrapper {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .installation-form .installation-period-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  gap: 15px;
+}
+@media screen and (min-width: 500px) {
+  .register-form-overlay .register-form-container .register-form-body .register-form-info-box .installation-form .installation-period-wrapper {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .installation-form .installation-label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #252525;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .installation-form .installation-label .installation-input {
+  margin-top: 5px;
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 0 10px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .installation-form .installation-label .installation-input:focus {
+  border-color: #7a7a7a;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .installation-form .installation-label .installation-select {
+  margin-top: 5px;
+  appearance: none;
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 0 10px;
+  font-size: 1rem;
+  color: #252525;
+  transition: border-color 0.3s ease;
+  background-image: url("/assets/icons/arrowdown.svg");
+  background-repeat: no-repeat;
+  background-position: 98% center;
+  background-size: 14px 8px;
+  cursor: pointer;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .installation-form .installation-label .installation-select:focus {
+  border-color: #7a7a7a;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .register-form-button {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d40066;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .register-form-button:hover {
+  filter: brightness(80%);
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-plan-wrapper {
+  order: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 35px;
+}
+@media screen and (min-width: 500px) {
+  .register-form-overlay .register-form-container .register-form-body .register-form-plan-wrapper {
+    order: 2;
+  }
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-plan-wrapper .register-form-plan-box {
+  width: 100%;
+  background-color: #efefef;
+  border-radius: 8px;
+  padding: 25px;
+}
+@media screen and (min-width: 500px) {
+  .register-form-overlay .register-form-container .register-form-body .register-form-plan-wrapper .register-form-plan-box {
+    max-width: 400px;
+  }
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-plan-wrapper .register-form-plan-box .register-form-plan-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #252525;
+  margin-bottom: 35px;
+  display: block;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-plan-wrapper .register-form-plan-box .register-form-plan-details-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  flex-direction: column;
+}
+@media screen and (min-width: 500px) {
+  .register-form-overlay .register-form-container .register-form-body .register-form-plan-wrapper .register-form-plan-box .register-form-plan-details-container {
+    flex-direction: row;
+  }
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-plan-wrapper .register-form-plan-box .register-form-plan-details-container .register-form-plan-details-box {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-plan-wrapper .register-form-plan-box .register-form-plan-details-container .register-form-plan-details-box .register-form-plan-provider-icon-box {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  min-width: 60px;
+  height: 60px;
+  border-radius: 8px;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-plan-wrapper .register-form-plan-box .register-form-plan-details-container .register-form-plan-details-box .register-form-plan-provider-icon-box .register-form-plan-provider-icon {
+  width: 80%;
+  height: auto;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-plan-wrapper .register-form-plan-box .register-form-plan-details-container .register-form-plan-details-box .register-form-plan-details-infos-box {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-plan-wrapper .register-form-plan-box .register-form-plan-details-container .register-form-plan-details-box .register-form-plan-details-infos-box .register-form-plan-details-infos-plan-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #252525;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-plan-wrapper .register-form-plan-box .register-form-plan-details-container .register-form-plan-details-box .register-form-plan-details-infos-box .register-form-plan-details-infos-plan-detail {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #252525;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-plan-wrapper .register-form-plan-box .register-form-plan-details-container .register-form-plan-price {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #252525;
 }
 
 /*# sourceMappingURL=index.css.map */

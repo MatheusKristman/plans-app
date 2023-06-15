@@ -1,22 +1,22 @@
-import React, { useEffect, useRef } from "react";
-import usePlansStore from "../../../stores/usePlansStore";
-import useGeneralStore from "../../../stores/useGeneralStore";
-import { shallow } from "zustand/shallow";
-import api from "../../../services/api";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { toast } from "react-toastify";
+import React, { useEffect, useRef } from 'react';
+import usePlansStore from '../../../stores/usePlansStore';
+import useGeneralStore from '../../../stores/useGeneralStore';
+import { shallow } from 'zustand/shallow';
+import api from '../../../services/api';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { toast } from 'react-toastify';
 
-import BenefitsLabel from "../../DashboardComponent/components/BenefitsLabel";
+import BenefitsLabel from '../../DashboardComponent/components/BenefitsLabel';
 
 const schema = yup.object({
-  title: yup.string().required("Título é obrigatório"),
-  cost: yup.string().required("Valor é obrigatório"),
-  download: yup.string().required("Velocidade de Download é obrigatório"),
-  upload: yup.string().required("Velocidade de Upload é obrigatório"),
-  technology: yup.string().required("Tecnologia do modem é obrigatório"),
-  description: yup.string().required("Descrição é obrigatório"),
+  title: yup.string().required('Título é obrigatório'),
+  cost: yup.string().required('Valor é obrigatório'),
+  download: yup.string().required('Velocidade de Download é obrigatório'),
+  upload: yup.string().required('Velocidade de Upload é obrigatório'),
+  technology: yup.string().required('Tecnologia do modem é obrigatório'),
+  description: yup.string().required('Descrição é obrigatório'),
 });
 
 const EditInternetPlanForm = () => {
@@ -99,30 +99,24 @@ const EditInternetPlanForm = () => {
       setPlans: state.setPlans,
       internetInstallationCostError: state.internetInstallationCostError,
       setInternetInstallationCostError: state.setInternetInstallationCostError,
-      unsetInternetInstallationCostError:
-        state.unsetInternetInstallationCostError,
+      unsetInternetInstallationCostError: state.unsetInternetInstallationCostError,
       internetFranchiseLimitError: state.internetFranchiseLimitError,
       setInternetFranchiseLimitError: state.setInternetFranchiseLimitError,
       unsetInternetFranchiseLimitError: state.unsetInternetFranchiseLimitError,
     }),
     shallow
   );
-  const {
-    modalAnimation,
-    deactivateModalAnimation,
-    defaultBenefits,
-    benefits,
-    resetBenefits,
-  } = useGeneralStore(
-    (state) => ({
-      modalAnimation: state.modalAnimation,
-      deactivateModalAnimation: state.deactivateModalAnimation,
-      defaultBenefits: state.defaultBenefits,
-      benefits: state.benefits,
-      resetBenefits: state.resetBenefits,
-    }),
-    shallow
-  );
+  const { modalAnimation, deactivateModalAnimation, defaultBenefits, benefits, resetBenefits } =
+    useGeneralStore(
+      (state) => ({
+        modalAnimation: state.modalAnimation,
+        deactivateModalAnimation: state.deactivateModalAnimation,
+        defaultBenefits: state.defaultBenefits,
+        benefits: state.benefits,
+        resetBenefits: state.resetBenefits,
+      }),
+      shallow
+    );
 
   const installationCostCheckboxRef = useRef();
   const franchiseLimitRef = useRef();
@@ -148,7 +142,7 @@ const EditInternetPlanForm = () => {
     deactivateModalAnimation();
     internetResetInputs();
     resetBenefits();
-    setIdSelectedForDetails("");
+    setIdSelectedForDetails('');
 
     setTimeout(() => {
       closeEditInternetForm();
@@ -158,15 +152,15 @@ const EditInternetPlanForm = () => {
   const onSubmit = (data) => {
     console.log(data);
 
-    if (internetInstallationCost === "") {
+    if (internetInstallationCost === '') {
       setInternetInstallationCostError();
     }
 
-    if (internetFranchiseLimit === "") {
+    if (internetFranchiseLimit === '') {
       setInternetFranchiseLimitError();
     }
 
-    if (internetFranchiseLimit !== "" && internetInstallationCost !== "") {
+    if (internetFranchiseLimit !== '' && internetInstallationCost !== '') {
       unsetInternetInstallationCostError();
       unsetInternetFranchiseLimitError();
 
@@ -193,33 +187,33 @@ const EditInternetPlanForm = () => {
       };
 
       api
-        .put("/plan/internet-plan/edit", data)
+        .put('/plan/internet-plan/edit', data)
         .then((res) => {
-          console.log("res: ", res.data);
+          console.log('res: ', res.data);
           setPlans(res.data);
 
-          toast.success("Plano editado com sucesso!", {
-            position: "top-right",
+          toast.success('Plano editado com sucesso!', {
+            position: 'top-right',
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "colored",
+            theme: 'colored',
           });
         })
         .catch((error) => {
           console.error(error);
           toast.error(error.response.data.message, {
-            position: "top-right",
+            position: 'top-right',
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "colored",
+            theme: 'colored',
           });
         })
         .finally(() => {
@@ -243,13 +237,13 @@ const EditInternetPlanForm = () => {
     if (planSelectedForDetails) {
       defaultValuesForInternetForm();
       defaultBenefits(planSelectedForDetails.benefits);
-      setValue("title", internetTitle);
-      setValue("cost", internetCost);
-      setValue("download", internetDownload);
-      setValue("download", internetDownload);
-      setValue("upload", internetUpload);
-      setValue("technology", internetTechnology);
-      setValue("description", internetDescription);
+      setValue('title', internetTitle);
+      setValue('cost', internetCost);
+      setValue('download', internetDownload);
+      setValue('download', internetDownload);
+      setValue('upload', internetUpload);
+      setValue('technology', internetTechnology);
+      setValue('description', internetDescription);
     }
   }, [planSelectedForDetails]);
 
@@ -261,570 +255,514 @@ const EditInternetPlanForm = () => {
     <div
       className={
         modalAnimation
-          ? "edit-internet-plan-overlay animate__animated animate__fast animate__fadeIn"
-          : "edit-internet-plan-overlay animate__animated animate__fast animate__fadeOut"
+          ? 'edit-internet-plan-overlay animate__animated animate__fast animate__fadeIn'
+          : 'edit-internet-plan-overlay animate__animated animate__fast animate__fadeOut'
       }
     >
-      <div className="edit-internet-plan-container">
-        <div className="edit-internet-plan-wrapper">
-          <div className="edit-internet-plan-header">
+      <div className='edit-internet-plan-container'>
+        <div className='edit-internet-plan-wrapper'>
+          <div className='edit-internet-plan-header'>
             <button
-              type="button"
+              type='button'
               onClick={handleCloseForm}
-              className="edit-internet-plan-close-button"
+              className='edit-internet-plan-close-button'
             >
               <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
                 strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
+                stroke='currentColor'
+                className='w-6 h-6'
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
+                <path strokeLinecap='round' strokeLinejoin='round' d='M6 18L18 6M6 6l12 12' />
               </svg>
             </button>
-            <h3 className="edit-internet-plan-title">Editar Plano</h3>
+            <h3 className='edit-internet-plan-title'>Editar Plano</h3>
           </div>
 
-          <div className="edit-internet-plan-body">
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="edit-internet-plan-form"
-            >
-              <div className="edit-internet-plan-title-box">
-                <span className="edit-internet-plan-title-label">Título</span>
+          <div className='edit-internet-plan-body'>
+            <form onSubmit={handleSubmit(onSubmit)} className='edit-internet-plan-form'>
+              <div className='edit-internet-plan-title-box'>
+                <span className='edit-internet-plan-title-label'>Título</span>
                 <input
-                  {...register("title")}
-                  type="text"
-                  name="title"
+                  {...register('title')}
+                  type='text'
+                  name='title'
                   onChange={setInternetTitle}
                   value={internetTitle}
-                  autoComplete="off"
-                  autoCorrect="off"
-                  style={errors.title ? { border: "2px solid #EF5959" } : {}}
-                  className="edit-internet-plan-title-input"
+                  autoComplete='off'
+                  autoCorrect='off'
+                  style={errors.title ? { border: '2px solid #EF5959' } : {}}
+                  className='edit-internet-plan-title-input'
                 />
                 {errors.title && (
-                  <span className="edit-internet-plan-modal-error-form">
+                  <span className='edit-internet-plan-modal-error-form'>
                     {errors.title.message}
                   </span>
                 )}
               </div>
 
-              <div className="edit-internet-plan-cost-box">
-                <span className="edit-internet-plan-cost-title">Valor</span>
+              <div className='edit-internet-plan-cost-box'>
+                <span className='edit-internet-plan-cost-title'>Valor</span>
                 <input
-                  {...register("cost")}
-                  type="number"
-                  name="cost"
+                  {...register('cost')}
+                  type='number'
+                  name='cost'
                   onChange={setInternetCost}
                   value={internetCost}
-                  style={errors.cost ? { border: "2px solid #ef5959" } : {}}
-                  className="edit-internet-plan-cost-input"
+                  style={errors.cost ? { border: '2px solid #ef5959' } : {}}
+                  className='edit-internet-plan-cost-input'
                 />
                 {errors.cost && (
-                  <span className="edit-internet-plan-modal-error-form">
-                    {errors.cost.message}
-                  </span>
+                  <span className='edit-internet-plan-modal-error-form'>{errors.cost.message}</span>
                 )}
               </div>
 
-              <div className="edit-internet-plan-installation-cost-box">
-                <span className="edit-internet-plan-installation-cost-title">
+              <div className='edit-internet-plan-installation-cost-box'>
+                <span className='edit-internet-plan-installation-cost-title'>
                   Valor da instalação
                 </span>
                 <input
-                  type="number"
-                  name="installationCost"
+                  type='number'
+                  name='installationCost'
                   onChange={setInternetInstallationCost}
                   value={internetInstallationCost}
                   disabled={installationCostCheckboxRef.current?.checked}
-                  style={
-                    internetInstallationCostError
-                      ? { border: "2px solid #ef5959" }
-                      : {}
-                  }
-                  className="edit-internet-plan-installation-cost-input"
+                  style={internetInstallationCostError ? { border: '2px solid #ef5959' } : {}}
+                  className='edit-internet-plan-installation-cost-input'
                 />
                 {internetInstallationCostError && (
-                  <span className="edit-internet-plan-modal-error-form">
+                  <span className='edit-internet-plan-modal-error-form'>
                     Valor da instalação é obrigatório
                   </span>
                 )}
                 <label
-                  htmlFor="freeInstallationCost"
-                  className="edit-internet-plan-installation-cost-label"
+                  htmlFor='freeInstallationCost'
+                  className='edit-internet-plan-installation-cost-label'
                 >
                   <input
-                    type="checkbox"
-                    name="installationCost"
-                    id="freeInstallationCost"
+                    type='checkbox'
+                    name='installationCost'
+                    id='freeInstallationCost'
                     onChange={setInternetInstallationCost}
                     ref={installationCostCheckboxRef}
-                    checked={internetInstallationCost === "Grátis"}
-                    className="edit-internet-plan-installation-cost-checkbox"
+                    checked={internetInstallationCost === 'Grátis'}
+                    className='edit-internet-plan-installation-cost-checkbox'
                   />
                   Instalação grátis
                 </label>
               </div>
 
-              <div className="edit-internet-plan-download-box">
-                <span className="edit-internet-plan-download-title">
-                  Velocidade de download
-                </span>
+              <div className='edit-internet-plan-download-box'>
+                <span className='edit-internet-plan-download-title'>Velocidade de download</span>
 
                 <input
-                  {...register("download")}
-                  type="number"
-                  name="download"
+                  {...register('download')}
+                  type='number'
+                  name='download'
                   onChange={setInternetDownload}
                   value={internetDownload}
-                  style={errors.download ? { border: "2px solid #ef5959" } : {}}
-                  className="edit-internet-plan-download-input"
+                  style={errors.download ? { border: '2px solid #ef5959' } : {}}
+                  className='edit-internet-plan-download-input'
                 />
                 {errors.download && (
-                  <span className="edit-internet-plan-modal-error-form">
+                  <span className='edit-internet-plan-modal-error-form'>
                     {errors.download.message}
                   </span>
                 )}
 
-                <div className="edit-internet-plan-download-unit-wrapper">
-                  <label
-                    htmlFor="downloadMB"
-                    className="edit-internet-plan-download-unit-label"
-                  >
+                <div className='edit-internet-plan-download-unit-wrapper'>
+                  <label htmlFor='downloadMB' className='edit-internet-plan-download-unit-label'>
                     <input
-                      type="radio"
-                      id="downloadMB"
-                      name="downloadUnit"
+                      type='radio'
+                      id='downloadMB'
+                      name='downloadUnit'
                       onChange={setInternetDownloadUnit}
-                      value="MB"
-                      checked={internetDownloadUnit === "MB"}
-                      className="edit-internet-plan-download-unit-input"
+                      value='MB'
+                      checked={internetDownloadUnit === 'MB'}
+                      className='edit-internet-plan-download-unit-input'
                     />
                     MB
                   </label>
 
-                  <label
-                    htmlFor="downloadGB"
-                    className="edit-internet-plan-download-unit-label"
-                  >
+                  <label htmlFor='downloadGB' className='edit-internet-plan-download-unit-label'>
                     <input
-                      type="radio"
-                      id="downloadGB"
-                      name="downloadUnit"
+                      type='radio'
+                      id='downloadGB'
+                      name='downloadUnit'
                       onChange={setInternetDownloadUnit}
-                      value="GB"
-                      className="edit-internet-plan-download-unit-input"
+                      value='GB'
+                      className='edit-internet-plan-download-unit-input'
                     />
                     GB
                   </label>
                 </div>
               </div>
 
-              <div className="edit-internet-plan-upload-box">
-                <span className="edit-internet-plan-upload-title">
-                  Velocidade de upload
-                </span>
+              <div className='edit-internet-plan-upload-box'>
+                <span className='edit-internet-plan-upload-title'>Velocidade de upload</span>
 
                 <input
-                  {...register("upload")}
-                  type="number"
-                  name="upload"
+                  {...register('upload')}
+                  type='number'
+                  name='upload'
                   onChange={setInternetUpload}
                   value={internetUpload}
-                  style={errors.upload ? { border: "2px solid #ef5959" } : {}}
-                  className="edit-internet-plan-upload-input"
+                  style={errors.upload ? { border: '2px solid #ef5959' } : {}}
+                  className='edit-internet-plan-upload-input'
                 />
                 {errors.upload && (
-                  <span className="edit-internet-plan-modal-error-form">
+                  <span className='edit-internet-plan-modal-error-form'>
                     {errors.upload.message}
                   </span>
                 )}
 
-                <div className="edit-internet-plan-upload-unit-wrapper">
-                  <label
-                    htmlFor="uploadMB"
-                    className="edit-internet-plan-upload-unit-label"
-                  >
+                <div className='edit-internet-plan-upload-unit-wrapper'>
+                  <label htmlFor='uploadMB' className='edit-internet-plan-upload-unit-label'>
                     <input
-                      type="radio"
-                      id="uploadMB"
-                      name="uploadUnit"
+                      type='radio'
+                      id='uploadMB'
+                      name='uploadUnit'
                       onChange={setInternetUploadUnit}
-                      value="MB"
-                      checked={internetUploadUnit === "MB"}
-                      className="edit-internet-plan-upload-unit-input"
+                      value='MB'
+                      checked={internetUploadUnit === 'MB'}
+                      className='edit-internet-plan-upload-unit-input'
                     />
                     MB
                   </label>
 
-                  <label
-                    htmlFor="uploadGB"
-                    className="edit-internet-plan-upload-unit-label"
-                  >
+                  <label htmlFor='uploadGB' className='edit-internet-plan-upload-unit-label'>
                     <input
-                      type="radio"
-                      id="uploadGB"
-                      name="uploadUnit"
+                      type='radio'
+                      id='uploadGB'
+                      name='uploadUnit'
                       onChange={setInternetUploadUnit}
-                      value="GB"
-                      className="edit-internet-plan-upload-unit-input"
+                      value='GB'
+                      className='edit-internet-plan-upload-unit-input'
                     />
                     GB
                   </label>
                 </div>
               </div>
 
-              <div className="edit-internet-plan-franchise-limit-box">
-                <span className="edit-internet-plan-franchise-limit-title">
+              <div className='edit-internet-plan-franchise-limit-box'>
+                <span className='edit-internet-plan-franchise-limit-title'>
                   Franquia de download
                 </span>
 
                 <input
-                  type="number"
-                  name="franchiseLimit"
+                  type='number'
+                  name='franchiseLimit'
                   onChange={setInternetFranchiseLimit}
                   value={internetFranchiseLimit}
                   disabled={franchiseLimitRef.current?.checked}
-                  style={
-                    internetFranchiseLimitError
-                      ? { border: "2px solid #ef5959" }
-                      : {}
-                  }
-                  className="edit-internet-plan-franchise-limit-input"
+                  style={internetFranchiseLimitError ? { border: '2px solid #ef5959' } : {}}
+                  className='edit-internet-plan-franchise-limit-input'
                 />
                 {internetFranchiseLimitError && (
-                  <span className="edit-internet-plan-modal-error-form">
+                  <span className='edit-internet-plan-modal-error-form'>
                     Franquia de internet é obrigatório
                   </span>
                 )}
 
                 <label
-                  htmlFor="unlimitedFranchise"
-                  className="edit-internet-plan-franchise-limit-label"
+                  htmlFor='unlimitedFranchise'
+                  className='edit-internet-plan-franchise-limit-label'
                 >
                   <input
-                    type="checkbox"
-                    id="unlimitedFranchise"
-                    name="franchiseLimit"
+                    type='checkbox'
+                    id='unlimitedFranchise'
+                    name='franchiseLimit'
                     ref={franchiseLimitRef}
                     onChange={setInternetFranchiseLimit}
-                    checked={internetFranchiseLimit === "Ilimitado"}
-                    className="edit-internet-plan-franchise-limit-checkbox"
+                    checked={internetFranchiseLimit === 'Ilimitado'}
+                    className='edit-internet-plan-franchise-limit-checkbox'
                   />
                   Franquia ilimitada
                 </label>
               </div>
 
-              <div className="edit-internet-plan-technology-box">
-                <span className="edit-internet-plan-technology-title">
-                  Tecnologia do modem
-                </span>
+              <div className='edit-internet-plan-technology-box'>
+                <span className='edit-internet-plan-technology-title'>Tecnologia do modem</span>
 
                 <select
-                  {...register("technology")}
-                  name="technology"
+                  {...register('technology')}
+                  name='technology'
                   onChange={setInternetTechnology}
                   value={internetTechnology}
-                  style={
-                    errors.technology ? { border: "2px solid #ef5959" } : {}
-                  }
-                  className="edit-internet-plan-technology-select"
+                  style={errors.technology ? { border: '2px solid #ef5959' } : {}}
+                  className='edit-internet-plan-technology-select'
                 >
-                  <option value="Fibra Ótica">Fibra Ótica</option>
+                  <option value='Fibra Ótica'>Fibra Ótica</option>
 
-                  <option value="Cabo metálico">Cabo metálico</option>
+                  <option value='Cabo Metálico'>Cabo Metálico</option>
 
-                  <option value="Via Rádio">Via Rádio</option>
+                  <option value='Via Rádio'>Via Rádio</option>
 
-                  <option value="Via Satélite">Via Satélite</option>
+                  <option value='Via Satélite'>Via Satélite</option>
                 </select>
                 {errors.technology && (
-                  <span className="edit-internet-plan-modal-error-form">
+                  <span className='edit-internet-plan-modal-error-form'>
                     {errors.technology.message}
                   </span>
                 )}
               </div>
 
-              <div className="edit-internet-plan-has-wifi-box">
-                <span className="edit-internet-plan-has-wifi-title">
-                  Wifi incluso?
-                </span>
+              <div className='edit-internet-plan-has-wifi-box'>
+                <span className='edit-internet-plan-has-wifi-title'>Wifi incluso?</span>
 
-                <div className="edit-internet-plan-has-wifi-wrapper">
-                  <label
-                    htmlFor="yes"
-                    className="edit-internet-plan-has-wifi-label"
-                  >
+                <div className='edit-internet-plan-has-wifi-wrapper'>
+                  <label htmlFor='yes' className='edit-internet-plan-has-wifi-label'>
                     <input
-                      type="radio"
-                      id="yes"
-                      name="hasWifi"
+                      type='radio'
+                      id='yes'
+                      name='hasWifi'
                       onChange={setInternetHasWifi}
                       defaultChecked
                       value={true}
-                      className="edit-internet-plan-has-wifi-input"
+                      className='edit-internet-plan-has-wifi-input'
                     />
                     Sim
                   </label>
 
-                  <label
-                    htmlFor="no"
-                    className="edit-internet-plan-has-wifi-label"
-                  >
+                  <label htmlFor='no' className='edit-internet-plan-has-wifi-label'>
                     <input
-                      type="radio"
-                      id="no"
-                      name="hasWifi"
+                      type='radio'
+                      id='no'
+                      name='hasWifi'
                       onChange={setInternetHasWifi}
                       value={false}
-                      className="edit-internet-plan-has-wifi-input"
+                      className='edit-internet-plan-has-wifi-input'
                     />
                     Não
                   </label>
                 </div>
               </div>
 
-              <div className="edit-internet-plan-benefits-box">
-                <span className="edit-internet-plan-benefits-title">
-                  Benefícios
-                </span>
-                <div className="edit-internet-plan-benefits-options">
+              <div className='edit-internet-plan-benefits-box'>
+                <span className='edit-internet-plan-benefits-title'>Benefícios</span>
+                <div className='edit-internet-plan-benefits-options'>
                   <BenefitsLabel
-                    htmlFor="audiobookTim"
-                    imageSrc="/assets/icons/audiobook-tim.png"
-                    imageAlt="Audiobook Tim"
-                    inputId="audiobookTim"
-                    value="Audiobook Tim"
+                    htmlFor='audiobookTim'
+                    imageSrc='/assets/icons/audiobook-tim.png'
+                    imageAlt='Audiobook Tim'
+                    inputId='audiobookTim'
+                    value='Audiobook Tim'
                   />
                   <BenefitsLabel
-                    htmlFor="babbel"
-                    imageSrc="/assets/icons/babbel.png"
-                    imageAlt="Babbel"
-                    inputId="babbel"
-                    value="Babbel"
+                    htmlFor='babbel'
+                    imageSrc='/assets/icons/babbel.png'
+                    imageAlt='Babbel'
+                    inputId='babbel'
+                    value='Babbel'
                   />
                   <BenefitsLabel
-                    htmlFor="bandNews"
-                    imageSrc="/assets/icons/band-news.png"
-                    imageAlt="Band News"
-                    inputId="bandNews"
-                    value="Band News"
+                    htmlFor='bandNews'
+                    imageSrc='/assets/icons/band-news.png'
+                    imageAlt='Band News'
+                    inputId='bandNews'
+                    value='Band News'
                   />
                   <BenefitsLabel
-                    htmlFor="bandSports"
-                    imageSrc="/assets/icons/band-sports.png"
-                    imageAlt="Band Sports"
-                    inputId="bandSports"
-                    value="Band Sports"
+                    htmlFor='bandSports'
+                    imageSrc='/assets/icons/band-sports.png'
+                    imageAlt='Band Sports'
+                    inputId='bandSports'
+                    value='Band Sports'
                   />
                   <BenefitsLabel
-                    htmlFor="paramountChannel"
-                    imageSrc="/assets/icons/paramount-channel.png"
-                    imageAlt="Paramount Channel"
-                    inputId="paramountChannel"
-                    value="Paramount Channel"
+                    htmlFor='paramountChannel'
+                    imageSrc='/assets/icons/paramount-channel.png'
+                    imageAlt='Paramount Channel'
+                    inputId='paramountChannel'
+                    value='Paramount Channel'
                   />
                   <BenefitsLabel
-                    htmlFor="timGames"
-                    imageSrc="/assets/icons/tim-games.png"
-                    imageAlt="Tim Games"
-                    inputId="timGames"
-                    value="Tim Games"
+                    htmlFor='timGames'
+                    imageSrc='/assets/icons/tim-games.png'
+                    imageAlt='Tim Games'
+                    inputId='timGames'
+                    value='Tim Games'
                   />
                   <BenefitsLabel
-                    htmlFor="bancah"
-                    imageSrc="/assets/icons/bancah.png"
-                    imageAlt="Bancah"
-                    inputId="bancah"
-                    value="Bancah"
+                    htmlFor='bancah'
+                    imageSrc='/assets/icons/bancah.png'
+                    imageAlt='Bancah'
+                    inputId='bancah'
+                    value='Bancah'
                   />
                   <BenefitsLabel
-                    htmlFor="timSegurancaDigital"
-                    imageSrc="/assets/icons/tim-seguranca-digital.png"
-                    imageAlt="Tim Segurança Digital"
-                    inputId="timSegurancaDigital"
-                    value="Tim Segurança Digital"
+                    htmlFor='timSegurancaDigital'
+                    imageSrc='/assets/icons/tim-seguranca-digital.png'
+                    imageAlt='Tim Segurança Digital'
+                    inputId='timSegurancaDigital'
+                    value='Tim Segurança Digital'
                   />
                   <BenefitsLabel
-                    htmlFor="instagram"
-                    imageSrc="/assets/icons/instagram.png"
-                    imageAlt="Instagram"
-                    inputId="instagram"
-                    value="Instagram"
+                    htmlFor='instagram'
+                    imageSrc='/assets/icons/instagram.png'
+                    imageAlt='Instagram'
+                    inputId='instagram'
+                    value='Instagram'
                   />
                   <BenefitsLabel
-                    htmlFor="facebook"
-                    imageSrc="/assets/icons/facebook.png"
-                    imageAlt="Facebook"
-                    inputId="facebook"
-                    value="Facebook"
+                    htmlFor='facebook'
+                    imageSrc='/assets/icons/facebook.png'
+                    imageAlt='Facebook'
+                    inputId='facebook'
+                    value='Facebook'
                   />
                   <BenefitsLabel
-                    htmlFor="twitter"
-                    imageSrc="/assets/icons/twitter.png"
-                    imageAlt="Twitter"
-                    inputId="twitter"
-                    value="Twitter"
+                    htmlFor='twitter'
+                    imageSrc='/assets/icons/twitter.png'
+                    imageAlt='Twitter'
+                    inputId='twitter'
+                    value='Twitter'
                   />
                   <BenefitsLabel
-                    htmlFor="whatsapp"
-                    imageSrc="/assets/icons/whatsapp.png"
-                    imageAlt="Whatsapp"
-                    inputId="whatsapp"
-                    value="Whatsapp"
+                    htmlFor='whatsapp'
+                    imageSrc='/assets/icons/whatsapp.png'
+                    imageAlt='Whatsapp'
+                    inputId='whatsapp'
+                    value='Whatsapp'
                   />
                   <BenefitsLabel
-                    htmlFor="waze"
-                    imageSrc="/assets/icons/waze.png"
-                    imageAlt="Waze"
-                    inputId="waze"
-                    value="Waze"
+                    htmlFor='waze'
+                    imageSrc='/assets/icons/waze.png'
+                    imageAlt='Waze'
+                    inputId='waze'
+                    value='Waze'
                   />
                   <BenefitsLabel
-                    htmlFor="skeeloAudiobooks"
-                    imageSrc="/assets/icons/skeelo-audiobooks.png"
-                    imageAlt="Skeelo Audiobooks"
-                    inputId="skeeloAudiobooks"
-                    value="Skeelo Audiobooks"
+                    htmlFor='skeeloAudiobooks'
+                    imageSrc='/assets/icons/skeelo-audiobooks.png'
+                    imageAlt='Skeelo Audiobooks'
+                    inputId='skeeloAudiobooks'
+                    value='Skeelo Audiobooks'
                   />
                   <BenefitsLabel
-                    htmlFor="funKids"
-                    imageSrc="/assets/icons/funkids.png"
-                    imageAlt="FunKids"
-                    inputId="funKids"
-                    value="FunKids"
+                    htmlFor='funKids'
+                    imageSrc='/assets/icons/funkids.png'
+                    imageAlt='FunKids'
+                    inputId='funKids'
+                    value='FunKids'
                   />
                   <BenefitsLabel
-                    htmlFor="ubookJornais"
-                    imageSrc="/assets/icons/ubook-jornais.png"
-                    imageAlt="Ubook Jornais"
-                    inputId="ubookJornais"
-                    value="Ubook Jornais"
+                    htmlFor='ubookJornais'
+                    imageSrc='/assets/icons/ubook-jornais.png'
+                    imageAlt='Ubook Jornais'
+                    inputId='ubookJornais'
+                    value='Ubook Jornais'
                   />
                   <BenefitsLabel
-                    htmlFor="estadioTntSports"
-                    imageSrc="/assets/icons/estadio-tnt-sports.png"
-                    imageAlt="Estadio TNT Sports"
-                    inputId="estadioTntSports"
-                    value="Estadio TNT Sports"
+                    htmlFor='estadioTntSports'
+                    imageSrc='/assets/icons/estadio-tnt-sports.png'
+                    imageAlt='Estadio TNT Sports'
+                    inputId='estadioTntSports'
+                    value='Estadio TNT Sports'
                   />
                   <BenefitsLabel
-                    htmlFor="newCoPlus"
-                    imageSrc="/assets/icons/new-co-plus.png"
-                    imageAlt="New Co+"
-                    inputId="newCoPlus"
-                    value="New Co+"
+                    htmlFor='newCoPlus'
+                    imageSrc='/assets/icons/new-co-plus.png'
+                    imageAlt='New Co+'
+                    inputId='newCoPlus'
+                    value='New Co+'
                   />
                   <BenefitsLabel
-                    htmlFor="lionsgatePlus"
-                    imageSrc="/assets/icons/lionsgate-plus.png"
-                    imageAlt="Lionsgate+"
-                    inputId="lionsgatePlus"
-                    value="Lionsgate+"
+                    htmlFor='lionsgatePlus'
+                    imageSrc='/assets/icons/lionsgate-plus.png'
+                    imageAlt='Lionsgate+'
+                    inputId='lionsgatePlus'
+                    value='Lionsgate+'
                   />
                   <BenefitsLabel
-                    htmlFor="clubeDeRevistas"
-                    imageSrc="/assets/icons/clube-de-revistas.png"
-                    imageAlt="Clube de Revistas"
-                    inputId="clubeDeRevistas"
-                    value="Clube de Revistas"
+                    htmlFor='clubeDeRevistas'
+                    imageSrc='/assets/icons/clube-de-revistas.png'
+                    imageAlt='Clube de Revistas'
+                    inputId='clubeDeRevistas'
+                    value='Clube de Revistas'
                   />
                   <BenefitsLabel
-                    htmlFor="oiPlay"
-                    imageSrc="/assets/icons/oi-play.png"
-                    imageAlt="Oi Play"
-                    inputId="oiPlay"
-                    value="Oi Play"
+                    htmlFor='oiPlay'
+                    imageSrc='/assets/icons/oi-play.png'
+                    imageAlt='Oi Play'
+                    inputId='oiPlay'
+                    value='Oi Play'
                   />
                   <BenefitsLabel
-                    htmlFor="oiExpert"
-                    imageSrc="/assets/icons/oi-expert.png"
-                    imageAlt="Oi Expert"
-                    inputId="oiExpert"
-                    value="Oi Expert"
+                    htmlFor='oiExpert'
+                    imageSrc='/assets/icons/oi-expert.png'
+                    imageAlt='Oi Expert'
+                    inputId='oiExpert'
+                    value='Oi Expert'
                   />
                   <BenefitsLabel
-                    htmlFor="mcafee"
-                    imageSrc="/assets/icons/mcafee.png"
-                    imageAlt="McAfee"
-                    inputId="mcafee"
-                    value="McAfee"
+                    htmlFor='mcafee'
+                    imageSrc='/assets/icons/mcafee.png'
+                    imageAlt='McAfee'
+                    inputId='mcafee'
+                    value='McAfee'
                   />
                   <BenefitsLabel
-                    htmlFor="playKids"
-                    imageSrc="/assets/icons/playkids.png"
-                    imageAlt="PlayKids"
-                    inputId="playKids"
-                    value="PlayKids"
+                    htmlFor='playKids'
+                    imageSrc='/assets/icons/playkids.png'
+                    imageAlt='PlayKids'
+                    inputId='playKids'
+                    value='PlayKids'
                   />
                   <BenefitsLabel
-                    htmlFor="dgo"
-                    imageSrc="/assets/icons/dgo.png"
-                    imageAlt="GBO"
-                    inputId="dgo"
-                    value="GBO"
+                    htmlFor='dgo'
+                    imageSrc='/assets/icons/dgo.png'
+                    imageAlt='GBO'
+                    inputId='dgo'
+                    value='GBO'
                   />
                 </div>
               </div>
 
-              <div className="edit-internet-plan-priority-box">
-                <span className="edit-internet-plan-priority-title">
-                  Prioridade
-                </span>
+              <div className='edit-internet-plan-priority-box'>
+                <span className='edit-internet-plan-priority-title'>Prioridade</span>
 
                 <select
-                  name="priority"
+                  name='priority'
                   onChange={setInternetPriority}
                   value={internetPriority}
-                  className="edit-internet-plan-priority-select"
+                  className='edit-internet-plan-priority-select'
                 >
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
+                  <option value='1'>1</option>
+                  <option value='2'>2</option>
+                  <option value='3'>3</option>
+                  <option value='4'>4</option>
+                  <option value='5'>5</option>
+                  <option value='6'>6</option>
+                  <option value='7'>7</option>
+                  <option value='8'>8</option>
+                  <option value='9'>9</option>
+                  <option value='10'>10</option>
                 </select>
               </div>
 
-              <div className="edit-internet-plan-description-box">
-                <span className="edit-internet-plan-description-title">
-                  Descrição
-                </span>
+              <div className='edit-internet-plan-description-box'>
+                <span className='edit-internet-plan-description-title'>Descrição</span>
                 <textarea
-                  {...register("description")}
-                  name="description"
+                  {...register('description')}
+                  name='description'
                   onChange={setInternetDescription}
                   value={internetDescription}
-                  autoCorrect="off"
-                  autoComplete="off"
-                  style={
-                    errors.description ? { border: "2px solid #ef5959" } : {}
-                  }
-                  className="edit-internet-plan-description-textarea"
+                  autoCorrect='off'
+                  autoComplete='off'
+                  style={errors.description ? { border: '2px solid #ef5959' } : {}}
+                  className='edit-internet-plan-description-textarea'
                 />
                 {errors.description && (
-                  <span className="edit-internet-plan-modal-error-form">
+                  <span className='edit-internet-plan-modal-error-form'>
                     {errors.description.message}
                   </span>
                 )}
               </div>
 
-              <button
-                type="submit"
-                className="edit-internet-plan-submit-button"
-              >
+              <button type='submit' className='edit-internet-plan-submit-button'>
                 Salvar
               </button>
             </form>

@@ -335,9 +335,10 @@
                     grid-template-rows: 1fr;
                   }
 
-                  .plan-benefits-channels-box {
+                  .plan-benefits-installation-cost-box {
                     width: 100%;
                     display: flex;
+                    flex-direction: column;
                     align-items: center;
                     justify-content: center;
                     border-bottom: 1px solid #b2b7d1;
@@ -355,24 +356,19 @@
                       border-right: 1px solid #b2b7d1;
                     }
 
-                    .plan-benefits-channels-value {
-                      display: flex;
-                      flex-direction: column;
-                      align-items: center;
-                      justify-content: center;
-                      gap: 5px;
+                    .plan-benefits-installation-cost-title {
                       font-size: 1.125rem;
-                      font-weight: 600;
+                      font-weight: 500;
+                      text-align: center;
                       color: #5c679b;
+                      margin-bottom: 10px;
+                    }
 
-                      strong {
-                        font-size: 1.5rem;
-                        font-weight: 600;
-
-                        @include breakpoint(tablet) {
-                          font-size: 2rem;
-                        }
-                      }
+                    .plan-benefits-installation-cost-value {
+                      font-size: 1rem;
+                      font-weight: 500;
+                      color: #5c679b;
+                      text-align: center;
                     }
                   }
 
@@ -587,6 +583,33 @@
                 }
               }
             }
+          }
+        }
+
+        .result-not-found-message {
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: #b0b0b0;
+          width: 100%;
+          text-align: center;
+        }
+
+        .result-show-more-button {
+          width: fit-content;
+          height: 40px;
+          margin: auto;
+          padding: 0px 20px;
+          background-color: #fff;
+          color: #d40066;
+          border: 2px solid #d40066;
+          border-radius: 8px;
+          font-size: 1rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: padding 0.3s ease;
+
+          &:hover {
+            padding: 0px 30px;
           }
         }
       }
