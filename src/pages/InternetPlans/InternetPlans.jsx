@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import api from '../../services/api';
 import useInternetPlansStore from '../../stores/useInternetPlansStore';
-import useRegisterForm from '../../stores/useRegisterStore';
+import useRegisterStore from '../../stores/useRegisterStore';
 import { useParams } from 'react-router-dom';
 import { shallow } from 'zustand/shallow';
 
@@ -9,7 +9,6 @@ import PlansHeader from '../components/PlansHeader';
 import InternetPlansBody from './components/InternetPlansBody';
 import Footer from '../components/Footer';
 import RegisterForm from '../components/RegisterForm';
-import useRegisterStore from '../../stores/useRegisterStore';
 
 const InternetPlans = () => {
   const {
@@ -78,6 +77,14 @@ const InternetPlans = () => {
 
     fetchPlans();
   }, []);
+
+  useEffect(() => {
+    if (isRegisterFormOpen) {
+      document.documentElement.style.overflowY = 'hidden';
+    } else {
+      document.documentElement.style.overflowY = 'unset';
+    }
+  }, [isRegisterFormOpen]);
 
   useEffect(() => {
     if (allProviders && internetPlans.length !== 0) {

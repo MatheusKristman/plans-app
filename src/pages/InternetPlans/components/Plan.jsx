@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
 import useInternetPlanStore from '../../../stores/useInternetPlansStore';
+import useRegisterStore from '../../../stores/useRegisterStore';
+import useGeneralStore from '../../../stores/useGeneralStore';
 import { shallow } from 'zustand/shallow';
 
 const Plan = ({ id, providerLogo, title, download, benefits, technology, cost, description }) => {
@@ -10,6 +12,27 @@ const Plan = ({ id, providerLogo, title, download, benefits, technology, cost, d
     }),
     shallow
   );
+  const { setPlanSelected, openRegisterForm, generateSteps } = useRegisterStore(
+    (state) => ({
+      setPlanSelected: state.setPlanSelected,
+      openRegisterForm: state.openRegisterForm,
+      generateSteps: state.generateSteps,
+    }),
+    shallow
+  );
+  const { activateModalAnimation } = useGeneralStore(
+    (state) => ({
+      activateModalAnimation: state.activateModalAnimation,
+    }),
+    shallow
+  );
+
+  const handleRegisterButton = () => {
+    setPlanSelected({ logo: providerLogo, title, franchise: download, cost, type: 'internet' });
+    generateSteps({ step1: true, step2: false, step3: false, step4: false });
+    openRegisterForm();
+    activateModalAnimation();
+  };
 
   const descriptionRef = useRef();
 
@@ -94,7 +117,7 @@ const Plan = ({ id, providerLogo, title, download, benefits, technology, cost, d
             </div>
           </div>
 
-          <button type='button' className='plan-acquire-button'>
+          <button type='button' onClick={handleRegisterButton} className='plan-acquire-button'>
             CONTRATAR
           </button>
         </div>

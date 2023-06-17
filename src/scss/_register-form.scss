@@ -35,17 +35,21 @@
 
     .register-form-illustration-box {
       width: 100%;
-      height: 250px;
+      height: 230px;
       background-image: url('/assets/images/register-client-header-mobile.png');
       background-repeat: no-repeat;
       background-size: cover;
-      background-position: right center;
+      background-position: right top;
       border-top-left-radius: 16px;
       border-top-right-radius: 16px;
       position: relative;
 
       @include breakpoint(tablet) {
-        background-color: url('/assets/images/register-client-header-tablet.png');
+        background-image: url('/assets/images/register-client-header-tablet.png');
+      }
+
+      @include breakpoint(largeScreen) {
+        background-image: url('/assets/images/register-client-header.png');
       }
 
       .register-form-close-button {
@@ -100,6 +104,13 @@
         padding: 40px 50px;
       }
 
+      @include breakpoint(largeScreen) {
+        display: grid;
+        grid-template-columns: 60% calc(40% - 40px);
+        gird-template-rows: 1fr 1fr;
+        gap: 0 40px;
+      }
+
       .register-form-progress-box {
         order: 2;
         width: 100%;
@@ -116,6 +127,11 @@
           align-items: flex-start;
           justify-content: space-between;
           gap: 5px;
+        }
+
+        @include breakpoint(largeScreen) {
+          grid-column: 1 / 3;
+          grid-row: 1 / 2;
         }
 
         .register-form-progress-step {
@@ -167,13 +183,28 @@
         width: 100%;
         display: flex;
         flex-direction: column;
-        gap: 50px;
+
+        @include breakpoint(largeScreen) {
+          grid-column: 1 / 2;
+          grid-row: 2 / 3;
+        }
+
+        .register-form-error-message {
+          font-size: 0.85rem;
+          font-weight: 500;
+          color: #ef5959;
+        }
 
         .personal-data-form {
           width: 100%;
-          display: flex;
-          flex-direction: column;
-          gap: 15px;
+          overflow-x: hidden;
+
+          .personal-data-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+          }
 
           .personal-data-label {
             width: 100%;
@@ -233,9 +264,14 @@
 
         .address-form {
           width: 100%;
-          display: flex;
-          flex-direction: column;
-          gap: 15px;
+          overflow-x: hidden;
+
+          .address-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+          }
 
           .address-wrapper {
             display: grid;
@@ -262,6 +298,10 @@
 
             @include breakpoint(smallScreen) {
               grid-template-columns: calc(20% - 7.5px) calc(80% - 7.5px);
+            }
+
+            @include breakpoint(largeScreen) {
+              grid-template-columns: calc(30% - 7.5px) calc(70% - 7.5px);
             }
           }
 
@@ -329,9 +369,14 @@
 
         .payment-form {
           width: 100%;
-          display: flex;
-          flex-direction: column;
-          gap: 15px;
+          overflow-x: hidden;
+
+          .payment-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+          }
 
           .payment-wrapper {
             width: 100%;
@@ -343,6 +388,10 @@
             @include breakpoint(tablet) {
               grid-template-columns: 1fr 1fr;
               grid-template-rows: auto;
+            }
+
+            @include breakpoint(largeScreen) {
+              grid-template-columns: 30% calc(70% - 15px);
             }
 
             .payment-method-box {
@@ -421,11 +470,16 @@
               padding: 0 10px;
               font-size: 1rem;
               color: #252525;
-              transition: border-color 0.3s ease;
+              transition: border-color 0.3s ease, filter 0.3s ease;
 
               &:focus {
                 border-color: #7a7a7a;
               }
+            }
+
+            .payment-input:disabled {
+              filter: brightness(90%);
+              cursor: not-allowed;
             }
           }
 
@@ -445,9 +499,13 @@
 
         .installation-form {
           width: 100%;
-          display: flex;
-          flex-direction: column;
-          gap: 15px;
+
+          .installation-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+          }
 
           .installation-date-wrapper {
             display: grid;
@@ -537,6 +595,7 @@
           font-size: 1rem;
           font-weight: 600;
           cursor: pointer;
+          margin-top: 35px;
           transition: filter 0.3s ease;
 
           &:hover {
@@ -554,6 +613,12 @@
 
         @include breakpoint(tablet) {
           order: 2;
+        }
+
+        @include breakpoint(largeScreen) {
+          grid-column: 2 / 3;
+          grid-row: 2 / 3;
+          height: fit-content;
         }
 
         .register-form-plan-box {
@@ -627,9 +692,13 @@
             }
 
             .register-form-plan-price {
-              font-size: 1rem;
+              font-size: 0.875rem;
               font-weight: 600;
               color: #252525;
+
+              @include breakpoint(largeScreen) {
+                white-space: nowrap;
+              }
             }
           }
         }

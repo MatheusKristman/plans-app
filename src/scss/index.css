@@ -11506,18 +11506,23 @@ body {
 }
 .register-form-overlay .register-form-container .register-form-illustration-box {
   width: 100%;
-  height: 250px;
+  height: 230px;
   background-image: url("/assets/images/register-client-header-mobile.png");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: right center;
+  background-position: right top;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   position: relative;
 }
 @media screen and (min-width: 500px) {
   .register-form-overlay .register-form-container .register-form-illustration-box {
-    background-color: url("/assets/images/register-client-header-tablet.png");
+    background-image: url("/assets/images/register-client-header-tablet.png");
+  }
+}
+@media screen and (min-width: 1024px) {
+  .register-form-overlay .register-form-container .register-form-illustration-box {
+    background-image: url("/assets/images/register-client-header.png");
   }
 }
 .register-form-overlay .register-form-container .register-form-illustration-box .register-form-close-button {
@@ -11570,6 +11575,14 @@ body {
     padding: 40px 50px;
   }
 }
+@media screen and (min-width: 1024px) {
+  .register-form-overlay .register-form-container .register-form-body {
+    display: grid;
+    grid-template-columns: 60% calc(40% - 40px);
+    gird-template-rows: 1fr 1fr;
+    gap: 0 40px;
+  }
+}
 .register-form-overlay .register-form-container .register-form-body .register-form-progress-box {
   order: 2;
   width: 100%;
@@ -11587,6 +11600,12 @@ body {
     align-items: flex-start;
     justify-content: space-between;
     gap: 5px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .register-form-overlay .register-form-container .register-form-body .register-form-progress-box {
+    grid-column: 1/3;
+    grid-row: 1/2;
   }
 }
 .register-form-overlay .register-form-container .register-form-body .register-form-progress-box .register-form-progress-step {
@@ -11633,9 +11652,23 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 50px;
+}
+@media screen and (min-width: 1024px) {
+  .register-form-overlay .register-form-container .register-form-body .register-form-info-box {
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .register-form-error-message {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #ef5959;
 }
 .register-form-overlay .register-form-container .register-form-body .register-form-info-box .personal-data-form {
+  width: 100%;
+  overflow-x: hidden;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .personal-data-form .personal-data-box {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -11696,6 +11729,10 @@ body {
 }
 .register-form-overlay .register-form-container .register-form-body .register-form-info-box .address-form {
   width: 100%;
+  overflow-x: hidden;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .address-form .address-box {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -11727,6 +11764,11 @@ body {
 @media screen and (min-width: 768px) {
   .register-form-overlay .register-form-container .register-form-body .register-form-info-box .address-form .address-cep-wrapper {
     grid-template-columns: calc(20% - 7.5px) calc(80% - 7.5px);
+  }
+}
+@media screen and (min-width: 1024px) {
+  .register-form-overlay .register-form-container .register-form-body .register-form-info-box .address-form .address-cep-wrapper {
+    grid-template-columns: calc(30% - 7.5px) calc(70% - 7.5px);
   }
 }
 .register-form-overlay .register-form-container .register-form-body .register-form-info-box .address-form .address-num-wrapper {
@@ -11787,6 +11829,10 @@ body {
 }
 .register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form {
   width: 100%;
+  overflow-x: hidden;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form .payment-box {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -11802,6 +11848,11 @@ body {
   .register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form .payment-wrapper {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form .payment-wrapper {
+    grid-template-columns: 30% calc(70% - 15px);
   }
 }
 .register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form .payment-wrapper .payment-method-box {
@@ -11873,10 +11924,14 @@ body {
   padding: 0 10px;
   font-size: 1rem;
   color: #252525;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, filter 0.3s ease;
 }
 .register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form .payment-label .payment-input:focus {
   border-color: #7a7a7a;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form .payment-label .payment-input:disabled {
+  filter: brightness(90%);
+  cursor: not-allowed;
 }
 .register-form-overlay .register-form-container .register-form-body .register-form-info-box .payment-form .payment-account-wrapper {
   width: 100%;
@@ -11892,6 +11947,9 @@ body {
   }
 }
 .register-form-overlay .register-form-container .register-form-body .register-form-info-box .installation-form {
+  width: 100%;
+}
+.register-form-overlay .register-form-container .register-form-body .register-form-info-box .installation-form .installation-box {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -11979,6 +12037,7 @@ body {
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
+  margin-top: 35px;
   transition: filter 0.3s ease;
 }
 .register-form-overlay .register-form-container .register-form-body .register-form-info-box .register-form-button:hover {
@@ -11994,6 +12053,13 @@ body {
 @media screen and (min-width: 500px) {
   .register-form-overlay .register-form-container .register-form-body .register-form-plan-wrapper {
     order: 2;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .register-form-overlay .register-form-container .register-form-body .register-form-plan-wrapper {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    height: fit-content;
   }
 }
 .register-form-overlay .register-form-container .register-form-body .register-form-plan-wrapper .register-form-plan-box {
@@ -12062,9 +12128,14 @@ body {
   color: #252525;
 }
 .register-form-overlay .register-form-container .register-form-body .register-form-plan-wrapper .register-form-plan-box .register-form-plan-details-container .register-form-plan-price {
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 600;
   color: #252525;
+}
+@media screen and (min-width: 1024px) {
+  .register-form-overlay .register-form-container .register-form-body .register-form-plan-wrapper .register-form-plan-box .register-form-plan-details-container .register-form-plan-price {
+    white-space: nowrap;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */

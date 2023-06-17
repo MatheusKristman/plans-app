@@ -1,9 +1,9 @@
-import React, { useRef, useEffect } from "react";
-import useInternetPlanStore from "../../../stores/useInternetPlansStore";
-import { shallow } from "zustand/shallow";
-import api from "../../../services/api";
+import React, { useRef, useEffect } from 'react';
+import useInternetPlanStore from '../../../stores/useInternetPlansStore';
+import { shallow } from 'zustand/shallow';
+import api from '../../../services/api';
 
-import Plan from "./Plan";
+import Plan from './Plan';
 
 const InternetPlansBody = () => {
   const {
@@ -85,10 +85,10 @@ const InternetPlansBody = () => {
 
   useEffect(() => {
     if (
-      filterValues.cep !== "" &&
+      filterValues.cep !== '' &&
       filterValues.cep.length === 9 &&
       filterValues.cost !== 0 &&
-      filterValues.download !== ""
+      filterValues.download !== ''
     ) {
       setValidFilterOptions();
     }
@@ -105,7 +105,7 @@ const InternetPlansBody = () => {
       };
 
       api
-        .post("plan/internet-plan/filter", data)
+        .post('plan/internet-plan/filter', data)
         .then((res) => setFilteredInternetPlans(res.data))
         .catch((err) => console.error(err))
         .finally(() => {
@@ -123,14 +123,10 @@ const InternetPlansBody = () => {
   }, [submittingFilter]);
 
   return (
-    <div className="body-container">
-      <div className="body-wrapper wrapper">
-        <div className="filter-form-container">
-          <button
-            type="button"
-            onClick={handleFilterBoxButton}
-            className="filter-form-button"
-          >
+    <div className='body-container'>
+      <div className='body-wrapper wrapper'>
+        <div className='filter-form-container'>
+          <button type='button' onClick={handleFilterBoxButton} className='filter-form-button'>
             Filtrar
           </button>
 
@@ -139,268 +135,217 @@ const InternetPlansBody = () => {
             style={
               isFilterOpen
                 ? { maxHeight: `${filterRef.current.scrollHeight + 25}px` }
-                : { maxHeight: "0px" }
+                : { maxHeight: '0px' }
             }
-            className="filter-form-box"
+            className='filter-form-box'
           >
-            <div className="filter-form-wrapper">
-              <div className="filter-form-cep-box">
-                <span className="filter-form-cep-title">Cep</span>
+            <div className='filter-form-wrapper'>
+              <div className='filter-form-cep-box'>
+                <span className='filter-form-cep-title'>Cep</span>
                 <input
-                  type="text"
-                  name="cep"
-                  autoCorrect="off"
-                  autoComplete="off"
+                  type='text'
+                  name='cep'
+                  autoCorrect='off'
+                  autoComplete='off'
                   onChange={(event) => {
-                    let cep = event.target.value.replace(/\D/g, "");
+                    let cep = event.target.value.replace(/\D/g, '');
 
                     if (cep.length === 8) {
-                      cep = cep.replace(/(\d{5})(\d)/, "$1-$2");
+                      cep = cep.replace(/(\d{5})(\d)/, '$1-$2');
                     }
 
-                    setFilterValues("cep", cep);
+                    setFilterValues('cep', cep);
                   }}
                   value={filterValues.cep}
-                  maxLength="8"
-                  className="filter-form-cep-input"
+                  maxLength='8'
+                  className='filter-form-cep-input'
                 />
               </div>
 
-              <div className="filter-form-cost-box">
-                <span className="filter-form-cost-title">Preço</span>
+              <div className='filter-form-cost-box'>
+                <span className='filter-form-cost-title'>Preço</span>
 
-                <label htmlFor="cost100" className="filter-form-cost-label">
+                <label htmlFor='cost100' className='filter-form-cost-label'>
                   <input
-                    id="cost100"
-                    name="cost"
+                    id='cost100'
+                    name='cost'
                     value={100}
-                    onChange={(e) =>
-                      setFilterValues("cost", Number(e.target.value))
-                    }
-                    type="radio"
-                    className="filter-form-cost-input"
+                    onChange={(e) => setFilterValues('cost', Number(e.target.value))}
+                    type='radio'
+                    className='filter-form-cost-input'
                   />
                   Até R$ 100,00
                 </label>
 
-                <label htmlFor="cost150" className="filter-form-cost-label">
+                <label htmlFor='cost150' className='filter-form-cost-label'>
                   <input
-                    id="cost150"
-                    name="cost"
+                    id='cost150'
+                    name='cost'
                     value={150}
-                    onChange={(e) =>
-                      setFilterValues("cost", Number(e.target.value))
-                    }
-                    type="radio"
-                    className="filter-form-cost-input"
+                    onChange={(e) => setFilterValues('cost', Number(e.target.value))}
+                    type='radio'
+                    className='filter-form-cost-input'
                   />
                   Até R$ 150,00
                 </label>
 
-                <label htmlFor="cost200" className="filter-form-cost-label">
+                <label htmlFor='cost200' className='filter-form-cost-label'>
                   <input
-                    id="cost200"
-                    name="cost"
+                    id='cost200'
+                    name='cost'
                     value={200}
-                    onChange={(e) =>
-                      setFilterValues("cost", Number(e.target.value))
-                    }
-                    type="radio"
-                    className="filter-form-cost-input"
+                    onChange={(e) => setFilterValues('cost', Number(e.target.value))}
+                    type='radio'
+                    className='filter-form-cost-input'
                   />
                   Até R$ 200,00
                 </label>
 
-                <label htmlFor="cost500" className="filter-form-cost-label">
+                <label htmlFor='cost500' className='filter-form-cost-label'>
                   <input
-                    id="cost500"
-                    name="cost"
+                    id='cost500'
+                    name='cost'
                     value={500}
-                    onChange={(e) =>
-                      setFilterValues("cost", Number(e.target.value))
-                    }
-                    type="radio"
-                    className="filter-form-cost-input"
+                    onChange={(e) => setFilterValues('cost', Number(e.target.value))}
+                    type='radio'
+                    className='filter-form-cost-input'
                   />
                   Até R$ 500,00
                 </label>
               </div>
 
-              <div className="filter-form-download-box">
-                <span className="filter-form-download-title">
-                  Velocidade de Internet
-                </span>
+              <div className='filter-form-download-box'>
+                <span className='filter-form-download-title'>Velocidade de Internet</span>
 
-                <label
-                  htmlFor="download10"
-                  className="filter-form-download-label"
-                >
+                <label htmlFor='download10' className='filter-form-download-label'>
                   <input
-                    type="radio"
-                    id="download10"
-                    name="download"
-                    value="10MB"
-                    onChange={(e) =>
-                      setFilterValues("download", e.target.value)
-                    }
-                    className="filter-form-download-input"
+                    type='radio'
+                    id='download10'
+                    name='download'
+                    value='10MB'
+                    onChange={(e) => setFilterValues('download', e.target.value)}
+                    className='filter-form-download-input'
                   />
                   Até 10MB
                 </label>
 
-                <label
-                  htmlFor="download100"
-                  className="filter-form-download-label"
-                >
+                <label htmlFor='download100' className='filter-form-download-label'>
                   <input
-                    type="radio"
-                    id="download100"
-                    name="download"
-                    value="100MB"
-                    onChange={(e) =>
-                      setFilterValues("download", e.target.value)
-                    }
-                    className="filter-form-download-input"
+                    type='radio'
+                    id='download100'
+                    name='download'
+                    value='100MB'
+                    onChange={(e) => setFilterValues('download', e.target.value)}
+                    className='filter-form-download-input'
                   />
                   Até 100MB
                 </label>
 
-                <label
-                  htmlFor="download200"
-                  className="filter-form-download-label"
-                >
+                <label htmlFor='download200' className='filter-form-download-label'>
                   <input
-                    type="radio"
-                    id="download200"
-                    name="download"
-                    value="200MB"
-                    onChange={(e) =>
-                      setFilterValues("download", e.target.value)
-                    }
-                    className="filter-form-download-input"
+                    type='radio'
+                    id='download200'
+                    name='download'
+                    value='200MB'
+                    onChange={(e) => setFilterValues('download', e.target.value)}
+                    className='filter-form-download-input'
                   />
                   Até 200MB
                 </label>
 
-                <label
-                  htmlFor="download500"
-                  className="filter-form-download-label"
-                >
+                <label htmlFor='download500' className='filter-form-download-label'>
                   <input
-                    type="radio"
-                    id="download500"
-                    name="download"
-                    value="500MB"
-                    onChange={(e) =>
-                      setFilterValues("download", e.target.value)
-                    }
-                    className="filter-form-download-input"
+                    type='radio'
+                    id='download500'
+                    name='download'
+                    value='500MB'
+                    onChange={(e) => setFilterValues('download', e.target.value)}
+                    className='filter-form-download-input'
                   />
                   Até 500MB
                 </label>
 
-                <label
-                  htmlFor="download1000"
-                  className="filter-form-download-label"
-                >
+                <label htmlFor='download1000' className='filter-form-download-label'>
                   <input
-                    type="radio"
-                    id="download1000"
-                    name="download"
-                    value="1000MB"
-                    onChange={(e) =>
-                      setFilterValues("download", e.target.value)
-                    }
-                    className="filter-form-download-input"
+                    type='radio'
+                    id='download1000'
+                    name='download'
+                    value='1000MB'
+                    onChange={(e) => setFilterValues('download', e.target.value)}
+                    className='filter-form-download-input'
                   />
                   Mais de 500MB
                 </label>
               </div>
 
-              <div className="filter-form-plan-type-box">
-                <span className="filter-form-plan-type-title">Conexão via</span>
+              <div className='filter-form-plan-type-box'>
+                <span className='filter-form-plan-type-title'>Conexão via</span>
 
-                <label htmlFor="fibra" className="filter-form-plan-type-label">
+                <label htmlFor='fibra' className='filter-form-plan-type-label'>
                   <input
-                    type="checkbox"
-                    id="fibra"
-                    name="planType"
-                    value="Fibra Ótica"
-                    onChange={(e) =>
-                      handleTechnologyFilterOption(e.target.value)
-                    }
-                    className="filter-form-plan-type-input"
+                    type='checkbox'
+                    id='fibra'
+                    name='planType'
+                    value='Fibra Ótica'
+                    onChange={(e) => handleTechnologyFilterOption(e.target.value)}
+                    className='filter-form-plan-type-input'
                   />
                   Fibra Ótica
                 </label>
 
-                <label
-                  htmlFor="metalico"
-                  className="filter-form-plan-type-label"
-                >
+                <label htmlFor='metalico' className='filter-form-plan-type-label'>
                   <input
-                    type="checkbox"
-                    id="metalico"
-                    name="planType"
-                    value="Cabo Metálico"
-                    onChange={(e) =>
-                      handleTechnologyFilterOption(e.target.value)
-                    }
-                    className="filter-form-plan-type-input"
+                    type='checkbox'
+                    id='metalico'
+                    name='planType'
+                    value='Cabo Metálico'
+                    onChange={(e) => handleTechnologyFilterOption(e.target.value)}
+                    className='filter-form-plan-type-input'
                   />
                   Cabo Metálico
                 </label>
 
-                <label htmlFor="radio" className="filter-form-plan-type-label">
+                <label htmlFor='radio' className='filter-form-plan-type-label'>
                   <input
-                    type="checkbox"
-                    id="radio"
-                    name="planType"
-                    value="Via Rádio"
-                    onChange={(e) =>
-                      handleTechnologyFilterOption(e.target.value)
-                    }
-                    className="filter-form-plan-type-input"
+                    type='checkbox'
+                    id='radio'
+                    name='planType'
+                    value='Via Rádio'
+                    onChange={(e) => handleTechnologyFilterOption(e.target.value)}
+                    className='filter-form-plan-type-input'
                   />
                   Via Rádio
                 </label>
 
-                <label
-                  htmlFor="satelite"
-                  className="filter-form-plan-type-label"
-                >
+                <label htmlFor='satelite' className='filter-form-plan-type-label'>
                   <input
-                    type="checkbox"
-                    id="satelite"
-                    name="planType"
-                    value="Via Satélite"
-                    onChange={(e) =>
-                      handleTechnologyFilterOption(e.target.value)
-                    }
-                    className="filter-form-plan-type-input"
+                    type='checkbox'
+                    id='satelite'
+                    name='planType'
+                    value='Via Satélite'
+                    onChange={(e) => handleTechnologyFilterOption(e.target.value)}
+                    className='filter-form-plan-type-input'
                   />
                   Via Satélite
                 </label>
               </div>
 
-              <div className="filter-form-provider-box">
-                <span className="filter-form-provider-title">Operadora</span>
+              <div className='filter-form-provider-box'>
+                <span className='filter-form-provider-title'>Operadora</span>
 
                 {providers.map((provider, index) => (
                   <label
                     key={`provider-${index}`}
                     htmlFor={provider}
-                    className="filter-form-provider-label"
+                    className='filter-form-provider-label'
                   >
                     <input
-                      type="checkbox"
+                      type='checkbox'
                       id={provider}
-                      name="provider"
+                      name='provider'
                       value={provider}
-                      onChange={(event) =>
-                        handleProviderFilterOption(event.target.value)
-                      }
-                      className="filter-form-provider-input"
+                      onChange={(event) => handleProviderFilterOption(event.target.value)}
+                      className='filter-form-provider-input'
                     />
                     {provider}
                   </label>
@@ -409,25 +354,23 @@ const InternetPlansBody = () => {
             </div>
 
             <button
-              type="submit"
+              type='submit'
               disabled={!validFilterOptions}
               onClick={handleSubmitFilterButton}
-              className="filter-form-submit-button"
+              className='filter-form-submit-button'
             >
               Aplicar
             </button>
           </form>
         </div>
 
-        <div className="result-box">
-          <span className="result-status">
-            {internetPlans.length !== 0
-              ? internetPlans.length
-              : filteredInternetPlans.length}{" "}
+        <div className='result-box'>
+          <span className='result-status'>
+            {internetPlans.length !== 0 ? internetPlans.length : filteredInternetPlans.length}{' '}
             Resultado(s)
           </span>
 
-          <div className="result-wrapper">
+          <div className='result-wrapper'>
             {filteredInternetPlans.length !== 0 ? (
               filteredInternetPlans
                 .slice(sliceBegin, sliceEnd)
@@ -461,16 +404,10 @@ const InternetPlansBody = () => {
                   />
                 ))
             ) : (
-              <span className="result-not-found-message">
-                Nenhum plano encontrado
-              </span>
+              <span className='result-not-found-message'>Nenhum plano encontrado</span>
             )}
             {internetPlans.length > sliceEnd ? (
-              <button
-                type="button"
-                onClick={handleShowMore}
-                className="result-show-more-button"
-              >
+              <button type='button' onClick={handleShowMore} className='result-show-more-button'>
                 MOSTRAR MAIS
               </button>
             ) : null}
