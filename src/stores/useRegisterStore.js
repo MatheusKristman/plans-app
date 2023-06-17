@@ -36,7 +36,7 @@ const useRegisterStore = create((set) => ({
     address: '',
     addressNumber: '',
     complement: '',
-    paymentDate: '',
+    paymentDate: '5',
     paymentMethod: 'Boleto',
     bank: '',
     agency: '',
@@ -44,7 +44,7 @@ const useRegisterStore = create((set) => ({
     accountOwner: '',
     installationDate1: format(addDays(new Date(), 1), 'dd/MM/yyyy'),
     installationDate2: format(addDays(new Date(), 2), 'dd/MM/yyyy'),
-    installationPeriod: '',
+    installationPeriod: 'Período manhã (8h às 12h)',
     plan: '',
   },
   setClientData: (option, value) =>
@@ -60,6 +60,8 @@ const useRegisterStore = create((set) => ({
   isSubmitting: false,
   setSubmit: () => set(() => ({ isSubmitting: true })),
   unsetSubmit: () => set(() => ({ isSubmitting: false })),
+  message: '',
+  setMessage: (msg) => set(() => ({ message: msg })),
 }));
 
 export default useRegisterStore;

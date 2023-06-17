@@ -9,6 +9,7 @@ import ReactDatePicker from 'react-datepicker';
 import useRegisterStore from '../../stores/useRegisterStore';
 import useGeneralStore from '../../stores/useGeneralStore';
 import axios from 'axios';
+import api from '../../services/api';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
@@ -773,6 +774,12 @@ const InstallationForm = () => {
     setFirstDate,
     secondDate,
     setSecondDate,
+    planSelected,
+    isSubmitting,
+    setSubmit,
+    unsetSubmit,
+    message,
+    setMessage,
   } = useRegisterStore(
     (state) => ({
       stepsAnimation: state.stepsAnimation,
@@ -784,6 +791,12 @@ const InstallationForm = () => {
       setFirstDate: state.setFirstDate,
       secondDate: state.secondDate,
       setSecondDate: state.setSecondDate,
+      planSelected: state.planSelected,
+      isSubmitting: state.isSubmitting,
+      setSubmit: state.setSubmit,
+      unsetSubmit: state.unsetSubmit,
+      message: state.message,
+      setMessage: state.setMessage,
     }),
     shallow
   );
@@ -808,17 +821,47 @@ const InstallationForm = () => {
   // TODO criar um useEffect para enviar os dados para o banco de dados e redirecionar para o whatsapp com os dados,
   // e criar o useEffect no step3 para o type cel
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (
+      clientData.installationDate1 &&
+      clientData.installationDate2 &&
+      clientData.installationPeriod
+    ) {
+      setClientData('plan', planSelected.id);
+      setSubmit();
+      setMessage(encodeURIComponent(`Olá, gostaria de saber mais sobre o plano, segue os dados: Nome: ${name}; RG: ${}; CPF: ${cpf}; Data de Nascimento: ${dateOfBirth}; Nome Completo da Mãe: ${motherName}; Telefone1: ${cel}; Telefone2: ${}; Estado: ${}; Cidade: ${}; CEP: ${}; Endereço: ${}; Número da Residência: ${}; Complement: ${}; Dia do pagamento: ${}; Forma de pagamento: ${}; Banco: ${}; Agência: ${}; Conta: ${}; Titular da conta: ${}; Data da instalação 1: ${}; Data da instalação 2: ${}; Periodo: ${}; Plano: ${
+        planInfos.title
+      }; Fraquia: ${planInfos.franchise}; Valor: R$ ${planInfos.cost
+        .toFixed(2)
+        .replace('.', ',')};`));
+    }
+    // criar mensagem para redirecionar para o whatsapp.
+
+    console.log(encodeURIComponent)
+  };
+
   useEffect(() => {
     activateStepsAnimation();
   }, []);
 
   useEffect(() => {
-    console.log(clientData.installationDate1);
-    console.log(clientData.installationDate2);
-  }, [clientData]);
+    const submitData = () => {
+      api
+        .post('/client-pf/register', clientData)
+        .then((res) => console.log(res.data))
+        .catch((error) => console.error(error))
+        .finally(() => unsetSubmit());
+    };
+
+    if (isSubmitting) {
+      submitData();
+    }
+  }, [isSubmitting]);
 
   return (
-    <form className='installation-form'>
+    <form onSubmit={handleSubmit} className='installation-form'>
       <div
         className={
           stepsAnimation

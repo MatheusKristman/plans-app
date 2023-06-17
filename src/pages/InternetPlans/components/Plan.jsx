@@ -28,7 +28,7 @@ const Plan = ({ id, providerLogo, title, download, benefits, technology, cost, d
   );
 
   const handleRegisterButton = () => {
-    setPlanSelected({ logo: providerLogo, title, franchise: download, cost, type: 'internet' });
+    setPlanSelected({ logo: providerLogo, title, franchise: download, cost, id, type: 'internet' });
     generateSteps({ step1: true, step2: false, step3: false, step4: false });
     openRegisterForm();
     activateModalAnimation();
