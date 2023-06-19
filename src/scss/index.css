@@ -12088,15 +12088,11 @@ body {
   gap: 25px;
   flex-direction: column;
 }
-@media screen and (min-width: 500px) {
-  .register-form-overlay .register-form-container .register-form-body .register-form-plan-wrapper .register-form-plan-box .register-form-plan-details-container {
-    flex-direction: row;
-  }
-}
 .register-form-overlay .register-form-container .register-form-body .register-form-plan-wrapper .register-form-plan-box .register-form-plan-details-container .register-form-plan-details-box {
   display: flex;
   align-items: center;
   gap: 15px;
+  width: 100%;
 }
 .register-form-overlay .register-form-container .register-form-body .register-form-plan-wrapper .register-form-plan-box .register-form-plan-details-container .register-form-plan-details-box .register-form-plan-provider-icon-box {
   background-color: #fff;

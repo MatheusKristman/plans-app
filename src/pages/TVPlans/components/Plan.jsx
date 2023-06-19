@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
 import useTVPlansStore from "../../../stores/useTVPlansStore";
+import useRegisterStore from "../../../stores/useRegisterStore";
+import useGeneralStore from "../../../stores/useGeneralStore";
 import { shallow } from "zustand/shallow";
 
 const Plan = ({
@@ -21,7 +23,36 @@ const Plan = ({
     }),
     shallow
   );
+  const { setPlanSelected, openRegisterForm, generateSteps } = useRegisterStore(
+    (state) => ({
+      setPlanSelected: state.setPlanSelected,
+      openRegisterForm: state.openRegisterForm,
+      generateSteps: state.generateSteps,
+    }),
+    shallow
+  );
+  const { activateModalAnimation } = useGeneralStore(
+    (state) => ({
+      activateModalAnimation: state.activateModalAnimation,
+    }),
+    shallow
+  );
+
   const descriptionRef = useRef();
+
+  const handleRegisterButton = () => {
+    setPlanSelected({
+      logo: providerLogo,
+      title,
+      devicesQuant,
+      cost,
+      id,
+      type: "tv",
+    });
+    generateSteps({ step1: true, step2: false, step3: false, step4: false });
+    openRegisterForm();
+    activateModalAnimation();
+  };
 
   return (
     <div className="plan-box">
@@ -115,7 +146,11 @@ const Plan = ({
             </div>
           </div>
 
-          <button type="button" className="plan-benefits-acquire-button">
+          <button
+            type="button"
+            onClick={handleRegisterButton}
+            className="plan-benefits-acquire-button"
+          >
             CONTRATAR
           </button>
         </div>

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import useTVPlansStore from "../../stores/useTVPlansStore";
+import useRegisterStore from "../../stores/useRegisterStore";
 import { shallow } from "zustand/shallow";
 import api from "../../services/api";
 import { useParams } from "react-router-dom";
@@ -7,6 +8,7 @@ import { useParams } from "react-router-dom";
 import PlansHeader from "../components/PlansHeader";
 import TVPlansBody from "./components/TVPlansBody";
 import Footer from "../components/Footer";
+import RegisterForm from "../components/RegisterForm";
 
 const TVPlans = () => {
   const {
@@ -28,6 +30,12 @@ const TVPlans = () => {
       setProviders: state.setProviders,
       resetOnLoad: state.resetOnLoad,
       setFilteredTvPlans: state.setFilteredTvPlans,
+    }),
+    shallow
+  );
+  const { isRegisterFormOpen } = useRegisterStore(
+    (state) => ({
+      isRegisterFormOpen: state.isRegisterFormOpen,
     }),
     shallow
   );
@@ -90,6 +98,14 @@ const TVPlans = () => {
     }
   }, [allProviders, tvPlans]);
 
+  useEffect(() => {
+    if (isRegisterFormOpen) {
+      document.documentElement.style.overflowY = "hidden";
+    } else {
+      document.documentElement.style.overflowY = "unset";
+    }
+  }, [isRegisterFormOpen]);
+
   return (
     <div className="tv-plans-container">
       <PlansHeader
@@ -97,6 +113,7 @@ const TVPlans = () => {
         headerDesc="Rorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis."
       />
       <TVPlansBody />
+      {isRegisterFormOpen && <RegisterForm />}
       <Footer />
     </div>
   );
