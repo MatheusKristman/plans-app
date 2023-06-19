@@ -1,14 +1,16 @@
-import React, { useRef } from 'react';
+import React, { useRef, useMemo, useEffect } from 'react';
 import useInternetPlanStore from '../../../stores/useInternetPlansStore';
 import useRegisterStore from '../../../stores/useRegisterStore';
 import useGeneralStore from '../../../stores/useGeneralStore';
 import { shallow } from 'zustand/shallow';
+import { motion } from 'framer-motion';
 
 const Plan = ({ id, providerLogo, title, download, benefits, technology, cost, description }) => {
-  const { idActiveToSeeMore, handleIdActiveToSeeMore } = useInternetPlanStore(
+  const { idActiveToSeeMore, handleIdActiveToSeeMore, internetPlans } = useInternetPlanStore(
     (state) => ({
       idActiveToSeeMore: state.idActiveToSeeMore,
       handleIdActiveToSeeMore: state.handleIdActiveToSeeMore,
+      internetPlans: state.internetPlans,
     }),
     shallow
   );
@@ -27,6 +29,11 @@ const Plan = ({ id, providerLogo, title, download, benefits, technology, cost, d
     shallow
   );
 
+  const cardAnimation = useMemo(() => ({
+    offscreen: { y: -50, opacity: 0 },
+    onscreen: { y: 0, opacity: 1, transition: { duration: 1 } },
+  }));
+
   const handleRegisterButton = () => {
     setPlanSelected({ logo: providerLogo, title, franchise: download, cost, id, type: 'internet' });
     generateSteps({ step1: true, step2: false, step3: false, step4: false });
@@ -36,8 +43,15 @@ const Plan = ({ id, providerLogo, title, download, benefits, technology, cost, d
 
   const descriptionRef = useRef();
 
+  // TODO verificar animação quando renderizar a box plano
+
   return (
-    <div className='plan-box'>
+    <motion.div
+      initial={{ y: -50, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 1 }}
+      className='plan-box'
+    >
       <div className='plan-wrapper'>
         <div className='plan-title-box'>
           <div className='plan-provider-logo-box'>
@@ -154,7 +168,7 @@ const Plan = ({ id, providerLogo, title, download, benefits, technology, cost, d
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 import useHomeStore from '../../../stores/useHomeStore';
+import { motion } from 'framer-motion';
 
 const FAQCard = ({ question, answer, isAnswerOpen, handleAnswer, id }) => {
   return (
@@ -33,15 +34,29 @@ const HomeFAQ = () => {
     setAnswers: state.setAnswers,
   }));
 
+  const faqAnimation = useMemo(() => ({
+    offscreen: { y: -50, opacity: 0 },
+    onscreen: { y: 0, opacity: 1, transition: { duration: 1 } },
+  }));
+
   return (
-    <div id='faq' className='faq-container wrapper'>
-      <h2 className='faq-title'>Um pouco mais sobre (Nome da empresa)</h2>
-      <p className='faq-desc'>
+    <motion.div
+      transition={{ staggerChildren: 0.4 }}
+      initial='offscreen'
+      whileInView='onscreen'
+      viewport={{ once: true, amount: 0.5 }}
+      id='faq'
+      className='faq-container wrapper'
+    >
+      <motion.h2 variants={faqAnimation} className='faq-title'>
+        Um pouco mais sobre (Nome da empresa)
+      </motion.h2>
+      <motion.p variants={faqAnimation} className='faq-desc'>
         Somos um comparador de ofertas de serviços financeiros e de telecom. Utilizando nossa
         ferramenta, você encontra planos de celular.
-      </p>
+      </motion.p>
 
-      <div className='faq-wrapper'>
+      <motion.div variants={faqAnimation} className='faq-wrapper'>
         <FAQCard
           question='Preciso pagar para usar?'
           answer='Não. somos uma plataforma 100% gratuita que te permite comparar ofertas e descobrir quais são as melhores operadoras e opções de preços da sua cidade.'
@@ -63,8 +78,8 @@ const HomeFAQ = () => {
           handleAnswer={setAnswers}
           id={'3'}
         />
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

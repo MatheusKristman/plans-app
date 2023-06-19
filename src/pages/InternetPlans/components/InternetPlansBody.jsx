@@ -1,5 +1,6 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useMemo } from 'react';
 import useInternetPlanStore from '../../../stores/useInternetPlansStore';
+import { motion } from 'framer-motion';
 import { shallow } from 'zustand/shallow';
 import api from '../../../services/api';
 
@@ -58,6 +59,11 @@ const InternetPlansBody = () => {
   );
 
   const filterRef = useRef();
+
+  const filterAnimation = useMemo(() => ({
+    offscreen: { y: -50, opacity: 0 },
+    onscreen: { y: 0, opacity: 1, transition: { duration: 1 } },
+  }));
 
   const handleFilterBoxButton = () => {
     if (isFilterOpen) {
@@ -130,7 +136,10 @@ const InternetPlansBody = () => {
             Filtrar
           </button>
 
-          <form
+          <motion.form
+            variants={window.innerWidth >= 1024 ? filterAnimation : {}}
+            initial='offscreen'
+            animate='onscreen'
             ref={filterRef}
             style={
               isFilterOpen
@@ -361,7 +370,7 @@ const InternetPlansBody = () => {
             >
               Aplicar
             </button>
-          </form>
+          </motion.form>
         </div>
 
         <div className='result-box'>
@@ -370,7 +379,13 @@ const InternetPlansBody = () => {
             Resultado(s)
           </span>
 
-          <div className='result-wrapper'>
+          <motion.div
+            transition={{ staggerChildren: 0.3 }}
+            initial='offscreen'
+            animate='onscreen'
+            viewport={{ once: true }}
+            className='result-wrapper'
+          >
             {filteredInternetPlans.length !== 0 ? (
               filteredInternetPlans
                 .slice(sliceBegin, sliceEnd)
@@ -411,7 +426,7 @@ const InternetPlansBody = () => {
                 MOSTRAR MAIS
               </button>
             ) : null}
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
