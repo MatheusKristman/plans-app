@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
-import useCelPlansStore from "../../stores/useCelPlansStore";
-import { shallow } from "zustand/shallow";
-import api from "../../services/api";
-import { useParams } from "react-router-dom";
+import React, { useEffect } from 'react';
+import useCelPlansStore from '../../stores/useCelPlansStore';
+import useRegisterStore from '../../stores/useRegisterStore';
+import { shallow } from 'zustand/shallow';
+import api from '../../services/api';
+import { useParams } from 'react-router-dom';
 
-import PlansHeader from "../components/PlansHeader";
-import CelPlansBody from "./components/CelPlansBody.jsx";
-import Footer from "../components/Footer";
+import PlansHeader from '../components/PlansHeader';
+import CelPlansBody from './components/CelPlansBody.jsx';
+import Footer from '../components/Footer';
+import RegisterForm from '../components/RegisterForm';
 
 const CelPlans = () => {
   const {
@@ -29,22 +31,28 @@ const CelPlans = () => {
     }),
     shallow
   );
+  const { isRegisterFormOpen } = useRegisterStore(
+    (state) => ({
+      isRegisterFormOpen: state.isRegisterFormOpen,
+    }),
+    shallow
+  );
 
-  const cep = useParams()?.cep || "";
+  const cep = useParams()?.cep || '';
 
   useEffect(() => {
     const fetchPlans = () => {
-      if (cep !== "" && cep.length === 9 && cep.includes("-")) {
+      if (cep !== '' && cep.length === 9 && cep.includes('-')) {
         const data = {
           cep,
           provider: [],
           cost: 300,
-          franchise: "300GB",
+          franchise: '300GB',
           planType: [],
         };
 
         api
-          .post("plan/cel-plan/filter", data)
+          .post('plan/cel-plan/filter', data)
           .then((res) => setFilteredCelPlans(res.data))
           .catch((err) => console.log(err))
           .finally(() => {
@@ -55,12 +63,12 @@ const CelPlans = () => {
       }
 
       api
-        .get("plan/cel-plan/all")
+        .get('plan/cel-plan/all')
         .then((res) => setCelPlans(res.data.filter((plan) => !plan.archived)))
         .catch((err) => console.error(err));
 
       api
-        .get("provider/all")
+        .get('provider/all')
         .then((res) => setAllProviders(res.data))
         .catch((err) => console.error(err));
     };
@@ -90,12 +98,13 @@ const CelPlans = () => {
   }, [allProviders, celPlans]);
 
   return (
-    <div className="cel-plans-container">
+    <div className='cel-plans-container'>
       <PlansHeader
-        headerTitle="Planos de Celular"
-        headerDesc="Rorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis."
+        headerTitle='Planos de Celular'
+        headerDesc='Rorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.'
       />
       <CelPlansBody />
+      {isRegisterFormOpen && <RegisterForm />}
       <Footer />
     </div>
   );

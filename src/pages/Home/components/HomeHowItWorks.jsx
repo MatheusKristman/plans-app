@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import { motion } from 'framer-motion';
 
 const StepsCard = ({ tag, title, desc }) => {
+  const stepAnimation = useMemo(() => ({
+    offscreen: { y: -50, opacity: 0 },
+    onscreen: { y: 0, opacity: 1, transition: { duration: 1 } },
+  }));
+
   return (
-    <div className='how-it-works-card'>
+    <motion.div variants={stepAnimation} className='how-it-works-card'>
       <span className='how-it-works-tag'>{tag}</span>
       <h4 className='how-it-works-card-title'>{title}</h4>
       <p className='how-it-works-desc'>{desc}</p>
-    </div>
+    </motion.div>
   );
 };
 
@@ -16,7 +22,13 @@ const HomeHowItWorks = () => {
       <div className='wrapper'>
         <h2 className='how-it-works-title'>Seu plano em apenas 3 passos</h2>
 
-        <div className='how-it-works-wrapper'>
+        <motion.div
+          transition={{ staggerChildren: 0.3 }}
+          initial='offscreen'
+          whileInView='onscreen'
+          viewport={{ once: true, amount: 1 }}
+          className='how-it-works-wrapper'
+        >
           <StepsCard
             tag={'1'}
             title={'Escolha um serviço'}
@@ -32,7 +44,7 @@ const HomeHowItWorks = () => {
             title={'Aproveite'}
             desc={'Selecione o plano que você gostou e entre em contato'}
           />
-        </div>
+        </motion.div>
       </div>
     </div>
   );

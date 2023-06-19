@@ -1,7 +1,8 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useMemo } from 'react';
 import useHomeStore from '../../../stores/useHomeStore';
 import useGeneralStore from '../../../stores/useGeneralStore';
 import { shallow } from 'zustand/shallow';
+import { motion } from 'framer-motion';
 
 const HomeHero = () => {
   const {
@@ -26,6 +27,21 @@ const HomeHero = () => {
     }),
     shallow
   );
+
+  const titleAnimate = useMemo(() => ({
+    offscreen: { y: 100, opacity: 0 },
+    onscreen: { y: 0, opacity: 1, transition: { duration: 1 } },
+  }));
+
+  const descAnimate = useMemo(() => ({
+    offscreen: { y: 100, opacity: 0 },
+    onscreen: { y: 0, opacity: 1, transition: { duration: 1 } },
+  }));
+
+  const buttonAnimate = useMemo(() => ({
+    offscreen: { y: 100, opacity: 0 },
+    onscreen: { y: 0, opacity: 1, transition: { duration: 1 } },
+  }));
 
   const topBoxRef = useRef();
   const bottomBoxRef = useRef();
@@ -70,15 +86,28 @@ const HomeHero = () => {
   return (
     <div className='wrapper'>
       <div className='hero-wrapper'>
-        <div className='hero-info'>
-          <h1 className='hero-title'>Economize Tempo e Dinheiro</h1>
-          <span className='hero-desc'>
+        <motion.div
+          transition={{ staggerChildren: 0.4 }}
+          initial='offscreen'
+          whileInView='onscreen'
+          viewport={{ once: true, amount: 1 }}
+          className='hero-info'
+        >
+          <motion.h1 variants={titleAnimate} className='hero-title'>
+            Economize Tempo e Dinheiro
+          </motion.h1>
+          <motion.span variants={descAnimate} className='hero-desc'>
             Encontre os melhores planos da sua cidade com ótimos preços e facilidade.
-          </span>
-          <button type='button' onClick={handleFilterBoxOpening} className='hero-cta'>
+          </motion.span>
+          <motion.button
+            variants={buttonAnimate}
+            type='button'
+            onClick={handleFilterBoxOpening}
+            className='hero-cta'
+          >
             Encontre seu plano
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
         <div className='hero-image'>
           <div className='image-box'>
             <img src='/assets/images/phone.svg' alt='Telefone' className='image-phone' />
