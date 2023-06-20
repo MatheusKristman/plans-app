@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useMemo } from 'react';
 import useInternetPlanStore from '../../../stores/useInternetPlansStore';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { shallow } from 'zustand/shallow';
 import api from '../../../services/api';
 
@@ -386,41 +386,43 @@ const InternetPlansBody = () => {
             viewport={{ once: true }}
             className='result-wrapper'
           >
-            {filteredInternetPlans.length !== 0 ? (
-              filteredInternetPlans
-                .slice(sliceBegin, sliceEnd)
-                .map((plan) => (
-                  <Plan
-                    key={plan._id}
-                    id={plan._id}
-                    providerLogo={plan.providerIcon}
-                    title={plan.title}
-                    download={plan.download}
-                    benefits={plan.benefits}
-                    technology={plan.technology}
-                    cost={plan.cost}
-                    description={plan.description}
-                  />
-                ))
-            ) : internetPlans.length !== 0 ? (
-              internetPlans
-                .slice(sliceBegin, sliceEnd)
-                .map((plan) => (
-                  <Plan
-                    key={plan._id}
-                    id={plan._id}
-                    providerLogo={plan.providerIcon}
-                    title={plan.title}
-                    download={plan.download}
-                    benefits={plan.benefits}
-                    technology={plan.technology}
-                    cost={plan.cost}
-                    description={plan.description}
-                  />
-                ))
-            ) : (
-              <span className='result-not-found-message'>Nenhum plano encontrado</span>
-            )}
+            <AnimatePresence>
+              {filteredInternetPlans.length !== 0 ? (
+                filteredInternetPlans
+                  .slice(sliceBegin, sliceEnd)
+                  .map((plan) => (
+                    <Plan
+                      key={plan._id}
+                      id={plan._id}
+                      providerLogo={plan.providerIcon}
+                      title={plan.title}
+                      download={plan.download}
+                      benefits={plan.benefits}
+                      technology={plan.technology}
+                      cost={plan.cost}
+                      description={plan.description}
+                    />
+                  ))
+              ) : internetPlans.length !== 0 ? (
+                internetPlans
+                  .slice(sliceBegin, sliceEnd)
+                  .map((plan) => (
+                    <Plan
+                      key={plan._id}
+                      id={plan._id}
+                      providerLogo={plan.providerIcon}
+                      title={plan.title}
+                      download={plan.download}
+                      benefits={plan.benefits}
+                      technology={plan.technology}
+                      cost={plan.cost}
+                      description={plan.description}
+                    />
+                  ))
+              ) : (
+                <span className='result-not-found-message'>Nenhum plano encontrado</span>
+              )}
+            </AnimatePresence>
             {internetPlans.length > sliceEnd ? (
               <button type='button' onClick={handleShowMore} className='result-show-more-button'>
                 MOSTRAR MAIS

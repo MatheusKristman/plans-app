@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
 const useProviderStore = create((set) => ({
   isNewProviderFormOpen: false,
@@ -10,6 +10,10 @@ const useProviderStore = create((set) => ({
   isEditProviderFormOpen: false,
   openEditProviderForm: () => set(() => ({ isEditProviderFormOpen: true })),
   closeEditProviderForm: () => set(() => ({ isEditProviderFormOpen: false })),
+  providers: [],
+  setProviders: (prov) => set(() => ({ providers: prov })),
+  filteredProviders: [],
+  setFilteredProviders: (prov) => set(() => ({ filteredProviders: prov })),
 }));
 
 export default useProviderStore;

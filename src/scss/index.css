@@ -648,6 +648,7 @@ body {
   right: 0;
   top: 50px;
   width: fit-content;
+  z-index: 10;
 }
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-status-box .dashboard-component-plan-type-options .dashboard-component-plan-type-title {
   font-size: 1.25rem;
@@ -684,6 +685,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 25px;
+  position: relative;
 }
 .dashboard-component-container .dashboard-component-wrapper .dashboard-component-info .dashboard-component-active-wrapper .dashboard-component-plans-wrapper .dashboard-component-no-plan-adviser {
   font-size: 1.5rem;
@@ -12132,6 +12134,22 @@ body {
   .register-form-overlay .register-form-container .register-form-body .register-form-plan-wrapper .register-form-plan-box .register-form-plan-details-container .register-form-plan-price {
     white-space: nowrap;
   }
+}
+
+.loading-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  background-color: #fff;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 100px;
 }
 
 /*# sourceMappingURL=index.css.map */

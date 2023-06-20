@@ -3,6 +3,7 @@ import useCelPlansStore from '../../../stores/useCelPlansStore';
 import useRegisterStore from '../../../stores/useRegisterStore';
 import useGeneralStore from '../../../stores/useGeneralStore';
 import { shallow } from 'zustand/shallow';
+import { motion } from 'framer-motion';
 
 const Plan = ({
   id,
@@ -53,7 +54,14 @@ const Plan = ({
   };
 
   return (
-    <div className='plan-box'>
+    <motion.div
+      key='box'
+      initial={{ y: -50, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 1 }}
+      exit={{ opacity: 0, transition: { duration: 0.3 } }}
+      className='plan-box'
+    >
       <div className='plan-wrapper'>
         <div className='plan-title-box'>
           <div className='plan-provider-logo-box'>
@@ -169,7 +177,7 @@ const Plan = ({
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

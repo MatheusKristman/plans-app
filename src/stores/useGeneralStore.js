@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
 const useGeneralStore = create((set) => ({
   modalAnimation: false,
@@ -21,6 +21,9 @@ const useGeneralStore = create((set) => ({
     }),
   resetBenefits: () => set(() => ({ benefits: [] })),
   defaultBenefits: (value) => set(() => ({ benefits: value })),
+  isLoading: false,
+  setLoading: () => set(() => ({ isLoading: true })),
+  unsetLoading: () => set(() => ({ isLoading: false })),
 }));
 
 export default useGeneralStore;
