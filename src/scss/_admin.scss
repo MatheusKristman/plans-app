@@ -39,9 +39,14 @@
           }
         }
 
-        .logo {
-          font-weight: 400;
-          font-size: 2.188rem;
+        .logo-box {
+          text-decoration: none;
+
+          .logo {
+            font-weight: 400;
+            font-size: 2.188rem;
+            color: #252525;
+          }
         }
       }
 

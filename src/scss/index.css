@@ -101,9 +101,13 @@ body {
     text-align: center;
   }
 }
-.admin-container .info .info-wrapper .admin-header .logo {
+.admin-container .info .info-wrapper .admin-header .logo-box {
+  text-decoration: none;
+}
+.admin-container .info .info-wrapper .admin-header .logo-box .logo {
   font-weight: 400;
   font-size: 2.188rem;
+  color: #252525;
 }
 .admin-container .info .info-wrapper .info-content {
   margin-top: 50px;
@@ -1060,6 +1064,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 25px;
+  position: relative;
 }
 .providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container {
   width: 100%;
@@ -1353,6 +1358,7 @@ body {
   flex-direction: column;
   gap: 25px;
   margin-top: 80px;
+  position: relative;
 }
 .plans-component-container .plans-component-wrapper .plans-component-info .plans-component-active-plans .plans-component-plans-wrapper .plans-component-no-plan-adviser {
   font-size: 1.5rem;
@@ -2276,6 +2282,7 @@ body {
   flex-direction: column;
   gap: 25px;
   margin-top: 80px;
+  position: relative;
 }
 .leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-leads-no-client-found {
   font-size: 1.5rem;
