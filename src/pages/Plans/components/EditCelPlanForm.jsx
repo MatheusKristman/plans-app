@@ -128,7 +128,7 @@ const EditCelPlanForm = () => {
       const data = {
         id: idSelectedForDetails,
         title: celTitle,
-        cost: celCost,
+        cost: Number(celCost.replace(",", ".")),
         franchise: celFranchise + celFranchiseUnit,
         unlimitedApps: benefits,
         unlimitedCall: celUnlimitedCall,
@@ -197,8 +197,9 @@ const EditCelPlanForm = () => {
   }, [planSelectedForDetails]);
 
   useEffect(() => {
-    console.log(planSelectedForDetails.unlimitedApps);
-  }, [planSelectedForDetails.unlimitedApps]);
+    console.log(celDescription);
+    console.log("typeof: ", typeof celDescription);
+  }, [celDescription]);
 
   return (
     <div
@@ -264,7 +265,7 @@ const EditCelPlanForm = () => {
                 <span className="edit-cel-plan-cost-title">Valor</span>
                 <input
                   {...register("cost")}
-                  type="number"
+                  type="text"
                   name="cost"
                   onChange={setCelCost}
                   value={celCost}
@@ -284,7 +285,7 @@ const EditCelPlanForm = () => {
                 </span>
                 <input
                   {...register("franchise")}
-                  type="number"
+                  type="text"
                   name="franchise"
                   onChange={setCelFranchise}
                   value={celFranchise}

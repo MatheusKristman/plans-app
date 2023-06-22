@@ -21,6 +21,8 @@ const PlansStatusBox = () => {
     shallow
   );
 
+  const activePlans = plans.filter((plan) => !plan.archived);
+
   const handleFilterBoxOpen = () => {
     openFilterBox();
     activateModalAnimation();
@@ -31,7 +33,7 @@ const PlansStatusBox = () => {
       {isFilterBoxOpen && <PlansFilterBox />}
 
       <span className="plans-component-status">
-        Planos ativos: {plans.length}
+        Planos ativos: {activePlans.length}
       </span>
 
       <button

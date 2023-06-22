@@ -174,6 +174,24 @@
           }
         }
       }
+
+      .leads-component-leads-see-more-button {
+        width: fit-content;
+        padding: 10px 20px;
+        background-color: #d40066;
+        border: 2px solid #d40066;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #fff;
+        cursor: pointer;
+        margin: auto;
+        transition: padding 0.3s ease;
+
+        &:hover {
+          padding: 10px 30px;
+        }
+      }
     }
   }
 }

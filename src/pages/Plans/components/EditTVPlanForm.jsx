@@ -13,6 +13,7 @@ import BenefitsLabel from "../../DashboardComponent/components/BenefitsLabel";
 const schema = yup.object({
   title: yup.string().required("Título é obrigatório"),
   cost: yup.string().required("Valor é obrigatório"),
+  installationCost: yup.string().required("Valor de instalação é obrigatório"),
   afterCost: yup.string(),
   periodToChangeCost: yup.string(),
   description: yup.string().required("Descrição é obrigatório"),
@@ -60,7 +61,7 @@ const EditTVPlanForm = () => {
       tvCost: state.tvCost,
       setTVCost: state.setTVCost,
       tvCostChangesConfirmation: state.tvCostChangesConfirmation,
-      setTVCostChangesConfirmation: state.setTVChangesConfirmation,
+      setTVCostChangesConfirmation: state.setTVCostChangesConfirmation,
       tvAfterCost: state.tvAfterCost,
       setTVAfterCost: state.setTVAfterCost,
       tvPeriodToChangeCost: state.tvPeriodToChangeCost,
@@ -136,14 +137,7 @@ const EditTVPlanForm = () => {
   const onSubmit = (data) => {
     console.log(data);
 
-    if (tvInstallationCost === "") {
-      setTVInstallationCostError();
-    }
-
-    if (tvInstallationCost !== "") {
-      unsetTVInstallationCostError();
-      setToSubmit();
-    }
+    setToSubmit();
   };
 
   useEffect(() => {
@@ -151,8 +145,8 @@ const EditTVPlanForm = () => {
       const data = {
         id: idSelectedForDetails,
         title: tvTitle,
-        cost: tvCost,
-        afterCost: tvAfterCost,
+        cost: Number(tvCost.replace(",", ".")),
+        afterCost: Number(tvAfterCost.replace(",", ".")) || null,
         periodToChangeCost: tvPeriodToChangeCost,
         installationCost: tvInstallationCost,
         devicesQuant: tvDevices,
@@ -214,6 +208,7 @@ const EditTVPlanForm = () => {
       defaultBenefits(planSelectedForDetails.benefits);
       setValue("title", tvTitle);
       setValue("cost", tvCost);
+      setValue("installationCost", tvInstallationCost);
       setValue("afterCost", tvAfterCost);
       setValue("periodToChangeCost", tvPeriodToChangeCost);
       setValue("description", tvDescription);
@@ -221,8 +216,9 @@ const EditTVPlanForm = () => {
   }, [planSelectedForDetails]);
 
   useEffect(() => {
-    console.log(tvTitle);
-  }, [tvTitle]);
+    console.log(tvDescription);
+    console.log("typeof: ", typeof tvDescription);
+  }, [tvDescription]);
 
   return (
     <div
@@ -288,7 +284,7 @@ const EditTVPlanForm = () => {
                 <span className="edit-tv-plan-cost-title">Valor</span>
                 <input
                   {...register("cost")}
-                  type="number"
+                  type="text"
                   name="cost"
                   onChange={setTVCost}
                   value={tvCost}
@@ -317,8 +313,8 @@ const EditTVPlanForm = () => {
                       id="yes"
                       name="costChangesAfterPeriod"
                       onChange={setTVCostChangesConfirmation}
+                      checked={tvCostChangesConfirmation === true}
                       value={true}
-                      checked={JSON.parse(tvCostChangesConfirmation)}
                       className="edit-tv-plan-cost-changes-after-period-input"
                     />
                     Sim
@@ -333,8 +329,8 @@ const EditTVPlanForm = () => {
                       id="no"
                       name="costChangesAfterPeriod"
                       onChange={setTVCostChangesConfirmation}
+                      checked={tvCostChangesConfirmation === false}
                       value={false}
-                      checked={JSON.parse(!tvCostChangesConfirmation)}
                       className="edit-tv-plan-cost-changes-after-period-input"
                     />
                     Não
@@ -342,7 +338,7 @@ const EditTVPlanForm = () => {
                 </div>
               </div>
 
-              {JSON.parse(tvCostChangesConfirmation) && (
+              {tvCostChangesConfirmation && (
                 <>
                   <div className="edit-tv-plan-after-cost-box">
                     <span className="edit-tv-plan-after-cost-title">
@@ -350,7 +346,7 @@ const EditTVPlanForm = () => {
                     </span>
                     <input
                       {...register("afterCost")}
-                      type="number"
+                      type="text"
                       name="afterCost"
                       onChange={setTVAfterCost}
                       value={tvAfterCost}
@@ -373,7 +369,7 @@ const EditTVPlanForm = () => {
                     <div className="edit-tv-plan-period-to-change-cost-wrapper">
                       <input
                         {...register("periodToChangeCost")}
-                        type="number"
+                        type="text"
                         name="periodToChangeCost"
                         onChange={setTVPeriodToChangeCost}
                         value={tvPeriodToChangeCost}
@@ -402,21 +398,22 @@ const EditTVPlanForm = () => {
                   Valor da instalação
                 </span>
                 <input
-                  type="number"
+                  {...register("installationCost")}
+                  type="text"
                   name="installationCost"
                   onChange={setTVInstallationCost}
                   value={tvInstallationCost}
                   disabled={installationCostCheckboxRef.current?.checked}
                   style={
-                    tvInstallationCostError
+                    errors.installationCost
                       ? { border: "2px solid #ef5959" }
                       : {}
                   }
                   className="edit-tv-plan-installation-cost-input"
                 />
-                {tvInstallationCostError && (
+                {errors.installationCost && (
                   <span className="edit-tv-plan-modal-error-form">
-                    Valor da instalação é obrigatório
+                    {errors.installationCost?.message}
                   </span>
                 )}
 

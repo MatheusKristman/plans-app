@@ -28,6 +28,11 @@ const Dashboard = () => {
     archivedPlans,
     setArchivedPlans,
     setAllProviders,
+    sliceEnd,
+    setSliceEnd,
+    archivedSliceEnd,
+    setArchivedSliceEnd,
+    resetSlices,
   } = useDashboardComponentStore(
     (state) => ({
       isInternetFormOpen: state.isInternetFormOpen,
@@ -40,6 +45,11 @@ const Dashboard = () => {
       archivedPlans: state.archivedPlans,
       setArchivedPlans: state.setArchivedPlans,
       setAllProviders: state.setAllProviders,
+      sliceEnd: state.sliceEnd,
+      setSliceEnd: state.setSliceEnd,
+      archivedSliceEnd: state.archivedSliceEnd,
+      setArchivedSliceEnd: state.setArchivedSliceEnd,
+      resetSlices: state.resetSlices,
     }),
     shallow
   );
@@ -64,6 +74,22 @@ const Dashboard = () => {
   const filteredArchivedPlans = archivedPlans.filter((plan) =>
     plan.title.toLowerCase().includes(searchValue.toLowerCase())
   );
+
+  const handleSeeMore = () => {
+    if (sliceEnd >= activePlans.length) {
+      return;
+    }
+
+    setSliceEnd();
+  };
+
+  const handleSeeMoreArchived = () => {
+    if (archivedSliceEnd >= archivedPlans.length) {
+      return;
+    }
+
+    setArchivedSliceEnd();
+  };
 
   useEffect(() => {
     setLoading();
@@ -95,6 +121,12 @@ const Dashboard = () => {
       document.documentElement.style.overflowY = "unset";
     }
   }, [isInternetFormOpen, isCelFormOpen]);
+
+  useEffect(() => {
+    if (searchValue.length !== 0) {
+      resetSlices();
+    }
+  }, [searchValue]);
 
   return (
     <div className="dashboard-component-container">
@@ -136,20 +168,33 @@ const Dashboard = () => {
                   />
                 ))
               ) : activePlans.length !== 0 ? (
-                activePlans.map((plan, index) => (
-                  <DashboardPlanBox
-                    key={`plan-${index}`}
-                    providerIconPath={plan.providerIcon}
-                    planTitle={plan.title}
-                    contactValue={plan.contacts}
-                    totalValue={plan.cost * plan.contacts}
-                    createdValue={plan.createdAt}
-                  />
-                ))
+                activePlans
+                  .slice(0, sliceEnd)
+                  .map((plan, index) => (
+                    <DashboardPlanBox
+                      key={`plan-${index}`}
+                      providerIconPath={plan.providerIcon}
+                      planTitle={plan.title}
+                      contactValue={plan.contacts}
+                      totalValue={plan.cost * plan.contacts}
+                      createdValue={plan.createdAt}
+                    />
+                  ))
               ) : (
                 <span className="dashboard-component-no-plan-adviser">
                   Nenhum plano ativo no momento
                 </span>
+              )}
+              {sliceEnd < activePlans.length && searchValue.length === 0 ? (
+                <button
+                  type="button"
+                  onClick={handleSeeMore}
+                  className="dashboard-component-see-more-button"
+                >
+                  Mostrar Mais
+                </button>
+              ) : (
+                false
               )}
             </div>
           </div>
@@ -183,21 +228,35 @@ const Dashboard = () => {
                     />
                   ))
                 ) : archivedPlans.length !== 0 ? (
-                  archivedPlans.map((plan, index) => (
-                    <DashboardPlanBox
-                      key={`plan-${index}`}
-                      providerIconPath={plan.providerIcon}
-                      planTitle={plan.title}
-                      contactValue={plan.contacts}
-                      totalValue={plan.cost * plan.contacts}
-                      createdValue={plan.createdAt}
-                      archivedValue={plan.archivedAt}
-                    />
-                  ))
+                  archivedPlans
+                    .slice(0, archivedSliceEnd)
+                    .map((plan, index) => (
+                      <DashboardPlanBox
+                        key={`plan-${index}`}
+                        providerIconPath={plan.providerIcon}
+                        planTitle={plan.title}
+                        contactValue={plan.contacts}
+                        totalValue={plan.cost * plan.contacts}
+                        createdValue={plan.createdAt}
+                        archivedValue={plan.archivedAt}
+                      />
+                    ))
                 ) : (
                   <span className="dashboard-component-archived-plans-no-plan-adviser">
                     Nenhum plano arquivado no momento
                   </span>
+                )}
+                {archivedSliceEnd < archivedPlans.length &&
+                searchValue.length === 0 ? (
+                  <button
+                    type="button"
+                    onClick={handleSeeMoreArchived}
+                    className="dashboard-component-see-more-button"
+                  >
+                    Mostrar Mais
+                  </button>
+                ) : (
+                  false
                 )}
               </div>
             )}

@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 const useLeadStore = create((set) => ({
   isLeadDetailBoxOpen: false,
@@ -8,10 +8,14 @@ const useLeadStore = create((set) => ({
   setClientsPF: (value) => set(() => ({ clientsPF: value })),
   plans: [],
   setPlans: (value) => set(() => ({ plans: value })),
-  idSelectedForDetails: '',
+  idSelectedForDetails: "",
   setIdSelectedForDetails: (id) => set(() => ({ idSelectedForDetails: id })),
   clientSelectedForDetails: {},
-  setClientSelectedForDetails: (client) => set(() => ({ clientSelectedForDetails: client })),
+  setClientSelectedForDetails: (client) =>
+    set(() => ({ clientSelectedForDetails: client })),
+  sliceEnd: 5,
+  setSliceEnd: () => set((state) => ({ sliceEnd: state.sliceEnd + 5 })),
+  resetSlice: () => set(() => ({ sliceEnd: 5 })),
 }));
 
 export default useLeadStore;

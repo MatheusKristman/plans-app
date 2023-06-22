@@ -15,6 +15,7 @@ const schema = yup.object({
   cost: yup.string().required("Valor é obrigatório"),
   afterCost: yup.string(),
   periodToChangeCost: yup.string(),
+  installationCost: yup.string().required("Valor da instalação é obrigatório"),
   description: yup.string().required("Descrição é obrigatório"),
 });
 
@@ -50,9 +51,6 @@ const NewTVPlanModal = () => {
     tvProviderError,
     setTVProviderError,
     unsetTVProviderError,
-    tvInstallationCostError,
-    setTVInstallationCostError,
-    unsetTVInstallationCostError,
     tvResetInputs,
   } = useDashboardComponentStore(
     (state) => ({
@@ -86,9 +84,6 @@ const NewTVPlanModal = () => {
       tvProviderError: state.tvProviderError,
       setTVProviderError: state.setTVProviderError,
       unsetTVProviderError: state.unsetTVProviderError,
-      tvInstallationCostError: state.tvInstallationCostError,
-      setTVInstallationCostError: state.setTVInstallationCostError,
-      unsetTVInstallationCostError: state.unsetTVInstallationCostError,
       tvResetInputs: state.tvResetInputs,
     }),
     shallow
@@ -106,6 +101,7 @@ const NewTVPlanModal = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -125,13 +121,8 @@ const NewTVPlanModal = () => {
       setTVProviderError();
     }
 
-    if (tvInstallationCost === "") {
-      setTVInstallationCostError();
-    }
-
-    if (tvInstallationCost !== "" && tvProviderId !== "") {
+    if (tvProviderId !== "") {
       unsetTVProviderError();
-      unsetTVInstallationCostError();
       setToSubmit();
     }
   };
@@ -141,9 +132,9 @@ const NewTVPlanModal = () => {
       const data = {
         providerId: tvProviderId,
         title: tvTitle,
-        cost: tvCost,
-        afterCost: tvAfterCost,
-        periodToChangeCost: tvPeriodToChangeCost,
+        cost: Number(tvCost.replace(",", ".")),
+        afterCost: Number(tvAfterCost.replace(",", ".")),
+        periodToChangeCost: Number(tvPeriodToChangeCost),
         installationCost: tvInstallationCost,
         devicesQuant: tvDevices,
         benefits: benefits,
@@ -199,9 +190,10 @@ const NewTVPlanModal = () => {
   }, [isSubmitting]);
 
   useEffect(() => {
-    console.log(tvProviderError);
-    console.log(errors);
-  }, [tvProviderError, errors]);
+    if (tvInstallationCost === "Grátis") {
+      setValue("installationCost", "Grátis");
+    }
+  }, [tvInstallationCost]);
 
   return (
     <div
@@ -315,7 +307,7 @@ const NewTVPlanModal = () => {
                 <span className="new-tv-plan-modal-cost-title">Valor</span>
                 <input
                   {...register("cost")}
-                  type="number"
+                  type="text"
                   autoComplete="off"
                   autoCorrect="off"
                   onChange={setTVCost}
@@ -378,7 +370,7 @@ const NewTVPlanModal = () => {
                     </span>
                     <input
                       {...register("afterCost")}
-                      type="number"
+                      type="text"
                       onChange={setTVAfterCost}
                       value={tvAfterCost}
                       name="afterCost"
@@ -401,7 +393,7 @@ const NewTVPlanModal = () => {
                     <div className="new-tv-plan-modal-period-to-change-cost-wrapper">
                       <input
                         {...register("periodToChangeCost")}
-                        type="number"
+                        type="text"
                         onChange={setTVPeriodToChangeCost}
                         value={tvPeriodToChangeCost}
                         name="periodToChangeCost"
@@ -430,21 +422,22 @@ const NewTVPlanModal = () => {
                   Valor da instalação
                 </span>
                 <input
-                  type="number"
+                  {...register("installationCost")}
+                  type="text"
                   onChange={setTVInstallationCost}
                   value={tvInstallationCost}
                   disabled={installationCostRef.current?.checked}
                   name="installationCost"
                   style={
-                    tvInstallationCostError
+                    errors.installationCost
                       ? { border: "2px solid #ef5959" }
                       : {}
                   }
                   className="new-tv-plan-modal-installation-cost-input"
                 />
-                {tvInstallationCostError && (
+                {errors.installationCost && (
                   <span className="new-tv-plan-modal-error-form">
-                    Valor da instalação é obrigatório
+                    {errors.installationCost?.message}
                   </span>
                 )}
 

@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 const useProviderStore = create((set) => ({
   isNewProviderFormOpen: false,
@@ -14,6 +14,9 @@ const useProviderStore = create((set) => ({
   setProviders: (prov) => set(() => ({ providers: prov })),
   filteredProviders: [],
   setFilteredProviders: (prov) => set(() => ({ filteredProviders: prov })),
+  sliceEnd: 5,
+  setSliceEnd: () => set((state) => ({ sliceEnd: state.sliceEnd + 5 })),
+  resetSlice: () => set(() => ({ sliceEnd: 5 })),
 }));
 
 export default useProviderStore;

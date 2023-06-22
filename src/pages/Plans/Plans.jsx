@@ -51,6 +51,7 @@ const Plans = () => {
     setActivePlansSliceValue,
     archivedPlansSliceValue,
     setArchivedPlansSliceValue,
+    resetSliceValues,
     idSelectedForDetails,
     setPlanSelectedForDetails,
     planSelectedForDetails,
@@ -80,6 +81,7 @@ const Plans = () => {
       setActivePlansSliceValue: state.setActivePlansSliceValue,
       archivedPlansSliceValue: state.archivedPlansSliceValue,
       setArchivedPlansSliceValue: state.setArchivedPlansSliceValue,
+      resetSliceValues: state.resetSliceValues,
       idSelectedForDetails: state.idSelectedForDetails,
       setPlanSelectedForDetails: state.setPlanSelectedForDetails,
       planSelectedForDetails: state.planSelectedForDetails,
@@ -221,6 +223,15 @@ const Plans = () => {
       setPlanSelectedForDetails(planSelected[0]);
     }
   }, [idSelectedForDetails]);
+
+  useEffect(() => {
+    if (searchValue.length !== 0) {
+      resetSliceValues();
+    }
+  }, [searchValue]);
+
+  // TODO Verificar botão de filtro na animação que buga quando abre a box de editar ou ver detalhes
+  // TODO Verificar se os planos estão sendo adicionados nas operadoras (contador)
 
   return (
     <div className="plans-component-container">

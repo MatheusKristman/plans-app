@@ -83,6 +83,8 @@ const usePlansStore = create((set) => ({
     set((state) => ({
       archivedPlansSliceValue: state.archivedPlansSliceValue + 5,
     })),
+  resetSliceValues: () =>
+    set(() => ({ activePlansSliceValue: 5, archivedPlansSliceValue: 5 })),
   idSelectedForDetails: "",
   setIdSelectedForDetails: (value) =>
     set(() => ({ idSelectedForDetails: value })),
@@ -95,20 +97,20 @@ const usePlansStore = create((set) => ({
   internetCost: "",
   setInternetCost: (event) =>
     set(() => {
-      const numericValue = event.target.value;
+      let value = event.target.value.replace(/[^\d,]/g, "");
 
-      const cleanedValue = numericValue.replace(/[^0-9.,]/g, "");
+      value = value.replace(/^0+(?=\d)/, "");
+      value = value.replace(".", ",");
+      value = value.replace(/\./g, "");
+      value = value.replace(/,(?=.*?,)/g, "");
 
-      const parts = cleanedValue.split(/[.,]/);
-      const integerPart = parts[0];
-      const decimalPart = parts[1] || "";
+      const parts = value.split(",");
 
-      const limitedDecimalPart = decimalPart.slice(0, 2);
+      if (parts.length > 1) {
+        value = parts[0] + "," + parts[1].slice(0, 2);
+      }
 
-      const formattedValue =
-        integerPart + (limitedDecimalPart ? "." + limitedDecimalPart : "");
-
-      return { internetCost: formattedValue };
+      return { internetCost: value };
     }),
   internetInstallationCost: "",
   setInternetInstallationCost: (event) =>
@@ -117,31 +119,43 @@ const usePlansStore = create((set) => ({
         return { internetInstallationCost: "Grátis" };
       }
 
-      const numericValue = event.target.value;
+      let value = event.target.value.replace(/[^\d,]/g, "");
 
-      const cleanedValue = numericValue.replace(/[^0-9.,]/g, "");
+      value = value.replace(/^0+(?=\d)/, "");
+      value = value.replace(".", ",");
+      value = value.replace(/\./g, "");
+      value = value.replace(/,(?=.*?,)/g, "");
 
-      const parts = cleanedValue.split(/[.,]/);
-      const integerPart = parts[0];
-      const decimalPart = parts[1] || "";
+      const parts = value.split(",");
 
-      const limitedDecimalPart = decimalPart.slice(0, 2);
+      if (parts.length > 1) {
+        value = parts[0] + "," + parts[1].slice(0, 2);
+      }
 
-      const formattedValue =
-        integerPart + (limitedDecimalPart ? "." + limitedDecimalPart : "");
-
-      return { internetInstallationCost: formattedValue };
+      return { internetInstallationCost: value };
     }),
   internetDownload: "",
   setInternetDownload: (event) =>
-    set(() => ({ internetDownload: event.target.value })),
+    set(() => {
+      let value = event.target.value.replace(/[^\d]/g, "");
+
+      value = value.replace(/^0+(?=\d)/, "");
+
+      return { internetDownload: value };
+    }),
 
   internetDownloadUnit: "MB",
   setInternetDownloadUnit: (event) =>
     set(() => ({ internetDownloadUnit: event.target.value })),
   internetUpload: "",
   setInternetUpload: (event) =>
-    set(() => ({ internetUpload: event.target.value })),
+    set(() => {
+      let value = event.target.value.replace(/[^\d]/g, "");
+
+      value = value.replace(/^0+(?=\d)/, "");
+
+      return { internetUpload: value };
+    }),
   internetUploadUnit: "MB",
   setInternetUploadUnit: (event) =>
     set(() => ({ internetUploadUnit: event.target.value })),
@@ -164,11 +178,11 @@ const usePlansStore = create((set) => ({
   internetHasWifi: true,
   setInternetHasWifi: (event) =>
     set(() => ({
-      internetHasWifi: event.target.value,
+      internetHasWifi: event.target.value === "true",
     })),
   internetPriority: 1,
   setInternetPriority: (event) =>
-    set(() => ({ internetPriority: event.target.value })),
+    set(() => ({ internetPriority: Number(event.target.value) })),
   internetDescription: "",
   setInternetDescription: (event) =>
     set(() => ({ internetDescription: event.target.value })),
@@ -188,7 +202,9 @@ const usePlansStore = create((set) => ({
   defaultValuesForInternetForm: () =>
     set((state) => ({
       internetTitle: state.planSelectedForDetails.title,
-      internetCost: state.planSelectedForDetails.cost,
+      internetCost: state.planSelectedForDetails.cost
+        ?.toFixed(2)
+        .replace(".", ","),
       internetInstallationCost: state.planSelectedForDetails.installationCost,
       internetDownload: state.planSelectedForDetails.download?.substring(
         0,
@@ -231,40 +247,48 @@ const usePlansStore = create((set) => ({
   celCost: "",
   setCelCost: (event) =>
     set(() => {
-      const numericValue = event.target.value;
+      let value = event.target.value.replace(/[^\d,]/g, "");
 
-      const cleanedValue = numericValue.replace(/[^0-9.,]/g, "");
+      value = value.replace(/^0+(?=\d)/, "");
+      value = value.replace(".", ",");
+      value = value.replace(/\./g, "");
+      value = value.replace(/,(?=.*?,)/g, "");
 
-      const parts = cleanedValue.split(/[.,]/);
-      const integerPart = parts[0];
-      const decimalPart = parts[1] || "";
+      const parts = value.split(",");
 
-      const limitedDecimalPart = decimalPart.slice(0, 2);
+      if (parts.length > 1) {
+        value = parts[0] + "," + parts[1].slice(0, 2);
+      }
 
-      const formattedValue =
-        integerPart + (limitedDecimalPart ? "." + limitedDecimalPart : "");
-
-      return { celCost: formattedValue };
+      return { celCost: value };
     }),
   celFranchise: "",
-  setCelFranchise: (event) => set(() => ({ celFranchise: event.target.value })),
+  setCelFranchise: (event) =>
+    set(() => {
+      let value = event.target.value.replace(/[^\d]/g, "");
+
+      value = value.replace(/^0+(?=\d)/, "");
+
+      return { celFranchise: value };
+    }),
   celFranchiseUnit: "MB",
   setCelFranchiseUnit: (event) =>
     set(() => ({ celFranchiseUnit: event.target.value })),
   celUnlimitedCall: true,
   setCelUnlimitedCall: (event) =>
-    set(() => ({ celUnlimitedCall: event.target.value })),
+    set(() => ({ celUnlimitedCall: event.target.value === "true" })),
   celPlanType: "Controle",
   setCelPlanType: (event) => set(() => ({ celPlanType: event.target.value })),
   celPriority: 1,
-  setCelPriority: (event) => set(() => ({ celPriority: event.target.value })),
+  setCelPriority: (event) =>
+    set(() => ({ celPriority: Number(event.target.value) })),
   celDescription: "",
   setCelDescription: (event) =>
     set(() => ({ celDescription: event.target.value })),
   defaultValuesForCelForm: () =>
     set((state) => ({
       celTitle: state.planSelectedForDetails.title,
-      celCost: state.planSelectedForDetails.cost,
+      celCost: state.planSelectedForDetails.cost?.toFixed(2).replace(".", ","),
       celFranchise: state.planSelectedForDetails.franchise?.substring(
         0,
         state.planSelectedForDetails.franchise?.length - 2
@@ -294,46 +318,50 @@ const usePlansStore = create((set) => ({
   tvCost: "",
   setTVCost: (event) =>
     set(() => {
-      const numericValue = event.target.value;
+      let value = event.target.value.replace(/[^\d,]/g, "");
 
-      const cleanedValue = numericValue.replace(/[^0-9.,]/g, "");
+      value = value.replace(/^0+(?=\d)/, "");
+      value = value.replace(".", ",");
+      value = value.replace(/\./g, "");
+      value = value.replace(/,(?=.*?,)/g, "");
 
-      const parts = cleanedValue.split(/[.,]/);
-      const integerPart = parts[0];
-      const decimalPart = parts[1] || "";
+      const parts = value.split(",");
 
-      const limitedDecimalPart = decimalPart.slice(0, 2);
+      if (parts.length > 1) {
+        value = parts[0] + "," + parts[1].slice(0, 2);
+      }
 
-      const formattedValue =
-        integerPart + (limitedDecimalPart ? "." + limitedDecimalPart : "");
-
-      return { tvCost: formattedValue };
+      return { tvCost: value };
     }),
   tvCostChangesConfirmation: true,
   setTVCostChangesConfirmation: (event) =>
-    set(() => ({ tvCostChangesConfirmation: event.target.value })),
+    set(() => ({ tvCostChangesConfirmation: event.target.value === "true" })),
   tvAfterCost: "",
   setTVAfterCost: (event) =>
     set(() => {
-      const numericValue = event.target.value;
+      let value = event.target.value.replace(/[^\d,]/g, "");
 
-      const cleanedValue = numericValue.replace(/[^0-9.,]/g, "");
+      value = value.replace(/^0+(?=\d)/, "");
+      value = value.replace(".", ",");
+      value = value.replace(/\./g, "");
+      value = value.replace(/,(?=.*?,)/g, "");
 
-      const parts = cleanedValue.split(/[.,]/);
-      const integerPart = parts[0];
-      const decimalPart = parts[1] || "";
+      const parts = value.split(",");
 
-      const limitedDecimalPart = decimalPart.slice(0, 2);
+      if (parts.length > 1) {
+        value = parts[0] + "," + parts[1].slice(0, 2);
+      }
 
-      const formattedValue =
-        integerPart + (limitedDecimalPart ? "." + limitedDecimalPart : "");
-
-      return { tvAfterCost: formattedValue };
+      return { tvAfterCost: value };
     }),
   tvPeriodToChangeCost: "",
   setTVPeriodToChangeCost: (event) =>
     set((state) => {
       if (event.target.value.length <= 2) {
+        if (Number(event.target.value) > 12) {
+          return { tvPeriodToChangeCost: "12" };
+        }
+
         return { tvPeriodToChangeCost: event.target.value };
       }
 
@@ -346,32 +374,34 @@ const usePlansStore = create((set) => ({
         return { tvInstallationCost: "Grátis" };
       }
 
-      const numericValue = event.target.value;
+      let value = event.target.value.replace(/[^\d,]/g, "");
 
-      const cleanedValue = numericValue.replace(/[^0-9.,]/g, "");
+      value = value.replace(/^0+(?=\d)/, "");
+      value = value.replace(".", ",");
+      value = value.replace(/\./g, "");
+      value = value.replace(/,(?=.*?,)/g, "");
 
-      const parts = cleanedValue.split(/[.,]/);
-      const integerPart = parts[0];
-      const decimalPart = parts[1] || "";
+      const parts = value.split(",");
 
-      const limitedDecimalPart = decimalPart.slice(0, 2);
+      if (parts.length > 1) {
+        value = parts[0] + "," + parts[1].slice(0, 2);
+      }
 
-      const formattedValue =
-        integerPart + (limitedDecimalPart ? "." + limitedDecimalPart : "");
-
-      return { tvInstallationCost: formattedValue };
+      return { tvInstallationCost: value };
     }),
   tvDevices: 1,
-  setTVDevices: (event) => set(() => ({ tvDevices: event.target.value })),
+  setTVDevices: (event) =>
+    set(() => ({ tvDevices: Number(event.target.value) })),
   tvPriority: 1,
-  setTVPriority: (event) => set(() => ({ tvPriority: event.target.value })),
+  setTVPriority: (event) =>
+    set(() => ({ tvPriority: Number(event.target.value) })),
   tvDescription: "",
   setTVDescription: (event) =>
     set(() => ({ tvDescription: event.target.value })),
   defaultValuesForTVForm: () =>
     set((state) => ({
       tvTitle: state.planSelectedForDetails.title,
-      tvCost: state.planSelectedForDetails.cost,
+      tvCost: state.planSelectedForDetails.cost?.toFixed(2).replace(".", ","),
       tvCostChangesConfirmation:
         state.planSelectedForDetails.afterCost !== null &&
         state.planSelectedForDetails.periodToChangeCost !== null,

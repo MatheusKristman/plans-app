@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import useProviderStore from "../../stores/useProviderStore";
 import useGeneralStore from "../../stores/useGeneralStore";
+import useDashboardPageStore from "../../stores/useDashboardPageStore";
 import { shallow } from "zustand/shallow";
 import { AnimatePresence } from "framer-motion";
 import api from "../../services/api";
@@ -20,7 +21,9 @@ const Providers = () => {
     isEditProviderFormOpen,
     providers,
     setProviders,
-    filteredProviders,
+    sliceEnd,
+    setSliceEnd,
+    resetSlice,
   } = useProviderStore(
     (state) => ({
       isNewProviderFormOpen: state.isNewProviderFormOpen,
@@ -28,7 +31,9 @@ const Providers = () => {
       isEditProviderFormOpen: state.isEditProviderFormOpen,
       providers: state.providers,
       setProviders: state.setProviders,
-      filteredProviders: state.filterdProviders,
+      sliceEnd: state.sliceEnd,
+      setSliceEnd: state.setSliceEnd,
+      resetSlice: state.resetSlice,
     }),
     shallow
   );
@@ -40,6 +45,20 @@ const Providers = () => {
     }),
     shallow
   );
+  const { searchValue } = useDashboardPageStore(
+    (state) => ({
+      searchValue: state.searchValue,
+    }),
+    shallow
+  );
+
+  const handleSeeMore = () => {
+    if (sliceEnd >= providers.lenght) {
+      return;
+    }
+
+    setSliceEnd();
+  };
 
   useEffect(() => {
     setLoading();
@@ -59,6 +78,12 @@ const Providers = () => {
       document.documentElement.style.overflowY = "unset";
     }
   }, [isNewProviderFormOpen]);
+
+  useEffect(() => {
+    if (searchValue.length !== 0) {
+      resetSlice();
+    }
+  }, [searchValue]);
 
   return (
     <div className="providers-component-container">
@@ -80,7 +105,7 @@ const Providers = () => {
                 <Loading type="spokes" color="#d40066" key={isLoading} />
               )}
             </AnimatePresence>
-            {providers.map((provider) => (
+            {providers.slice(0, sliceEnd).map((provider) => (
               <ProviderBox
                 key={provider._id}
                 providerLogo={provider.providerLogo}
@@ -89,6 +114,17 @@ const Providers = () => {
                 id={provider._id}
               />
             ))}
+            {sliceEnd < providers.length && searchValue.length === 0 ? (
+              <button
+                type="button"
+                className="providers-component-see-more-button"
+                onClick={handleSeeMore}
+              >
+                Mostrar Mais
+              </button>
+            ) : (
+              false
+            )}
           </div>
         </div>
       </div>

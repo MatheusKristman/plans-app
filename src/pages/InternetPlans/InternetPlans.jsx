@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
-import api from '../../services/api';
-import useInternetPlansStore from '../../stores/useInternetPlansStore';
-import useRegisterStore from '../../stores/useRegisterStore';
-import { useParams } from 'react-router-dom';
-import { shallow } from 'zustand/shallow';
+import React, { useEffect } from "react";
+import api from "../../services/api";
+import useInternetPlansStore from "../../stores/useInternetPlansStore";
+import useRegisterStore from "../../stores/useRegisterStore";
+import { useParams } from "react-router-dom";
+import { shallow } from "zustand/shallow";
 
-import PlansHeader from '../components/PlansHeader';
-import InternetPlansBody from './components/InternetPlansBody';
-import Footer from '../components/Footer';
-import RegisterForm from '../components/RegisterForm';
+import PlansHeader from "../components/PlansHeader";
+import InternetPlansBody from "./components/InternetPlansBody";
+import Footer from "../components/Footer";
+import RegisterForm from "../components/RegisterForm";
 
 const InternetPlans = () => {
   const {
@@ -38,21 +38,21 @@ const InternetPlans = () => {
     shallow
   );
 
-  const cep = useParams()?.cep || '';
+  const cep = useParams()?.cep || "";
 
   useEffect(() => {
     const fetchPlans = () => {
-      if (cep !== '' && cep.length === 9 && cep.includes('-')) {
+      if (cep !== "" && cep.length === 9 && cep.includes("-")) {
         const data = {
           cep,
           provider: [],
           cost: 500,
-          download: '1000MB',
+          download: "1000MB",
           technology: [],
         };
 
         api
-          .post('plan/internet-plan/filter', data)
+          .post("plan/internet-plan/filter", data)
           .then((res) => setFilteredInternetPlans(res.data))
           .catch((err) => console.error(err))
           .finally(() => {
@@ -63,11 +63,13 @@ const InternetPlans = () => {
       }
 
       api
-        .get('plan/internet-plan/all')
-        .then((res) => setInternetPlans(res.data.filter((plan) => !plan.archived)));
+        .get("plan/internet-plan/all")
+        .then((res) =>
+          setInternetPlans(res.data.filter((plan) => !plan.archived))
+        );
 
       api
-        .get('provider/all')
+        .get("provider/all")
         .then((res) => setAllProviders(res.data))
         .catch((err) => console.error(err));
     };
@@ -80,9 +82,9 @@ const InternetPlans = () => {
 
   useEffect(() => {
     if (isRegisterFormOpen) {
-      document.documentElement.style.overflowY = 'hidden';
+      document.documentElement.style.overflowY = "hidden";
     } else {
-      document.documentElement.style.overflowY = 'unset';
+      document.documentElement.style.overflowY = "unset";
     }
   }, [isRegisterFormOpen]);
 
@@ -104,10 +106,10 @@ const InternetPlans = () => {
   }, [allProviders, internetPlans]);
 
   return (
-    <div className='internet-plans-container'>
+    <div className="internet-plans-container">
       <PlansHeader
-        headerTitle='Planos de Banda Larga'
-        headerDesc='Rorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.'
+        headerTitle="Planos de Banda Larga"
+        headerDesc="Rorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis."
       />
       <InternetPlansBody />
       {isRegisterFormOpen && <RegisterForm />}
@@ -117,3 +119,5 @@ const InternetPlans = () => {
 };
 
 export default InternetPlans;
+
+// TODO Testar planos e verificar se os planos estão sendo adicionados nos contatos

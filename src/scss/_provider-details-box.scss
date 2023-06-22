@@ -110,8 +110,13 @@
               }
 
               .provider-details-provider-logo {
-                width: 70px;
-                height: auto;
+                height: 100%;
+                width: 100%;
+                max-width: 150px;
+                max-height: 40px;
+                object-fit: contain;
+                object-position: left;
+                display: block;
               }
             }
 

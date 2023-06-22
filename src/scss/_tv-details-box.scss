@@ -149,8 +149,12 @@
               }
 
               .tv-details-box-provider-logo {
-                height: 40px;
-                width: fit-content;
+                height: 100%;
+                width: 100%;
+                max-width: 150px;
+                max-height: 40px;
+                object-fit: contain;
+                object-position: left;
                 display: block;
               }
             }

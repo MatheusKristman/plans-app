@@ -22,6 +22,9 @@ const Leads = () => {
     idSelectedForDetails,
     setClientSelectedForDetails,
     clientSelectedForDetails,
+    sliceEnd,
+    setSliceEnd,
+    resetSlice,
   } = useLeadStore(
     (state) => ({
       isLeadDetailBoxOpen: state.isLeadDetailBoxOpen,
@@ -32,6 +35,9 @@ const Leads = () => {
       idSelectedForDetails: state.idSelectedForDetails,
       setClientSelectedForDetails: state.setClientSelectedForDetails,
       clientSelectedForDetails: state.clientSelectedForDetails,
+      sliceEnd: state.sliceEnd,
+      setSliceEnd: state.setSliceEnd,
+      resetSlice: state.resetSlice,
     }),
     shallow
   );
@@ -54,6 +60,14 @@ const Leads = () => {
     client.name.toLowerCase().includes(searchValue.toLowerCase())
   );
 
+  const handleSeeMore = () => {
+    if (sliceEnd >= clientsPF.length) {
+      return;
+    }
+
+    setSliceEnd();
+  };
+
   useEffect(() => {
     setLoading();
 
@@ -72,10 +86,6 @@ const Leads = () => {
   }, []);
 
   useEffect(() => {
-    console.log(plans.filter((plan) => plan._id === clientsPF[0].plan));
-  }, [plans, clientsPF]);
-
-  useEffect(() => {
     if (idSelectedForDetails) {
       setClientSelectedForDetails(
         clientsPF.filter((client) => client._id === idSelectedForDetails)[0]
@@ -84,8 +94,10 @@ const Leads = () => {
   }, [idSelectedForDetails]);
 
   useEffect(() => {
-    console.log(clientSelectedForDetails);
-  }, [clientSelectedForDetails]);
+    if (searchValue !== "") {
+      resetSlice();
+    }
+  }, [searchValue]);
 
   return (
     <div className="leads-component-container">
@@ -139,6 +151,12 @@ const Leads = () => {
                 <span className="leads-component-leads-no-client-found">
                   Nenhum cliente encontrado
                 </span>
+              ) : searchValue.length === 0 &&
+                filteredClientsPF.length === 0 &&
+                clientsPF.length === 0 ? (
+                <span className="leads-component-leads-no-client-found">
+                  Nenhum client cadastrado
+                </span>
               ) : (
                 clientsPF.map((client) => (
                   <LeadBox
@@ -172,6 +190,17 @@ const Leads = () => {
                 ))
               )}
             </AnimatePresence>
+            {sliceEnd < clientsPF.length && searchValue.length === 0 ? (
+              <button
+                type="button"
+                className="leads-component-leads-see-more-button"
+                onClick={handleSeeMore}
+              >
+                Mostrar Mais
+              </button>
+            ) : (
+              false
+            )}
           </div>
         </div>
       </div>
