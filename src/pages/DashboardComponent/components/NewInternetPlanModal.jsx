@@ -225,11 +225,6 @@ const NewInternetPlanModal = () => {
     }
   }, [internetInstallationCost, internetFranchiseLimit]);
 
-  useEffect(() => {
-    console.log(internetPriority);
-    console.log("type of: ", typeof internetPriority);
-  }, [internetPriority]);
-
   return (
     <div
       className={

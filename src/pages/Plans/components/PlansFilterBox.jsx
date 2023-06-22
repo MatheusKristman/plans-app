@@ -1,7 +1,8 @@
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useMemo } from "react";
 import usePlansStore from "../../../stores/usePlansStore";
 import useGeneralStore from "../../../stores/useGeneralStore";
 import { shallow } from "zustand/shallow";
+import { motion } from "framer-motion";
 
 const PlansFilterBox = () => {
   const { plansFilter, handleFilter, closeFilterBox, plans, setPlans } =
@@ -15,14 +16,13 @@ const PlansFilterBox = () => {
       }),
       shallow
     );
-  const { modalAnimation, deactivateModalAnimation } = useGeneralStore(
-    (state) => ({
-      modalAnimation: state.modalAnimation,
-      deactivateModalAnimation: state.deactivateModalAnimation,
-    }),
-    shallow
-  );
   const filterBoxRef = useRef();
+
+  const filterAnimation = useMemo(() => ({
+    initial: { y: -100, opacity: 0 },
+    animate: { y: 0, opacity: 1, transition: { duration: 0.5 } },
+    exit: { y: -100, opacity: 0 },
+  }));
 
   useLayoutEffect(() => {
     const statusMenuHandler = (e) => {
@@ -31,11 +31,7 @@ const PlansFilterBox = () => {
         !filterBoxRef.current.contains(e.target) &&
         !e.target.classList.contains("plans-component-filter-button")
       ) {
-        deactivateModalAnimation();
-
-        setTimeout(() => {
-          closeFilterBox();
-        }, 500);
+        closeFilterBox();
         return;
       }
     };
@@ -47,28 +43,21 @@ const PlansFilterBox = () => {
     };
   }, []);
 
-  useEffect(() => {
-    console.log(plans);
-  }, [plans]);
-
   return (
-    <div
+    <motion.div
+      variants={filterAnimation}
+      initial="initial"
+      animate="animate"
+      exit="exit"
       ref={filterBoxRef}
-      className={
-        modalAnimation
-          ? "filter-box-container animate__animated animate__faster animate__fadeInDown"
-          : "filter-box-container animate__animated animate__faster animate__fadeOutUp"
-      }
+      className="filter-box-container"
     >
       <ul className="filter-box-wrapper">
         <li
           onClick={() => {
             handleFilter("recent");
-            deactivateModalAnimation();
 
-            setTimeout(() => {
-              closeFilterBox();
-            }, 500);
+            closeFilterBox();
           }}
           className={
             plansFilter.recent
@@ -81,11 +70,8 @@ const PlansFilterBox = () => {
         <li
           onClick={() => {
             handleFilter("old");
-            deactivateModalAnimation();
 
-            setTimeout(() => {
-              closeFilterBox();
-            }, 500);
+            closeFilterBox();
           }}
           className={
             plansFilter.old
@@ -98,11 +84,8 @@ const PlansFilterBox = () => {
         <li
           onClick={() => {
             handleFilter("priorityCrescent");
-            deactivateModalAnimation();
 
-            setTimeout(() => {
-              closeFilterBox();
-            }, 500);
+            closeFilterBox();
           }}
           className={
             plansFilter.priorityCrescent
@@ -115,11 +98,8 @@ const PlansFilterBox = () => {
         <li
           onClick={() => {
             handleFilter("priorityDecrescent");
-            deactivateModalAnimation();
 
-            setTimeout(() => {
-              closeFilterBox();
-            }, 500);
+            closeFilterBox();
           }}
           className={
             plansFilter.priorityDecrescent
@@ -130,7 +110,7 @@ const PlansFilterBox = () => {
           Prioridade Decrescente
         </li>
       </ul>
-    </div>
+    </motion.div>
   );
 };
 

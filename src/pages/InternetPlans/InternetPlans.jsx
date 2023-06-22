@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import api from "../../services/api";
 import useInternetPlansStore from "../../stores/useInternetPlansStore";
 import useRegisterStore from "../../stores/useRegisterStore";
+import useGeneralStore from "../../stores/useGeneralStore";
+import useWhatsappStore from "../../stores/useWhatsappStore";
 import { useParams } from "react-router-dom";
 import { shallow } from "zustand/shallow";
 
@@ -9,6 +11,7 @@ import PlansHeader from "../components/PlansHeader";
 import InternetPlansBody from "./components/InternetPlansBody";
 import Footer from "../components/Footer";
 import RegisterForm from "../components/RegisterForm";
+import WhatsappLink from "../components/WhatsappLink";
 
 const InternetPlans = () => {
   const {
@@ -18,6 +21,7 @@ const InternetPlans = () => {
     setAllProviders,
     setProviders,
     resetOnLoad,
+    filteredInternetPlans,
     setFilteredInternetPlans,
   } = useInternetPlansStore(
     (state) => ({
@@ -27,6 +31,7 @@ const InternetPlans = () => {
       setAllProviders: state.setAllProviders,
       setProviders: state.setProviders,
       resetOnLoad: state.resetOnLoad,
+      filteredInternetPlans: state.filteredInternetPlans,
       setFilteredInternetPlans: state.setFilteredInternetPlans,
     }),
     shallow
@@ -37,11 +42,27 @@ const InternetPlans = () => {
     }),
     shallow
   );
+  const { setLoading, unsetLoading } = useGeneralStore(
+    (state) => ({
+      setLoading: state.setLoading,
+      unsetLoading: state.unsetLoading,
+    }),
+    shallow
+  );
+  const { isLinkEnabled, enableLink } = useWhatsappStore(
+    (state) => ({
+      isLinkEnabled: state.isLinkEnabled,
+      enableLink: state.enableLink,
+      disableLink: state.disableLink,
+    }),
+    shallow
+  );
 
   const cep = useParams()?.cep || "";
 
   useEffect(() => {
     const fetchPlans = () => {
+      setLoading();
       if (cep !== "" && cep.length === 9 && cep.includes("-")) {
         const data = {
           cep,
@@ -53,20 +74,32 @@ const InternetPlans = () => {
 
         api
           .post("plan/internet-plan/filter", data)
-          .then((res) => setFilteredInternetPlans(res.data))
+          .then((res) => {
+            const sortedPlans = res.data.sort(
+              (a, b) => a.priority - b.priority
+            );
+
+            setFilteredInternetPlans(sortedPlans);
+          })
           .catch((err) => console.error(err))
-          .finally(() => {
-            setInternetPlans([]);
-          });
+          .finally(() => setInternetPlans([]));
+
+        api
+          .get("provider/all")
+          .then((res) => setAllProviders(res.data))
+          .catch((err) => console.error(err));
 
         return;
       }
 
       api
         .get("plan/internet-plan/all")
-        .then((res) =>
-          setInternetPlans(res.data.filter((plan) => !plan.archived))
-        );
+        .then((res) => {
+          const sortedPlans = res.data.sort((a, b) => a.priority - b.priority);
+
+          setInternetPlans(sortedPlans.filter((plan) => !plan.archived));
+        })
+        .catch((error) => console.error(error));
 
       api
         .get("provider/all")
@@ -78,7 +111,20 @@ const InternetPlans = () => {
     resetOnLoad();
 
     fetchPlans();
+
+    setTimeout(() => {
+      enableLink();
+    }, 10000);
   }, []);
+
+  useEffect(() => {
+    if (
+      (internetPlans.length !== 0 || filteredInternetPlans.length !== 0) &&
+      allProviders.length !== 0
+    ) {
+      unsetLoading();
+    }
+  }, [internetPlans, filteredInternetPlans, allProviders]);
 
   useEffect(() => {
     if (isRegisterFormOpen) {
@@ -113,6 +159,7 @@ const InternetPlans = () => {
       />
       <InternetPlansBody />
       {isRegisterFormOpen && <RegisterForm />}
+      {isLinkEnabled && <WhatsappLink />}
       <Footer />
     </div>
   );

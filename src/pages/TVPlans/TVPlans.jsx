@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import useTVPlansStore from "../../stores/useTVPlansStore";
 import useRegisterStore from "../../stores/useRegisterStore";
+import useGeneralStore from "../../stores/useGeneralStore";
+import useWhatsappStore from "../../stores/useWhatsappStore";
 import { shallow } from "zustand/shallow";
 import api from "../../services/api";
 import { useParams } from "react-router-dom";
@@ -9,6 +11,7 @@ import PlansHeader from "../components/PlansHeader";
 import TVPlansBody from "./components/TVPlansBody";
 import Footer from "../components/Footer";
 import RegisterForm from "../components/RegisterForm";
+import WhatsappLink from "../components/WhatsappLink";
 
 const TVPlans = () => {
   const {
@@ -19,6 +22,7 @@ const TVPlans = () => {
     providers,
     setProviders,
     resetOnLoad,
+    filteredTvPlans,
     setFilteredTvPlans,
   } = useTVPlansStore(
     (state) => ({
@@ -29,6 +33,7 @@ const TVPlans = () => {
       providers: state.providers,
       setProviders: state.setProviders,
       resetOnLoad: state.resetOnLoad,
+      filteredTvPlans: state.filteredTvPlans,
       setFilteredTvPlans: state.setFilteredTvPlans,
     }),
     shallow
@@ -39,11 +44,26 @@ const TVPlans = () => {
     }),
     shallow
   );
+  const { setLoading, unsetLoading } = useGeneralStore(
+    (state) => ({
+      setLoading: state.setLoading,
+      unsetLoading: state.unsetLoading,
+    }),
+    shallow
+  );
+  const { isLinkEnabled, enableLink } = useWhatsappStore(
+    (state) => ({
+      isLinkEnabled: state.isLinkEnabled,
+      enableLink: state.enableLink,
+    }),
+    shallow
+  );
 
   const cep = useParams()?.cep || "";
 
   useEffect(() => {
     const fetchPlans = () => {
+      setLoading();
       if (cep !== "" && cep.length === 9 && cep.includes("-")) {
         const data = {
           cep,
@@ -54,18 +74,33 @@ const TVPlans = () => {
 
         api
           .post("plan/tv-plan/filter", data)
-          .then((res) => setFilteredTvPlans(res.data))
-          .catch((err) => console.log(err))
+          .then((res) => {
+            const sortedPlans = res.data.sort(
+              (a, b) => a.priority - b.priority
+            );
+
+            setFilteredTvPlans(sortedPlans);
+          })
+          .catch((err) => console.error(err))
           .finally(() => {
             setTvPlans([]);
           });
+
+        api
+          .get("provider/all")
+          .then((res) => setAllProviders(res.data))
+          .catch((err) => console.error(err));
 
         return;
       }
 
       api
         .get("plan/tv-plan/all")
-        .then((res) => setTvPlans(res.data.filter((plan) => !plan.archived)))
+        .then((res) => {
+          const sortedPlans = res.data.sort((a, b) => a.priority - b.priority);
+
+          setTvPlans(sortedPlans.filter((plan) => !plan.archived));
+        })
         .catch((err) => console.error(err));
 
       api
@@ -77,6 +112,10 @@ const TVPlans = () => {
     window.scrollTo(0, 0);
     resetOnLoad();
     fetchPlans();
+
+    setTimeout(() => {
+      enableLink();
+    }, 10000);
   }, []);
 
   useEffect(() => {
@@ -106,6 +145,15 @@ const TVPlans = () => {
     }
   }, [isRegisterFormOpen]);
 
+  useEffect(() => {
+    if (
+      (tvPlans.length !== 0 || filteredTvPlans.length !== 0) &&
+      allProviders.length !== 0
+    ) {
+      unsetLoading();
+    }
+  }, [tvPlans, filteredTvPlans, allProviders]);
+
   return (
     <div className="tv-plans-container">
       <PlansHeader
@@ -114,6 +162,7 @@ const TVPlans = () => {
       />
       <TVPlansBody />
       {isRegisterFormOpen && <RegisterForm />}
+      {isLinkEnabled && <WhatsappLink />}
       <Footer />
     </div>
   );

@@ -135,8 +135,6 @@ const EditTVPlanForm = () => {
   };
 
   const onSubmit = (data) => {
-    console.log(data);
-
     setToSubmit();
   };
 
@@ -158,7 +156,6 @@ const EditTVPlanForm = () => {
       api
         .put("/plan/tv-plan/edit", data)
         .then((res) => {
-          console.log("res: ", res.data);
           setPlans(res.data);
 
           toast.success("Plano editado com sucesso!", {
@@ -214,11 +211,6 @@ const EditTVPlanForm = () => {
       setValue("description", tvDescription);
     }
   }, [planSelectedForDetails]);
-
-  useEffect(() => {
-    console.log(tvDescription);
-    console.log("typeof: ", typeof tvDescription);
-  }, [tvDescription]);
 
   return (
     <div

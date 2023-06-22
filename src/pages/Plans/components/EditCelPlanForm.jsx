@@ -119,7 +119,6 @@ const EditCelPlanForm = () => {
   };
 
   const onSubmit = (data) => {
-    console.log(data);
     setToSubmit();
   };
 
@@ -140,7 +139,6 @@ const EditCelPlanForm = () => {
       api
         .put("/plan/cel-plan/edit", data)
         .then((res) => {
-          console.log("res: ", res.data);
           setPlans(res.data);
 
           toast.success("Plano editado com sucesso!", {
@@ -176,7 +174,6 @@ const EditCelPlanForm = () => {
     };
 
     const checkSubmit = () => {
-      console.log(isSubmitting);
       if (isSubmitting) {
         submitData();
       }
@@ -195,11 +192,6 @@ const EditCelPlanForm = () => {
       setValue("description", celDescription);
     }
   }, [planSelectedForDetails]);
-
-  useEffect(() => {
-    console.log(celDescription);
-    console.log("typeof: ", typeof celDescription);
-  }, [celDescription]);
 
   return (
     <div

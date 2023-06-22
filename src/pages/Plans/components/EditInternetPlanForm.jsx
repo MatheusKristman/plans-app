@@ -157,14 +157,11 @@ const EditInternetPlanForm = () => {
   };
 
   const onSubmit = (data) => {
-    console.log(data);
-
     setToSubmit();
   };
 
   useEffect(() => {
     const submitData = () => {
-      console.log(internetTechnology);
       const data = {
         id: idSelectedForDetails,
         title: internetTitle,
@@ -183,7 +180,6 @@ const EditInternetPlanForm = () => {
       api
         .put("/plan/internet-plan/edit", data)
         .then((res) => {
-          console.log("res: ", res.data);
           setPlans(res.data);
 
           toast.success("Plano editado com sucesso!", {
@@ -250,11 +246,6 @@ const EditInternetPlanForm = () => {
       setValue("franchise", "Ilimitado");
     }
   }, [internetInstallationCost, internetFranchiseLimit]);
-
-  useEffect(() => {
-    console.log(internetDescription);
-    console.log("typeof: ", typeof internetDescription);
-  }, [internetDescription]);
 
   return (
     <div

@@ -141,8 +141,6 @@ const Plans = () => {
     } else {
       document.documentElement.style.overflowY = "unset";
     }
-
-    console.log("plansRefreshed");
   }, [isEditInternetFormOpen, isEditCelFormOpen, isEditTVFormOpen]);
 
   useEffect(() => {
@@ -209,9 +207,6 @@ const Plans = () => {
     };
 
     applyPlansFilter();
-
-    console.log(plansFilter);
-    console.log(plans);
   }, [plansFilter, plans]);
 
   useEffect(() => {
@@ -229,9 +224,6 @@ const Plans = () => {
       resetSliceValues();
     }
   }, [searchValue]);
-
-  // TODO Verificar botão de filtro na animação que buga quando abre a box de editar ou ver detalhes
-  // TODO Verificar se os planos estão sendo adicionados nas operadoras (contador)
 
   return (
     <div className="plans-component-container">

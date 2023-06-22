@@ -15,10 +15,6 @@ const DashboardHeader = ({ pageName, searchPlaceholder }) => {
       shallow
     );
 
-  useEffect(() => {
-    console.log(searchValue);
-  }, [searchValue]);
-
   return (
     <div className="dashboard-component-header">
       <button

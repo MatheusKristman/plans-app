@@ -184,11 +184,6 @@ const NewCelPlanModal = () => {
     checkSubmit();
   }, [isSubmitting]);
 
-  useEffect(() => {
-    console.log(celDescription);
-    console.log("typeof: ", typeof celDescription);
-  }, [celDescription]);
-
   return (
     <div
       className={

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import usePlansStore from "../../../stores/usePlansStore";
-import useGeneralStore from "../../../stores/useGeneralStore";
 import { shallow } from "zustand/shallow";
+import { AnimatePresence } from "framer-motion";
 
 import PlansFilterBox from "./PlansFilterBox";
 
@@ -14,23 +14,18 @@ const PlansStatusBox = () => {
     }),
     shallow
   );
-  const { activateModalAnimation } = useGeneralStore(
-    (state) => ({
-      activateModalAnimation: state.activateModalAnimation,
-    }),
-    shallow
-  );
 
   const activePlans = plans.filter((plan) => !plan.archived);
 
   const handleFilterBoxOpen = () => {
     openFilterBox();
-    activateModalAnimation();
   };
 
   return (
     <div className="plans-component-status-box">
-      {isFilterBoxOpen && <PlansFilterBox />}
+      <AnimatePresence>
+        {isFilterBoxOpen && <PlansFilterBox key={isFilterBoxOpen} />}
+      </AnimatePresence>
 
       <span className="plans-component-status">
         Planos ativos: {activePlans.length}

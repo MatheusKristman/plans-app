@@ -21,10 +21,9 @@ const useInternetPlansStore = create((set) => ({
   filteredInternetPlans: [],
   setFilteredInternetPlans: (plans) =>
     set(() => ({ filteredInternetPlans: plans })),
-  sliceBegin: 0,
-  setSliceBegin: (value) => set(() => ({ sliceBegin: value })),
   sliceEnd: 5,
-  setSliceEnd: (value) => set(() => ({ sliceEnd: value })),
+  setSliceEnd: () => set((state) => ({ sliceEnd: state.sliceEnd + 5 })),
+  resetSlice: () => set(() => ({ sliceEnd: 5 })),
   filterValues: {
     cep: "",
     cost: 0,

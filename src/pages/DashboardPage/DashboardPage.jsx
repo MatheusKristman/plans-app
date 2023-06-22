@@ -73,7 +73,6 @@ const DashboardPage = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    console.log(token);
     api
       .get("/admin/is-admin", {
         headers: {

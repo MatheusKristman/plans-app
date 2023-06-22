@@ -149,6 +149,7 @@ const HomeInitialFilterBox = () => {
 
     if (cepValue.length === 9) {
       navigate(`/planos/${providerValue}/${cepValue}`);
+      handleFilterBoxClose();
     }
   };
 

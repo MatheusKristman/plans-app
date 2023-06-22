@@ -52,6 +52,7 @@ const Plan = ({
       cost,
       id,
       type: "internet",
+      planType: "internetPlan",
     });
     generateSteps({ step1: true, step2: false, step3: false, step4: false });
     openRegisterForm();
@@ -59,8 +60,6 @@ const Plan = ({
   };
 
   const descriptionRef = useRef();
-
-  // TODO verificar animação quando renderizar a box plano
 
   return (
     <motion.div
@@ -133,11 +132,7 @@ const Plan = ({
                 Tecnologia do modem
               </span>
 
-              {technology ? (
-                <span className="plan-benefits-technology">Possui</span>
-              ) : (
-                <span className="plan-benefits-technology">Não possui</span>
-              )}
+              <span className="plan-benefits-technology">{technology}</span>
             </div>
 
             <div className="plan-benefits-cost-box">

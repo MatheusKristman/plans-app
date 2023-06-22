@@ -58,7 +58,7 @@
           right: 0px;
           top: 100%;
           background-color: #fff;
-          padding: 15px;
+          padding: 20px 35px;
           border-bottom-left-radius: 8px;
           border-bottom-right-radius: 8px;
           list-style: none;
@@ -66,11 +66,11 @@
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          gap: 10px;
+          gap: 20px;
           z-index: 1;
 
           .header-menu-item {
-            font-size: 1rem;
+            font-size: 1.25rem;
             font-weight: 500;
             color: #252525;
             cursor: pointer;
@@ -121,17 +121,17 @@
 
   .header-bottom-box {
     width: 100%;
-    background-image: url('/assets/images/plan-header-bg-mobile.png');
+    background-image: url("/assets/images/plan-header-bg-mobile.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom right;
 
     @include breakpoint(tablet) {
-      background-image: url('/assets/images/plan-header-bg-tablet.png');
+      background-image: url("/assets/images/plan-header-bg-tablet.png");
     }
 
     @include breakpoint(largeScreen) {
-      background-image: url('/assets/images/plan-header-bg-desktop.png');
+      background-image: url("/assets/images/plan-header-bg-desktop.png");
       background-position: top right;
     }
 

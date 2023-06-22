@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import useCelPlansStore from "../../stores/useCelPlansStore";
 import useRegisterStore from "../../stores/useRegisterStore";
+import useGeneralStore from "../../stores/useGeneralStore";
+import useWhatsappStore from "../../stores/useWhatsappStore";
 import { shallow } from "zustand/shallow";
 import api from "../../services/api";
 import { useParams } from "react-router-dom";
@@ -9,6 +11,7 @@ import PlansHeader from "../components/PlansHeader";
 import CelPlansBody from "./components/CelPlansBody.jsx";
 import Footer from "../components/Footer";
 import RegisterForm from "../components/RegisterForm";
+import WhatsappLink from "../components/WhatsappLink";
 
 const CelPlans = () => {
   const {
@@ -18,6 +21,7 @@ const CelPlans = () => {
     setAllProviders,
     setProviders,
     resetOnLoad,
+    filteredCelPlans,
     setFilteredCelPlans,
   } = useCelPlansStore(
     (state) => ({
@@ -27,6 +31,7 @@ const CelPlans = () => {
       setAllProviders: state.setAllProviders,
       setProviders: state.setProviders,
       resetOnLoad: state.resetOnLoad,
+      filteredCelPlans: state.filteredCelPlans,
       setFilteredCelPlans: state.setFilteredCelPlans,
     }),
     shallow
@@ -37,11 +42,26 @@ const CelPlans = () => {
     }),
     shallow
   );
+  const { setLoading, unsetLoading } = useGeneralStore(
+    (state) => ({
+      setLoading: state.setLoading,
+      unsetLoading: state.unsetLoading,
+    }),
+    shallow
+  );
+  const { isLinkEnabled, enableLink } = useWhatsappStore(
+    (state) => ({
+      isLinkEnabled: state.isLinkEnabled,
+      enableLink: state.enableLink,
+    }),
+    shallow
+  );
 
   const cep = useParams()?.cep || "";
 
   useEffect(() => {
     const fetchPlans = () => {
+      setLoading();
       if (cep !== "" && cep.length === 9 && cep.includes("-")) {
         const data = {
           cep,
@@ -53,18 +73,33 @@ const CelPlans = () => {
 
         api
           .post("plan/cel-plan/filter", data)
-          .then((res) => setFilteredCelPlans(res.data))
-          .catch((err) => console.log(err))
+          .then((res) => {
+            const sortedPlans = res.data.sort(
+              (a, b) => a.priority - b.priority
+            );
+
+            setFilteredCelPlans(sortedPlans);
+          })
+          .catch((err) => console.error(err))
           .finally(() => {
             setCelPlans([]);
           });
+
+        api
+          .get("provider/all")
+          .then((res) => setAllProviders(res.data))
+          .catch((err) => console.error(err));
 
         return;
       }
 
       api
         .get("plan/cel-plan/all")
-        .then((res) => setCelPlans(res.data.filter((plan) => !plan.archived)))
+        .then((res) => {
+          const sortedPlans = res.data.sort((a, b) => a.priority - b.priority);
+
+          setCelPlans(sortedPlans.filter((plan) => !plan.archived));
+        })
         .catch((err) => console.error(err));
 
       api
@@ -76,7 +111,20 @@ const CelPlans = () => {
     window.scrollTo(0, 0);
     resetOnLoad();
     fetchPlans();
+
+    setTimeout(() => {
+      enableLink();
+    }, 10000);
   }, []);
+
+  useEffect(() => {
+    if (
+      (celPlans.length !== 0 || filteredCelPlans.length !== 0) &&
+      allProviders.length !== 0
+    ) {
+      unsetLoading();
+    }
+  }, [celPlans, filteredCelPlans, allProviders]);
 
   useEffect(() => {
     if (allProviders && celPlans.length !== 0) {
@@ -105,6 +153,7 @@ const CelPlans = () => {
       />
       <CelPlansBody />
       {isRegisterFormOpen && <RegisterForm />}
+      {isLinkEnabled && <WhatsappLink />}
       <Footer />
     </div>
   );
