@@ -1107,6 +1107,8 @@ const RegisterForm = () => {
       api
         .post("/client-pf/register", data)
         .then((res) => {
+          handleClose();
+
           window.location.assign(
             `${import.meta.env.VITE_WHATSAPP_BASE_API}${message}`
           );
