@@ -246,6 +246,7 @@ const TVPlansBody = () => {
                     id="cost250"
                     name="cost"
                     value={250}
+                    defaultChecked
                     onChange={(e) =>
                       setFilterValues("cost", Number(e.target.value))
                     }
@@ -266,6 +267,7 @@ const TVPlansBody = () => {
                     id="device1"
                     name="devicesQuant"
                     value={1}
+                    defaultChecked
                     onChange={(e) =>
                       setFilterValues("devicesQuant", Number(e.target.value))
                     }

@@ -248,6 +248,7 @@ const InternetPlansBody = () => {
                     id="cost500"
                     name="cost"
                     value={500}
+                    defaultChecked
                     onChange={(e) =>
                       setFilterValues("cost", Number(e.target.value))
                     }
@@ -340,6 +341,7 @@ const InternetPlansBody = () => {
                     id="download1000"
                     name="download"
                     value="1000MB"
+                    defaultChecked
                     onChange={(e) =>
                       setFilterValues("download", e.target.value)
                     }

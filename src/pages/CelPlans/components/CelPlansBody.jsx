@@ -246,6 +246,7 @@ const CelPlansBody = () => {
                     id="cost300"
                     name="cost"
                     value={300}
+                    defaultChecked
                     onChange={(e) =>
                       setFilterValues("cost", Number(e.target.value))
                     }
@@ -309,6 +310,7 @@ const CelPlansBody = () => {
                     id="300gb"
                     name="franchise"
                     value="300GB"
+                    defaultChecked
                     onChange={(e) =>
                       setFilterValues("franchise", e.target.value)
                     }
