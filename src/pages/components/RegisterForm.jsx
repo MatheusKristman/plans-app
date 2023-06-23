@@ -1086,7 +1086,7 @@ const RegisterForm = () => {
     let idForCityFetch = "";
 
     axios
-      .get("https://servicodados.ibge.gov.br/api/v1/localidades/estados/")
+      .get(import.meta.env.VITE_STATE_API)
       .then((res) => {
         setStateOptions(res.data);
         idForCityFetch = res.data[0].id;
@@ -1094,9 +1094,7 @@ const RegisterForm = () => {
       .catch((error) => console.error(error))
       .finally(() => {
         axios
-          .get(
-            `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${idForCityFetch}/municipios`
-          )
+          .get(`${import.meta.env.VITE_STATE_API}${idForCityFetch}/municipios`)
           .then((res) => setCityOptions(res.data))
           .catch((error) => console.error(error));
       });
