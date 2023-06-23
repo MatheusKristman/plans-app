@@ -398,7 +398,7 @@ const TVPlansBody = () => {
                     />
                   ))
               ) : (
-                <span className="result-not-found-message">
+                <span key="not-found" className="result-not-found-message">
                   Nenhum plano encontrado
                 </span>
               )}

@@ -23,6 +23,8 @@ const CelPlans = () => {
     resetOnLoad,
     filteredCelPlans,
     setFilteredCelPlans,
+    plansProviders,
+    setPlansProviders,
   } = useCelPlansStore(
     (state) => ({
       celPlans: state.celPlans,
@@ -33,6 +35,8 @@ const CelPlans = () => {
       resetOnLoad: state.resetOnLoad,
       filteredCelPlans: state.filteredCelPlans,
       setFilteredCelPlans: state.setFilteredCelPlans,
+      plansProviders: state.plansProviders,
+      setPlansProviders: state.setPlansProviders,
     }),
     shallow
   );
@@ -62,50 +66,47 @@ const CelPlans = () => {
   useEffect(() => {
     const fetchPlans = () => {
       setLoading();
-      if (cep !== "" && cep.length === 9 && cep.includes("-")) {
-        const data = {
-          cep,
-          provider: [],
-          cost: 300,
-          franchise: "300GB",
-          planType: [],
-        };
-
-        api
-          .post("plan/cel-plan/filter", data)
-          .then((res) => {
-            const sortedPlans = res.data.sort(
-              (a, b) => a.priority - b.priority
-            );
-
-            setFilteredCelPlans(sortedPlans);
-          })
-          .catch((err) => console.error(err))
-          .finally(() => {
-            setCelPlans([]);
-          });
-
-        api
-          .get("provider/all")
-          .then((res) => setAllProviders(res.data))
-          .catch((err) => console.error(err));
-
-        return;
-      }
 
       api
         .get("plan/cel-plan/all")
         .then((res) => {
           const sortedPlans = res.data.sort((a, b) => a.priority - b.priority);
 
-          setCelPlans(sortedPlans.filter((plan) => !plan.archived));
-        })
-        .catch((err) => console.error(err));
+          setPlansProviders(res.data.map((plan) => plan.provider));
 
-      api
-        .get("provider/all")
-        .then((res) => setAllProviders(res.data))
-        .catch((err) => console.error(err));
+          if (cep !== "" && cep.length === 9 && cep.includes("-")) {
+            const data = {
+              cep,
+              provider: [],
+              cost: 300,
+              franchise: "300GB",
+              planType: [],
+            };
+
+            api
+              .post("plan/cel-plan/filter", data)
+              .then((res) => {
+                const sortedPlans = res.data.sort(
+                  (a, b) => a.priority - b.priority
+                );
+
+                setFilteredCelPlans(sortedPlans);
+              })
+              .catch((err) => console.error(err))
+              .finally(() => {
+                setCelPlans([]);
+              });
+          } else {
+            setCelPlans(sortedPlans.filter((plan) => !plan.archived));
+          }
+        })
+        .catch((err) => console.error(err))
+        .finally(() => {
+          api
+            .get("provider/all")
+            .then((res) => setAllProviders(res.data))
+            .catch((err) => console.error(err));
+        });
     };
 
     window.scrollTo(0, 0);
@@ -120,20 +121,15 @@ const CelPlans = () => {
   useEffect(() => {
     if (
       (celPlans.length !== 0 || filteredCelPlans.length !== 0) &&
-      allProviders.length !== 0
+      allProviders.length !== 0 &&
+      plansProviders.length !== 0
     ) {
-      unsetLoading();
-    }
-  }, [celPlans, filteredCelPlans, allProviders]);
-
-  useEffect(() => {
-    if (allProviders && celPlans.length !== 0) {
       const providerSelected = [];
 
-      for (let i = 0; i < celPlans.length; i++) {
+      for (let i = 0; i < plansProviders.length; i++) {
         for (let j = 0; j < allProviders.length; j++) {
           if (
-            celPlans[i].provider === allProviders[j]._id &&
+            plansProviders[i] === allProviders[j]._id &&
             !providerSelected.includes(allProviders[j].providerName)
           ) {
             providerSelected.push(allProviders[j].providerName);
@@ -142,8 +138,10 @@ const CelPlans = () => {
       }
 
       setProviders(providerSelected);
+
+      unsetLoading();
     }
-  }, [allProviders, celPlans]);
+  }, [celPlans, filteredCelPlans, allProviders]);
 
   return (
     <div className="cel-plans-container">

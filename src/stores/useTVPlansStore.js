@@ -17,6 +17,8 @@ const useTVPlansStore = create((set) => ({
   setTvPlans: (plans) => set(() => ({ tvPlans: plans })),
   filteredTvPlans: [],
   setFilteredTvPlans: (plans) => set(() => ({ filteredTvPlans: plans })),
+  plansProviders: [],
+  setPlansProviders: (plans) => set(() => ({ plansProviders: plans })),
   sliceEnd: 5,
   setSliceEnd: () => set((state) => ({ sliceEnd: state.sliceEnd + 5 })),
   resetSlice: () => set(() => ({ sliceEnd: 5 })),

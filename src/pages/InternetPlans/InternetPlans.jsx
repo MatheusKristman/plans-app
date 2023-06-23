@@ -23,6 +23,8 @@ const InternetPlans = () => {
     resetOnLoad,
     filteredInternetPlans,
     setFilteredInternetPlans,
+    plansProviders,
+    setPlansProviders,
   } = useInternetPlansStore(
     (state) => ({
       internetPlans: state.internetPlans,
@@ -33,6 +35,8 @@ const InternetPlans = () => {
       resetOnLoad: state.resetOnLoad,
       filteredInternetPlans: state.filteredInternetPlans,
       setFilteredInternetPlans: state.setFilteredInternetPlans,
+      plansProviders: state.plansProviders,
+      setPlansProviders: state.setPlansProviders,
     }),
     shallow
   );
@@ -63,53 +67,49 @@ const InternetPlans = () => {
   useEffect(() => {
     const fetchPlans = () => {
       setLoading();
-      if (cep !== "" && cep.length === 9 && cep.includes("-")) {
-        const data = {
-          cep,
-          provider: [],
-          cost: 500,
-          download: "1000MB",
-          technology: [],
-        };
-
-        api
-          .post("plan/internet-plan/filter", data)
-          .then((res) => {
-            const sortedPlans = res.data.sort(
-              (a, b) => a.priority - b.priority
-            );
-
-            setFilteredInternetPlans(sortedPlans);
-          })
-          .catch((err) => console.error(err))
-          .finally(() => setInternetPlans([]));
-
-        api
-          .get("provider/all")
-          .then((res) => setAllProviders(res.data))
-          .catch((err) => console.error(err));
-
-        return;
-      }
 
       api
         .get("plan/internet-plan/all")
         .then((res) => {
           const sortedPlans = res.data.sort((a, b) => a.priority - b.priority);
 
-          setInternetPlans(sortedPlans.filter((plan) => !plan.archived));
+          setPlansProviders(res.data.map((plan) => plan.provider));
+
+          if (cep !== "" && cep.length === 9 && cep.includes("-")) {
+            const data = {
+              cep,
+              provider: [],
+              cost: 500,
+              download: "1000MB",
+              technology: [],
+            };
+
+            api
+              .post("plan/internet-plan/filter", data)
+              .then((res) => {
+                const sortedPlans = res.data.sort(
+                  (a, b) => a.priority - b.priority
+                );
+
+                setFilteredInternetPlans(sortedPlans);
+              })
+              .catch((err) => console.error(err))
+              .finally(() => setInternetPlans([]));
+          } else {
+            setInternetPlans(sortedPlans.filter((plan) => !plan.archived));
+          }
         })
-        .catch((error) => console.error(error));
-
-      api
-        .get("provider/all")
-        .then((res) => setAllProviders(res.data))
-        .catch((err) => console.error(err));
+        .catch((error) => console.error(error))
+        .finally(() => {
+          api
+            .get("provider/all")
+            .then((res) => setAllProviders(res.data))
+            .catch((err) => console.error(err));
+        });
     };
+
     window.scrollTo(0, 0);
-
     resetOnLoad();
-
     fetchPlans();
 
     setTimeout(() => {
@@ -120,8 +120,23 @@ const InternetPlans = () => {
   useEffect(() => {
     if (
       (internetPlans.length !== 0 || filteredInternetPlans.length !== 0) &&
-      allProviders.length !== 0
+      allProviders.length !== 0 &&
+      plansProviders.length !== 0
     ) {
+      const providersSelected = [];
+
+      for (let i = 0; i < plansProviders.length; i++) {
+        for (let j = 0; j < allProviders.length; j++) {
+          if (
+            plansProviders[i] === allProviders[j]._id &&
+            !providersSelected.includes(allProviders[j].providerName)
+          ) {
+            providersSelected.push(allProviders[j].providerName);
+          }
+        }
+      }
+      setProviders(providersSelected);
+
       unsetLoading();
     }
   }, [internetPlans, filteredInternetPlans, allProviders]);
@@ -135,21 +150,9 @@ const InternetPlans = () => {
   }, [isRegisterFormOpen]);
 
   useEffect(() => {
-    if (allProviders && internetPlans.length !== 0) {
-      const providersSelected = [];
-      for (let i = 0; i < internetPlans.length; i++) {
-        for (let j = 0; j < allProviders.length; j++) {
-          if (
-            internetPlans[i].provider === allProviders[j]._id &&
-            !providersSelected.includes(allProviders[j].providerName)
-          ) {
-            providersSelected.push(allProviders[j].providerName);
-          }
-        }
-      }
-      setProviders(providersSelected);
-    }
-  }, [allProviders, internetPlans]);
+    console.log("internetPlans: ", internetPlans);
+    console.log("filteredInternetPlans: ", filteredInternetPlans);
+  }, [internetPlans, filteredInternetPlans]);
 
   return (
     <div className="internet-plans-container">

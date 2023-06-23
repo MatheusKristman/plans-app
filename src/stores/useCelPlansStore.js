@@ -17,6 +17,8 @@ const useCelPlansStore = create((set) => ({
   setCelPlans: (plans) => set(() => ({ celPlans: plans })),
   filteredCelPlans: [],
   setFilteredCelPlans: (plans) => set(() => ({ filteredCelPlans: plans })),
+  plansProviders: [],
+  setPlansProviders: (plans) => set(() => ({ plansProviders: plans })),
   sliceEnd: 5,
   setSliceEnd: () => set((state) => ({ sliceEnd: state.sliceEnd + 5 })),
   resetSlice: () => set(() => ({ sliceEnd: 5 })),
