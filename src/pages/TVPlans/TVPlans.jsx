@@ -48,8 +48,9 @@ const TVPlans = () => {
     }),
     shallow
   );
-  const { setLoading, unsetLoading } = useGeneralStore(
+  const { isLoading, setLoading, unsetLoading } = useGeneralStore(
     (state) => ({
+      isLoading: state.isLoading,
       setLoading: state.setLoading,
       unsetLoading: state.unsetLoading,
     }),
@@ -113,10 +114,6 @@ const TVPlans = () => {
     window.scrollTo(0, 0);
     resetOnLoad();
     fetchPlans();
-
-    setTimeout(() => {
-      enableLink();
-    }, 10000);
   }, []);
 
   useEffect(() => {
@@ -151,6 +148,14 @@ const TVPlans = () => {
       unsetLoading();
     }
   }, [tvPlans, filteredTvPlans, allProviders]);
+
+  useEffect(() => {
+    if (!isLoading) {
+      setTimeout(() => {
+        enableLink();
+      }, 10000);
+    }
+  }, [isLoading]);
 
   return (
     <div className="tv-plans-container">
