@@ -1,0 +1,230 @@
+.cel-details-box-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(32, 33, 36, 0.5);
+  overflow: auto;
+  padding: 50px 15px;
+  z-index: 6;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .cel-details-box-container {
+    background-color: #fff;
+    width: 100%;
+    height: auto;
+    max-width: 720px;
+    vertical-align: middle;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 16px;
+    z-index: 7;
+
+    .cel-details-box-wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .cel-details-box-header {
+        width: 100%;
+        height: 200px;
+        position: relative;
+        background-image: url("/assets/images/modal-image-lg.png");
+        background-position: right center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+
+        .cel-details-box-close-button {
+          width: 40px;
+          height: 40px;
+          border-radius: 8px;
+          border: none;
+          background-color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          position: absolute;
+          top: 30px;
+          right: 30px;
+
+          svg {
+            width: 80%;
+            height: auto;
+            color: #252525;
+          }
+        }
+
+        .cel-details-box-title {
+          background-color: #fff;
+          padding: 15px 30px;
+          border-top-right-radius: 16px;
+          font-size: 1.5rem;
+          font-weight: 600;
+          text-align: center;
+          color: #252525;
+        }
+      }
+
+      .cel-details-box-body {
+        width: 100%;
+        padding: 30px;
+
+        .cel-details-box-info-wrapper {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+
+          .cel-details-box-info {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 25px;
+
+            .cel-details-box-title-box,
+            .cel-details-box-created-at-box,
+            .cel-details-box-provider-box,
+            .cel-details-box-contacts-box,
+            .cel-details-box-cost-box,
+            .cel-details-box-total-box,
+            .cel-details-box-priority-box,
+            .cel-details-box-unlimited-apps-box,
+            .cel-details-box-plan-type-box,
+            .cel-details-box-franchise-box,
+            .cel-details-box-unlimited-call-box,
+            .cel-details-box-archived-at-box {
+              width: 50%;
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+
+              .cel-details-box-title-label,
+              .cel-details-box-created-at-label,
+              .cel-details-box-provider-label,
+              .cel-details-box-contacts-label,
+              .cel-details-box-cost-label,
+              .cel-details-box-total-label,
+              .cel-details-box-priority-label,
+              .cel-details-box-unlimited-apps-label,
+              .cel-details-box-plan-type-label,
+              .cel-details-box-franchise-label,
+              .cel-details-box-unlimited-call-label,
+              .cel-details-box-archived-at-label {
+                font-size: 1.125rem;
+                font-weight: 600;
+                color: #252525;
+              }
+
+              .cel-details-box-title-desc,
+              .cel-details-box-created-at-desc,
+              .cel-details-box-provider-desc,
+              .cel-details-box-contacts-desc,
+              .cel-details-box-cost-desc,
+              .cel-details-box-total-desc,
+              .cel-details-box-priority-desc,
+              .cel-details-box-unlimited-apps-desc,
+              .cel-details-box-plan-type-desc,
+              .cel-details-box-franchise-desc,
+              .cel-details-box-unlimited-call-desc,
+              .cel-detais-box-archived-at-desc {
+                font-size: 1rem;
+                color: #252525;
+              }
+
+              .cel-details-box-provider-logo {
+                height: 100%;
+                width: 100%;
+                max-width: 150px;
+                max-height: 40px;
+                object-fit: contain;
+                object-position: left;
+                display: block;
+              }
+            }
+          }
+
+          .cel-details-box-description-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 50px;
+
+            .cel-details-box-description-label {
+              font-size: 1.125rem;
+              font-weight: 600;
+              color: #252525;
+            }
+
+            .cel-details-box-description-desc {
+              font-size: 1rem;
+              line-height: 26px;
+            }
+          }
+
+          .cel-details-box-buttons-wrapper {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+
+            .cel-details-box-edit-button {
+              background-color: #d40066;
+              border-radius: 8px;
+              border: 2px solid #d40066;
+              padding: 10px 15px;
+              font-size: 0.875rem;
+              font-weight: 600;
+              color: #fff;
+              cursor: pointer;
+              transition: filter 0.3s ease;
+
+              &:hover {
+                filter: brightness(80%);
+              }
+            }
+
+            .cel-details-box-archive-button {
+              background-color: #fff;
+              border: 2px solid #d40066;
+              border-radius: 8px;
+              padding: 10px 15px;
+              font-size: 0.875rem;
+              font-weight: 600;
+              color: #d40066;
+              cursor: pointer;
+              transition: background 0.3s ease, color 0.3s ease;
+              display: flex;
+              align-items: center;
+              gap: 5px;
+
+              svg {
+                width: 18px;
+                height: auto;
+              }
+
+              &:hover {
+                background-color: #d40066;
+                color: #fff;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

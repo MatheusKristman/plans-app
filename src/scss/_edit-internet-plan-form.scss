@@ -1,0 +1,618 @@
+.edit-internet-plan-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(32, 33, 36, 0.5);
+  overflow: auto;
+  padding: 50px 15px;
+  z-index: 20;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .edit-internet-plan-container {
+    background-color: #fff;
+    width: 100%;
+    height: auto;
+    max-width: 460px;
+    vertical-align: middle;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 16px;
+    z-index: 7;
+
+    .edit-internet-plan-wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .edit-internet-plan-header {
+        width: 100%;
+        height: 200px;
+        position: relative;
+        background-image: url("/assets/images/modal-header.png");
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: cover;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+
+        .edit-internet-plan-close-button {
+          width: 40px;
+          height: 40px;
+          border-radius: 8px;
+          border: none;
+          background-color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          position: absolute;
+          top: 30px;
+          right: 30px;
+
+          svg {
+            width: 80%;
+            height: auto;
+            color: #252525;
+          }
+        }
+
+        .edit-internet-plan-title {
+          background-color: #fff;
+          padding: 15px 30px;
+          border-top-right-radius: 16px;
+          font-size: 1.5rem;
+          font-weight: 600;
+          text-align: center;
+          color: #252525;
+        }
+      }
+
+      .edit-internet-plan-body {
+        width: 100%;
+        padding: 30px;
+
+        .edit-internet-plan-form {
+          width: 100%;
+
+          .edit-internet-plan-title-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 15px;
+
+            .edit-internet-plan-title-label {
+              font-size: 1.125rem;
+              font-weight: 500;
+              color: #252525;
+
+              @include breakpoint(tablet) {
+                font-size: 1.25rem;
+              }
+            }
+
+            .edit-internet-plan-title-input {
+              width: 100%;
+              height: 40px;
+              border: 2px solid #cccccc;
+              border-radius: 8px;
+              padding: 0 12px;
+              font-size: 1rem;
+              color: #252525;
+              transition: border-color 0.3s ease;
+
+              &:focus {
+                border-color: #7a7a7a;
+              }
+            }
+          }
+
+          .edit-internet-plan-cost-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 15px;
+
+            .edit-internet-plan-cost-title {
+              font-size: 1.125rem;
+              font-weight: 500;
+              color: #252525;
+
+              @include breakpoint(tablet) {
+                font-size: 1.25rem;
+              }
+            }
+
+            .edit-internet-plan-cost-input {
+              width: 100%;
+              height: 40px;
+              border: 2px solid #cccccc;
+              border-radius: 8px;
+              padding: 0 12px;
+              font-size: 1rem;
+              color: #252525;
+              transition: border-color 0.3s ease;
+              -moz-appearance: textfield;
+
+              &:focus {
+                border-color: #7a7a7a;
+              }
+            }
+
+            .edit-internet-plan-cost-input::-webkit-outer-spin-button,
+            .edit-internet-plan-cost-input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+          }
+
+          .edit-internet-plan-installation-cost-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+
+            .edit-internet-plan-installation-cost-title {
+              font-size: 1.125rem;
+              font-weight: 500;
+              color: #252525;
+              margin-bottom: 5px;
+
+              @include breakpoint(tablet) {
+                font-size: 1.25rem;
+              }
+            }
+
+            .edit-internet-plan-installation-cost-input {
+              width: 100%;
+              height: 40px;
+              border: 2px solid #cccccc;
+              border-radius: 8px;
+              padding: 0 12px;
+              font-size: 1rem;
+              color: #252525;
+              transition: border-color 0.3s ease, filter 0.3s ease;
+              margin-bottom: 10px;
+              -moz-appearance: textfield;
+
+              &:focus {
+                border-color: #7a7a7a;
+              }
+
+              &:disabled {
+                filter: brightness(90%);
+                cursor: not-allowed;
+              }
+            }
+
+            .edit-internet-plan-installation-cost-input::-webkit-outer-spin-button,
+            .edit-internet-plan-installation-cost-input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+
+            .edit-internet-plan-installation-cost-label {
+              display: flex;
+              align-items: center;
+              user-select: none;
+              font-size: 1rem;
+              color: #252525;
+              gap: 5px;
+              width: fit-content;
+
+              .edit-internet-plan-installation-cost-checkbox {
+                accent-color: #d40066;
+              }
+            }
+          }
+
+          .edit-internet-plan-download-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+
+            .edit-internet-plan-download-title {
+              font-size: 1.125rem;
+              font-weight: 500;
+              color: #252525;
+              margin-bottom: 5px;
+
+              @include breakpoint(tablet) {
+                font-size: 1.25rem;
+              }
+            }
+
+            .edit-internet-plan-download-input {
+              width: 100%;
+              height: 40px;
+              border: 2px solid #cccccc;
+              border-radius: 8px;
+              padding: 0 12px;
+              font-size: 1rem;
+              color: #252525;
+              transition: border-color 0.3s ease;
+              margin-bottom: 10px;
+              -moz-appearance: textfield;
+
+              &:focus {
+                border-color: #7a7a7a;
+              }
+            }
+
+            .edit-internet-plan-download-input::-webkit-outer-spin-button,
+            .edit-internet-plan-download-input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+
+            .edit-internet-plan-download-unit-wrapper {
+              display: flex;
+              align-items: center;
+              gap: 25px;
+
+              .edit-internet-plan-download-unit-label {
+                display: flex;
+                align-items: center;
+                user-select: none;
+                font-size: 1rem;
+                color: #252525;
+                gap: 5px;
+
+                .edit-internet-plan-download-unit-input {
+                  accent-color: #d40066;
+                }
+              }
+            }
+          }
+
+          .edit-internet-plan-upload-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+
+            .edit-internet-plan-upload-title {
+              font-size: 1.125rem;
+              font-weight: 500;
+              color: #252525;
+              margin-bottom: 5px;
+
+              @include breakpoint(tablet) {
+                font-size: 1.25rem;
+              }
+            }
+
+            .edit-internet-plan-upload-input {
+              width: 100%;
+              height: 40px;
+              border: 2px solid #cccccc;
+              border-radius: 8px;
+              padding: 0 12px;
+              font-size: 1rem;
+              color: #252525;
+              transition: border-color 0.3s ease;
+              margin-bottom: 10px;
+              -moz-appearance: textfield;
+
+              &:focus {
+                border-color: #7a7a7a;
+              }
+            }
+
+            .edit-internet-plan-upload-input::-webkit-outer-spin-button,
+            .edit-internet-plan-upload-input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+
+            .edit-internet-plan-upload-unit-wrapper {
+              display: flex;
+              align-items: center;
+              gap: 25px;
+
+              .edit-internet-plan-upload-unit-label {
+                display: flex;
+                align-items: center;
+                user-select: none;
+                font-size: 1rem;
+                color: #252525;
+                gap: 5px;
+
+                .edit-internet-plan-upload-unit-input {
+                  accent-color: #d40066;
+                }
+              }
+            }
+          }
+
+          .edit-internet-plan-franchise-limit-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+
+            .edit-internet-plan-franchise-limit-title {
+              font-size: 1.125rem;
+              font-weight: 500;
+              color: #252525;
+              margin-bottom: 5px;
+
+              @include breakpoint(tablet) {
+                font-size: 1.25rem;
+              }
+            }
+
+            .edit-internet-plan-franchise-limit-input {
+              width: 100%;
+              height: 40px;
+              border: 2px solid #cccccc;
+              border-radius: 8px;
+              padding: 0 12px;
+              font-size: 1rem;
+              color: #252525;
+              transition: border-color 0.3s ease, filter 0.3s ease;
+              margin-bottom: 10px;
+              -moz-appearance: textfield;
+
+              &:focus {
+                border-color: #7a7a7a;
+              }
+
+              &:disabled {
+                filter: brightness(90%);
+                cursor: not-allowed;
+              }
+            }
+
+            .edit-internet-plan-franchise-limit-input::-webkit-outer-spin-button,
+            .edit-internet-plan-franchise-limit-input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+
+            .edit-internet-plan-franchise-limit-label {
+              display: flex;
+              align-items: center;
+              gap: 5px;
+              font-size: 1rem;
+              user-select: none;
+              color: #252525;
+              width: fit-content;
+
+              .edit-internet-plan-franchise-limit-checkbox {
+                accent-color: #d40066;
+              }
+            }
+          }
+
+          .edit-internet-plan-technology-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+
+            .edit-internet-plan-technology-title {
+              font-size: 1.125rem;
+              font-weight: 500;
+              color: #252525;
+              margin-bottom: 5px;
+
+              @include breakpoint(tablet) {
+                font-size: 1.25rem;
+              }
+            }
+
+            .edit-internet-plan-technology-select {
+              appearance: none;
+              width: 100%;
+              height: 40px;
+              border: 2px solid #cccccc;
+              border-radius: 8px;
+              padding: 0 12px;
+              font-size: 1rem;
+              color: #252525;
+              transition: border-color 0.3s ease;
+              background-image: url("/assets/icons/arrowdown.svg");
+              background-repeat: no-repeat;
+              background-position: 98% center;
+              background-size: 14px 8px;
+              background-color: #fff;
+              cursor: pointer;
+
+              &:focus {
+                border-color: #7a7a7a;
+              }
+            }
+          }
+
+          .edit-internet-plan-has-wifi-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+
+            .edit-internet-plan-has-wifi-title {
+              font-size: 1.125rem;
+              font-weight: 500;
+              color: #252525;
+              margin-bottom: 5px;
+
+              @include breakpoint(tablet) {
+                font-size: 1.25rem;
+              }
+            }
+
+            .edit-internet-plan-has-wifi-wrapper {
+              display: flex;
+              align-items: center;
+              gap: 25px;
+
+              .edit-internet-plan-has-wifi-label {
+                display: flex;
+                align-items: center;
+                font-size: 1rem;
+                color: #252525;
+                user-select: none;
+                gap: 5px;
+
+                .edit-internet-plan-has-wifi-input {
+                  accent-color: #d40066;
+                }
+              }
+            }
+          }
+
+          .edit-internet-plan-benefits-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+
+            .edit-internet-plan-benefits-title {
+              font-size: 1.125rem;
+              font-weight: 500;
+              color: #252525;
+              margin-bottom: 5px;
+
+              @include breakpoint(tablet) {
+                font-size: 1.25rem;
+              }
+            }
+
+            .edit-internet-plan-benefits-options {
+              width: 100%;
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              grid-template-rows: auto;
+              gap: 10px;
+
+              @include breakpoint(tablet) {
+                grid-template-columns: repeat(5, 1fr);
+              }
+            }
+          }
+
+          .edit-internet-plan-priority-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+
+            .edit-internet-plan-priority-title {
+              font-size: 1.125rem;
+              font-weight: 500;
+              color: #252525;
+              margin-bottom: 5px;
+
+              @include breakpoint(tablet) {
+                font-size: 1.25rem;
+              }
+            }
+
+            .edit-internet-plan-priority-select {
+              appearance: none;
+              width: 100%;
+              height: 40px;
+              border: 2px solid #cccccc;
+              border-radius: 8px;
+              padding: 0 12px;
+              font-size: 1rem;
+              color: #252525;
+              transition: border-color 0.3s ease;
+              background-image: url("/assets/icons/arrowdown.svg");
+              background-repeat: no-repeat;
+              background-position: 98% center;
+              background-size: 14px 8px;
+              background-color: #fff;
+              cursor: pointer;
+
+              &:focus {
+                border-color: #7a7a7a;
+              }
+            }
+          }
+
+          .edit-internet-plan-description-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 25px;
+
+            .edit-internet-plan-description-title {
+              font-size: 1.125rem;
+              font-weight: 500;
+              color: #252525;
+              margin-bottom: 5px;
+
+              @include breakpoint(tablet) {
+                font-size: 1.25rem;
+              }
+            }
+
+            .edit-internet-plan-description-textarea {
+              resize: none;
+              font-size: 1rem;
+              color: #252525;
+              width: 100%;
+              height: 150px;
+              border: 2px solid #cccccc;
+              border-radius: 8px;
+              padding: 10px;
+              transition: border-color 0.3s ease;
+
+              &:focus {
+                border-color: #7a7a7a;
+              }
+            }
+          }
+
+          .edit-internet-plan-submit-button {
+            width: 100%;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #d40066;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: 500;
+            transition: filter 0.3s ease;
+            cursor: pointer;
+
+            &:hover {
+              filter: brightness(80%);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.edit-internet-plan-modal-error-form {
+  font-size: 1rem;
+  color: #ef5959;
+  margin-top: -3px;
+
+  &:last-child {
+    margin-top: 5px;
+  }
+}

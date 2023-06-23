@@ -1,0 +1,282 @@
+.admin-container {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @include breakpoint(largeScreen) {
+    flex-direction: row;
+  }
+
+  .info {
+    width: 100%;
+
+    .info-wrapper {
+      padding-left: 25px;
+      padding-right: 25px;
+
+      @include breakpoint(largeScreen) {
+        padding-left: 60px;
+        padding-right: 60px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .admin-header {
+        padding-top: 15px;
+        width: 100%;
+
+        @include breakpoint(largeScreen) {
+          padding-top: 60px;
+
+          .logo {
+            width: 100%;
+            text-align: center;
+          }
+        }
+
+        .logo-box {
+          text-decoration: none;
+
+          .logo {
+            font-weight: 400;
+            font-size: 2.188rem;
+            color: #252525;
+          }
+        }
+      }
+
+      .info-content {
+        margin-top: 50px;
+        width: 100%;
+
+        .admin-title {
+          width: 100%;
+          margin-bottom: 5px;
+          font-weight: 600;
+          font-size: 2.188rem;
+          color: #252525;
+          text-align: center;
+        }
+
+        .admin-desc {
+          display: block;
+          width: 100%;
+          font-size: 1rem;
+          font-weight: 400;
+          color: #9f9f9f;
+          text-align: center;
+        }
+
+        .admin-form {
+          margin-top: 50px;
+          margin-bottom: 50px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          .email-box {
+            display: flex;
+            align-items: flex-end;
+            width: 100%;
+            max-width: 400px;
+            height: 50px;
+            border: 2px solid #cccccc;
+            border-radius: 8px;
+            padding: 6px 0;
+            position: relative;
+            transition: border-color 0.3s ease;
+            margin-bottom: 15px;
+
+            .email-icon {
+              height: 100%;
+              width: 55px;
+              min-width: 55px;
+              max-width: 55px;
+              border-right: 1px solid #bbbbbb;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              svg {
+                width: 20px;
+                height: auto;
+                color: #d40066;
+              }
+            }
+
+            .email-placeholder {
+              position: absolute;
+              width: fit-content;
+              display: block;
+              top: 50%;
+              left: 71px;
+              transform: translateY(-50%);
+              color: #bbbbbb;
+              font-size: 1rem;
+              transition: transform 0.3s ease, top 0.3s ease, left 0.3s ease;
+            }
+
+            .email-placeholder.active {
+              transform: scale(0.7) translateY(-50%);
+              top: 15%;
+              left: 62px;
+            }
+
+            .email-input {
+              margin-left: 16px;
+              width: 100%;
+              font-size: 1rem;
+              color: #252525;
+              border: none;
+            }
+          }
+
+          .email-box:focus-within {
+            border-color: #7a7a7a;
+          }
+
+          .password-box {
+            display: flex;
+            align-items: flex-end;
+            width: 100%;
+            max-width: 400px;
+            height: 50px;
+            border: 2px solid #cccccc;
+            border-radius: 8px;
+            padding: 6px 0;
+            position: relative;
+            transition: border-color 0.3s ease;
+            margin-bottom: 25px;
+
+            .password-icon {
+              height: 100%;
+              width: 55px;
+              min-width: 55px;
+              max-width: 55px;
+              border-right: 1px solid #bbbbbb;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              svg {
+                width: 20px;
+                height: auto;
+                color: #d40066;
+              }
+            }
+
+            .password-placeholder {
+              position: absolute;
+              width: fit-content;
+              display: block;
+              top: 50%;
+              left: 71px;
+              transform: translateY(-50%);
+              color: #bbbbbb;
+              font-size: 1rem;
+              transition: transform 0.3s ease, top 0.3s ease, left 0.3s ease;
+            }
+
+            .password-placeholder.active {
+              transform: scale(0.7) translateY(-50%);
+              top: 15%;
+              left: 62px;
+            }
+
+            .password-input {
+              margin-left: 16px;
+              width: 100%;
+              font-size: 1rem;
+              color: #252525;
+              border: none;
+            }
+
+            .toggle-view-password-btn {
+              width: 50px;
+              min-width: 50px;
+              max-width: 50px;
+              height: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background-color: transparent;
+              border: none;
+              cursor: pointer;
+
+              svg {
+                width: 20px;
+                height: auto;
+                color: #d40066;
+              }
+            }
+          }
+
+          .password-box:focus-within {
+            border-color: #7a7a7a;
+          }
+
+          .submit-btn {
+            width: 100%;
+            max-width: 400px;
+            height: 50px;
+            border-radius: 8px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+            background-color: #d40066;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: filter 0.3s ease;
+
+            img {
+              width: 25px;
+              height: 25px;
+            }
+
+            &:hover {
+              filter: brightness(80%);
+            }
+          }
+        }
+      }
+
+      .admin-footer {
+        width: 100%;
+        margin-bottom: 50px;
+
+        span {
+          color: #252525;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  .image-box {
+    width: 100%;
+    background: linear-gradient(180deg, #d5a595 0%, #f5e0d9 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 0;
+
+    .image {
+      width: 70%;
+      height: auto;
+
+      @include breakpoint(tablet) {
+        width: 60%;
+      }
+    }
+  }
+}

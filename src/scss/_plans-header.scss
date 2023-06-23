@@ -1,0 +1,182 @@
+.header-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .header-top-box {
+    background-color: #8186bc;
+    width: 100%;
+
+    .header-top-wrapper {
+      width: 100%;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2;
+
+      .header-logo-box {
+        .header-logo {
+          font-size: 1.5rem;
+          font-weight: 500;
+          color: #fff;
+          cursor: pointer;
+
+          @include breakpoint(largeScreen) {
+            font-size: 2rem;
+          }
+        }
+      }
+
+      .header-mobile-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @include breakpoint(tablet) {
+          display: none;
+        }
+
+        .header-menu-button {
+          width: 25px;
+          height: 25px;
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+
+          svg {
+            width: 100%;
+            height: auto;
+            color: #fff;
+          }
+        }
+
+        .header-menu-list {
+          position: absolute;
+          right: 0px;
+          top: 100%;
+          background-color: #fff;
+          padding: 20px 35px;
+          border-bottom-left-radius: 8px;
+          border-bottom-right-radius: 8px;
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 20px;
+          z-index: 1;
+
+          .header-menu-item {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #252525;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+
+            &:hover {
+              opacity: 0.5;
+            }
+          }
+        }
+      }
+
+      .header-nav {
+        display: none;
+
+        @include breakpoint(tablet) {
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+
+          .header-menu-list {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 25px;
+
+            @include breakpoint(largeScreen) {
+              gap: 50px;
+            }
+
+            .header-menu-item {
+              font-size: 1rem;
+              font-weight: 500;
+              color: #fff;
+              cursor: pointer;
+              transition: opacity 0.3s ease;
+
+              &:hover {
+                opacity: 0.6;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .header-bottom-box {
+    width: 100%;
+    background-image: url("/assets/images/plan-header-bg-mobile.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom right;
+
+    @include breakpoint(tablet) {
+      background-image: url("/assets/images/plan-header-bg-tablet.png");
+    }
+
+    @include breakpoint(largeScreen) {
+      background-image: url("/assets/images/plan-header-bg-desktop.png");
+      background-position: top right;
+    }
+
+    .header-bottom-wrapper {
+      padding-top: 35px;
+      padding-bottom: 300px;
+
+      @include breakpoint(tablet) {
+        padding-bottom: 100px;
+      }
+
+      @include breakpoint(largeScreen) {
+        padding-bottom: 0px;
+        height: 300px;
+      }
+
+      @include breakpoint(extraLargeScreen) {
+        height: 350px;
+      }
+
+      .header-bottom-title {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #252525;
+        margin-bottom: 15px;
+        max-width: 500px;
+
+        @include breakpoint(largeScreen) {
+          font-size: 3rem;
+        }
+      }
+
+      .header-bottom-desc {
+        font-size: 1rem;
+        color: #252525;
+        line-height: 24px;
+
+        @include breakpoint(tablet) {
+          max-width: 300px;
+        }
+
+        @include breakpoint(largeScreen) {
+          max-width: 500px;
+        }
+      }
+    }
+  }
+}

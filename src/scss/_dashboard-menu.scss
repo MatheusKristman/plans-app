@@ -1,0 +1,173 @@
+.dashboard-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+
+  .dashboard-menu-container {
+    width: 100%;
+    position: absolute;
+    transition: left 0.3s ease;
+    z-index: 4;
+
+    @include breakpoint(tablet) {
+      width: auto;
+    }
+
+    @include breakpoint(largeScreen) {
+      position: relative;
+      width: auto;
+    }
+
+    .dashboard-menu {
+      width: 100%;
+      background-color: #f5e0d9;
+      border-bottom-left-radius: 16px;
+      border-bottom-right-radius: 16px;
+
+      @include breakpoint(tablet) {
+        width: 330px;
+        min-width: 330px;
+        max-width: 330px;
+        border-bottom-left-radius: 0px;
+      }
+
+      .dashboard-menu-header {
+        padding: 30px 20%;
+        border-bottom: 2px solid #e3c4ba;
+        position: relative;
+
+        a {
+          text-decoration: none;
+          width: fit-content;
+          display: block;
+
+          .dashboard-menu-logo {
+            font-size: 2rem;
+            font-weight: 400;
+            color: #252525;
+          }
+        }
+
+        .dashboard-menu-close-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: transparent;
+          border: none;
+          position: absolute;
+          right: 30px;
+          top: 50%;
+          transform: translateY(-50%);
+          cursor: pointer;
+
+          svg {
+            width: 30px;
+            min-width: 30px;
+            max-width: 30px;
+            color: #252525;
+          }
+
+          @include breakpoint(largeScreen) {
+            display: none;
+          }
+        }
+      }
+
+      .dashboard-menu-body {
+        padding: 80px 20% 50px;
+
+        .dashboard-menu-nav {
+          ul {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+
+            li {
+              list-style: none;
+              width: fit-content;
+
+              .dashboard-menu-item {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: #252525;
+                cursor: pointer;
+                text-decoration: none;
+                transition: color 0.3s ease;
+
+                svg {
+                  width: 24px;
+                  min-width: 24px;
+                  max-width: 24px;
+                  color: #252525;
+                  transition: color 0.3s ease;
+                }
+              }
+            }
+
+            .selected {
+              position: relative;
+
+              .dashboard-menu-item {
+                color: #fff;
+                position: relative;
+                z-index: 3;
+
+                svg {
+                  color: #fff;
+                }
+              }
+
+              &::before {
+                content: "";
+                position: absolute;
+                z-index: 2;
+                top: -10px;
+                left: -15px;
+                right: -15px;
+                bottom: -10px;
+                border-radius: 8px;
+                background-color: #252525;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+
+        .logout-btn {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: #252525;
+          text-decoration: none;
+          margin-top: 150px;
+
+          svg {
+            width: 24px;
+            min-width: 24px;
+            max-width: 24px;
+            color: #252525;
+          }
+        }
+      }
+    }
+  }
+
+  .menu-active {
+    left: 0;
+  }
+
+  .menu-desactive {
+    left: -100%;
+
+    @include breakpoint(tablet) {
+      left: -330px;
+    }
+  }
+}

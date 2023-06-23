@@ -1,0 +1,192 @@
+.provider-details-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(32, 33, 36, 0.5);
+  overflow: auto;
+  padding: 50px 15px;
+  z-index: 6;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .provider-details-container {
+    background-color: #fff;
+    width: 100%;
+    height: auto;
+    max-width: 460px;
+    vertical-align: middle;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 16px;
+    z-index: 7;
+
+    .provider-details-wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .provider-details-header {
+        width: 100%;
+        height: 200px;
+        position: relative;
+        background-image: url("/assets/images/modal-header.png");
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: cover;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+
+        .provider-details-close-button {
+          width: 40px;
+          height: 40px;
+          border-radius: 8px;
+          border: none;
+          background-color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          position: absolute;
+          top: 30px;
+          right: 30px;
+
+          svg {
+            width: 80%;
+            height: auto;
+            color: #252525;
+          }
+        }
+
+        .provider-details-title {
+          background-color: #fff;
+          padding: 15px 30px;
+          border-top-right-radius: 16px;
+          font-size: 1.5rem;
+          font-weight: 600;
+          text-align: center;
+          color: #252525;
+        }
+      }
+
+      .provider-details-body {
+        width: 100%;
+        padding: 30px;
+
+        .provider-details-body-wrapper {
+          width: 100%;
+          display: flex;
+          align-items: flex-start;
+          flex-direction: column;
+
+          .provider-details-provider-plans-box {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+
+            .provider-details-provider-box {
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+
+              .provider-details-provider-subtitle {
+                font-size: 1.125rem;
+                font-weight: 500;
+                color: #252525;
+              }
+
+              .provider-details-provider-logo {
+                height: 100%;
+                width: 100%;
+                max-width: 150px;
+                max-height: 40px;
+                object-fit: contain;
+                object-position: left;
+                display: block;
+              }
+            }
+
+            .provider-details-plans-box {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 5;
+
+              .provider-details-plans-subtitle {
+                font-size: 1.125rem;
+                font-weight: 500;
+                color: #252525;
+              }
+
+              .provider-details-plans-desc {
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: #252525;
+              }
+            }
+          }
+
+          .provider-details-cep-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            .provider-details-cep-subtitle {
+              font-size: 1.125rem;
+              font-weight: 500;
+              color: #252525;
+            }
+
+            .provider-details-cep-values {
+              width: 100%;
+              height: 150px;
+              border: none;
+              background-color: #fff;
+              font-size: 1rem;
+              color: #252525;
+              overflow-y: auto;
+              resize: none;
+            }
+          }
+
+          .provider-details-button-box {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+
+            .provider-details-edit-button {
+              padding: 10px 20px;
+              border: none;
+              border-radius: 8px;
+              background-color: #d40066;
+              font-size: 1rem;
+              font-weight: 600;
+              color: #fff;
+              cursor: pointer;
+              transition: filter 0.3s ease;
+
+              &:hover {
+                filter: brightness(80%);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

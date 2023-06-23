@@ -1,0 +1,180 @@
+.lead-details-box-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(32, 33, 36, 0.5);
+  overflow: auto;
+  padding: 50px 15px;
+  z-index: 6;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .lead-details-box-container {
+    background-color: #fff;
+    width: 100%;
+    height: auto;
+    max-width: 720px;
+    vertical-align: middle;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 16px;
+    z-index: 7;
+
+    .lead-details-box-wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .lead-details-box-header {
+        width: 100%;
+        height: 200px;
+        position: relative;
+        background-image: url('/assets/images/modal-image-lg.png');
+        background-position: right center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+
+        .lead-details-box-close-button {
+          width: 40px;
+          height: 40px;
+          border-radius: 8px;
+          border: none;
+          background-color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          position: absolute;
+          top: 30px;
+          right: 30px;
+
+          svg {
+            width: 80%;
+            height: auto;
+            color: #252525;
+          }
+        }
+
+        .lead-details-box-title {
+          background-color: #fff;
+          padding: 15px 30px;
+          border-top-right-radius: 16px;
+          font-size: 1.5rem;
+          font-weight: 600;
+          text-align: center;
+          color: #252525;
+        }
+      }
+
+      .lead-details-box-body {
+        width: 100%;
+        padding: 30px;
+
+        .lead-details-box-info-wrapper {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+
+          .lead-details-box-info {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 25px;
+
+            .lead-details-box-name-box,
+            .lead-details-box-plan-box,
+            .lead-details-box-rg-box,
+            .lead-details-box-cpf-box,
+            .lead-details-box-date-of-birth-box,
+            .lead-details-box-mother-name-box,
+            .lead-details-box-tel-box,
+            .lead-details-box-state-box,
+            .lead-details-box-city-box,
+            .lead-details-box-cep-box,
+            .lead-details-box-address-box,
+            .lead-details-box-address-number-box,
+            .lead-details-box-complement-box,
+            .lead-details-box-payment-date-box,
+            .lead-details-box-payment-method-box,
+            .lead-details-box-bank-box,
+            .lead-details-box-agency-box,
+            .lead-details-box-bank-account-box,
+            .lead-details-box-account-owner-box,
+            .lead-details-box-installation-date-box,
+            .lead-details-box-installation-period-box {
+              width: 50%;
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+
+              .lead-details-box-name-label,
+              .lead-details-box-plan-label,
+              .lead-details-box-rg-label,
+              .lead-details-box-cpf-label,
+              .lead-details-box-date-of-birth-label,
+              .lead-details-box-mother-name-label,
+              .lead-details-box-tel-label,
+              .lead-details-box-state-label,
+              .lead-details-box-city-label,
+              .lead-details-box-cep-label,
+              .lead-details-box-address-label,
+              .lead-details-box-address-number-label,
+              .lead-details-box-complement-label,
+              .lead-details-box-payment-date-label,
+              .lead-details-box-payment-method-label,
+              .lead-details-box-bank-label,
+              .lead-details-box-agency-label,
+              .lead-details-box-bank-account-label,
+              .lead-details-box-account-owner-label,
+              .lead-details-box-installation-date-label,
+              .lead-details-box-installation-period-label {
+                font-size: 1.125rem;
+                font-weight: 600;
+                color: #252525;
+              }
+
+              .lead-details-box-name-desc,
+              .lead-details-box-plan-desc,
+              .lead-details-box-rg-desc,
+              .lead-details-box-cpf-desc,
+              .lead-details-box-date-of-birth-desc,
+              .lead-details-box-mother-name-desc,
+              .lead-details-box-tel-desc,
+              .lead-details-box-state-desc,
+              .lead-details-box-city-desc,
+              .lead-details-box-cep-desc,
+              .lead-details-box-address-desc,
+              .lead-details-box-address-number-desc,
+              .lead-details-box-complement-desc,
+              .lead-details-box-payment-date-desc,
+              .lead-details-box-payment-method-desc,
+              .lead-details-box-bank-desc,
+              .lead-details-box-agency-desc,
+              .lead-details-box-bank-account-desc,
+              .lead-details-box-account-owner-desc,
+              .lead-details-box-installation-date-desc,
+              .lead-details-box-installation-period-desc {
+                font-size: 1rem;
+                color: #252525;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

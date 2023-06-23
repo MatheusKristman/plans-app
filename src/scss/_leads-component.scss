@@ -1,0 +1,197 @@
+.leads-component-container {
+  width: 100%;
+  height: 100%;
+  padding: 0 25px 150px;
+
+  @include breakpoint(tablet) {
+    padding: 0 50px 150px;
+  }
+
+  .leads-component-wrapper {
+    width: 100%;
+    height: 100%;
+    max-width: 1250px;
+    margin: auto;
+
+    .leads-component-info {
+      width: 100%;
+      margin-top: 75px;
+
+      .leads-component-mobile-title {
+        display: block;
+        font-size: 1.875rem;
+        font-weight: 600;
+        color: #252525;
+        margin-bottom: 35px;
+
+        @include breakpoint(largeScreen) {
+          display: none;
+        }
+      }
+
+      .leads-component-status-box {
+        width: 100%;
+
+        .leads-component-status {
+          font-size: 1rem;
+          font-weight: 500;
+          color: #252525;
+        }
+      }
+
+      .leads-component-leads-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        margin-top: 80px;
+        position: relative;
+
+        .leads-component-leads-no-client-found {
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: #b0b0b0;
+          width: 100%;
+          text-align: center;
+        }
+
+        .leads-component-lead-box {
+          width: 100%;
+          padding-bottom: 25px;
+          border-bottom: 2px solid #c7c7c7;
+
+          .leads-component-lead-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 25px;
+
+            @include breakpoint(smallScreen) {
+              flex-direction: row;
+              gap: 25px 130px;
+            }
+
+            .leads-component-info-box {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              flex-wrap: wrap;
+              gap: 25px 130px;
+
+              .leads-component-lead-name-box {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+
+                .leads-component-lead-name {
+                  font-size: 1.125rem;
+                  font-weight: 600;
+                  color: #252525;
+                }
+
+                .leads-component-lead-name-desc {
+                  font-size: 0.875rem;
+                  color: #b0b0b0;
+                }
+              }
+
+              .leads-component-tel1-box,
+              .leads-component-tel2-box,
+              .leads-component-cpf-box,
+              .leads-component-date-of-birth-box,
+              .leads-component-plan-box,
+              .leads-component-contact-at-box {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+
+                @include breakpoint(smallScreen) {
+                  width: fit-content;
+                }
+
+                .leads-component-tel1-value,
+                .leads-component-tel2-value,
+                .leads-component-cpf-value,
+                .leads-component-date-of-birth-value,
+                .leads-component-plan-value,
+                .leads-component-contact-at-value {
+                  font-size: 1.125rem;
+                  font-weight: 600;
+                  color: #252525;
+                }
+
+                .leads-component-tel1-desc,
+                .leads-component-tel2-desc,
+                .leads-component-cpf-desc,
+                .leads-component-date-of-birth-desc,
+                .leads-component-plan-desc,
+                .leads-component-contact-at-desc {
+                  font-size: 0.875rem;
+                  color: #b0b0b0;
+                }
+              }
+            }
+
+            .leads-component-button-wrapper {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: flex-end;
+
+              @include breakpoint(smallScreen) {
+                width: 30%;
+              }
+
+              .leads-component-details-button {
+                width: 100%;
+                background-color: #d40066;
+                border: none;
+                border-radius: 8px;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 10px 20px;
+                font-size: 0.875rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: filter 0.3s ease;
+
+                &:hover {
+                  filter: brightness(80%);
+                }
+
+                @include breakpoint(smallScreen) {
+                  width: fit-content;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .leads-component-leads-see-more-button {
+        width: fit-content;
+        padding: 10px 20px;
+        background-color: #d40066;
+        border: 2px solid #d40066;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #fff;
+        cursor: pointer;
+        margin: auto;
+        transition: padding 0.3s ease;
+
+        &:hover {
+          padding: 10px 30px;
+        }
+      }
+    }
+  }
+}

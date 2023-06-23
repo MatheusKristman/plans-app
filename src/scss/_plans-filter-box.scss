@@ -1,0 +1,41 @@
+.filter-box-container {
+  position: absolute;
+  left: 0;
+  top: 80px;
+  background-color: #fff;
+  border: 2px solid #d40066;
+  border-radius: 8px;
+  padding: 30px;
+  z-index: 10;
+
+  @include breakpoint(tablet) {
+    left: auto;
+    right: 0;
+    top: 40px;
+  }
+
+  .filter-box-wrapper {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+
+    .filter-box-item {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #252525;
+      cursor: pointer;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: rgba(37, 37, 37, 0.5);
+      }
+    }
+
+    .filter-active {
+      color: #d40066;
+      pointer-events: none;
+    }
+  }
+}

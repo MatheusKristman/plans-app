@@ -1,0 +1,456 @@
+.dashboard-component-container {
+  width: 100%;
+  height: 100%;
+  padding: 0 25px 150px;
+
+  @include breakpoint(tablet) {
+    padding: 0 50px 150px;
+  }
+
+  .dashboard-component-wrapper {
+    width: 100%;
+    max-width: 1250px;
+    height: 100%;
+    margin: auto;
+
+    .dashboard-component-info {
+      width: 100%;
+      margin-top: 75px;
+
+      .dashboard-component-active-wrapper {
+        width: 100%;
+        margin-bottom: 150px;
+
+        .dashboard-component-mobile-title {
+          display: block;
+          font-size: 1.875rem;
+          font-weight: 600;
+          color: #252525;
+          margin-bottom: 35px;
+
+          @include breakpoint(largeScreen) {
+            display: none;
+          }
+        }
+
+        .dashboard-component-status-box {
+          width: 100%;
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          flex-direction: column;
+          gap: 25px;
+          position: relative;
+
+          @include breakpoint(tablet) {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+          }
+
+          .dashboard-component-status {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #252525;
+          }
+
+          .dashboard-component-create-plan-btn {
+            width: 100%;
+            background-color: #d40066;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: filter 0.3s ease;
+
+            &:hover {
+              filter: brightness(80%);
+            }
+
+            svg {
+              width: 24px;
+              min-width: 24px;
+              max-width: 24px;
+            }
+
+            @include breakpoint(tablet) {
+              width: fit-content;
+            }
+          }
+
+          .dashboard-component-plan-type-options {
+            background-color: #fff;
+            border-radius: 16px;
+            padding: 25px 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+            border: 2px solid #d40066;
+            position: absolute;
+            right: 0;
+            top: 50px;
+            width: fit-content;
+            z-index: 10;
+
+            .dashboard-component-plan-type-title {
+              font-size: 1.25rem;
+              font-weight: 600;
+              color: #252525;
+            }
+
+            .dashboard-component-plan-type-buttons {
+              list-style: none;
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              gap: 15px;
+
+              .dashboard-component-plan-type-button {
+                width: 100%;
+                background-color: #d40066;
+                color: #fff;
+                font-size: 1rem;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 10px 20px;
+                border-radius: 8px;
+                cursor: pointer;
+
+                transition: filter 0.3s ease;
+
+                &:hover {
+                  filter: brightness(80%);
+                }
+              }
+            }
+          }
+        }
+
+        .dashboard-component-plans-wrapper {
+          margin-top: 80px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 25px;
+          position: relative;
+
+          .dashboard-component-no-plan-adviser {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #b0b0b0;
+            width: 100%;
+            text-align: center;
+          }
+
+          .dashboard-component-see-more-button {
+            width: fit-content;
+            padding: 10px 20px;
+            background-color: #d40066;
+            border: 2px solid #d40066;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            margin: auto;
+            transition: padding 0.3s ease;
+
+            &:hover {
+              padding: 10px 30px;
+            }
+          }
+
+          .dashboard-plan-box {
+            width: 100%;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #c7c7c7;
+
+            .dashboard-plan-wrapper {
+              width: 100%;
+              display: flex;
+              align-items: flex-start;
+              justify-content: space-between;
+              flex-direction: column;
+              gap: 25px;
+
+              @include breakpoint(smallScreen) {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+              }
+
+              .dashboard-plan-image-title-wrapper {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                gap: 25px;
+
+                @include breakpoint(smallScreen) {
+                  width: 50%;
+                }
+
+                .dashboard-plan-image-box {
+                  background-color: #f5e0d9;
+                  width: 50px;
+                  min-width: 50px;
+                  max-width: 50px;
+                  height: 50px;
+                  min-height: 50px;
+                  max-height: 50px;
+                  border-radius: 10px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+
+                  .dashboard-plan-image {
+                    width: 80%;
+                    height: auto;
+                  }
+                }
+
+                .dashboard-plan-title {
+                  font-size: 1.125rem;
+                  font-weight: 600;
+                  color: #252525;
+                }
+              }
+
+              .dashboard-plan-details-wrapper {
+                width: 100%;
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                flex-direction: column;
+                margin-left: 75px;
+                gap: 25px;
+
+                @include breakpoint(tablet) {
+                  flex-direction: row;
+                  align-items: center;
+                  margin-left: 0;
+                }
+
+                @include breakpoint(smallScreen) {
+                  width: 50%;
+                }
+
+                .dashboard-plan-contact-box,
+                .dashboard-plan-total-box,
+                .dashboard-plan-created-box {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 5px;
+
+                  .dashboard-plan-contact-value,
+                  .dashboard-plan-total-value,
+                  .dashboard-plan-created-value {
+                    font-size: 1.125rem;
+                    font-weight: 500;
+                    color: #252525;
+                  }
+
+                  .dashboard-plan-contact-placeholder,
+                  .dashboard-plan-total-placeholder,
+                  .dashboard-plan-created-placeholder {
+                    font-size: 0.875rem;
+                    font-weight: 500;
+                    color: #b0b0b0;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .dashboard-component-archived-wrapper {
+        width: 100%;
+
+        .dashboard-component-status-box {
+          width: 100%;
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          flex-direction: column;
+          gap: 25px;
+
+          @include breakpoint(tablet) {
+            flex-direction: row;
+            align-items: center;
+          }
+
+          .dashboard-component-status {
+            font-size: 1rem;
+            color: #252525;
+          }
+
+          .dashboard-component-show-archived-btn {
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #252525;
+
+            svg {
+              width: 24px;
+              min-width: 24px;
+              max-width: 24px;
+              color: #252525;
+            }
+          }
+        }
+
+        .dashboard-component-archived-plans-wrapper {
+          margin-top: 80px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 25px;
+
+          .dashboard-component-archived-plans-no-plan-adviser {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #b0b0b0;
+            width: 100%;
+            text-align: center;
+          }
+
+          .dashboard-component-see-more-button {
+            width: fit-content;
+            padding: 10px 20px;
+            background-color: #d40066;
+            border: 2px solid #d40066;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            margin: auto;
+            transition: padding 0.3s ease;
+
+            &:hover {
+              padding: 10px 30px;
+            }
+          }
+
+          .dashboard-plan-box {
+            width: 100%;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #c7c7c7;
+
+            .dashboard-plan-wrapper {
+              width: 100%;
+              display: flex;
+              align-items: flex-start;
+              justify-content: space-between;
+              flex-direction: column;
+              gap: 25px;
+
+              @include breakpoint(extraLargeScreen) {
+                flex-direction: row;
+                align-items: center;
+              }
+
+              .dashboard-plan-image-title-wrapper {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                gap: 25px;
+
+                @include breakpoint(extraLargeScreen) {
+                  width: 50%;
+                }
+
+                .dashboard-plan-image-box {
+                  background-color: #f5e0d9;
+                  width: 50px;
+                  min-width: 50px;
+                  max-width: 50px;
+                  height: 50px;
+                  min-height: 50px;
+                  max-height: 50px;
+                  border-radius: 10px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+
+                  .dashboard-plan-image {
+                    width: 80%;
+                    height: auto;
+                  }
+                }
+
+                .dashboard-plan-title {
+                  font-size: 1.125rem;
+                  font-weight: 600;
+                  color: #252525;
+                }
+              }
+
+              .dashboard-plan-details-wrapper {
+                width: 100%;
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                flex-direction: column;
+                gap: 25px;
+                margin-left: 75px;
+
+                @include breakpoint(tablet) {
+                  flex-direction: row;
+                  align-items: center;
+                  margin-left: 0;
+                  gap: 15px;
+                }
+
+                @include breakpoint(extraLargeScreen) {
+                  width: 50%;
+                }
+
+                .dashboard-plan-contact-box,
+                .dashboard-plan-total-box,
+                .dashboard-plan-created-box,
+                .dashboard-plan-archived-date-box {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 5px;
+
+                  .dashboard-plan-contact-value,
+                  .dashboard-plan-total-value,
+                  .dashboard-plan-created-value,
+                  .dashboard-plan-archived-date-value {
+                    font-size: 1.125rem;
+                    font-weight: 500;
+                    color: #252525;
+                  }
+
+                  .dashboard-plan-contact-placeholder,
+                  .dashboard-plan-total-placeholder,
+                  .dashboard-plan-created-placeholder,
+                  .dashboard-plan-archived-date-placeholder {
+                    font-size: 0.875rem;
+                    font-weight: 500;
+                    color: #b0b0b0;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
