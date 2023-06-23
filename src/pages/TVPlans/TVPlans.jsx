@@ -169,5 +169,3 @@ const TVPlans = () => {
 };
 
 export default TVPlans;
-
-// TODO Testar planos e verificar se os planos estão sendo adicionados nos contatos

@@ -160,5 +160,3 @@ const CelPlans = () => {
 };
 
 export default CelPlans;
-
-// TODO Testar planos e verificar se os planos estão sendo adicionados nos contatos
