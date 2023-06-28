@@ -17,6 +17,33 @@ const useProviderStore = create((set) => ({
   sliceEnd: 5,
   setSliceEnd: () => set((state) => ({ sliceEnd: state.sliceEnd + 5 })),
   resetSlice: () => set(() => ({ sliceEnd: 5 })),
+  providerData: {
+    providerLogo: null,
+    providerName: "",
+    ceps: [],
+  },
+  setProviderData: (value, property) =>
+    set((state) => ({
+      providerData: { ...state.providerData, [property]: value },
+    })),
+  resetProviderData: () =>
+    set((state) => ({
+      providerData: { providerLogo: null, providerName: "", ceps: [] },
+    })),
+  actualProviderLogo: "",
+  setActualProviderLogo: (url) => set(() => ({ actualProviderLogo: url })),
+  cepError: "",
+  setCepError: (value) => set(() => ({ cepError: value })),
+  logoError: "",
+  setLogoError: (value) => set(() => ({ logoError: value })),
+  providerNameError: "",
+  setProviderNameError: (value) => set(() => ({ providerNameError: value })),
+  submitting: false,
+  setSubmit: () => set(() => ({ submitting: true })),
+  unsetSubmit: () => set(() => ({ submitting: false })),
+  isLoading: false,
+  setLoading: () => set(() => ({ isLoading: true })),
+  unsetLoading: () => set(() => ({ isLoading: false })),
 }));
 
 export default useProviderStore;

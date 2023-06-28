@@ -4297,6 +4297,11 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  overflow: hidden;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-logo-box .new-provider-form-logo-label .new-provider-form-provider-logo {
+  width: 70%;
+  height: auto;
 }
 .new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-logo-box .new-provider-form-logo-label svg {
   width: 70%;
@@ -4353,7 +4358,11 @@ body {
     font-size: 1.25rem;
   }
 }
-.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-cep-box .new-provider-form-cep-label {
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-cep-box .new-provider-form-cep-wrapper {
+  display: flex;
+  gap: 15px;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-cep-box .new-provider-form-cep-wrapper .new-provider-form-cep-label {
   width: fit-content;
   font-size: 0.875rem;
   font-weight: 600;
@@ -4366,14 +4375,23 @@ body {
   align-items: center;
   gap: 5px;
   margin-bottom: 10px;
+  cursor: pointer;
+  transition: filter 0.3s ease;
 }
-.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-cep-box .new-provider-form-cep-label svg {
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-cep-box .new-provider-form-cep-wrapper .new-provider-form-cep-label:hover {
+  filter: brightness(80%);
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-cep-box .new-provider-form-cep-wrapper .new-provider-form-cep-label svg {
   width: auto;
   height: 17px;
   color: #fff;
 }
-.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-cep-box .new-provider-form-cep-label .new-provider-form-cep-xml-converter-input {
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-cep-box .new-provider-form-cep-wrapper .new-provider-form-cep-label .new-provider-form-cep-xml-converter-input {
   display: none;
+}
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-cep-box .new-provider-form-cep-wrapper .new-provider-form-cep-loading {
+  width: 35px;
+  height: 35px;
 }
 .new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-cep-box .new-provider-form-cep-textarea {
   width: 100%;
@@ -4406,6 +4424,12 @@ body {
 }
 .new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-submit-button:hover {
   filter: brightness(80%);
+}
+
+.new-provider-form-error-message {
+  font-size: 1rem;
+  color: #ef5959;
+  margin-top: 5px;
 }
 
 .provider-details-overlay {
@@ -12291,6 +12315,7 @@ body {
   position: fixed;
   bottom: 100px;
   right: 20px;
+  z-index: 50;
 }
 .whatsapp-container .whatsapp-link {
   text-decoration: none;

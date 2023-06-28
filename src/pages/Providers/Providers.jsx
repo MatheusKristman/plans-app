@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import useProviderStore from "../../stores/useProviderStore";
 import useGeneralStore from "../../stores/useGeneralStore";
 import useDashboardPageStore from "../../stores/useDashboardPageStore";
+import api from "../../services/api";
 import { shallow } from "zustand/shallow";
 import { AnimatePresence } from "framer-motion";
-import api from "../../services/api";
+import { ToastContainer } from "react-toastify";
 
 import DashboardHeader from "../components/DashboardHeader";
 import ProvidersStatusBox from "./components/ProvidersStatusBox";
@@ -90,6 +91,7 @@ const Providers = () => {
       {isNewProviderFormOpen && <NewProviderForm />}
       {isDetailsBoxOpen && <ProviderDetailsBox />}
       {isEditProviderFormOpen && <EditProviderForm />}
+      <ToastContainer />
       <div className="providers-component-wrapper">
         <DashboardHeader
           pageName="Operadoras"
