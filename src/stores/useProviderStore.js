@@ -44,6 +44,11 @@ const useProviderStore = create((set) => ({
   isLoading: false,
   setLoading: () => set(() => ({ isLoading: true })),
   unsetLoading: () => set(() => ({ isLoading: false })),
+  idSelected: "",
+  setIdSelected: (id) => set(() => ({ idSelected: id })),
+  providerSelected: {},
+  setProviderSelected: (provider) =>
+    set(() => ({ providerSelected: provider })),
 }));
 
 export default useProviderStore;

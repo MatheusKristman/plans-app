@@ -116,6 +116,11 @@
               justify-content: center;
               cursor: pointer;
 
+              img {
+                width: 70%;
+                height: auto;
+              }
+
               svg {
                 width: 70%;
                 height: auto;
@@ -178,28 +183,44 @@
               }
             }
 
-            .edit-provider-form-cep-label {
-              width: fit-content;
-              font-size: 0.875rem;
-              font-weight: 600;
-              color: #fff;
-              background-color: #d40066;
-              border: none;
-              border-radius: 8px;
-              padding: 10px 15px;
+            .edit-provider-form-cep-wrapper {
               display: flex;
-              align-items: center;
-              gap: 5px;
-              margin-bottom: 10px;
+              gap: 15px;
 
-              svg {
-                width: auto;
-                height: 17px;
+              .edit-provider-form-cep-label {
+                width: fit-content;
+                font-size: 0.875rem;
+                font-weight: 600;
                 color: #fff;
+                background-color: #d40066;
+                border: none;
+                border-radius: 8px;
+                padding: 10px 15px;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                margin-bottom: 10px;
+                cursor: pointer;
+                transition: filter 0.3s ease;
+
+                &:hover {
+                  filter: brightness(80%);
+                }
+
+                svg {
+                  width: auto;
+                  height: 17px;
+                  color: #fff;
+                }
+
+                .edit-provider-form-cep-xml-converter-input {
+                  display: none;
+                }
               }
 
-              .edit-provider-form-cep-xml-converter-input {
-                display: none;
+              .edit-provider-form-cep-loading {
+                width: 35px;
+                height: 35px;
               }
             }
 
@@ -238,9 +259,20 @@
             &:hover {
               filter: brightness(80%);
             }
+
+            .edit-provider-form-submit-loading {
+              width: 25px;
+              height: 25px;
+            }
           }
         }
       }
     }
   }
+}
+
+.edit-provider-form-error-message {
+  font-size: 1rem;
+  color: #ef5959;
+  margin-top: 5px;
 }

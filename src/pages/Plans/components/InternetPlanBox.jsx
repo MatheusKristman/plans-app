@@ -95,7 +95,7 @@ const InternetPlanBox = ({
           <div className="plans-component-image-title-box">
             <div className="plans-component-image-box">
               <img
-                src={`https://planos-backend.onrender.com/assets/${providerIcon}`}
+                src={`${import.meta.env.VITE_API_KEY}/assets/${providerIcon}`}
                 alt={providerIcon.substring(0, providerIcon.length - 4)}
                 className="plans-component-image"
               />

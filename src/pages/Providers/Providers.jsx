@@ -25,6 +25,8 @@ const Providers = () => {
     sliceEnd,
     setSliceEnd,
     resetSlice,
+    idSelected,
+    setProviderSelected,
   } = useProviderStore(
     (state) => ({
       isNewProviderFormOpen: state.isNewProviderFormOpen,
@@ -35,6 +37,8 @@ const Providers = () => {
       sliceEnd: state.sliceEnd,
       setSliceEnd: state.setSliceEnd,
       resetSlice: state.resetSlice,
+      idSelected: state.idSelected,
+      setProviderSelected: state.setProviderSelected,
     }),
     shallow
   );
@@ -85,6 +89,16 @@ const Providers = () => {
       resetSlice();
     }
   }, [searchValue]);
+
+  useEffect(() => {
+    if (idSelected) {
+      const provider = providers.filter(
+        (provider) => provider._id === idSelected
+      );
+
+      setProviderSelected(provider[0]);
+    }
+  }, [idSelected]);
 
   return (
     <div className="providers-component-container">

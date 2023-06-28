@@ -224,6 +224,7 @@
                 height: 35px;
               }
             }
+
             .new-provider-form-cep-textarea {
               width: 100%;
               height: 150px;
@@ -258,6 +259,11 @@
 
             &:hover {
               filter: brightness(80%);
+            }
+
+            .new-provider-form-submit-loading {
+              width: 25px;
+              height: 25px;
             }
           }
         }

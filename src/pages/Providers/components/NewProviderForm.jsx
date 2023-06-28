@@ -147,21 +147,22 @@ const NewProviderForm = () => {
   };
 
   useEffect(() => {
-    console.log(providerData);
-  }, [providerData]);
-
-  useEffect(() => {
     const submitData = () => {
+      console.log(providerData.ceps);
       const formData = new FormData();
 
       formData.append("providerLogo", providerData.providerLogo);
       formData.append("providerName", providerData.providerName);
-      formData.append("locations", providerData.ceps);
+
+      for (let i = 0; i < providerData.ceps.length; i++) {
+        formData.append("locations[]", providerData.ceps[i]);
+      }
 
       api
         .post("/provider/new", formData)
         .then((res) => {
           setProviders(res.data);
+          setActualProviderLogo("");
           toast.success("Operadora criada com sucesso!", {
             position: "top-right",
             autoClose: 5000,
@@ -356,8 +357,19 @@ const NewProviderForm = () => {
                 )}
               </div>
 
-              <button type="submit" className="new-provider-form-submit-button">
-                Salvar
+              <button
+                type="submit"
+                disabled={submitting}
+                className="new-provider-form-submit-button"
+              >
+                {submitting ? (
+                  <img
+                    src="/assets/icons/submit-loading.gif"
+                    className="new-provider-form-submit-loading"
+                  />
+                ) : (
+                  "Salvar"
+                )}
               </button>
             </form>
           </div>

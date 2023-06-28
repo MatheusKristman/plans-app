@@ -1221,6 +1221,21 @@ body {
 .providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-buttons-box .providers-component-edit-button {
   font-size: 0.875rem;
   font-weight: 600;
+  color: #d40066;
+  background-color: #fff;
+  border: 2px solid #d40066;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-buttons-box .providers-component-edit-button:hover {
+  background-color: #d40066;
+  color: #fff;
+}
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-buttons-box .providers-component-delete-button {
+  font-size: 0.875rem;
+  font-weight: 600;
   color: #fff;
   background-color: #d40066;
   border: 2px solid #d40066;
@@ -1229,7 +1244,7 @@ body {
   cursor: pointer;
   transition: filter 0.3s ease;
 }
-.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-buttons-box .providers-component-edit-button:hover {
+.providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-provider-container .providers-component-provider-box .providers-component-buttons-box .providers-component-delete-button:hover {
   filter: brightness(80%);
 }
 .providers-component-container .providers-component-wrapper .providers-component-info .providers-component-providers-wrapper .providers-component-see-more-button {
@@ -4425,6 +4440,10 @@ body {
 .new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-submit-button:hover {
   filter: brightness(80%);
 }
+.new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-submit-button .new-provider-form-submit-loading {
+  width: 25px;
+  height: 25px;
+}
 
 .new-provider-form-error-message {
   font-size: 1rem;
@@ -4540,7 +4559,7 @@ body {
 .provider-details-overlay .provider-details-container .provider-details-wrapper .provider-details-body .provider-details-body-wrapper .provider-details-provider-plans-box .provider-details-provider-box .provider-details-provider-logo {
   height: 100%;
   width: 100%;
-  max-width: 150px;
+  max-width: 100px;
   max-height: 40px;
   object-fit: contain;
   object-position: left;
@@ -4567,6 +4586,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  margin-bottom: 50px;
 }
 .provider-details-overlay .provider-details-container .provider-details-wrapper .provider-details-body .provider-details-body-wrapper .provider-details-cep-box .provider-details-cep-subtitle {
   font-size: 1.125rem;
@@ -4716,6 +4736,10 @@ body {
   justify-content: center;
   cursor: pointer;
 }
+.edit-provider-form-overlay .edit-provider-form-container .edit-provider-form-wrapper .edit-provider-form-body .edit-provider-form-form .edit-provider-form-logo-box .edit-provider-form-logo-label img {
+  width: 70%;
+  height: auto;
+}
 .edit-provider-form-overlay .edit-provider-form-container .edit-provider-form-wrapper .edit-provider-form-body .edit-provider-form-form .edit-provider-form-logo-box .edit-provider-form-logo-label svg {
   width: 70%;
   height: auto;
@@ -4771,7 +4795,11 @@ body {
     font-size: 1.25rem;
   }
 }
-.edit-provider-form-overlay .edit-provider-form-container .edit-provider-form-wrapper .edit-provider-form-body .edit-provider-form-form .edit-provider-form-cep-box .edit-provider-form-cep-label {
+.edit-provider-form-overlay .edit-provider-form-container .edit-provider-form-wrapper .edit-provider-form-body .edit-provider-form-form .edit-provider-form-cep-box .edit-provider-form-cep-wrapper {
+  display: flex;
+  gap: 15px;
+}
+.edit-provider-form-overlay .edit-provider-form-container .edit-provider-form-wrapper .edit-provider-form-body .edit-provider-form-form .edit-provider-form-cep-box .edit-provider-form-cep-wrapper .edit-provider-form-cep-label {
   width: fit-content;
   font-size: 0.875rem;
   font-weight: 600;
@@ -4784,14 +4812,23 @@ body {
   align-items: center;
   gap: 5px;
   margin-bottom: 10px;
+  cursor: pointer;
+  transition: filter 0.3s ease;
 }
-.edit-provider-form-overlay .edit-provider-form-container .edit-provider-form-wrapper .edit-provider-form-body .edit-provider-form-form .edit-provider-form-cep-box .edit-provider-form-cep-label svg {
+.edit-provider-form-overlay .edit-provider-form-container .edit-provider-form-wrapper .edit-provider-form-body .edit-provider-form-form .edit-provider-form-cep-box .edit-provider-form-cep-wrapper .edit-provider-form-cep-label:hover {
+  filter: brightness(80%);
+}
+.edit-provider-form-overlay .edit-provider-form-container .edit-provider-form-wrapper .edit-provider-form-body .edit-provider-form-form .edit-provider-form-cep-box .edit-provider-form-cep-wrapper .edit-provider-form-cep-label svg {
   width: auto;
   height: 17px;
   color: #fff;
 }
-.edit-provider-form-overlay .edit-provider-form-container .edit-provider-form-wrapper .edit-provider-form-body .edit-provider-form-form .edit-provider-form-cep-box .edit-provider-form-cep-label .edit-provider-form-cep-xml-converter-input {
+.edit-provider-form-overlay .edit-provider-form-container .edit-provider-form-wrapper .edit-provider-form-body .edit-provider-form-form .edit-provider-form-cep-box .edit-provider-form-cep-wrapper .edit-provider-form-cep-label .edit-provider-form-cep-xml-converter-input {
   display: none;
+}
+.edit-provider-form-overlay .edit-provider-form-container .edit-provider-form-wrapper .edit-provider-form-body .edit-provider-form-form .edit-provider-form-cep-box .edit-provider-form-cep-wrapper .edit-provider-form-cep-loading {
+  width: 35px;
+  height: 35px;
 }
 .edit-provider-form-overlay .edit-provider-form-container .edit-provider-form-wrapper .edit-provider-form-body .edit-provider-form-form .edit-provider-form-cep-box .edit-provider-form-cep-textarea {
   width: 100%;
@@ -4824,6 +4861,16 @@ body {
 }
 .edit-provider-form-overlay .edit-provider-form-container .edit-provider-form-wrapper .edit-provider-form-body .edit-provider-form-form .edit-provider-form-submit-button:hover {
   filter: brightness(80%);
+}
+.edit-provider-form-overlay .edit-provider-form-container .edit-provider-form-wrapper .edit-provider-form-body .edit-provider-form-form .edit-provider-form-submit-button .edit-provider-form-submit-loading {
+  width: 25px;
+  height: 25px;
+}
+
+.edit-provider-form-error-message {
+  font-size: 1rem;
+  color: #ef5959;
+  margin-top: 5px;
 }
 
 .filter-box-container {
