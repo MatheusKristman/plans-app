@@ -133,7 +133,7 @@ const EditCelPlanForm = () => {
         unlimitedCall: celUnlimitedCall,
         planType: celPlanType,
         priority: celPriority,
-        description: celDescription,
+        description: celDescription.split("\n"),
       };
 
       api

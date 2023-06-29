@@ -78,7 +78,7 @@
           overflow: hidden;
 
           @include breakpoint(largeScreen) {
-            max-height: 1054px !important;
+            max-height: none !important;
           }
 
           .filter-form-submit-button {

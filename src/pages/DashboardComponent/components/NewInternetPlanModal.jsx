@@ -165,7 +165,7 @@ const NewInternetPlanModal = () => {
         hasWifi: internetHasWifi,
         benefits: benefits,
         priority: internetPriority,
-        description: internetDescription,
+        description: internetDescription.split("\n"),
       };
 
       api
@@ -286,7 +286,9 @@ const NewInternetPlanModal = () => {
                     >
                       <div className="new-internet-plan-modal-provider-label-logo">
                         <img
-                          src={`https://planos-backend.onrender.com/assets/${provider.providerLogo}`}
+                          src={`${import.meta.env.VITE_API_KEY}/assets/${
+                            provider.providerLogo
+                          }`}
                           alt={provider.providerName}
                           className="new-internet-plan-modal-provider-image"
                         />

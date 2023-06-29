@@ -9826,7 +9826,7 @@ body {
 }
 @media screen and (min-width: 1024px) {
   .internet-plans-container .body-container .body-wrapper .filter-form-container .filter-form-box {
-    max-height: 1110px !important;
+    max-height: none !important;
   }
 }
 .internet-plans-container .body-container .body-wrapper .filter-form-container .filter-form-box .filter-form-submit-button {
@@ -9973,7 +9973,6 @@ body {
   padding: 30px 0px;
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid #b2b7d1;
 }
 .internet-plans-container .body-container .body-wrapper .filter-form-container .filter-form-box .filter-form-wrapper .filter-form-provider-box .filter-form-provider-title {
   font-size: 1.125rem;
@@ -10417,7 +10416,7 @@ body {
 }
 @media screen and (min-width: 1024px) {
   .cel-plans-container .body-container .body-wrapper .filter-form-container .filter-form-box {
-    max-height: 1054px !important;
+    max-height: none !important;
   }
 }
 .cel-plans-container .body-container .body-wrapper .filter-form-container .filter-form-box .filter-form-submit-button {
@@ -11024,7 +11023,7 @@ body {
 }
 @media screen and (min-width: 1024px) {
   .tv-plans-container .body-container .body-wrapper .filter-form-container .filter-form-box {
-    max-height: 911px !important;
+    max-height: none !important;
   }
 }
 .tv-plans-container .body-container .body-wrapper .filter-form-container .filter-form-box .filter-form-wrapper {

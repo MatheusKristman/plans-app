@@ -174,7 +174,7 @@ const EditInternetPlanForm = () => {
         hasWifi: internetHasWifi,
         benefits: benefits,
         priority: internetPriority,
-        description: internetDescription,
+        description: internetDescription.split("\n"),
       };
 
       api

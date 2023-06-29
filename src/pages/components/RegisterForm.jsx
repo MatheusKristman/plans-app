@@ -1243,7 +1243,9 @@ const RegisterForm = () => {
                 <div className="register-form-plan-details-box">
                   <div className="register-form-plan-provider-icon-box">
                     <img
-                      src={`https://planos-backend.onrender.com/assets/${planSelected.logo}`}
+                      src={`${import.meta.env.VITE_API_KEY}/assets/${
+                        planSelected.logo
+                      }`}
                       alt="claro"
                       className="register-form-plan-provider-icon"
                     />

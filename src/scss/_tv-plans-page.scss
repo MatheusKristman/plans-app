@@ -105,7 +105,7 @@
           overflow: hidden;
 
           @include breakpoint(largeScreen) {
-            max-height: 911px !important;
+            max-height: none !important;
           }
 
           .filter-form-wrapper {

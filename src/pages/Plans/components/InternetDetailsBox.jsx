@@ -114,7 +114,9 @@ const InternetDetailsBox = ({ archivedAt }) => {
                     Operadora
                   </span>
                   <img
-                    src={`https://planos-backend.onrender.com/assets/${planSelectedForDetails.providerIcon}`}
+                    src={`${import.meta.env.VITE_API_KEY}/assets/${
+                      planSelectedForDetails.providerIcon
+                    }`}
                     alt={planSelectedForDetails.providerIcon?.substring(
                       0,
                       planSelectedForDetails.providerIcon.length - 4
@@ -236,7 +238,7 @@ const InternetDetailsBox = ({ archivedAt }) => {
                   Descrição
                 </span>
                 <span className="internet-details-box-description-desc">
-                  {planSelectedForDetails.description}
+                  {planSelectedForDetails.description.join("\n")}
                 </span>
               </div>
 

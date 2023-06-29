@@ -139,7 +139,7 @@ const NewTVPlanModal = () => {
         devicesQuant: tvDevices,
         benefits: benefits,
         priority: tvPriority,
-        description: tvDescription,
+        description: tvDescription.split("\n"),
       };
 
       api
@@ -257,7 +257,9 @@ const NewTVPlanModal = () => {
                     >
                       <div className="new-tv-plan-modal-provider-label-logo">
                         <img
-                          src={`https://planos-backend.onrender.com/assets/${provider.providerLogo}`}
+                          src={`${import.meta.env.VITE_API_KEY}/assets/${
+                            provider.providerLogo
+                          }`}
                           alt={provider.providerName}
                           className="new-tv-plan-modal-provider-image"
                         />

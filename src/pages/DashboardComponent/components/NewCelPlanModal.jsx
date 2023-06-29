@@ -134,7 +134,7 @@ const NewCelPlanModal = () => {
         unlimitedCall: celUnlimitedCall,
         planType: celPlanType,
         priority: celPriority,
-        description: celDescription,
+        description: celDescription.split("\n"),
       };
 
       api
@@ -246,7 +246,9 @@ const NewCelPlanModal = () => {
                     >
                       <div className="new-cel-plan-modal-provider-label-logo">
                         <img
-                          src={`https://planos-backend.onrender.com/assets/${provider.providerLogo}`}
+                          src={`${import.meta.env.VITE_API_KEY}/assets/${
+                            provider.providerLogo
+                          }`}
                           alt={provider.providerName}
                           className="new-cel-plan-modal-provider-image"
                         />

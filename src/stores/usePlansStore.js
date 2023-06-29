@@ -226,7 +226,7 @@ const usePlansStore = create((set) => ({
       internetTechnology: state.planSelectedForDetails.technology,
       internetHasWifi: state.planSelectedForDetails.hasWifi,
       internetPriority: state.planSelectedForDetails.priority,
-      internetDescription: state.planSelectedForDetails.description,
+      internetDescription: state.planSelectedForDetails.description?.join("\n"),
     })),
   internetResetInputs: () =>
     set(() => ({
@@ -300,7 +300,7 @@ const usePlansStore = create((set) => ({
       celUnlimitedCall: state.planSelectedForDetails.unlimitedCall,
       celPlanType: state.planSelectedForDetails.planType,
       celPriority: state.planSelectedForDetails.priority,
-      celDescription: state.planSelectedForDetails.description,
+      celDescription: state.planSelectedForDetails.description?.join("\n"),
     })),
   celResetInputs: () =>
     set(() => ({
@@ -405,13 +405,15 @@ const usePlansStore = create((set) => ({
       tvCostChangesConfirmation:
         state.planSelectedForDetails.afterCost !== null &&
         state.planSelectedForDetails.periodToChangeCost !== null,
-      tvAfterCost: state.planSelectedForDetails.afterCost || "",
+      tvAfterCost:
+        state.planSelectedForDetails.afterCost?.toFixed(2).replace(".", ",") ||
+        "",
       tvPeriodToChangeCost:
         state.planSelectedForDetails.periodToChangeCost || "",
       tvInstallationCost: state.planSelectedForDetails.installationCost,
       tvDevices: state.planSelectedForDetails.devicesQuant,
       tvPriority: state.planSelectedForDetails.priority,
-      tvDescription: state.planSelectedForDetails.description,
+      tvDescription: state.planSelectedForDetails.description?.join("\n"),
     })),
   tvInstallationCostError: false,
   setTVInstallationCostError: () =>

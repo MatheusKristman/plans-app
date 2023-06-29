@@ -150,7 +150,7 @@ const EditTVPlanForm = () => {
         devicesQuant: tvDevices,
         benefits: benefits,
         priority: tvPriority,
-        description: tvDescription,
+        description: tvDescription.split("\n"),
       };
 
       api

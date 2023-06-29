@@ -67,7 +67,7 @@ const Plan = ({
         <div className="plan-title-box">
           <div className="plan-provider-logo-box">
             <img
-              src={`https://planos-backend.onrender.com/assets/${providerLogo}`}
+              src={`${import.meta.env.VITE_API_KEY}/assets/${providerLogo}`}
               alt="claro"
               className="plan-provider-logo"
             />
@@ -164,7 +164,7 @@ const Plan = ({
 
         <div className="plan-details-box">
           <div className="plan-details-wrapper">
-            {description.length > 150 ? (
+            {description.join().length > 150 ? (
               <>
                 <span
                   ref={descriptionRef}
@@ -180,7 +180,18 @@ const Plan = ({
                       : { maxHeight: "100px", paddingBottom: "0px" }
                   }
                 >
-                  {description}
+                  {description.map((desc, i) => (
+                    <p
+                      key={`description-${i}`}
+                      style={
+                        i === description.length - 1
+                          ? { marginBottom: "0px" }
+                          : { marginBottom: "25px" }
+                      }
+                    >
+                      {desc}
+                    </p>
+                  ))}
                 </span>
                 <button
                   type="button"
@@ -191,7 +202,20 @@ const Plan = ({
                 </button>
               </>
             ) : (
-              <span className="plan-details-desc">{description}</span>
+              <span className="plan-details-desc">
+                {description.map((desc, i) => (
+                  <p
+                    key={`description-${i}`}
+                    style={
+                      i === description.length - 1
+                        ? { marginBottom: "0px" }
+                        : { marginBottom: "25px" }
+                    }
+                  >
+                    {desc}
+                  </p>
+                ))}
+              </span>
             )}
           </div>
         </div>
