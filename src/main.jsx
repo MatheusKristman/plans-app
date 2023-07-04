@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from "./pages/Home/Home.jsx";
+import HomeAlternative from "./pages/HomeAlternative/HomeAlternative.jsx";
 import AdminLogin from "./pages/Admin/AdminLogin.jsx";
 import CelPlans from "./pages/CelPlans/CelPlans.jsx";
 import InternetPlans from "./pages/InternetPlans/InternetPlans.jsx";
@@ -20,6 +21,11 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/condominio",
+    element: <HomeAlternative />,
     errorElement: <ErrorPage />,
   },
   {

@@ -1,6 +1,7 @@
 import React from "react";
 import useHomeStore from "../../../stores/useHomeStore";
 import { shallow } from "zustand/shallow";
+import { useNavigate } from "react-router-dom";
 
 const HomeHeader = () => {
   const { isMobileNavOpen, openMobileNav, closeMobileNav } = useHomeStore(
@@ -11,6 +12,8 @@ const HomeHeader = () => {
     })
   );
 
+  const navigate = useNavigate();
+
   const handleMobileNav = () => {
     if (isMobileNavOpen) {
       closeMobileNav();
@@ -18,6 +21,10 @@ const HomeHeader = () => {
     }
 
     openMobileNav();
+  };
+
+  const redirectToHomeAlternative = () => {
+    navigate("/condominio");
   };
 
   return (
@@ -66,7 +73,11 @@ const HomeHeader = () => {
               <a href="#faq">FAQ</a>
             </li>
             <li className="header-nav-cta-item">
-              <button type="button" className="header-nav-cta-button">
+              <button
+                type="button"
+                onClick={redirectToHomeAlternative}
+                className="header-nav-cta-button"
+              >
                 Para seu condomínio
               </button>
             </li>
@@ -85,7 +96,11 @@ const HomeHeader = () => {
               <a href="#faq">FAQ</a>
             </li>
             <li className="header-nav-cta-item">
-              <button type="button" className="header-nav-cta-button">
+              <button
+                type="button"
+                onClick={redirectToHomeAlternative}
+                className="header-nav-cta-button"
+              >
                 Para seu condomínio
               </button>
             </li>
