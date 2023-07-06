@@ -1,246 +1,46 @@
-.container {
+.container-alternative {
   width: 100%;
   height: 100%;
   flex: 1;
-  background-image: url("/assets/images/hero-mobile-bg.png");
+  background-image: url("/assets/images/hero-alternative-mobile-bg.png");
   background-repeat: no-repeat;
   background-size: 100% 750px;
   background-position: top;
+  position: relative;
   overflow-x: hidden;
 
   @include breakpoint(tablet) {
-    background-image: url("/assets/images/hero-tablet-bg.png");
-    background-size: 100% 650px;
+    background-image: url("/assets/images/hero-alternative-tablet-bg.png");
+    background-size: 100% 720px;
   }
 
   @include breakpoint(largeScreen) {
-    background-image: url("/assets/images/hero-bg.png");
-    background-size: 100% 750px;
+    background-image: url("/assets/images/hero-alternative-bg.png");
+    background-size: 100% 900px;
   }
 
-  .home-filter-box-overlay {
+  &:before {
+    content: "";
+    background-image: url("/assets/images/hero-bg-lines-mobile.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
     width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(32, 33, 36, 0.5);
-    overflow: auto;
-    padding: 25px;
-    z-index: 6;
+    height: 200px;
+    display: block;
+    position: absolute;
+    top: 450px;
 
-    &::before {
-      content: "";
-      height: 100%;
-      display: inline-block;
-      vertical-align: middle;
+    @include breakpoint(tablet) {
+      background-image: url("/assets/images/hero-bg-lines-tablet.svg");
+      top: 50px;
+      height: 550px;
     }
 
-    .home-filter-box-container {
-      background-color: #fff;
-      display: inline-block;
-      width: 100%;
-      height: auto;
-      max-width: 500px;
-      vertical-align: middle;
-      position: relative;
-      left: 50%;
-      transform: translateX(-50%);
-      border-radius: 16px;
-      z-index: 7;
-      overflow: hidden;
-
-      @include breakpoint(largeScreen) {
-        max-width: 700px;
-      }
-
-      .home-filter-box-wrapper {
-        display: flex;
-        flex-direction: column;
-
-        @include breakpoint(largeScreen) {
-          flex-direction: row-reverse;
-        }
-
-        .home-filter-box-illustration-box {
-          width: 100%;
-          position: relative;
-
-          @include breakpoint(largeScreen) {
-            width: fit-content;
-            height: 350px;
-          }
-
-          .home-filter-box-close-button {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: none;
-            border-radius: 8px;
-            background-color: #fff;
-            cursor: pointer;
-
-            svg {
-              width: 80%;
-              height: auto;
-              color: #252525;
-            }
-          }
-
-          .home-filter-box-animation {
-            width: 100%;
-            height: auto;
-
-            @include breakpoint(largeScreen) {
-              width: auto;
-              height: 350px;
-            }
-          }
-        }
-
-        .home-filter-box-infos-box {
-          width: 100%;
-          padding: 30px;
-
-          .home-filter-box-title {
-            font-size: 1.5rem;
-            font-weight: 500;
-            color: #252525;
-            margin-bottom: 50px;
-          }
-
-          .home-filter-box-provider-box {
-            .home-filter-box-provider-label {
-              font-size: 1.125rem;
-              font-weight: 500;
-              color: #252525;
-              margin-bottom: 5px;
-              display: block;
-            }
-
-            .home-filter-box-provider-select {
-              width: 100%;
-              height: 40px;
-              border: 2px solid #cccccc;
-              border-radius: 8px;
-              background-color: #fff;
-              font-size: 1rem;
-              color: #252525;
-              padding: 0 10px;
-              appearance: none;
-              background-image: url("/assets/icons/arrowdown.svg");
-              background-repeat: no-repeat;
-              background-position: 98% center;
-              background-size: 14px 8px;
-              cursor: pointer;
-
-              &:focus {
-                border-color: #7a7a7a;
-              }
-            }
-          }
-
-          .home-filter-box-cep-wrapper {
-            display: flex;
-            flex-direction: column;
-
-            .home-filter-box-cep-title {
-              font-size: 1.125rem;
-              font-weight: 500;
-              color: #252525;
-              margin-bottom: 5px;
-            }
-
-            .home-filter-box-cep-input {
-              width: 100%;
-              height: 40px;
-              border: 2px solid #cccccc;
-              border-radius: 8px;
-              background-color: #fff;
-              padding: 0px 10px;
-              font-size: 1rem;
-              color: #252525;
-              transition: border-color 0.3s ease;
-              max-width: 200px;
-
-              &:focus {
-                border-color: #7a7a7a;
-              }
-            }
-          }
-
-          .home-filter-box-button-wrapper {
-            display: flex;
-            flex-direction: column;
-            margin-top: 35px;
-            gap: 15px;
-
-            @include breakpoint(largeScreen) {
-              flex-direction: row;
-              margin-top: 100px;
-            }
-
-            .home-filter-box-submit-button {
-              background-color: #d40066;
-              border: none;
-              border-radius: 8px;
-              width: fit-content;
-              height: 40px;
-              padding: 0 25px;
-              color: #fff;
-              font-size: 1rem;
-              font-weight: 500;
-              cursor: pointer;
-              transition: filter 0.3s ease;
-              width: 100%;
-
-              &:hover {
-                filter: brightness(80%);
-              }
-
-              @include breakpoint(largeScreen) {
-                width: fit-content;
-              }
-            }
-
-            .home-filter-box-back-button {
-              background-color: #fff;
-              border: 2px solid #d40066;
-              border-radius: 8px;
-              width: fit-content;
-              height: 40px;
-              padding: 0 25px;
-              color: #d40066;
-              font-size: 1rem;
-              font-weight: 500;
-              cursor: pointer;
-              transition: background 0.3s ease, color 0.3s ease;
-              width: 100%;
-
-              &:disabled {
-                filter: brightness(80%);
-                pointer-events: none;
-              }
-
-              &:hover {
-                background-color: #d40066;
-                color: #fff;
-              }
-
-              @include breakpoint(largeScreen) {
-                width: fit-content;
-              }
-            }
-          }
-        }
-      }
+    @include breakpoint(largeScreen) {
+      background-image: url("/assets/images/hero-bg-lines-desktop.svg");
+      height: 40vw;
+      top: 0;
     }
   }
 
@@ -425,7 +225,7 @@
     }
 
     @include breakpoint(largeScreen) {
-      flex-direction: row;
+      flex-direction: row-reverse;
       align-items: center;
       margin-top: 100px;
     }
@@ -433,7 +233,14 @@
     .hero-info {
       width: 100%;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
       z-index: 2;
+
+      @include breakpoint(largeScreen) {
+        width: 60%;
+      }
 
       .hero-title {
         font-size: 2rem;
@@ -442,22 +249,25 @@
         max-width: 300px;
         display: block;
         margin-bottom: 15px;
+        text-align: right;
 
         @include breakpoint(tablet) {
           font-size: 3rem;
-          max-width: 450px;
+          max-width: 430px;
           line-height: 60px;
         }
 
         @include breakpoint(largeScreen) {
           font-size: 5rem;
           line-height: 100px;
+          max-width: 500px;
         }
       }
 
       .hero-desc {
         font-size: 1rem;
         font-weight: 500;
+        text-align: right;
         color: #252525;
         line-height: 25px;
         margin-bottom: 25px;
@@ -465,7 +275,7 @@
         display: block;
 
         @include breakpoint(tablet) {
-          max-width: 400px;
+          max-width: 500px;
         }
 
         @include breakpoint(largeScreen) {
@@ -501,7 +311,7 @@
     .hero-image {
       width: 100%;
       display: flex;
-      justify-content: flex-end;
+      justify-content: flex-start;
 
       @include breakpoint(tablet) {
         margin-top: -50px;
@@ -509,10 +319,11 @@
 
       @include breakpoint(largeScreen) {
         margin-top: 0;
+        width: 40%;
       }
 
       .image-box {
-        width: 80%;
+        width: 100%;
         position: relative;
 
         @include breakpoint(tablet) {
@@ -520,27 +331,11 @@
         }
 
         @include breakpoint(largeScreen) {
-          width: 75%;
-        }
-
-        .image-phone {
           width: 100%;
-          height: auto;
         }
 
-        .image-top-box {
-          position: absolute;
-          width: 50%;
-          height: auto;
-          top: 25px;
-          left: 35px;
-        }
-
-        .image-bottom-box {
-          position: absolute;
-          bottom: 50px;
-          right: 30px;
-          width: 50%;
+        .image {
+          width: 100%;
           height: auto;
         }
       }
@@ -664,19 +459,18 @@
   .benefits-container {
     width: 100%;
     padding-top: 300px;
-    background-image: url("/assets/images/benefits-mobile-bg.png");
+    background-image: url("/assets/images/alternative-benefits-mobile-bg.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: top center;
     padding-bottom: 150px;
 
     @include breakpoint(tablet) {
-      background-image: url("/assets/images/benefits-tablet-bg.png");
+      background-image: url("/assets/images/alternative-benefits-tablet-bg.png");
     }
 
     @include breakpoint(largeScreen) {
-      background-image: url("/assets/images/benefits-bg.png");
-      padding-top: 400px;
+      background-image: url("/assets/images/alternative-benefits-bg.png");
     }
 
     .benefits-wrapper {
