@@ -1,10 +1,18 @@
+import { useMemo } from "react";
+import { motion } from "framer-motion";
+
 const StepsCard = ({ tag, title, description }) => {
+  const stepsAnimation = useMemo(() => ({
+    offscreen: { y: -50, opacity: 0 },
+    onscreen: { y: 0, opacity: 1, transition: { duration: 1 } },
+  }));
+
   return (
-    <div className="how-it-works-card">
+    <motion.div variants={stepsAnimation} className="how-it-works-card">
       <span className="how-it-works-tag">{tag}</span>
       <h4 className="how-it-works-card-title">{title}</h4>
       <p className="how-it-works-desc">{description}</p>
-    </div>
+    </motion.div>
   );
 };
 
@@ -16,7 +24,13 @@ const HomeHowItWorks = () => {
           Seu aprimoramento em apenas 3 passos
         </h2>
 
-        <div className="how-it-works-wrapper">
+        <motion.div
+          transition={{ staggerChildren: 0.3 }}
+          initial="offscreen"
+          whileInView="onscreen"
+          viewport={{ once: true, amount: 0.5 }}
+          className="how-it-works-wrapper"
+        >
           <StepsCard
             tag={"1"}
             title={"Identifique"}
@@ -34,7 +48,7 @@ const HomeHowItWorks = () => {
               "Aproveite uma conexão de alta velocidade e qualidade no condomínio."
             }
           />
-        </div>
+        </motion.div>
       </div>
     </div>
   );

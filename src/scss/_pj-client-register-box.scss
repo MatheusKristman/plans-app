@@ -1,0 +1,172 @@
+.client-register-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(32, 33, 36, 0.5);
+  overflow: auto;
+  padding: 25px;
+  z-index: 999;
+
+  &:before {
+    content: "";
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .client-register-box {
+    background-color: #fff;
+    display: inline-block;
+    flex-direction: column-reverse;
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    vertical-align: middle;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 16px;
+    z-index: 7;
+    overflow: hidden;
+
+    @include breakpoint(largeScreen) {
+      max-width: 700px;
+    }
+
+    .client-register-wrapper {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column-reverse;
+
+      @include breakpoint(largeScreen) {
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: 60% 40%;
+      }
+
+      .client-register-info {
+        padding: 30px;
+
+        .client-register-title {
+          font-size: 1.5rem;
+          font-weight: 500;
+          color: #252525;
+          margin-bottom: 50px;
+        }
+
+        .client-register-form {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+
+          .client-register-inputs-wrapper {
+            display: grid;
+            grid-template-rows: 1fr;
+            grid-template-columns: calc(60% - 10px) calc(40% - 10px);
+            gap: 20px;
+          }
+
+          .client-register-name-box,
+          .client-register-role-box,
+          .client-register-tel-box,
+          .client-register-branch-box,
+          .client-register-email-box {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 15px;
+
+            .client-register-name-label,
+            .client-register-role-label,
+            .client-register-tel-label,
+            .client-register-branch-label,
+            .client-register-email-label {
+              font-size: 1.125rem;
+              font-weight: 500;
+              color: #252525;
+            }
+
+            .client-register-name-input,
+            .client-register-role-input,
+            .client-register-tel-input,
+            .client-register-branch-input,
+            .client-register-email-input {
+              width: 100%;
+              height: 40px;
+              border: 2px solid #cccccc;
+              border-radius: 8px;
+              background-color: #fff;
+              font-size: 1rem;
+              color: #252525;
+              padding: 0 10px;
+              appearance: none;
+              transition: border-color 0.3s ease;
+
+              &:focus {
+                border-color: #7a7a7a;
+              }
+            }
+          }
+
+          .client-register-submit-button {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #d40066;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            width: 100%;
+            height: 40px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: filter 0.3s ease;
+
+            &:hover {
+              filter: brightness(80%);
+            }
+          }
+        }
+      }
+
+      .client-register-image-box {
+        position: relative;
+        width: 100%;
+        height: 300px;
+
+        @include breakpoint(largeScreen) {
+          height: 100%;
+        }
+
+        .client-register-close-button {
+          position: absolute;
+          top: 30px;
+          right: 30px;
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #fff;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+        }
+
+        .client-register-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+    }
+  }
+}

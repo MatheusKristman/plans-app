@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import useHomeStore from "../../stores/useHomeStore";
 import { shallow } from "zustand/shallow";
 import { ToastContainer } from "react-toastify";
@@ -12,12 +12,17 @@ import Footer from "../components/Footer";
 import HomeInitialFilterBox from "./components/HomeInitialFilterBox";
 
 const Home = () => {
-  const { isFilterBoxOpen } = useHomeStore(
+  const { isFilterBoxOpen, closeMobileNav } = useHomeStore(
     (state) => ({
       isFilterBoxOpen: state.isFilterBoxOpen,
+      closeMobileNav: state.closeMobileNav,
     }),
     shallow
   );
+
+  useEffect(() => {
+    closeMobileNav();
+  }, []);
 
   return (
     <div className="container">

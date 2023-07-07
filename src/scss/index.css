@@ -9522,7 +9522,6 @@ body {
 @media screen and (min-width: 1024px) {
   .container .benefits-container {
     background-image: url("/assets/images/benefits-bg.png");
-    padding-top: 400px;
   }
 }
 .container .benefits-container .benefits-wrapper {
@@ -9687,6 +9686,8 @@ body {
   justify-content: space-between;
   height: 45px;
   margin-top: 15px;
+  position: relative;
+  z-index: 1;
 }
 .container-alternative .header-wrapper .header-logo-box {
   height: 90%;
@@ -9740,7 +9741,7 @@ body {
   flex-direction: column;
   transition: right 0.5s ease;
   width: 230px;
-  z-index: 3;
+  z-index: 9;
 }
 .container-alternative .header-wrapper .header-mobile-nav-menu .header-nav-list .header-nav-item {
   margin-bottom: 10px;
@@ -9839,6 +9840,8 @@ body {
   flex-direction: column;
   gap: 20vw;
   width: 100%;
+  position: relative;
+  z-index: 0;
 }
 @media screen and (min-width: 500px) {
   .container-alternative .hero-wrapper {
@@ -9968,7 +9971,7 @@ body {
 }
 .container-alternative .how-it-works-container {
   width: 100%;
-  margin-top: 150px;
+  margin-top: 250px;
   margin-bottom: -100px;
   position: relative;
 }
@@ -10196,6 +10199,230 @@ body {
   max-height: 0vh;
   padding-top: 0;
   padding-bottom: 0;
+}
+
+.client-register-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(32, 33, 36, 0.5);
+  overflow: auto;
+  padding: 25px;
+  z-index: 999;
+}
+.client-register-overlay:before {
+  content: "";
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.client-register-overlay .client-register-box {
+  background-color: #fff;
+  display: inline-block;
+  flex-direction: column-reverse;
+  width: 100%;
+  height: auto;
+  max-width: 500px;
+  vertical-align: middle;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 16px;
+  z-index: 7;
+  overflow: hidden;
+}
+@media screen and (min-width: 1024px) {
+  .client-register-overlay .client-register-box {
+    max-width: 700px;
+  }
+}
+.client-register-overlay .client-register-box .client-register-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+}
+@media screen and (min-width: 1024px) {
+  .client-register-overlay .client-register-box .client-register-wrapper {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 60% 40%;
+  }
+}
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info {
+  padding: 30px;
+}
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 50px;
+}
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-inputs-wrapper {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: calc(60% - 10px) calc(40% - 10px);
+  gap: 20px;
+}
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-name-box,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-role-box,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-tel-box,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-branch-box,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-email-box {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-name-box .client-register-name-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-name-box .client-register-role-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-name-box .client-register-tel-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-name-box .client-register-branch-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-name-box .client-register-email-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-role-box .client-register-name-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-role-box .client-register-role-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-role-box .client-register-tel-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-role-box .client-register-branch-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-role-box .client-register-email-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-tel-box .client-register-name-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-tel-box .client-register-role-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-tel-box .client-register-tel-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-tel-box .client-register-branch-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-tel-box .client-register-email-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-branch-box .client-register-name-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-branch-box .client-register-role-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-branch-box .client-register-tel-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-branch-box .client-register-branch-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-branch-box .client-register-email-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-email-box .client-register-name-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-email-box .client-register-role-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-email-box .client-register-tel-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-email-box .client-register-branch-label,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-email-box .client-register-email-label {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #252525;
+}
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-name-box .client-register-name-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-name-box .client-register-role-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-name-box .client-register-tel-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-name-box .client-register-branch-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-name-box .client-register-email-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-role-box .client-register-name-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-role-box .client-register-role-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-role-box .client-register-tel-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-role-box .client-register-branch-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-role-box .client-register-email-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-tel-box .client-register-name-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-tel-box .client-register-role-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-tel-box .client-register-tel-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-tel-box .client-register-branch-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-tel-box .client-register-email-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-branch-box .client-register-name-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-branch-box .client-register-role-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-branch-box .client-register-tel-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-branch-box .client-register-branch-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-branch-box .client-register-email-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-email-box .client-register-name-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-email-box .client-register-role-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-email-box .client-register-tel-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-email-box .client-register-branch-input,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-email-box .client-register-email-input {
+  width: 100%;
+  height: 40px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  background-color: #fff;
+  font-size: 1rem;
+  color: #252525;
+  padding: 0 10px;
+  appearance: none;
+  transition: border-color 0.3s ease;
+}
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-name-box .client-register-name-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-name-box .client-register-role-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-name-box .client-register-tel-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-name-box .client-register-branch-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-name-box .client-register-email-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-role-box .client-register-name-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-role-box .client-register-role-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-role-box .client-register-tel-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-role-box .client-register-branch-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-role-box .client-register-email-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-tel-box .client-register-name-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-tel-box .client-register-role-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-tel-box .client-register-tel-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-tel-box .client-register-branch-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-tel-box .client-register-email-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-branch-box .client-register-name-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-branch-box .client-register-role-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-branch-box .client-register-tel-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-branch-box .client-register-branch-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-branch-box .client-register-email-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-email-box .client-register-name-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-email-box .client-register-role-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-email-box .client-register-tel-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-email-box .client-register-branch-input:focus,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-email-box .client-register-email-input:focus {
+  border-color: #7a7a7a;
+}
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-submit-button {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d40066;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-submit-button:hover {
+  filter: brightness(80%);
+}
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-image-box {
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+@media screen and (min-width: 1024px) {
+  .client-register-overlay .client-register-box .client-register-wrapper .client-register-image-box {
+    height: 100%;
+  }
+}
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-image-box .client-register-close-button {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-image-box .client-register-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .home-footer-container {

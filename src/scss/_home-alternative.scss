@@ -50,6 +50,8 @@
     justify-content: space-between;
     height: 45px;
     margin-top: 15px;
+    position: relative;
+    z-index: 1;
 
     .header-logo-box {
       height: 90%;
@@ -106,7 +108,7 @@
         flex-direction: column;
         transition: right 0.5s ease;
         width: 230px;
-        z-index: 3;
+        z-index: 9;
 
         .header-nav-item {
           margin-bottom: 10px;
@@ -218,6 +220,8 @@
     flex-direction: column;
     gap: 20vw;
     width: 100%;
+    position: relative;
+    z-index: 0;
 
     @include breakpoint(tablet) {
       margin-top: 70px;
@@ -344,7 +348,7 @@
 
   .how-it-works-container {
     width: 100%;
-    margin-top: 150px;
+    margin-top: 250px;
     margin-bottom: -100px;
     position: relative;
 
