@@ -1,5 +1,4 @@
 const PJClientRegisterBox = () => {
-  // test
   return (
     <div className="client-register-overlay">
       <div className="client-register-box">
