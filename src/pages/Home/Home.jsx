@@ -24,6 +24,14 @@ const Home = () => {
     closeMobileNav();
   }, []);
 
+  useEffect(() => {
+    if (isFilterBoxOpen) {
+      document.documentElement.style.overflowY = "hidden";
+    } else {
+      document.documentElement.style.overflowY = "unset";
+    }
+  }, [isFilterBoxOpen]);
+
   return (
     <div className="container">
       {isFilterBoxOpen && <HomeInitialFilterBox />}

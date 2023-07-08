@@ -111,6 +111,11 @@
                 border-color: #7a7a7a;
               }
             }
+
+            .client-register-error-message {
+              font-size: 0.875rem;
+              color: #ef5959;
+            }
           }
 
           .client-register-submit-button {
@@ -158,6 +163,12 @@
           border: none;
           border-radius: 8px;
           cursor: pointer;
+
+          svg {
+            width: 80%;
+            height: auto;
+            color: #252525;
+          }
         }
 
         .client-register-image {

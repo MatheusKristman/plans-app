@@ -10375,6 +10375,14 @@ body {
 .client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-email-box .client-register-email-input:focus {
   border-color: #7a7a7a;
 }
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-name-box .client-register-error-message,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-role-box .client-register-error-message,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-tel-box .client-register-error-message,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-branch-box .client-register-error-message,
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-email-box .client-register-error-message {
+  font-size: 0.875rem;
+  color: #ef5959;
+}
 .client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-submit-button {
   margin-top: 20px;
   display: flex;
@@ -10417,6 +10425,11 @@ body {
   border: none;
   border-radius: 8px;
   cursor: pointer;
+}
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-image-box .client-register-close-button svg {
+  width: 80%;
+  height: auto;
+  color: #252525;
 }
 .client-register-overlay .client-register-box .client-register-wrapper .client-register-image-box .client-register-image {
   width: 100%;

@@ -20,9 +20,17 @@ const HomeAlternative = () => {
     closeMobileNav();
   }, []);
 
+  useEffect(() => {
+    if (isFormBoxOpen) {
+      document.documentElement.style.overflowY = "hidden";
+    } else {
+      document.documentElement.style.overflowY = "unset";
+    }
+  }, [isFormBoxOpen]);
+
   return (
     <div className="container-alternative">
-      {!isFormBoxOpen && <PJClientRegisterBox />}
+      {isFormBoxOpen && <PJClientRegisterBox />}
       <ToastContainer />
       <HomeHeader />
       <HomeHero />

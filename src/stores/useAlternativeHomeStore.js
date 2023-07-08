@@ -27,6 +27,17 @@ const useAlternativeHomeStore = create((set) => ({
   isFormBoxOpen: false,
   openFormBox: () => set(() => ({ isFormBoxOpen: true })),
   closeFormBox: () => set(() => ({ isFormBoxOpen: false })),
+  data: {
+    name: "",
+    role: "",
+    tel: "",
+    branch: "",
+    email: "",
+  },
+  setData: (value, option) => set((state) => ({ data: { ...state.data, [option]: value } })),
+  isSubmitting: false,
+  setSubmit: () => set(() => ({ isSubmitting: true })),
+  unsetSubmit: () => set(() => ({ isSubmitting: false })),
 }));
 
 export default useAlternativeHomeStore;
