@@ -19,7 +19,9 @@ const useAlternativeHomeStore = create((set) => ({
       }
 
       Object.keys(answersArr).forEach((answer) =>
-        answer === value ? (answersArr[answer] = true) : (answersArr[answer] = false)
+        answer === value
+          ? (answersArr[answer] = true)
+          : (answersArr[answer] = false)
       );
 
       return { answers: answersArr };
@@ -34,10 +36,14 @@ const useAlternativeHomeStore = create((set) => ({
     branch: "",
     email: "",
   },
-  setData: (value, option) => set((state) => ({ data: { ...state.data, [option]: value } })),
+  setData: (value, option) =>
+    set((state) => ({ data: { ...state.data, [option]: value } })),
   isSubmitting: false,
   setSubmit: () => set(() => ({ isSubmitting: true })),
   unsetSubmit: () => set(() => ({ isSubmitting: false })),
+  isLoading: false,
+  setLoading: () => set(() => ({ isLoading: true })),
+  unsetLoading: () => set(() => ({ isLoading: false })),
 }));
 
 export default useAlternativeHomeStore;

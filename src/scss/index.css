@@ -10402,6 +10402,10 @@ body {
 .client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-submit-button:hover {
   filter: brightness(80%);
 }
+.client-register-overlay .client-register-box .client-register-wrapper .client-register-info .client-register-form .client-register-submit-button:disabled {
+  filter: brightness(80%);
+  cursor: not-allowed;
+}
 .client-register-overlay .client-register-box .client-register-wrapper .client-register-image-box {
   position: relative;
   width: 100%;
