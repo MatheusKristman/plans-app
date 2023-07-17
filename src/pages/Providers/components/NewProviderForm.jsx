@@ -49,14 +49,14 @@ const NewProviderForm = () => {
       setLoading: state.setLoading,
       unsetLoading: state.unsetLoading,
     }),
-    shallow
+    shallow,
   );
   const { modalAnimation, deactivateModalAnimation } = useGeneralStore(
     (state) => ({
       modalAnimation: state.modalAnimation,
       deactivateModalAnimation: state.deactivateModalAnimation,
     }),
-    shallow
+    shallow,
   );
 
   const handleCloseButton = () => {
@@ -73,7 +73,6 @@ const NewProviderForm = () => {
 
   const handleXMLConvert = (event) => {
     setLoading();
-    console.log(event.target.files[0]);
     const reader = new FileReader();
     reader.readAsBinaryString(event.target.files[0]);
     reader.onload = (event) => {
@@ -92,13 +91,14 @@ const NewProviderForm = () => {
               data.CEP.toString().substring(data.CEP.toString().length - 3)
             : data.CEP.toString().substring(0, data.CEP.toString().length - 3) +
               "-" +
-              data.CEP.toString().substring(data.CEP.toString().length - 3)
+              data.CEP.toString().substring(data.CEP.toString().length - 3),
         );
         setProviderData(ceps, "ceps");
         setCepError("");
-        unsetLoading();
       } catch (error) {
         setCepError("Ocorreu um erro durante a conversão, tente novamente");
+      } finally {
+        unsetLoading();
       }
     };
 
@@ -148,7 +148,6 @@ const NewProviderForm = () => {
 
   useEffect(() => {
     const submitData = () => {
-      console.log(providerData.ceps);
       const formData = new FormData();
 
       formData.append("providerLogo", providerData.providerLogo);

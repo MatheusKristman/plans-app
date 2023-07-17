@@ -55,13 +55,15 @@ const CelPlansBody = () => {
       setValidFilterOptions: state.setValidFilterOptions,
       unsetValidFilterOptions: state.unsetValidFilterOptions,
     }),
-    shallow
+    shallow,
   );
-  const { isLoading } = useGeneralStore(
+  const { isLoading, setLoading, unsetLoading } = useGeneralStore(
     (state) => ({
       isLoading: state.isLoading,
+      setLoading: state.setLoading,
+      unsetLoading: state.unsetLoading,
     }),
-    shallow
+    shallow,
   );
 
   const filterRef = useRef();
@@ -119,6 +121,7 @@ const CelPlansBody = () => {
 
   useEffect(() => {
     const submitData = () => {
+      setLoading();
       const data = {
         cep: filterValues.cep,
         provider: filterValues.provider,
@@ -131,8 +134,12 @@ const CelPlansBody = () => {
         .post("plan/cel-plan/filter", data)
         .then((res) => {
           const sortedPlans = res.data.sort((a, b) => a.priority - b.priority);
+          setCelPlans([]);
+          setFilteredCelPlans([]);
 
-          setFilteredCelPlans(sortedPlans);
+          setTimeout(() => {
+            setFilteredCelPlans(sortedPlans);
+          }, 300);
         })
         .catch((err) => console.error(err))
         .finally(() => {
@@ -140,6 +147,7 @@ const CelPlansBody = () => {
           unsetValidFilterOptions();
           setCelPlans([]);
           resetSlice();
+          unsetLoading();
         });
     };
 

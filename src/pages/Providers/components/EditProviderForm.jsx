@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import useGeneralStore from "../../../stores/useGeneralStore";
 import useProviderStore from "../../../stores/useProviderStore";
+import { shallow } from "zustand/shallow";
 import { toast } from "react-toastify";
+import * as XLSX from "xlsx";
 import api from "../../../services/api";
 
 const EditProviderForm = () => {
@@ -9,11 +11,13 @@ const EditProviderForm = () => {
     (state) => ({
       modalAnimation: state.modalAnimation,
       deactivateModalAnimation: state.deactivateModalAnimation,
-    })
+    }),
   );
   const {
     closeEditProviderForm,
     providerSelected,
+    setProviderSelected,
+    setIdSelected,
     actualProviderLogo,
     setActualProviderLogo,
     providerData,
@@ -32,9 +36,12 @@ const EditProviderForm = () => {
     setLoading,
     unsetLoading,
     setProviders,
+    providers,
   } = useProviderStore((state) => ({
     closeEditProviderForm: state.closeEditProviderForm,
     providerSelected: state.providerSelected,
+    setProviderSelected: state.setProviderSelected,
+    setIdSelected: state.setIdSelected,
     actualProviderLogo: state.actualProviderLogo,
     setActualProviderLogo: state.setActualProviderLogo,
     providerData: state.providerData,
@@ -53,6 +60,7 @@ const EditProviderForm = () => {
     setLoading: state.setLoading,
     unsetLoading: state.unsetLoading,
     setProviders: state.setProviders,
+    providers: state.providers,
   }));
 
   const handleCloseForm = () => {
@@ -61,6 +69,8 @@ const EditProviderForm = () => {
     resetProviderData();
     setLogoError("");
     setProviderNameError("");
+    setIdSelected("");
+    setProviderSelected({});
 
     setTimeout(() => {
       closeEditProviderForm();
@@ -87,13 +97,15 @@ const EditProviderForm = () => {
               data.CEP.toString().substring(data.CEP.toString().length - 3)
             : data.CEP.toString().substring(0, data.CEP.toString().length - 3) +
               "-" +
-              data.CEP.toString().substring(data.CEP.toString().length - 3)
+              data.CEP.toString().substring(data.CEP.toString().length - 3),
         );
         setProviderData(ceps, "ceps");
         setCepError("");
-        unsetLoading();
       } catch (error) {
+        console.error(error);
         setCepError("Ocorreu um erro durante a conversão, tente novamente");
+      } finally {
+        unsetLoading();
       }
     };
 
@@ -125,14 +137,7 @@ const EditProviderForm = () => {
       setProviderNameError("Campo Nome da Operadora é obrigatório");
     }
 
-    if (providerData.providerLogo === null) {
-      setLogoError("Imagem é obrigatória");
-    }
-
-    if (
-      providerData.providerName === "" ||
-      providerData.providerLogo === null
-    ) {
+    if (providerData.providerName === "") {
       return;
     }
 
@@ -145,7 +150,10 @@ const EditProviderForm = () => {
     const submitData = () => {
       const formData = new FormData();
 
-      formData.append("providerLogo", providerData.providerLogo);
+      if (providerData.providerLogo) {
+        formData.append("providerLogo", providerData.providerLogo);
+      }
+
       formData.append("providerName", providerData.providerName);
       formData.append("providerId", providerSelected._id);
 
@@ -197,10 +205,6 @@ const EditProviderForm = () => {
     setProviderData(providerSelected.providerName, "providerName");
     setProviderData(providerSelected.locations, "ceps");
   }, [providerSelected]);
-
-  useEffect(() => {
-    console.log(providerData);
-  }, [providerData]);
 
   return (
     <div
@@ -338,6 +342,7 @@ const EditProviderForm = () => {
                   autoComplete="off"
                   autoCorrect="off"
                   defaultValue={providerData?.ceps?.join("\n")}
+                  value={providerData?.ceps?.join("\n")}
                   style={cepError ? { borderColor: "#ef5959" } : {}}
                   className="edit-provider-form-cep-textarea"
                 />

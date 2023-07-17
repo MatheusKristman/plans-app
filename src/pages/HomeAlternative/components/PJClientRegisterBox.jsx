@@ -21,7 +21,7 @@ const formSchema = yup.object({
 
         const names = value.trim().split(" ");
         return names.length >= 2;
-      }
+      },
     ),
   role: yup.string().required("O campo cargo é obrigatório"),
   tel: yup
@@ -62,7 +62,7 @@ const PJClientRegisterBox = () => {
       modalAnimation: state.modalAnimation,
       deactivateModalAnimation: state.deactivateModalAnimation,
     }),
-    shallow
+    shallow,
   );
   const {
     register,
@@ -111,9 +111,6 @@ const PJClientRegisterBox = () => {
       formData.append("tel", data.tel);
       formData.append("branch", data.branch);
       formData.append("email", data.email);
-
-      console.log(formData);
-      console.log(data);
 
       setTimeout(() => {
         unsetLoading();

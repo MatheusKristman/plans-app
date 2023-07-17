@@ -53,13 +53,15 @@ const TVPlansBody = () => {
       setValidFilterOptions: state.setValidFilterOptions,
       unsetValidFilterOptions: state.unsetValidFilterOptions,
     }),
-    shallow
+    shallow,
   );
-  const { isLoading } = useGeneralStore(
+  const { isLoading, setLoading, unsetLoading } = useGeneralStore(
     (state) => ({
       isLoading: state.isLoading,
+      setLoading: state.setLoading,
+      unsetLoading: state.unsetLoading,
     }),
-    shallow
+    shallow,
   );
 
   const filterRef = useRef();
@@ -117,6 +119,8 @@ const TVPlansBody = () => {
 
   useEffect(() => {
     const submitData = () => {
+      setLoading();
+
       const data = {
         cep: filterValues.cep,
         provider: filterValues.provider,
@@ -129,7 +133,12 @@ const TVPlansBody = () => {
         .then((res) => {
           const sortedPlans = res.data.sort((a, b) => a.priority - b.priority);
 
-          setFilteredTvPlans(sortedPlans);
+          setTvPlans([]);
+          setFilteredTvPlans([]);
+
+          setTimeout(() => {
+            setFilteredTvPlans(sortedPlans);
+          }, 300);
         })
         .catch((err) => console.error(err))
         .finally(() => {
@@ -137,6 +146,7 @@ const TVPlansBody = () => {
           unsetValidFilterOptions();
           setTvPlans([]);
           resetSlice();
+          unsetLoading();
         });
     };
 

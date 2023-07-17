@@ -17,7 +17,7 @@ const Home = () => {
       isFilterBoxOpen: state.isFilterBoxOpen,
       closeMobileNav: state.closeMobileNav,
     }),
-    shallow
+    shallow,
   );
 
   useEffect(() => {

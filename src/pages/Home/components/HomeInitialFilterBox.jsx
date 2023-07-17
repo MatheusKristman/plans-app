@@ -11,7 +11,7 @@ const ProviderFilter = () => {
       setProviderValue: state.setProviderValue,
       isProviderAnimation: state.isProviderAnimation,
     }),
-    shallow
+    shallow,
   );
 
   return (
@@ -46,7 +46,7 @@ const CepFilter = () => {
       setCepValue: state.setCepValue,
       isCepAnimation: state.isCepAnimation,
     }),
-    shallow
+    shallow,
   );
 
   return (
@@ -105,14 +105,14 @@ const HomeInitialFilterBox = () => {
       cepValue: state.cepValue,
       resetCepValue: state.resetCepValue,
     }),
-    shallow
+    shallow,
   );
   const { modalAnimation, deactivateModalAnimation } = useGeneralStore(
     (state) => ({
       modalAnimation: state.modalAnimation,
       deactivateModalAnimation: state.deactivateModalAnimation,
     }),
-    shallow
+    shallow,
   );
 
   const navigate = useNavigate();
@@ -148,8 +148,11 @@ const HomeInitialFilterBox = () => {
     }
 
     if (cepValue.length === 9) {
-      navigate(`/planos/${providerValue}/${cepValue}`);
       handleFilterBoxClose();
+
+      setTimeout(() => {
+        navigate(`/planos/${providerValue}/${cepValue}`);
+      }, 800);
     }
   };
 

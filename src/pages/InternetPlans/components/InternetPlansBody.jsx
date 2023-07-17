@@ -55,13 +55,15 @@ const InternetPlansBody = () => {
       setFilteredInternetPlans: state.setFilteredInternetPlans,
       setInternetPlans: state.setInternetPlans,
     }),
-    shallow
+    shallow,
   );
-  const { isLoading } = useGeneralStore(
+  const { isLoading, setLoading, unsetLoading } = useGeneralStore(
     (state) => ({
       isLoading: state.isLoading,
+      setLoading: state.setLoading,
+      unsetLoading: state.unsetLoading,
     }),
-    shallow
+    shallow,
   );
 
   const filterRef = useRef();
@@ -119,6 +121,8 @@ const InternetPlansBody = () => {
 
   useEffect(() => {
     const submitData = () => {
+      setLoading();
+
       const data = {
         cep: filterValues.cep,
         provider: filterValues.provider,
@@ -132,7 +136,12 @@ const InternetPlansBody = () => {
         .then((res) => {
           const sortedPlans = res.data.sort((a, b) => a.priority - b.priority);
 
-          setFilteredInternetPlans(sortedPlans);
+          setInternetPlans([]);
+          setFilteredInternetPlans([]);
+
+          setTimeout(() => {
+            setFilteredInternetPlans(sortedPlans);
+          }, 300);
         })
         .catch((err) => console.error(err))
         .finally(() => {
@@ -140,6 +149,7 @@ const InternetPlansBody = () => {
           unsetValidFilterOptions();
           setInternetPlans([]);
           resetSlice();
+          unsetLoading();
         });
     };
 
