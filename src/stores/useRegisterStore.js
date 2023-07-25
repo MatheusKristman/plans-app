@@ -14,7 +14,7 @@ const useRegisterStore = create((set) => ({
       const stepsObj = { ...state.steps };
 
       Object.keys(stepsObj).forEach((stp) =>
-        stp === step ? (stepsObj[stp] = true) : (stepsObj[stp] = false)
+        stp === step ? (stepsObj[stp] = true) : (stepsObj[stp] = false),
       );
 
       return { steps: stepsObj };
@@ -53,6 +53,8 @@ const useRegisterStore = create((set) => ({
   setStateOptions: (state) => set(() => ({ stateOptions: state })),
   cityOptions: [],
   setCityOptions: (city) => set(() => ({ cityOptions: city })),
+  cepError: "",
+  setCepError: (error) => set(() => ({ cepError: error })),
   firstDate: addDays(new Date(), 1),
   setFirstDate: (date) => set(() => ({ firstDate: date })),
   secondDate: addDays(new Date(), 2),

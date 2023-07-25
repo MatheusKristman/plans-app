@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import api from "../../services/api";
 import useInternetPlansStore from "../../stores/useInternetPlansStore";
 import useRegisterStore from "../../stores/useRegisterStore";
@@ -38,13 +38,13 @@ const InternetPlans = () => {
       plansProviders: state.plansProviders,
       setPlansProviders: state.setPlansProviders,
     }),
-    shallow
+    shallow,
   );
   const { isRegisterFormOpen } = useRegisterStore(
     (state) => ({
       isRegisterFormOpen: state.isRegisterFormOpen,
     }),
-    shallow
+    shallow,
   );
   const { isLoading, setLoading, unsetLoading } = useGeneralStore(
     (state) => ({
@@ -52,7 +52,7 @@ const InternetPlans = () => {
       setLoading: state.setLoading,
       unsetLoading: state.unsetLoading,
     }),
-    shallow
+    shallow,
   );
   const { isLinkEnabled, enableLink } = useWhatsappStore(
     (state) => ({
@@ -60,8 +60,16 @@ const InternetPlans = () => {
       enableLink: state.enableLink,
       disableLink: state.disableLink,
     }),
-    shallow
+    shallow,
   );
+  const [filterValues, setFilterValues] = useState({
+    cep: "",
+    cost: 500,
+    download: "1000MB",
+    technology: [],
+    provider: [],
+  });
+  const [filterValuesValidator, setFilterValuesValidator] = useState({ ...filterValues });
 
   const cep = useParams()?.cep || "";
 
@@ -85,12 +93,13 @@ const InternetPlans = () => {
               technology: [],
             };
 
+            setFilterValues({ ...filterValues, cep: cep });
+            setFilterValuesValidator(data);
+
             api
               .post("plan/internet-plan/filter", data)
               .then((res) => {
-                const sortedPlans = res.data.sort(
-                  (a, b) => a.priority - b.priority
-                );
+                const sortedPlans = res.data.sort((a, b) => a.priority - b.priority);
 
                 setFilteredInternetPlans(sortedPlans);
               })
@@ -158,9 +167,14 @@ const InternetPlans = () => {
     <div className="internet-plans-container">
       <PlansHeader
         headerTitle="Planos de Banda Larga"
-        headerDesc="Rorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis."
+        headerDesc="Navegue com velocidade e estabilidade. Escolha o plano de Banda Larga perfeito para suas necessidades."
       />
-      <InternetPlansBody />
+      <InternetPlansBody
+        filterValues={filterValues}
+        setFilterValues={setFilterValues}
+        filterValuesValidator={filterValuesValidator}
+        setFilterValuesValidator={setFilterValuesValidator}
+      />
       {isRegisterFormOpen && <RegisterForm />}
       {isLinkEnabled && <WhatsappLink />}
       <Footer />

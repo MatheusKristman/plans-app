@@ -8,7 +8,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import Plan from "./Plan";
 import Loading from "../../components/Loading";
 
-const CelPlansBody = () => {
+const CelPlansBody = ({
+  filterValues,
+  setFilterValues,
+  filterValuesValidator,
+  setFilterValuesValidator,
+}) => {
   const {
     isFilterOpen,
     openFilterBox,
@@ -20,8 +25,6 @@ const CelPlansBody = () => {
     sliceEnd,
     setSliceEnd,
     resetSlice,
-    filterValues,
-    setFilterValues,
     handlePlanTypeFilterOption,
     handleProviderFilterOption,
     providers,
@@ -43,8 +46,6 @@ const CelPlansBody = () => {
       sliceEnd: state.sliceEnd,
       setSliceEnd: state.setSliceEnd,
       resetSlice: state.resetSlice,
-      filterValues: state.filterValues,
-      setFilterValues: state.setFilterValues,
       handlePlanTypeFilterOption: state.handlePlanTypeFilterOption,
       handleProviderFilterOption: state.handleProviderFilterOption,
       providers: state.providers,
@@ -67,11 +68,6 @@ const CelPlansBody = () => {
   );
 
   const filterRef = useRef();
-
-  const filterAnimation = useMemo(() => ({
-    offscreen: { y: -50, opacity: 0 },
-    onscreen: { y: 0, opacity: 1, transition: { duration: 1 } },
-  }));
 
   const handleFilterBoxButton = () => {
     if (isFilterOpen) {
@@ -108,14 +104,58 @@ const CelPlansBody = () => {
     }
   };
 
+  const handleFilterValueChanges = (option, value) => {
+    if (option === "planType") {
+      if (filterValues.planType.includes(value)) {
+        const newValue = filterValues.planType.filter((type) => type !== value);
+
+        setFilterValues({ ...filterValues, [option]: newValue });
+
+        return;
+      }
+
+      const newValue = [...filterValues.planType];
+
+      newValue.push(value);
+
+      setFilterValues({ ...filterValues, [option]: newValue });
+
+      return;
+    }
+
+    if (option === "provider") {
+      if (filterValues.provider.includes(value)) {
+        const newValue = filterValues.provider.filter((prov) => prov !== value);
+
+        setFilterValues({ ...filterValues, [option]: newValue });
+
+        return;
+      }
+
+      const newValue = [...filterValues.provider];
+
+      newValue.push(value);
+
+      setFilterValues({ ...filterValues, [option]: newValue });
+
+      return;
+    }
+
+    setFilterValues({ ...filterValues, [option]: value });
+  };
+
   useEffect(() => {
     if (
-      filterValues.cep !== "" &&
-      filterValues.cep.length === 9 &&
-      filterValues.cost !== 0 &&
-      filterValues.franchise !== ""
+      (filterValues.cep !== filterValuesValidator.cep &&
+        filterValues.cep.length === 9 &&
+        filterValues.cost !== filterValuesValidator.cost) ||
+      filterValues.franchise !== filterValuesValidator.franchise ||
+      JSON.stringify(filterValues.planType) !== JSON.stringify(filterValuesValidator.planType) ||
+      JSON.stringify(filterValues.provider) !== JSON.stringify(filterValuesValidator.provider)
     ) {
       setValidFilterOptions();
+    } else {
+      unsetValidFilterOptions();
     }
   }, [filterValues]);
 
@@ -163,11 +203,7 @@ const CelPlansBody = () => {
       </AnimatePresence>
       <div className="body-wrapper wrapper">
         <div className="filter-form-container">
-          <button
-            type="button"
-            onClick={handleFilterBoxButton}
-            className="filter-form-button"
-          >
+          <button type="button" onClick={handleFilterBoxButton} className="filter-form-button">
             Filtrar
           </button>
 
@@ -181,8 +217,7 @@ const CelPlansBody = () => {
                 ? { maxHeight: `${filterRef.current?.scrollHeight + 25}px` }
                 : { maxHeight: "0px" }
             }
-            className="filter-form-box"
-          >
+            className="filter-form-box">
             <div className="filter-form-wrapper">
               <div className="filter-form-cep-box">
                 <span className="filter-form-cep-title">Cep</span>
@@ -213,9 +248,7 @@ const CelPlansBody = () => {
                     id="cost50"
                     name="cost"
                     value={50}
-                    onChange={(e) =>
-                      setFilterValues("cost", Number(e.target.value))
-                    }
+                    onChange={(e) => setFilterValues("cost", Number(e.target.value))}
                     type="radio"
                     className="filter-form-cost-input"
                   />
@@ -227,9 +260,7 @@ const CelPlansBody = () => {
                     id="cost100"
                     name="cost"
                     value={100}
-                    onChange={(e) =>
-                      setFilterValues("cost", Number(e.target.value))
-                    }
+                    onChange={(e) => setFilterValues("cost", Number(e.target.value))}
                     type="radio"
                     className="filter-form-cost-input"
                   />
@@ -241,9 +272,7 @@ const CelPlansBody = () => {
                     id="cost150"
                     name="cost"
                     value={150}
-                    onChange={(e) =>
-                      setFilterValues("cost", Number(e.target.value))
-                    }
+                    onChange={(e) => setFilterValues("cost", Number(e.target.value))}
                     type="radio"
                     className="filter-form-cost-input"
                   />
@@ -255,9 +284,7 @@ const CelPlansBody = () => {
                     name="cost"
                     value={300}
                     defaultChecked
-                    onChange={(e) =>
-                      setFilterValues("cost", Number(e.target.value))
-                    }
+                    onChange={(e) => setFilterValues("cost", Number(e.target.value))}
                     type="radio"
                     className="filter-form-cost-input"
                   />
@@ -266,9 +293,7 @@ const CelPlansBody = () => {
               </div>
 
               <div className="filter-form-franchise-box">
-                <span className="filter-form-franchise-title">
-                  Franquia de internet
-                </span>
+                <span className="filter-form-franchise-title">Franquia de internet</span>
 
                 <label htmlFor="10gb" className="filter-form-franchise-label">
                   <input
@@ -276,9 +301,7 @@ const CelPlansBody = () => {
                     id="10gb"
                     name="franchise"
                     value="10GB"
-                    onChange={(e) =>
-                      setFilterValues("franchise", e.target.value)
-                    }
+                    onChange={(e) => setFilterValues("franchise", e.target.value)}
                     className="filter-form-franchise-input"
                   />
                   Até 10GB
@@ -290,9 +313,7 @@ const CelPlansBody = () => {
                     id="25gb"
                     name="franchise"
                     value="25GB"
-                    onChange={(e) =>
-                      setFilterValues("franchise", e.target.value)
-                    }
+                    onChange={(e) => setFilterValues("franchise", e.target.value)}
                     className="filter-form-franchise-input"
                   />
                   Até 25GB
@@ -304,9 +325,7 @@ const CelPlansBody = () => {
                     id="50gb"
                     name="franchise"
                     value="50GB"
-                    onChange={(e) =>
-                      setFilterValues("franchise", e.target.value)
-                    }
+                    onChange={(e) => setFilterValues("franchise", e.target.value)}
                     className="filter-form-franchise-input"
                   />
                   Até 50GB
@@ -319,9 +338,7 @@ const CelPlansBody = () => {
                     name="franchise"
                     value="300GB"
                     defaultChecked
-                    onChange={(e) =>
-                      setFilterValues("franchise", e.target.value)
-                    }
+                    onChange={(e) => setFilterValues("franchise", e.target.value)}
                     className="filter-form-franchise-input"
                   />
                   Até 300GB
@@ -329,14 +346,9 @@ const CelPlansBody = () => {
               </div>
 
               <div className="filter-form-plan-type-box">
-                <span className="filter-form-plan-type-title">
-                  Tipo do plano
-                </span>
+                <span className="filter-form-plan-type-title">Tipo do plano</span>
 
-                <label
-                  htmlFor="controle"
-                  className="filter-form-plan-type-label"
-                >
+                <label htmlFor="controle" className="filter-form-plan-type-label">
                   <input
                     type="checkbox"
                     id="controle"
@@ -348,10 +360,7 @@ const CelPlansBody = () => {
                   Controle
                 </label>
 
-                <label
-                  htmlFor="posPago"
-                  className="filter-form-plan-type-label"
-                >
+                <label htmlFor="posPago" className="filter-form-plan-type-label">
                   <input
                     type="checkbox"
                     id="posPago"
@@ -363,10 +372,7 @@ const CelPlansBody = () => {
                   Pós-pago
                 </label>
 
-                <label
-                  htmlFor="prePago"
-                  className="filter-form-plan-type-label"
-                >
+                <label htmlFor="prePago" className="filter-form-plan-type-label">
                   <input
                     type="checkbox"
                     id="prePago"
@@ -386,16 +392,13 @@ const CelPlansBody = () => {
                   <label
                     key={`provider-${index}`}
                     htmlFor={provider}
-                    className="filter-form-provider-label"
-                  >
+                    className="filter-form-provider-label">
                     <input
                       type="checkbox"
                       id={provider}
                       name="provider"
                       value={provider}
-                      onChange={(event) =>
-                        handleProviderFilterOption(event.target.value)
-                      }
+                      onChange={(event) => handleProviderFilterOption(event.target.value)}
                       className="filter-form-provider-input"
                     />
                     {provider}
@@ -408,8 +411,7 @@ const CelPlansBody = () => {
               type="submit"
               disabled={!validFilterOptions}
               onClick={handleSubmitFilterButton}
-              className="filter-form-submit-button"
-            >
+              className="filter-form-submit-button">
               Aplicar
             </button>
           </motion.form>
@@ -417,8 +419,7 @@ const CelPlansBody = () => {
 
         <div className="result-box">
           <span className="result-status">
-            {celPlans.length !== 0 ? celPlans.length : filteredCelPlans.length}{" "}
-            Resultado(s)
+            {celPlans.length !== 0 ? celPlans.length : filteredCelPlans.length} Resultado(s)
           </span>
 
           <div className="result-wrapper">
@@ -456,17 +457,11 @@ const CelPlansBody = () => {
                     />
                   ))
               ) : (
-                <span className="result-not-found-message">
-                  Nenhum plano encontrado
-                </span>
+                <span className="result-not-found-message">Nenhum plano encontrado</span>
               )}
             </AnimatePresence>
             {celPlans.length > sliceEnd ? (
-              <button
-                type="button"
-                onClick={handleShowMore}
-                className="result-show-more-button"
-              >
+              <button type="button" onClick={handleShowMore} className="result-show-more-button">
                 MOSTRAR MAIS
               </button>
             ) : (
@@ -476,8 +471,7 @@ const CelPlansBody = () => {
               <button
                 type="button"
                 onClick={handleShowMoreFiltered}
-                className="result-show-more-button"
-              >
+                className="result-show-more-button">
                 MOSTRAR MAIS
               </button>
             ) : (

@@ -18,22 +18,15 @@ const personalDataSchema = yup.object({
   name: yup
     .string()
     .required("O campo Nome Completo é obrigatório")
-    .test(
-      "has-full-name",
-      "O campo Nome Completo deve conter um nome e um sobrenome",
-      (value) => {
-        if (!value) {
-          return;
-        }
-
-        const names = value.trim().split(" ");
-        return names.length >= 2;
+    .test("has-full-name", "O campo Nome Completo deve conter um nome e um sobrenome", (value) => {
+      if (!value) {
+        return;
       }
-    ),
-  cpf: yup
-    .string()
-    .min(14, "CPF incorreto")
-    .required("O campo CPF é obrigatório"),
+
+      const names = value.trim().split(" ");
+      return names.length >= 2;
+    }),
+  cpf: yup.string().min(14, "CPF incorreto").required("O campo CPF é obrigatório"),
   rg: yup.string(),
   dateOfBirth: yup
     .string()
@@ -52,26 +45,18 @@ const personalDataSchema = yup.object({
 
         const names = value.trim().split(" ");
         return names.length >= 2;
-      }
+      },
     ),
-  tel1: yup
-    .string()
-    .min(14, "Telefone incorreto")
-    .required("O campo Telefone 1 é obrigatório"),
+  tel1: yup.string().min(14, "Telefone incorreto").required("O campo Telefone 1 é obrigatório"),
   tel2: yup.string(),
 });
 
 const addressSchema = yup.object({
   state: yup.string().required("O campo Estado é obrigatório"),
   city: yup.string().required("O campo Cidade é obrigatório"),
-  cep: yup
-    .string()
-    .min(9, "CEP invalido")
-    .required("O campo CEP é obrigatório"),
+  cep: yup.string().min(9, "CEP invalido").required("O campo CEP é obrigatório"),
   address: yup.string().required("O campo Endereço é obrigatório"),
-  addressNumber: yup
-    .string()
-    .required("O campo Número da Residência é obrigatório"),
+  addressNumber: yup.string().required("O campo Número da Residência é obrigatório"),
   complement: yup.string(),
 });
 
@@ -93,7 +78,7 @@ const paymentSchema = yup.object({
 
         const names = value.trim().split(" ");
         return names.length >= 2;
-      }
+      },
     ),
 });
 
@@ -114,7 +99,7 @@ const PersonalDataForm = () => {
       setClientData: state.setClientData,
       updateStep: state.updateStep,
     }),
-    shallow
+    shallow,
   );
 
   const {
@@ -144,8 +129,7 @@ const PersonalDataForm = () => {
           stepsAnimation
             ? "personal-data-box animate__animated animate__fadeInRight animate__faster"
             : "personal-data-box animate__animated animate__fadeOutLeft animate__faster"
-        }
-      >
+        }>
         <div className="personal-data-name-wrapper">
           <label htmlFor="name" className="personal-data-label">
             Nome Completo
@@ -162,9 +146,7 @@ const PersonalDataForm = () => {
               className="personal-data-input"
             />
             {errors.name && (
-              <span className="register-form-error-message">
-                {errors.name?.message}
-              </span>
+              <span className="register-form-error-message">{errors.name?.message}</span>
             )}
           </label>
 
@@ -187,9 +169,7 @@ const PersonalDataForm = () => {
               className="personal-data-input"
             />
             {errors.cpf && (
-              <span className="register-form-error-message">
-                {errors.cpf?.message}
-              </span>
+              <span className="register-form-error-message">{errors.cpf?.message}</span>
             )}
           </label>
         </div>
@@ -212,11 +192,7 @@ const PersonalDataForm = () => {
               style={errors.rg ? { borderColor: "#ef5959" } : {}}
               className="personal-data-input"
             />
-            {errors.rg && (
-              <span className="register-form-error-message">
-                {errors.rg?.message}
-              </span>
-            )}
+            {errors.rg && <span className="register-form-error-message">{errors.rg?.message}</span>}
           </label>
 
           <label htmlFor="dateOfBirth" className="personal-data-label">
@@ -242,9 +218,7 @@ const PersonalDataForm = () => {
               className="personal-data-input"
             />
             {errors.dateOfBirth && (
-              <span className="register-form-error-message">
-                {errors.dateOfBirth?.message}
-              </span>
+              <span className="register-form-error-message">{errors.dateOfBirth?.message}</span>
             )}
           </label>
         </div>
@@ -264,9 +238,7 @@ const PersonalDataForm = () => {
             className="personal-data-input"
           />
           {errors.motherName && (
-            <span className="register-form-error-message">
-              {errors.motherName?.message}
-            </span>
+            <span className="register-form-error-message">{errors.motherName?.message}</span>
           )}
         </label>
 
@@ -294,9 +266,7 @@ const PersonalDataForm = () => {
               className="personal-data-input"
             />
             {errors.tel1 && (
-              <span className="register-form-error-message">
-                {errors.tel1?.message}
-              </span>
+              <span className="register-form-error-message">{errors.tel1?.message}</span>
             )}
           </label>
 
@@ -323,9 +293,7 @@ const PersonalDataForm = () => {
               className="personal-data-input"
             />
             {errors.tel2 && (
-              <span className="register-form-error-message">
-                {errors.tel2?.message}
-              </span>
+              <span className="register-form-error-message">{errors.tel2?.message}</span>
             )}
           </label>
         </div>
@@ -349,6 +317,8 @@ const AddressForm = () => {
     cityOptions,
     setCityOptions,
     updateStep,
+    cepError,
+    setCepError,
   } = useRegisterStore(
     (state) => ({
       stepsAnimation: state.stepsAnimation,
@@ -360,8 +330,10 @@ const AddressForm = () => {
       cityOptions: state.cityOptions,
       setCityOptions: state.setCityOptions,
       updateStep: state.updateStep,
+      cepError: state.cepError,
+      setCepError: state.setCepError,
     }),
-    shallow
+    shallow,
   );
 
   const {
@@ -387,32 +359,44 @@ const AddressForm = () => {
 
   useEffect(() => {
     if (stateOptions.some((state) => state.nome === clientData.state)) {
-      const id = stateOptions.filter(
-        (state) => state.nome === clientData.state
-      )[0].id;
+      const id = stateOptions.filter((state) => state.nome === clientData.state)[0].id;
 
       axios
-        .get(
-          `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${id}/municipios`
-        )
-        .then((res) => setCityOptions(res.data))
-        .catch((error) => console.error(error));
+        .get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${id}/municipios`)
+        .then((res) => {
+          setCityOptions(res.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
   }, [stateOptions, clientData]);
 
   useEffect(() => {
     if (clientData.cep.length === 9) {
       axios
-        .get(
-          `https://viacep.com.br/ws/${clientData.cep.replace("-", "")}/json/`
-        )
+        .get(`https://viacep.com.br/ws/${clientData.cep.replace("-", "")}/json/`)
         .then((res) => {
+          console.log(res.data);
           setClientData("address", res.data.logradouro);
           setValue("address", res.data.logradouro);
+
+          if (res.data?.erro) {
+            setCepError("Cep invalido!");
+          } else {
+            setCepError("");
+          }
         })
-        .catch((error) => console.error(error));
+        .catch((error) => {
+          console.error(error);
+          setCepError("Cep invalido!");
+        });
     }
   }, [clientData.cep]);
+
+  useEffect(() => {
+    console.log(cepError);
+  }, [cepError]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="address-form">
@@ -421,8 +405,7 @@ const AddressForm = () => {
           stepsAnimation
             ? "address-box animate__animated animate__fadeInRight animate__faster"
             : "address-box animate__animated animate__fadeOutLeft animate__faster"
-        }
-      >
+        }>
         <div className="address-wrapper">
           <label htmlFor="state" className="address-label">
             Estado
@@ -433,8 +416,7 @@ const AddressForm = () => {
               name="state"
               defaultValue={clientData.state || stateOptions[0].nome}
               style={errors.state ? { borderColor: "#ef5959" } : {}}
-              className="address-select"
-            >
+              className="address-select">
               {stateOptions.map((state) => (
                 <option key={state.id} value={state.nome}>
                   {state.nome}
@@ -442,9 +424,7 @@ const AddressForm = () => {
               ))}
             </select>
             {errors.state && (
-              <span className="register-form-error-message">
-                {errors.state?.message}
-              </span>
+              <span className="register-form-error-message">{errors.state?.message}</span>
             )}
           </label>
 
@@ -457,8 +437,7 @@ const AddressForm = () => {
               onChange={(e) => setClientData("city", e.target.value)}
               defaultValue={clientData.city || cityOptions[0].nome}
               style={errors.city ? { borderColor: "#ef5959" } : {}}
-              className="address-select"
-            >
+              className="address-select">
               {cityOptions.map((city) => (
                 <option key={city.id} value={city.nome}>
                   {city.nome}
@@ -466,9 +445,7 @@ const AddressForm = () => {
               ))}
             </select>
             {errors.city && (
-              <span className="register-form-error-message">
-                {errors.city?.message}
-              </span>
+              <span className="register-form-error-message">{errors.city?.message}</span>
             )}
           </label>
         </div>
@@ -492,14 +469,13 @@ const AddressForm = () => {
 
                 setClientData("cep", cep);
               }}
-              style={errors.cep ? { borderColor: "#ef5959" } : {}}
+              style={errors.cep || cepError ? { borderColor: "#ef5959" } : {}}
               className="address-input"
             />
             {errors.cep && (
-              <span className="register-form-error-message">
-                {errors.cep?.message}
-              </span>
+              <span className="register-form-error-message">{errors.cep?.message}</span>
             )}
+            {cepError && <span className="register-form-error-message">{cepError}</span>}
           </label>
 
           <label htmlFor="address" className="address-label">
@@ -517,9 +493,7 @@ const AddressForm = () => {
               className="address-input"
             />
             {errors.address && (
-              <span className="register-form-error-message">
-                {errors.address?.message}
-              </span>
+              <span className="register-form-error-message">{errors.address?.message}</span>
             )}
           </label>
         </div>
@@ -528,9 +502,7 @@ const AddressForm = () => {
           <label htmlFor="addressNum" className="address-label">
             Número da Residência
             {errors.addressNumber && (
-              <span className="register-form-error-message">
-                {errors.addressNumber?.message}
-              </span>
+              <span className="register-form-error-message">{errors.addressNumber?.message}</span>
             )}
             <input
               {...register("addressNumber")}
@@ -565,9 +537,7 @@ const AddressForm = () => {
               className="address-input"
             />
             {errors.complement && (
-              <span className="register-form-error-message">
-                {errors.complement?.message}
-              </span>
+              <span className="register-form-error-message">{errors.complement?.message}</span>
             )}
           </label>
         </div>
@@ -603,7 +573,7 @@ const PaymentForm = () => {
       setSubmit: state.setSubmit,
       setMessage: state.setMessage,
     }),
-    shallow
+    shallow,
   );
 
   const {
@@ -628,28 +598,24 @@ const PaymentForm = () => {
         encodeURIComponent(
           `Olá, gostaria de saber mais sobre o plano, segue os dados: Nome: ${
             clientData.name
-          }; RG: ${clientData.rg}; CPF: ${
-            clientData.cpf
-          }; Data de Nascimento: ${
+          }; RG: ${clientData.rg}; CPF: ${clientData.cpf}; Data de Nascimento: ${
             clientData.dateOfBirth
           }; Nome Completo da Mãe: ${clientData.motherName}; Telefone1: ${
             clientData.tel1
-          }; Telefone2: ${clientData.tel2}; Estado: ${
-            clientData.state
-          }; Cidade: ${clientData.city}; CEP: ${clientData.cep}; Endereço: ${
-            clientData.address
-          }; Número da Residência: ${clientData.addressNumber}; Complemento: ${
-            clientData.complement
-          }; Dia do pagamento: ${clientData.paymentDate}; Forma de pagamento: ${
-            clientData.paymentMethod
-          }; Banco: ${clientData.bank}; Agência: ${clientData.agency}; Conta: ${
-            clientData.bankAccount
-          }; Titular da conta: ${clientData.accountOwner}; Plano: ${
-            planSelected.title
-          }; Fraquia: ${planSelected.franchise}; Valor: R$ ${planSelected.cost
-            .toFixed(2)
-            .replace(".", ",")};`
-        )
+          }; Telefone2: ${clientData.tel2}; Estado: ${clientData.state}; Cidade: ${
+            clientData.city
+          }; CEP: ${clientData.cep}; Endereço: ${clientData.address}; Número da Residência: ${
+            clientData.addressNumber
+          }; Complemento: ${clientData.complement}; Dia do pagamento: ${
+            clientData.paymentDate
+          }; Forma de pagamento: ${clientData.paymentMethod}; Banco: ${clientData.bank}; Agência: ${
+            clientData.agency
+          }; Conta: ${clientData.bankAccount}; Titular da conta: ${
+            clientData.accountOwner
+          }; Plano: ${planSelected.title}; Fraquia: ${
+            planSelected.franchise
+          }; Valor: R$ ${planSelected.cost.toFixed(2).replace(".", ",")};`,
+        ),
       );
     }
   };
@@ -665,8 +631,7 @@ const PaymentForm = () => {
           stepsAnimation
             ? "payment-box animate__animated animate__fadeInRight animate__faster"
             : "payment-box animate__animated animate__fadeOutLeft animate__faster"
-        }
-      >
+        }>
         <div className="payment-wrapper">
           <label htmlFor="paymentDate" className="payment-label">
             Dia de pagamento
@@ -677,8 +642,7 @@ const PaymentForm = () => {
               onChange={(e) => setClientData("paymentDate", e.target.value)}
               defaultValue={clientData.paymentDate}
               style={errors.paymentDate ? { borderColor: "#ef5959" } : {}}
-              className="payment-select"
-            >
+              className="payment-select">
               <option value={5}>5</option>
               <option value={10}>10</option>
               <option value={15}>15</option>
@@ -686,9 +650,7 @@ const PaymentForm = () => {
               <option value={25}>25</option>
             </select>
             {errors.paymentDate && (
-              <span className="register-form-error-message">
-                {errors.paymentDate?.message}
-              </span>
+              <span className="register-form-error-message">{errors.paymentDate?.message}</span>
             )}
           </label>
 
@@ -703,12 +665,9 @@ const PaymentForm = () => {
                   name="paymentMethod"
                   value="Boleto"
                   defaultChecked={
-                    clientData.paymentMethod === "Boleto" ||
-                    clientData.paymentMethod === ""
+                    clientData.paymentMethod === "Boleto" || clientData.paymentMethod === ""
                   }
-                  onChange={(e) =>
-                    setClientData("paymentMethod", e.target.value)
-                  }
+                  onChange={(e) => setClientData("paymentMethod", e.target.value)}
                   className="payment-method-input"
                 />
                 Boleto
@@ -719,13 +678,9 @@ const PaymentForm = () => {
                   type="radio"
                   id="debit"
                   name="paymentMethod"
-                  defaultChecked={
-                    clientData.paymentMethod === "Débito em conta"
-                  }
+                  defaultChecked={clientData.paymentMethod === "Débito em conta"}
                   value="Débito em conta"
-                  onChange={(e) =>
-                    setClientData("paymentMethod", e.target.value)
-                  }
+                  onChange={(e) => setClientData("paymentMethod", e.target.value)}
                   className="payment-method-input"
                 />
                 Débito em conta
@@ -756,9 +711,7 @@ const PaymentForm = () => {
               className="payment-input"
             />
             {errors.bank && (
-              <span className="register-form-error-message">
-                {errors.bank?.message}
-              </span>
+              <span className="register-form-error-message">{errors.bank?.message}</span>
             )}
           </label>
 
@@ -783,9 +736,7 @@ const PaymentForm = () => {
               className="payment-input"
             />
             {errors.agency && (
-              <span className="register-form-error-message">
-                {errors.agency?.message}
-              </span>
+              <span className="register-form-error-message">{errors.agency?.message}</span>
             )}
           </label>
 
@@ -810,9 +761,7 @@ const PaymentForm = () => {
               className="payment-input"
             />
             {errors.bankAccount && (
-              <span className="register-form-error-message">
-                {errors.bankAccount?.message}
-              </span>
+              <span className="register-form-error-message">{errors.bankAccount?.message}</span>
             )}
           </label>
         </div>
@@ -833,9 +782,7 @@ const PaymentForm = () => {
             className="payment-input"
           />
           {errors.accountOwner && (
-            <span className="register-form-error-message">
-              {errors.accountOwner?.message}
-            </span>
+            <span className="register-form-error-message">{errors.accountOwner?.message}</span>
           )}
         </label>
       </div>
@@ -881,7 +828,7 @@ const InstallationForm = () => {
       message: state.message,
       setMessage: state.setMessage,
     }),
-    shallow
+    shallow,
   );
 
   const checkIfFirstDateItsAfterSecondDate = (date1, date2) => {
@@ -915,32 +862,26 @@ const InstallationForm = () => {
         encodeURIComponent(
           `Olá, gostaria de saber mais sobre o plano, segue os dados: Nome: ${
             clientData.name
-          }; RG: ${clientData.rg}; CPF: ${
-            clientData.cpf
-          }; Data de Nascimento: ${
+          }; RG: ${clientData.rg}; CPF: ${clientData.cpf}; Data de Nascimento: ${
             clientData.dateOfBirth
           }; Nome Completo da Mãe: ${clientData.motherName}; Telefone1: ${
             clientData.tel1
-          }; Telefone2: ${clientData.tel2}; Estado: ${
-            clientData.state
-          }; Cidade: ${clientData.city}; CEP: ${clientData.cep}; Endereço: ${
-            clientData.address
-          }; Número da Residência: ${clientData.addressNumber}; Complemento: ${
-            clientData.complement
-          }; Dia do pagamento: ${clientData.paymentDate}; Forma de pagamento: ${
-            clientData.paymentMethod
-          }; Banco: ${clientData.bank}; Agência: ${clientData.agency}; Conta: ${
-            clientData.bankAccount
-          }; Titular da conta: ${
+          }; Telefone2: ${clientData.tel2}; Estado: ${clientData.state}; Cidade: ${
+            clientData.city
+          }; CEP: ${clientData.cep}; Endereço: ${clientData.address}; Número da Residência: ${
+            clientData.addressNumber
+          }; Complemento: ${clientData.complement}; Dia do pagamento: ${
+            clientData.paymentDate
+          }; Forma de pagamento: ${clientData.paymentMethod}; Banco: ${clientData.bank}; Agência: ${
+            clientData.agency
+          }; Conta: ${clientData.bankAccount}; Titular da conta: ${
             clientData.accountOwner
-          }; Data da instalação 1: ${
-            clientData.installationDate1
-          }; Data da instalação 2: ${clientData.installationDate2}; Período: ${
-            clientData.installationPeriod
-          }; Plano: ${planSelected.title}; Fraquia: ${
+          }; Data da instalação 1: ${clientData.installationDate1}; Data da instalação 2: ${
+            clientData.installationDate2
+          }; Período: ${clientData.installationPeriod}; Plano: ${planSelected.title}; Fraquia: ${
             planSelected.franchise
-          }; Valor: R$ ${planSelected.cost.toFixed(2).replace(".", ",")};`
-        )
+          }; Valor: R$ ${planSelected.cost.toFixed(2).replace(".", ",")};`,
+        ),
       );
     }
   };
@@ -956,8 +897,7 @@ const InstallationForm = () => {
           stepsAnimation
             ? "installation-box animate__animated animate__fadeInRight animate__faster"
             : "installation-box animate__animated animate__fadeOutLeft animate__faster"
-        }
-      >
+        }>
         <div className="installation-date-wrapper">
           <label htmlFor="installationDate1" className="installation-label">
             Data para instalação
@@ -983,8 +923,7 @@ const InstallationForm = () => {
           </label>
 
           <label htmlFor="installationDate2" className="installation-label">
-            Data para instalação reserva{" "}
-            <small>(caso a primeira visita não aconteça)</small>
+            Data para instalação reserva <small>(caso a primeira visita não aconteça)</small>
             <ReactDatePicker
               id="installationDate2"
               name="installationDate2"
@@ -1012,19 +951,10 @@ const InstallationForm = () => {
               id="installationPeriod"
               name="installationPeriod"
               className="installation-select"
-              onChange={(e) =>
-                setClientData("installationPeriod", e.target.value)
-              }
-              defaultValue={
-                clientData.installationPeriod || "Período manhã (8h às 12h)"
-              }
-            >
-              <option value="Período manhã (8h às 12h)">
-                Período manhã (8h às 12h)
-              </option>
-              <option value="Período tarde (12h às 18h)">
-                Período tarde (12h às 18h)
-              </option>
+              onChange={(e) => setClientData("installationPeriod", e.target.value)}
+              defaultValue={clientData.installationPeriod || "Período manhã (8h às 12h)"}>
+              <option value="Período manhã (8h às 12h)">Período manhã (8h às 12h)</option>
+              <option value="Período tarde (12h às 18h)">Período tarde (12h às 18h)</option>
             </select>
           </label>
         </div>
@@ -1064,14 +994,14 @@ const RegisterForm = () => {
       message: state.message,
       unsetSubmit: state.unsetSubmit,
     }),
-    shallow
+    shallow,
   );
   const { modalAnimation, deactivateModalAnimation } = useGeneralStore(
     (state) => ({
       modalAnimation: state.modalAnimation,
       deactivateModalAnimation: state.deactivateModalAnimation,
     }),
-    shallow
+    shallow,
   );
 
   const handleClose = () => {
@@ -1109,9 +1039,7 @@ const RegisterForm = () => {
         .then((res) => {
           handleClose();
 
-          window.location.assign(
-            `${import.meta.env.VITE_WHATSAPP_BASE_API}${message}`
-          );
+          window.location.assign(`${import.meta.env.VITE_WHATSAPP_BASE_API}${message}`);
         })
         .catch((error) => console.error(error))
         .finally(() => unsetSubmit());
@@ -1128,28 +1056,18 @@ const RegisterForm = () => {
         modalAnimation
           ? "register-form-overlay animate__animated animate__fadeIn animate__fast"
           : "register-form-overlay animate__animated animate__fadeOut animate__fast"
-      }
-    >
+      }>
       <div className="register-form-container">
         <div className="register-form-illustration-box">
-          <button
-            type="button"
-            onClick={handleClose}
-            className="register-form-close-button"
-          >
+          <button type="button" onClick={handleClose} className="register-form-close-button">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
+              className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
 
@@ -1164,13 +1082,10 @@ const RegisterForm = () => {
                   steps.step1
                     ? "register-form-progress-ball actual-progress"
                     : "register-form-progress-ball"
-                }
-              >
+                }>
                 1
               </span>
-              <span className="register-form-progress-desc">
-                Dados pessoais
-              </span>
+              <span className="register-form-progress-desc">Dados pessoais</span>
             </div>
 
             <div className="register-form-progress-line" />
@@ -1181,8 +1096,7 @@ const RegisterForm = () => {
                   steps.step2
                     ? "register-form-progress-ball actual-progress"
                     : "register-form-progress-ball"
-                }
-              >
+                }>
                 2
               </span>
               <span className="register-form-progress-desc">Endereço</span>
@@ -1196,13 +1110,10 @@ const RegisterForm = () => {
                   steps.step3
                     ? "register-form-progress-ball actual-progress"
                     : "register-form-progress-ball"
-                }
-              >
+                }>
                 3
               </span>
-              <span className="register-form-progress-desc">
-                Forma de pagamento
-              </span>
+              <span className="register-form-progress-desc">Forma de pagamento</span>
             </div>
 
             {/* se tiver instalação */}
@@ -1216,13 +1127,10 @@ const RegisterForm = () => {
                       steps?.step4
                         ? "register-form-progress-ball actual-progress"
                         : "register-form-progress-ball"
-                    }
-                  >
+                    }>
                     4
                   </span>
-                  <span className="register-form-progress-desc">
-                    Instalação
-                  </span>
+                  <span className="register-form-progress-desc">Instalação</span>
                 </div>
               </>
             )}
@@ -1243,9 +1151,7 @@ const RegisterForm = () => {
                 <div className="register-form-plan-details-box">
                   <div className="register-form-plan-provider-icon-box">
                     <img
-                      src={`${import.meta.env.VITE_API_KEY}/assets/${
-                        planSelected.logo
-                      }`}
+                      src={`${import.meta.env.VITE_API_KEY}/assets/${planSelected.logo}`}
                       alt="claro"
                       className="register-form-plan-provider-icon"
                     />
@@ -1256,8 +1162,7 @@ const RegisterForm = () => {
                       {planSelected.title.substring(0, 15)}
                     </span>
                     <span className="register-form-plan-details-infos-plan-detail">
-                      {planSelected.franchise ||
-                        planSelected.devicesQuant + " Aparelho(s)"}
+                      {planSelected.franchise || planSelected.devicesQuant + " Aparelho(s)"}
                     </span>
                   </div>
                 </div>
