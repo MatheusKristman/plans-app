@@ -3,25 +3,24 @@ import useGeneralStore from "../../../stores/useGeneralStore";
 import usePlansStore from "../../../stores/usePlansStore";
 import { shallow } from "zustand/shallow";
 
+// TODO checar bugs e arrumar igual outros components
 const TVDetailsBox = ({ archivedAt }) => {
-  const { modalAnimation, deactivateModalAnimation, activateModalAnimation } =
-    useGeneralStore(
-      (state) => ({
-        modalAnimation: state.modalAnimation,
-        deactivateModalAnimation: state.deactivateModalAnimation,
-        activateModalAnimation: state.activateModalAnimation,
-      }),
-      shallow
-    );
-  const { closeTVDetailsBox, openEditTVForm, planSelectedForDetails } =
-    usePlansStore(
-      (state) => ({
-        closeTVDetailsBox: state.closeTVDetailsBox,
-        openEditTVForm: state.openEditTVForm,
-        planSelectedForDetails: state.planSelectedForDetails,
-      }),
-      shallow
-    );
+  const { modalAnimation, deactivateModalAnimation, activateModalAnimation } = useGeneralStore(
+    (state) => ({
+      modalAnimation: state.modalAnimation,
+      deactivateModalAnimation: state.deactivateModalAnimation,
+      activateModalAnimation: state.activateModalAnimation,
+    }),
+    shallow,
+  );
+  const { closeTVDetailsBox, openEditTVForm, planSelectedForDetails } = usePlansStore(
+    (state) => ({
+      closeTVDetailsBox: state.closeTVDetailsBox,
+      openEditTVForm: state.openEditTVForm,
+      planSelectedForDetails: state.planSelectedForDetails,
+    }),
+    shallow,
+  );
 
   const handleCloseDetailsBox = () => {
     deactivateModalAnimation();
@@ -54,32 +53,23 @@ const TVDetailsBox = ({ archivedAt }) => {
         modalAnimation
           ? "tv-details-box-overlay animate__animated animate__fast animate__fadeIn"
           : "tv-details-box-overlay animate__animated animate__fast animate__fadeOut"
-      }
-    >
+      }>
       <div className="tv-details-box-container">
         <div className="tv-details-box-wrapper">
           <div className="tv-details-box-header">
-            <button
-              onClick={handleCloseDetailsBox}
-              className="tv-details-box-close-button"
-            >
+            <button onClick={handleCloseDetailsBox} className="tv-details-box-close-button">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
+                className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
 
-            <h3 className="tv-details-box-title"></h3>
+            <h3 className="tv-details-box-title">Detalhes</h3>
           </div>
 
           <div className="tv-details-box-body">
@@ -87,15 +77,11 @@ const TVDetailsBox = ({ archivedAt }) => {
               <div className="tv-details-box-info">
                 <div className="tv-details-box-title-box">
                   <span className="tv-details-box-title-label">Título</span>
-                  <span className="tv-details-box-title-desc">
-                    {planSelectedForDetails.title}
-                  </span>
+                  <span className="tv-details-box-title-desc">{planSelectedForDetails.title}</span>
                 </div>
 
                 <div className="tv-details-box-created-at-box">
-                  <span className="tv-details-box-created-at-label">
-                    Criado em
-                  </span>
+                  <span className="tv-details-box-created-at-label">Criado em</span>
                   <span className="tv-details-box-created-at-desc">
                     {planSelectedForDetails.createdAt}
                   </span>
@@ -104,25 +90,21 @@ const TVDetailsBox = ({ archivedAt }) => {
 
               <div className="tv-details-box-info">
                 <div className="tv-details-box-provider-box">
-                  <span className="tv-details-box-provider-label">
-                    Operadora
-                  </span>
+                  <span className="tv-details-box-provider-label">Operadora</span>
                   <img
                     src={`${import.meta.env.VITE_API_KEY}/assets/${
                       planSelectedForDetails.providerIcon
                     }`}
                     alt={planSelectedForDetails.providerIcon?.substring(
                       0,
-                      planSelectedForDetails.providerIcon?.length - 4
+                      planSelectedForDetails.providerIcon?.length - 4,
                     )}
                     className="tv-details-box-provider-logo"
                   />
                 </div>
 
                 <div className="tv-details-box-contacts-box">
-                  <span className="tv-details-box-contacts-label">
-                    Contatos
-                  </span>
+                  <span className="tv-details-box-contacts-label">Contatos</span>
                   <span className="tv-details-box-contacts-desc">
                     {planSelectedForDetails.contacts}
                   </span>
@@ -133,8 +115,7 @@ const TVDetailsBox = ({ archivedAt }) => {
                 <div className="tv-details-box-cost-box">
                   <span className="tv-details-box-cost-label">Valor</span>
                   <span className="tv-details-box-cost-desc">
-                    R${" "}
-                    {planSelectedForDetails.cost?.toFixed(2)?.replace(".", ",")}
+                    R$ {planSelectedForDetails.cost?.toFixed(2)?.replace(".", ",")}
                   </span>
                 </div>
 
@@ -142,61 +123,45 @@ const TVDetailsBox = ({ archivedAt }) => {
                   <span className="tv-details-box-total-label">Total</span>
                   <span className="tv-details-box-total-desc">
                     R${" "}
-                    {(
-                      planSelectedForDetails.cost *
-                      planSelectedForDetails.contacts
-                    )
+                    {(planSelectedForDetails.cost * planSelectedForDetails.contacts)
                       ?.toFixed(2)
                       ?.replace(".", ",")}
                   </span>
                 </div>
               </div>
 
-              {planSelectedForDetails?.afterCost &&
-                planSelectedForDetails?.periodToChangeCost && (
-                  <div className="tv-details-box-info">
-                    <div className="tv-details-box-after-cost-box">
-                      <span className="tv-details-box-after-cost-label">
-                        Valor original
-                      </span>
-                      <span className="tv-details-box-after-cost-desc">
-                        R${" "}
-                        {planSelectedForDetails.afterCost
-                          ?.toFixed(2)
-                          ?.replace(".", ",")}
-                      </span>
-                    </div>
-
-                    <div className="tv-details-box-period-to-change-cost-box">
-                      <span className="tv-details-box-period-to-change-cost-label">
-                        Período para mudar o valor
-                      </span>
-                      <span className="tv-details-box-period-to-change-cost-desc">
-                        Depois do {planSelectedForDetails.periodToChangeCost}°
-                        mês
-                      </span>
-                    </div>
+              {planSelectedForDetails?.afterCost && planSelectedForDetails?.periodToChangeCost && (
+                <div className="tv-details-box-info">
+                  <div className="tv-details-box-after-cost-box">
+                    <span className="tv-details-box-after-cost-label">Valor original</span>
+                    <span className="tv-details-box-after-cost-desc">
+                      R$ {planSelectedForDetails.afterCost?.toFixed(2)?.replace(".", ",")}
+                    </span>
                   </div>
-                )}
+
+                  <div className="tv-details-box-period-to-change-cost-box">
+                    <span className="tv-details-box-period-to-change-cost-label">
+                      Período para mudar o valor
+                    </span>
+                    <span className="tv-details-box-period-to-change-cost-desc">
+                      Depois do {planSelectedForDetails.periodToChangeCost}° mês
+                    </span>
+                  </div>
+                </div>
+              )}
 
               <div className="tv-details-box-info">
                 <div className="tv-details-box-priority-box">
-                  <span className="tv-details-box-priority-label">
-                    Prioridade
-                  </span>
+                  <span className="tv-details-box-priority-label">Prioridade</span>
                   <span className="tv-details-box-priority-desc">
                     {planSelectedForDetails.priority}
                   </span>
                 </div>
 
                 <div className="tv-details-box-benefits-box">
-                  <span className="tv-details-box-benefits-label">
-                    Benefícios
-                  </span>
+                  <span className="tv-details-box-benefits-label">Benefícios</span>
                   <span className="tv-details-box-benefits-desc">
-                    {planSelectedForDetails.benefits
-                      ?.toString()
-                      ?.replaceAll(",", ", ")}
+                    {planSelectedForDetails.benefits?.toString()?.replaceAll(",", ", ")}
                   </span>
                 </div>
               </div>
@@ -212,9 +177,7 @@ const TVDetailsBox = ({ archivedAt }) => {
                 </div>
 
                 <div className="tv-details-box-devices-box">
-                  <span className="tv-details-box-devices-label">
-                    Pontos de tv
-                  </span>
+                  <span className="tv-details-box-devices-label">Pontos de tv</span>
                   <span className="tv-details-box-devices-desc">
                     {planSelectedForDetails.devicesQuant}
                   </span>
@@ -224,9 +187,7 @@ const TVDetailsBox = ({ archivedAt }) => {
               {archivedAt && (
                 <div className="tv-details-box-info">
                   <div className="tv-details-box-archived-at-box">
-                    <span className="tv-details-box-archived-at-label">
-                      Arquivado em
-                    </span>
+                    <span className="tv-details-box-archived-at-label">Arquivado em</span>
                     <span className="tv-details-box-archived-at-desc">
                       {planSelectedForDetails?.archivedAt}
                     </span>
@@ -235,20 +196,20 @@ const TVDetailsBox = ({ archivedAt }) => {
               )}
 
               <div className="tv-details-box-description-box">
-                <span className="tv-details-box-description-label">
-                  Descrição
-                </span>
-                <span className="tv-details-box-description-desc">
-                  {planSelectedForDetails.description.join("\n")}
-                </span>
+                <span className="tv-details-box-description-label">Descrição</span>
+
+                {planSelectedForDetails.description?.map((desc, index) => (
+                  <span key={`desc-${index}`} className="tv-details-box-description-desc">
+                    {desc}
+                  </span>
+                ))}
               </div>
 
               <div className="tv-details-box-buttons-wrapper">
                 <button
                   type="button"
                   onClick={handleOpenEditForm}
-                  className="tv-details-box-edit-button"
-                >
+                  className="tv-details-box-edit-button">
                   Editar
                 </button>
                 <button type="button" className="tv-details-box-archive-button">
@@ -258,8 +219,7 @@ const TVDetailsBox = ({ archivedAt }) => {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-6 h-6"
-                  >
+                    className="w-6 h-6">
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"

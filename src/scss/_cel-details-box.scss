@@ -173,6 +173,11 @@
             .cel-details-box-description-desc {
               font-size: 1rem;
               line-height: 26px;
+              margin-bottom: 10px;
+
+              &:last-of-type {
+                margin-bottom: 0;
+              }
             }
           }
 

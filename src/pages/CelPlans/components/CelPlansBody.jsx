@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useMemo } from "react";
+import React, { useRef, useEffect, useMemo, useState } from "react";
 import useCelPlansStore from "../../../stores/useCelPlansStore";
 import useGeneralStore from "../../../stores/useGeneralStore";
 import { shallow } from "zustand/shallow";
@@ -14,50 +14,17 @@ const CelPlansBody = ({
   filterValuesValidator,
   setFilterValuesValidator,
 }) => {
-  const {
-    isFilterOpen,
-    openFilterBox,
-    closeFilterBox,
-    celPlans,
-    setCelPlans,
-    filteredCelPlans,
-    setFilteredCelPlans,
-    sliceEnd,
-    setSliceEnd,
-    resetSlice,
-    handlePlanTypeFilterOption,
-    handleProviderFilterOption,
-    providers,
-    submittingFilter,
-    setSubmittingFilter,
-    unsetSubmittingFilter,
-    validFilterOptions,
-    setValidFilterOptions,
-    unsetValidFilterOptions,
-  } = useCelPlansStore(
-    (state) => ({
-      isFilterOpen: state.isFilterOpen,
-      openFilterBox: state.openFilterBox,
-      closeFilterBox: state.closeFilterBox,
-      celPlans: state.celPlans,
-      setCelPlans: state.setCelPlans,
-      filteredCelPlans: state.filteredCelPlans,
-      setFilteredCelPlans: state.setFilteredCelPlans,
-      sliceEnd: state.sliceEnd,
-      setSliceEnd: state.setSliceEnd,
-      resetSlice: state.resetSlice,
-      handlePlanTypeFilterOption: state.handlePlanTypeFilterOption,
-      handleProviderFilterOption: state.handleProviderFilterOption,
-      providers: state.providers,
-      submittingFilter: state.submittingFilter,
-      setSubmittingFilter: state.setSubmittingFilter,
-      unsetSubmittingFilter: state.unsetSubmittingFilter,
-      validFilterOptions: state.validFilterOptions,
-      setValidFilterOptions: state.setValidFilterOptions,
-      unsetValidFilterOptions: state.unsetValidFilterOptions,
-    }),
-    shallow,
-  );
+  const { celPlans, setCelPlans, filteredCelPlans, setFilteredCelPlans, providers } =
+    useCelPlansStore(
+      (state) => ({
+        celPlans: state.celPlans,
+        setCelPlans: state.setCelPlans,
+        filteredCelPlans: state.filteredCelPlans,
+        setFilteredCelPlans: state.setFilteredCelPlans,
+        providers: state.providers,
+      }),
+      shallow,
+    );
   const { isLoading, setLoading, unsetLoading } = useGeneralStore(
     (state) => ({
       isLoading: state.isLoading,
@@ -66,16 +33,21 @@ const CelPlansBody = ({
     }),
     shallow,
   );
+  const [resetInputs, setResetInputs] = useState(undefined);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [sliceEnd, setSliceEnd] = useState(5);
+  const [isFilterSubmitting, setIsFilterSubmitting] = useState(false);
+  const [isFilterOptionValid, setIsFilterOptionValid] = useState(false);
 
   const filterRef = useRef();
 
   const handleFilterBoxButton = () => {
     if (isFilterOpen) {
-      closeFilterBox();
+      setIsFilterOpen(false);
       return;
     }
 
-    openFilterBox();
+    setIsFilterOpen(true);
   };
 
   const handleShowMore = () => {
@@ -83,7 +55,7 @@ const CelPlansBody = ({
       return;
     }
 
-    setSliceEnd();
+    setSliceEnd((prev) => prev + 5);
   };
 
   const handleShowMoreFiltered = () => {
@@ -91,13 +63,17 @@ const CelPlansBody = ({
       return;
     }
 
-    setSliceEnd();
+    setSliceEnd((prev) => prev + 5);
+  };
+
+  const resetSlice = () => {
+    setSliceEnd(5);
   };
 
   const handleSubmitFilterButton = (event) => {
     event.preventDefault();
 
-    setSubmittingFilter();
+    setIsFilterSubmitting(true);
 
     if (window.innerWidth < 1024) {
       closeFilterBox();
@@ -145,19 +121,26 @@ const CelPlansBody = ({
   };
 
   useEffect(() => {
-    if (
-      (filterValues.cep !== filterValuesValidator.cep &&
-        filterValues.cep.length === 9 &&
-        filterValues.cost !== filterValuesValidator.cost) ||
-      filterValues.franchise !== filterValuesValidator.franchise ||
-      JSON.stringify(filterValues.planType) !== JSON.stringify(filterValuesValidator.planType) ||
-      JSON.stringify(filterValues.provider) !== JSON.stringify(filterValuesValidator.provider)
-    ) {
-      setValidFilterOptions();
+    setResetInputs(true);
+  }, []);
+
+  useEffect(() => {
+    if (filterValues.cep.length === 9) {
+      if (
+        filterValues.cep !== filterValuesValidator.cep ||
+        filterValues.cost !== filterValuesValidator.cost ||
+        filterValues.franchise !== filterValuesValidator.franchise ||
+        JSON.stringify(filterValues.planType) !== JSON.stringify(filterValuesValidator.planType) ||
+        JSON.stringify(filterValues.provider) !== JSON.stringify(filterValuesValidator.provider)
+      ) {
+        setIsFilterOptionValid(true);
+      } else {
+        setIsFilterOptionValid(false);
+      }
     } else {
-      unsetValidFilterOptions();
+      setIsFilterOptionValid(false);
     }
-  }, [filterValues]);
+  }, [filterValues, filterValuesValidator]);
 
   useEffect(() => {
     const submitData = () => {
@@ -177,24 +160,31 @@ const CelPlansBody = ({
           setCelPlans([]);
           setFilteredCelPlans([]);
 
+          console.log("plans depois do submit: ", sortedPlans);
+
           setTimeout(() => {
             setFilteredCelPlans(sortedPlans);
-          }, 300);
+          }, 350);
         })
         .catch((err) => console.error(err))
         .finally(() => {
-          unsetSubmittingFilter();
-          unsetValidFilterOptions();
+          setIsFilterSubmitting(false);
+          setIsFilterOptionValid(false);
+          setFilterValuesValidator({ ...filterValues });
           setCelPlans([]);
           resetSlice();
           unsetLoading();
         });
     };
 
-    if (submittingFilter) {
+    if (isFilterSubmitting) {
       submitData();
     }
-  }, [submittingFilter]);
+  }, [isFilterSubmitting]);
+
+  useEffect(() => {
+    console.log(filterValues);
+  }, [filterValues]);
 
   return (
     <div className="body-container">
@@ -207,10 +197,7 @@ const CelPlansBody = ({
             Filtrar
           </button>
 
-          <motion.form
-            variants={window.innerWidth >= 1024 ? filterAnimation : {}}
-            initial="offscreen"
-            animate="onscreen"
+          <form
             ref={filterRef}
             style={
               isFilterOpen
@@ -232,7 +219,7 @@ const CelPlansBody = ({
                       cep = cep.replace(/(\d{5})(\d)/, "$1-$2");
                     }
 
-                    setFilterValues("cep", cep);
+                    handleFilterValueChanges("cep", cep);
                   }}
                   value={filterValues.cep}
                   maxLength="8"
@@ -248,7 +235,9 @@ const CelPlansBody = ({
                     id="cost50"
                     name="cost"
                     value={50}
-                    onChange={(e) => setFilterValues("cost", Number(e.target.value))}
+                    onChange={(e) => handleFilterValueChanges("cost", Number(e.target.value))}
+                    autoComplete="off"
+                    autoCorrect="off"
                     type="radio"
                     className="filter-form-cost-input"
                   />
@@ -260,7 +249,9 @@ const CelPlansBody = ({
                     id="cost100"
                     name="cost"
                     value={100}
-                    onChange={(e) => setFilterValues("cost", Number(e.target.value))}
+                    onChange={(e) => handleFilterValueChanges("cost", Number(e.target.value))}
+                    autoComplete="off"
+                    autoCorrect="off"
                     type="radio"
                     className="filter-form-cost-input"
                   />
@@ -272,7 +263,9 @@ const CelPlansBody = ({
                     id="cost150"
                     name="cost"
                     value={150}
-                    onChange={(e) => setFilterValues("cost", Number(e.target.value))}
+                    onChange={(e) => handleFilterValueChanges("cost", Number(e.target.value))}
+                    autoComplete="off"
+                    autoCorrect="off"
                     type="radio"
                     className="filter-form-cost-input"
                   />
@@ -283,8 +276,10 @@ const CelPlansBody = ({
                     id="cost300"
                     name="cost"
                     value={300}
-                    defaultChecked
-                    onChange={(e) => setFilterValues("cost", Number(e.target.value))}
+                    defaultChecked={resetInputs}
+                    onChange={(e) => handleFilterValueChanges("cost", Number(e.target.value))}
+                    autoComplete="off"
+                    autoCorrect="off"
                     type="radio"
                     className="filter-form-cost-input"
                   />
@@ -301,7 +296,9 @@ const CelPlansBody = ({
                     id="10gb"
                     name="franchise"
                     value="10GB"
-                    onChange={(e) => setFilterValues("franchise", e.target.value)}
+                    onChange={(e) => handleFilterValueChanges("franchise", e.target.value)}
+                    autoComplete="off"
+                    autoCorrect="off"
                     className="filter-form-franchise-input"
                   />
                   Até 10GB
@@ -313,7 +310,9 @@ const CelPlansBody = ({
                     id="25gb"
                     name="franchise"
                     value="25GB"
-                    onChange={(e) => setFilterValues("franchise", e.target.value)}
+                    onChange={(e) => handleFilterValueChanges("franchise", e.target.value)}
+                    autoComplete="off"
+                    autoCorrect="off"
                     className="filter-form-franchise-input"
                   />
                   Até 25GB
@@ -325,7 +324,9 @@ const CelPlansBody = ({
                     id="50gb"
                     name="franchise"
                     value="50GB"
-                    onChange={(e) => setFilterValues("franchise", e.target.value)}
+                    onChange={(e) => handleFilterValueChanges("franchise", e.target.value)}
+                    autoComplete="off"
+                    autoCorrect="off"
                     className="filter-form-franchise-input"
                   />
                   Até 50GB
@@ -337,8 +338,10 @@ const CelPlansBody = ({
                     id="300gb"
                     name="franchise"
                     value="300GB"
-                    defaultChecked
-                    onChange={(e) => setFilterValues("franchise", e.target.value)}
+                    defaultChecked={resetInputs}
+                    onChange={(e) => handleFilterValueChanges("franchise", e.target.value)}
+                    autoComplete="off"
+                    autoCorrect="off"
                     className="filter-form-franchise-input"
                   />
                   Até 300GB
@@ -354,7 +357,9 @@ const CelPlansBody = ({
                     id="controle"
                     name="planType"
                     value="Controle"
-                    onChange={(e) => handlePlanTypeFilterOption(e.target.value)}
+                    onChange={(e) => handleFilterValueChanges("planType", e.target.value)}
+                    autoComplete="off"
+                    autoCorrect="off"
                     className="filter-form-plan-type-input"
                   />
                   Controle
@@ -366,7 +371,9 @@ const CelPlansBody = ({
                     id="posPago"
                     name="planType"
                     value="Pós-pago"
-                    onChange={(e) => handlePlanTypeFilterOption(e.target.value)}
+                    onChange={(e) => handleFilterValueChanges("planType", e.target.value)}
+                    autoComplete="off"
+                    autoCorrect="off"
                     className="filter-form-plan-type-input"
                   />
                   Pós-pago
@@ -378,7 +385,9 @@ const CelPlansBody = ({
                     id="prePago"
                     name="planType"
                     value="Pré-pago"
-                    onChange={(e) => handlePlanTypeFilterOption(e.target.value)}
+                    onChange={(e) => handleFilterValueChanges("planType", e.target.value)}
+                    autoComplete="off"
+                    autoCorrect="off"
                     className="filter-form-plan-type-input"
                   />
                   Pré-pago
@@ -398,7 +407,9 @@ const CelPlansBody = ({
                       id={provider}
                       name="provider"
                       value={provider}
-                      onChange={(event) => handleProviderFilterOption(event.target.value)}
+                      onChange={(event) => handleFilterValueChanges("provider", event.target.value)}
+                      autoComplete="off"
+                      autoCorrect="off"
                       className="filter-form-provider-input"
                     />
                     {provider}
@@ -409,12 +420,12 @@ const CelPlansBody = ({
 
             <button
               type="submit"
-              disabled={!validFilterOptions}
+              disabled={!isFilterOptionValid}
               onClick={handleSubmitFilterButton}
               className="filter-form-submit-button">
               Aplicar
             </button>
-          </motion.form>
+          </form>
         </div>
 
         <div className="result-box">

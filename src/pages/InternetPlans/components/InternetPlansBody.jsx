@@ -39,12 +39,10 @@ const InternetPlansBody = ({
     shallow,
   );
   const [resetInputs, setResetInputs] = useState(undefined);
-  const [validFilterOptions, setValidFilterOptions] = useState(false);
-  const [isSubmittingFilter, setIsSubmittingFilter] = useState(false);
+  const [isFilterOptionsValid, setIsFilterOptionsValid] = useState(false);
+  const [isFilterSubmitting, setIsFilterSubmitting] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [sliceEnd, setSliceEnd] = useState(5);
-
-  //TODO arrumar states locais da pagina de banda larga, celular e tv retirando a dependencia só no zustand
 
   const filterRef = useRef();
 
@@ -88,7 +86,7 @@ const InternetPlansBody = ({
   const handleSubmitFilterButton = (event) => {
     event.preventDefault();
 
-    setIsSubmittingFilter(true);
+    setIsFilterSubmitting(true);
 
     if (window.innerWidth < 1024) {
       closeFilterBox();
@@ -130,17 +128,21 @@ const InternetPlansBody = ({
   }, []);
 
   useEffect(() => {
-    if (
-      (filterValues.cep !== filterValuesValidator.cep && filterValues.cep.length === 9) ||
-      filterValues.cost !== filterValuesValidator.cost ||
-      filterValues.download !== filterValuesValidator.download ||
-      JSON.stringify(filterValues.technology) !==
-        JSON.stringify(filterValuesValidator.technology) ||
-      JSON.stringify(filterValues.provider) !== JSON.stringify(filterValuesValidator.provider)
-    ) {
-      setValidFilterOptions(true);
+    if (filterValues.cep.length === 9) {
+      if (
+        filterValues.cep !== filterValuesValidator.cep ||
+        filterValues.cost !== filterValuesValidator.cost ||
+        filterValues.download !== filterValuesValidator.download ||
+        JSON.stringify(filterValues.technology) !==
+          JSON.stringify(filterValuesValidator.technology) ||
+        JSON.stringify(filterValues.provider) !== JSON.stringify(filterValuesValidator.provider)
+      ) {
+        setIsFilterOptionsValid(true);
+      } else {
+        setIsFilterOptionsValid(false);
+      }
     } else {
-      setValidFilterOptions(false);
+      setIsFilterOptionsValid(false);
     }
   }, [filterValues, filterValuesValidator]);
 
@@ -170,8 +172,8 @@ const InternetPlansBody = ({
         })
         .catch((err) => console.error(err))
         .finally(() => {
-          setIsSubmittingFilter(false);
-          setValidFilterOptions(false);
+          setIsFilterSubmitting(false);
+          setIsFilterOptionsValid(false);
           setFilterValuesValidator({ ...filterValues });
           setInternetPlans([]);
           resetSlice();
@@ -179,10 +181,10 @@ const InternetPlansBody = ({
         });
     };
 
-    if (isSubmittingFilter) {
+    if (isFilterSubmitting) {
       submitData();
     }
-  }, [isSubmittingFilter]);
+  }, [isFilterSubmitting]);
 
   useEffect(() => {
     console.log("filteredInternetPlans: ", filteredInternetPlans);
@@ -440,7 +442,7 @@ const InternetPlansBody = ({
 
             <button
               type="submit"
-              disabled={!validFilterOptions}
+              disabled={!isFilterOptionsValid}
               onClick={handleSubmitFilterButton}
               className="filter-form-submit-button">
               Aplicar

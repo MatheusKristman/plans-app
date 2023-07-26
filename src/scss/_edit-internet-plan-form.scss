@@ -9,7 +9,7 @@
   background-color: rgba(32, 33, 36, 0.5);
   overflow: auto;
   padding: 50px 15px;
-  z-index: 20;
+  z-index: 70;
 
   &::before {
     content: "";
@@ -599,6 +599,17 @@
 
             &:hover {
               filter: brightness(80%);
+            }
+
+            &:disabled {
+              filter: brightness(80%);
+              cursor: not-allowed;
+            }
+
+            .edit-internet-plan-loading-submit {
+              width: 25px;
+              height: 25px;
+              margin-right: 5px;
             }
           }
         }

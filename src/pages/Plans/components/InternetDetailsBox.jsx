@@ -4,26 +4,29 @@ import usePlansStore from "../../../stores/usePlansStore";
 import { shallow } from "zustand/shallow";
 
 const InternetDetailsBox = ({ archivedAt }) => {
-  const { modalAnimation, deactivateModalAnimation, activateModalAnimation } =
-    useGeneralStore(
-      (state) => ({
-        modalAnimation: state.modalAnimation,
-        deactivateModalAnimation: state.deactivateModalAnimation,
-        activateModalAnimation: state.activateModalAnimation,
-      }),
-      shallow
-    );
+  const { modalAnimation, deactivateModalAnimation, activateModalAnimation } = useGeneralStore(
+    (state) => ({
+      modalAnimation: state.modalAnimation,
+      deactivateModalAnimation: state.deactivateModalAnimation,
+      activateModalAnimation: state.activateModalAnimation,
+    }),
+    shallow,
+  );
   const {
     closeInternetDetailsBox,
     openEditInternetForm,
     planSelectedForDetails,
+    setIdSelectedForDetails,
+    setIdSelectedForEdit,
   } = usePlansStore(
     (state) => ({
       closeInternetDetailsBox: state.closeInternetDetailsBox,
       openEditInternetForm: state.openEditInternetForm,
       planSelectedForDetails: state.planSelectedForDetails,
+      setIdSelectedForDetails: state.setIdSelectedForDetails,
+      setIdSelectedForEdit: state.setIdSelectedForEdit,
     }),
-    shallow
+    shallow,
   );
 
   const handleCloseDetailsBox = () => {
@@ -31,6 +34,7 @@ const InternetDetailsBox = ({ archivedAt }) => {
 
     setTimeout(() => {
       closeInternetDetailsBox();
+      setIdSelectedForDetails("");
     }, 800);
   };
 
@@ -41,10 +45,14 @@ const InternetDetailsBox = ({ archivedAt }) => {
   };
 
   const handleOpenEditForm = () => {
+    const idSelected = planSelectedForDetails?._id;
+
     deactivateModalAnimation();
+    setIdSelectedForEdit(idSelected);
 
     setTimeout(() => {
       closeInternetDetailsBox();
+      setIdSelectedForDetails("");
       openEditInternetForm();
       activateModalAnimation();
     }, 800);
@@ -57,29 +65,22 @@ const InternetDetailsBox = ({ archivedAt }) => {
         modalAnimation
           ? "internet-details-box-overlay animate__animated animate__fast animate__fadeIn"
           : "internet-details-box-overlay animate__animated animate__fast animate__fadeOut"
-      }
-    >
+      }>
       <div className="internet-details-box-container">
         <div className="internet-details-box-wrapper">
           <div className="internet-details-box-header">
             <button
               type="button"
               onClick={handleCloseDetailsBox}
-              className="internet-details-box-close-button"
-            >
+              className="internet-details-box-close-button">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
+                className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
 
@@ -90,18 +91,14 @@ const InternetDetailsBox = ({ archivedAt }) => {
             <div className="internet-details-box-info-wrapper">
               <div className="internet-details-box-info">
                 <div className="internet-details-box-title-box">
-                  <span className="internet-details-box-title-label">
-                    Título
-                  </span>
+                  <span className="internet-details-box-title-label">Título</span>
                   <span className="internet-details-box-title-desc">
                     {planSelectedForDetails.title}
                   </span>
                 </div>
 
                 <div className="internet-details-box-created-at-box">
-                  <span className="internet-details-box-created-at-label">
-                    Criado em
-                  </span>
+                  <span className="internet-details-box-created-at-label">Criado em</span>
                   <span className="internet-details-box-created-at-desc">
                     {planSelectedForDetails.createdAt}
                   </span>
@@ -110,25 +107,21 @@ const InternetDetailsBox = ({ archivedAt }) => {
 
               <div className="internet-details-box-info">
                 <div className="internet-details-box-provider-box">
-                  <span className="internet-details-box-provider-label">
-                    Operadora
-                  </span>
+                  <span className="internet-details-box-provider-label">Operadora</span>
                   <img
                     src={`${import.meta.env.VITE_API_KEY}/assets/${
                       planSelectedForDetails.providerIcon
                     }`}
                     alt={planSelectedForDetails.providerIcon?.substring(
                       0,
-                      planSelectedForDetails.providerIcon.length - 4
+                      planSelectedForDetails.providerIcon?.length - 4,
                     )}
                     className="internet-details-box-provider-logo"
                   />
                 </div>
 
                 <div className="internet-details-box-contacts-box">
-                  <span className="internet-details-box-contacts-label">
-                    Contatos
-                  </span>
+                  <span className="internet-details-box-contacts-label">Contatos</span>
                   <span className="internet-details-box-contacts-desc">
                     {planSelectedForDetails.contacts}
                   </span>
@@ -139,32 +132,24 @@ const InternetDetailsBox = ({ archivedAt }) => {
                 <div className="internet-details-box-cost-box">
                   <span className="internet-details-box-cost-label">Valor</span>
                   <span className="internet-details-box-cost-desc">
-                    R${" "}
-                    {planSelectedForDetails.cost?.toFixed(2).replace(".", ",")}
+                    R$ {planSelectedForDetails.cost?.toFixed(2)?.replace(".", ",")}
                   </span>
                 </div>
 
                 <div className="internet-details-box-total-box">
-                  <span className="internet-details-box-total-label">
-                    Total
-                  </span>
+                  <span className="internet-details-box-total-label">Total</span>
                   <span className="internet-details-box-total-desc">
                     R${" "}
-                    {(
-                      planSelectedForDetails.cost *
-                      planSelectedForDetails.contacts
-                    )
-                      .toFixed(2)
-                      .replace(".", ",")}
+                    {(planSelectedForDetails.cost * planSelectedForDetails.contacts)
+                      ?.toFixed(2)
+                      ?.replace(".", ",")}
                   </span>
                 </div>
               </div>
 
               <div className="internet-details-box-info">
                 <div className="internet-details-box-priority-box">
-                  <span className="internet-details-box-priority-label">
-                    Prioridade
-                  </span>
+                  <span className="internet-details-box-priority-label">Prioridade</span>
                   <span className="internet-details-box-priority-desc">
                     {planSelectedForDetails.priority}
                   </span>
@@ -191,9 +176,7 @@ const InternetDetailsBox = ({ archivedAt }) => {
                 </div>
 
                 <div className="internet-details-box-upload-box">
-                  <span className="internet-details-box-upload-label">
-                    Velocidade de upload
-                  </span>
+                  <span className="internet-details-box-upload-label">Velocidade de upload</span>
                   <span className="internet-details-box-upload-desc">
                     {planSelectedForDetails.upload}
                   </span>
@@ -202,18 +185,14 @@ const InternetDetailsBox = ({ archivedAt }) => {
 
               <div className="internet-details-box-info">
                 <div className="internet-details-box-has-wifi-box">
-                  <span className="internet-details-box-has-wifi-label">
-                    Wifi ilimitado?
-                  </span>
+                  <span className="internet-details-box-has-wifi-label">Wifi ilimitado?</span>
                   <span className="internet-details-box-has-wifi-desc">
                     {planSelectedForDetails.hasWifi ? "Sim" : "Não"}
                   </span>
                 </div>
 
                 <div className="internet-details-box-technology-box">
-                  <span className="internet-details-box-technology-label">
-                    Tecnologia do modem
-                  </span>
+                  <span className="internet-details-box-technology-label">Tecnologia do modem</span>
                   <span className="internet-details-box-technology-desc">
                     {planSelectedForDetails.technology}
                   </span>
@@ -223,9 +202,7 @@ const InternetDetailsBox = ({ archivedAt }) => {
               {archivedAt && (
                 <div className="internet-details-box-info">
                   <div className="internet-details-box-archived-at-box">
-                    <span className="internet-details-box-archived-at-label">
-                      Arquivado em
-                    </span>
+                    <span className="internet-details-box-archived-at-label">Arquivado em</span>
                     <span className="internet-details-box-archived-at-desc">
                       {planSelectedForDetails?.archivedAt}
                     </span>
@@ -234,34 +211,30 @@ const InternetDetailsBox = ({ archivedAt }) => {
               )}
 
               <div className="internet-details-box-description-box">
-                <span className="internet-details-box-description-label">
-                  Descrição
-                </span>
-                <span className="internet-details-box-description-desc">
-                  {planSelectedForDetails.description.join("\n")}
-                </span>
+                <span className="internet-details-box-description-label">Descrição</span>
+
+                {planSelectedForDetails.description?.map((desc, index) => (
+                  <span key={`desc-${index}`} className="internet-details-box-description-desc">
+                    {desc}
+                  </span>
+                ))}
               </div>
 
               <div className="internet-details-box-buttons-wrapper">
                 <button
                   type="button"
                   onClick={handleOpenEditForm}
-                  className="internet-details-box-edit-button"
-                >
+                  className="internet-details-box-edit-button">
                   Editar
                 </button>
-                <button
-                  type="button"
-                  className="internet-details-box-archive-button"
-                >
+                <button type="button" className="internet-details-box-archive-button">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-6 h-6"
-                  >
+                    className="w-6 h-6">
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"

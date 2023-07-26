@@ -5,6 +5,7 @@ import { shallow } from "zustand/shallow";
 import api from "../../../services/api";
 import { toast } from "react-toastify";
 
+// TODO checar bugs e arrumar igual outros components
 const TVPlanBox = ({
   afterCost,
   benefits,
@@ -20,25 +21,20 @@ const TVPlanBox = ({
   title,
   planId,
 }) => {
-  const {
-    openEditTVForm,
-    openTVDetailsBox,
-    setIdSelectedForDetails,
-    setPlans,
-  } = usePlansStore(
+  const { openEditTVForm, openTVDetailsBox, setIdSelectedForDetails, setPlans } = usePlansStore(
     (state) => ({
       openEditTVForm: state.openEditTVForm,
       openTVDetailsBox: state.openTVDetailsBox,
       setIdSelectedForDetails: state.setIdSelectedForDetails,
       setPlans: state.setPlans,
     }),
-    shallow
+    shallow,
   );
   const { activateModalAnimation } = useGeneralStore(
     (state) => ({
       activateModalAnimation: state.activateModalAnimation,
     }),
-    shallow
+    shallow,
   );
 
   const handleOpenForm = () => {
@@ -109,9 +105,7 @@ const TVPlanBox = ({
           </div>
 
           <div className="plans-component-devices-box">
-            <span className="plans-component-devices-value">
-              {devicesQuant}
-            </span>
+            <span className="plans-component-devices-value">{devicesQuant}</span>
             <span className="plans-component-devices-desc">Pontos de tv</span>
           </div>
 
@@ -135,40 +129,28 @@ const TVPlanBox = ({
           </div>
 
           <div className="plans-component-created-at-box">
-            <span className="plans-component-created-at-value">
-              {createdAt}
-            </span>
+            <span className="plans-component-created-at-value">{createdAt}</span>
             <span className="plans-component-created-at-desc">Criado em</span>
           </div>
         </div>
 
         <div className="plans-component-plan-buttons">
-          <button
-            onClick={handleOpenForm}
-            className="plans-component-edit-button"
-          >
+          <button onClick={handleOpenForm} className="plans-component-edit-button">
             Editar
           </button>
 
-          <button
-            onClick={handleOpenDetailsBox}
-            className="plans-component-details-button"
-          >
+          <button onClick={handleOpenDetailsBox} className="plans-component-details-button">
             Ver Detalhes
           </button>
 
-          <button
-            onClick={() => handleArchive(planId)}
-            className="plans-component-archive-button"
-          >
+          <button onClick={() => handleArchive(planId)} className="plans-component-archive-button">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6"
-            >
+              className="w-6 h-6">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useTVPlansStore from "../../stores/useTVPlansStore";
 import useRegisterStore from "../../stores/useRegisterStore";
 import useGeneralStore from "../../stores/useGeneralStore";
@@ -40,13 +40,13 @@ const TVPlans = () => {
       plansProviders: state.plansProviders,
       setPlansProviders: state.setPlansProviders,
     }),
-    shallow
+    shallow,
   );
   const { isRegisterFormOpen } = useRegisterStore(
     (state) => ({
       isRegisterFormOpen: state.isRegisterFormOpen,
     }),
-    shallow
+    shallow,
   );
   const { isLoading, setLoading, unsetLoading } = useGeneralStore(
     (state) => ({
@@ -54,15 +54,22 @@ const TVPlans = () => {
       setLoading: state.setLoading,
       unsetLoading: state.unsetLoading,
     }),
-    shallow
+    shallow,
   );
   const { isLinkEnabled, enableLink } = useWhatsappStore(
     (state) => ({
       isLinkEnabled: state.isLinkEnabled,
       enableLink: state.enableLink,
     }),
-    shallow
+    shallow,
   );
+  const [filterValues, setFilterValues] = useState({
+    cep: "",
+    provider: [],
+    cost: 250,
+    devicesQuant: 1,
+  });
+  const [filterValuesValidator, setFilterValuesValidator] = useState({ ...filterValues });
 
   const cep = useParams()?.cep || "";
 
@@ -85,12 +92,13 @@ const TVPlans = () => {
               devicesQuant: 1,
             };
 
+            setFilterValues((prev) => ({ ...prev, cep: cep }));
+            setFilterValuesValidator(data);
+
             api
               .post("plan/tv-plan/filter", data)
               .then((res) => {
-                const sortedPlans = res.data.sort(
-                  (a, b) => a.priority - b.priority
-                );
+                const sortedPlans = res.data.sort((a, b) => a.priority - b.priority);
 
                 setFilteredTvPlans(sortedPlans);
               })
@@ -161,9 +169,14 @@ const TVPlans = () => {
     <div className="tv-plans-container">
       <PlansHeader
         headerTitle="Planos de TV"
-        headerDesc="Rorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis."
+        headerDesc="A melhor programação na sua tela. Descubra nossos planos de TV e viva momentos incríveis em casa."
       />
-      <TVPlansBody />
+      <TVPlansBody
+        filterValues={filterValues}
+        setFilterValues={setFilterValues}
+        filterValuesValidator={filterValuesValidator}
+        setFilterValuesValidator={setFilterValuesValidator}
+      />
       {isRegisterFormOpen && <RegisterForm />}
       {isLinkEnabled && <WhatsappLink />}
       <Footer />

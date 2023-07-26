@@ -235,6 +235,7 @@
               font-size: 1rem;
               color: #252525;
               transition: border-color 0.3s ease;
+              cursor: default;
 
               &:focus {
                 border-color: #7a7a7a;

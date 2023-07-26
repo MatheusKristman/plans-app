@@ -63,8 +63,8 @@ const CelPlans = () => {
   );
   const [filterValues, setFilterValues] = useState({
     cep: "",
-    cost: 0,
-    franchise: "",
+    cost: 300,
+    franchise: "300GB",
     provider: [],
     planType: [],
   });
@@ -99,6 +99,8 @@ const CelPlans = () => {
               .post("plan/cel-plan/filter", data)
               .then((res) => {
                 const sortedPlans = res.data.sort((a, b) => a.priority - b.priority);
+
+                console.log("plans: ", sortedPlans);
 
                 setFilteredCelPlans(sortedPlans);
               })
@@ -161,7 +163,7 @@ const CelPlans = () => {
     <div className="cel-plans-container">
       <PlansHeader
         headerTitle="Planos de Celular"
-        headerDesc="Rorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis."
+        headerDesc="Conecte-se com o mundo. Descubra nossos planos de celular e aproveite a mobilidade sem preocupações."
       />
       <CelPlansBody
         filterValues={filterValues}

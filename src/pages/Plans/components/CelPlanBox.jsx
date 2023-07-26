@@ -24,27 +24,29 @@ const CelPlanBox = ({
     openEditCelForm,
     openCelDetailsBox,
     setIdSelectedForDetails,
+    setIdSelectedForEdit,
     setPlans,
   } = usePlansStore(
     (state) => ({
       openEditCelForm: state.openEditCelForm,
       openCelDetailsBox: state.openCelDetailsBox,
       setIdSelectedForDetails: state.setIdSelectedForDetails,
+      setIdSelectedForEdit: state.setIdSelectedForEdit,
       setPlans: state.setPlans,
     }),
-    shallow
+    shallow,
   );
   const { activateModalAnimation } = useGeneralStore(
     (state) => ({
       activateModalAnimation: state.activateModalAnimation,
     }),
-    shallow
+    shallow,
   );
 
   const handleOpenForm = () => {
     openEditCelForm();
     activateModalAnimation();
-    setIdSelectedForDetails(planId);
+    setIdSelectedForEdit(planId);
   };
 
   const handleOpenDetailsBox = () => {
@@ -52,6 +54,8 @@ const CelPlanBox = ({
     activateModalAnimation();
     setIdSelectedForDetails(planId);
   };
+
+  // TODO Checar bugs
 
   const handleArchive = (id) => {
     api
@@ -133,40 +137,28 @@ const CelPlanBox = ({
           </div>
 
           <div className="plans-component-created-at-box">
-            <span className="plans-component-created-at-value">
-              {createdAt}
-            </span>
+            <span className="plans-component-created-at-value">{createdAt}</span>
             <span className="plans-component-created-at-desc">Criado em</span>
           </div>
         </div>
 
         <div className="plans-component-plan-buttons">
-          <button
-            onClick={handleOpenForm}
-            className="plans-component-edit-button"
-          >
+          <button onClick={handleOpenForm} className="plans-component-edit-button">
             Editar
           </button>
 
-          <button
-            onClick={handleOpenDetailsBox}
-            className="plans-component-details-button"
-          >
+          <button onClick={handleOpenDetailsBox} className="plans-component-details-button">
             Ver Detalhes
           </button>
 
-          <button
-            onClick={() => handleArchive(planId)}
-            className="plans-component-archive-button"
-          >
+          <button onClick={() => handleArchive(planId)} className="plans-component-archive-button">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6"
-            >
+              className="w-6 h-6">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"

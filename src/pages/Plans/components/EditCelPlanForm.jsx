@@ -35,9 +35,9 @@ const EditCelPlanForm = () => {
     setCelPriority,
     celDescription,
     setCelDescription,
-    planSelectedForDetails,
-    idSelectedForDetails,
-    setIdSelectedForDetails,
+    planSelectedForEdit,
+    idSelectedForEdit,
+    setIdSelectedForEdit,
     defaultValuesForCelForm,
     isSubmitting,
     setToSubmit,
@@ -63,9 +63,9 @@ const EditCelPlanForm = () => {
       setCelPriority: state.setCelPriority,
       celDescription: state.celDescription,
       setCelDescription: state.setCelDescription,
-      planSelectedForDetails: state.planSelectedForDetails,
-      idSelectedForDetails: state.idSelectedForDetails,
-      setIdSelectedForDetails: state.setIdSelectedForDetails,
+      planSelectedForEdit: state.planSelectedForEdit,
+      idSelectedForEdit: state.idSelectedForEdit,
+      setIdSelectedForEdit: state.setIdSelectedForEdit,
       defaultValuesForCelForm: state.defaultValuesForCelForm,
       isSubmitting: state.isSubmitting,
       setToSubmit: state.setToSubmit,
@@ -73,24 +73,19 @@ const EditCelPlanForm = () => {
       setPlans: state.setPlans,
       celResetInputs: state.celResetInputs,
     }),
-    shallow
+    shallow,
   );
-  const {
-    deactivateModalAnimation,
-    modalAnimation,
-    benefits,
-    resetBenefits,
-    defaultBenefits,
-  } = useGeneralStore(
-    (state) => ({
-      deactivateModalAnimation: state.deactivateModalAnimation,
-      modalAnimation: state.modalAnimation,
-      benefits: state.benefits,
-      resetBenefits: state.resetBenefits,
-      defaultBenefits: state.defaultBenefits,
-    }),
-    shallow
-  );
+  const { deactivateModalAnimation, modalAnimation, benefits, resetBenefits, defaultBenefits } =
+    useGeneralStore(
+      (state) => ({
+        deactivateModalAnimation: state.deactivateModalAnimation,
+        modalAnimation: state.modalAnimation,
+        benefits: state.benefits,
+        resetBenefits: state.resetBenefits,
+        defaultBenefits: state.defaultBenefits,
+      }),
+      shallow,
+    );
 
   const {
     register,
@@ -109,11 +104,11 @@ const EditCelPlanForm = () => {
 
   const handleCloseForm = () => {
     deactivateModalAnimation();
-    celResetInputs();
-    resetBenefits();
-    setIdSelectedForDetails("");
 
     setTimeout(() => {
+      setIdSelectedForEdit("");
+      resetBenefits();
+      celResetInputs();
       closeEditCelForm();
     }, 800);
   };
@@ -122,10 +117,12 @@ const EditCelPlanForm = () => {
     setToSubmit();
   };
 
+  // TODO checar bugs
+
   useEffect(() => {
     const submitData = () => {
       const data = {
-        id: idSelectedForDetails,
+        id: idSelectedForEdit,
         title: celTitle,
         cost: Number(celCost.replace(",", ".")),
         franchise: celFranchise + celFranchiseUnit,
@@ -135,6 +132,10 @@ const EditCelPlanForm = () => {
         priority: celPriority,
         description: celDescription.split("\n"),
       };
+
+      console.log(data);
+
+      // TODO verificar os dados que estão sendo enviados
 
       api
         .put("/plan/cel-plan/edit", data)
@@ -151,6 +152,8 @@ const EditCelPlanForm = () => {
             progress: undefined,
             theme: "colored",
           });
+
+          handleCloseForm();
         })
         .catch((error) => {
           console.error(error);
@@ -166,10 +169,7 @@ const EditCelPlanForm = () => {
           });
         })
         .finally(() => {
-          celResetInputs();
-          resetBenefits();
           cancelSubmit();
-          handleCloseForm();
         });
     };
 
@@ -183,15 +183,19 @@ const EditCelPlanForm = () => {
   }, [isSubmitting]);
 
   useEffect(() => {
-    if (planSelectedForDetails) {
+    if (planSelectedForEdit.hasOwnProperty("_id")) {
       defaultValuesForCelForm();
-      defaultBenefits(planSelectedForDetails.unlimitedApps);
-      setValue("title", celTitle);
-      setValue("cost", celCost);
-      setValue("franchise", celFranchise);
-      setValue("description", celDescription);
+      defaultBenefits(planSelectedForEdit.unlimitedApps);
+      setValue("title", planSelectedForEdit.title);
+      setValue("cost", planSelectedForEdit.cost?.toFixed(2).replace(".", ","));
+      setValue(
+        "franchise",
+        planSelectedForEdit.franchise?.substring(0, planSelectedForEdit.franchise?.length - 2),
+      );
+      setValue("description", planSelectedForEdit.description?.join("\n"));
+      console.log(planSelectedForEdit);
     }
-  }, [planSelectedForDetails]);
+  }, [planSelectedForEdit]);
 
   return (
     <div
@@ -199,29 +203,19 @@ const EditCelPlanForm = () => {
         modalAnimation
           ? "edit-cel-plan-overlay animate__animated animate__fast animate__fadeIn"
           : "edit-cel-plan-overlay animate__animated animate__fast animate__fadeOut"
-      }
-    >
+      }>
       <div className="edit-cel-plan-container">
         <div className="edit-cel-plan-wrapper">
           <div className="edit-cel-plan-header">
-            <button
-              type="button"
-              onClick={handleCloseForm}
-              className="edit-cel-plan-close-button"
-            >
+            <button type="button" onClick={handleCloseForm} className="edit-cel-plan-close-button">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
+                className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
 
@@ -229,10 +223,7 @@ const EditCelPlanForm = () => {
           </div>
 
           <div className="edit-cel-plan-body">
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="edit-cel-plan-form"
-            >
+            <form onSubmit={handleSubmit(onSubmit)} className="edit-cel-plan-form">
               <div className="edit-cel-plan-title-box">
                 <span className="edit-cel-plan-title-label">Título</span>
                 <input
@@ -247,9 +238,7 @@ const EditCelPlanForm = () => {
                   className="edit-cel-plan-title-input"
                 />
                 {errors.title && (
-                  <span className="edit-cel-plan-modal-error-form">
-                    {errors.title.message}
-                  </span>
+                  <span className="edit-cel-plan-modal-error-form">{errors.title.message}</span>
                 )}
               </div>
 
@@ -265,37 +254,26 @@ const EditCelPlanForm = () => {
                   className="edit-cel-plan-cost-input"
                 />
                 {errors.cost && (
-                  <span className="edit-cel-plan-modal-error-form">
-                    {errors.cost.message}
-                  </span>
+                  <span className="edit-cel-plan-modal-error-form">{errors.cost.message}</span>
                 )}
               </div>
 
               <div className="edit-cel-plan-franchise-box">
-                <span className="edit-cel-plan-franchise-title">
-                  Franquia de cel
-                </span>
+                <span className="edit-cel-plan-franchise-title">Franquia de cel</span>
                 <input
                   {...register("franchise")}
                   type="text"
                   name="franchise"
                   onChange={setCelFranchise}
                   value={celFranchise}
-                  style={
-                    errors.franchise ? { border: "2px solid #ef5959" } : {}
-                  }
+                  style={errors.franchise ? { border: "2px solid #ef5959" } : {}}
                   className="edit-cel-plan-franchise-input"
                 />
                 {errors.franchise && (
-                  <span className="edit-cel-plan-modal-error-form">
-                    {errors.franchise.message}
-                  </span>
+                  <span className="edit-cel-plan-modal-error-form">{errors.franchise.message}</span>
                 )}
                 <div className="edit-cel-plan-franchise-unit-wrapper">
-                  <label
-                    htmlFor="franchiseMB"
-                    className="edit-cel-plan-franchise-unit-label"
-                  >
+                  <label htmlFor="franchiseMB" className="edit-cel-plan-franchise-unit-label">
                     <input
                       type="radio"
                       id="franchiseMB"
@@ -308,10 +286,7 @@ const EditCelPlanForm = () => {
                     MB
                   </label>
 
-                  <label
-                    htmlFor="franchiseGB"
-                    className="edit-cel-plan-franchise-unit-label"
-                  >
+                  <label htmlFor="franchiseGB" className="edit-cel-plan-franchise-unit-label">
                     <input
                       type="radio"
                       id="franchiseGB"
@@ -327,9 +302,7 @@ const EditCelPlanForm = () => {
               </div>
 
               <div className="edit-cel-plan-unlimited-apps-box">
-                <span className="edit-cel-plan-unlimited-apps-title">
-                  Apps ilimitados
-                </span>
+                <span className="edit-cel-plan-unlimited-apps-title">Apps ilimitados</span>
 
                 <div className="edit-cel-plan-unlimited-apps-options">
                   <BenefitsLabel
@@ -434,15 +407,10 @@ const EditCelPlanForm = () => {
               </div>
 
               <div className="edit-cel-plan-unlimited-call-box">
-                <span className="edit-cel-plan-unlimited-call-title">
-                  Ligação ilimitada
-                </span>
+                <span className="edit-cel-plan-unlimited-call-title">Ligação ilimitada</span>
 
                 <div className="edit-cel-plan-unlimited-call-options">
-                  <label
-                    htmlFor="yes"
-                    className="edit-cel-plan-unlimited-call-label"
-                  >
+                  <label htmlFor="yes" className="edit-cel-plan-unlimited-call-label">
                     <input
                       type="radio"
                       id="yes"
@@ -455,10 +423,7 @@ const EditCelPlanForm = () => {
                     Sim
                   </label>
 
-                  <label
-                    htmlFor="no"
-                    className="edit-cel-plan-unlimited-call-label"
-                  >
+                  <label htmlFor="no" className="edit-cel-plan-unlimited-call-label">
                     <input
                       type="radio"
                       id="no"
@@ -474,14 +439,11 @@ const EditCelPlanForm = () => {
               </div>
 
               <div className="edit-cel-plan-plan-type-box">
-                <span className="edit-cel-plan-plan-type-title">
-                  Tipo do plano
-                </span>
+                <span className="edit-cel-plan-plan-type-title">Tipo do plano</span>
                 <select
                   onChange={setCelPlanType}
                   value={celPlanType}
-                  className="edit-cel-plan-plan-type-select"
-                >
+                  className="edit-cel-plan-plan-type-select">
                   <option value="Controle">Controle</option>
                   <option value="Pós-pago">Pós-pago</option>
                   <option value="Pré-pago">Pré-pago</option>
@@ -494,8 +456,7 @@ const EditCelPlanForm = () => {
                   name="priority"
                   onChange={setCelPriority}
                   value={celPriority}
-                  className="edit-cel-plan-priority-select"
-                >
+                  className="edit-cel-plan-priority-select">
                   <option className="edit-cel-plan-priority-option" value="1">
                     1
                   </option>
@@ -530,9 +491,7 @@ const EditCelPlanForm = () => {
               </div>
 
               <div className="edit-cel-plan-description-box">
-                <span className="edit-cel-plan-description-title">
-                  Descrição
-                </span>
+                <span className="edit-cel-plan-description-title">Descrição</span>
 
                 <textarea
                   {...register("description")}
@@ -541,9 +500,7 @@ const EditCelPlanForm = () => {
                   value={celDescription}
                   autoComplete="off"
                   autoCorrect="off"
-                  style={
-                    errors.description ? { border: "2px solid #ef5959" } : {}
-                  }
+                  style={errors.description ? { border: "2px solid #ef5959" } : {}}
                   className="edit-cel-plan-description-textarea"
                 />
                 {errors.description && (

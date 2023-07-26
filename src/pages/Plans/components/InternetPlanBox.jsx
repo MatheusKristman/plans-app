@@ -27,27 +27,29 @@ const InternetPlanBox = ({
     openEditInternetForm,
     openInternetDetailsBox,
     setIdSelectedForDetails,
+    setIdSelectedForEdit,
     setPlans,
   } = usePlansStore(
     (state) => ({
       openEditInternetForm: state.openEditInternetForm,
       openInternetDetailsBox: state.openInternetDetailsBox,
       setIdSelectedForDetails: state.setIdSelectedForDetails,
+      setIdSelectedForEdit: state.setIdSelectedForEdit,
       setPlans: state.setPlans,
     }),
-    shallow
+    shallow,
   );
   const { activateModalAnimation } = useGeneralStore(
     (state) => ({
       activateModalAnimation: state.activateModalAnimation,
     }),
-    shallow
+    shallow,
   );
 
   const handleOpenForm = () => {
     openEditInternetForm();
     activateModalAnimation();
-    setIdSelectedForDetails(planId);
+    setIdSelectedForEdit(planId);
   };
 
   const handleOpenDetailsBox = () => {
@@ -113,16 +115,12 @@ const InternetPlanBox = ({
 
           <div className="plans-component-download-box">
             <span className="plans-component-download-value">{download}</span>
-            <span className="plans-component-download-desc">
-              Velocidade de download
-            </span>
+            <span className="plans-component-download-desc">Velocidade de download</span>
           </div>
 
           <div className="plans-component-upload-box">
             <span className="plans-component-upload-value">{upload}</span>
-            <span className="plans-component-upload-desc">
-              Velocidade de upload
-            </span>
+            <span className="plans-component-upload-desc">Velocidade de upload</span>
           </div>
 
           <div className="plans-component-priority-box">
@@ -145,40 +143,28 @@ const InternetPlanBox = ({
           </div>
 
           <div className="plans-component-created-at-box">
-            <span className="plans-component-created-at-value">
-              {createdAt}
-            </span>
+            <span className="plans-component-created-at-value">{createdAt}</span>
             <span className="plans-component-created-at-desc">Criado em</span>
           </div>
         </div>
 
         <div className="plans-component-plan-buttons">
-          <button
-            onClick={handleOpenForm}
-            className="plans-component-edit-button"
-          >
+          <button onClick={handleOpenForm} className="plans-component-edit-button">
             Editar
           </button>
 
-          <button
-            onClick={handleOpenDetailsBox}
-            className="plans-component-details-button"
-          >
+          <button onClick={handleOpenDetailsBox} className="plans-component-details-button">
             Ver Detalhes
           </button>
 
-          <button
-            onClick={() => handleArchive(planId)}
-            className="plans-component-archive-button"
-          >
+          <button onClick={() => handleArchive(planId)} className="plans-component-archive-button">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6"
-            >
+              className="w-6 h-6">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"

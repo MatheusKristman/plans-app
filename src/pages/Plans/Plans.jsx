@@ -54,7 +54,8 @@ const Plans = () => {
     resetSliceValues,
     idSelectedForDetails,
     setPlanSelectedForDetails,
-    planSelectedForDetails,
+    idSelectedForEdit,
+    setPlanSelectedForEdit,
   } = usePlansStore(
     (state) => ({
       isEditInternetFormOpen: state.isEditInternetFormOpen,
@@ -84,34 +85,34 @@ const Plans = () => {
       resetSliceValues: state.resetSliceValues,
       idSelectedForDetails: state.idSelectedForDetails,
       setPlanSelectedForDetails: state.setPlanSelectedForDetails,
-      planSelectedForDetails: state.planSelectedForDetails,
+      idSelectedForEdit: state.idSelectedForEdit,
+      setPlanSelectedForEdit: state.setPlanSelectedForEdit,
     }),
-    shallow
+    shallow,
   );
-  const { modalAnimation, isLoading, setLoading, unsetLoading } =
-    useGeneralStore(
-      (state) => ({
-        modalAnimation: state.modalAnimation,
-        isLoading: state.isLoading,
-        setLoading: state.setLoading,
-        unsetLoading: state.unsetLoading,
-      }),
-      shallow
-    );
+  const { modalAnimation, isLoading, setLoading, unsetLoading } = useGeneralStore(
+    (state) => ({
+      modalAnimation: state.modalAnimation,
+      isLoading: state.isLoading,
+      setLoading: state.setLoading,
+      unsetLoading: state.unsetLoading,
+    }),
+    shallow,
+  );
   const { searchValue } = useDashboardPageStore(
     (state) => ({
       searchValue: state.searchValue,
     }),
-    shallow
+    shallow,
   );
 
   const activePlans = filteredPlans.filter((plan) => !plan.archived);
   const searchFilteredActivePlan = activePlans.filter((plan) =>
-    plan.title.toLowerCase().includes(searchValue.toLowerCase())
+    plan.title.toLowerCase().includes(searchValue.toLowerCase()),
   );
   const archivedPlans = filteredPlans.filter((plan) => plan.archived);
   const searchFilteredArchivedPlan = archivedPlans.filter((plan) =>
-    plan.title.toLowerCase().includes(searchValue.toLowerCase())
+    plan.title.toLowerCase().includes(searchValue.toLowerCase()),
   );
 
   useEffect(() => {
@@ -211,13 +212,23 @@ const Plans = () => {
 
   useEffect(() => {
     if (idSelectedForDetails) {
-      const planSelected = filteredPlans.filter(
-        (plan) => plan._id === idSelectedForDetails
-      );
+      const planSelected = filteredPlans.filter((plan) => plan._id === idSelectedForDetails);
 
       setPlanSelectedForDetails(planSelected[0]);
+    } else {
+      setPlanSelectedForDetails({});
     }
   }, [idSelectedForDetails]);
+
+  useEffect(() => {
+    if (idSelectedForEdit) {
+      const planSelected = filteredPlans.filter((plan) => plan._id === idSelectedForEdit);
+
+      setPlanSelectedForEdit(planSelected[0]);
+    } else {
+      setPlanSelectedForEdit({});
+    }
+  }, [idSelectedForEdit]);
 
   useEffect(() => {
     if (searchValue.length !== 0) {
@@ -236,10 +247,7 @@ const Plans = () => {
       <ToastContainer />
 
       <div className="plans-component-wrapper">
-        <DashboardHeader
-          pageName="Planos"
-          searchPlaceholder="Pesquise o nome do plano..."
-        />
+        <DashboardHeader pageName="Planos" searchPlaceholder="Pesquise o nome do plano..." />
 
         <div className="plans-component-info">
           <h3 className="plans-component-mobile-title">Planos</h3>
@@ -250,12 +258,75 @@ const Plans = () => {
 
             <div className="plans-component-plans-wrapper">
               <AnimatePresence>
-                {isLoading && (
-                  <Loading type="spokes" color="#d40066" key={isLoading} />
-                )}
-                {searchValue.length !== 0 &&
-                searchFilteredActivePlan.length !== 0 ? (
-                  searchFilteredActivePlan.map((plan, index) =>
+                {isLoading && <Loading type="spokes" color="#d40066" key={isLoading} />}
+              </AnimatePresence>
+              {searchValue.length !== 0 && searchFilteredActivePlan.length !== 0 ? (
+                searchFilteredActivePlan.map((plan, index) =>
+                  plan.category === "Internet" ? (
+                    <InternetPlanBox
+                      key={`internet-plan-${index}`}
+                      providerIcon={plan.providerIcon}
+                      title={plan.title}
+                      cost={plan.cost}
+                      installationCost={plan.installationCost}
+                      benefits={plan.benefits}
+                      contacts={plan.contacts}
+                      createdAt={plan.createdAt}
+                      description={plan.description}
+                      download={plan.download}
+                      franchiseLimit={plan.franchiseLimit}
+                      hasWifi={plan.hasWifi}
+                      priority={plan.priority}
+                      technology={plan.technology}
+                      upload={plan.upload}
+                      planId={plan._id}
+                      category={plan.category}
+                    />
+                  ) : plan.category === "Cel" ? (
+                    <CelPlanBox
+                      key={`cel-plan-${index}`}
+                      contacts={plan.contacts}
+                      cost={plan.cost}
+                      createdAt={plan.createdAt}
+                      description={plan.description}
+                      franchise={plan.franchise}
+                      planType={plan.planType}
+                      priority={plan.priority}
+                      providerIcon={plan.providerIcon}
+                      title={plan.title}
+                      unlimitedApps={plan.unlimitedApps}
+                      unlimitedCall={plan.unlimitedCall}
+                      planId={plan._id}
+                      category={plan.category}
+                    />
+                  ) : plan.category === "TV" ? (
+                    <TVPlanBox
+                      key={`tv-plan-${index}`}
+                      afterCost={plan.afterCost}
+                      benefits={plan.benefits}
+                      category={plan.category}
+                      cost={plan.cost}
+                      createdAt={plan.createdAt}
+                      description={plan.description}
+                      devicesQuant={plan.devicesQuant}
+                      installationCost={plan.installationCost}
+                      periodToChangeCost={plan.periodToChangeCost}
+                      priority={plan.priority}
+                      providerIcon={plan.providerIcon}
+                      title={plan.title}
+                      planId={plan._id}
+                      contacts={plan.contacts}
+                    />
+                  ) : null,
+                )
+              ) : searchValue.length !== 0 && searchFilteredActivePlan.length === 0 ? (
+                <span className="plans-component-no-plan-adviser">
+                  Nenhum plano ativo encontrado
+                </span>
+              ) : activePlans.length !== 0 ? (
+                activePlans
+                  .slice(0, activePlansSliceValue)
+                  .map((plan, index) =>
                     plan.category === "Internet" ? (
                       <InternetPlanBox
                         key={`internet-plan-${index}`}
@@ -311,88 +382,21 @@ const Plans = () => {
                         planId={plan._id}
                         contacts={plan.contacts}
                       />
-                    ) : null
+                    ) : null,
                   )
-                ) : searchValue.length !== 0 &&
-                  searchFilteredActivePlan.length === 0 ? (
-                  <span className="plans-component-no-plan-adviser">
-                    Nenhum plano ativo encontrado
-                  </span>
-                ) : activePlans.length !== 0 ? (
-                  activePlans
-                    .slice(0, activePlansSliceValue)
-                    .map((plan, index) =>
-                      plan.category === "Internet" ? (
-                        <InternetPlanBox
-                          key={`internet-plan-${index}`}
-                          providerIcon={plan.providerIcon}
-                          title={plan.title}
-                          cost={plan.cost}
-                          installationCost={plan.installationCost}
-                          benefits={plan.benefits}
-                          contacts={plan.contacts}
-                          createdAt={plan.createdAt}
-                          description={plan.description}
-                          download={plan.download}
-                          franchiseLimit={plan.franchiseLimit}
-                          hasWifi={plan.hasWifi}
-                          priority={plan.priority}
-                          technology={plan.technology}
-                          upload={plan.upload}
-                          planId={plan._id}
-                          category={plan.category}
-                        />
-                      ) : plan.category === "Cel" ? (
-                        <CelPlanBox
-                          key={`cel-plan-${index}`}
-                          contacts={plan.contacts}
-                          cost={plan.cost}
-                          createdAt={plan.createdAt}
-                          description={plan.description}
-                          franchise={plan.franchise}
-                          planType={plan.planType}
-                          priority={plan.priority}
-                          providerIcon={plan.providerIcon}
-                          title={plan.title}
-                          unlimitedApps={plan.unlimitedApps}
-                          unlimitedCall={plan.unlimitedCall}
-                          planId={plan._id}
-                          category={plan.category}
-                        />
-                      ) : plan.category === "TV" ? (
-                        <TVPlanBox
-                          key={`tv-plan-${index}`}
-                          afterCost={plan.afterCost}
-                          benefits={plan.benefits}
-                          category={plan.category}
-                          cost={plan.cost}
-                          createdAt={plan.createdAt}
-                          description={plan.description}
-                          devicesQuant={plan.devicesQuant}
-                          installationCost={plan.installationCost}
-                          periodToChangeCost={plan.periodToChangeCost}
-                          priority={plan.priority}
-                          providerIcon={plan.providerIcon}
-                          title={plan.title}
-                          planId={plan._id}
-                          contacts={plan.contacts}
-                        />
-                      ) : null
-                    )
-                ) : (
-                  <span className="plans-component-no-plan-adviser">
-                    Nenhum plano ativo no momento
-                  </span>
-                )}
-              </AnimatePresence>
+              ) : (
+                <span className="plans-component-no-plan-adviser">
+                  Nenhum plano ativo no momento
+                </span>
+              )}
+
               {searchValue.length === 0 &&
                 activePlans.length >= activePlansSliceValue &&
                 activePlans.length !== 0 && (
                   <button
                     type="button"
                     onClick={setActivePlansSliceValue}
-                    className="plans-component-active-show-more-button"
-                  >
+                    className="plans-component-active-show-more-button">
                     Mais Planos
                   </button>
                 )}
@@ -408,10 +412,8 @@ const Plans = () => {
                   isArchivedPlansAnimation
                     ? "plans-component-archived-plans-wrapper animate__animated animate__faster animate__fadeIn"
                     : "plans-component-archived-plans-wrapper animate__animated animate__faster animate__fadeOut"
-                }
-              >
-                {searchValue.length !== 0 &&
-                searchFilteredArchivedPlan.length !== 0 ? (
+                }>
+                {searchValue.length !== 0 && searchFilteredArchivedPlan.length !== 0 ? (
                   searchFilteredArchivedPlan.map((plan, index) =>
                     plan.category === "Internet" ? (
                       <InternetPlansArchivedBox
@@ -471,10 +473,9 @@ const Plans = () => {
                         contacts={plan.contacts}
                         archivedAt={plan.archivedAt}
                       />
-                    ) : null
+                    ) : null,
                   )
-                ) : searchValue.length !== 0 &&
-                  searchFilteredArchivedPlan.length === 0 ? (
+                ) : searchValue.length !== 0 && searchFilteredArchivedPlan.length === 0 ? (
                   <span className="plans-component-archived-plans-no-plan-adviser">
                     Nenhum plano arquivado encontrado
                   </span>
@@ -540,23 +541,21 @@ const Plans = () => {
                           contacts={plan.contacts}
                           archivedAt={plan.archivedAt}
                         />
-                      ) : null
+                      ) : null,
                     )
                 ) : (
                   <span className="plans-component-archived-plans-no-plan-adviser">
                     Nenhum plano arquivado no momento
                   </span>
                 )}
-                {archivedPlans.length >= archivedPlansSliceValue &&
-                  archivedPlans.length !== 0 && (
-                    <button
-                      type="button"
-                      onClick={setArchivedPlansSliceValue}
-                      className="plans-component-archived-show-more-button"
-                    >
-                      Mais Planos
-                    </button>
-                  )}
+                {archivedPlans.length >= archivedPlansSliceValue && archivedPlans.length !== 0 && (
+                  <button
+                    type="button"
+                    onClick={setArchivedPlansSliceValue}
+                    className="plans-component-archived-show-more-button">
+                    Mais Planos
+                  </button>
+                )}
               </div>
             )}
           </div>

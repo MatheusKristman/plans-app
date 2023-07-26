@@ -86,24 +86,19 @@ const EditTVPlanForm = () => {
       setPlans: state.setPlans,
       tvResetInputs: state.tvResetInputs,
     }),
-    shallow
+    shallow,
   );
-  const {
-    modalAnimation,
-    deactivateModalAnimation,
-    defaultBenefits,
-    benefits,
-    resetBenefits,
-  } = useGeneralStore(
-    (state) => ({
-      modalAnimation: state.modalAnimation,
-      deactivateModalAnimation: state.deactivateModalAnimation,
-      defaultBenefits: state.defaultBenefits,
-      benefits: state.benefits,
-      resetBenefits: state.resetBenefits,
-    }),
-    shallow
-  );
+  const { modalAnimation, deactivateModalAnimation, defaultBenefits, benefits, resetBenefits } =
+    useGeneralStore(
+      (state) => ({
+        modalAnimation: state.modalAnimation,
+        deactivateModalAnimation: state.deactivateModalAnimation,
+        defaultBenefits: state.defaultBenefits,
+        benefits: state.benefits,
+        resetBenefits: state.resetBenefits,
+      }),
+      shallow,
+    );
 
   const installationCostCheckboxRef = useRef();
 
@@ -152,6 +147,10 @@ const EditTVPlanForm = () => {
         priority: tvPriority,
         description: tvDescription.split("\n"),
       };
+
+      console.log(data);
+
+      // TODO verificar os dados que estão sendo enviados
 
       api
         .put("/plan/tv-plan/edit", data)
@@ -218,29 +217,19 @@ const EditTVPlanForm = () => {
         modalAnimation
           ? "edit-tv-plan-overlay animate__animated animate__fast animate__fadeIn"
           : "edit-tv-plan-overlay animate__animated animate__fast animate__fadeOut"
-      }
-    >
+      }>
       <div className="edit-tv-plan-container">
         <div className="edit-tv-plan-wrapper">
           <div className="edit-tv-plan-header">
-            <button
-              type="button"
-              onClick={handleCloseForm}
-              className="edit-tv-plan-close-button"
-            >
+            <button type="button" onClick={handleCloseForm} className="edit-tv-plan-close-button">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
+                className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
 
@@ -248,10 +237,7 @@ const EditTVPlanForm = () => {
           </div>
 
           <div className="edit-tv-plan-body">
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="edit-tv-plan-form"
-            >
+            <form onSubmit={handleSubmit(onSubmit)} className="edit-tv-plan-form">
               <div className="edit-tv-plan-title-box">
                 <span className="edit-tv-plan-title-label">Título</span>
                 <input
@@ -266,9 +252,7 @@ const EditTVPlanForm = () => {
                   className="edit-tv-plan-title-input"
                 />
                 {errors.title && (
-                  <span className="edit-tv-plan-modal-error-form">
-                    {errors.title.message}
-                  </span>
+                  <span className="edit-tv-plan-modal-error-form">{errors.title.message}</span>
                 )}
               </div>
 
@@ -284,9 +268,7 @@ const EditTVPlanForm = () => {
                   className="edit-tv-plan-cost-input"
                 />
                 {errors.cost && (
-                  <span className="edit-tv-plan-modal-error-form">
-                    {errors.cost.message}
-                  </span>
+                  <span className="edit-tv-plan-modal-error-form">{errors.cost.message}</span>
                 )}
               </div>
 
@@ -296,10 +278,7 @@ const EditTVPlanForm = () => {
                 </span>
 
                 <div className="edit-tv-plan-cost-changes-after-period-options">
-                  <label
-                    htmlFor="yes"
-                    className="edit-tv-plan-cost-changes-after-period-label"
-                  >
+                  <label htmlFor="yes" className="edit-tv-plan-cost-changes-after-period-label">
                     <input
                       type="radio"
                       id="yes"
@@ -312,10 +291,7 @@ const EditTVPlanForm = () => {
                     Sim
                   </label>
 
-                  <label
-                    htmlFor="no"
-                    className="edit-tv-plan-cost-changes-after-period-label"
-                  >
+                  <label htmlFor="no" className="edit-tv-plan-cost-changes-after-period-label">
                     <input
                       type="radio"
                       id="no"
@@ -333,18 +309,14 @@ const EditTVPlanForm = () => {
               {tvCostChangesConfirmation && (
                 <>
                   <div className="edit-tv-plan-after-cost-box">
-                    <span className="edit-tv-plan-after-cost-title">
-                      Valor depois do período
-                    </span>
+                    <span className="edit-tv-plan-after-cost-title">Valor depois do período</span>
                     <input
                       {...register("afterCost")}
                       type="text"
                       name="afterCost"
                       onChange={setTVAfterCost}
                       value={tvAfterCost}
-                      style={
-                        errors.afterCost ? { border: "2px solid #ef5959" } : {}
-                      }
+                      style={errors.afterCost ? { border: "2px solid #ef5959" } : {}}
                       className="edit-tv-plan-after-cost-input"
                     />
                     {errors.afterCost && (
@@ -365,16 +337,10 @@ const EditTVPlanForm = () => {
                         name="periodToChangeCost"
                         onChange={setTVPeriodToChangeCost}
                         value={tvPeriodToChangeCost}
-                        style={
-                          errors.periodToChangeCost
-                            ? { border: "2px solid #ef5959" }
-                            : {}
-                        }
+                        style={errors.periodToChangeCost ? { border: "2px solid #ef5959" } : {}}
                         className="edit-tv-plan-period-to-change-cost-input"
                       />
-                      <span className="edit-tv-plan-period-to-change-cost-tag">
-                        °
-                      </span>
+                      <span className="edit-tv-plan-period-to-change-cost-tag">°</span>
                       {errors.periodToChangeCost && (
                         <span className="edit-tv-plan-modal-error-form">
                           {errors.periodToChangeCost.message}
@@ -386,9 +352,7 @@ const EditTVPlanForm = () => {
               )}
 
               <div className="edit-tv-plan-installation-cost-box">
-                <span className="edit-tv-plan-installation-cost-title">
-                  Valor da instalação
-                </span>
+                <span className="edit-tv-plan-installation-cost-title">Valor da instalação</span>
                 <input
                   {...register("installationCost")}
                   type="text"
@@ -396,11 +360,7 @@ const EditTVPlanForm = () => {
                   onChange={setTVInstallationCost}
                   value={tvInstallationCost}
                   disabled={installationCostCheckboxRef.current?.checked}
-                  style={
-                    errors.installationCost
-                      ? { border: "2px solid #ef5959" }
-                      : {}
-                  }
+                  style={errors.installationCost ? { border: "2px solid #ef5959" } : {}}
                   className="edit-tv-plan-installation-cost-input"
                 />
                 {errors.installationCost && (
@@ -411,8 +371,7 @@ const EditTVPlanForm = () => {
 
                 <label
                   htmlFor="freeInstallationCost"
-                  className="edit-tv-plan-installation-cost-label"
-                >
+                  className="edit-tv-plan-installation-cost-label">
                   <input
                     ref={installationCostCheckboxRef}
                     type="checkbox"
@@ -432,8 +391,7 @@ const EditTVPlanForm = () => {
                   name="devices"
                   onChange={setTVDevices}
                   value={tvDevices}
-                  className="edit-tv-plan-devices-select"
-                >
+                  className="edit-tv-plan-devices-select">
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -629,8 +587,7 @@ const EditTVPlanForm = () => {
                   name="priority"
                   onChange={setTVPriority}
                   value={tvPriority}
-                  className="edit-tv-plan-priority-select"
-                >
+                  className="edit-tv-plan-priority-select">
                   <option className="edit-tv-plan-priority-option" value="1">
                     1
                   </option>
@@ -665,9 +622,7 @@ const EditTVPlanForm = () => {
               </div>
 
               <div className="edit-tv-plan-description-box">
-                <span className="edit-tv-plan-description-title">
-                  Descrição
-                </span>
+                <span className="edit-tv-plan-description-title">Descrição</span>
                 <textarea
                   {...register("description")}
                   name="description"
@@ -675,9 +630,7 @@ const EditTVPlanForm = () => {
                   value={tvDescription}
                   autoCorrect="off"
                   autoComplete="off"
-                  style={
-                    errors.description ? { border: "2px solid #ef5959" } : {}
-                  }
+                  style={errors.description ? { border: "2px solid #ef5959" } : {}}
                   className="edit-tv-plan-description-textarea"
                 />
                 {errors.description && (

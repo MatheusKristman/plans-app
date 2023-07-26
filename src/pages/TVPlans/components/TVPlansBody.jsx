@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useMemo } from "react";
+import React, { useRef, useEffect, useMemo, useState } from "react";
 import useTVPlansStore from "../../../stores/useTVPlansStore";
 import useGeneralStore from "../../../stores/useGeneralStore";
 import { shallow } from "zustand/shallow";
@@ -8,50 +8,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import Plan from "./Plan";
 import Loading from "../../components/Loading";
 
-const TVPlansBody = () => {
-  const {
-    isFilterOpen,
-    openFilterBox,
-    closeFilterBox,
-    tvPlans,
-    setTvPlans,
-    filteredTvPlans,
-    setFilteredTvPlans,
-    sliceEnd,
-    setSliceEnd,
-    resetSlice,
-    filterValues,
-    setFilterValues,
-    handleProviderFilterOption,
-    providers,
-    submittingFilter,
-    setSubmittingFilter,
-    unsetSubmittingFilter,
-    validFilterOptions,
-    setValidFilterOptions,
-    unsetValidFilterOptions,
-  } = useTVPlansStore(
+const TVPlansBody = ({
+  filterValues,
+  setFilterValues,
+  filterValuesValidator,
+  setFilterValuesValidator,
+}) => {
+  const { tvPlans, setTvPlans, filteredTvPlans, setFilteredTvPlans, providers } = useTVPlansStore(
     (state) => ({
-      isFilterOpen: state.isFilterOpen,
-      openFilterBox: state.openFilterBox,
-      closeFilterBox: state.closeFilterBox,
       tvPlans: state.tvPlans,
       setTvPlans: state.setTvPlans,
       filteredTvPlans: state.filteredTvPlans,
       setFilteredTvPlans: state.setFilteredTvPlans,
-      sliceEnd: state.sliceEnd,
-      setSliceEnd: state.setSliceEnd,
-      resetSlice: state.resetSlice,
-      filterValues: state.filterValues,
-      setFilterValues: state.setFilterValues,
-      handleProviderFilterOption: state.handleProviderFilterOption,
       providers: state.providers,
-      submittingFilter: state.submittingFilter,
-      setSubmittingFilter: state.setSubmittingFilter,
-      unsetSubmittingFilter: state.unsetSubmittingFilter,
-      validFilterOptions: state.validFilterOptions,
-      setValidFilterOptions: state.setValidFilterOptions,
-      unsetValidFilterOptions: state.unsetValidFilterOptions,
     }),
     shallow,
   );
@@ -63,12 +32,20 @@ const TVPlansBody = () => {
     }),
     shallow,
   );
+  const [resetInputs, setResetInputs] = useState(undefined);
+  const [isFilterOptionsValid, setIsFilterOptionsValid] = useState(false);
+  const [isFilterSubmitting, setIsFilterSubmitting] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [sliceEnd, setSliceEnd] = useState(5);
 
   const filterRef = useRef();
 
-  const filterAnimation = {
-    offscreen: { y: -50, opacity: 0 },
-    onscreen: { y: 0, opacity: 1, transition: { duration: 1 } },
+  const openFilterBox = () => {
+    setIsFilterOpen(true);
+  };
+
+  const closeFilterBox = () => {
+    setIsFilterOpen(false);
   };
 
   const handleFilterBoxButton = () => {
@@ -85,7 +62,7 @@ const TVPlansBody = () => {
       return;
     }
 
-    setSliceEnd();
+    setSliceEnd((prev) => prev + 5);
   };
 
   const handleShowMoreFiltered = () => {
@@ -93,29 +70,65 @@ const TVPlansBody = () => {
       return;
     }
 
-    setSliceEnd();
+    setSliceEnd((prev) => prev + 5);
+  };
+
+  const resetSlice = () => {
+    setSliceEnd(5);
   };
 
   const handleSubmitFilterButton = (event) => {
     event.preventDefault();
 
-    setSubmittingFilter();
+    setIsFilterSubmitting(true);
 
     if (window.innerWidth < 1024) {
       closeFilterBox();
     }
   };
 
-  useEffect(() => {
-    if (
-      filterValues.cep !== "" &&
-      filterValues.cep.length === 9 &&
-      filterValues.cost !== 0 &&
-      filterValues.devicesQuant !== 0
-    ) {
-      setValidFilterOptions();
+  const handleFilterValuesChanges = (option, value) => {
+    if (option === "provider") {
+      if (filterValues.provider.includes(value)) {
+        const newValue = filterValues.provider.filter((prov) => prov !== value);
+
+        setFilterValues((prev) => ({ ...prev, [option]: newValue }));
+
+        return;
+      }
+
+      const newValue = [...filterValues.provider];
+
+      newValue.push(value);
+
+      setFilterValues((prev) => ({ ...prev, [option]: newValue }));
+
+      return;
     }
-  }, [filterValues]);
+
+    setFilterValues((prev) => ({ ...prev, [option]: value }));
+  };
+
+  useEffect(() => {
+    if (filterValues.cep.length === 9) {
+      if (
+        filterValues.cep !== filterValuesValidator.cep ||
+        filterValues.cost !== filterValuesValidator.cost ||
+        filterValues.devicesQuant !== filterValuesValidator.devicesQuant ||
+        JSON.stringify(filterValues.provider) !== JSON.stringify(filterValuesValidator.provider)
+      ) {
+        setIsFilterOptionsValid(true);
+      } else {
+        setIsFilterOptionsValid(false);
+      }
+    } else {
+      setIsFilterOptionsValid(false);
+    }
+  }, [filterValues, filterValuesValidator]);
+
+  useEffect(() => {
+    setResetInputs(true);
+  }, []);
 
   useEffect(() => {
     const submitData = () => {
@@ -138,22 +151,23 @@ const TVPlansBody = () => {
 
           setTimeout(() => {
             setFilteredTvPlans(sortedPlans);
-          }, 300);
+          }, 350);
         })
         .catch((err) => console.error(err))
         .finally(() => {
-          unsetSubmittingFilter();
-          unsetValidFilterOptions();
+          setIsFilterSubmitting(false);
+          setIsFilterOptionsValid(false);
+          setFilterValuesValidator({ ...filterValues });
           setTvPlans([]);
           resetSlice();
           unsetLoading();
         });
     };
 
-    if (submittingFilter) {
+    if (isFilterSubmitting) {
       submitData();
     }
-  }, [submittingFilter]);
+  }, [isFilterSubmitting]);
 
   return (
     <div className="body-container">
@@ -162,26 +176,18 @@ const TVPlansBody = () => {
       </AnimatePresence>
       <div className="body-wrapper wrapper">
         <div className="filter-form-container">
-          <button
-            type="button"
-            onClick={handleFilterBoxButton}
-            className="filter-form-button"
-          >
+          <button type="button" onClick={handleFilterBoxButton} className="filter-form-button">
             Filtrar
           </button>
 
-          <motion.form
-            variants={window.innerWidth >= 1024 ? filterAnimation : {}}
-            initial="offscreen"
-            animate="onscreen"
+          <form
             ref={filterRef}
             style={
               isFilterOpen
                 ? { maxHeight: `${filterRef.current?.scrollHeight + 25}px` }
                 : { maxHeight: "0px" }
             }
-            className="filter-form-box"
-          >
+            className="filter-form-box">
             <div className="filter-form-wrapper">
               <div className="filter-form-cep-box">
                 <span className="filter-form-cep-title">Cep</span>
@@ -197,7 +203,7 @@ const TVPlansBody = () => {
                       cep = cep.replace(/(\d{5})(\d)/, "$1-$2");
                     }
 
-                    setFilterValues("cep", cep);
+                    handleFilterValuesChanges("cep", cep);
                   }}
                   value={filterValues.cep}
                   maxLength="8"
@@ -214,9 +220,9 @@ const TVPlansBody = () => {
                     id="cost50"
                     name="cost"
                     value={50}
-                    onChange={(e) =>
-                      setFilterValues("cost", Number(e.target.value))
-                    }
+                    onChange={(e) => handleFilterValuesChanges("cost", Number(e.target.value))}
+                    autoComplete="off"
+                    autoCorrect="off"
                     className="filter-form-cost-input"
                   />
                   Até R$ 50,00
@@ -228,9 +234,9 @@ const TVPlansBody = () => {
                     id="cost100"
                     name="cost"
                     value={100}
-                    onChange={(e) =>
-                      setFilterValues("cost", Number(e.target.value))
-                    }
+                    onChange={(e) => handleFilterValuesChanges("cost", Number(e.target.value))}
+                    autoComplete="off"
+                    autoCorrect="off"
                     className="filter-form-cost-input"
                   />
                   Até R$ 100,00
@@ -242,9 +248,9 @@ const TVPlansBody = () => {
                     id="cost150"
                     name="cost"
                     value={150}
-                    onChange={(e) =>
-                      setFilterValues("cost", Number(e.target.value))
-                    }
+                    onChange={(e) => handleFilterValuesChanges("cost", Number(e.target.value))}
+                    autoComplete="off"
+                    autoCorrect="off"
                     className="filter-form-cost-input"
                   />
                   Até R$ 150,00
@@ -256,10 +262,10 @@ const TVPlansBody = () => {
                     id="cost250"
                     name="cost"
                     value={250}
-                    defaultChecked
-                    onChange={(e) =>
-                      setFilterValues("cost", Number(e.target.value))
-                    }
+                    defaultChecked={resetInputs}
+                    onChange={(e) => handleFilterValuesChanges("cost", Number(e.target.value))}
+                    autoComplete="off"
+                    autoCorrect="off"
                     className="filter-form-cost-input"
                   />
                   Até R$ 250,00
@@ -267,9 +273,7 @@ const TVPlansBody = () => {
               </div>
 
               <div className="filter-form-devices-box">
-                <span className="filter-form-devices-title">
-                  Quantidade de dispositivos
-                </span>
+                <span className="filter-form-devices-title">Quantidade de dispositivos</span>
 
                 <label htmlFor="device1" className="filter-form-devices-label">
                   <input
@@ -277,10 +281,12 @@ const TVPlansBody = () => {
                     id="device1"
                     name="devicesQuant"
                     value={1}
-                    defaultChecked
+                    defaultChecked={resetInputs}
                     onChange={(e) =>
-                      setFilterValues("devicesQuant", Number(e.target.value))
+                      handleFilterValuesChanges("devicesQuant", Number(e.target.value))
                     }
+                    autoComplete="off"
+                    autoCorrect="off"
                     className="filter-form-devices-input"
                   />
                   1 aparelho
@@ -293,8 +299,10 @@ const TVPlansBody = () => {
                     name="devicesQuant"
                     value={2}
                     onChange={(e) =>
-                      setFilterValues("devicesQuant", Number(e.target.value))
+                      handleFilterValuesChanges("devicesQuant", Number(e.target.value))
                     }
+                    autoComplete="off"
+                    autoCorrect="off"
                     className="filter-form-devices-input"
                   />
                   2 aparelhos
@@ -307,8 +315,10 @@ const TVPlansBody = () => {
                     name="devicesQuant"
                     value={3}
                     onChange={(e) =>
-                      setFilterValues("devicesQuant", Number(e.target.value))
+                      handleFilterValuesChanges("devicesQuant", Number(e.target.value))
                     }
+                    autoComplete="off"
+                    autoCorrect="off"
                     className="filter-form-devices-input"
                   />
                   3 aparelhos
@@ -321,8 +331,10 @@ const TVPlansBody = () => {
                     name="devicesQuant"
                     value={4}
                     onChange={(e) =>
-                      setFilterValues("devicesQuant", Number(e.target.value))
+                      handleFilterValuesChanges("devicesQuant", Number(e.target.value))
                     }
+                    autoComplete="off"
+                    autoCorrect="off"
                     className="filter-form-devices-input"
                   />
                   4 aparelhos
@@ -336,16 +348,17 @@ const TVPlansBody = () => {
                   <label
                     key={`provider-${index}`}
                     htmlFor={provider}
-                    className="filter-form-provider-label"
-                  >
+                    className="filter-form-provider-label">
                     <input
                       type="checkbox"
                       id={provider}
                       name="provider"
                       value={provider}
                       onChange={(event) =>
-                        handleProviderFilterOption(event.target.value)
+                        handleFilterValuesChanges("provider", event.target.value)
                       }
+                      autoComplete="off"
+                      autoCorrect="off"
                       className="filter-form-provider-input"
                     />
                     {provider}
@@ -357,18 +370,16 @@ const TVPlansBody = () => {
             <button
               type="submit"
               onClick={handleSubmitFilterButton}
-              disabled={!validFilterOptions}
-              className="filter-form-submit-button"
-            >
+              disabled={!isFilterOptionsValid}
+              className="filter-form-submit-button">
               Aplicar
             </button>
-          </motion.form>
+          </form>
         </div>
 
         <div className="result-box">
           <span className="result-status">
-            {tvPlans.length !== 0 ? tvPlans.length : filteredTvPlans.length}{" "}
-            Resultado(s)
+            {tvPlans.length !== 0 ? tvPlans.length : filteredTvPlans.length} Resultado(s)
           </span>
 
           <div className="result-wrapper">
@@ -416,11 +427,7 @@ const TVPlansBody = () => {
               )}
             </AnimatePresence>
             {tvPlans.length > sliceEnd ? (
-              <button
-                type="button"
-                onClick={handleShowMore}
-                className="result-show-more-button"
-              >
+              <button type="button" onClick={handleShowMore} className="result-show-more-button">
                 MOSTRAR MAIS
               </button>
             ) : (
@@ -430,8 +437,7 @@ const TVPlansBody = () => {
               <button
                 type="button"
                 onClick={handleShowMoreFiltered}
-                className="result-show-more-button"
-              >
+                className="result-show-more-button">
                 MOSTRAR MAIS
               </button>
             ) : (

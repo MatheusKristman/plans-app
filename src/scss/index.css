@@ -4418,6 +4418,7 @@ body {
   font-size: 1rem;
   color: #252525;
   transition: border-color 0.3s ease;
+  cursor: default;
 }
 .new-provider-form-overlay .new-provider-form-container .new-provider-form-wrapper .new-provider-form-body .new-provider-form-form .new-provider-form-cep-box .new-provider-form-cep-textarea:focus {
   border-color: #7a7a7a;
@@ -4634,7 +4635,7 @@ body {
   background-color: rgba(32, 33, 36, 0.5);
   overflow: auto;
   padding: 50px 15px;
-  z-index: 20;
+  z-index: 70;
 }
 .edit-provider-form-overlay::before {
   content: "";
@@ -4840,6 +4841,7 @@ body {
   font-size: 1rem;
   color: #252525;
   transition: border-color 0.3s ease;
+  cursor: default;
 }
 .edit-provider-form-overlay .edit-provider-form-container .edit-provider-form-wrapper .edit-provider-form-body .edit-provider-form-form .edit-provider-form-cep-box .edit-provider-form-cep-textarea:focus {
   border-color: #7a7a7a;
@@ -4923,7 +4925,7 @@ body {
   background-color: rgba(32, 33, 36, 0.5);
   overflow: auto;
   padding: 50px 15px;
-  z-index: 20;
+  z-index: 70;
 }
 .edit-internet-plan-overlay::before {
   content: "";
@@ -5460,6 +5462,15 @@ body {
 .edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-submit-button:hover {
   filter: brightness(80%);
 }
+.edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-submit-button:disabled {
+  filter: brightness(80%);
+  cursor: not-allowed;
+}
+.edit-internet-plan-overlay .edit-internet-plan-container .edit-internet-plan-wrapper .edit-internet-plan-body .edit-internet-plan-form .edit-internet-plan-submit-button .edit-internet-plan-loading-submit {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
 
 .edit-internet-plan-modal-error-form {
   font-size: 1rem;
@@ -5481,7 +5492,7 @@ body {
   background-color: rgba(32, 33, 36, 0.5);
   overflow: auto;
   padding: 50px 15px;
-  z-index: 20;
+  z-index: 70;
 }
 .edit-cel-plan-overlay::before {
   content: "";
@@ -5878,7 +5889,7 @@ body {
   background-color: rgba(32, 33, 36, 0.5);
   overflow: auto;
   padding: 50px 15px;
-  z-index: 20;
+  z-index: 70;
 }
 .edit-tv-plan-overlay::before {
   content: "";
@@ -6812,6 +6823,10 @@ body {
 .internet-details-box-overlay .internet-details-box-container .internet-details-box-wrapper .internet-details-box-body .internet-details-box-info-wrapper .internet-details-box-description-box .internet-details-box-description-desc {
   font-size: 1rem;
   line-height: 26px;
+  margin-bottom: 10px;
+}
+.internet-details-box-overlay .internet-details-box-container .internet-details-box-wrapper .internet-details-box-body .internet-details-box-info-wrapper .internet-details-box-description-box .internet-details-box-description-desc:last-of-type {
+  margin-bottom: 0;
 }
 .internet-details-box-overlay .internet-details-box-container .internet-details-box-wrapper .internet-details-box-body .internet-details-box-info-wrapper .internet-details-box-buttons-wrapper {
   width: 100%;
@@ -7295,6 +7310,10 @@ body {
 .cel-details-box-overlay .cel-details-box-container .cel-details-box-wrapper .cel-details-box-body .cel-details-box-info-wrapper .cel-details-box-description-box .cel-details-box-description-desc {
   font-size: 1rem;
   line-height: 26px;
+  margin-bottom: 10px;
+}
+.cel-details-box-overlay .cel-details-box-container .cel-details-box-wrapper .cel-details-box-body .cel-details-box-info-wrapper .cel-details-box-description-box .cel-details-box-description-desc:last-of-type {
+  margin-bottom: 0;
 }
 .cel-details-box-overlay .cel-details-box-container .cel-details-box-wrapper .cel-details-box-body .cel-details-box-info-wrapper .cel-details-box-buttons-wrapper {
   width: 100%;
@@ -7830,6 +7849,10 @@ body {
 .tv-details-box-overlay .tv-details-box-container .tv-details-box-wrapper .tv-details-box-body .tv-details-box-info-wrapper .tv-details-box-description-box .tv-details-box-description-desc {
   font-size: 1rem;
   line-height: 26px;
+  margin-bottom: 10px;
+}
+.tv-details-box-overlay .tv-details-box-container .tv-details-box-wrapper .tv-details-box-body .tv-details-box-info-wrapper .tv-details-box-description-box .tv-details-box-description-desc:last-of-type {
+  margin-bottom: 0;
 }
 .tv-details-box-overlay .tv-details-box-container .tv-details-box-wrapper .tv-details-box-body .tv-details-box-info-wrapper .tv-details-box-buttons-wrapper {
   width: 100%;
