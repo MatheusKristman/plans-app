@@ -1,14 +1,15 @@
 import React, { useEffect, useRef } from "react";
-import useDashboardComponentStore from "../../../stores/useDashboardComponentStore";
-import useGeneralStore from "../../../stores/useGeneralStore";
 import { shallow } from "zustand/shallow";
-import api from "../../../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { toast } from "react-toastify";
 
 import BenefitsLabel from "./BenefitsLabel";
+import useDashboardComponentStore from "../../../stores/useDashboardComponentStore";
+import useGeneralStore from "../../../stores/useGeneralStore";
+import submitLoading from "../../../../public/assets/icons/submit-loading.gif";
+import api from "../../../services/api";
 
 const schema = yup.object({
   title: yup.string().required("Título é obrigatório"),
@@ -100,7 +101,7 @@ const NewInternetPlanModal = () => {
       unsetInternetProviderError: state.unsetInternetProviderError,
       internetResetInputs: state.internetResetInputs,
     }),
-    shallow
+    shallow,
   );
   const { deactivateModalAnimation, modalAnimation, benefits, resetBenefits } =
     useGeneralStore(
@@ -110,7 +111,7 @@ const NewInternetPlanModal = () => {
         benefits: state.benefits,
         resetBenefits: state.resetBenefits,
       }),
-      shallow
+      shallow,
     );
 
   const installationCostCheckboxRef = useRef();
@@ -911,7 +912,18 @@ const NewInternetPlanModal = () => {
                 type="submit"
                 className="new-internet-plan-modal-submit-button"
               >
-                Salvar
+                {isSubmitting ? (
+                  <>
+                    <img
+                      src={submitLoading}
+                      alt="loading"
+                      className="new-internet-plan-loading-submit"
+                    />
+                    Salvar
+                  </>
+                ) : (
+                  "Salvar"
+                )}
               </button>
             </form>
           </div>

@@ -374,7 +374,9 @@
               border-radius: 8px;
               font-size: 1rem;
               color: #252525;
-              transition: border-color 0.3s ease, filter 0.3s ease;
+              transition:
+                border-color 0.3s ease,
+                filter 0.3s ease;
               margin-bottom: 10px;
               -moz-appearance: textfield;
 
@@ -569,6 +571,12 @@
 
             &:hover {
               filter: brightness(80%);
+            }
+
+            .new-tv-plan-loading-submit {
+              width: 25px;
+              height: 25px;
+              margin-right: 5px;
             }
           }
         }

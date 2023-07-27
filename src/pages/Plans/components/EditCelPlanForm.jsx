@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
-import BenefitsLabel from "../../DashboardComponent/components/BenefitsLabel";
-import usePlansStore from "../../../stores/usePlansStore";
-import useGeneralStore from "../../../stores/useGeneralStore";
 import { shallow } from "zustand/shallow";
-import api from "../../../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { toast } from "react-toastify";
+
+import submitLoading from "../../../../public/assets/icons/submit-loading.gif";
+import useGeneralStore from "../../../stores/useGeneralStore";
+import usePlansStore from "../../../stores/usePlansStore";
+import BenefitsLabel from "../../DashboardComponent/components/BenefitsLabel";
+import api from "../../../services/api";
 
 const schema = yup.object({
   title: yup.string().required("Título é obrigatório"),
@@ -571,7 +573,18 @@ const EditCelPlanForm = () => {
               </div>
 
               <button type="submit" className="edit-cel-plan-submit-button">
-                Salvar
+                {isSubmitting ? (
+                  <>
+                    <img
+                      src={submitLoading}
+                      alt="loading"
+                      className="edit-cel-plan-loading-submit"
+                    />
+                    Salvar
+                  </>
+                ) : (
+                  "Salvar"
+                )}
               </button>
             </form>
           </div>

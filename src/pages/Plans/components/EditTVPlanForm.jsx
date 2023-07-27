@@ -1,14 +1,15 @@
 import React, { useRef, useEffect } from "react";
-import usePlansStore from "../../../stores/usePlansStore";
-import useGeneralStore from "../../../stores/useGeneralStore";
 import { shallow } from "zustand/shallow";
-import api from "../../../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { toast } from "react-toastify";
 
 import BenefitsLabel from "../../DashboardComponent/components/BenefitsLabel";
+import usePlansStore from "../../../stores/usePlansStore";
+import useGeneralStore from "../../../stores/useGeneralStore";
+import api from "../../../services/api";
+import submitLoading from "../../../../public/assets/icons/submit-loading.gif";
 
 const schema = yup.object().shape({
   title: yup.string().required("Título é obrigatório"),
@@ -723,7 +724,18 @@ const EditTVPlanForm = () => {
               </div>
 
               <button type="submit" className="edit-tv-plan-submit-button">
-                Salvar
+                {isSubmitting ? (
+                  <>
+                    <img
+                      src={submitLoading}
+                      alt="loading"
+                      className="edit-tv-plan-loading-submit"
+                    />
+                    Salvar
+                  </>
+                ) : (
+                  "Salvar"
+                )}
               </button>
             </form>
           </div>

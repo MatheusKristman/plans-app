@@ -1,15 +1,15 @@
 import React, { useEffect, useRef } from "react";
-import usePlansStore from "../../../stores/usePlansStore";
-import useGeneralStore from "../../../stores/useGeneralStore";
 import { shallow } from "zustand/shallow";
-import api from "../../../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { toast } from "react-toastify";
 
 import BenefitsLabel from "../../DashboardComponent/components/BenefitsLabel";
+import usePlansStore from "../../../stores/usePlansStore";
+import useGeneralStore from "../../../stores/useGeneralStore";
 import submitLoading from "../../../../public/assets/icons/submit-loading.gif";
+import api from "../../../services/api";
 
 const schema = yup.object({
   title: yup.string().required("Título é obrigatório"),

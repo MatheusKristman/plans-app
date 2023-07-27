@@ -3218,6 +3218,11 @@ body {
 .new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-submit-button:hover {
   filter: brightness(80%);
 }
+.new-internet-plan-modal-overlay .new-internet-plan-modal-container .new-internet-plan-modal-wrapper .new-internet-plan-modal-body .new-internet-plan-modal-form .new-internet-plan-modal-submit-button .new-internet-plan-loading-submit {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
 
 .new-internet-plan-modal-error-form {
   font-size: 1rem;
@@ -3675,6 +3680,11 @@ body {
 }
 .new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-submit-button:hover {
   filter: brightness(80%);
+}
+.new-cel-plan-modal-overlay .new-cel-plan-modal-container .new-cel-plan-modal-wrapper .new-cel-plan-modal-body .new-cel-plan-modal-form .new-cel-plan-modal-submit-button .new-cel-plan-loading-submit {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
 }
 
 .new-cel-plan-modal-error-form {
@@ -4209,6 +4219,11 @@ body {
 }
 .new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-submit-button:hover {
   filter: brightness(80%);
+}
+.new-tv-plan-modal-overlay .new-tv-plan-modal-container .new-tv-plan-modal-wrapper .new-tv-plan-modal-body .new-tv-plan-modal-form .new-tv-plan-modal-submit-button .new-tv-plan-loading-submit {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
 }
 
 .new-tv-plan-modal-error-form {
@@ -5924,6 +5939,11 @@ body {
 .edit-cel-plan-overlay .edit-cel-plan-container .edit-cel-plan-wrapper .edit-cel-plan-body .edit-cel-plan-form .edit-cel-plan-submit-button:hover {
   filter: brightness(80%);
 }
+.edit-cel-plan-overlay .edit-cel-plan-container .edit-cel-plan-wrapper .edit-cel-plan-body .edit-cel-plan-form .edit-cel-plan-submit-button .edit-cel-plan-loading-submit {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
 
 .edit-cel-plan-modal-error-form {
   font-size: 1rem;
@@ -6390,6 +6410,11 @@ body {
 }
 .edit-tv-plan-overlay .edit-tv-plan-container .edit-tv-plan-wrapper .edit-tv-plan-body .edit-tv-plan-form .edit-tv-plan-submit-button:hover {
   filter: brightness(80%);
+}
+.edit-tv-plan-overlay .edit-tv-plan-container .edit-tv-plan-wrapper .edit-tv-plan-body .edit-tv-plan-form .edit-tv-plan-submit-button .edit-tv-plan-loading-submit {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
 }
 
 .edit-tv-plan-modal-error-form {
