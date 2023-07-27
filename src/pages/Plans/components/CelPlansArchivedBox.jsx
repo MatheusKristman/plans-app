@@ -9,23 +9,18 @@ const CelPlansArchivedBox = ({
   contacts,
   cost,
   createdAt,
-  description,
   franchise,
-  planType,
   priority,
   providerIcon,
   title,
-  unlimitedApps,
-  unlimitedCall,
   planId,
-  category,
   archivedAt,
 }) => {
   const { activateModalAnimation } = useGeneralStore(
     (state) => ({
       activateModalAnimation: state.activateModalAnimation,
     }),
-    shallow
+    shallow,
   );
   const { openCelDetailsBox, setIdSelectedForDetails, setPlans } =
     usePlansStore(
@@ -34,7 +29,7 @@ const CelPlansArchivedBox = ({
         setIdSelectedForDetails: state.setIdSelectedForDetails,
         setPlans: state.setPlans,
       }),
-      shallow
+      shallow,
     );
 
   const handleOpenDetailsBox = () => {

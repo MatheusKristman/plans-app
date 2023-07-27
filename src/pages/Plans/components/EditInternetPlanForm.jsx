@@ -57,12 +57,6 @@ const EditInternetPlanForm = () => {
     setIdSelectedForEdit,
     internetResetInputs,
     setPlans,
-    internetInstallationCostError,
-    setInternetInstallationCostError,
-    unsetInternetInstallationCostError,
-    internetFranchiseLimitError,
-    setInternetFranchiseLimitError,
-    unsetInternetFranchiseLimitError,
   } = usePlansStore(
     (state) => ({
       closeEditInternetForm: state.closeEditInternetForm,
@@ -99,26 +93,25 @@ const EditInternetPlanForm = () => {
       setIdSelectedForEdit: state.setIdSelectedForEdit,
       internetResetInputs: state.internetResetInputs,
       setPlans: state.setPlans,
-      internetInstallationCostError: state.internetInstallationCostError,
-      setInternetInstallationCostError: state.setInternetInstallationCostError,
-      unsetInternetInstallationCostError: state.unsetInternetInstallationCostError,
-      internetFranchiseLimitError: state.internetFranchiseLimitError,
-      setInternetFranchiseLimitError: state.setInternetFranchiseLimitError,
-      unsetInternetFranchiseLimitError: state.unsetInternetFranchiseLimitError,
     }),
     shallow,
   );
-  const { modalAnimation, deactivateModalAnimation, defaultBenefits, benefits, resetBenefits } =
-    useGeneralStore(
-      (state) => ({
-        modalAnimation: state.modalAnimation,
-        deactivateModalAnimation: state.deactivateModalAnimation,
-        defaultBenefits: state.defaultBenefits,
-        benefits: state.benefits,
-        resetBenefits: state.resetBenefits,
-      }),
-      shallow,
-    );
+  const {
+    modalAnimation,
+    deactivateModalAnimation,
+    defaultBenefits,
+    benefits,
+    resetBenefits,
+  } = useGeneralStore(
+    (state) => ({
+      modalAnimation: state.modalAnimation,
+      deactivateModalAnimation: state.deactivateModalAnimation,
+      defaultBenefits: state.defaultBenefits,
+      benefits: state.benefits,
+      resetBenefits: state.resetBenefits,
+    }),
+    shallow,
+  );
 
   const installationCostCheckboxRef = useRef();
   const franchiseLimitRef = useRef();
@@ -127,7 +120,6 @@ const EditInternetPlanForm = () => {
     register,
     handleSubmit,
     setValue,
-    getValues,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -173,10 +165,6 @@ const EditInternetPlanForm = () => {
         description: internetDescription.split("\n"),
       };
 
-      console.log(data);
-
-      // TODO verificar os dados que estão sendo enviados
-
       api
         .put("/plan/internet-plan/edit", data)
         .then((res) => {
@@ -194,9 +182,6 @@ const EditInternetPlanForm = () => {
           });
 
           handleCloseForm();
-          internetResetInputs();
-          resetBenefits();
-          setIdSelectedForEdit("");
         })
         .catch((error) => {
           console.error(error);
@@ -227,9 +212,6 @@ const EditInternetPlanForm = () => {
 
   useEffect(() => {
     if (planSelectedForEdit.hasOwnProperty("_id")) {
-      // console.log("preenchi as informações do react hook");
-      // console.log(planSelectedForEdit);
-
       defaultValuesForInternetForm();
       defaultBenefits(planSelectedForEdit.benefits);
       setValue("title", planSelectedForEdit.title);
@@ -237,15 +219,20 @@ const EditInternetPlanForm = () => {
       setValue("installationCost", planSelectedForEdit.installationCost);
       setValue(
         "download",
-        planSelectedForEdit.download?.substring(0, planSelectedForEdit.download?.length - 2),
+        planSelectedForEdit.download?.substring(
+          0,
+          planSelectedForEdit.download?.length - 2,
+        ),
       );
       setValue(
         "upload",
-        planSelectedForEdit.upload?.substring(0, planSelectedForEdit.upload?.length - 2),
+        planSelectedForEdit.upload?.substring(
+          0,
+          planSelectedForEdit.upload?.length - 2,
+        ),
       );
       setValue("franchise", planSelectedForEdit.franchiseLimit);
       setValue("description", planSelectedForEdit.description?.join("\n"));
-      console.log(planSelectedForEdit);
     }
   }, [planSelectedForEdit]);
 
@@ -259,68 +246,45 @@ const EditInternetPlanForm = () => {
     }
   }, [internetInstallationCost, internetFranchiseLimit]);
 
-  // useEffect(() => {
-  //   console.log("title: ", internetTitle);
-  //   console.log("title react hook: ", getValues("title"));
-  //   console.log("cost: ", internetCost);
-  //   console.log("cost react hook: ", getValues("cost"));
-  //   console.log("installationCost: ", internetInstallationCost);
-  //   console.log("installationCost react hook: ", getValues("installationCost"));
-  //   console.log("download", internetDownload);
-  //   console.log("download react hook", getValues("download"));
-  //   console.log("downloadUnit: ", internetDownloadUnit);
-  //   console.log("upload: ", internetUpload);
-  //   console.log("upload react hook: ", getValues("upload"));
-  //   console.log("uploadUnit: ", internetUploadUnit);
-  //   console.log("franchise: ", internetFranchiseLimit);
-  //   console.log("franchise react hook: ", getValues("franchise"));
-  //   console.log("benefits: ", benefits);
-  //   console.log("priority: ", internetPriority);
-  //   console.log("description: ", internetDescription);
-  //   console.log("description react hook: ", getValues("description"));
-  // }, [
-  //   internetTitle,
-  //   internetCost,
-  //   internetInstallationCost,
-  //   internetDownload,
-  //   internetDownloadUnit,
-  //   internetUpload,
-  //   internetUploadUnit,
-  //   internetFranchiseLimit,
-  //   benefits,
-  //   internetPriority,
-  //   internetDescription,
-  // ]);
-
   return (
     <div
       className={
         modalAnimation
           ? "edit-internet-plan-overlay animate__animated animate__fast animate__fadeIn"
           : "edit-internet-plan-overlay animate__animated animate__fast animate__fadeOut"
-      }>
+      }
+    >
       <div className="edit-internet-plan-container">
         <div className="edit-internet-plan-wrapper">
           <div className="edit-internet-plan-header">
             <button
               type="button"
               onClick={handleCloseForm}
-              className="edit-internet-plan-close-button">
+              className="edit-internet-plan-close-button"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
             <h3 className="edit-internet-plan-title">Editar Plano</h3>
           </div>
 
           <div className="edit-internet-plan-body">
-            <form onSubmit={handleSubmit(onSubmit)} className="edit-internet-plan-form">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="edit-internet-plan-form"
+            >
               <div className="edit-internet-plan-title-box">
                 <span className="edit-internet-plan-title-label">Título</span>
                 <input
@@ -350,10 +314,14 @@ const EditInternetPlanForm = () => {
                   onChange={setInternetCost}
                   value={internetCost}
                   style={errors.cost ? { border: "2px solid #ef5959" } : {}}
+                  autoCorrect="off"
+                  autoComplete="off"
                   className="edit-internet-plan-cost-input"
                 />
                 {errors.cost && (
-                  <span className="edit-internet-plan-modal-error-form">{errors.cost.message}</span>
+                  <span className="edit-internet-plan-modal-error-form">
+                    {errors.cost.message}
+                  </span>
                 )}
               </div>
 
@@ -371,7 +339,13 @@ const EditInternetPlanForm = () => {
                   }}
                   value={internetInstallationCost}
                   disabled={installationCostCheckboxRef.current?.checked}
-                  style={errors.installationCost ? { border: "2px solid #ef5959" } : {}}
+                  style={
+                    errors.installationCost
+                      ? { border: "2px solid #ef5959" }
+                      : {}
+                  }
+                  autoCorrect="off"
+                  autoComplete="off"
                   className="edit-internet-plan-installation-cost-input"
                 />
                 {errors.installationCost && (
@@ -381,7 +355,8 @@ const EditInternetPlanForm = () => {
                 )}
                 <label
                   htmlFor="freeInstallationCost"
-                  className="edit-internet-plan-installation-cost-label">
+                  className="edit-internet-plan-installation-cost-label"
+                >
                   <input
                     type="checkbox"
                     name="installationCost"
@@ -395,6 +370,8 @@ const EditInternetPlanForm = () => {
                         setValue("installationCost", "");
                       }
                     }}
+                    autoCorrect="off"
+                    autoComplete="off"
                     ref={installationCostCheckboxRef}
                     checked={internetInstallationCost === "Grátis"}
                     className="edit-internet-plan-installation-cost-checkbox"
@@ -404,7 +381,9 @@ const EditInternetPlanForm = () => {
               </div>
 
               <div className="edit-internet-plan-download-box">
-                <span className="edit-internet-plan-download-title">Velocidade de download</span>
+                <span className="edit-internet-plan-download-title">
+                  Velocidade de download
+                </span>
 
                 <input
                   {...register("download")}
@@ -413,6 +392,8 @@ const EditInternetPlanForm = () => {
                   onChange={setInternetDownload}
                   value={internetDownload}
                   style={errors.download ? { border: "2px solid #ef5959" } : {}}
+                  autoCorrect="off"
+                  autoComplete="off"
                   className="edit-internet-plan-download-input"
                 />
                 {errors.download && (
@@ -422,7 +403,10 @@ const EditInternetPlanForm = () => {
                 )}
 
                 <div className="edit-internet-plan-download-unit-wrapper">
-                  <label htmlFor="downloadMB" className="edit-internet-plan-download-unit-label">
+                  <label
+                    htmlFor="downloadMB"
+                    className="edit-internet-plan-download-unit-label"
+                  >
                     <input
                       type="radio"
                       id="downloadMB"
@@ -430,18 +414,25 @@ const EditInternetPlanForm = () => {
                       onChange={setInternetDownloadUnit}
                       value="MB"
                       checked={internetDownloadUnit === "MB"}
+                      autoCorrect="off"
+                      autoComplete="off"
                       className="edit-internet-plan-download-unit-input"
                     />
                     MB
                   </label>
 
-                  <label htmlFor="downloadGB" className="edit-internet-plan-download-unit-label">
+                  <label
+                    htmlFor="downloadGB"
+                    className="edit-internet-plan-download-unit-label"
+                  >
                     <input
                       type="radio"
                       id="downloadGB"
                       name="downloadUnit"
                       onChange={setInternetDownloadUnit}
                       value="GB"
+                      autoCorrect="off"
+                      autoComplete="off"
                       className="edit-internet-plan-download-unit-input"
                     />
                     GB
@@ -450,7 +441,9 @@ const EditInternetPlanForm = () => {
               </div>
 
               <div className="edit-internet-plan-upload-box">
-                <span className="edit-internet-plan-upload-title">Velocidade de upload</span>
+                <span className="edit-internet-plan-upload-title">
+                  Velocidade de upload
+                </span>
 
                 <input
                   {...register("upload")}
@@ -459,6 +452,8 @@ const EditInternetPlanForm = () => {
                   onChange={setInternetUpload}
                   value={internetUpload}
                   style={errors.upload ? { border: "2px solid #ef5959" } : {}}
+                  autoCorrect="off"
+                  autoComplete="off"
                   className="edit-internet-plan-upload-input"
                 />
                 {errors.upload && (
@@ -468,7 +463,10 @@ const EditInternetPlanForm = () => {
                 )}
 
                 <div className="edit-internet-plan-upload-unit-wrapper">
-                  <label htmlFor="uploadMB" className="edit-internet-plan-upload-unit-label">
+                  <label
+                    htmlFor="uploadMB"
+                    className="edit-internet-plan-upload-unit-label"
+                  >
                     <input
                       type="radio"
                       id="uploadMB"
@@ -476,18 +474,25 @@ const EditInternetPlanForm = () => {
                       onChange={setInternetUploadUnit}
                       value="MB"
                       checked={internetUploadUnit === "MB"}
+                      autoComplete="off"
+                      autoCorrect="off"
                       className="edit-internet-plan-upload-unit-input"
                     />
                     MB
                   </label>
 
-                  <label htmlFor="uploadGB" className="edit-internet-plan-upload-unit-label">
+                  <label
+                    htmlFor="uploadGB"
+                    className="edit-internet-plan-upload-unit-label"
+                  >
                     <input
                       type="radio"
                       id="uploadGB"
                       name="uploadUnit"
                       onChange={setInternetUploadUnit}
                       value="GB"
+                      autoCorrect="off"
+                      autoComplete="off"
                       className="edit-internet-plan-upload-unit-input"
                     />
                     GB
@@ -510,7 +515,11 @@ const EditInternetPlanForm = () => {
                   }}
                   value={internetFranchiseLimit}
                   disabled={franchiseLimitRef.current?.checked}
-                  style={errors.franchise ? { border: "2px solid #ef5959" } : {}}
+                  style={
+                    errors.franchise ? { border: "2px solid #ef5959" } : {}
+                  }
+                  autoCorrect="off"
+                  autoComplete="off"
                   className="edit-internet-plan-franchise-limit-input"
                 />
                 {errors.franchise && (
@@ -521,7 +530,8 @@ const EditInternetPlanForm = () => {
 
                 <label
                   htmlFor="unlimitedFranchise"
-                  className="edit-internet-plan-franchise-limit-label">
+                  className="edit-internet-plan-franchise-limit-label"
+                >
                   <input
                     type="checkbox"
                     id="unlimitedFranchise"
@@ -537,6 +547,8 @@ const EditInternetPlanForm = () => {
                       }
                     }}
                     checked={internetFranchiseLimit === "Ilimitado"}
+                    autoCorrect="off"
+                    autoComplete="off"
                     className="edit-internet-plan-franchise-limit-checkbox"
                   />
                   Franquia ilimitada
@@ -544,15 +556,20 @@ const EditInternetPlanForm = () => {
               </div>
 
               <div className="edit-internet-plan-technology-box">
-                <span className="edit-internet-plan-technology-title">Tecnologia do modem</span>
+                <span className="edit-internet-plan-technology-title">
+                  Tecnologia do modem
+                </span>
 
                 <select
                   {...register("technology")}
                   name="technology"
                   onChange={setInternetTechnology}
                   value={internetTechnology}
-                  style={errors.technology ? { border: "2px solid #ef5959" } : {}}
-                  className="edit-internet-plan-technology-select">
+                  style={
+                    errors.technology ? { border: "2px solid #ef5959" } : {}
+                  }
+                  className="edit-internet-plan-technology-select"
+                >
                   <option value="Fibra Ótica">Fibra Ótica</option>
 
                   <option value="Cabo Metálico">Cabo Metálico</option>
@@ -569,10 +586,15 @@ const EditInternetPlanForm = () => {
               </div>
 
               <div className="edit-internet-plan-has-wifi-box">
-                <span className="edit-internet-plan-has-wifi-title">Wifi incluso?</span>
+                <span className="edit-internet-plan-has-wifi-title">
+                  Wifi incluso?
+                </span>
 
                 <div className="edit-internet-plan-has-wifi-wrapper">
-                  <label htmlFor="yes" className="edit-internet-plan-has-wifi-label">
+                  <label
+                    htmlFor="yes"
+                    className="edit-internet-plan-has-wifi-label"
+                  >
                     <input
                       type="radio"
                       id="yes"
@@ -580,18 +602,25 @@ const EditInternetPlanForm = () => {
                       onChange={setInternetHasWifi}
                       defaultChecked
                       value={true}
+                      autoCorrect="off"
+                      autoComplete="off"
                       className="edit-internet-plan-has-wifi-input"
                     />
                     Sim
                   </label>
 
-                  <label htmlFor="no" className="edit-internet-plan-has-wifi-label">
+                  <label
+                    htmlFor="no"
+                    className="edit-internet-plan-has-wifi-label"
+                  >
                     <input
                       type="radio"
                       id="no"
                       name="hasWifi"
                       onChange={setInternetHasWifi}
                       value={false}
+                      autoCorrect="off"
+                      autoComplete="off"
                       className="edit-internet-plan-has-wifi-input"
                     />
                     Não
@@ -600,7 +629,9 @@ const EditInternetPlanForm = () => {
               </div>
 
               <div className="edit-internet-plan-benefits-box">
-                <span className="edit-internet-plan-benefits-title">Benefícios</span>
+                <span className="edit-internet-plan-benefits-title">
+                  Benefícios
+                </span>
                 <div className="edit-internet-plan-benefits-options">
                   <BenefitsLabel
                     htmlFor="audiobookTim"
@@ -781,13 +812,16 @@ const EditInternetPlanForm = () => {
               </div>
 
               <div className="edit-internet-plan-priority-box">
-                <span className="edit-internet-plan-priority-title">Prioridade</span>
+                <span className="edit-internet-plan-priority-title">
+                  Prioridade
+                </span>
 
                 <select
                   name="priority"
                   onChange={setInternetPriority}
                   value={internetPriority}
-                  className="edit-internet-plan-priority-select">
+                  className="edit-internet-plan-priority-select"
+                >
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -802,7 +836,9 @@ const EditInternetPlanForm = () => {
               </div>
 
               <div className="edit-internet-plan-description-box">
-                <span className="edit-internet-plan-description-title">Descrição</span>
+                <span className="edit-internet-plan-description-title">
+                  Descrição
+                </span>
                 <textarea
                   {...register("description")}
                   name="description"
@@ -810,7 +846,9 @@ const EditInternetPlanForm = () => {
                   value={internetDescription}
                   autoCorrect="off"
                   autoComplete="off"
-                  style={errors.description ? { border: "2px solid #ef5959" } : {}}
+                  style={
+                    errors.description ? { border: "2px solid #ef5959" } : {}
+                  }
                   className="edit-internet-plan-description-textarea"
                 />
                 {errors.description && (
@@ -823,7 +861,8 @@ const EditInternetPlanForm = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="edit-internet-plan-submit-button">
+                className="edit-internet-plan-submit-button"
+              >
                 {isSubmitting ? (
                   <>
                     <img

@@ -5,6 +5,7 @@ import useGeneralStore from "../../stores/useGeneralStore";
 import { shallow } from "zustand/shallow";
 import api from "../../services/api";
 import { AnimatePresence } from "framer-motion";
+import { ToastContainer } from "react-toastify";
 
 import DashboardHeader from "../components/DashboardHeader";
 import LeadsStatusBox from "./components/LeadsStatusBox";
@@ -21,7 +22,6 @@ const Leads = () => {
     plans,
     idSelectedForDetails,
     setClientSelectedForDetails,
-    clientSelectedForDetails,
     sliceEnd,
     setSliceEnd,
     resetSlice,
@@ -34,18 +34,17 @@ const Leads = () => {
       plans: state.plans,
       idSelectedForDetails: state.idSelectedForDetails,
       setClientSelectedForDetails: state.setClientSelectedForDetails,
-      clientSelectedForDetails: state.clientSelectedForDetails,
       sliceEnd: state.sliceEnd,
       setSliceEnd: state.setSliceEnd,
       resetSlice: state.resetSlice,
     }),
-    shallow
+    shallow,
   );
   const { searchValue } = useDashboardPageStore(
     (state) => ({
       searchValue: state.searchValue,
     }),
-    shallow
+    shallow,
   );
   const { isLoading, setLoading, unsetLoading } = useGeneralStore(
     (state) => ({
@@ -53,11 +52,11 @@ const Leads = () => {
       setLoading: state.setLoading,
       unsetLoading: state.unsetLoading,
     }),
-    shallow
+    shallow,
   );
 
   const filteredClientsPF = clientsPF.filter((client) =>
-    client.name.toLowerCase().includes(searchValue.toLowerCase())
+    client.name.toLowerCase().includes(searchValue.toLowerCase()),
   );
 
   const handleSeeMore = () => {
@@ -88,7 +87,7 @@ const Leads = () => {
   useEffect(() => {
     if (idSelectedForDetails) {
       setClientSelectedForDetails(
-        clientsPF.filter((client) => client._id === idSelectedForDetails)[0]
+        clientsPF.filter((client) => client._id === idSelectedForDetails)[0],
       );
     }
   }, [idSelectedForDetails]);
@@ -102,6 +101,7 @@ const Leads = () => {
   return (
     <div className="leads-component-container">
       {isLeadDetailBoxOpen && <LeadDetailsBox />}
+      <ToastContainer />
       <div className="leads-component-wrapper">
         <DashboardHeader
           pageName="Clientes"
@@ -116,81 +116,53 @@ const Leads = () => {
               {isLoading && (
                 <Loading type="spokes" color="#d40066" key={isLoading} />
               )}
-              {searchValue.length !== 0 && filteredClientsPF.length !== 0 ? (
-                filteredClientsPF.map((client) => (
-                  <LeadBox
-                    accountOwner={client.accountOwner}
-                    address={client.address}
-                    addressNumber={client.addressNumber}
-                    agency={client.agency}
-                    bank={client.bank}
-                    bankAccount={client.bankAccount}
-                    cep={client.cep}
-                    city={client.city}
-                    complement={client.complement}
-                    cpf={client.cpf}
-                    dateOfBirth={client.dateOfBirth}
-                    installationDate1={client.installationDate1}
-                    installationDate2={client.installationDate2}
-                    installationPeriod={client.installationPeriod}
-                    motherName={client.motherName}
-                    name={client.name}
-                    paymentDate={client.paymentDate}
-                    paymentMethod={client.paymentMethod}
-                    plan={
-                      plans.filter((plan) => plan._id === client.plan)[0]?.title
-                    }
-                    rg={client.rg}
-                    state={client.state}
-                    tel1={client.tel1}
-                    tel2={client.tel2}
-                    clientId={client._id}
-                  />
-                ))
-              ) : searchValue.length !== 0 && filteredClientsPF.length === 0 ? (
-                <span className="leads-component-leads-no-client-found">
-                  Nenhum cliente encontrado
-                </span>
-              ) : searchValue.length === 0 &&
-                filteredClientsPF.length === 0 &&
-                clientsPF.length === 0 ? (
-                <span className="leads-component-leads-no-client-found">
-                  Nenhum client cadastrado
-                </span>
-              ) : (
-                clientsPF.map((client) => (
-                  <LeadBox
-                    accountOwner={client.accountOwner}
-                    address={client.address}
-                    addressNumber={client.addressNumber}
-                    agency={client.agency}
-                    bank={client.bank}
-                    bankAccount={client.bankAccount}
-                    cep={client.cep}
-                    city={client.city}
-                    complement={client.complement}
-                    cpf={client.cpf}
-                    dateOfBirth={client.dateOfBirth}
-                    installationDate1={client.installationDate1}
-                    installationDate2={client.installationDate2}
-                    installationPeriod={client.installationPeriod}
-                    motherName={client.motherName}
-                    name={client.name}
-                    paymentDate={client.paymentDate}
-                    paymentMethod={client.paymentMethod}
-                    plan={
-                      plans.filter((plan) => plan._id === client.plan)[0]?.title
-                    }
-                    rg={client.rg}
-                    state={client.state}
-                    tel1={client.tel1}
-                    tel2={client.tel2}
-                    clientId={client._id}
-                  />
-                ))
-              )}
             </AnimatePresence>
-            {sliceEnd < clientsPF.length && searchValue.length === 0 ? (
+            {searchValue.length !== 0 && filteredClientsPF.length !== 0 ? (
+              filteredClientsPF
+                .slice(0, sliceEnd)
+                .map((client) => (
+                  <LeadBox
+                    cpf={client.cpf}
+                    dateOfBirth={client.dateOfBirth}
+                    name={client.name}
+                    plan={
+                      plans.filter((plan) => plan._id === client.plan)[0]?.title
+                    }
+                    tel1={client.tel1}
+                    tel2={client.tel2}
+                    clientId={client._id}
+                    contactDate={client.createdAt}
+                    contacted={client.contacted}
+                  />
+                ))
+            ) : searchValue.length !== 0 && filteredClientsPF.length === 0 ? (
+              <span className="leads-component-leads-no-client-found">
+                Nenhum cliente encontrado
+              </span>
+            ) : clientsPF.length !== 0 ? (
+              clientsPF
+                .slice(0, sliceEnd)
+                .map((client) => (
+                  <LeadBox
+                    cpf={client.cpf}
+                    dateOfBirth={client.dateOfBirth}
+                    name={client.name}
+                    plan={
+                      plans.filter((plan) => plan._id === client.plan)[0]?.title
+                    }
+                    tel1={client.tel1}
+                    tel2={client.tel2}
+                    clientId={client._id}
+                    contactDate={client.createdAt}
+                    contacted={client.contacted}
+                  />
+                ))
+            ) : (
+              <span className="leads-component-leads-no-client-found">
+                Nenhum client cadastrado
+              </span>
+            )}
+            {clientsPF.length > sliceEnd && searchValue.length === 0 ? (
               <button
                 type="button"
                 className="leads-component-leads-see-more-button"

@@ -47,7 +47,8 @@ const usePlansStore = create((set) => ({
   closeEditTVForm: () => set(() => ({ isEditTVFormOpen: false })),
   isInternetDetailsBoxOpen: false,
   openInternetDetailsBox: () => set(() => ({ isInternetDetailsBoxOpen: true })),
-  closeInternetDetailsBox: () => set(() => ({ isInternetDetailsBoxOpen: false })),
+  closeInternetDetailsBox: () =>
+    set(() => ({ isInternetDetailsBoxOpen: false })),
   isCelDetailsBoxOpen: false,
   openCelDetailsBox: () => set(() => ({ isCelDetailsBoxOpen: true })),
   closeCelDetailsBox: () => set(() => ({ isCelDetailsBoxOpen: false })),
@@ -58,8 +59,10 @@ const usePlansStore = create((set) => ({
   enablePlansVisibility: () => set(() => ({ isArchivedPlansVisible: true })),
   disablePlansVisibility: () => set(() => ({ isArchivedPlansVisible: false })),
   isArchivedPlansAnimation: false,
-  enableArchivedPlansAnimation: () => set(() => ({ isArchivedPlansAnimation: true })),
-  disableArchivedPlansAnimation: () => set(() => ({ isArchivedPlansAnimation: false })),
+  enableArchivedPlansAnimation: () =>
+    set(() => ({ isArchivedPlansAnimation: true })),
+  disableArchivedPlansAnimation: () =>
+    set(() => ({ isArchivedPlansAnimation: false })),
   plans: [],
   setPlans: (value) => set(() => ({ plans: value })),
   filteredPlans: [],
@@ -80,17 +83,21 @@ const usePlansStore = create((set) => ({
     set((state) => ({
       archivedPlansSliceValue: state.archivedPlansSliceValue + 5,
     })),
-  resetSliceValues: () => set(() => ({ activePlansSliceValue: 5, archivedPlansSliceValue: 5 })),
+  resetSliceValues: () =>
+    set(() => ({ activePlansSliceValue: 5, archivedPlansSliceValue: 5 })),
   idSelectedForDetails: "",
-  setIdSelectedForDetails: (value) => set(() => ({ idSelectedForDetails: value })),
+  setIdSelectedForDetails: (value) =>
+    set(() => ({ idSelectedForDetails: value })),
   planSelectedForDetails: {},
-  setPlanSelectedForDetails: (value) => set(() => ({ planSelectedForDetails: value })),
+  setPlanSelectedForDetails: (value) =>
+    set(() => ({ planSelectedForDetails: value })),
   idSelectedForEdit: "",
   setIdSelectedForEdit: (value) => set(() => ({ idSelectedForEdit: value })),
   planSelectedForEdit: {},
   setPlanSelectedForEdit: (plan) => set(() => ({ planSelectedForEdit: plan })),
   internetTitle: "",
-  setInternetTitle: (event) => set(() => ({ internetTitle: event.target.value })),
+  setInternetTitle: (event) =>
+    set(() => ({ internetTitle: event.target.value })),
   internetCost: "",
   setInternetCost: (event) =>
     set(() => {
@@ -142,7 +149,8 @@ const usePlansStore = create((set) => ({
     }),
 
   internetDownloadUnit: "MB",
-  setInternetDownloadUnit: (event) => set(() => ({ internetDownloadUnit: event.target.value })),
+  setInternetDownloadUnit: (event) =>
+    set(() => ({ internetDownloadUnit: event.target.value })),
   internetUpload: "",
   setInternetUpload: (event) =>
     set(() => {
@@ -153,7 +161,8 @@ const usePlansStore = create((set) => ({
       return { internetUpload: value };
     }),
   internetUploadUnit: "MB",
-  setInternetUploadUnit: (event) => set(() => ({ internetUploadUnit: event.target.value })),
+  setInternetUploadUnit: (event) =>
+    set(() => ({ internetUploadUnit: event.target.value })),
   internetFranchiseLimit: "",
   setInternetFranchiseLimit: (event) =>
     set(() => {
@@ -168,29 +177,38 @@ const usePlansStore = create((set) => ({
       return { internetFranchiseLimit: event.target.value };
     }),
   internetTechnology: "Fibra Ótica",
-  setInternetTechnology: (event) => set(() => ({ internetTechnology: event.target.value })),
+  setInternetTechnology: (event) =>
+    set(() => ({ internetTechnology: event.target.value })),
   internetHasWifi: true,
   setInternetHasWifi: (event) =>
     set(() => ({
       internetHasWifi: event.target.value === "true",
     })),
   internetPriority: 1,
-  setInternetPriority: (event) => set(() => ({ internetPriority: Number(event.target.value) })),
+  setInternetPriority: (event) =>
+    set(() => ({ internetPriority: Number(event.target.value) })),
   internetDescription: "",
-  setInternetDescription: (event) => set(() => ({ internetDescription: event.target.value })),
+  setInternetDescription: (event) =>
+    set(() => ({ internetDescription: event.target.value })),
   internetInstallationCostError: false,
-  setInternetInstallationCostError: () => set(() => ({ internetInstallationCostError: true })),
-  unsetInternetInstallationCostError: () => set(() => ({ internetInstallationCostError: false })),
+  setInternetInstallationCostError: () =>
+    set(() => ({ internetInstallationCostError: true })),
+  unsetInternetInstallationCostError: () =>
+    set(() => ({ internetInstallationCostError: false })),
   internetFranchiseLimitError: false,
-  setInternetFranchiseLimitError: () => set(() => ({ internetFranchiseLimitError: true })),
-  unsetInternetFranchiseLimitError: () => set(() => ({ internetFranchiseLimitError: false })),
+  setInternetFranchiseLimitError: () =>
+    set(() => ({ internetFranchiseLimitError: true })),
+  unsetInternetFranchiseLimitError: () =>
+    set(() => ({ internetFranchiseLimitError: false })),
   isSubmitting: false,
   setToSubmit: () => set(() => ({ isSubmitting: true })),
   cancelSubmit: () => set(() => ({ isSubmitting: false })),
   defaultValuesForInternetForm: () =>
     set((state) => ({
       internetTitle: state.planSelectedForEdit.title,
-      internetCost: state.planSelectedForEdit.cost?.toFixed(2).replace(".", ","),
+      internetCost: state.planSelectedForEdit.cost
+        ?.toFixed(2)
+        ?.replace(".", ","),
       internetInstallationCost: state.planSelectedForEdit.installationCost,
       internetDownload: state.planSelectedForEdit.download?.substring(
         0,
@@ -258,19 +276,23 @@ const usePlansStore = create((set) => ({
       return { celFranchise: value };
     }),
   celFranchiseUnit: "MB",
-  setCelFranchiseUnit: (event) => set(() => ({ celFranchiseUnit: event.target.value })),
+  setCelFranchiseUnit: (event) =>
+    set(() => ({ celFranchiseUnit: event.target.value })),
   celUnlimitedCall: true,
-  setCelUnlimitedCall: (event) => set(() => ({ celUnlimitedCall: event.target.value === "true" })),
+  setCelUnlimitedCall: (event) =>
+    set(() => ({ celUnlimitedCall: event.target.value === "true" })),
   celPlanType: "Controle",
   setCelPlanType: (event) => set(() => ({ celPlanType: event.target.value })),
   celPriority: 1,
-  setCelPriority: (event) => set(() => ({ celPriority: Number(event.target.value) })),
+  setCelPriority: (event) =>
+    set(() => ({ celPriority: Number(event.target.value) })),
   celDescription: "",
-  setCelDescription: (event) => set(() => ({ celDescription: event.target.value })),
+  setCelDescription: (event) =>
+    set(() => ({ celDescription: event.target.value })),
   defaultValuesForCelForm: () =>
     set((state) => ({
       celTitle: state.planSelectedForEdit.title,
-      celCost: state.planSelectedForEdit.cost?.toFixed(2).replace(".", ","),
+      celCost: state.planSelectedForEdit.cost?.toFixed(2)?.replace(".", ","),
       celFranchise: state.planSelectedForEdit.franchise?.substring(
         0,
         state.planSelectedForEdit.franchise?.length - 2,
@@ -372,19 +394,24 @@ const usePlansStore = create((set) => ({
       return { tvInstallationCost: value };
     }),
   tvDevices: 1,
-  setTVDevices: (event) => set(() => ({ tvDevices: Number(event.target.value) })),
+  setTVDevices: (event) =>
+    set(() => ({ tvDevices: Number(event.target.value) })),
   tvPriority: 1,
-  setTVPriority: (event) => set(() => ({ tvPriority: Number(event.target.value) })),
+  setTVPriority: (event) =>
+    set(() => ({ tvPriority: Number(event.target.value) })),
   tvDescription: "",
-  setTVDescription: (event) => set(() => ({ tvDescription: event.target.value })),
+  setTVDescription: (event) =>
+    set(() => ({ tvDescription: event.target.value })),
   defaultValuesForTVForm: () =>
     set((state) => ({
       tvTitle: state.planSelectedForEdit.title,
-      tvCost: state.planSelectedForEdit.cost?.toFixed(2).replace(".", ","),
+      tvCost: state.planSelectedForEdit.cost?.toFixed(2)?.replace(".", ","),
       tvCostChangesConfirmation:
         state.planSelectedForEdit.afterCost !== null &&
         state.planSelectedForEdit.periodToChangeCost !== null,
-      tvAfterCost: state.planSelectedForEdit.afterCost?.toFixed(2).replace(".", ",") || "",
+      tvAfterCost:
+        state.planSelectedForEdit.afterCost?.toFixed(2)?.replace(".", ",") ||
+        "",
       tvPeriodToChangeCost: state.planSelectedForEdit.periodToChangeCost || "",
       tvInstallationCost: state.planSelectedForEdit.installationCost,
       tvDevices: state.planSelectedForEdit.devicesQuant,
@@ -392,8 +419,10 @@ const usePlansStore = create((set) => ({
       tvDescription: state.planSelectedForEdit.description?.join("\n"),
     })),
   tvInstallationCostError: false,
-  setTVInstallationCostError: () => set(() => ({ tvInstallationCostError: true })),
-  unsetTVInstallationCostError: () => set(() => ({ tvInstallationCostError: false })),
+  setTVInstallationCostError: () =>
+    set(() => ({ tvInstallationCostError: true })),
+  unsetTVInstallationCostError: () =>
+    set(() => ({ tvInstallationCostError: false })),
   tvResetInputs: () =>
     set(() => ({
       tvTitle: "",

@@ -5,17 +5,10 @@ import { shallow } from "zustand/shallow";
 import api from "../../../services/api";
 import { toast } from "react-toastify";
 
-// TODO checar bugs e arrumar igual outros components
 const TVPlansArchivedBox = ({
-  afterCost,
-  benefits,
-  category,
   cost,
   createdAt,
-  description,
   devicesQuant,
-  installationCost,
-  periodToChangeCost,
   priority,
   providerIcon,
   title,
@@ -132,7 +125,9 @@ const TVPlansArchivedBox = ({
           </div>
 
           <div className="plans-component-devices-box">
-            <span className="plans-component-devices-value">{devicesQuant}</span>
+            <span className="plans-component-devices-value">
+              {devicesQuant}
+            </span>
             <span className="plans-component-devices-desc">Pontos de tv</span>
           </div>
 
@@ -156,27 +151,35 @@ const TVPlansArchivedBox = ({
           </div>
 
           <div className="plans-component-created-at-box">
-            <span className="plans-component-created-at-value">{createdAt}</span>
+            <span className="plans-component-created-at-value">
+              {createdAt}
+            </span>
             <span className="plans-component-created-at-desc">Criado em</span>
           </div>
 
           <div className="plans-component-archived-at-box">
-            <span className="plans-component-archived-at-value">{archivedAt}</span>
-            <span className="plans-component-archived-at-desc">Arquivado em</span>
+            <span className="plans-component-archived-at-value">
+              {archivedAt}
+            </span>
+            <span className="plans-component-archived-at-desc">
+              Arquivado em
+            </span>
           </div>
         </div>
 
         <div className="plans-component-archived-plan-buttons">
           <button
             onClick={() => handleUnarchive(planId)}
-            className="plans-component-restore-button">
+            className="plans-component-restore-button"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6">
+              className="w-6 h-6"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -186,18 +189,25 @@ const TVPlansArchivedBox = ({
             Restaurar
           </button>
 
-          <button onClick={handleOpenDetailsBox} className="plans-component-details-button">
+          <button
+            onClick={handleOpenDetailsBox}
+            className="plans-component-details-button"
+          >
             Ver Detalhes
           </button>
 
-          <button onClick={() => handleDelete(planId)} className="plans-component-delete-button">
+          <button
+            onClick={() => handleDelete(planId)}
+            className="plans-component-delete-button"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6">
+              className="w-6 h-6"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"

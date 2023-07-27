@@ -9,26 +9,19 @@ const InternetPlansArchivedBox = ({
   providerIcon,
   title,
   cost,
-  installationCost,
-  benefits,
   contacts,
   createdAt,
-  description,
   download,
-  franchiseLimit,
-  hasWifi,
   priority,
-  technology,
   upload,
   planId,
-  category,
   archivedAt,
 }) => {
   const { activateModalAnimation } = useGeneralStore(
     (state) => ({
       activateModalAnimation: state.activateModalAnimation,
     }),
-    shallow
+    shallow,
   );
   const { openInternetDetailsBox, setIdSelectedForDetails, setPlans } =
     usePlansStore(
@@ -37,7 +30,7 @@ const InternetPlansArchivedBox = ({
         setIdSelectedForDetails: state.setIdSelectedForDetails,
         setPlans: state.setPlans,
       }),
-      shallow
+      shallow,
     );
 
   const handleOpenDetailsBox = () => {

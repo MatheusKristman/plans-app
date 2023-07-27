@@ -2499,8 +2499,10 @@ body {
 .leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-button-wrapper {
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+  gap: 15px;
 }
 @media screen and (min-width: 768px) {
   .leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-button-wrapper {
@@ -2529,6 +2531,60 @@ body {
   .leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-button-wrapper .leads-component-details-button {
     width: fit-content;
   }
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-button-wrapper .leads-component-contacted-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-button-wrapper .leads-component-contacted-wrapper .leads-component-contacted-text {
+  width: 100%;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #b0b0b0;
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-button-wrapper .leads-component-contacted-wrapper .leads-component-contacted-button {
+  width: 100%;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+@media screen and (min-width: 768px) {
+  .leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-button-wrapper .leads-component-contacted-wrapper .leads-component-contacted-button {
+    width: 132.15px;
+  }
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-button-wrapper .leads-component-contacted-wrapper .has-contacted {
+  background-color: transparent;
+  border: 2px solid #64b548;
+  color: #64b548;
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-button-wrapper .leads-component-contacted-wrapper .has-contacted:hover {
+  background: rgba(100, 181, 72, 0.2);
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-button-wrapper .leads-component-contacted-wrapper .has-contacted:disabled {
+  background: rgba(100, 181, 72, 0.2);
+  cursor: not-allowed;
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-button-wrapper .leads-component-contacted-wrapper .has-not-contacted {
+  background-color: transparent;
+  border: 2px solid #ef5959;
+  color: #ef5959;
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-button-wrapper .leads-component-contacted-wrapper .has-not-contacted:hover {
+  background: rgba(239, 89, 89, 0.2);
+}
+.leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-wrapper .leads-component-lead-box .leads-component-lead-wrapper .leads-component-button-wrapper .leads-component-contacted-wrapper .has-not-contacted:disabled {
+  background: rgba(239, 89, 89, 0.2);
+  cursor: not-allowed;
 }
 .leads-component-container .leads-component-wrapper .leads-component-info .leads-component-leads-see-more-button {
   width: fit-content;
@@ -6834,7 +6890,8 @@ body {
   align-items: center;
   gap: 25px;
 }
-.internet-details-box-overlay .internet-details-box-container .internet-details-box-wrapper .internet-details-box-body .internet-details-box-info-wrapper .internet-details-box-buttons-wrapper .internet-details-box-edit-button {
+.internet-details-box-overlay .internet-details-box-container .internet-details-box-wrapper .internet-details-box-body .internet-details-box-info-wrapper .internet-details-box-buttons-wrapper .internet-details-box-edit-button,
+.internet-details-box-overlay .internet-details-box-container .internet-details-box-wrapper .internet-details-box-body .internet-details-box-info-wrapper .internet-details-box-buttons-wrapper .internet-details-box-restore-button {
   background-color: #d40066;
   border-radius: 8px;
   border: 2px solid #d40066;
@@ -6844,11 +6901,23 @@ body {
   color: #fff;
   cursor: pointer;
   transition: filter 0.3s ease;
+  display: flex;
+  gap: 10px;
 }
-.internet-details-box-overlay .internet-details-box-container .internet-details-box-wrapper .internet-details-box-body .internet-details-box-info-wrapper .internet-details-box-buttons-wrapper .internet-details-box-edit-button:hover {
+.internet-details-box-overlay .internet-details-box-container .internet-details-box-wrapper .internet-details-box-body .internet-details-box-info-wrapper .internet-details-box-buttons-wrapper .internet-details-box-edit-button:hover,
+.internet-details-box-overlay .internet-details-box-container .internet-details-box-wrapper .internet-details-box-body .internet-details-box-info-wrapper .internet-details-box-buttons-wrapper .internet-details-box-restore-button:hover {
   filter: brightness(80%);
 }
-.internet-details-box-overlay .internet-details-box-container .internet-details-box-wrapper .internet-details-box-body .internet-details-box-info-wrapper .internet-details-box-buttons-wrapper .internet-details-box-archive-button {
+.internet-details-box-overlay .internet-details-box-container .internet-details-box-wrapper .internet-details-box-body .internet-details-box-info-wrapper .internet-details-box-buttons-wrapper .internet-details-box-edit-button svg,
+.internet-details-box-overlay .internet-details-box-container .internet-details-box-wrapper .internet-details-box-body .internet-details-box-info-wrapper .internet-details-box-buttons-wrapper .internet-details-box-restore-button svg {
+  width: 20px;
+  min-width: 20px;
+  max-width: 20px;
+  height: auto;
+  color: #fff;
+}
+.internet-details-box-overlay .internet-details-box-container .internet-details-box-wrapper .internet-details-box-body .internet-details-box-info-wrapper .internet-details-box-buttons-wrapper .internet-details-box-archive-button,
+.internet-details-box-overlay .internet-details-box-container .internet-details-box-wrapper .internet-details-box-body .internet-details-box-info-wrapper .internet-details-box-buttons-wrapper .internet-details-box-delete-button {
   background-color: #fff;
   border: 2px solid #d40066;
   border-radius: 8px;
@@ -6862,11 +6931,13 @@ body {
   align-items: center;
   gap: 5px;
 }
-.internet-details-box-overlay .internet-details-box-container .internet-details-box-wrapper .internet-details-box-body .internet-details-box-info-wrapper .internet-details-box-buttons-wrapper .internet-details-box-archive-button svg {
+.internet-details-box-overlay .internet-details-box-container .internet-details-box-wrapper .internet-details-box-body .internet-details-box-info-wrapper .internet-details-box-buttons-wrapper .internet-details-box-archive-button svg,
+.internet-details-box-overlay .internet-details-box-container .internet-details-box-wrapper .internet-details-box-body .internet-details-box-info-wrapper .internet-details-box-buttons-wrapper .internet-details-box-delete-button svg {
   width: 18px;
   height: auto;
 }
-.internet-details-box-overlay .internet-details-box-container .internet-details-box-wrapper .internet-details-box-body .internet-details-box-info-wrapper .internet-details-box-buttons-wrapper .internet-details-box-archive-button:hover {
+.internet-details-box-overlay .internet-details-box-container .internet-details-box-wrapper .internet-details-box-body .internet-details-box-info-wrapper .internet-details-box-buttons-wrapper .internet-details-box-archive-button:hover,
+.internet-details-box-overlay .internet-details-box-container .internet-details-box-wrapper .internet-details-box-body .internet-details-box-info-wrapper .internet-details-box-buttons-wrapper .internet-details-box-delete-button:hover {
   background-color: #d40066;
   color: #fff;
 }
@@ -7321,7 +7392,8 @@ body {
   align-items: center;
   gap: 25px;
 }
-.cel-details-box-overlay .cel-details-box-container .cel-details-box-wrapper .cel-details-box-body .cel-details-box-info-wrapper .cel-details-box-buttons-wrapper .cel-details-box-edit-button {
+.cel-details-box-overlay .cel-details-box-container .cel-details-box-wrapper .cel-details-box-body .cel-details-box-info-wrapper .cel-details-box-buttons-wrapper .cel-details-box-edit-button,
+.cel-details-box-overlay .cel-details-box-container .cel-details-box-wrapper .cel-details-box-body .cel-details-box-info-wrapper .cel-details-box-buttons-wrapper .cel-details-box-restore-button {
   background-color: #d40066;
   border-radius: 8px;
   border: 2px solid #d40066;
@@ -7331,11 +7403,23 @@ body {
   color: #fff;
   cursor: pointer;
   transition: filter 0.3s ease;
+  display: flex;
+  gap: 10px;
 }
-.cel-details-box-overlay .cel-details-box-container .cel-details-box-wrapper .cel-details-box-body .cel-details-box-info-wrapper .cel-details-box-buttons-wrapper .cel-details-box-edit-button:hover {
+.cel-details-box-overlay .cel-details-box-container .cel-details-box-wrapper .cel-details-box-body .cel-details-box-info-wrapper .cel-details-box-buttons-wrapper .cel-details-box-edit-button:hover,
+.cel-details-box-overlay .cel-details-box-container .cel-details-box-wrapper .cel-details-box-body .cel-details-box-info-wrapper .cel-details-box-buttons-wrapper .cel-details-box-restore-button:hover {
   filter: brightness(80%);
 }
-.cel-details-box-overlay .cel-details-box-container .cel-details-box-wrapper .cel-details-box-body .cel-details-box-info-wrapper .cel-details-box-buttons-wrapper .cel-details-box-archive-button {
+.cel-details-box-overlay .cel-details-box-container .cel-details-box-wrapper .cel-details-box-body .cel-details-box-info-wrapper .cel-details-box-buttons-wrapper .cel-details-box-edit-button svg,
+.cel-details-box-overlay .cel-details-box-container .cel-details-box-wrapper .cel-details-box-body .cel-details-box-info-wrapper .cel-details-box-buttons-wrapper .cel-details-box-restore-button svg {
+  width: 20px;
+  min-width: 20px;
+  max-width: 20px;
+  height: auto;
+  color: #fff;
+}
+.cel-details-box-overlay .cel-details-box-container .cel-details-box-wrapper .cel-details-box-body .cel-details-box-info-wrapper .cel-details-box-buttons-wrapper .cel-details-box-archive-button,
+.cel-details-box-overlay .cel-details-box-container .cel-details-box-wrapper .cel-details-box-body .cel-details-box-info-wrapper .cel-details-box-buttons-wrapper .cel-details-box-delete-button {
   background-color: #fff;
   border: 2px solid #d40066;
   border-radius: 8px;
@@ -7349,11 +7433,13 @@ body {
   align-items: center;
   gap: 5px;
 }
-.cel-details-box-overlay .cel-details-box-container .cel-details-box-wrapper .cel-details-box-body .cel-details-box-info-wrapper .cel-details-box-buttons-wrapper .cel-details-box-archive-button svg {
+.cel-details-box-overlay .cel-details-box-container .cel-details-box-wrapper .cel-details-box-body .cel-details-box-info-wrapper .cel-details-box-buttons-wrapper .cel-details-box-archive-button svg,
+.cel-details-box-overlay .cel-details-box-container .cel-details-box-wrapper .cel-details-box-body .cel-details-box-info-wrapper .cel-details-box-buttons-wrapper .cel-details-box-delete-button svg {
   width: 18px;
   height: auto;
 }
-.cel-details-box-overlay .cel-details-box-container .cel-details-box-wrapper .cel-details-box-body .cel-details-box-info-wrapper .cel-details-box-buttons-wrapper .cel-details-box-archive-button:hover {
+.cel-details-box-overlay .cel-details-box-container .cel-details-box-wrapper .cel-details-box-body .cel-details-box-info-wrapper .cel-details-box-buttons-wrapper .cel-details-box-archive-button:hover,
+.cel-details-box-overlay .cel-details-box-container .cel-details-box-wrapper .cel-details-box-body .cel-details-box-info-wrapper .cel-details-box-buttons-wrapper .cel-details-box-delete-button:hover {
   background-color: #d40066;
   color: #fff;
 }
@@ -7860,7 +7946,8 @@ body {
   align-items: center;
   gap: 25px;
 }
-.tv-details-box-overlay .tv-details-box-container .tv-details-box-wrapper .tv-details-box-body .tv-details-box-info-wrapper .tv-details-box-buttons-wrapper .tv-details-box-edit-button {
+.tv-details-box-overlay .tv-details-box-container .tv-details-box-wrapper .tv-details-box-body .tv-details-box-info-wrapper .tv-details-box-buttons-wrapper .tv-details-box-edit-button,
+.tv-details-box-overlay .tv-details-box-container .tv-details-box-wrapper .tv-details-box-body .tv-details-box-info-wrapper .tv-details-box-buttons-wrapper .tv-details-box-restore-button {
   background-color: #d40066;
   border-radius: 8px;
   border: 2px solid #d40066;
@@ -7870,11 +7957,23 @@ body {
   color: #fff;
   cursor: pointer;
   transition: filter 0.3s ease;
+  display: flex;
+  gap: 10px;
 }
-.tv-details-box-overlay .tv-details-box-container .tv-details-box-wrapper .tv-details-box-body .tv-details-box-info-wrapper .tv-details-box-buttons-wrapper .tv-details-box-edit-button:hover {
+.tv-details-box-overlay .tv-details-box-container .tv-details-box-wrapper .tv-details-box-body .tv-details-box-info-wrapper .tv-details-box-buttons-wrapper .tv-details-box-edit-button:hover,
+.tv-details-box-overlay .tv-details-box-container .tv-details-box-wrapper .tv-details-box-body .tv-details-box-info-wrapper .tv-details-box-buttons-wrapper .tv-details-box-restore-button:hover {
   filter: brightness(80%);
 }
-.tv-details-box-overlay .tv-details-box-container .tv-details-box-wrapper .tv-details-box-body .tv-details-box-info-wrapper .tv-details-box-buttons-wrapper .tv-details-box-archive-button {
+.tv-details-box-overlay .tv-details-box-container .tv-details-box-wrapper .tv-details-box-body .tv-details-box-info-wrapper .tv-details-box-buttons-wrapper .tv-details-box-edit-button svg,
+.tv-details-box-overlay .tv-details-box-container .tv-details-box-wrapper .tv-details-box-body .tv-details-box-info-wrapper .tv-details-box-buttons-wrapper .tv-details-box-restore-button svg {
+  width: 20px;
+  min-width: 20px;
+  max-width: 20px;
+  height: auto;
+  color: #fff;
+}
+.tv-details-box-overlay .tv-details-box-container .tv-details-box-wrapper .tv-details-box-body .tv-details-box-info-wrapper .tv-details-box-buttons-wrapper .tv-details-box-archive-button,
+.tv-details-box-overlay .tv-details-box-container .tv-details-box-wrapper .tv-details-box-body .tv-details-box-info-wrapper .tv-details-box-buttons-wrapper .tv-details-box-delete-button {
   background-color: #fff;
   border: 2px solid #d40066;
   border-radius: 8px;
@@ -7888,11 +7987,13 @@ body {
   align-items: center;
   gap: 5px;
 }
-.tv-details-box-overlay .tv-details-box-container .tv-details-box-wrapper .tv-details-box-body .tv-details-box-info-wrapper .tv-details-box-buttons-wrapper .tv-details-box-archive-button svg {
+.tv-details-box-overlay .tv-details-box-container .tv-details-box-wrapper .tv-details-box-body .tv-details-box-info-wrapper .tv-details-box-buttons-wrapper .tv-details-box-archive-button svg,
+.tv-details-box-overlay .tv-details-box-container .tv-details-box-wrapper .tv-details-box-body .tv-details-box-info-wrapper .tv-details-box-buttons-wrapper .tv-details-box-delete-button svg {
   width: 18px;
   height: auto;
 }
-.tv-details-box-overlay .tv-details-box-container .tv-details-box-wrapper .tv-details-box-body .tv-details-box-info-wrapper .tv-details-box-buttons-wrapper .tv-details-box-archive-button:hover {
+.tv-details-box-overlay .tv-details-box-container .tv-details-box-wrapper .tv-details-box-body .tv-details-box-info-wrapper .tv-details-box-buttons-wrapper .tv-details-box-archive-button:hover,
+.tv-details-box-overlay .tv-details-box-container .tv-details-box-wrapper .tv-details-box-body .tv-details-box-info-wrapper .tv-details-box-buttons-wrapper .tv-details-box-delete-button:hover {
   background-color: #d40066;
   color: #fff;
 }

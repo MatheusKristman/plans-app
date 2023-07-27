@@ -13,8 +13,18 @@ import BenefitsLabel from "./BenefitsLabel";
 const schema = yup.object({
   title: yup.string().required("Título é obrigatório"),
   cost: yup.string().required("Valor é obrigatório"),
-  afterCost: yup.string(),
-  periodToChangeCost: yup.string(),
+  tvCostChangesConfirmation: yup.boolean(),
+  afterCost: yup.string().when("tvCostChangesConfirmation", {
+    is: true,
+    then: () =>
+      yup.string().required("O campo Valor depois do período é obrigatório"),
+    otherwise: () => yup.string(),
+  }),
+  periodToChangeCost: yup.string().when("tvCostChangesConfirmation", {
+    is: true,
+    then: () => yup.string().required("Campo obrigatório"),
+    otherwise: () => yup.string(),
+  }),
   installationCost: yup.string().required("Valor da instalação é obrigatório"),
   description: yup.string().required("Descrição é obrigatório"),
 });
@@ -86,7 +96,7 @@ const NewTVPlanModal = () => {
       unsetTVProviderError: state.unsetTVProviderError,
       tvResetInputs: state.tvResetInputs,
     }),
-    shallow
+    shallow,
   );
   const { deactivateModalAnimation, modalAnimation, benefits, resetBenefits } =
     useGeneralStore((state) => ({
@@ -102,6 +112,7 @@ const NewTVPlanModal = () => {
     register,
     handleSubmit,
     setValue,
+    getValues,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -126,6 +137,10 @@ const NewTVPlanModal = () => {
       setToSubmit();
     }
   };
+
+  useEffect(() => {
+    setValue("tvCostChangesConfirmation", true);
+  }, []);
 
   useEffect(() => {
     const submitData = () => {
@@ -270,6 +285,8 @@ const NewTVPlanModal = () => {
                         id={provider._id}
                         type="radio"
                         value={provider._id}
+                        autoComplete="off"
+                        autoCorrect="off"
                         className="new-tv-plan-modal-provider-item"
                       />
                     </label>
@@ -337,11 +354,16 @@ const NewTVPlanModal = () => {
                   >
                     <input
                       type="radio"
-                      onChange={setTVCostChangesConfirmation}
+                      onChange={(event) => {
+                        setTVCostChangesConfirmation(event);
+                        setValue("tvCostChangesConfirmation", true);
+                      }}
                       value={true}
                       defaultChecked
                       id="yes"
                       name="costChangesAfterPeriod"
+                      autoCorrect="off"
+                      autoComplete="off"
                       className="new-tv-plan-modal-cost-changes-after-period-input"
                     />
                     Sim
@@ -353,10 +375,15 @@ const NewTVPlanModal = () => {
                   >
                     <input
                       type="radio"
-                      onChange={setTVCostChangesConfirmation}
+                      onChange={(event) => {
+                        setTVCostChangesConfirmation(event);
+                        setValue("tvCostChangesConfirmation", false);
+                      }}
                       value={false}
                       id="no"
                       name="costChangesAfterPeriod"
+                      autoCorrect="off"
+                      autoComplete="off"
                       className="new-tv-plan-modal-cost-changes-after-period-input"
                     />
                     Não
@@ -379,6 +406,8 @@ const NewTVPlanModal = () => {
                       style={
                         errors.afterCost ? { border: "2px solid #ef5959" } : {}
                       }
+                      autoCorrect="off"
+                      autoComplete="off"
                       className="new-tv-plan-modal-after-cost-input"
                     />
                     {errors.afterCost && (
@@ -404,6 +433,8 @@ const NewTVPlanModal = () => {
                             ? { border: "2px solid #ef5959" }
                             : {}
                         }
+                        autoCorrect="off"
+                        autoComplete="off"
                         className="new-tv-plan-modal-period-to-change-cost-input"
                       />
                       <span className="new-tv-plan-modal-period-to-change-cost-tag">
@@ -435,6 +466,8 @@ const NewTVPlanModal = () => {
                       ? { border: "2px solid #ef5959" }
                       : {}
                   }
+                  autoCorrect="off"
+                  autoComplete="off"
                   className="new-tv-plan-modal-installation-cost-input"
                 />
                 {errors.installationCost && (
@@ -453,6 +486,8 @@ const NewTVPlanModal = () => {
                     ref={installationCostRef}
                     onChange={setTVInstallationCost}
                     name="installationCost"
+                    autoCorrect="off"
+                    autoComplete="off"
                     className="new-tv-plan-modal-installation-cost-checkbox"
                   />
                   Instalação grátis

@@ -1,23 +1,28 @@
 import React from "react";
+import { shallow } from "zustand/shallow";
+import { toast } from "react-toastify";
+
 import useGeneralStore from "../../../stores/useGeneralStore";
 import usePlansStore from "../../../stores/usePlansStore";
-import { shallow } from "zustand/shallow";
+import api from "../../../services/api";
 
 const InternetDetailsBox = ({ archivedAt }) => {
-  const { modalAnimation, deactivateModalAnimation, activateModalAnimation } = useGeneralStore(
-    (state) => ({
-      modalAnimation: state.modalAnimation,
-      deactivateModalAnimation: state.deactivateModalAnimation,
-      activateModalAnimation: state.activateModalAnimation,
-    }),
-    shallow,
-  );
+  const { modalAnimation, deactivateModalAnimation, activateModalAnimation } =
+    useGeneralStore(
+      (state) => ({
+        modalAnimation: state.modalAnimation,
+        deactivateModalAnimation: state.deactivateModalAnimation,
+        activateModalAnimation: state.activateModalAnimation,
+      }),
+      shallow,
+    );
   const {
     closeInternetDetailsBox,
     openEditInternetForm,
     planSelectedForDetails,
     setIdSelectedForDetails,
     setIdSelectedForEdit,
+    setPlans,
   } = usePlansStore(
     (state) => ({
       closeInternetDetailsBox: state.closeInternetDetailsBox,
@@ -25,6 +30,7 @@ const InternetDetailsBox = ({ archivedAt }) => {
       planSelectedForDetails: state.planSelectedForDetails,
       setIdSelectedForDetails: state.setIdSelectedForDetails,
       setIdSelectedForEdit: state.setIdSelectedForEdit,
+      setPlans: state.setPlans,
     }),
     shallow,
   );
@@ -44,6 +50,7 @@ const InternetDetailsBox = ({ archivedAt }) => {
     }
   };
 
+  // OK
   const handleOpenEditForm = () => {
     const idSelected = planSelectedForDetails?._id;
 
@@ -58,6 +65,107 @@ const InternetDetailsBox = ({ archivedAt }) => {
     }, 800);
   };
 
+  // OK
+  const handleArchive = () => {
+    api
+      .put("plan/internet-plan/archive", { id: planSelectedForDetails._id })
+      .then((res) => {
+        setPlans(res.data);
+        handleCloseDetailsBox();
+
+        toast.success("Plano arquivado com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(error.response.data.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      });
+  };
+
+  // OK
+  const handleUnarchive = () => {
+    api
+      .put("plan/internet-plan/archive", { id: planSelectedForDetails._id })
+      .then((res) => {
+        setPlans(res.data);
+        handleCloseDetailsBox();
+
+        toast.success("Plano restaurado com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(error.response.data.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      });
+  };
+
+  const handleDelete = () => {
+    api
+      .delete(`plan/internet-plan/delete/${planSelectedForDetails._id}`)
+      .then((res) => {
+        setPlans(res.data);
+        handleCloseDetailsBox();
+
+        toast.success("Plano deletado com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(error.response.data.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      });
+  };
+
   return (
     <div
       onClick={handleCloseOnBlur}
@@ -65,22 +173,29 @@ const InternetDetailsBox = ({ archivedAt }) => {
         modalAnimation
           ? "internet-details-box-overlay animate__animated animate__fast animate__fadeIn"
           : "internet-details-box-overlay animate__animated animate__fast animate__fadeOut"
-      }>
+      }
+    >
       <div className="internet-details-box-container">
         <div className="internet-details-box-wrapper">
           <div className="internet-details-box-header">
             <button
               type="button"
               onClick={handleCloseDetailsBox}
-              className="internet-details-box-close-button">
+              className="internet-details-box-close-button"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
 
@@ -91,14 +206,18 @@ const InternetDetailsBox = ({ archivedAt }) => {
             <div className="internet-details-box-info-wrapper">
               <div className="internet-details-box-info">
                 <div className="internet-details-box-title-box">
-                  <span className="internet-details-box-title-label">Título</span>
+                  <span className="internet-details-box-title-label">
+                    Título
+                  </span>
                   <span className="internet-details-box-title-desc">
                     {planSelectedForDetails.title}
                   </span>
                 </div>
 
                 <div className="internet-details-box-created-at-box">
-                  <span className="internet-details-box-created-at-label">Criado em</span>
+                  <span className="internet-details-box-created-at-label">
+                    Criado em
+                  </span>
                   <span className="internet-details-box-created-at-desc">
                     {planSelectedForDetails.createdAt}
                   </span>
@@ -107,7 +226,9 @@ const InternetDetailsBox = ({ archivedAt }) => {
 
               <div className="internet-details-box-info">
                 <div className="internet-details-box-provider-box">
-                  <span className="internet-details-box-provider-label">Operadora</span>
+                  <span className="internet-details-box-provider-label">
+                    Operadora
+                  </span>
                   <img
                     src={`${import.meta.env.VITE_API_KEY}/assets/${
                       planSelectedForDetails.providerIcon
@@ -121,7 +242,9 @@ const InternetDetailsBox = ({ archivedAt }) => {
                 </div>
 
                 <div className="internet-details-box-contacts-box">
-                  <span className="internet-details-box-contacts-label">Contatos</span>
+                  <span className="internet-details-box-contacts-label">
+                    Contatos
+                  </span>
                   <span className="internet-details-box-contacts-desc">
                     {planSelectedForDetails.contacts}
                   </span>
@@ -132,15 +255,21 @@ const InternetDetailsBox = ({ archivedAt }) => {
                 <div className="internet-details-box-cost-box">
                   <span className="internet-details-box-cost-label">Valor</span>
                   <span className="internet-details-box-cost-desc">
-                    R$ {planSelectedForDetails.cost?.toFixed(2)?.replace(".", ",")}
+                    R${" "}
+                    {planSelectedForDetails.cost?.toFixed(2)?.replace(".", ",")}
                   </span>
                 </div>
 
                 <div className="internet-details-box-total-box">
-                  <span className="internet-details-box-total-label">Total</span>
+                  <span className="internet-details-box-total-label">
+                    Total
+                  </span>
                   <span className="internet-details-box-total-desc">
                     R${" "}
-                    {(planSelectedForDetails.cost * planSelectedForDetails.contacts)
+                    {(
+                      planSelectedForDetails.cost *
+                      planSelectedForDetails.contacts
+                    )
                       ?.toFixed(2)
                       ?.replace(".", ",")}
                   </span>
@@ -149,7 +278,9 @@ const InternetDetailsBox = ({ archivedAt }) => {
 
               <div className="internet-details-box-info">
                 <div className="internet-details-box-priority-box">
-                  <span className="internet-details-box-priority-label">Prioridade</span>
+                  <span className="internet-details-box-priority-label">
+                    Prioridade
+                  </span>
                   <span className="internet-details-box-priority-desc">
                     {planSelectedForDetails.priority}
                   </span>
@@ -176,7 +307,9 @@ const InternetDetailsBox = ({ archivedAt }) => {
                 </div>
 
                 <div className="internet-details-box-upload-box">
-                  <span className="internet-details-box-upload-label">Velocidade de upload</span>
+                  <span className="internet-details-box-upload-label">
+                    Velocidade de upload
+                  </span>
                   <span className="internet-details-box-upload-desc">
                     {planSelectedForDetails.upload}
                   </span>
@@ -185,14 +318,18 @@ const InternetDetailsBox = ({ archivedAt }) => {
 
               <div className="internet-details-box-info">
                 <div className="internet-details-box-has-wifi-box">
-                  <span className="internet-details-box-has-wifi-label">Wifi ilimitado?</span>
+                  <span className="internet-details-box-has-wifi-label">
+                    Wifi ilimitado?
+                  </span>
                   <span className="internet-details-box-has-wifi-desc">
                     {planSelectedForDetails.hasWifi ? "Sim" : "Não"}
                   </span>
                 </div>
 
                 <div className="internet-details-box-technology-box">
-                  <span className="internet-details-box-technology-label">Tecnologia do modem</span>
+                  <span className="internet-details-box-technology-label">
+                    Tecnologia do modem
+                  </span>
                   <span className="internet-details-box-technology-desc">
                     {planSelectedForDetails.technology}
                   </span>
@@ -202,7 +339,9 @@ const InternetDetailsBox = ({ archivedAt }) => {
               {archivedAt && (
                 <div className="internet-details-box-info">
                   <div className="internet-details-box-archived-at-box">
-                    <span className="internet-details-box-archived-at-label">Arquivado em</span>
+                    <span className="internet-details-box-archived-at-label">
+                      Arquivado em
+                    </span>
                     <span className="internet-details-box-archived-at-desc">
                       {planSelectedForDetails?.archivedAt}
                     </span>
@@ -211,38 +350,85 @@ const InternetDetailsBox = ({ archivedAt }) => {
               )}
 
               <div className="internet-details-box-description-box">
-                <span className="internet-details-box-description-label">Descrição</span>
+                <span className="internet-details-box-description-label">
+                  Descrição
+                </span>
 
                 {planSelectedForDetails.description?.map((desc, index) => (
-                  <span key={`desc-${index}`} className="internet-details-box-description-desc">
+                  <span
+                    key={`desc-${index}`}
+                    className="internet-details-box-description-desc"
+                  >
                     {desc}
                   </span>
                 ))}
               </div>
 
               <div className="internet-details-box-buttons-wrapper">
-                <button
-                  type="button"
-                  onClick={handleOpenEditForm}
-                  className="internet-details-box-edit-button">
-                  Editar
-                </button>
-                <button type="button" className="internet-details-box-archive-button">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
-                    />
-                  </svg>
-                  Arquivar
-                </button>
+                {planSelectedForDetails.archived ? (
+                  <>
+                    <button
+                      type="button"
+                      onClick={handleUnarchive}
+                      className="internet-details-box-restore-button"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m6 4.125l2.25 2.25m0 0l2.25 2.25M12 13.875l2.25-2.25M12 13.875l-2.25 2.25M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
+                        />
+                      </svg>
+                      Restaurar
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={handleDelete}
+                      className="internet-details-box-delete-button"
+                    >
+                      Excluir
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      type="button"
+                      onClick={handleOpenEditForm}
+                      className="internet-details-box-edit-button"
+                    >
+                      Editar
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleArchive}
+                      className="internet-details-box-archive-button"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
+                        />
+                      </svg>
+                      Arquivar
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           </div>

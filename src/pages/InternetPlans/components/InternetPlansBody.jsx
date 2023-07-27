@@ -96,7 +96,9 @@ const InternetPlansBody = ({
   const handleFilterValuesChanges = (option, value) => {
     if (option === "technology") {
       if (filterValues.technology.includes(value)) {
-        const newValue = filterValues.technology.filter((tech) => tech !== value);
+        const newValue = filterValues.technology.filter(
+          (tech) => tech !== value,
+        );
         setFilterValues({ ...filterValues, [option]: newValue });
         return;
       }
@@ -135,7 +137,8 @@ const InternetPlansBody = ({
         filterValues.download !== filterValuesValidator.download ||
         JSON.stringify(filterValues.technology) !==
           JSON.stringify(filterValuesValidator.technology) ||
-        JSON.stringify(filterValues.provider) !== JSON.stringify(filterValuesValidator.provider)
+        JSON.stringify(filterValues.provider) !==
+          JSON.stringify(filterValuesValidator.provider)
       ) {
         setIsFilterOptionsValid(true);
       } else {
@@ -186,10 +189,6 @@ const InternetPlansBody = ({
     }
   }, [isFilterSubmitting]);
 
-  useEffect(() => {
-    console.log("filteredInternetPlans: ", filteredInternetPlans);
-  }, [filteredInternetPlans]);
-
   return (
     <div className="body-container">
       <AnimatePresence>
@@ -197,7 +196,11 @@ const InternetPlansBody = ({
       </AnimatePresence>
       <div className="body-wrapper wrapper">
         <div className="filter-form-container">
-          <button type="button" onClick={handleFilterBoxButton} className="filter-form-button">
+          <button
+            type="button"
+            onClick={handleFilterBoxButton}
+            className="filter-form-button"
+          >
             Filtrar
           </button>
 
@@ -208,7 +211,8 @@ const InternetPlansBody = ({
                 ? { maxHeight: `${filterRef.current.scrollHeight + 25}px` }
                 : { maxHeight: "0px" }
             }
-            className="filter-form-box">
+            className="filter-form-box"
+          >
             <div className="filter-form-wrapper">
               <div className="filter-form-cep-box">
                 <span className="filter-form-cep-title">Cep</span>
@@ -240,7 +244,9 @@ const InternetPlansBody = ({
                     id="cost100"
                     name="cost"
                     value={100}
-                    onChange={(e) => handleFilterValuesChanges("cost", Number(e.target.value))}
+                    onChange={(e) =>
+                      handleFilterValuesChanges("cost", Number(e.target.value))
+                    }
                     autoComplete="off"
                     type="radio"
                     className="filter-form-cost-input"
@@ -253,7 +259,9 @@ const InternetPlansBody = ({
                     id="cost150"
                     name="cost"
                     value={150}
-                    onChange={(e) => handleFilterValuesChanges("cost", Number(e.target.value))}
+                    onChange={(e) =>
+                      handleFilterValuesChanges("cost", Number(e.target.value))
+                    }
                     autoComplete="off"
                     type="radio"
                     className="filter-form-cost-input"
@@ -266,7 +274,9 @@ const InternetPlansBody = ({
                     id="cost200"
                     name="cost"
                     value={200}
-                    onChange={(e) => handleFilterValuesChanges("cost", Number(e.target.value))}
+                    onChange={(e) =>
+                      handleFilterValuesChanges("cost", Number(e.target.value))
+                    }
                     autoComplete="off"
                     type="radio"
                     className="filter-form-cost-input"
@@ -280,7 +290,9 @@ const InternetPlansBody = ({
                     name="cost"
                     value={500}
                     defaultChecked={resetInputs}
-                    onChange={(e) => handleFilterValuesChanges("cost", Number(e.target.value))}
+                    onChange={(e) =>
+                      handleFilterValuesChanges("cost", Number(e.target.value))
+                    }
                     autoComplete="off"
                     type="radio"
                     className="filter-form-cost-input"
@@ -290,68 +302,95 @@ const InternetPlansBody = ({
               </div>
 
               <div className="filter-form-download-box">
-                <span className="filter-form-download-title">Velocidade de Internet</span>
+                <span className="filter-form-download-title">
+                  Velocidade de Internet
+                </span>
 
-                <label htmlFor="download10" className="filter-form-download-label">
+                <label
+                  htmlFor="download10"
+                  className="filter-form-download-label"
+                >
                   <input
                     type="radio"
                     id="download10"
                     name="download"
                     value="10MB"
-                    onChange={(e) => handleFilterValuesChanges("download", e.target.value)}
+                    onChange={(e) =>
+                      handleFilterValuesChanges("download", e.target.value)
+                    }
                     autoComplete="off"
                     className="filter-form-download-input"
                   />
                   Até 10MB
                 </label>
 
-                <label htmlFor="download100" className="filter-form-download-label">
+                <label
+                  htmlFor="download100"
+                  className="filter-form-download-label"
+                >
                   <input
                     type="radio"
                     id="download100"
                     name="download"
                     value="100MB"
-                    onChange={(e) => handleFilterValuesChanges("download", e.target.value)}
+                    onChange={(e) =>
+                      handleFilterValuesChanges("download", e.target.value)
+                    }
                     autoComplete="off"
                     className="filter-form-download-input"
                   />
                   Até 100MB
                 </label>
 
-                <label htmlFor="download200" className="filter-form-download-label">
+                <label
+                  htmlFor="download200"
+                  className="filter-form-download-label"
+                >
                   <input
                     type="radio"
                     id="download200"
                     name="download"
                     value="200MB"
-                    onChange={(e) => handleFilterValuesChanges("download", e.target.value)}
+                    onChange={(e) =>
+                      handleFilterValuesChanges("download", e.target.value)
+                    }
                     autoComplete="off"
                     className="filter-form-download-input"
                   />
                   Até 200MB
                 </label>
 
-                <label htmlFor="download500" className="filter-form-download-label">
+                <label
+                  htmlFor="download500"
+                  className="filter-form-download-label"
+                >
                   <input
                     type="radio"
                     id="download500"
                     name="download"
                     value="500MB"
-                    onChange={(e) => handleFilterValuesChanges("download", e.target.value)}
+                    onChange={(e) =>
+                      handleFilterValuesChanges("download", e.target.value)
+                    }
                     autoComplete="off"
                     className="filter-form-download-input"
                   />
                   Até 500MB
                 </label>
 
-                <label htmlFor="download1000" className="filter-form-download-label">
+                <label
+                  htmlFor="download1000"
+                  className="filter-form-download-label"
+                >
                   <input
                     type="radio"
                     id="download1000"
                     name="download"
                     value="1000MB"
                     defaultChecked={resetInputs}
-                    onChange={(e) => handleFilterValuesChanges("download", e.target.value)}
+                    onChange={(e) =>
+                      handleFilterValuesChanges("download", e.target.value)
+                    }
                     autoComplete="off"
                     className="filter-form-download-input"
                   />
@@ -368,20 +407,27 @@ const InternetPlansBody = ({
                     id="fibra"
                     name="planType"
                     value="Fibra Ótica"
-                    onChange={(e) => handleFilterValuesChanges("technology", e.target.value)}
+                    onChange={(e) =>
+                      handleFilterValuesChanges("technology", e.target.value)
+                    }
                     autoComplete="off"
                     className="filter-form-plan-type-input"
                   />
                   Fibra Ótica
                 </label>
 
-                <label htmlFor="metalico" className="filter-form-plan-type-label">
+                <label
+                  htmlFor="metalico"
+                  className="filter-form-plan-type-label"
+                >
                   <input
                     type="checkbox"
                     id="metalico"
                     name="planType"
                     value="Cabo Metálico"
-                    onChange={(e) => handleFilterValuesChanges("technology", e.target.value)}
+                    onChange={(e) =>
+                      handleFilterValuesChanges("technology", e.target.value)
+                    }
                     autoComplete="off"
                     className="filter-form-plan-type-input"
                   />
@@ -394,20 +440,27 @@ const InternetPlansBody = ({
                     id="radio"
                     name="planType"
                     value="Via Rádio"
-                    onChange={(e) => handleFilterValuesChanges("technology", e.target.value)}
+                    onChange={(e) =>
+                      handleFilterValuesChanges("technology", e.target.value)
+                    }
                     autoComplete="off"
                     className="filter-form-plan-type-input"
                   />
                   Via Rádio
                 </label>
 
-                <label htmlFor="satelite" className="filter-form-plan-type-label">
+                <label
+                  htmlFor="satelite"
+                  className="filter-form-plan-type-label"
+                >
                   <input
                     type="checkbox"
                     id="satelite"
                     name="planType"
                     value="Via Satélite"
-                    onChange={(e) => handleFilterValuesChanges("technology", e.target.value)}
+                    onChange={(e) =>
+                      handleFilterValuesChanges("technology", e.target.value)
+                    }
                     autoComplete="off"
                     className="filter-form-plan-type-input"
                   />
@@ -422,14 +475,18 @@ const InternetPlansBody = ({
                   <label
                     key={`provider-${index}`}
                     htmlFor={provider}
-                    className="filter-form-provider-label">
+                    className="filter-form-provider-label"
+                  >
                     <input
                       type="checkbox"
                       id={provider}
                       name="provider"
                       value={provider}
                       onChange={(event) =>
-                        handleFilterValuesChanges("provider", event.target.value)
+                        handleFilterValuesChanges(
+                          "provider",
+                          event.target.value,
+                        )
                       }
                       autoComplete="off"
                       className="filter-form-provider-input"
@@ -444,7 +501,8 @@ const InternetPlansBody = ({
               type="submit"
               disabled={!isFilterOptionsValid}
               onClick={handleSubmitFilterButton}
-              className="filter-form-submit-button">
+              className="filter-form-submit-button"
+            >
               Aplicar
             </button>
           </form>
@@ -452,7 +510,9 @@ const InternetPlansBody = ({
 
         <div className="result-box">
           <span className="result-status">
-            {internetPlans.length !== 0 ? internetPlans.length : filteredInternetPlans.length}{" "}
+            {internetPlans.length !== 0
+              ? internetPlans.length
+              : filteredInternetPlans.length}{" "}
             Resultado(s)
           </span>
 
@@ -461,7 +521,8 @@ const InternetPlansBody = ({
             initial="offscreen"
             animate="onscreen"
             viewport={{ once: true }}
-            className="result-wrapper">
+            className="result-wrapper"
+          >
             <AnimatePresence>
               {filteredInternetPlans.length !== 0 ? (
                 filteredInternetPlans
@@ -496,19 +557,28 @@ const InternetPlansBody = ({
                     />
                   ))
               ) : (
-                <span className="result-not-found-message">Nenhum plano encontrado</span>
+                <span className="result-not-found-message">
+                  Nenhum plano encontrado
+                </span>
               )}
             </AnimatePresence>
-            {internetPlans.length > sliceEnd && filteredInternetPlans.length === 0 ? (
-              <button type="button" onClick={handleShowMore} className="result-show-more-button">
+            {internetPlans.length > sliceEnd &&
+            filteredInternetPlans.length === 0 ? (
+              <button
+                type="button"
+                onClick={handleShowMore}
+                className="result-show-more-button"
+              >
                 MOSTRAR MAIS
               </button>
             ) : null}
-            {filteredInternetPlans.length > sliceEnd && internetPlans.length === 0 ? (
+            {filteredInternetPlans.length > sliceEnd &&
+            internetPlans.length === 0 ? (
               <button
                 type="button"
                 onClick={handleShowMoreFiltered}
-                className="result-show-more-button">
+                className="result-show-more-button"
+              >
                 MOSTRAR MAIS
               </button>
             ) : null}

@@ -14,17 +14,22 @@ const CelPlansBody = ({
   filterValuesValidator,
   setFilterValuesValidator,
 }) => {
-  const { celPlans, setCelPlans, filteredCelPlans, setFilteredCelPlans, providers } =
-    useCelPlansStore(
-      (state) => ({
-        celPlans: state.celPlans,
-        setCelPlans: state.setCelPlans,
-        filteredCelPlans: state.filteredCelPlans,
-        setFilteredCelPlans: state.setFilteredCelPlans,
-        providers: state.providers,
-      }),
-      shallow,
-    );
+  const {
+    celPlans,
+    setCelPlans,
+    filteredCelPlans,
+    setFilteredCelPlans,
+    providers,
+  } = useCelPlansStore(
+    (state) => ({
+      celPlans: state.celPlans,
+      setCelPlans: state.setCelPlans,
+      filteredCelPlans: state.filteredCelPlans,
+      setFilteredCelPlans: state.setFilteredCelPlans,
+      providers: state.providers,
+    }),
+    shallow,
+  );
   const { isLoading, setLoading, unsetLoading } = useGeneralStore(
     (state) => ({
       isLoading: state.isLoading,
@@ -130,8 +135,10 @@ const CelPlansBody = ({
         filterValues.cep !== filterValuesValidator.cep ||
         filterValues.cost !== filterValuesValidator.cost ||
         filterValues.franchise !== filterValuesValidator.franchise ||
-        JSON.stringify(filterValues.planType) !== JSON.stringify(filterValuesValidator.planType) ||
-        JSON.stringify(filterValues.provider) !== JSON.stringify(filterValuesValidator.provider)
+        JSON.stringify(filterValues.planType) !==
+          JSON.stringify(filterValuesValidator.planType) ||
+        JSON.stringify(filterValues.provider) !==
+          JSON.stringify(filterValuesValidator.provider)
       ) {
         setIsFilterOptionValid(true);
       } else {
@@ -160,8 +167,6 @@ const CelPlansBody = ({
           setCelPlans([]);
           setFilteredCelPlans([]);
 
-          console.log("plans depois do submit: ", sortedPlans);
-
           setTimeout(() => {
             setFilteredCelPlans(sortedPlans);
           }, 350);
@@ -182,10 +187,6 @@ const CelPlansBody = ({
     }
   }, [isFilterSubmitting]);
 
-  useEffect(() => {
-    console.log(filterValues);
-  }, [filterValues]);
-
   return (
     <div className="body-container">
       <AnimatePresence>
@@ -193,7 +194,11 @@ const CelPlansBody = ({
       </AnimatePresence>
       <div className="body-wrapper wrapper">
         <div className="filter-form-container">
-          <button type="button" onClick={handleFilterBoxButton} className="filter-form-button">
+          <button
+            type="button"
+            onClick={handleFilterBoxButton}
+            className="filter-form-button"
+          >
             Filtrar
           </button>
 
@@ -204,7 +209,8 @@ const CelPlansBody = ({
                 ? { maxHeight: `${filterRef.current?.scrollHeight + 25}px` }
                 : { maxHeight: "0px" }
             }
-            className="filter-form-box">
+            className="filter-form-box"
+          >
             <div className="filter-form-wrapper">
               <div className="filter-form-cep-box">
                 <span className="filter-form-cep-title">Cep</span>
@@ -235,7 +241,9 @@ const CelPlansBody = ({
                     id="cost50"
                     name="cost"
                     value={50}
-                    onChange={(e) => handleFilterValueChanges("cost", Number(e.target.value))}
+                    onChange={(e) =>
+                      handleFilterValueChanges("cost", Number(e.target.value))
+                    }
                     autoComplete="off"
                     autoCorrect="off"
                     type="radio"
@@ -249,7 +257,9 @@ const CelPlansBody = ({
                     id="cost100"
                     name="cost"
                     value={100}
-                    onChange={(e) => handleFilterValueChanges("cost", Number(e.target.value))}
+                    onChange={(e) =>
+                      handleFilterValueChanges("cost", Number(e.target.value))
+                    }
                     autoComplete="off"
                     autoCorrect="off"
                     type="radio"
@@ -263,7 +273,9 @@ const CelPlansBody = ({
                     id="cost150"
                     name="cost"
                     value={150}
-                    onChange={(e) => handleFilterValueChanges("cost", Number(e.target.value))}
+                    onChange={(e) =>
+                      handleFilterValueChanges("cost", Number(e.target.value))
+                    }
                     autoComplete="off"
                     autoCorrect="off"
                     type="radio"
@@ -277,7 +289,9 @@ const CelPlansBody = ({
                     name="cost"
                     value={300}
                     defaultChecked={resetInputs}
-                    onChange={(e) => handleFilterValueChanges("cost", Number(e.target.value))}
+                    onChange={(e) =>
+                      handleFilterValueChanges("cost", Number(e.target.value))
+                    }
                     autoComplete="off"
                     autoCorrect="off"
                     type="radio"
@@ -288,7 +302,9 @@ const CelPlansBody = ({
               </div>
 
               <div className="filter-form-franchise-box">
-                <span className="filter-form-franchise-title">Franquia de internet</span>
+                <span className="filter-form-franchise-title">
+                  Franquia de internet
+                </span>
 
                 <label htmlFor="10gb" className="filter-form-franchise-label">
                   <input
@@ -296,7 +312,9 @@ const CelPlansBody = ({
                     id="10gb"
                     name="franchise"
                     value="10GB"
-                    onChange={(e) => handleFilterValueChanges("franchise", e.target.value)}
+                    onChange={(e) =>
+                      handleFilterValueChanges("franchise", e.target.value)
+                    }
                     autoComplete="off"
                     autoCorrect="off"
                     className="filter-form-franchise-input"
@@ -310,7 +328,9 @@ const CelPlansBody = ({
                     id="25gb"
                     name="franchise"
                     value="25GB"
-                    onChange={(e) => handleFilterValueChanges("franchise", e.target.value)}
+                    onChange={(e) =>
+                      handleFilterValueChanges("franchise", e.target.value)
+                    }
                     autoComplete="off"
                     autoCorrect="off"
                     className="filter-form-franchise-input"
@@ -324,7 +344,9 @@ const CelPlansBody = ({
                     id="50gb"
                     name="franchise"
                     value="50GB"
-                    onChange={(e) => handleFilterValueChanges("franchise", e.target.value)}
+                    onChange={(e) =>
+                      handleFilterValueChanges("franchise", e.target.value)
+                    }
                     autoComplete="off"
                     autoCorrect="off"
                     className="filter-form-franchise-input"
@@ -339,7 +361,9 @@ const CelPlansBody = ({
                     name="franchise"
                     value="300GB"
                     defaultChecked={resetInputs}
-                    onChange={(e) => handleFilterValueChanges("franchise", e.target.value)}
+                    onChange={(e) =>
+                      handleFilterValueChanges("franchise", e.target.value)
+                    }
                     autoComplete="off"
                     autoCorrect="off"
                     className="filter-form-franchise-input"
@@ -349,15 +373,22 @@ const CelPlansBody = ({
               </div>
 
               <div className="filter-form-plan-type-box">
-                <span className="filter-form-plan-type-title">Tipo do plano</span>
+                <span className="filter-form-plan-type-title">
+                  Tipo do plano
+                </span>
 
-                <label htmlFor="controle" className="filter-form-plan-type-label">
+                <label
+                  htmlFor="controle"
+                  className="filter-form-plan-type-label"
+                >
                   <input
                     type="checkbox"
                     id="controle"
                     name="planType"
                     value="Controle"
-                    onChange={(e) => handleFilterValueChanges("planType", e.target.value)}
+                    onChange={(e) =>
+                      handleFilterValueChanges("planType", e.target.value)
+                    }
                     autoComplete="off"
                     autoCorrect="off"
                     className="filter-form-plan-type-input"
@@ -365,13 +396,18 @@ const CelPlansBody = ({
                   Controle
                 </label>
 
-                <label htmlFor="posPago" className="filter-form-plan-type-label">
+                <label
+                  htmlFor="posPago"
+                  className="filter-form-plan-type-label"
+                >
                   <input
                     type="checkbox"
                     id="posPago"
                     name="planType"
                     value="Pós-pago"
-                    onChange={(e) => handleFilterValueChanges("planType", e.target.value)}
+                    onChange={(e) =>
+                      handleFilterValueChanges("planType", e.target.value)
+                    }
                     autoComplete="off"
                     autoCorrect="off"
                     className="filter-form-plan-type-input"
@@ -379,13 +415,18 @@ const CelPlansBody = ({
                   Pós-pago
                 </label>
 
-                <label htmlFor="prePago" className="filter-form-plan-type-label">
+                <label
+                  htmlFor="prePago"
+                  className="filter-form-plan-type-label"
+                >
                   <input
                     type="checkbox"
                     id="prePago"
                     name="planType"
                     value="Pré-pago"
-                    onChange={(e) => handleFilterValueChanges("planType", e.target.value)}
+                    onChange={(e) =>
+                      handleFilterValueChanges("planType", e.target.value)
+                    }
                     autoComplete="off"
                     autoCorrect="off"
                     className="filter-form-plan-type-input"
@@ -401,13 +442,16 @@ const CelPlansBody = ({
                   <label
                     key={`provider-${index}`}
                     htmlFor={provider}
-                    className="filter-form-provider-label">
+                    className="filter-form-provider-label"
+                  >
                     <input
                       type="checkbox"
                       id={provider}
                       name="provider"
                       value={provider}
-                      onChange={(event) => handleFilterValueChanges("provider", event.target.value)}
+                      onChange={(event) =>
+                        handleFilterValueChanges("provider", event.target.value)
+                      }
                       autoComplete="off"
                       autoCorrect="off"
                       className="filter-form-provider-input"
@@ -422,7 +466,8 @@ const CelPlansBody = ({
               type="submit"
               disabled={!isFilterOptionValid}
               onClick={handleSubmitFilterButton}
-              className="filter-form-submit-button">
+              className="filter-form-submit-button"
+            >
               Aplicar
             </button>
           </form>
@@ -430,7 +475,8 @@ const CelPlansBody = ({
 
         <div className="result-box">
           <span className="result-status">
-            {celPlans.length !== 0 ? celPlans.length : filteredCelPlans.length} Resultado(s)
+            {celPlans.length !== 0 ? celPlans.length : filteredCelPlans.length}{" "}
+            Resultado(s)
           </span>
 
           <div className="result-wrapper">
@@ -468,11 +514,17 @@ const CelPlansBody = ({
                     />
                   ))
               ) : (
-                <span className="result-not-found-message">Nenhum plano encontrado</span>
+                <span className="result-not-found-message">
+                  Nenhum plano encontrado
+                </span>
               )}
             </AnimatePresence>
             {celPlans.length > sliceEnd ? (
-              <button type="button" onClick={handleShowMore} className="result-show-more-button">
+              <button
+                type="button"
+                onClick={handleShowMore}
+                className="result-show-more-button"
+              >
                 MOSTRAR MAIS
               </button>
             ) : (
@@ -482,7 +534,8 @@ const CelPlansBody = ({
               <button
                 type="button"
                 onClick={handleShowMoreFiltered}
-                className="result-show-more-button">
+                className="result-show-more-button"
+              >
                 MOSTRAR MAIS
               </button>
             ) : (

@@ -68,7 +68,9 @@ const CelPlans = () => {
     provider: [],
     planType: [],
   });
-  const [filterValuesValidator, setFilterValuesValidator] = useState({ ...filterValues });
+  const [filterValuesValidator, setFilterValuesValidator] = useState({
+    ...filterValues,
+  });
 
   const cep = useParams()?.cep || "";
 
@@ -98,9 +100,9 @@ const CelPlans = () => {
             api
               .post("plan/cel-plan/filter", data)
               .then((res) => {
-                const sortedPlans = res.data.sort((a, b) => a.priority - b.priority);
-
-                console.log("plans: ", sortedPlans);
+                const sortedPlans = res.data.sort(
+                  (a, b) => a.priority - b.priority,
+                );
 
                 setFilteredCelPlans(sortedPlans);
               })
