@@ -69,7 +69,9 @@ const InternetPlans = () => {
     technology: [],
     provider: [],
   });
-  const [filterValuesValidator, setFilterValuesValidator] = useState({ ...filterValues });
+  const [filterValuesValidator, setFilterValuesValidator] = useState({
+    ...filterValues,
+  });
 
   const cep = useParams()?.cep || "";
 
@@ -99,12 +101,17 @@ const InternetPlans = () => {
             api
               .post("plan/internet-plan/filter", data)
               .then((res) => {
-                const sortedPlans = res.data.sort((a, b) => a.priority - b.priority);
+                const sortedPlans = res.data.sort(
+                  (a, b) => a.priority - b.priority,
+                );
 
                 setFilteredInternetPlans(sortedPlans);
               })
               .catch((err) => console.error(err))
-              .finally(() => setInternetPlans([]));
+              .finally(() => {
+                setInternetPlans([]);
+                unsetLoading();
+              });
           } else {
             setInternetPlans(sortedPlans.filter((plan) => !plan.archived));
           }
@@ -115,6 +122,10 @@ const InternetPlans = () => {
             .get("provider/all")
             .then((res) => setAllProviders(res.data))
             .catch((err) => console.error(err));
+
+          if (!cep) {
+            unsetLoading();
+          }
         });
     };
 
@@ -124,11 +135,7 @@ const InternetPlans = () => {
   }, []);
 
   useEffect(() => {
-    if (
-      (internetPlans.length !== 0 || filteredInternetPlans.length !== 0) &&
-      allProviders.length !== 0 &&
-      plansProviders.length !== 0
-    ) {
+    if (allProviders.length !== 0 && plansProviders.length !== 0) {
       const providersSelected = [];
 
       for (let i = 0; i < plansProviders.length; i++) {
@@ -142,8 +149,6 @@ const InternetPlans = () => {
         }
       }
       setProviders(providersSelected);
-
-      unsetLoading();
     }
   }, [internetPlans, filteredInternetPlans, allProviders]);
 

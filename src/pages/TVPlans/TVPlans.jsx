@@ -69,7 +69,9 @@ const TVPlans = () => {
     cost: 250,
     devicesQuant: 1,
   });
-  const [filterValuesValidator, setFilterValuesValidator] = useState({ ...filterValues });
+  const [filterValuesValidator, setFilterValuesValidator] = useState({
+    ...filterValues,
+  });
 
   const cep = useParams()?.cep || "";
 
@@ -98,13 +100,16 @@ const TVPlans = () => {
             api
               .post("plan/tv-plan/filter", data)
               .then((res) => {
-                const sortedPlans = res.data.sort((a, b) => a.priority - b.priority);
+                const sortedPlans = res.data.sort(
+                  (a, b) => a.priority - b.priority,
+                );
 
                 setFilteredTvPlans(sortedPlans);
               })
               .catch((err) => console.error(err))
               .finally(() => {
                 setTvPlans([]);
+                unsetLoading();
               });
           } else {
             setTvPlans(sortedPlans.filter((plan) => !plan.archived));
@@ -116,6 +121,10 @@ const TVPlans = () => {
             .get("provider/all")
             .then((res) => setAllProviders(res.data))
             .catch((err) => console.error(err));
+
+          if (!cep) {
+            unsetLoading();
+          }
         });
     };
 
@@ -133,11 +142,7 @@ const TVPlans = () => {
   }, [isRegisterFormOpen]);
 
   useEffect(() => {
-    if (
-      (tvPlans.length !== 0 || filteredTvPlans.length !== 0) &&
-      allProviders.length !== 0 &&
-      plansProviders.length !== 0
-    ) {
+    if (allProviders.length !== 0 && plansProviders.length !== 0) {
       const providerSelected = [];
 
       for (let i = 0; i < plansProviders.length; i++) {
@@ -152,8 +157,6 @@ const TVPlans = () => {
       }
 
       setProviders(providerSelected);
-
-      unsetLoading();
     }
   }, [tvPlans, filteredTvPlans, allProviders]);
 

@@ -109,6 +109,7 @@ const CelPlans = () => {
               .catch((err) => console.error(err))
               .finally(() => {
                 setCelPlans([]);
+                unsetLoading();
               });
           } else {
             setCelPlans(sortedPlans.filter((plan) => !plan.archived));
@@ -120,6 +121,10 @@ const CelPlans = () => {
             .get("provider/all")
             .then((res) => setAllProviders(res.data))
             .catch((err) => console.error(err));
+
+          if (!cep) {
+            unsetLoading();
+          }
         });
     };
 
@@ -129,11 +134,7 @@ const CelPlans = () => {
   }, []);
 
   useEffect(() => {
-    if (
-      (celPlans.length !== 0 || filteredCelPlans.length !== 0) &&
-      allProviders.length !== 0 &&
-      plansProviders.length !== 0
-    ) {
+    if (allProviders.length !== 0 && plansProviders.length !== 0) {
       const providerSelected = [];
 
       for (let i = 0; i < plansProviders.length; i++) {
@@ -148,8 +149,6 @@ const CelPlans = () => {
       }
 
       setProviders(providerSelected);
-
-      unsetLoading();
     }
   }, [celPlans, filteredCelPlans, allProviders]);
 
