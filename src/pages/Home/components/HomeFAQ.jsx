@@ -1,15 +1,20 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useRef } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import useHomeStore from "../../../stores/useHomeStore";
 import { motion } from "framer-motion";
 
 const FAQCard = ({ question, answer, isAnswerOpen, handleAnswer, id }) => {
+  const faqRef = useRef(null);
+
   return (
     <div className="faq-box">
       <div
         className="faq-info"
         style={isAnswerOpen ? { marginBottom: "25px" } : {}}
-        onClick={() => handleAnswer(`answer${id}`)}
+        onClick={() => {
+          handleAnswer(`answer${id}`);
+          console.log(faqRef?.scrollHeight);
+        }}
       >
         <span className="faq-question">{question}</span>
         <button className="faq-button">
@@ -18,11 +23,19 @@ const FAQCard = ({ question, answer, isAnswerOpen, handleAnswer, id }) => {
       </div>
 
       <div
-        className={
+        className="faq-answer-box "
+        style={
           isAnswerOpen
-            ? "faq-answer-box active-answer"
-            : "faq-answer-box desactive-answer"
+            ? {
+                maxHeight: `${faqRef.current?.scrollHeight + 30}px`,
+                padding: "15px 60px 15px 15px",
+              }
+            : {
+                maxHeight: "0px",
+                padding: "0px 60px 0px 15px",
+              }
         }
+        ref={faqRef}
       >
         <span className="faq-answer">{answer}</span>
       </div>

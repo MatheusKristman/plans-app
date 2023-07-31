@@ -7,7 +7,7 @@ const BenefitCard = ({ imgUrl, title, text, variant }) => {
       variants={variant}
       initial="offscreen"
       whileInView="onscreen"
-      viewport={{ once: true, amount: 1 }}
+      viewport={{ once: true, amount: 0.5 }}
       className="benefits-card"
     >
       <div className="benefits-image-box">
@@ -46,7 +46,9 @@ const HomeBenefits = () => {
           title="Consultoria especializada"
           text="Receba orientação personalizada para encontrar os melhores planos de diferentes operadoras que atendam às necessidades do seu condomínio."
           variant={
-            window.innerWidth < 1024 ? mobileBenefitsAnimation : desktopFirstHalfBenefitsAnimation
+            window.innerWidth < 1024
+              ? mobileBenefitsAnimation
+              : desktopFirstHalfBenefitsAnimation
           }
         />
         <BenefitCard
@@ -54,7 +56,9 @@ const HomeBenefits = () => {
           title="Amplas opções de escolha"
           text="Tenha acesso a uma variedade de planos de diferentes operadoras, permitindo escolher a opção mais adequada para o seu condomínio."
           variant={
-            window.innerWidth < 1024 ? mobileBenefitsAnimation : desktopSecondHalfBenefitsAnimation
+            window.innerWidth < 1024
+              ? mobileBenefitsAnimation
+              : desktopSecondHalfBenefitsAnimation
           }
         />
         <BenefitCard
@@ -62,7 +66,9 @@ const HomeBenefits = () => {
           title="Negociações vantajosas"
           text="Aproveite negociações exclusivas e condições especiais ao adquirir planos de revenda por meio do nosso serviço, garantindo o melhor custo-benefício."
           variant={
-            window.innerWidth < 1024 ? mobileBenefitsAnimation : desktopFirstHalfBenefitsAnimation
+            window.innerWidth < 1024
+              ? mobileBenefitsAnimation
+              : desktopFirstHalfBenefitsAnimation
           }
         />
         <BenefitCard
@@ -70,7 +76,9 @@ const HomeBenefits = () => {
           title="Simplifique o processo"
           text="Conte com nosso suporte para simplificar o processo de contratação de planos, poupando tempo e esforço para o condomínio."
           variant={
-            window.innerWidth < 1024 ? mobileBenefitsAnimation : desktopSecondHalfBenefitsAnimation
+            window.innerWidth < 1024
+              ? mobileBenefitsAnimation
+              : desktopSecondHalfBenefitsAnimation
           }
         />
       </div>

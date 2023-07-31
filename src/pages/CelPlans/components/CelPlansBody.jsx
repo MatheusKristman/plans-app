@@ -152,6 +152,9 @@ const CelPlansBody = ({
   useEffect(() => {
     const submitData = () => {
       setLoading();
+      setCelPlans([]);
+      setFilteredCelPlans([]);
+
       const data = {
         cep: filterValues.cep,
         provider: filterValues.provider,
@@ -164,8 +167,6 @@ const CelPlansBody = ({
         .post("plan/cel-plan/filter", data)
         .then((res) => {
           const sortedPlans = res.data.sort((a, b) => a.priority - b.priority);
-          setCelPlans([]);
-          setFilteredCelPlans([]);
 
           setTimeout(() => {
             setFilteredCelPlans(sortedPlans);
@@ -178,7 +179,10 @@ const CelPlansBody = ({
           setFilterValuesValidator({ ...filterValues });
           setCelPlans([]);
           resetSlice();
-          unsetLoading();
+
+          setTimeout(() => {
+            unsetLoading();
+          }, 350);
         });
     };
 

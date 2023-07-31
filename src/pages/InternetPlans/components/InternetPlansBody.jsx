@@ -45,6 +45,7 @@ const InternetPlansBody = ({
   const [sliceEnd, setSliceEnd] = useState(5);
 
   const filterRef = useRef();
+  const bodyRef = useRef();
 
   const openFilterBox = () => {
     setIsFilterOpen(true);
@@ -87,6 +88,10 @@ const InternetPlansBody = ({
     event.preventDefault();
 
     setIsFilterSubmitting(true);
+
+    const scrollPosition = bodyRef.current.offsetTop;
+
+    window.scrollTo(0, scrollPosition);
 
     if (window.innerWidth < 1024) {
       closeFilterBox();
@@ -152,6 +157,8 @@ const InternetPlansBody = ({
   useEffect(() => {
     const submitData = () => {
       setLoading();
+      setInternetPlans([]);
+      setFilteredInternetPlans([]);
 
       const data = {
         cep: filterValues.cep,
@@ -166,9 +173,6 @@ const InternetPlansBody = ({
         .then((res) => {
           const sortedPlans = res.data.sort((a, b) => a.priority - b.priority);
 
-          setInternetPlans([]);
-          setFilteredInternetPlans([]);
-
           setTimeout(() => {
             setFilteredInternetPlans(sortedPlans);
           }, 350);
@@ -180,7 +184,10 @@ const InternetPlansBody = ({
           setFilterValuesValidator({ ...filterValues });
           setInternetPlans([]);
           resetSlice();
-          unsetLoading();
+
+          setTimeout(() => {
+            unsetLoading();
+          }, 350);
         });
     };
 
@@ -190,7 +197,7 @@ const InternetPlansBody = ({
   }, [isFilterSubmitting]);
 
   return (
-    <div className="body-container">
+    <div ref={bodyRef} className="body-container">
       <AnimatePresence>
         {isLoading && <Loading key={isLoading} type="spin" color="#8186bc" />}
       </AnimatePresence>

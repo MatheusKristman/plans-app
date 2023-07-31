@@ -1,9 +1,11 @@
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import useAlternativeHomeStore from "../../../stores/useAlternativeHomeStore";
 import { motion } from "framer-motion";
 
 const FAQCard = ({ question, answer, isAnswerOpen, handleAnswer, id }) => {
+  const faqRef = useRef(null);
+
   return (
     <div className="faq-box">
       <div
@@ -18,8 +20,18 @@ const FAQCard = ({ question, answer, isAnswerOpen, handleAnswer, id }) => {
       </div>
 
       <div
-        className={
-          isAnswerOpen ? "faq-answer-box active-answer" : "faq-answer-box desactive-answer"
+        className="faq-answer-box"
+        ref={faqRef}
+        style={
+          isAnswerOpen
+            ? {
+                maxHeight: `${faqRef.current?.scrollHeight + 30}px`,
+                padding: "15px 60px 15px 15px",
+              }
+            : {
+                maxHeight: "0px",
+                padding: "0px 60px 0px 15px",
+              }
         }
       >
         <span className="faq-answer">{answer}</span>
@@ -44,7 +56,7 @@ const HomeFAQ = () => {
       transition={{ staggerChildren: 0.4 }}
       initial="offscreen"
       whileInView="onscreen"
-      viewport={{ once: true, amount: 0.5 }}
+      viewport={{ once: true, amount: 0.1 }}
       id="faq"
       className="faq-container wrapper"
     >
@@ -52,8 +64,9 @@ const HomeFAQ = () => {
         Um pouco mais sobre (Nome da empresa)
       </motion.h2>
       <motion.p variants={faqAnimation} className="faq-desc">
-        Nosso objetivo é proporcionar a você uma experiência tranquila ao escolher e aproveitar os
-        planos oferecidos pelas melhores operadoras do mercado.
+        Nosso objetivo é proporcionar a você uma experiência tranquila ao
+        escolher e aproveitar os planos oferecidos pelas melhores operadoras do
+        mercado.
       </motion.p>
 
       <motion.div variants={faqAnimation} className="faq-wrapper">

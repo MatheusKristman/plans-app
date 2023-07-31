@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 const useHomeStore = create((set) => ({
   isMobileNavOpen: false,
@@ -19,7 +19,9 @@ const useHomeStore = create((set) => ({
       }
 
       Object.keys(answersArr).forEach((answer) =>
-        answer === value ? (answersArr[answer] = true) : (answersArr[answer] = false)
+        answer === value
+          ? (answersArr[answer] = true)
+          : (answersArr[answer] = false),
       );
 
       return { answers: answersArr };
@@ -30,34 +32,42 @@ const useHomeStore = create((set) => ({
   openFilterBox: () => set(() => ({ isFilterBoxOpen: true })),
   closeFilterBox: () => set(() => ({ isFilterBoxOpen: false })),
   isProviderQuestionRendered: false,
-  setProviderQuestionRendered: () => set(() => ({ isProviderQuestionRendered: true })),
-  unsetProviderQuestionRendered: () => set(() => ({ isProviderQuestionRendered: false })),
+  setProviderQuestionRendered: () =>
+    set(() => ({ isProviderQuestionRendered: true })),
+  unsetProviderQuestionRendered: () =>
+    set(() => ({ isProviderQuestionRendered: false })),
   isProviderAnimation: false,
   setProviderAnimation: () => set(() => ({ isProviderAnimation: true })),
   unsetProviderAnimation: () => set(() => ({ isProviderAnimation: false })),
-  providerValue: 'banda-larga',
-  setProviderValue: (event) => set(() => ({ providerValue: event.target.value })),
-  resetProviderValue: () => set(() => ({ providerValue: 'banda-larga' })),
+  providerValue: "banda-larga",
+  setProviderValue: (event) =>
+    set(() => ({ providerValue: event.target.value })),
+  resetProviderValue: () => set(() => ({ providerValue: "banda-larga" })),
   isCepQuestionRendered: false,
   setCepQuestionRendered: () => set(() => ({ isCepQuestionRendered: true })),
   unsetCepQuestionRendered: () => set(() => ({ isCepQuestionRendered: false })),
   isCepAnimation: false,
   setCepAnimation: () => set(() => ({ isCepAnimation: true })),
   unsetCepAnimation: () => set(() => ({ isCepAnimation: false })),
-  cepValue: '',
+  cepValue: "",
   setCepValue: (event) =>
     set(() => {
-      let cep = event.target.value.replace(/\D/g, '');
+      let cep = event.target.value.replace(/\D/g, "");
 
       if (cep.length === 8) {
-        cep = cep.replace(/(\d{5})(\d)/, '$1-$2');
+        cep = cep.replace(/(\d{5})(\d)/, "$1-$2");
       }
 
       return { cepValue: cep };
     }),
-  resetCepValue: () => set(() => ({ cepValue: '' })),
-  footerMessage: '',
-  setFooterMessage: (event) => set(() => ({ footerMessage: event.target.value })),
+  resetCepValue: () => set(() => ({ cepValue: "" })),
+  cepError: false,
+  setCepError: () => set(() => ({ cepError: true })),
+  unsetCepError: () => set(() => ({ cepError: false })),
+  footerMessage: "",
+  setFooterMessage: (event) =>
+    set(() => ({ footerMessage: event.target.value })),
+  resetFooterMessage: () => set(() => ({ footerMessage: "" })),
 }));
 
 export default useHomeStore;

@@ -9,7 +9,7 @@
   background-color: rgba(32, 33, 36, 0.5);
   overflow: auto;
   padding: 60px 25px;
-  z-index: 50;
+  z-index: 60;
 
   @include breakpoint(tablet) {
     padding: 60px;
@@ -470,7 +470,9 @@
               padding: 0 10px;
               font-size: 1rem;
               color: #252525;
-              transition: border-color 0.3s ease, filter 0.3s ease;
+              transition:
+                border-color 0.3s ease,
+                filter 0.3s ease;
 
               &:focus {
                 border-color: #7a7a7a;

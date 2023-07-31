@@ -108,6 +108,7 @@
         .home-filter-box-infos-box {
           width: 100%;
           padding: 30px;
+          overflow: hidden;
 
           .home-filter-box-title {
             font-size: 1.5rem;
@@ -173,6 +174,11 @@
               &:focus {
                 border-color: #7a7a7a;
               }
+            }
+
+            .home-filter-box-cep-error {
+              color: #ef5959;
+              margin-top: 5px;
             }
           }
 
@@ -271,6 +277,7 @@
       justify-content: flex-end;
       align-items: center;
       height: 100%;
+      min-width: 30px;
       position: relative;
 
       @include breakpoint(smallScreen) {
@@ -278,13 +285,14 @@
       }
 
       .header-nav-button {
-        height: auto;
+        height: 100%;
         width: 30px;
+        min-width: 30px;
+        max-width: 30px;
         display: flex;
         align-items: center;
         justify-content: center;
-        // background-color: transparent;
-        background-color: red;
+        background-color: transparent;
         border: none;
         cursor: pointer;
 

@@ -344,6 +344,9 @@ const AddressForm = () => {
     activateStepsAnimation,
     deactivateStepsAnimation,
     stateOptions,
+    setStateLoading,
+    unsetStateLoading,
+    stateLoading,
     clientData,
     setClientData,
     cityOptions,
@@ -357,6 +360,9 @@ const AddressForm = () => {
       activateStepsAnimation: state.activateStepsAnimation,
       deactivateStepsAnimation: state.deactivateStepsAnimation,
       stateOptions: state.stateOptions,
+      setStateLoading: state.setStateLoading,
+      unsetStateLoading: state.unsetStateLoading,
+      stateLoading: state.stateLoading,
       clientData: state.clientData,
       setClientData: state.setClientData,
       cityOptions: state.cityOptions,
@@ -367,6 +373,7 @@ const AddressForm = () => {
     }),
     shallow,
   );
+  const [stateComparation, setStateComparation] = useState("");
 
   const {
     register,
@@ -390,10 +397,19 @@ const AddressForm = () => {
   }, []);
 
   useEffect(() => {
+    console.log(clientData);
+    setStateComparation(clientData.state);
+
     if (stateOptions.some((state) => state.nome === clientData.state)) {
       const id = stateOptions.filter(
         (state) => state.nome === clientData.state,
       )[0].id;
+
+      console.log("rodando função dos estados");
+
+      if (stateComparation !== clientData.state) {
+        setStateLoading();
+      }
 
       axios
         .get(
@@ -401,9 +417,13 @@ const AddressForm = () => {
         )
         .then((res) => {
           setCityOptions(res.data);
+          setStateComparation(clientData.state);
         })
         .catch((error) => {
           console.error(error);
+        })
+        .finally(() => {
+          unsetStateLoading();
         });
     }
   }, [stateOptions, clientData]);
@@ -475,12 +495,17 @@ const AddressForm = () => {
               defaultValue={clientData.city || cityOptions[0].nome}
               style={errors.city ? { borderColor: "#ef5959" } : {}}
               className="address-select"
+              disabled={stateLoading}
             >
-              {cityOptions.map((city) => (
-                <option key={city.id} value={city.nome}>
-                  {city.nome}
-                </option>
-              ))}
+              {stateLoading ? (
+                <option>Aguarde um momento...</option>
+              ) : (
+                cityOptions.map((city) => (
+                  <option key={city.id} value={city.nome}>
+                    {city.nome}
+                  </option>
+                ))
+              )}
             </select>
             {errors.city && (
               <span className="register-form-error-message">

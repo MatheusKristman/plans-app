@@ -38,16 +38,17 @@ const HomeHero = () => {
           transition={{ staggerChildren: 0.4 }}
           initial="offscreen"
           whileInView="onscreen"
-          viewport={{ once: true, amount: 1 }}
+          viewport={{ once: true, amount: 0.1 }}
           className="hero-info"
         >
           <motion.h1 variants={titleAnimate} className="hero-title">
             A Melhor Conexão Para Seu Condomínio
           </motion.h1>
           <motion.p variants={descAnimate} className="hero-desc">
-            Conecte-se ao melhor da internet e desfrute de entretenimento excepcional com nossos
-            planos de internet e TV especialmente desenvolvidos para condomínios, garantindo
-            velocidade e diversão para todos os moradores.
+            Conecte-se ao melhor da internet e desfrute de entretenimento
+            excepcional com nossos planos de internet e TV especialmente
+            desenvolvidos para condomínios, garantindo velocidade e diversão
+            para todos os moradores.
           </motion.p>
           <motion.button
             type="button"
@@ -61,7 +62,11 @@ const HomeHero = () => {
 
         <div className="hero-image">
           <div className="image-box">
-            <img src="/assets/images/alternative-hero-bg.png" alt="Comdomínio" className="image" />
+            <img
+              src="/assets/images/alternative-hero-bg.png"
+              alt="Comdomínio"
+              className="image"
+            />
           </div>
         </div>
       </div>

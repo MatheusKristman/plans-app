@@ -40,11 +40,12 @@ const ProviderFilter = () => {
 };
 
 const CepFilter = () => {
-  const { cepValue, setCepValue, isCepAnimation } = useHomeStore(
+  const { cepValue, setCepValue, isCepAnimation, cepError } = useHomeStore(
     (state) => ({
       cepValue: state.cepValue,
       setCepValue: state.setCepValue,
       isCepAnimation: state.isCepAnimation,
+      cepError: state.cepError,
     }),
     shallow,
   );
@@ -65,9 +66,14 @@ const CepFilter = () => {
         autoCorrect="off"
         onChange={setCepValue}
         value={cepValue}
+        style={cepError ? { border: "2px solid #ef5959" } : {}}
         maxLength="8"
         className="home-filter-box-cep-input"
       />
+
+      {cepError && (
+        <small className="home-filter-box-cep-error">Cep invalido!</small>
+      )}
     </div>
   );
 };
@@ -88,6 +94,9 @@ const HomeInitialFilterBox = () => {
     unsetCepAnimation,
     cepValue,
     resetCepValue,
+    cepError,
+    setCepError,
+    unsetCepError,
   } = useHomeStore(
     (state) => ({
       closeFilterBox: state.closeFilterBox,
@@ -104,6 +113,9 @@ const HomeInitialFilterBox = () => {
       unsetCepAnimation: state.unsetCepAnimation,
       cepValue: state.cepValue,
       resetCepValue: state.resetCepValue,
+      cepError: state.cepError,
+      setCepError: state.setCepError,
+      unsetCepError: state.unsetCepError,
     }),
     shallow,
   );
@@ -139,6 +151,7 @@ const HomeInitialFilterBox = () => {
   const handleNext = () => {
     if (providerValue && !isCepQuestionRendered) {
       unsetProviderAnimation();
+      unsetCepError();
 
       setTimeout(() => {
         unsetProviderQuestionRendered();
@@ -149,10 +162,13 @@ const HomeInitialFilterBox = () => {
 
     if (cepValue.length === 9) {
       handleFilterBoxClose();
+      unsetCepError();
 
       setTimeout(() => {
         navigate(`/planos/${providerValue}/${cepValue}`);
       }, 800);
+    } else if (cepValue.length < 9 && isCepQuestionRendered) {
+      setCepError();
     }
   };
 
@@ -161,6 +177,7 @@ const HomeInitialFilterBox = () => {
     resetCepValue();
     event.target.classList.remove("animate__fadeIn");
     event.target.classList.add("animate__fadeOut");
+    unsetCepError();
 
     setTimeout(() => {
       unsetCepQuestionRendered();

@@ -18,7 +18,7 @@ const StepsCard = ({ tag, title, description }) => {
 
 const HomeHowItWorks = () => {
   return (
-    <div className="how-it-works-container">
+    <div id="howItWorks" className="how-it-works-container">
       <div className="wrapper">
         <h2 className="how-it-works-title">
           Seu aprimoramento em apenas 3 passos
@@ -28,7 +28,7 @@ const HomeHowItWorks = () => {
           transition={{ staggerChildren: 0.3 }}
           initial="offscreen"
           whileInView="onscreen"
-          viewport={{ once: true, amount: 0.5 }}
+          viewport={{ once: true, amount: 0.3 }}
           className="how-it-works-wrapper"
         >
           <StepsCard

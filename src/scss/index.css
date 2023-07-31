@@ -9142,6 +9142,7 @@ body {
 .container .home-filter-box-overlay .home-filter-box-container .home-filter-box-wrapper .home-filter-box-infos-box {
   width: 100%;
   padding: 30px;
+  overflow: hidden;
 }
 .container .home-filter-box-overlay .home-filter-box-container .home-filter-box-wrapper .home-filter-box-infos-box .home-filter-box-title {
   font-size: 1.5rem;
@@ -9199,6 +9200,10 @@ body {
 }
 .container .home-filter-box-overlay .home-filter-box-container .home-filter-box-wrapper .home-filter-box-infos-box .home-filter-box-cep-wrapper .home-filter-box-cep-input:focus {
   border-color: #7a7a7a;
+}
+.container .home-filter-box-overlay .home-filter-box-container .home-filter-box-wrapper .home-filter-box-infos-box .home-filter-box-cep-wrapper .home-filter-box-cep-error {
+  color: #ef5959;
+  margin-top: 5px;
 }
 .container .home-filter-box-overlay .home-filter-box-container .home-filter-box-wrapper .home-filter-box-infos-box .home-filter-box-button-wrapper {
   display: flex;
@@ -9284,6 +9289,7 @@ body {
   justify-content: flex-end;
   align-items: center;
   height: 100%;
+  min-width: 30px;
   position: relative;
 }
 @media screen and (min-width: 768px) {
@@ -9292,12 +9298,14 @@ body {
   }
 }
 .container .header-wrapper .header-mobile-nav-menu .header-nav-button {
-  height: auto;
+  height: 100%;
   width: 30px;
+  min-width: 30px;
+  max-width: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: red;
+  background-color: transparent;
   border: none;
   cursor: pointer;
 }
@@ -9856,6 +9864,7 @@ body {
   justify-content: flex-end;
   align-items: center;
   height: 100%;
+  min-width: 30px;
   position: relative;
 }
 @media screen and (min-width: 768px) {
@@ -9864,8 +9873,10 @@ body {
   }
 }
 .container-alternative .header-wrapper .header-mobile-nav-menu .header-nav-button {
-  height: auto;
+  height: 100%;
   width: 30px;
+  min-width: 30px;
+  max-width: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10122,7 +10133,7 @@ body {
 }
 .container-alternative .how-it-works-container {
   width: 100%;
-  margin-top: 250px;
+  margin-top: 50px;
   margin-bottom: -100px;
   position: relative;
 }
@@ -10228,34 +10239,36 @@ body {
 }
 .container-alternative .benefits-container {
   width: 100%;
-  padding-top: 300px;
+  padding-top: 200px;
   background-image: url("/assets/images/alternative-benefits-mobile-bg.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: top center;
-  padding-bottom: 150px;
+  padding-bottom: 0px;
 }
 @media screen and (min-width: 500px) {
   .container-alternative .benefits-container {
     background-image: url("/assets/images/alternative-benefits-tablet-bg.png");
+    padding-bottom: 50px;
   }
 }
 @media screen and (min-width: 1024px) {
   .container-alternative .benefits-container {
     background-image: url("/assets/images/alternative-benefits-bg.png");
+    padding-bottom: 150px;
   }
 }
 .container-alternative .benefits-container .benefits-wrapper {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(4, 1fr);
-  gap: 50px;
+  gap: 20px;
 }
 @media screen and (min-width: 1024px) {
   .container-alternative .benefits-container .benefits-wrapper {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    gap: 50px 40px;
+    gap: 20px 40px;
   }
 }
 .container-alternative .benefits-container .benefits-wrapper .benefits-card {
@@ -12645,7 +12658,7 @@ body {
   background-color: rgba(32, 33, 36, 0.5);
   overflow: auto;
   padding: 60px 25px;
-  z-index: 50;
+  z-index: 60;
 }
 @media screen and (min-width: 500px) {
   .register-form-overlay {
