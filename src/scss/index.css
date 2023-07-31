@@ -9297,7 +9297,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: transparent;
+  background-color: red;
   border: none;
   cursor: pointer;
 }
