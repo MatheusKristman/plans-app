@@ -221,7 +221,9 @@
               font-size: 1rem;
               font-weight: 500;
               cursor: pointer;
-              transition: background 0.3s ease, color 0.3s ease;
+              transition:
+                background 0.3s ease,
+                color 0.3s ease;
               width: 100%;
 
               &:disabled {
@@ -668,26 +670,28 @@
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: top center;
-    padding-bottom: 150px;
+    padding-bottom: 0px;
 
     @include breakpoint(tablet) {
       background-image: url("/assets/images/benefits-tablet-bg.png");
+      padding-bottom: 50px;
     }
 
     @include breakpoint(largeScreen) {
       background-image: url("/assets/images/benefits-bg.png");
+      padding-bottom: 150px;
     }
 
     .benefits-wrapper {
       display: grid;
       grid-template-columns: 1fr;
       grid-template-rows: repeat(4, 1fr);
-      gap: 50px;
+      gap: 20px;
 
       @include breakpoint(largeScreen) {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
-        gap: 50px 40px;
+        gap: 20px 40px;
       }
 
       .benefits-card {
@@ -781,7 +785,9 @@
           padding: 15px 60px 15px 15px;
           line-height: 24px;
           overflow: hidden;
-          transition: padding 0.3s ease, max-height 0.3s ease;
+          transition:
+            padding 0.3s ease,
+            max-height 0.3s ease;
         }
 
         .active-answer {
