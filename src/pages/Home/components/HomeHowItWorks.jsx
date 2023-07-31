@@ -26,7 +26,7 @@ const HomeHowItWorks = () => {
           transition={{ staggerChildren: 0.3 }}
           initial="offscreen"
           whileInView="onscreen"
-          viewport={{ once: true, amount: 0.5 }}
+          viewport={{ once: true, amount: 0.3 }}
           className="how-it-works-wrapper"
         >
           <StepsCard
