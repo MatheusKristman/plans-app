@@ -199,6 +199,7 @@ const NewCelPlanModal = () => {
             <button
               type="button"
               onClick={handleCloseModal}
+              disabled={isSubmitting}
               className="new-cel-plan-modal-close-button"
             >
               <svg
@@ -629,6 +630,7 @@ const NewCelPlanModal = () => {
 
               <button
                 type="submit"
+                disabled={isSubmitting}
                 className="new-cel-plan-modal-submit-button"
               >
                 {isSubmitting ? (

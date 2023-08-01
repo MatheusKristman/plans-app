@@ -419,6 +419,11 @@
               filter: brightness(80%);
             }
 
+            &:disabled {
+              filter: brightness(80%);
+              cursor: not-allowed;
+            }
+
             .edit-cel-plan-loading-submit {
               width: 25px;
               height: 25px;

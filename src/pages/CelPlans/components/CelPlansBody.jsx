@@ -1,9 +1,9 @@
-import React, { useRef, useEffect, useMemo, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import useCelPlansStore from "../../../stores/useCelPlansStore";
 import useGeneralStore from "../../../stores/useGeneralStore";
 import { shallow } from "zustand/shallow";
 import api from "../../../services/api";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 import Plan from "./Plan";
 import Loading from "../../components/Loading";
@@ -45,14 +45,23 @@ const CelPlansBody = ({
   const [isFilterOptionValid, setIsFilterOptionValid] = useState(false);
 
   const filterRef = useRef();
+  const bodyRef = useRef();
+
+  const openFilterBox = () => {
+    setIsFilterOpen(true);
+  };
+
+  const closeFilterBox = () => {
+    setIsFilterOpen(false);
+  };
 
   const handleFilterBoxButton = () => {
     if (isFilterOpen) {
-      setIsFilterOpen(false);
+      closeFilterBox();
       return;
     }
 
-    setIsFilterOpen(true);
+    openFilterBox();
   };
 
   const handleShowMore = () => {
@@ -79,6 +88,10 @@ const CelPlansBody = ({
     event.preventDefault();
 
     setIsFilterSubmitting(true);
+
+    const scrollPosition = bodyRef.current.offsetTop;
+
+    window.scrollTo(0, scrollPosition);
 
     if (window.innerWidth < 1024) {
       closeFilterBox();
@@ -192,7 +205,7 @@ const CelPlansBody = ({
   }, [isFilterSubmitting]);
 
   return (
-    <div className="body-container">
+    <div ref={bodyRef} className="body-container">
       <AnimatePresence>
         {isLoading && <Loading key={isLoading} type="spin" color="#8186bc" />}
       </AnimatePresence>

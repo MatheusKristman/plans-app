@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { addDays, format, startOfMonth, startOfYear, subDays } from "date-fns";
+import { addDays, format } from "date-fns";
 import { shallow } from "zustand/shallow";
 import { cpf } from "cpf-cnpj-validator";
 import { useForm } from "react-hook-form";
@@ -397,15 +397,12 @@ const AddressForm = () => {
   }, []);
 
   useEffect(() => {
-    console.log(clientData);
     setStateComparation(clientData.state);
 
     if (stateOptions.some((state) => state.nome === clientData.state)) {
       const id = stateOptions.filter(
         (state) => state.nome === clientData.state,
       )[0].id;
-
-      console.log("rodando função dos estados");
 
       if (stateComparation !== clientData.state) {
         setStateLoading();
@@ -982,9 +979,9 @@ const InstallationForm = () => {
             clientData.installationDate1
           }; Data da instalação 2: ${clientData.installationDate2}; Período: ${
             clientData.installationPeriod
-          }; Plano: ${planSelected.title}; Fraquia: ${
-            planSelected.franchise
-          }; Valor: R$ ${planSelected.cost.toFixed(2).replace(".", ",")};`,
+          }; Plano: ${planSelected.title}; ${
+            planSelected.franchise ? `Fraquia: ${planSelected.franchise};` : ""
+          } Valor: R$ ${planSelected.cost.toFixed(2).replace(".", ",")};`,
         ),
       );
     }
@@ -1085,11 +1082,9 @@ const InstallationForm = () => {
 const RegisterForm = () => {
   const {
     closeRegisterForm,
-    isRegisterFormOpen,
     planSelected,
     steps,
     setStateOptions,
-    stateOptions,
     clientData,
     setCityOptions,
     isSubmitting,
@@ -1098,11 +1093,9 @@ const RegisterForm = () => {
   } = useRegisterStore(
     (state) => ({
       closeRegisterForm: state.closeRegisterForm,
-      isRegisterFormOpen: state.isRegisterFormOpen,
       planSelected: state.planSelected,
       steps: state.steps,
       setStateOptions: state.setStateOptions,
-      stateOptions: state.stateOptions,
       clientData: state.clientData,
       setCityOptions: state.setCityOptions,
       isSubmitting: state.isSubmitting,

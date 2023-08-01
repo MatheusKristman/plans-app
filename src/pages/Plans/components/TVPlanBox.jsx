@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import usePlansStore from "../../../stores/usePlansStore";
 import useGeneralStore from "../../../stores/useGeneralStore";
 import { shallow } from "zustand/shallow";
@@ -21,6 +21,7 @@ const TVPlanBox = ({
     setIdSelectedForDetails,
     setIdSelectedForEdit,
     setPlans,
+    planCategory,
   } = usePlansStore(
     (state) => ({
       openEditTVForm: state.openEditTVForm,
@@ -28,6 +29,7 @@ const TVPlanBox = ({
       setIdSelectedForDetails: state.setIdSelectedForDetails,
       setIdSelectedForEdit: state.setIdSelectedForEdit,
       setPlans: state.setPlans,
+      planCategory: state.planCategory,
     }),
     shallow,
   );
@@ -37,6 +39,7 @@ const TVPlanBox = ({
     }),
     shallow,
   );
+  const [isArchiving, setIsArchiving] = useState(false);
 
   const handleOpenForm = () => {
     openEditTVForm();
@@ -51,8 +54,10 @@ const TVPlanBox = ({
   };
 
   const handleArchive = (id) => {
+    setIsArchiving(true);
+
     api
-      .put("plan/tv-plan/archive", { id })
+      .put("plan/tv-plan/archive", { id, isAll: planCategory.all })
       .then((res) => {
         setPlans(res.data);
 
@@ -79,6 +84,9 @@ const TVPlanBox = ({
           progress: undefined,
           theme: "colored",
         });
+      })
+      .finally(() => {
+        setIsArchiving(false);
       });
   };
 
@@ -156,6 +164,7 @@ const TVPlanBox = ({
 
           <button
             onClick={() => handleArchive(planId)}
+            disabled={isArchiving}
             className="plans-component-archive-button"
           >
             <svg

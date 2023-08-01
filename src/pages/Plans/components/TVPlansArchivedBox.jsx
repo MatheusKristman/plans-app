@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useGeneralStore from "../../../stores/useGeneralStore";
 import usePlansStore from "../../../stores/usePlansStore";
 import { shallow } from "zustand/shallow";
@@ -22,14 +22,18 @@ const TVPlansArchivedBox = ({
     }),
     shallow,
   );
-  const { openTVDetailsBox, setIdSelectedForDetails, setPlans } = usePlansStore(
-    (state) => ({
-      openTVDetailsBox: state.openTVDetailsBox,
-      setIdSelectedForDetails: state.setIdSelectedForDetails,
-      setPlans: state.setPlans,
-    }),
-    shallow,
-  );
+  const { openTVDetailsBox, setIdSelectedForDetails, setPlans, planCategory } =
+    usePlansStore(
+      (state) => ({
+        openTVDetailsBox: state.openTVDetailsBox,
+        setIdSelectedForDetails: state.setIdSelectedForDetails,
+        setPlans: state.setPlans,
+        planCategory: state.planCategory,
+      }),
+      shallow,
+    );
+  const [isUnarchiving, setIsUnarchiving] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const handleOpenDetailsBox = () => {
     openTVDetailsBox();
@@ -38,8 +42,10 @@ const TVPlansArchivedBox = ({
   };
 
   const handleUnarchive = (id) => {
+    setIsUnarchiving(true);
+
     api
-      .put("plan/tv-plan/archive", { id })
+      .put("plan/tv-plan/archive", { id, isAll: planCategory.all })
       .then((res) => {
         setPlans(res.data);
 
@@ -66,12 +72,17 @@ const TVPlansArchivedBox = ({
           progress: undefined,
           theme: "colored",
         });
+      })
+      .finally(() => {
+        setIsUnarchiving(false);
       });
   };
 
   const handleDelete = (id) => {
+    setIsDeleting(true);
+
     api
-      .delete(`plan/tv-plan/delete/${id}`)
+      .put("plan/tv-plan/delete", { id, isAll: planCategory.all })
       .then((res) => {
         setPlans(res.data);
 
@@ -98,6 +109,9 @@ const TVPlansArchivedBox = ({
           progress: undefined,
           theme: "colored",
         });
+      })
+      .finally(() => {
+        setIsDeleting(false);
       });
   };
 
@@ -170,6 +184,7 @@ const TVPlansArchivedBox = ({
         <div className="plans-component-archived-plan-buttons">
           <button
             onClick={() => handleUnarchive(planId)}
+            disabled={isUnarchiving}
             className="plans-component-restore-button"
           >
             <svg
@@ -198,6 +213,7 @@ const TVPlansArchivedBox = ({
 
           <button
             onClick={() => handleDelete(planId)}
+            disabled={isDeleting}
             className="plans-component-delete-button"
           >
             <svg

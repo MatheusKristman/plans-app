@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useGeneralStore from "../../../stores/useGeneralStore";
 import usePlansStore from "../../../stores/usePlansStore";
 import { shallow } from "zustand/shallow";
@@ -22,15 +22,18 @@ const CelPlansArchivedBox = ({
     }),
     shallow,
   );
-  const { openCelDetailsBox, setIdSelectedForDetails, setPlans } =
+  const { openCelDetailsBox, setIdSelectedForDetails, setPlans, planCategory } =
     usePlansStore(
       (state) => ({
         openCelDetailsBox: state.openCelDetailsBox,
         setIdSelectedForDetails: state.setIdSelectedForDetails,
         setPlans: state.setPlans,
+        planCategory: state.planCategory,
       }),
       shallow,
     );
+  const [isUnarchiving, setIsUnarchiving] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const handleOpenDetailsBox = () => {
     openCelDetailsBox();
@@ -39,8 +42,10 @@ const CelPlansArchivedBox = ({
   };
 
   const handleUnarchive = (id) => {
+    setIsUnarchiving(true);
+
     api
-      .put("plan/cel-plan/archive", { id })
+      .put("plan/cel-plan/archive", { id, isAll: planCategory.all })
       .then((res) => {
         setPlans(res.data);
 
@@ -67,12 +72,17 @@ const CelPlansArchivedBox = ({
           progress: undefined,
           theme: "colored",
         });
+      })
+      .finally(() => {
+        setIsUnarchiving(false);
       });
   };
 
   const handleDelete = (id) => {
+    setIsDeleting(true);
+
     api
-      .delete(`plan/cel-plan/delete/${id}`)
+      .put("plan/cel-plan/delete", { id, isAll: planCategory.all })
       .then((res) => {
         setPlans(res.data);
 
@@ -99,6 +109,9 @@ const CelPlansArchivedBox = ({
           progress: undefined,
           theme: "colored",
         });
+      })
+      .finally(() => {
+        setIsDeleting(false);
       });
   };
 
@@ -169,6 +182,7 @@ const CelPlansArchivedBox = ({
         <div className="plans-component-archived-plan-buttons">
           <button
             onClick={() => handleUnarchive(planId)}
+            disabled={isUnarchiving}
             className="plans-component-restore-button"
           >
             <svg
@@ -197,6 +211,7 @@ const CelPlansArchivedBox = ({
 
           <button
             onClick={() => handleDelete(planId)}
+            disabled={isDeleting}
             className="plans-component-delete-button"
           >
             <svg

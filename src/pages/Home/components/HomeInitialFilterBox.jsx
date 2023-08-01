@@ -94,7 +94,6 @@ const HomeInitialFilterBox = () => {
     unsetCepAnimation,
     cepValue,
     resetCepValue,
-    cepError,
     setCepError,
     unsetCepError,
   } = useHomeStore(
@@ -113,7 +112,6 @@ const HomeInitialFilterBox = () => {
       unsetCepAnimation: state.unsetCepAnimation,
       cepValue: state.cepValue,
       resetCepValue: state.resetCepValue,
-      cepError: state.cepError,
       setCepError: state.setCepError,
       unsetCepError: state.unsetCepError,
     }),

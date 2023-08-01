@@ -3,15 +3,24 @@ import useGeneralStore from "../../../stores/useGeneralStore";
 import useProviderStore from "../../../stores/useProviderStore";
 
 const ProviderDetailsBox = () => {
-  const { modalAnimation, deactivateModalAnimation } = useGeneralStore(
-    (state) => ({
+  const { modalAnimation, deactivateModalAnimation, activateModalAnimation } =
+    useGeneralStore((state) => ({
       modalAnimation: state.modalAnimation,
       deactivateModalAnimation: state.deactivateModalAnimation,
-    })
-  );
-  const { closeDetailsBox, providerSelected } = useProviderStore((state) => ({
+      activateModalAnimation: state.activateModalAnimation,
+    }));
+  const {
+    closeDetailsBox,
+    providerSelectedForDetails,
+    setIdSelectedForEditing,
+    setIdSelectedForDetails,
+    openEditProviderForm,
+  } = useProviderStore((state) => ({
     closeDetailsBox: state.closeDetailsBox,
-    providerSelected: state.providerSelected,
+    providerSelectedForDetails: state.providerSelectedForDetails,
+    setIdSelectedForEditing: state.setIdSelectedForEditing,
+    setIdSelectedForDetails: state.setIdSelectedForDetails,
+    openEditProviderForm: state.openEditProviderForm,
   }));
 
   const handleCloseButton = () => {
@@ -26,6 +35,21 @@ const ProviderDetailsBox = () => {
     if (e.target.classList.contains("provider-details-overlay")) {
       handleCloseButton();
     }
+  };
+
+  const handleEditFormButton = () => {
+    deactivateModalAnimation();
+
+    const idSelected = providerSelectedForDetails._id;
+
+    setIdSelectedForEditing(idSelected);
+
+    setTimeout(() => {
+      openEditProviderForm();
+      activateModalAnimation();
+      setIdSelectedForDetails("");
+      closeDetailsBox();
+    }, 800);
   };
 
   return (
@@ -71,8 +95,8 @@ const ProviderDetailsBox = () => {
                     Operadora
                   </span>
                   <img
-                    src={`/assets/icons/${providerSelected?.providerLogo}`}
-                    alt={providerSelected?.providerName}
+                    src={`/assets/icons/${providerSelectedForDetails?.providerLogo}`}
+                    alt={providerSelectedForDetails?.providerName}
                     className="provider-details-provider-logo"
                   />
                 </div>
@@ -82,7 +106,7 @@ const ProviderDetailsBox = () => {
                     Planos cadastrados
                   </span>
                   <span className="provider-details-plans-desc">
-                    {providerSelected?.plansQuant}
+                    {providerSelectedForDetails?.plansQuant}
                   </span>
                 </div>
               </div>
@@ -96,12 +120,16 @@ const ProviderDetailsBox = () => {
                   autoCorrect="off"
                   autoComplete="off"
                   readOnly
-                  value={providerSelected?.locations?.join("\n")}
+                  value={providerSelectedForDetails?.locations?.join("\n")}
                 />
               </div>
 
               <div className="provider-details-button-box">
-                <button type="button" className="provider-details-edit-button">
+                <button
+                  type="button"
+                  onClick={handleEditFormButton}
+                  className="provider-details-edit-button"
+                >
                   Editar
                 </button>
               </div>

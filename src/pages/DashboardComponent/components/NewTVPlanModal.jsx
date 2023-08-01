@@ -113,7 +113,6 @@ const NewTVPlanModal = () => {
     register,
     handleSubmit,
     setValue,
-    getValues,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -225,6 +224,7 @@ const NewTVPlanModal = () => {
             <button
               type="button"
               onClick={handleCloseModal}
+              disabled={isSubmitting}
               className="new-tv-plan-modal-close-button"
             >
               <svg
@@ -508,7 +508,6 @@ const NewTVPlanModal = () => {
                   <option value="2">2</option>
                   <option value="3">3</option>
                   <option value="4">4</option>
-                  <option value="5">5</option>
                 </select>
               </div>
 
@@ -790,7 +789,11 @@ const NewTVPlanModal = () => {
                 )}
               </div>
 
-              <button type="submit" className="new-tv-plan-modal-submit-button">
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="new-tv-plan-modal-submit-button"
+              >
                 {isSubmitting ? (
                   <>
                     <img

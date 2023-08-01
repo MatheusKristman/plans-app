@@ -241,6 +241,7 @@ const NewInternetPlanModal = () => {
               type="button"
               className="new-internet-plan-modal-close-button"
               onClick={handleCloseModal}
+              disabled={isSubmitting}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -910,6 +911,7 @@ const NewInternetPlanModal = () => {
 
               <button
                 type="submit"
+                disabled={isSubmitting}
                 className="new-internet-plan-modal-submit-button"
               >
                 {isSubmitting ? (

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import usePlansStore from "../../../stores/usePlansStore";
 import { shallow } from "zustand/shallow";
 import { AnimatePresence } from "framer-motion";
@@ -12,7 +12,7 @@ const PlansStatusBox = () => {
       openFilterBox: state.openFilterBox,
       plans: state.plans,
     }),
-    shallow
+    shallow,
   );
 
   const activePlans = plans.filter((plan) => !plan.archived);

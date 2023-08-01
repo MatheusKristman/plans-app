@@ -5,31 +5,37 @@ import api from "../../../services/api";
 import { toast } from "react-toastify";
 
 const ProviderBox = ({ providerLogo, providerName, plansQuant, id }) => {
-  const { openDetailsBox, openEditProviderForm, setIdSelected, setProviders } =
-    useProviderStore((state) => ({
-      openDetailsBox: state.openDetailsBox,
-      openEditProviderForm: state.openEditProviderForm,
-      setIdSelected: state.setIdSelected,
-      setProviders: state.setProviders,
-    }));
+  const {
+    openDetailsBox,
+    openEditProviderForm,
+    setIdSelectedForDetails,
+    setIdSelectedForEditing,
+    setProviders,
+  } = useProviderStore((state) => ({
+    openDetailsBox: state.openDetailsBox,
+    openEditProviderForm: state.openEditProviderForm,
+    setIdSelectedForDetails: state.setIdSelectedForDetails,
+    setIdSelectedForEditing: state.setIdSelectedForEditing,
+    setProviders: state.setProviders,
+  }));
   const { activateModalAnimation, setLoading, unsetLoading } = useGeneralStore(
     (state) => ({
       activateModalAnimation: state.activateModalAnimation,
       setLoading: state.setLoading,
       unsetLoading: state.unsetLoading,
-    })
+    }),
   );
 
   const handleDetailsBoxOpen = (id) => {
     openDetailsBox();
     activateModalAnimation();
-    setIdSelected(id);
+    setIdSelectedForDetails(id);
   };
 
   const handleEditFormOpen = (id) => {
     openEditProviderForm();
     activateModalAnimation();
-    setIdSelected(id);
+    setIdSelectedForEditing(id);
   };
 
   const handleDeleteButton = (id) => {
@@ -71,9 +77,8 @@ const ProviderBox = ({ providerLogo, providerName, plansQuant, id }) => {
         <div className="providers-component-info-box">
           <div className="providers-component-image-title-box">
             <div className="providers-component-image-box">
-              {/* TDO mudar depois para receber do servidor */}
               <img
-                src={`/assets/icons/${providerLogo}`}
+                src={`${import.meta.env.VITE_API_KEY}/assets/${providerLogo}`}
                 alt={providerName}
                 className="providers-component-image"
               />

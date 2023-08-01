@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import usePlansStore from "../../../stores/usePlansStore";
 import { shallow } from "zustand/shallow";
 
@@ -8,7 +8,7 @@ const PlansCategories = () => {
       planCategory: state.planCategory,
       handleCategory: state.handleCategory,
     }),
-    shallow
+    shallow,
   );
 
   return (

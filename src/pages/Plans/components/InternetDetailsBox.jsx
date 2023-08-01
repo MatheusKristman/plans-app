@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { shallow } from "zustand/shallow";
 import { toast } from "react-toastify";
 
@@ -23,6 +23,7 @@ const InternetDetailsBox = ({ archivedAt }) => {
     setIdSelectedForDetails,
     setIdSelectedForEdit,
     setPlans,
+    planCategory,
   } = usePlansStore(
     (state) => ({
       closeInternetDetailsBox: state.closeInternetDetailsBox,
@@ -31,9 +32,14 @@ const InternetDetailsBox = ({ archivedAt }) => {
       setIdSelectedForDetails: state.setIdSelectedForDetails,
       setIdSelectedForEdit: state.setIdSelectedForEdit,
       setPlans: state.setPlans,
+      planCategory: state.planCategory,
     }),
     shallow,
   );
+
+  const [isArchiving, setIsArchiving] = useState(false);
+  const [isUnarchiving, setIsUnarchiving] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const handleCloseDetailsBox = () => {
     deactivateModalAnimation();
@@ -50,7 +56,6 @@ const InternetDetailsBox = ({ archivedAt }) => {
     }
   };
 
-  // OK
   const handleOpenEditForm = () => {
     const idSelected = planSelectedForDetails?._id;
 
@@ -65,10 +70,14 @@ const InternetDetailsBox = ({ archivedAt }) => {
     }, 800);
   };
 
-  // OK
   const handleArchive = () => {
+    setIsArchiving(true);
+
     api
-      .put("plan/internet-plan/archive", { id: planSelectedForDetails._id })
+      .put("plan/internet-plan/archive", {
+        id: planSelectedForDetails._id,
+        isAll: planCategory.all,
+      })
       .then((res) => {
         setPlans(res.data);
         handleCloseDetailsBox();
@@ -96,13 +105,20 @@ const InternetDetailsBox = ({ archivedAt }) => {
           progress: undefined,
           theme: "colored",
         });
+      })
+      .finally(() => {
+        setIsArchiving(false);
       });
   };
 
-  // OK
   const handleUnarchive = () => {
+    setIsUnarchiving(true);
+
     api
-      .put("plan/internet-plan/archive", { id: planSelectedForDetails._id })
+      .put("plan/internet-plan/archive", {
+        id: planSelectedForDetails._id,
+        isAll: planCategory.all,
+      })
       .then((res) => {
         setPlans(res.data);
         handleCloseDetailsBox();
@@ -130,12 +146,20 @@ const InternetDetailsBox = ({ archivedAt }) => {
           progress: undefined,
           theme: "colored",
         });
+      })
+      .finally(() => {
+        setIsUnarchiving(false);
       });
   };
 
   const handleDelete = () => {
+    setIsDeleting(true);
+
     api
-      .delete(`plan/internet-plan/delete/${planSelectedForDetails._id}`)
+      .put("plan/internet-plan/delete", {
+        id: planSelectedForDetails._id,
+        isAll: planCategory.all,
+      })
       .then((res) => {
         setPlans(res.data);
         handleCloseDetailsBox();
@@ -163,6 +187,9 @@ const InternetDetailsBox = ({ archivedAt }) => {
           progress: undefined,
           theme: "colored",
         });
+      })
+      .finally(() => {
+        setIsDeleting(false);
       });
   };
 
@@ -370,6 +397,7 @@ const InternetDetailsBox = ({ archivedAt }) => {
                     <button
                       type="button"
                       onClick={handleUnarchive}
+                      disabled={isUnarchiving}
                       className="internet-details-box-restore-button"
                     >
                       <svg
@@ -392,6 +420,7 @@ const InternetDetailsBox = ({ archivedAt }) => {
                     <button
                       type="button"
                       onClick={handleDelete}
+                      disabled={isDeleting}
                       className="internet-details-box-delete-button"
                     >
                       Excluir
@@ -409,6 +438,7 @@ const InternetDetailsBox = ({ archivedAt }) => {
                     <button
                       type="button"
                       onClick={handleArchive}
+                      disabled={isArchiving}
                       className="internet-details-box-archive-button"
                     >
                       <svg

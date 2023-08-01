@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 
 const BenefitCard = ({ imgUrl, title, text, variant }) => {

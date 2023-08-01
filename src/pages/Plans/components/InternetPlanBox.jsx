@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import usePlansStore from "../../../stores/usePlansStore";
 import useGeneralStore from "../../../stores/useGeneralStore";
 import { shallow } from "zustand/shallow";
@@ -22,6 +22,7 @@ const InternetPlanBox = ({
     setIdSelectedForDetails,
     setIdSelectedForEdit,
     setPlans,
+    planCategory,
   } = usePlansStore(
     (state) => ({
       openEditInternetForm: state.openEditInternetForm,
@@ -29,6 +30,7 @@ const InternetPlanBox = ({
       setIdSelectedForDetails: state.setIdSelectedForDetails,
       setIdSelectedForEdit: state.setIdSelectedForEdit,
       setPlans: state.setPlans,
+      planCategory: state.planCategory,
     }),
     shallow,
   );
@@ -38,6 +40,8 @@ const InternetPlanBox = ({
     }),
     shallow,
   );
+
+  const [isArchiving, setIsArchiving] = useState(false);
 
   const handleOpenForm = () => {
     openEditInternetForm();
@@ -52,8 +56,10 @@ const InternetPlanBox = ({
   };
 
   const handleArchive = (id) => {
+    setIsArchiving(true);
+
     api
-      .put("plan/internet-plan/archive", { id })
+      .put("plan/internet-plan/archive", { id, isAll: planCategory.all })
       .then((res) => {
         setPlans(res.data);
 
@@ -80,6 +86,9 @@ const InternetPlanBox = ({
           progress: undefined,
           theme: "colored",
         });
+      })
+      .finally(() => {
+        setIsArchiving(false);
       });
   };
 
@@ -163,6 +172,7 @@ const InternetPlanBox = ({
           </button>
 
           <button
+            disabled={isArchiving}
             onClick={() => handleArchive(planId)}
             className="plans-component-archive-button"
           >

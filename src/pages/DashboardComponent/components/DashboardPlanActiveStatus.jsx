@@ -1,9 +1,8 @@
-import React, { useEffect, useLayoutEffect, useRef, useMemo } from "react";
+import React, { useLayoutEffect, useRef, useMemo } from "react";
 import useDashboardComponentStore from "../../../stores/useDashboardComponentStore";
 import useGeneralStore from "../../../stores/useGeneralStore";
 import { shallow } from "zustand/shallow";
 import { motion, AnimatePresence } from "framer-motion";
-import api from "../../../services/api";
 
 const DashboardPlanActiveStatus = () => {
   const {
@@ -24,13 +23,13 @@ const DashboardPlanActiveStatus = () => {
       openTVForm: state.openTVForm,
       activePlans: state.activePlans,
     }),
-    shallow
+    shallow,
   );
   const { activateModalAnimation } = useGeneralStore(
     (state) => ({
       activateModalAnimation: state.activateModalAnimation,
     }),
-    shallow
+    shallow,
   );
 
   const statusMenuRef = useRef();

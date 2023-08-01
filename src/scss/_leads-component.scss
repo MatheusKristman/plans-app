@@ -185,6 +185,11 @@
                   text-align: center;
                   font-size: 0.875rem;
                   color: #b0b0b0;
+                  transition: color 0.3s ease;
+                }
+
+                .confirmation-text {
+                  color: #252525;
                 }
 
                 .leads-component-contacted-button {
@@ -231,6 +236,61 @@
                   &:disabled {
                     background: rgba(239, 89, 89, 20%);
                     cursor: not-allowed;
+                  }
+                }
+
+                .leads-component-contacted-confirmation-wrapper {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 10px;
+
+                  .leads-component-contacted-button-confirm {
+                    width: 100%;
+                    border-radius: 8px;
+                    background-color: transparent;
+                    border: 2px solid #64b548;
+                    color: #64b548;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 10px 20px;
+                    font-size: 0.875rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+
+                    &:hover {
+                      background: rgba(100, 181, 72, 20%);
+                    }
+
+                    @include breakpoint(smallScreen) {
+                      width: 132.15px;
+                    }
+                  }
+
+                  .leads-component-contacted-button-cancel {
+                    width: 100%;
+                    border-radius: 8px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 10px 20px;
+                    font-size: 0.875rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+                    background-color: transparent;
+                    border: 2px solid #ef5959;
+                    color: #ef5959;
+
+                    &:hover {
+                      background: rgba(239, 89, 89, 20%);
+                    }
+
+                    @include breakpoint(smallScreen) {
+                      width: 132.15px;
+                    }
                   }
                 }
               }

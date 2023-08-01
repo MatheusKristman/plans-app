@@ -214,6 +214,7 @@ const EditCelPlanForm = () => {
             <button
               type="button"
               onClick={handleCloseForm}
+              disabled={isSubmitting}
               className="edit-cel-plan-close-button"
             >
               <svg
@@ -572,7 +573,11 @@ const EditCelPlanForm = () => {
                 )}
               </div>
 
-              <button type="submit" className="edit-cel-plan-submit-button">
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="edit-cel-plan-submit-button"
+              >
                 {isSubmitting ? (
                   <>
                     <img

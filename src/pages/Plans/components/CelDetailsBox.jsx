@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import useGeneralStore from "../../../stores/useGeneralStore";
 import usePlansStore from "../../../stores/usePlansStore";
 import { shallow } from "zustand/shallow";
@@ -22,6 +22,7 @@ const CelDetailsBox = ({ archivedAt }) => {
     setIdSelectedForDetails,
     setIdSelectedForEdit,
     setPlans,
+    planCategory,
   } = usePlansStore(
     (state) => ({
       closeCelDetailsBox: state.closeCelDetailsBox,
@@ -30,9 +31,13 @@ const CelDetailsBox = ({ archivedAt }) => {
       setIdSelectedForDetails: state.setIdSelectedForDetails,
       setIdSelectedForEdit: state.setIdSelectedForEdit,
       setPlans: state.setPlans,
+      planCategory: state.planCategory,
     }),
     shallow,
   );
+  const [isArchiving, setIsArchiving] = useState(false);
+  const [isUnarchiving, setIsUnarchiving] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const handleCloseDetailBox = () => {
     deactivateModalAnimation();
@@ -64,8 +69,13 @@ const CelDetailsBox = ({ archivedAt }) => {
   };
 
   const handleArchive = () => {
+    setIsArchiving(true);
+
     api
-      .put("plan/cel-plan/archive", { id: planSelectedForDetails._id })
+      .put("plan/cel-plan/archive", {
+        id: planSelectedForDetails._id,
+        isAll: planCategory.all,
+      })
       .then((res) => {
         setPlans(res.data);
         handleCloseDetailBox();
@@ -93,12 +103,20 @@ const CelDetailsBox = ({ archivedAt }) => {
           progress: undefined,
           theme: "colored",
         });
+      })
+      .finally(() => {
+        setIsArchiving(false);
       });
   };
 
   const handleUnarchive = () => {
+    setIsUnarchiving(true);
+
     api
-      .put("plan/cel-plan/archive", { id: planSelectedForDetails._id })
+      .put("plan/cel-plan/archive", {
+        id: planSelectedForDetails._id,
+        isAll: planCategory.all,
+      })
       .then((res) => {
         setPlans(res.data);
         handleCloseDetailBox();
@@ -126,12 +144,20 @@ const CelDetailsBox = ({ archivedAt }) => {
           progress: undefined,
           theme: "colored",
         });
+      })
+      .finally(() => {
+        setIsUnarchiving(false);
       });
   };
 
   const handleDelete = () => {
+    setIsDeleting(true);
+
     api
-      .delete(`plan/cel-plan/delete/${planSelectedForDetails._id}`)
+      .put("plan/cel-plan/delete", {
+        id: planSelectedForDetails._id,
+        isAll: planCategory.all,
+      })
       .then((res) => {
         setPlans(res.data);
         handleCloseDetailBox();
@@ -159,6 +185,9 @@ const CelDetailsBox = ({ archivedAt }) => {
           progress: undefined,
           theme: "colored",
         });
+      })
+      .finally(() => {
+        setIsDeleting(false);
       });
   };
 
@@ -352,6 +381,7 @@ const CelDetailsBox = ({ archivedAt }) => {
                     <button
                       type="button"
                       onClick={handleUnarchive}
+                      disabled={isUnarchiving}
                       className="cel-details-box-restore-button"
                     >
                       <svg
@@ -374,6 +404,7 @@ const CelDetailsBox = ({ archivedAt }) => {
                     <button
                       type="button"
                       onClick={handleDelete}
+                      disabled={isDeleting}
                       className="cel-details-box-delete-button"
                     >
                       Excluir
@@ -391,6 +422,7 @@ const CelDetailsBox = ({ archivedAt }) => {
                     <button
                       type="button"
                       onClick={handleArchive}
+                      disabled={isArchiving}
                       className="cel-details-box-archive-button"
                     >
                       <svg

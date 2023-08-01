@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import useGeneralStore from "../../../stores/useGeneralStore";
 import useProviderStore from "../../../stores/useProviderStore";
-import { shallow } from "zustand/shallow";
 import { toast } from "react-toastify";
 import * as XLSX from "xlsx";
 import api from "../../../services/api";
@@ -15,9 +14,9 @@ const EditProviderForm = () => {
   );
   const {
     closeEditProviderForm,
-    providerSelected,
-    setProviderSelected,
-    setIdSelected,
+    providerSelectedForEditing,
+    setProviderSelectedForEditing,
+    setIdSelectedForEditing,
     actualProviderLogo,
     setActualProviderLogo,
     providerData,
@@ -36,12 +35,11 @@ const EditProviderForm = () => {
     setLoading,
     unsetLoading,
     setProviders,
-    providers,
   } = useProviderStore((state) => ({
     closeEditProviderForm: state.closeEditProviderForm,
-    providerSelected: state.providerSelected,
-    setProviderSelected: state.setProviderSelected,
-    setIdSelected: state.setIdSelected,
+    providerSelectedForEditing: state.providerSelectedForEditing,
+    setProviderSelectedForEditing: state.setProviderSelectedForEditing,
+    setIdSelectedForEditing: state.setIdSelectedForEditing,
     actualProviderLogo: state.actualProviderLogo,
     setActualProviderLogo: state.setActualProviderLogo,
     providerData: state.providerData,
@@ -60,20 +58,18 @@ const EditProviderForm = () => {
     setLoading: state.setLoading,
     unsetLoading: state.unsetLoading,
     setProviders: state.setProviders,
-    providers: state.providers,
   }));
 
   const handleCloseForm = () => {
     deactivateModalAnimation();
 
-    resetProviderData();
-    setLogoError("");
-    setProviderNameError("");
-    setIdSelected("");
-    setProviderSelected({});
-
     setTimeout(() => {
       closeEditProviderForm();
+      resetProviderData();
+      setLogoError("");
+      setProviderNameError("");
+      setIdSelectedForEditing("");
+      setProviderSelectedForEditing({});
     }, 800);
   };
 
@@ -155,7 +151,7 @@ const EditProviderForm = () => {
       }
 
       formData.append("providerName", providerData.providerName);
-      formData.append("providerId", providerSelected._id);
+      formData.append("providerId", providerSelectedForEditing._id);
 
       for (let i = 0; i < providerData.ceps.length; i++) {
         formData.append("locations[]", providerData.ceps[i]);
@@ -202,9 +198,9 @@ const EditProviderForm = () => {
   }, [submitting]);
 
   useEffect(() => {
-    setProviderData(providerSelected.providerName, "providerName");
-    setProviderData(providerSelected.locations, "ceps");
-  }, [providerSelected]);
+    setProviderData(providerSelectedForEditing.providerName, "providerName");
+    setProviderData(providerSelectedForEditing.locations, "ceps");
+  }, [providerSelectedForEditing]);
 
   return (
     <div
@@ -220,6 +216,7 @@ const EditProviderForm = () => {
             <button
               type="button"
               onClick={handleCloseForm}
+              disabled={submitting}
               className="edit-provider-form-close-button"
             >
               <svg
@@ -254,7 +251,7 @@ const EditProviderForm = () => {
                       actualProviderLogo !== ""
                         ? actualProviderLogo
                         : `${import.meta.env.VITE_API_KEY}/assets/${
-                            providerSelected?.providerLogo
+                            providerSelectedForEditing?.providerLogo
                           }`
                     }
                   />
@@ -354,10 +351,13 @@ const EditProviderForm = () => {
                 className="edit-provider-form-submit-button"
               >
                 {submitting ? (
-                  <img
-                    src="/assets/icons/submit-loading.gif"
-                    className="edit-provider-form-submit-loading"
-                  />
+                  <>
+                    <img
+                      src="/assets/icons/submit-loading.gif"
+                      className="edit-provider-form-submit-loading"
+                    />
+                    Salvar
+                  </>
                 ) : (
                   "Salvar"
                 )}

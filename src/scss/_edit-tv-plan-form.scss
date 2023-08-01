@@ -497,6 +497,11 @@
               filter: brightness(80%);
             }
 
+            &:disabled {
+              filter: brightness(80%);
+              cursor: not-allowed;
+            }
+
             .edit-tv-plan-loading-submit {
               width: 25px;
               height: 25px;

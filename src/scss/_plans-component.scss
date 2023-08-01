@@ -352,7 +352,9 @@
                   padding: 10px 20px;
                   width: 100%;
                   cursor: pointer;
-                  transition: background 0.3s ease, color 0.3s ease;
+                  transition:
+                    background 0.3s ease,
+                    color 0.3s ease;
 
                   &:hover {
                     background-color: #d40066;
@@ -382,7 +384,9 @@
                   justify-content: center;
                   gap: 10px;
                   cursor: pointer;
-                  transition: background 0.3s ease, color 0.3s ease;
+                  transition:
+                    background 0.3s ease,
+                    color 0.3s ease;
 
                   svg {
                     width: 20px;
@@ -394,6 +398,12 @@
                   &:hover {
                     background-color: #d40066;
                     color: #fff;
+                  }
+
+                  &:disabled {
+                    background-color: #d40066;
+                    color: #fff;
+                    cursor: not-allowed;
                   }
 
                   @include breakpoint(tablet) {
@@ -686,6 +696,11 @@
                   &:hover {
                     filter: brightness(80%);
                   }
+
+                  &:disabled {
+                    filter: brightness(80%);
+                    cursor: not-allowed;
+                  }
                 }
 
                 .plans-component-details-button {
@@ -702,7 +717,9 @@
                   border: 2px solid #d40066;
                   border-radius: 8px;
                   cursor: pointer;
-                  transition: background 0.3s ease, color 0.3s ease;
+                  transition:
+                    background 0.3s ease,
+                    color 0.3s ease;
 
                   @include breakpoint(tablet) {
                     width: calc(50% - 7.5px);
@@ -732,7 +749,9 @@
                   border: 2px solid #d40066;
                   border-radius: 8px;
                   cursor: pointer;
-                  transition: background 0.3s ease, color 0.3s ease;
+                  transition:
+                    background 0.3s ease,
+                    color 0.3s ease;
                   gap: 10px;
 
                   @include breakpoint(tablet) {
@@ -755,6 +774,16 @@
                   &:hover {
                     background-color: #d40066;
                     color: #fff;
+
+                    svg {
+                      color: #fff;
+                    }
+                  }
+
+                  &:disabled {
+                    background-color: #d40066;
+                    color: #fff;
+                    cursor: not-allowed;
 
                     svg {
                       color: #fff;

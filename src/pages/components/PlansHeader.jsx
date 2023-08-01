@@ -1,26 +1,28 @@
-import React, { useEffect } from "react";
+import React from "react";
 import useInternetPlansStore from "../../stores/useInternetPlansStore";
 import useGeneralStore from "../../stores/useGeneralStore";
 import { shallow } from "zustand/shallow";
 import { useNavigate } from "react-router-dom";
 
 const PlansHeader = ({ headerTitle, headerDesc }) => {
-  const { isMobileMenuOpen, openMobileMenu, closeMobileMenu } = useInternetPlansStore(
-    (state) => ({
-      isMobileMenuOpen: state.isMobileMenuOpen,
-      openMobileMenu: state.openMobileMenu,
-      closeMobileMenu: state.closeMobileMenu,
-    }),
-    shallow,
-  );
-  const { modalAnimation, activateModalAnimation, deactivateModalAnimation } = useGeneralStore(
-    (state) => ({
-      modalAnimation: state.modalAnimation,
-      activateModalAnimation: state.activateModalAnimation,
-      deactivateModalAnimation: state.deactivateModalAnimation,
-    }),
-    shallow,
-  );
+  const { isMobileMenuOpen, openMobileMenu, closeMobileMenu } =
+    useInternetPlansStore(
+      (state) => ({
+        isMobileMenuOpen: state.isMobileMenuOpen,
+        openMobileMenu: state.openMobileMenu,
+        closeMobileMenu: state.closeMobileMenu,
+      }),
+      shallow,
+    );
+  const { modalAnimation, activateModalAnimation, deactivateModalAnimation } =
+    useGeneralStore(
+      (state) => ({
+        modalAnimation: state.modalAnimation,
+        activateModalAnimation: state.activateModalAnimation,
+        deactivateModalAnimation: state.deactivateModalAnimation,
+      }),
+      shallow,
+    );
 
   const navigate = useNavigate();
 
@@ -56,8 +58,13 @@ const PlansHeader = ({ headerTitle, headerDesc }) => {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               ) : (
                 <svg
@@ -66,7 +73,8 @@ const PlansHeader = ({ headerTitle, headerDesc }) => {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6">
+                  className="w-6 h-6"
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -82,7 +90,8 @@ const PlansHeader = ({ headerTitle, headerDesc }) => {
                   modalAnimation
                     ? "header-menu-list animate__animated animate__faster animate__fadeInRight"
                     : "header-menu-list animate__animated animate__faster animate__fadeOutRight"
-                }>
+                }
+              >
                 <li
                   onClick={() => {
                     navigate("/planos/banda-larga");
@@ -92,7 +101,8 @@ const PlansHeader = ({ headerTitle, headerDesc }) => {
                       closeMobileMenu();
                     }, 500);
                   }}
-                  className="header-menu-item">
+                  className="header-menu-item"
+                >
                   Banda Larga
                 </li>
                 <li
@@ -104,7 +114,8 @@ const PlansHeader = ({ headerTitle, headerDesc }) => {
                       closeMobileMenu();
                     }, 500);
                   }}
-                  className="header-menu-item">
+                  className="header-menu-item"
+                >
                   Celular
                 </li>
                 <li
@@ -116,7 +127,8 @@ const PlansHeader = ({ headerTitle, headerDesc }) => {
                       closeMobileMenu();
                     }, 500);
                   }}
-                  className="header-menu-item">
+                  className="header-menu-item"
+                >
                   TV
                 </li>
               </ul>
@@ -125,13 +137,22 @@ const PlansHeader = ({ headerTitle, headerDesc }) => {
 
           <nav className="header-nav">
             <ul className="header-menu-list">
-              <li onClick={() => navigate("/planos/banda-larga")} className="header-menu-item">
+              <li
+                onClick={() => navigate("/planos/banda-larga")}
+                className="header-menu-item"
+              >
                 Banda Larga
               </li>
-              <li onClick={() => navigate("/planos/celular")} className="header-menu-item">
+              <li
+                onClick={() => navigate("/planos/celular")}
+                className="header-menu-item"
+              >
                 Celular
               </li>
-              <li onClick={() => navigate("/planos/tv")} className="header-menu-item">
+              <li
+                onClick={() => navigate("/planos/tv")}
+                className="header-menu-item"
+              >
                 TV
               </li>
             </ul>

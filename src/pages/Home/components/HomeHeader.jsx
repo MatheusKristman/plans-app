@@ -1,6 +1,5 @@
 import React from "react";
 import useHomeStore from "../../../stores/useHomeStore";
-import { shallow } from "zustand/shallow";
 import { useNavigate } from "react-router-dom";
 
 const HomeHeader = () => {
@@ -9,7 +8,7 @@ const HomeHeader = () => {
       isMobileNavOpen: state.isMobileNavOpen,
       openMobileNav: state.openMobileNav,
       closeMobileNav: state.closeMobileNav,
-    })
+    }),
   );
 
   const navigate = useNavigate();

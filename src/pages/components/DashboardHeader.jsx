@@ -1,19 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { shallow } from "zustand/shallow";
 
 import useDashboardPageStore from "../../stores/useDashboardPageStore.js";
 
 const DashboardHeader = ({ pageName, searchPlaceholder }) => {
-  const { openMenu, closeMenu, setSearchValue, searchValue } =
-    useDashboardPageStore(
-      (state) => ({
-        openMenu: state.openMenu,
-        closeMenu: state.closeMenu,
-        setSearchValue: state.setSearchValue,
-        searchValue: state.searchValue,
-      }),
-      shallow
-    );
+  const { openMenu, setSearchValue, searchValue } = useDashboardPageStore(
+    (state) => ({
+      openMenu: state.openMenu,
+      setSearchValue: state.setSearchValue,
+      searchValue: state.searchValue,
+    }),
+    shallow,
+  );
 
   return (
     <div className="dashboard-component-header">

@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { shallow } from "zustand/shallow";
 import api from "../../../services/api";
 import { toast } from "react-toastify";
 
-import usePlansStore from "../../../stores/usePlansStore";
 import useLeadStore from "../../../stores/useLeadStore";
 import useGeneralStore from "../../../stores/useGeneralStore";
 
@@ -33,11 +32,21 @@ const LeadBox = ({
       }),
       shallow,
     );
+  const [isContactedConfirmationActive, setIsContactedConfirmationActive] =
+    useState(false);
 
   const handleOpenDetailBox = () => {
     openLeadDetailBox();
     activateModalAnimation();
     setIdSelectedForDetails(clientId);
+  };
+
+  const activateConfirmation = () => {
+    setIsContactedConfirmationActive(true);
+  };
+
+  const deactivateConfirmation = () => {
+    setIsContactedConfirmationActive(false);
   };
 
   const handleContacted = () => {
@@ -68,6 +77,9 @@ const LeadBox = ({
           progress: undefined,
           theme: "colored",
         });
+      })
+      .finally(() => {
+        deactivateConfirmation();
       });
   };
 
@@ -85,7 +97,6 @@ const LeadBox = ({
             <span className="leads-component-tel1-desc">Telefone 1</span>
           </div>
 
-          {/* opcional */}
           <div className="leads-component-tel2-box">
             <span className="leads-component-tel2-value">
               {tel2 ? tel2 : "Não possui"}
@@ -134,22 +145,51 @@ const LeadBox = ({
           </button>
 
           <div className="leads-component-contacted-wrapper">
-            <small className="leads-component-contacted-text">
-              Já entrou em contato?
-            </small>
-
-            <button
-              type="button"
-              disabled={contacted}
-              onClick={handleContacted}
+            <small
               className={
-                contacted
-                  ? "leads-component-contacted-button has-contacted"
-                  : "leads-component-contacted-button has-not-contacted"
+                isContactedConfirmationActive
+                  ? "leads-component-contacted-text confirmation-text"
+                  : "leads-component-contacted-text"
               }
             >
-              {contacted ? "Sim" : "Não"}
-            </button>
+              {isContactedConfirmationActive
+                ? "Deseja marcar que já entrou em contato?"
+                : "Já entrou em contato?"}
+            </small>
+
+            {!isContactedConfirmationActive && (
+              <button
+                type="button"
+                disabled={contacted}
+                onClick={activateConfirmation}
+                className={
+                  contacted
+                    ? "leads-component-contacted-button has-contacted"
+                    : "leads-component-contacted-button has-not-contacted"
+                }
+              >
+                {contacted ? "Sim" : "Não"}
+              </button>
+            )}
+
+            {isContactedConfirmationActive && (
+              <div className="leads-component-contacted-confirmation-wrapper">
+                <button
+                  type="button"
+                  onClick={handleContacted}
+                  className="leads-component-contacted-button-confirm"
+                >
+                  Confirmar
+                </button>
+                <button
+                  type="button"
+                  onClick={deactivateConfirmation}
+                  className="leads-component-contacted-button-cancel"
+                >
+                  Cancelar
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

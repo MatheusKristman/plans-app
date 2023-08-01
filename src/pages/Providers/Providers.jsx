@@ -25,8 +25,10 @@ const Providers = () => {
     sliceEnd,
     setSliceEnd,
     resetSlice,
-    idSelected,
-    setProviderSelected,
+    idSelectedForDetails,
+    setProviderSelectedForDetails,
+    idSelectedForEditing,
+    setProviderSelectedForEditing,
   } = useProviderStore(
     (state) => ({
       isNewProviderFormOpen: state.isNewProviderFormOpen,
@@ -37,10 +39,12 @@ const Providers = () => {
       sliceEnd: state.sliceEnd,
       setSliceEnd: state.setSliceEnd,
       resetSlice: state.resetSlice,
-      idSelected: state.idSelected,
-      setProviderSelected: state.setProviderSelected,
+      idSelectedForDetails: state.idSelectedForDetails,
+      setProviderSelectedForDetails: state.setProviderSelectedForDetails,
+      idSelectedForEditing: state.idSelectedForEditing,
+      setProviderSelectedForEditing: state.setProviderSelectedForEditing,
     }),
-    shallow
+    shallow,
   );
   const { isLoading, setLoading, unsetLoading } = useGeneralStore(
     (state) => ({
@@ -48,13 +52,17 @@ const Providers = () => {
       setLoading: state.setLoading,
       unsetLoading: state.unsetLoading,
     }),
-    shallow
+    shallow,
   );
   const { searchValue } = useDashboardPageStore(
     (state) => ({
       searchValue: state.searchValue,
     }),
-    shallow
+    shallow,
+  );
+
+  const filteredProviders = providers.filter((prov) =>
+    prov.providerName.toLowerCase().includes(searchValue.toLowerCase()),
   );
 
   const handleSeeMore = () => {
@@ -91,14 +99,24 @@ const Providers = () => {
   }, [searchValue]);
 
   useEffect(() => {
-    if (idSelected) {
+    if (idSelectedForDetails) {
       const provider = providers.filter(
-        (provider) => provider._id === idSelected
+        (provider) => provider._id === idSelectedForDetails,
       );
 
-      setProviderSelected(provider[0]);
+      setProviderSelectedForDetails(provider[0]);
     }
-  }, [idSelected]);
+  }, [idSelectedForDetails]);
+
+  useEffect(() => {
+    if (idSelectedForEditing) {
+      const provider = providers.filter(
+        (provider) => provider._id === idSelectedForEditing,
+      );
+
+      setProviderSelectedForEditing(provider[0]);
+    }
+  }, [idSelectedForEditing]);
 
   return (
     <div className="providers-component-container">
@@ -121,15 +139,39 @@ const Providers = () => {
                 <Loading type="spokes" color="#d40066" key={isLoading} />
               )}
             </AnimatePresence>
-            {providers.slice(0, sliceEnd).map((provider) => (
-              <ProviderBox
-                key={provider._id}
-                providerLogo={provider.providerLogo}
-                providerName={provider.providerName}
-                plansQuant={provider.plansQuant}
-                id={provider._id}
-              />
-            ))}
+            {searchValue.length !== 0 && filteredProviders.length === 0 ? (
+              <span className="providers-component-no-provider-adviser">
+                Nenhuma operadora encontrada
+              </span>
+            ) : searchValue.length !== 0 && providers.length !== 0 ? (
+              filteredProviders
+                .slice(0, sliceEnd)
+                .map((provider) => (
+                  <ProviderBox
+                    key={provider._id}
+                    providerLogo={provider.providerLogo}
+                    providerName={provider.providerName}
+                    plansQuant={provider.plansQuant}
+                    id={provider._id}
+                  />
+                ))
+            ) : providers.length !== 0 ? (
+              providers
+                .slice(0, sliceEnd)
+                .map((provider) => (
+                  <ProviderBox
+                    key={provider._id}
+                    providerLogo={provider.providerLogo}
+                    providerName={provider.providerName}
+                    plansQuant={provider.plansQuant}
+                    id={provider._id}
+                  />
+                ))
+            ) : (
+              <span className="providers-component-no-provider-adviser">
+                Nenhuma Operadora cadastrada
+              </span>
+            )}
             {sliceEnd < providers.length && searchValue.length === 0 ? (
               <button
                 type="button"

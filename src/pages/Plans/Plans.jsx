@@ -90,16 +90,14 @@ const Plans = () => {
     }),
     shallow,
   );
-  const { modalAnimation, isLoading, setLoading, unsetLoading } =
-    useGeneralStore(
-      (state) => ({
-        modalAnimation: state.modalAnimation,
-        isLoading: state.isLoading,
-        setLoading: state.setLoading,
-        unsetLoading: state.unsetLoading,
-      }),
-      shallow,
-    );
+  const { isLoading, setLoading, unsetLoading } = useGeneralStore(
+    (state) => ({
+      isLoading: state.isLoading,
+      setLoading: state.setLoading,
+      unsetLoading: state.unsetLoading,
+    }),
+    shallow,
+  );
   const { searchValue } = useDashboardPageStore(
     (state) => ({
       searchValue: state.searchValue,
@@ -148,18 +146,22 @@ const Plans = () => {
   useEffect(() => {
     if (planCategory.all) {
       setPlans([...internetPlans, ...celPlans, ...tvPlans]);
+      resetSliceValues();
     }
 
     if (planCategory.internet) {
       setPlans([...internetPlans]);
+      resetSliceValues();
     }
 
     if (planCategory.cel) {
       setPlans([...celPlans]);
+      resetSliceValues();
     }
 
     if (planCategory.tv) {
       setPlans([...tvPlans]);
+      resetSliceValues();
     }
   }, [planCategory, internetPlans, celPlans, tvPlans]);
 

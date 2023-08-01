@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useEffect } from "react";
+import React, { useRef, useMemo } from "react";
 import useInternetPlanStore from "../../../stores/useInternetPlansStore";
 import useRegisterStore from "../../../stores/useRegisterStore";
 import useGeneralStore from "../../../stores/useGeneralStore";
@@ -15,34 +15,27 @@ const Plan = ({
   cost,
   description,
 }) => {
-  const { idActiveToSeeMore, handleIdActiveToSeeMore, internetPlans } =
-    useInternetPlanStore(
-      (state) => ({
-        idActiveToSeeMore: state.idActiveToSeeMore,
-        handleIdActiveToSeeMore: state.handleIdActiveToSeeMore,
-        internetPlans: state.internetPlans,
-      }),
-      shallow
-    );
+  const { idActiveToSeeMore, handleIdActiveToSeeMore } = useInternetPlanStore(
+    (state) => ({
+      idActiveToSeeMore: state.idActiveToSeeMore,
+      handleIdActiveToSeeMore: state.handleIdActiveToSeeMore,
+    }),
+    shallow,
+  );
   const { setPlanSelected, openRegisterForm, generateSteps } = useRegisterStore(
     (state) => ({
       setPlanSelected: state.setPlanSelected,
       openRegisterForm: state.openRegisterForm,
       generateSteps: state.generateSteps,
     }),
-    shallow
+    shallow,
   );
   const { activateModalAnimation } = useGeneralStore(
     (state) => ({
       activateModalAnimation: state.activateModalAnimation,
     }),
-    shallow
+    shallow,
   );
-
-  const cardAnimation = useMemo(() => ({
-    offscreen: { y: -50, opacity: 0 },
-    onscreen: { y: 0, opacity: 1, transition: { duration: 1 } },
-  }));
 
   const handleRegisterButton = () => {
     setPlanSelected({

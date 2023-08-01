@@ -1,21 +1,19 @@
-import React, { useEffect, useLayoutEffect, useRef, useMemo } from "react";
+import React, { useLayoutEffect, useRef, useMemo } from "react";
 import usePlansStore from "../../../stores/usePlansStore";
-import useGeneralStore from "../../../stores/useGeneralStore";
 import { shallow } from "zustand/shallow";
 import { motion } from "framer-motion";
 
 const PlansFilterBox = () => {
-  const { plansFilter, handleFilter, closeFilterBox, plans, setPlans } =
-    usePlansStore(
-      (state) => ({
-        plansFilter: state.plansFilter,
-        handleFilter: state.handleFilter,
-        closeFilterBox: state.closeFilterBox,
-        plans: state.plans,
-        setPlans: state.setPlans,
-      }),
-      shallow
-    );
+  const { plansFilter, handleFilter, closeFilterBox } = usePlansStore(
+    (state) => ({
+      plansFilter: state.plansFilter,
+      handleFilter: state.handleFilter,
+      closeFilterBox: state.closeFilterBox,
+      plans: state.plans,
+      setPlans: state.setPlans,
+    }),
+    shallow,
+  );
   const filterBoxRef = useRef();
 
   const filterAnimation = useMemo(() => ({

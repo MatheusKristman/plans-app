@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import usePlansStore from "../../../stores/usePlansStore";
 import useGeneralStore from "../../../stores/useGeneralStore";
 import { shallow } from "zustand/shallow";
@@ -21,6 +21,7 @@ const CelPlanBox = ({
     setIdSelectedForDetails,
     setIdSelectedForEdit,
     setPlans,
+    planCategory,
   } = usePlansStore(
     (state) => ({
       openEditCelForm: state.openEditCelForm,
@@ -28,6 +29,7 @@ const CelPlanBox = ({
       setIdSelectedForDetails: state.setIdSelectedForDetails,
       setIdSelectedForEdit: state.setIdSelectedForEdit,
       setPlans: state.setPlans,
+      planCategory: state.planCategory,
     }),
     shallow,
   );
@@ -37,6 +39,7 @@ const CelPlanBox = ({
     }),
     shallow,
   );
+  const [isArchiving, setIsArchiving] = useState(false);
 
   const handleOpenForm = () => {
     openEditCelForm();
@@ -51,8 +54,10 @@ const CelPlanBox = ({
   };
 
   const handleArchive = (id) => {
+    setIsArchiving(true);
+
     api
-      .put("plan/cel-plan/archive", { id })
+      .put("plan/cel-plan/archive", { id, isAll: planCategory.all })
       .then((res) => {
         setPlans(res.data);
 
@@ -79,6 +84,9 @@ const CelPlanBox = ({
           progress: undefined,
           theme: "colored",
         });
+      })
+      .finally(() => {
+        setIsArchiving(false);
       });
   };
 
@@ -154,6 +162,7 @@ const CelPlanBox = ({
 
           <button
             onClick={() => handleArchive(planId)}
+            disabled={isArchiving}
             className="plans-component-archive-button"
           >
             <svg

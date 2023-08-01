@@ -8,7 +8,6 @@ import useDashboardPageStore from "../../stores/useDashboardPageStore.js";
 
 const DashboardPage = () => {
   const {
-    id,
     setId,
     isMenuOpen,
     openMenu,
@@ -18,7 +17,6 @@ const DashboardPage = () => {
     resetSearchValue,
   } = useDashboardPageStore(
     (state) => ({
-      id: state.id,
       setId: state.setId,
       isMenuOpen: state.isMenuOpen,
       openMenu: state.openMenu,
@@ -27,7 +25,7 @@ const DashboardPage = () => {
       setSize: state.setSize,
       resetSearchValue: state.resetSearchValue,
     }),
-    shallow
+    shallow,
   );
 
   const navigate = useNavigate();

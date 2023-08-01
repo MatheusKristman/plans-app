@@ -88,6 +88,14 @@
         gap: 25px;
         position: relative;
 
+        .providers-component-no-provider-adviser {
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: #b0b0b0;
+          width: 100%;
+          text-align: center;
+        }
+
         .providers-component-provider-container {
           width: 100%;
           padding-bottom: 25px;
@@ -205,7 +213,9 @@
                 border-radius: 8px;
                 padding: 10px 20px;
                 cursor: pointer;
-                transition: background 0.3s ease, color 0.3s ease;
+                transition:
+                  background 0.3s ease,
+                  color 0.3s ease;
 
                 &:hover {
                   background-color: #d40066;
@@ -222,7 +232,9 @@
                 border-radius: 8px;
                 padding: 10px 20px;
                 cursor: pointer;
-                transition: background 0.3s ease, color 0.3s ease;
+                transition:
+                  background 0.3s ease,
+                  color 0.3s ease;
 
                 &:hover {
                   background-color: #d40066;

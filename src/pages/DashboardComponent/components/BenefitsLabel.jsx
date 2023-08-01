@@ -1,5 +1,4 @@
 import React from "react";
-import useDashboardComponentStore from "../../../stores/useDashboardComponentStore";
 import useGeneralStore from "../../../stores/useGeneralStore";
 import { shallow } from "zustand/shallow";
 
@@ -9,7 +8,7 @@ const BenefitsLabel = ({ htmlFor, imageSrc, imageAlt, inputId, value }) => {
       benefits: state.benefits,
       setBenefits: state.setBenefits,
     }),
-    shallow
+    shallow,
   );
 
   return (

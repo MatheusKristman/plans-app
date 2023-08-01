@@ -261,9 +261,15 @@
               filter: brightness(80%);
             }
 
+            &:disabled {
+              filter: brightness(80%);
+              cursor: not-allowed;
+            }
+
             .edit-provider-form-submit-loading {
               width: 25px;
               height: 25px;
+              margin-right: 5px;
             }
           }
         }

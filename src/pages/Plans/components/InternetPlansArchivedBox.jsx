@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useGeneralStore from "../../../stores/useGeneralStore";
 import usePlansStore from "../../../stores/usePlansStore";
 import { shallow } from "zustand/shallow";
@@ -23,15 +23,22 @@ const InternetPlansArchivedBox = ({
     }),
     shallow,
   );
-  const { openInternetDetailsBox, setIdSelectedForDetails, setPlans } =
-    usePlansStore(
-      (state) => ({
-        openInternetDetailsBox: state.openInternetDetailsBox,
-        setIdSelectedForDetails: state.setIdSelectedForDetails,
-        setPlans: state.setPlans,
-      }),
-      shallow,
-    );
+  const {
+    openInternetDetailsBox,
+    setIdSelectedForDetails,
+    setPlans,
+    planCategory,
+  } = usePlansStore(
+    (state) => ({
+      openInternetDetailsBox: state.openInternetDetailsBox,
+      setIdSelectedForDetails: state.setIdSelectedForDetails,
+      setPlans: state.setPlans,
+      planCategory: state.planCategory,
+    }),
+    shallow,
+  );
+  const [isUnarchiving, setIsUnarchiving] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const handleOpenDetailsBox = () => {
     activateModalAnimation();
@@ -40,8 +47,10 @@ const InternetPlansArchivedBox = ({
   };
 
   const handleUnarchive = (id) => {
+    setIsUnarchiving(true);
+
     api
-      .put("plan/internet-plan/archive", { id })
+      .put("plan/internet-plan/archive", { id, isAll: planCategory.all })
       .then((res) => {
         setPlans(res.data);
 
@@ -68,12 +77,17 @@ const InternetPlansArchivedBox = ({
           progress: undefined,
           theme: "colored",
         });
+      })
+      .finally(() => {
+        setIsUnarchiving(false);
       });
   };
 
   const handleDelete = (id) => {
+    setIsDeleting(true);
+
     api
-      .delete(`plan/internet-plan/delete/${id}`)
+      .put("plan/internet-plan/delete", { id, isAll: planCategory.all })
       .then((res) => {
         setPlans(res.data);
 
@@ -100,6 +114,9 @@ const InternetPlansArchivedBox = ({
           progress: undefined,
           theme: "colored",
         });
+      })
+      .finally(() => {
+        setIsDeleting(false);
       });
   };
 
@@ -179,6 +196,7 @@ const InternetPlansArchivedBox = ({
         <div className="plans-component-archived-plan-buttons">
           <button
             onClick={() => handleUnarchive(planId)}
+            disabled={isUnarchiving}
             className="plans-component-restore-button"
           >
             <svg
@@ -207,6 +225,7 @@ const InternetPlansArchivedBox = ({
 
           <button
             onClick={() => handleDelete(planId)}
+            disabled={isDeleting}
             className="plans-component-delete-button"
           >
             <svg

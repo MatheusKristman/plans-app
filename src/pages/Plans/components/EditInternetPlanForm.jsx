@@ -260,6 +260,7 @@ const EditInternetPlanForm = () => {
             <button
               type="button"
               onClick={handleCloseForm}
+              disabled={isSubmitting}
               className="edit-internet-plan-close-button"
             >
               <svg

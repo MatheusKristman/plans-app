@@ -211,6 +211,7 @@ const NewProviderForm = () => {
             <button
               type="button"
               onClick={handleCloseButton}
+              disabled={submitting}
               className="new-provider-form-close-button"
             >
               <svg
@@ -362,10 +363,13 @@ const NewProviderForm = () => {
                 className="new-provider-form-submit-button"
               >
                 {submitting ? (
-                  <img
-                    src="/assets/icons/submit-loading.gif"
-                    className="new-provider-form-submit-loading"
-                  />
+                  <>
+                    <img
+                      src="/assets/icons/submit-loading.gif"
+                      className="new-provider-form-submit-loading"
+                    />
+                    Salvar
+                  </>
                 ) : (
                   "Salvar"
                 )}

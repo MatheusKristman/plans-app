@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { shallow } from "zustand/shallow";
 import { toast } from "react-toastify";
 
@@ -23,6 +23,7 @@ const TVDetailsBox = ({ archivedAt }) => {
     setIdSelectedForDetails,
     setIdSelectedForEdit,
     setPlans,
+    planCategory,
   } = usePlansStore(
     (state) => ({
       closeTVDetailsBox: state.closeTVDetailsBox,
@@ -31,11 +32,14 @@ const TVDetailsBox = ({ archivedAt }) => {
       setIdSelectedForDetails: state.setIdSelectedForDetails,
       setIdSelectedForEdit: state.setIdSelectedForEdit,
       setPlans: state.setPlans,
+      planCategory: state.planCategory,
     }),
     shallow,
   );
+  const [isArchiving, setIsArchiving] = useState(false);
+  const [isUnarchiving, setIsUnarchiving] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
-  // OK
   const handleCloseDetailsBox = () => {
     deactivateModalAnimation();
 
@@ -51,7 +55,6 @@ const TVDetailsBox = ({ archivedAt }) => {
     }
   };
 
-  // OK
   const handleOpenEditForm = () => {
     const idSelected = planSelectedForDetails._id;
 
@@ -66,10 +69,14 @@ const TVDetailsBox = ({ archivedAt }) => {
     }, 800);
   };
 
-  // OK
   const handleArchive = () => {
+    setIsArchiving(true);
+
     api
-      .put("plan/tv-plan/archive", { id: planSelectedForDetails._id })
+      .put("plan/tv-plan/archive", {
+        id: planSelectedForDetails._id,
+        isAll: planCategory.all,
+      })
       .then((res) => {
         setPlans(res.data);
         handleCloseDetailsBox();
@@ -97,13 +104,20 @@ const TVDetailsBox = ({ archivedAt }) => {
           progress: undefined,
           theme: "colored",
         });
+      })
+      .finally(() => {
+        setIsArchiving(false);
       });
   };
 
-  // OK
   const handleUnarchive = () => {
+    setIsUnarchiving(true);
+
     api
-      .put("plan/tv-plan/archive", { id: planSelectedForDetails._id })
+      .put("plan/tv-plan/archive", {
+        id: planSelectedForDetails._id,
+        isAll: planCategory.all,
+      })
       .then((res) => {
         setPlans(res.data);
         handleCloseDetailsBox();
@@ -131,13 +145,20 @@ const TVDetailsBox = ({ archivedAt }) => {
           progress: undefined,
           theme: "colored",
         });
+      })
+      .finally(() => {
+        setIsUnarchiving(false);
       });
   };
 
-  // OK
   const handleDelete = () => {
+    setIsDeleting(true);
+
     api
-      .delete(`plan/tv-plan/delete/${planSelectedForDetails._id}`)
+      .put("plan/tv-plan/delete", {
+        id: planSelectedForDetails._id,
+        isAll: planCategory.all,
+      })
       .then((res) => {
         setPlans(res.data);
         handleCloseDetailsBox();
@@ -165,6 +186,9 @@ const TVDetailsBox = ({ archivedAt }) => {
           progress: undefined,
           theme: "colored",
         });
+      })
+      .finally(() => {
+        setIsDeleting(false);
       });
   };
 
@@ -376,6 +400,7 @@ const TVDetailsBox = ({ archivedAt }) => {
                     <button
                       type="button"
                       onClick={handleUnarchive}
+                      disabled={isUnarchiving}
                       className="tv-details-box-restore-button"
                     >
                       <svg
@@ -397,6 +422,7 @@ const TVDetailsBox = ({ archivedAt }) => {
                     <button
                       type="button"
                       onClick={handleDelete}
+                      disabled={isDeleting}
                       className="tv-details-box-delete-button"
                     >
                       Excluir
@@ -414,6 +440,7 @@ const TVDetailsBox = ({ archivedAt }) => {
                     <button
                       type="button"
                       onClick={handleArchive}
+                      disabled={isArchiving}
                       className="tv-details-box-archive-button"
                     >
                       <svg

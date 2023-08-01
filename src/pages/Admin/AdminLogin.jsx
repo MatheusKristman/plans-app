@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { shallow } from "zustand/shallow";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,6 +8,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import useAdminStore from "../../stores/useAdminStore";
+import useDashboardPageStore from "../../stores/useDashboardPageStore";
 import api from "../../services/api.js";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -57,8 +58,11 @@ const AdminLogin = () => {
       isNotSubmitting: state.isNotSubmitting,
       reset: state.reset,
     }),
-    shallow
+    shallow,
   );
+  const { setId } = useDashboardPageStore((state) => ({
+    setId: state.setId,
+  }));
 
   const schema = Yup.object({
     email: Yup.string().email("Email invalido").required("Email é obrigatório"),
@@ -92,6 +96,22 @@ const AdminLogin = () => {
 
   useEffect(() => {
     reset();
+
+    const token = localStorage.getItem("token");
+
+    api
+      .get("/admin/is-admin", {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        setId(res.data.token.token);
+        navigate("/admin/painel-de-controle");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }, []);
 
   useEffect(() => {

@@ -1,9 +1,9 @@
-import React, { useRef, useEffect, useMemo, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import useTVPlansStore from "../../../stores/useTVPlansStore";
 import useGeneralStore from "../../../stores/useGeneralStore";
 import { shallow } from "zustand/shallow";
 import api from "../../../services/api";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 import Plan from "./Plan";
 import Loading from "../../components/Loading";
@@ -45,6 +45,7 @@ const TVPlansBody = ({
   const [sliceEnd, setSliceEnd] = useState(5);
 
   const filterRef = useRef();
+  const bodyRef = useRef();
 
   const openFilterBox = () => {
     setIsFilterOpen(true);
@@ -87,6 +88,10 @@ const TVPlansBody = ({
     event.preventDefault();
 
     setIsFilterSubmitting(true);
+
+    const scrollPosition = bodyRef.current.offsetTop;
+
+    window.scrollTo(0, scrollPosition);
 
     if (window.innerWidth < 1024) {
       closeFilterBox();
@@ -179,7 +184,7 @@ const TVPlansBody = ({
   }, [isFilterSubmitting]);
 
   return (
-    <div className="body-container">
+    <div ref={bodyRef} className="body-container">
       <AnimatePresence>
         {isLoading && <Loading key={isLoading} type="spin" color="#8186bc" />}
       </AnimatePresence>

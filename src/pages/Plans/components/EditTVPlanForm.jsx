@@ -242,6 +242,7 @@ const EditTVPlanForm = () => {
             <button
               type="button"
               onClick={handleCloseForm}
+              disabled={isSubmitting}
               className="edit-tv-plan-close-button"
             >
               <svg
@@ -474,7 +475,6 @@ const EditTVPlanForm = () => {
                   <option value="2">2</option>
                   <option value="3">3</option>
                   <option value="4">4</option>
-                  <option value="5">5</option>
                 </select>
               </div>
 
@@ -723,7 +723,11 @@ const EditTVPlanForm = () => {
                 )}
               </div>
 
-              <button type="submit" className="edit-tv-plan-submit-button">
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="edit-tv-plan-submit-button"
+              >
                 {isSubmitting ? (
                   <>
                     <img

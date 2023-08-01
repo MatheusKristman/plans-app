@@ -13,7 +13,6 @@ const FAQCard = ({ question, answer, isAnswerOpen, handleAnswer, id }) => {
         style={isAnswerOpen ? { marginBottom: "25px" } : {}}
         onClick={() => {
           handleAnswer(`answer${id}`);
-          console.log(faqRef?.scrollHeight);
         }}
       >
         <span className="faq-question">{question}</span>
